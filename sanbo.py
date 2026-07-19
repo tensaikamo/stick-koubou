@@ -56,29 +56,40 @@ arts = arts[:40]
 lst = "\n".join(str(i) + ". [" + a["src"] + "] " + a["title"] for i, a in enumerate(arts))
 
 sel = None
-try:
-    sel = parse_json(gemini(
-        "あなたはシリコンバレー駐在の情報参謀。以下は過去24時間の英語ヘッドライン。\n"
-        "『シリコンバレーのAI業界の空気を掴む』観点で重要な記事を6〜8本選び、番号だけをJSON配列で返せ。\n"
-        "説明不要、JSON配列のみ。\n\n" + lst))
-except Exception as e:
-    print("sel", e)
+if arts:
+    try:
+        sel = parse_json(gemini(
+            "あなたはシリコンバレー駐在の情報参謀。以下は過去24時間の英語ヘッドライン。\n"
+            "『シリコンバレーのAI業界の空気を掴む』観点で重要な記事を6〜8本選び、番号だけをJSON配列で返せ。\n"
+            "説明不要、JSON配列のみ。\n\n" + lst))
+    except Exception as e:
+        print("sel", e)
 if not isinstance(sel, list):
     sel = list(range(min(7, len(arts))))
-picked = [arts[i] for i in sel if isinstance(i, int) and 0 <= i < len(arts)]
+picked = []
+for i in sel:
+    if isinstance(i, int) and 0 <= i < len(arts) and arts[i] not in picked:
+        picked.append(arts[i])
+if not picked:
+    picked = arts[:7]
 
 plist = "\n".join("- [" + a["src"] + "] " + a["title"] + " (" + a["url"] + ")" for a in picked)
 brief = None
-try:
-    brief = parse_json(gemini(
-        "あなたは日本人経営者に仕えるシリコンバレー駐在の情報参謀。以下が今日の重要記事。\n"
-        "日本語で簡潔かつ具体的に、次のJSONだけを返せ:\n"
-        '{"kuki": "今日の空気(現地で何が騒がれ、金と注目がどこに動いているか。3〜5文)", '
-        '"dousuru": "で、どうする(この動きが日本と個人にどう波及するか、注視すべき点。2〜4文)"}\n\n' + plist))
-except Exception as e:
-    print("brief", e)
+if picked:
+    try:
+        brief = parse_json(gemini(
+            "あなたは日本人経営者に仕えるシリコンバレー駐在の情報参謀。以下が今日の重要記事。\n"
+            "日本語で簡潔かつ具体的に、次のJSONだけを返せ:\n"
+            '{"kuki": "今日の空気(現地で何が騒がれ、金と注目がどこに動いているか。3〜5文)", '
+            '"dousuru": "で、どうする(この動きが日本と個人にどう波及するか、注視すべき点。2〜4文)"}\n\n' + plist))
+    except Exception as e:
+        print("brief", e)
 if not isinstance(brief, dict):
-    brief = {"kuki": "本日の生成に失敗。次回実行で回復します。", "dousuru": "-"}
+    if not picked:
+        brief = {"kuki": "過去24時間で基準を満たす記事を取得できませんでした。取得元の一時的な不調の可能性があります。",
+                 "dousuru": "次回の自動実行での回復を待つ。継続する場合は取得条件の見直しを。"}
+    else:
+        brief = {"kuki": "本日の生成に失敗。次回実行で回復します。", "dousuru": "-"}
 
 jst = datetime.now(timezone(timedelta(hours=9)))
 links = "\n".join('<li><a href="' + html.escape(a["url"]) + '">' + html.escape(a["title"])
