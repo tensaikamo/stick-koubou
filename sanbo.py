@@ -1,11 +1,15 @@
-import json, os, re, html, urllib.request, urllib.parse
+import json, os, re, html, urllib.request, urllib.parse, urllib.error
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 
 API_KEY = os.environ.get("GEMINI_API_KEY", "")
 if not API_KEY:
     raise SystemExit("GEMINI_API_KEY が未設定です(リポジトリのSecretsを確認)")
-MODEL = "gemini-2.5-flash"
+# gemini-2.5-flash は 2026-07 時点で API が 404 を返す(提供終了)ため、
+# 常に現行の flash 系を指す公式エイリアス gemini-flash-latest を第一候補にし、
+# 404 の場合のみ旧名へ順にフォールバックする
+MODELS = ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.0-flash"]
+_model_ok = []
 
 def http(url, data=None, headers=None):
     req = urllib.request.Request(url, data=data, headers=headers or {"User-Agent": "Mozilla/5.0"})
@@ -38,11 +42,29 @@ def fetch_tc():
         return []
 
 def gemini(prompt):
-    url = "https://generativelanguage.googleapis.com/v1beta/models/" + MODEL + ":generateContent"
     body = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
-    d = json.loads(http(url, data=body,
-                        headers={"Content-Type": "application/json", "x-goog-api-key": API_KEY}).decode())
-    return d["candidates"][0]["content"]["parts"][0]["text"]
+    last = None
+    for m in (_model_ok or MODELS):
+        url = "https://generativelanguage.googleapis.com/v1beta/models/" + m + ":generateContent"
+        try:
+            d = json.loads(http(url, data=body,
+                                headers={"Content-Type": "application/json", "x-goog-api-key": API_KEY}).decode())
+            _model_ok[:] = [m]
+            return d["candidates"][0]["content"]["parts"][0]["text"]
+        except urllib.error.HTTPError as e:
+            last = e
+            if e.code != 404:
+                raise
+            print("model", m, "-> 404, trying next")
+    # 全候補が404: 利用可能なflash系モデル名を診断出力(モデル名のみ。キーは出力しない)
+    try:
+        d = json.loads(http("https://generativelanguage.googleapis.com/v1beta/models",
+                            headers={"x-goog-api-key": API_KEY}).decode())
+        print("available flash models:",
+              [m.get("name") for m in d.get("models", []) if "flash" in (m.get("name") or "")])
+    except Exception as e2:
+        print("listmodels", e2)
+    raise last
 
 def parse_json(text):
     m = re.search(r"\{.*\}|\[.*\]", text, re.S)
