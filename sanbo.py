@@ -2,7 +2,9 @@ import json, os, re, html, urllib.request, urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 
-API_KEY = os.environ["GEMINI_API_KEY"]
+API_KEY = os.environ.get("GEMINI_API_KEY", "")
+if not API_KEY:
+    raise SystemExit("GEMINI_API_KEY が未設定です(リポジトリのSecretsを確認)")
 MODEL = "gemini-2.5-flash"
 
 def http(url, data=None, headers=None):
@@ -36,9 +38,10 @@ def fetch_tc():
         return []
 
 def gemini(prompt):
-    url = "https://generativelanguage.googleapis.com/v1beta/models/" + MODEL + ":generateContent?key=" + API_KEY
+    url = "https://generativelanguage.googleapis.com/v1beta/models/" + MODEL + ":generateContent"
     body = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
-    d = json.loads(http(url, data=body, headers={"Content-Type": "application/json"}).decode())
+    d = json.loads(http(url, data=body,
+                        headers={"Content-Type": "application/json", "x-goog-api-key": API_KEY}).decode())
     return d["candidates"][0]["content"]["parts"][0]["text"]
 
 def parse_json(text):
