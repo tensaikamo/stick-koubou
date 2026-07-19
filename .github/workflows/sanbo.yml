@@ -25,4 +25,5 @@ jobs:
           git config user.email "actions@github.com"
           git add docs/
           git commit -m "sanbo update" || echo "no changes"
+          git pull --rebase
           git push
