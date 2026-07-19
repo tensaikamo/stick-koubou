@@ -68,8 +68,17 @@ def gemini(prompt):
     raise last
 
 def parse_json(text):
-    m = re.search(r"\{.*\}|\[.*\]", text, re.S)
-    return json.loads(m.group(0)) if m else None
+    # 応答にJSON値が複数連続・前置きが混在しても、最初の完全なJSON値だけを取り出す
+    # (貪欲正規表現だと複数オブジェクト連結時に "Extra data" で失敗する)
+    dec = json.JSONDecoder()
+    for i, ch in enumerate(text):
+        if ch in "{[":
+            try:
+                v, _ = dec.raw_decode(text[i:])
+                return v
+            except ValueError:
+                continue
+    return None
 
 items = fetch_hn() + fetch_tc()
 seen, arts = set(), []
