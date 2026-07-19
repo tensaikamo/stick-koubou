@@ -3,11 +3,6 @@ on:
   schedule:
     - cron: "30 21 * * *"
   workflow_dispatch:
-  # 検証用: workflow_dispatchはデフォルトブランチへの登録前は404になるため、
-  # 作業ブランチへのpushでも起動できるようにする(bot自身のdocsコミットでは再発火しない)
-  push:
-    branches: ["claude/sanbo-qa-launch-csr5tj"]
-    paths-ignore: ["docs/**"]
 
 permissions:
   contents: write
