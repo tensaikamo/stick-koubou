@@ -93,7 +93,7 @@ if not isinstance(brief, dict):
 
 jst = datetime.now(timezone(timedelta(hours=9)))
 links = "\n".join('<li><a href="' + html.escape(a["url"]) + '">' + html.escape(a["title"])
-                  + '</a> <span class="m">' + a["src"] + " " + a["meta"] + "</span></li>" for a in picked)
+                  + '</a> <span class="m">' + html.escape(a["src"] + " " + a["meta"]) + "</span></li>" for a in picked)
 
 page = """<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
