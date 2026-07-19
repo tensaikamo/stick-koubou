@@ -42,7 +42,8 @@ def fetch_tc():
         return []
 
 def gemini(prompt):
-    body = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
+    body = json.dumps({"contents": [{"parts": [{"text": prompt}]}],
+                       "generationConfig": {"responseMimeType": "application/json"}}).encode()
     last = None
     for m in (_model_ok or MODELS):
         url = "https://generativelanguage.googleapis.com/v1beta/models/" + m + ":generateContent"
