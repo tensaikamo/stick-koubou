@@ -99,6 +99,9 @@ if arts:
             "説明不要、JSON配列のみ。\n\n" + lst))
     except Exception as e:
         print("sel", e)
+if isinstance(sel, dict):
+    # {"selected": [..]} のようにオブジェクトで包まれた場合は中の配列を取り出す
+    sel = next((v for v in sel.values() if isinstance(v, list)), None)
 if not isinstance(sel, list):
     sel = list(range(min(7, len(arts))))
 picked = []
@@ -108,17 +111,32 @@ for i in sel:
 if not picked:
     picked = arts[:7]
 
+def norm_brief(b):
+    # モデルが [{"kuki":..}] のように配列で包む・キー欠落で返すケースを正規化し、
+    # 両キーが非空の場合のみ有効とみなす
+    if isinstance(b, list):
+        b = next((x for x in b if isinstance(x, dict)), None)
+    if isinstance(b, dict) and str(b.get("kuki") or "").strip() and str(b.get("dousuru") or "").strip():
+        return {"kuki": str(b["kuki"]), "dousuru": str(b["dousuru"])}
+    if b is not None:
+        print("brief unexpected shape:", repr(b)[:200])
+    return None
+
 plist = "\n".join("- [" + a["src"] + "] " + a["title"] + " (" + a["url"] + ")" for a in picked)
 brief = None
 if picked:
-    try:
-        brief = parse_json(gemini(
-            "あなたは日本人経営者に仕えるシリコンバレー駐在の情報参謀。以下が今日の重要記事。\n"
-            "日本語で簡潔かつ具体的に、次のJSONだけを返せ:\n"
-            '{"kuki": "今日の空気(現地で何が騒がれ、金と注目がどこに動いているか。3〜5文)", '
-            '"dousuru": "で、どうする(この動きが日本と個人にどう波及するか、注視すべき点。2〜4文)"}\n\n' + plist))
-    except Exception as e:
-        print("brief", e)
+    for attempt in range(2):  # 応答形式が不正だった場合は1回だけ再生成を試す
+        try:
+            brief = norm_brief(parse_json(gemini(
+                "あなたは日本人経営者に仕えるシリコンバレー駐在の情報参謀。以下が今日の重要記事。\n"
+                "日本語で簡潔かつ具体的に、次のJSONオブジェクトだけを返せ(配列で包まない):\n"
+                '{"kuki": "今日の空気(現地で何が騒がれ、金と注目がどこに動いているか。3〜5文)", '
+                '"dousuru": "で、どうする(この動きが日本と個人にどう波及するか、注視すべき点。2〜4文)"}\n\n' + plist)))
+        except Exception as e:
+            print("brief", e)
+        if brief:
+            break
+        print("brief attempt", attempt + 1, "failed, retrying" if attempt == 0 else "giving up")
 if not isinstance(brief, dict):
     if not picked:
         brief = {"kuki": "過去24時間で基準を満たす記事を取得できませんでした。取得元の一時的な不調の可能性があります。",
