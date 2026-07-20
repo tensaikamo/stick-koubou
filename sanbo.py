@@ -105,6 +105,22 @@ def unwrap_list(v):
         v = next((x for x in v.values() if isinstance(x, list)), None)
     return v if isinstance(v, list) else None
 
+# 正しい形の用語タグ <t data-d="解説">用語</t> だけを通すパターン
+T_RE = re.compile(r'<t\s+data-d="([^"<>]{1,160})"\s*>([^<>]{1,60})</t>')
+
+def render_rich(text):
+    # モデル出力をHTML化する唯一の経路。正規形のtタグのみ再構築し、
+    # それ以外(他のタグ・壊れたtタグ)はすべてエスケープしてページ破壊を防ぐ
+    text = str(text)
+    out, pos = [], 0
+    for m in T_RE.finditer(text):
+        out.append(html.escape(text[pos:m.start()]))
+        out.append('<t data-d="' + html.escape(m.group(1), quote=True) + '">'
+                   + html.escape(m.group(2)) + "</t>")
+        pos = m.end()
+    out.append(html.escape(text[pos:]))
+    return "".join(out)
+
 items = fetch_hn() + fetch_tc()
 seen, arts = set(), []
 for a in items:
@@ -191,7 +207,9 @@ if picked:
         '"dousuru": "読者個人への具体的な示唆のみ。日本企業・業界への提言は禁止。「明日これを見ておけ」レベルまで具体化。2〜4文", '
         '"kan": "参謀の勘:確証はないが匂う話を1つ。必ず期限つき予測の形で書く(例:2週間以内に◯◯が動くと見る。根拠は◯◯)", '
         '"mijoriku": [{"title": "記事タイトル(日本語訳可)", "desc": "一言説明", "why": "なぜ日本で先回りの価値があるか"}]}\n'
-        "mijorikuは材料の中から日本語圏でまだほぼ話題になっていなさそうな話を1〜2本選ぶこと。\n\n" + material)
+        "mijorikuは材料の中から日本語圏でまだほぼ話題になっていなさそうな話を1〜2本選ぶこと。\n"
+        '専門用語には <t data-d="この文脈での一言解説">用語</t> の形式で解説を埋め込め'
+        "(1セクションあたり2〜4語まで。data-dの中に引用符・山括弧・改行を入れない。t以外のタグは使わない)。\n\n" + material)
     for attempt in range(2):  # 応答形式が不正だった場合は1回だけ再生成を試す
         try:
             final = norm_final(parse_json(gemini(prompt3)))
@@ -224,8 +242,8 @@ links = "\n".join('<li><a href="' + html.escape(a["url"]) + '">' + html.escape(a
 mj_html = ""
 if final["mijoriku"]:
     mj_html = "<h2>未上陸</h2>" + "".join(
-        '<div class="mj"><div class="mjt">' + html.escape(x["title"]) + "</div><p>" + html.escape(x["desc"])
-        + '</p><p class="mjw">先回りの価値:' + html.escape(x["why"]) + "</p></div>" for x in final["mijoriku"])
+        '<div class="mj"><div class="mjt">' + render_rich(x["title"]) + "</div><p>" + render_rich(x["desc"])
+        + '</p><p class="mjw">先回りの価値:' + render_rich(x["why"]) + "</p></div>" for x in final["mijoriku"])
 
 page = """<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -244,6 +262,9 @@ padding:1px 8px;margin-right:8px;white-space:nowrap}
 .mjt{font-size:14px;color:#dbe4ec}
 .mj p{font-size:13px;margin:6px 0}
 .mjw{color:#8fb8d8}
+t{border-bottom:1px dotted #5fd7c8;cursor:pointer}
+.tip{display:block;background:#101a26;border:1px solid #24414d;border-radius:8px;
+padding:8px 12px;margin:6px 0;font-size:13px;line-height:1.7;color:#aec4d4;max-width:100%}
 ul{padding-left:0;list-style:none}
 li{margin:14px 0;font-size:14px}
 a{color:#8fb8d8;text-decoration:none}
@@ -252,13 +273,31 @@ a{color:#8fb8d8;text-decoration:none}
 <h1>◇ シリコンバレー参謀</h1>
 <div class="d">""" + jst.strftime("%Y.%m.%d %H:%M") + """ JST</div>
 <h2>今日の空気</h2>
-<p><span class="lb">表</span>""" + html.escape(final["omote"]) + """</p>
-<p><span class="lb">裏</span>""" + html.escape(final["ura"]) + """</p>
-<h2>で、どうする</h2><p>""" + html.escape(final["dousuru"]) + """</p>
-<h2>参謀の勘</h2><p>""" + html.escape(final["kan"]) + """</p>
+<p><span class="lb">表</span>""" + render_rich(final["omote"]) + """</p>
+<p><span class="lb">裏</span>""" + render_rich(final["ura"]) + """</p>
+<h2>で、どうする</h2><p>""" + render_rich(final["dousuru"]) + """</p>
+<h2>参謀の勘</h2><p>""" + render_rich(final["kan"]) + """</p>
 """ + mj_html + """
 <h2>今日の重要記事</h2><ul>""" + links + """</ul>
-</main></body></html>"""
+</main>
+<script>
+document.addEventListener("click", function (e) {
+  var t = e.target.closest ? e.target.closest("t") : null;
+  var old = document.querySelector(".tip");
+  if (old) {
+    var same = old.tipSource === t;
+    old.remove();
+    if (same) return;  // 同じ用語の再タップは閉じるだけ
+  }
+  if (!t) return;
+  var s = document.createElement("span");
+  s.className = "tip";
+  s.textContent = t.getAttribute("data-d") || "";
+  s.tipSource = t;
+  t.insertAdjacentElement("afterend", s);
+});
+</script>
+</body></html>"""
 
 os.makedirs("docs", exist_ok=True)
 open("docs/index.html", "w", encoding="utf-8").write(page)
