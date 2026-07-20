@@ -5,10 +5,10 @@ from datetime import datetime, timezone, timedelta
 API_KEY = os.environ.get("GEMINI_API_KEY", "")
 if not API_KEY:
     raise SystemExit("GEMINI_API_KEY が未設定です(リポジトリのSecretsを確認)")
-# gemini-2.5-flash は 2026-07 時点で API が 404 を返す(提供終了)ため、
+# gemini-2.5-flash は 2026-07 時点で API が 404 を返す(提供終了)ため候補から除外。
 # 常に現行の flash 系を指す公式エイリアス gemini-flash-latest を第一候補にし、
-# 404 の場合のみ旧名へ順にフォールバックする
-MODELS = ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.0-flash"]
+# 過負荷時は旧名 → 別容量プールの flash-lite へ順にフォールバックする(全て無料のflash系)
+MODELS = ["gemini-flash-latest", "gemini-2.0-flash", "gemini-flash-lite-latest"]
 _model_ok = []
 _calls = 0
 CALL_LIMIT = 10  # 1実行あたりのAPI呼び出し上限(無料枠1,500/日の保護)
@@ -63,12 +63,14 @@ def gemini(prompt):
     last = None
     for m in (_model_ok or MODELS):
         url = "https://generativelanguage.googleapis.com/v1beta/models/" + m + ":generateContent"
-        for wait in (0, 4, 12):  # 429/503(一時的な過負荷)は待って同モデルに再試行
+        # 429/503(一時的な過負荷)は20秒待って同モデルに1回だけ再試行。
+        # 再試行を増やしすぎると1段だけで呼び出し上限を食い潰し、後段が劣化するため2回まで
+        for wait in (0, 20):
             if wait:
                 time.sleep(wait)
-            _calls += 1
-            if _calls > CALL_LIMIT:
+            if _calls >= CALL_LIMIT:
                 raise RuntimeError("API呼び出し上限(" + str(CALL_LIMIT) + "回/実行)に到達")
+            _calls += 1
             try:
                 d = json.loads(http(url, data=body,
                                     headers={"Content-Type": "application/json", "x-goog-api-key": API_KEY}).decode())
