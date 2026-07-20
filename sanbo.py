@@ -115,8 +115,10 @@ def unwrap_list(v):
         v = next((x for x in v.values() if isinstance(x, list)), None)
     return v if isinstance(v, list) else None
 
-# 正しい形の用語タグ <t data-d="解説">用語</t> だけを通すパターン
-T_RE = re.compile(r'<t\s+data-d="([^"<>]{1,160})"\s*>([^<>]{1,60})</t>')
+# 正しい形の用語タグ <t data-d='解説'>用語</t> だけを通すパターン。
+# 属性はシングルクォート指定(JSON文字列内の二重引用符エスケープ漏れでJSON全体が
+# 壊れる事故が実際に起きたため)だが、二重引用符も後方互換で受ける
+T_RE = re.compile(r"""<t\s+data-d=(?:'([^'<>]{1,160})'|"([^"<>]{1,160})")\s*>([^<>]{1,60})</t>""")
 
 def render_rich(text):
     # モデル出力をHTML化する唯一の経路。正規形のtタグのみ再構築し、
@@ -125,8 +127,8 @@ def render_rich(text):
     out, pos = [], 0
     for m in T_RE.finditer(text):
         out.append(html.escape(text[pos:m.start()]))
-        out.append('<t data-d="' + html.escape(m.group(1), quote=True) + '">'
-                   + html.escape(m.group(2)) + "</t>")
+        out.append('<t data-d="' + html.escape(m.group(1) or m.group(2), quote=True) + '">'
+                   + html.escape(m.group(3)) + "</t>")
         pos = m.end()
     out.append(html.escape(text[pos:]))
     return "".join(out)
@@ -154,12 +156,16 @@ if arts:
     except Exception as e:
         print("sel", e)
 if not isinstance(sel, list):
+    print("sel fallback: 応答が配列でないため先頭7件を採用")
     sel = list(range(min(7, len(arts))))
 picked = []
 for i in sel:
+    if isinstance(i, str) and i.strip().isdigit():
+        i = int(i)  # 番号を文字列で返すモデルを許容
     if isinstance(i, int) and 0 <= i < len(arts) and arts[i] not in picked:
         picked.append(arts[i])
 if not picked:
+    print("sel fallback: 有効な番号がないため先頭7件を採用")
     picked = arts[:7]
 
 plist = "\n".join(str(i) + ". [" + a["src"] + "] " + a["title"] + " (" + a["url"] + ")"
@@ -218,8 +224,9 @@ if picked:
         '"kan": "参謀の勘:確証はないが匂う話を1つ。必ず期限つき予測の形で書く(例:2週間以内に◯◯が動くと見る。根拠は◯◯)", '
         '"mijoriku": [{"title": "記事タイトル(日本語訳可)", "desc": "一言説明", "why": "なぜ日本で先回りの価値があるか"}]}\n'
         "mijorikuは材料の中から日本語圏でまだほぼ話題になっていなさそうな話を1〜2本選ぶこと。\n"
-        '専門用語には <t data-d="この文脈での一言解説">用語</t> の形式で解説を埋め込め'
-        "(1セクションあたり2〜4語まで。data-dの中に引用符・山括弧・改行を入れない。t以外のタグは使わない)。\n\n" + material)
+        "専門用語には <t data-d='この文脈での一言解説'>用語</t> の形式で解説を埋め込め"
+        "(1セクションあたり2〜4語まで。data-dは必ずシングルクォートで書き、中に引用符・山括弧・改行を入れない。"
+        "JSON文字列を壊す二重引用符は文中で使わない。t以外のタグは使わない)。\n\n" + material)
     for attempt in range(2):  # 応答形式が不正だった場合は1回だけ再生成を試す
         try:
             final = norm_final(parse_json(gemini(prompt3)))
