@@ -10,6 +10,21 @@ if not API_KEY:
 # 404 の場合のみ旧名へ順にフォールバックする
 MODELS = ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.0-flash"]
 _model_ok = []
+_calls = 0
+CALL_LIMIT = 10  # 1実行あたりのAPI呼び出し上限(無料枠1,500/日の保護)
+
+PERSONA = """読者はただ一人。以下の人物だけに向けて書け。
+- 日本在住。昼は現場仕事、動ける時間は朝と夜、装備はiPhone一台
+- 組織に属さず、個人で情報優位を作って先回りすることを狙う
+- AIを消費する側ではなく、AIで仕掛ける側に回ろうとしている
+- 知りたいのは「何が起きたか」ではなく「裏で何が動いてるか」「日本にまだ届いてない何か」「自分が先回りできる隙はどこか」
+- 嫌うもの:企業向け提言、一般論、「注視が必要です」で終わる文
+- 好むもの:断言と根拠、期限つきの予測、誰も言ってない視点
+
+参謀の文体:断言型。「〜と見る」「〜のはずだ」と言い切る。ヘッジ表現(「可能性があります」「かもしれません」の乱用)は禁止。ただし断言には必ず根拠を一言つける。
+
+注意:読者の「現場仕事」は生活制約(動ける時間が朝晩のみ・装備はiPhone一台)を示す情報であり、興味領域ではない。現場作業・建設・ブルーカラー向けAIといった職業連想で記事を選んだり話題を寄せたりするな。関心はあくまでシリコンバレーAI業界の権力・金・技術の動きと、そこで個人が先回りできる隙だ。
+"""
 
 def http(url, data=None, headers=None):
     req = urllib.request.Request(url, data=data, headers=headers or {"User-Agent": "Mozilla/5.0"})
@@ -24,7 +39,7 @@ def fetch_hn():
                    + "&tags=story&numericFilters=" + urllib.parse.quote("points>60") + "&hitsPerPage=8")
             d = json.loads(http(url).decode())
             for h in d.get("hits", []):
-                out.append({"title": h.get("title") or "", 
+                out.append({"title": h.get("title") or "",
                             "url": h.get("url") or "https://news.ycombinator.com/item?id=" + str(h.get("objectID")),
                             "meta": str(h.get("points", 0)) + "pt", "src": "HN"})
         except Exception as e:
@@ -42,6 +57,10 @@ def fetch_tc():
         return []
 
 def gemini(prompt):
+    global _calls
+    _calls += 1
+    if _calls > CALL_LIMIT:
+        raise RuntimeError("API呼び出し上限(" + str(CALL_LIMIT) + "回/実行)に到達")
     body = json.dumps({"contents": [{"parts": [{"text": prompt}]}],
                        "generationConfig": {"responseMimeType": "application/json"}}).encode()
     last = None
@@ -80,6 +99,12 @@ def parse_json(text):
                 continue
     return None
 
+def unwrap_list(v):
+    # {"selected": [..]} のようにオブジェクトで包まれた配列も許容する
+    if isinstance(v, dict):
+        v = next((x for x in v.values() if isinstance(x, list)), None)
+    return v if isinstance(v, list) else None
+
 items = fetch_hn() + fetch_tc()
 seen, arts = set(), []
 for a in items:
@@ -90,18 +115,18 @@ arts = arts[:40]
 
 lst = "\n".join(str(i) + ". [" + a["src"] + "] " + a["title"] for i, a in enumerate(arts))
 
+# --- 1段目: 選別 ---
 sel = None
 if arts:
     try:
-        sel = parse_json(gemini(
-            "あなたはシリコンバレー駐在の情報参謀。以下は過去24時間の英語ヘッドライン。\n"
+        sel = unwrap_list(parse_json(gemini(PERSONA +
+            "\n以下は過去24時間の英語ヘッドライン。\n"
             "『シリコンバレーのAI業界の空気を掴む』観点で重要な記事を6〜8本選び、番号だけをJSON配列で返せ。\n"
-            "説明不要、JSON配列のみ。\n\n" + lst))
+            "選定基準はシリコンバレーAI業界の重要度と先回り価値のみ。読者の職業に寄せない。"
+            "AIと無関係な記事(収集ノイズ)は選ばない。\n"
+            "説明不要、JSON配列のみ。\n\n" + lst)))
     except Exception as e:
         print("sel", e)
-if isinstance(sel, dict):
-    # {"selected": [..]} のようにオブジェクトで包まれた場合は中の配列を取り出す
-    sel = next((v for v in sel.values() if isinstance(v, list)), None)
 if not isinstance(sel, list):
     sel = list(range(min(7, len(arts))))
 picked = []
@@ -111,42 +136,96 @@ for i in sel:
 if not picked:
     picked = arts[:7]
 
-def norm_brief(b):
-    # モデルが [{"kuki":..}] のように配列で包む・キー欠落で返すケースを正規化し、
-    # 両キーが非空の場合のみ有効とみなす
+plist = "\n".join(str(i) + ". [" + a["src"] + "] " + a["title"] + " (" + a["url"] + ")"
+                  for i, a in enumerate(picked))
+
+# --- 2段目: 分析メモ ---
+memos = None
+if picked:
+    try:
+        m = unwrap_list(parse_json(gemini(PERSONA +
+            "\n以下は今日の重要記事。参謀として各記事を分析し、次のJSON配列だけを返せ:\n"
+            '[{"i": 記事番号, "omote": "表:何が起きたか(1〜2文)", '
+            '"ura": "裏:それが本当に意味すること・裏で誰が何を狙っているかの見立て(1〜2文)", '
+            '"nihon": "日本語圏への未到達度(高/中/低)とその理由を一言"}]\n\n' + plist)))
+        if m is not None:
+            memos = [x for x in m if isinstance(x, dict) and str(x.get("omote") or "").strip()] or None
+        if memos is None:
+            print("memo unexpected shape:", repr(m)[:200])
+    except Exception as e:
+        print("memo", e)
+
+# --- 3段目: 執筆 ---
+def norm_final(b):
+    # 配列ラップを剥がし、4セクションが揃っているかを検証する
     if isinstance(b, list):
         b = next((x for x in b if isinstance(x, dict)), None)
-    if isinstance(b, dict) and str(b.get("kuki") or "").strip() and str(b.get("dousuru") or "").strip():
-        return {"kuki": str(b["kuki"]), "dousuru": str(b["dousuru"])}
-    if b is not None:
-        print("brief unexpected shape:", repr(b)[:200])
-    return None
+    if not isinstance(b, dict):
+        if b is not None:
+            print("final unexpected shape:", repr(b)[:200])
+        return None
+    k = b.get("kuki") if isinstance(b.get("kuki"), dict) else {}
+    r = {"omote": str(k.get("omote") or "").strip(), "ura": str(k.get("ura") or "").strip(),
+         "dousuru": str(b.get("dousuru") or "").strip(), "kan": str(b.get("kan") or "").strip(),
+         "mijoriku": []}
+    if not (r["omote"] and r["ura"] and r["dousuru"] and r["kan"]):
+        print("final missing sections:", repr(b)[:200])
+        return None
+    mj = b.get("mijoriku")
+    for x in (mj if isinstance(mj, list) else []):
+        if isinstance(x, dict) and all(str(x.get(f) or "").strip() for f in ("title", "desc", "why")):
+            r["mijoriku"].append({f: str(x[f]) for f in ("title", "desc", "why")})
+        if len(r["mijoriku"]) == 2:
+            break
+    return r
 
-plist = "\n".join("- [" + a["src"] + "] " + a["title"] + " (" + a["url"] + ")" for a in picked)
-brief = None
+final = None
 if picked:
+    material = "今日の重要記事:\n" + plist
+    if memos:
+        material += "\n\n参謀の分析メモ(2段目の下書き。これを材料に磨き上げろ):\n" + json.dumps(memos, ensure_ascii=False)
+    prompt3 = (PERSONA +
+        "\n以下の材料から今朝のブリーフィングを執筆し、次のJSONオブジェクトだけを返せ(配列で包まない):\n"
+        '{"kuki": {"omote": "表:何が起きたか。2〜3文", '
+        '"ura": "裏:それが本当に意味すること・裏で誰が何を狙っているかの見立て。2〜3文"}, '
+        '"dousuru": "読者個人への具体的な示唆のみ。日本企業・業界への提言は禁止。「明日これを見ておけ」レベルまで具体化。2〜4文", '
+        '"kan": "参謀の勘:確証はないが匂う話を1つ。必ず期限つき予測の形で書く(例:2週間以内に◯◯が動くと見る。根拠は◯◯)", '
+        '"mijoriku": [{"title": "記事タイトル(日本語訳可)", "desc": "一言説明", "why": "なぜ日本で先回りの価値があるか"}]}\n'
+        "mijorikuは材料の中から日本語圏でまだほぼ話題になっていなさそうな話を1〜2本選ぶこと。\n\n" + material)
     for attempt in range(2):  # 応答形式が不正だった場合は1回だけ再生成を試す
         try:
-            brief = norm_brief(parse_json(gemini(
-                "あなたは日本人経営者に仕えるシリコンバレー駐在の情報参謀。以下が今日の重要記事。\n"
-                "日本語で簡潔かつ具体的に、次のJSONオブジェクトだけを返せ(配列で包まない):\n"
-                '{"kuki": "今日の空気(現地で何が騒がれ、金と注目がどこに動いているか。3〜5文)", '
-                '"dousuru": "で、どうする(この動きが日本と個人にどう波及するか、注視すべき点。2〜4文)"}\n\n' + plist)))
+            final = norm_final(parse_json(gemini(prompt3)))
         except Exception as e:
-            print("brief", e)
-        if brief:
+            print("final", e)
+        if final:
             break
-        print("brief attempt", attempt + 1, "failed, retrying" if attempt == 0 else "giving up")
-if not isinstance(brief, dict):
-    if not picked:
-        brief = {"kuki": "過去24時間で基準を満たす記事を取得できませんでした。取得元の一時的な不調の可能性があります。",
-                 "dousuru": "次回の自動実行での回復を待つ。継続する場合は取得条件の見直しを。"}
+        print("final attempt", attempt + 1, "failed,", "retrying" if attempt == 0 else "giving up")
+
+# フォールバック: 各段が失敗しても前段の結果で劣化版を出す(白紙ページ禁止)
+if not final:
+    if memos:
+        final = {"omote": " / ".join(str(x.get("omote")) for x in memos[:2]),
+                 "ura": " / ".join(str(x.get("ura") or "") for x in memos[:2]).strip(" /") or "-",
+                 "dousuru": "本日の執筆に失敗したため分析メモの抜粋を表示。次回実行で回復します。",
+                 "kan": "-", "mijoriku": []}
+    elif picked:
+        final = {"omote": "本日の生成に失敗。次回実行で回復します。", "ura": "-",
+                 "dousuru": "-", "kan": "-", "mijoriku": []}
     else:
-        brief = {"kuki": "本日の生成に失敗。次回実行で回復します。", "dousuru": "-"}
+        final = {"omote": "過去24時間で基準を満たす記事を取得できませんでした。取得元の一時的な不調の可能性があります。",
+                 "ura": "-",
+                 "dousuru": "次回の自動実行での回復を待つ。継続する場合は取得条件の見直しを。",
+                 "kan": "-", "mijoriku": []}
 
 jst = datetime.now(timezone(timedelta(hours=9)))
 links = "\n".join('<li><a href="' + html.escape(a["url"]) + '">' + html.escape(a["title"])
                   + '</a> <span class="m">' + html.escape(a["src"] + " " + a["meta"]) + "</span></li>" for a in picked)
+
+mj_html = ""
+if final["mijoriku"]:
+    mj_html = "<h2>未上陸</h2>" + "".join(
+        '<div class="mj"><div class="mjt">' + html.escape(x["title"]) + "</div><p>" + html.escape(x["desc"])
+        + '</p><p class="mjw">先回りの価値:' + html.escape(x["why"]) + "</p></div>" for x in final["mijoriku"])
 
 page = """<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -159,6 +238,12 @@ h1{font-size:15px;letter-spacing:.3em;color:#5fd7c8;font-weight:400}
 h2{font-size:13px;letter-spacing:.25em;color:#d6a24c;border-bottom:1px solid #1a2431;
 padding-bottom:8px;margin-top:36px;font-weight:400}
 p{font-size:15px}
+.lb{color:#5fd7c8;font-size:11px;letter-spacing:.2em;border:1px solid #24414d;border-radius:4px;
+padding:1px 8px;margin-right:8px;white-space:nowrap}
+.mj{border:1px solid #1a2431;border-radius:8px;padding:12px 14px;margin:14px 0}
+.mjt{font-size:14px;color:#dbe4ec}
+.mj p{font-size:13px;margin:6px 0}
+.mjw{color:#8fb8d8}
 ul{padding-left:0;list-style:none}
 li{margin:14px 0;font-size:14px}
 a{color:#8fb8d8;text-decoration:none}
@@ -166,11 +251,15 @@ a{color:#8fb8d8;text-decoration:none}
 </style></head><body><main>
 <h1>◇ シリコンバレー参謀</h1>
 <div class="d">""" + jst.strftime("%Y.%m.%d %H:%M") + """ JST</div>
-<h2>今日の空気</h2><p>""" + html.escape(brief.get("kuki", "")) + """</p>
-<h2>で、どうする</h2><p>""" + html.escape(brief.get("dousuru", "")) + """</p>
+<h2>今日の空気</h2>
+<p><span class="lb">表</span>""" + html.escape(final["omote"]) + """</p>
+<p><span class="lb">裏</span>""" + html.escape(final["ura"]) + """</p>
+<h2>で、どうする</h2><p>""" + html.escape(final["dousuru"]) + """</p>
+<h2>参謀の勘</h2><p>""" + html.escape(final["kan"]) + """</p>
+""" + mj_html + """
 <h2>今日の重要記事</h2><ul>""" + links + """</ul>
 </main></body></html>"""
 
 os.makedirs("docs", exist_ok=True)
 open("docs/index.html", "w", encoding="utf-8").write(page)
-print("done", len(picked))
+print("done", len(picked), "api_calls", _calls)
