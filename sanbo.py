@@ -1,4 +1,4 @@
-import json, os, re, html, urllib.request, urllib.parse, urllib.error
+import json, os, re, html, time, urllib.request, urllib.parse, urllib.error
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 
@@ -58,32 +58,40 @@ def fetch_tc():
 
 def gemini(prompt):
     global _calls
-    _calls += 1
-    if _calls > CALL_LIMIT:
-        raise RuntimeError("API呼び出し上限(" + str(CALL_LIMIT) + "回/実行)に到達")
     body = json.dumps({"contents": [{"parts": [{"text": prompt}]}],
                        "generationConfig": {"responseMimeType": "application/json"}}).encode()
     last = None
     for m in (_model_ok or MODELS):
         url = "https://generativelanguage.googleapis.com/v1beta/models/" + m + ":generateContent"
+        for wait in (0, 4, 12):  # 429/503(一時的な過負荷)は待って同モデルに再試行
+            if wait:
+                time.sleep(wait)
+            _calls += 1
+            if _calls > CALL_LIMIT:
+                raise RuntimeError("API呼び出し上限(" + str(CALL_LIMIT) + "回/実行)に到達")
+            try:
+                d = json.loads(http(url, data=body,
+                                    headers={"Content-Type": "application/json", "x-goog-api-key": API_KEY}).decode())
+                _model_ok[:] = [m]
+                return d["candidates"][0]["content"]["parts"][0]["text"]
+            except urllib.error.HTTPError as e:
+                last = e
+                if e.code in (429, 503):
+                    print("model", m, "-> HTTP", e.code, "(過負荷) retrying")
+                    continue
+                if e.code != 404:
+                    raise
+                print("model", m, "-> 404, trying next")
+                break
+    if getattr(last, "code", None) == 404:
+        # 全候補が404: 利用可能なflash系モデル名を診断出力(モデル名のみ。キーは出力しない)
         try:
-            d = json.loads(http(url, data=body,
-                                headers={"Content-Type": "application/json", "x-goog-api-key": API_KEY}).decode())
-            _model_ok[:] = [m]
-            return d["candidates"][0]["content"]["parts"][0]["text"]
-        except urllib.error.HTTPError as e:
-            last = e
-            if e.code != 404:
-                raise
-            print("model", m, "-> 404, trying next")
-    # 全候補が404: 利用可能なflash系モデル名を診断出力(モデル名のみ。キーは出力しない)
-    try:
-        d = json.loads(http("https://generativelanguage.googleapis.com/v1beta/models",
-                            headers={"x-goog-api-key": API_KEY}).decode())
-        print("available flash models:",
-              [m.get("name") for m in d.get("models", []) if "flash" in (m.get("name") or "")])
-    except Exception as e2:
-        print("listmodels", e2)
+            d = json.loads(http("https://generativelanguage.googleapis.com/v1beta/models",
+                                headers={"x-goog-api-key": API_KEY}).decode())
+            print("available flash models:",
+                  [m.get("name") for m in d.get("models", []) if "flash" in (m.get("name") or "")])
+        except Exception as e2:
+            print("listmodels", e2)
     raise last
 
 def parse_json(text):
