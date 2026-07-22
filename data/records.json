@@ -88,5 +88,105 @@
     "body_fetched": true,
     "model": "gemini-3.6-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-07-23-r01",
+    "created_at": "2026-07-23T07:36:29.310000+09:00",
+    "headline": "OpenAI and Hugging Face address security incident during model evaluation",
+    "what_happened": "OpenAIとHugging Faceがモデル評価時のセキュリティインシデントに対処したことを発表した。body_fetched=falseのためタイトルのみに基づく。",
+    "background": "AIモデルの外部評価やハッカソン等におけるプラットフォーム間の連携とセキュリティ確保の重要性。",
+    "changed": "両社によってインシデントへの対処が実施されたという事実の発生。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://openai.com/index/hugging-face-model-evaluation-security-incident/",
+      "title": "OpenAI and Hugging Face address security incident during model evaluation",
+      "hn_score": 1529
+    },
+    "body_fetched": false,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-07-22-r01"
+    ]
+  },
+  {
+    "id": "2026-07-23-r02",
+    "created_at": "2026-07-23T07:36:29.310000+09:00",
+    "headline": "Advertise in ChatGPT",
+    "what_happened": "OpenAIがChatGPT内での広告展開に関する特設ページ(ads.openai.com)を開設した。body_fetched=falseのためタイトルのみに基づく。",
+    "background": "大規模言語モデルのマネタイズ手法としての広告モデルの導入検討と、プラットフォームとしてのエコシステム変化。",
+    "changed": "ChatGPT内での広告事業展開に向けた公式なポータルが姿を現した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://ads.openai.com/",
+      "title": "Advertise in ChatGPT",
+      "hn_score": 1050
+    },
+    "body_fetched": false,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-07-23-r03",
+    "created_at": "2026-07-23T07:36:29.310000+09:00",
+    "headline": "Google announces Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+    "what_happened": "GoogleがGeminiの軽量・特殊モデル群としてGemini 3.6 Flash、3.5 Flash-Lite、3.5 Flash Cyberを発表した。body_fetched=trueに基づき、公式ブログでのリリース情報を確認。",
+    "background": "リアルタイム応答やエージェント用途に向けた高速・低コストモデルの継続的なラインナップ拡充。",
+    "changed": "Googleの高速推論向けFlashシリーズに新バージョンとサイバー特化型バリエーションが追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/",
+      "title": "Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "hn_score": 739
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-07-22-r03"
+    ]
+  },
+  {
+    "id": "2026-07-23-r04",
+    "created_at": "2026-07-23T07:36:29.310000+09:00",
+    "headline": "Comparison of token overhead between Claude Code and OpenCode",
+    "what_happened": "Systimaのブログにおいて、Claude Codeがプロンプト読込前にOpenCodeの約4.7倍（33k対7k）のトークンを消費していることが計測・報告された。body_fetched=trueに基づき確認。",
+    "background": "CLIベースの自律型コーディングエージェントにおける初期化オーバーヘッドとトークンコストの構造的差異。",
+    "changed": "主要な開発者向けエージェントツール間の初期トークン消費量の具体的な比較データが示された。",
+    "certainty": "reported",
+    "source_tier": "secondary",
+    "source": {
+      "url": "https://systima.ai/blog/claude-code-vs-opencode-token-overhead",
+      "title": "Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k",
+      "hn_score": 705
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-07-22-r05",
+      "2026-07-22-r04"
+    ]
+  },
+  {
+    "id": "2026-07-23-r05",
+    "created_at": "2026-07-23T07:36:29.310000+09:00",
+    "headline": "Judge approves $1.5B Anthropic settlement for pirated books used to train Claude",
+    "what_happened": "米裁判所が、AnthropicによるClaudeの訓練用書籍著作権侵害訴訟をめぐる15億ドルの和解案を承認した。AP通信の報道により確認。",
+    "background": "生成AIの学習データにおける著作権侵害をめぐる集団訴訟と、巨大資本による法的リスクの金銭的解決。",
+    "changed": "Anthropicの著作権訴訟において15億ドルの和解が司法承認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://apnews.com/article/ai-anthropic-copyright-settlement-claude-books-bartz-74b140444023898aeba8579b6e9f0d63",
+      "title": "Judge approves $1.5B Anthropic settlement for pirated books used to train Claude",
+      "hn_score": 543
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-07-22-r05",
+      "2026-07-22-r04"
+    ]
   }
 ]

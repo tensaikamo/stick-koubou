@@ -145,5 +145,55 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-23-h01",
+    "created_at": "2026-07-23T07:36:29.310000+09:00",
+    "based_on": [
+      "2026-07-23-r03"
+    ],
+    "prose": "ChatGPT内の広告枠展開は、検索やリコメンドの収益化構造に直結する変化である。プラットフォーム側が直接広告を受け付ける導線が整うことで、オーガニックな応答結果に対する影響や、企業によるトラフィック買収の動きが加速する。個人としては、広告枠の導入によって最適化されるキーワードや、公式の広告出稿APIのベータ公開タイミングを早期に捉える必要がある。",
+    "claim": "OpenAIは広告主向けのセルフサーブ型広告出稿プラットフォームの一般提供を年内に開始する。",
+    "subject": "OpenAI",
+    "resolution": {
+      "source": "OpenAI Official Blog",
+      "check_query": "OpenAI ads self serve launch",
+      "decider": "OpenAI公式サイトにおいて広告出稿用のセルフサーブ受付が一般公開された旨が発表されること。"
+    },
+    "deadline": "2026-08-22",
+    "confidence": 0.75,
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-23-h02",
+    "created_at": "2026-07-23T07:36:29.310000+09:00",
+    "based_on": [
+      "2026-07-23-r05"
+    ],
+    "prose": "CLIコーディングエージェントにおける初期トークン消費量の差は、長期的な運用コストや応答速度に影響を与える。Claude Codeの高オーバーヘッドが指摘されたことで、オープンソース側や競合ツールは効率性を前面に出した最適化アピールを強めることになる。開発者コミュニティでの実測値の共有が進むにつれ、公式側もシステムプロンプトや初期化シーケンスの軽量化対応を急がざるを得なくなる。",
+    "claim": "AnthropicはClaude Codeの初期化トークン消費量を削減するアップデートを公開する。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "Anthropic Changelog or GitHub releases",
+      "check_query": "Claude Code token overhead update release",
+      "decider": "Anthropicの公式リリースノートにおいて初期化トークン量の削減やプロンプト効率化に関する言及がなされること。"
+    },
+    "deadline": "2026-08-13",
+    "confidence": 0.7,
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
