@@ -82,7 +82,7 @@ def fetch_body(url):
 
 # ---- LLM 生成 ------------------------------------------------------------
 
-def build_prompt(articles):
+def build_prompt(articles, today_str):
     lines = []
     for i, a in enumerate(articles):
         body = a["body"] if a["body_fetched"] else "(本文取得に失敗。タイトルのみ)"
@@ -94,6 +94,7 @@ def build_prompt(articles):
             + "本文抜粋: " + (body[:1500] if body else "") + "\n")
     material = "\n".join(lines)
     return (PERSONA + "\n\n"
+        "本日はJST(日本標準時)で " + today_str + " である。予測期限はこの日付を基準に相対日数で示せ。\n"
         "以下は本日の候補記事。シリコンバレーAI業界の観点で重要なものについて、"
         "後から採点できる『事実(record)』と『予測(hunch)』を作れ。\n"
         "次のJSONオブジェクトだけを返せ(前置き・コードフェンス・配列ラップ禁止):\n"
@@ -120,7 +121,7 @@ def build_prompt(articles):
         '        "check_query": "英語のみ2〜4語",\n'
         '        "decider": "何が満たされたら的中か。閾値または具体的事象を明記。『話題になる』等の曖昧表現は禁止"\n'
         '      },\n'
-        '      "deadline": "YYYY-MM-DD。作成日の+3〜+30日の範囲、JST",\n'
+        '      "deadline_days": 判定期限までの日数(今日からの相対、3〜30の整数。絶対日付は書くな),\n'
         '      "confidence": 0.50〜0.95 の数値\n'
         '    }\n'
         '  ]\n'
@@ -129,11 +130,11 @@ def build_prompt(articles):
         + material)
 
 
-def call_records_hunches(client, articles, fake_response=None):
+def call_records_hunches(client, articles, today_str, fake_response=None):
     """LLM を呼び records/hunches を得る。パース失敗時は最大2回再試行(計3回)。"""
     if fake_response is not None:
         return fake_response
-    prompt = build_prompt(articles)
+    prompt = build_prompt(articles, today_str)
     for attempt in range(3):
         try:
             raw = client.generate(prompt)
@@ -147,22 +148,22 @@ def call_records_hunches(client, articles, fake_response=None):
     return None
 
 
-def regen_hunch(client, base_records, reason, fake_response=None):
+def regen_hunch(client, base_records, reason, today_str, fake_response=None):
     """検証不合格 hunch を1件、prose 含め丸ごと作り直す。"""
     if fake_response is not None:
         return fake_response
     recs = [{"index": i, "headline": r["headline"], "certainty": r["certainty"]}
             for i, r in enumerate(base_records)]
     prompt = (PERSONA + "\n\n"
-        "次の事実(records)を根拠に、採点可能な予測(hunch)を1件だけ作り直せ。\n"
+        "本日はJSTで " + today_str + "。次の事実(records)を根拠に、採点可能な予測(hunch)を1件だけ作り直せ。\n"
         "前回の不合格理由: " + reason + "\n"
         "不合格を避ける要件: subject(固有名)・resolution.decider(観測可能な閾値/事象、"
-        "『話題になる』等の曖昧語禁止)・deadline(作成日+3〜+30日,YYYY-MM-DD,JST)を必ず満たし、"
-        "based_on は下記 index を1件以上参照(rumor のみを根拠にしない)。\n"
+        "『話題になる』等の曖昧語禁止)・deadline_days(今日からの相対日数、3〜30の整数。絶対日付は書くな)を"
+        "必ず満たし、based_on は下記 index を1件以上参照(rumor のみを根拠にしない)。\n"
         "次のJSONオブジェクトだけを返せ:\n"
         '{"based_on":[index...],"prose":"...","claim":"...","subject":"...",'
         '"resolution":{"source":"...","check_query":"英語2〜4語","decider":"..."},'
-        '"deadline":"YYYY-MM-DD","confidence":0.5〜0.95}\n\n'
+        '"deadline_days":3〜30の整数,"confidence":0.5〜0.95}\n\n'
         "records:\n" + json.dumps(recs, ensure_ascii=False, indent=2))
     for attempt in range(2):
         try:
@@ -177,31 +178,40 @@ def regen_hunch(client, base_records, reason, fake_response=None):
 
 # ---- 検証ゲート(PHASE 3) ------------------------------------------------
 
+def coerce_deadline_days(h):
+    """deadline_days を整数として取り出す(文字列数値も許容)。取れなければ None。"""
+    dd = h.get("deadline_days")
+    if isinstance(dd, bool):
+        return None
+    if isinstance(dd, int):
+        return dd
+    if isinstance(dd, float) and dd.is_integer():
+        return int(dd)
+    if isinstance(dd, str) and dd.strip().lstrip("+").isdigit():
+        return int(dd.strip())
+    return None
+
+
 def validate_hunch(h, records, created_dt):
-    """不合格なら理由文字列、合格なら None を返す。records は採番前の内部配列。"""
+    """不合格なら理由文字列、合格なら None を返す。records は採番前の内部配列。
+    deadline は今日からの相対日数 deadline_days(3〜30)で受け、絶対日付はコード側で確定する
+    (モデルが実行日を知らず過去日を出す事故を排除するため)。"""
     subject = str(h.get("subject") or "").strip()
     res = h.get("resolution") if isinstance(h.get("resolution"), dict) else {}
     decider = str(res.get("decider") or "").strip()
-    deadline = str(h.get("deadline") or "").strip()
     based = h.get("based_on") if isinstance(h.get("based_on"), list) else []
 
     if not subject:
         return "subject が欠落"
     if not decider:
         return "resolution.decider が欠落"
-    if not deadline:
-        return "deadline が欠落"
+    dd = coerce_deadline_days(h)
+    if dd is None:
+        return "deadline_days が欠落または整数でない"
     if any(w in decider for w in VAGUE_WORDS):
         return "decider が観測手続きに落ちない曖昧表現"
-    # deadline 範囲(+3〜+30日, JST)
-    try:
-        dl = datetime.strptime(deadline, "%Y-%m-%d").date()
-    except Exception:
-        return "deadline が YYYY-MM-DD 形式でない"
-    lo = (created_dt + timedelta(days=DEADLINE_MIN_DAYS)).date()
-    hi = (created_dt + timedelta(days=DEADLINE_MAX_DAYS)).date()
-    if not (lo <= dl <= hi):
-        return "deadline が作成日の+3〜+30日の範囲外"
+    if not (DEADLINE_MIN_DAYS <= dd <= DEADLINE_MAX_DAYS):
+        return "deadline_days が+3〜+30日の範囲外"
     # based_on: 1件以上・実在index・rumorのみは不可
     idxs = [i for i in based if isinstance(i, int) and 0 <= i < len(records)]
     if not idxs:
@@ -311,8 +321,8 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
                 status = "unscorable"
                 break
             fake = fakes.pop(0) if fakes else None
-            regen = regen_hunch(process._client, new_records, reason, fake_response=fake) \
-                if hasattr(process, "_client") else regen_hunch(None, new_records, reason, fake_response=fake)
+            regen = regen_hunch(getattr(process, "_client", None), new_records, reason,
+                                date_str, fake_response=fake)
             if not isinstance(regen, dict):
                 # 再生成できなければ現案のまま次周(3回目で unscorable)
                 continue
@@ -330,6 +340,13 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
             conf = 0.5
         conf = max(0.50, min(0.95, conf))
 
+        # deadline は相対日数からコード側で JST 絶対日付に確定(+3〜+30日内のときのみ)
+        dd = coerce_deadline_days(current)
+        if isinstance(dd, int) and DEADLINE_MIN_DAYS <= dd <= DEADLINE_MAX_DAYS:
+            deadline = (created_dt + timedelta(days=dd)).strftime("%Y-%m-%d")
+        else:
+            deadline = ""  # unscorable 側でのみ起こりうる(範囲外/欠落)
+
         h_seq += 1
         hid = date_str + "-h%02d" % h_seq
         obj = {
@@ -344,7 +361,7 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
                 "check_query": str(res.get("check_query") or "").strip(),
                 "decider": str(res.get("decider") or "").strip(),
             },
-            "deadline": str(current.get("deadline") or "").strip(),
+            "deadline": deadline,
             "confidence": conf,
             "status": status,
             "resolved_at": None,
@@ -412,7 +429,7 @@ def main():
         try:
             with open(fake_path, encoding="utf-8") as f:
                 fake = json.load(f)
-            gen = call_records_hunches(None, articles, fake_response=fake)
+            gen = call_records_hunches(None, articles, date_str, fake_response=fake)
             gen["_model"] = fake.get("_model", "fake-model")
             gen["_fake_regens"] = fake.get("_fake_regens", [])
         except Exception as e:
@@ -424,7 +441,7 @@ def main():
             print("recorder: GEMINI_API_KEY 未設定。記録をスキップ(runs未書き=再実行可)")
             return
         client = GeminiClient(api_key, call_limit=10)
-        gen = call_records_hunches(client, articles)
+        gen = call_records_hunches(client, articles, date_str)
         if gen is not None:
             gen["_model"] = client.last_model_version or "unknown"
 
