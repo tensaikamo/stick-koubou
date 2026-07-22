@@ -1,17 +1,19 @@
-import json, os, re, html, time, urllib.request, urllib.parse, urllib.error
-import xml.etree.ElementTree as ET
+import os, re, json, html
 from datetime import datetime, timezone, timedelta
+from common import GeminiClient, fetch_hn, fetch_tc, parse_json
 
 API_KEY = os.environ.get("GEMINI_API_KEY", "")
 if not API_KEY:
     raise SystemExit("GEMINI_API_KEY が未設定です(リポジトリのSecretsを確認)")
-# gemini-2.5-flash は 2026-07 時点で API が 404 を返す(提供終了)ため候補から除外。
-# 常に現行の flash 系を指す公式エイリアス gemini-flash-latest を第一候補にし、
-# 過負荷時は旧名 → 別容量プールの flash-lite へ順にフォールバックする(全て無料のflash系)
-MODELS = ["gemini-flash-latest", "gemini-2.0-flash", "gemini-flash-lite-latest"]
-_model_ok = []
-_calls = 0
-CALL_LIMIT = 10  # 1実行あたりのAPI呼び出し上限(無料枠1,500/日の保護)
+
+# モデルフォールバック・過負荷再試行・回数ガードは common.GeminiClient が担う。
+# 1実行あたりのAPI呼び出し上限10回(無料枠1,500/日の保護)。
+_client = GeminiClient(API_KEY, call_limit=10)
+
+
+def gemini(prompt):
+    return _client.generate(prompt)
+
 
 PERSONA = """読者はただ一人。以下の人物だけに向けて書け。
 - 日本在住。昼は現場仕事、動ける時間は朝と夜、装備はiPhone一台
@@ -25,89 +27,6 @@ PERSONA = """読者はただ一人。以下の人物だけに向けて書け。
 
 注意:読者の「現場仕事」は生活制約(動ける時間が朝晩のみ・装備はiPhone一台)を示す情報であり、興味領域ではない。現場作業・建設・ブルーカラー向けAIといった職業連想で記事を選んだり話題を寄せたりするな。関心はあくまでシリコンバレーAI業界の権力・金・技術の動きと、そこで個人が先回りできる隙だ。
 """
-
-def http(url, data=None, headers=None):
-    req = urllib.request.Request(url, data=data, headers=headers or {"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(req, timeout=90) as r:
-        return r.read()
-
-def fetch_hn():
-    out = []
-    for q in ["AI", "OpenAI", "Anthropic", "Gemini", "LLM"]:
-        try:
-            url = ("https://hn.algolia.com/api/v1/search_by_date?query=" + urllib.parse.quote(q)
-                   + "&tags=story&numericFilters=" + urllib.parse.quote("points>60") + "&hitsPerPage=8")
-            d = json.loads(http(url).decode())
-            for h in d.get("hits", []):
-                out.append({"title": h.get("title") or "",
-                            "url": h.get("url") or "https://news.ycombinator.com/item?id=" + str(h.get("objectID")),
-                            "meta": str(h.get("points", 0)) + "pt", "src": "HN"})
-        except Exception as e:
-            print("hn", e)
-    return out
-
-def fetch_tc():
-    try:
-        raw = http("https://techcrunch.com/category/artificial-intelligence/feed/")
-        root = ET.fromstring(raw)
-        return [{"title": i.findtext("title") or "", "url": i.findtext("link") or "",
-                 "meta": "", "src": "TechCrunch"} for i in root.iter("item")][:15]
-    except Exception as e:
-        print("tc", e)
-        return []
-
-def gemini(prompt):
-    global _calls
-    body = json.dumps({"contents": [{"parts": [{"text": prompt}]}],
-                       "generationConfig": {"responseMimeType": "application/json"}}).encode()
-    last = None
-    for m in (_model_ok or MODELS):
-        url = "https://generativelanguage.googleapis.com/v1beta/models/" + m + ":generateContent"
-        # 429/503(一時的な過負荷)は20秒待って同モデルに1回だけ再試行。
-        # 再試行を増やしすぎると1段だけで呼び出し上限を食い潰し、後段が劣化するため2回まで
-        for wait in (0, 20):
-            if wait:
-                time.sleep(wait)
-            if _calls >= CALL_LIMIT:
-                raise RuntimeError("API呼び出し上限(" + str(CALL_LIMIT) + "回/実行)に到達")
-            _calls += 1
-            try:
-                d = json.loads(http(url, data=body,
-                                    headers={"Content-Type": "application/json", "x-goog-api-key": API_KEY}).decode())
-                _model_ok[:] = [m]
-                return d["candidates"][0]["content"]["parts"][0]["text"]
-            except urllib.error.HTTPError as e:
-                last = e
-                if e.code in (429, 503):
-                    print("model", m, "-> HTTP", e.code, "(過負荷) retrying")
-                    continue
-                if e.code != 404:
-                    raise
-                print("model", m, "-> 404, trying next")
-                break
-    if getattr(last, "code", None) == 404:
-        # 全候補が404: 利用可能なflash系モデル名を診断出力(モデル名のみ。キーは出力しない)
-        try:
-            d = json.loads(http("https://generativelanguage.googleapis.com/v1beta/models",
-                                headers={"x-goog-api-key": API_KEY}).decode())
-            print("available flash models:",
-                  [m.get("name") for m in d.get("models", []) if "flash" in (m.get("name") or "")])
-        except Exception as e2:
-            print("listmodels", e2)
-    raise last
-
-def parse_json(text):
-    # 応答にJSON値が複数連続・前置きが混在しても、最初の完全なJSON値だけを取り出す
-    # (貪欲正規表現だと複数オブジェクト連結時に "Extra data" で失敗する)
-    dec = json.JSONDecoder()
-    for i, ch in enumerate(text):
-        if ch in "{[":
-            try:
-                v, _ = dec.raw_decode(text[i:])
-                return v
-            except ValueError:
-                continue
-    return None
 
 def unwrap_list(v):
     # {"selected": [..]} のようにオブジェクトで包まれた配列も許容する
@@ -318,4 +237,4 @@ document.addEventListener("click", function (e) {
 
 os.makedirs("docs", exist_ok=True)
 open("docs/index.html", "w", encoding="utf-8").write(page)
-print("done", len(picked), "api_calls", _calls)
+print("done", len(picked), "api_calls", _client.calls)
