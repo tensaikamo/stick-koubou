@@ -19,8 +19,9 @@ background:linear-gradient(90deg,var(--gold),transparent)}
 section{margin-top:36px}
 p{font-size:15px}
 .lb{color:#04121a;font-size:11px;letter-spacing:.2em;border-radius:5px;
-padding:2px 9px;margin-right:9px;white-space:nowrap;font-weight:600;
-background:linear-gradient(180deg,#7fe6d8,#41b6a7);box-shadow:0 2px 10px rgba(95,215,200,.25)}
+padding:2px 10px;margin-right:12px;white-space:nowrap;font-weight:600;display:inline-block;
+transform:translateY(-1px);background:linear-gradient(180deg,#7fe6d8,#41b6a7);
+box-shadow:0 2px 10px rgba(95,215,200,.25)}
 .mj{border:1px solid var(--line);border-radius:10px;padding:13px 15px;margin:14px 0;
 background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
 .mjt{font-size:14px;color:var(--fg)}
@@ -54,6 +55,10 @@ transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7
 .nav a{color:var(--gold);border:1px solid var(--line);border-radius:20px;padding:5px 14px;
 font-size:12px;letter-spacing:.08em;transition:color .15s,border-color .15s}
 .nav a:hover{color:var(--teal);border-color:#2b4a58}
+.nav a.refresh{color:#04121a;font-weight:600;border-color:transparent;
+background:linear-gradient(180deg,#7fe6d8,#41b6a7);box-shadow:0 2px 12px rgba(95,215,200,.3)}
+.nav a.refresh:hover{color:#04121a;filter:brightness(1.08)}
+.hint{color:var(--dim);font-size:11px;margin-top:10px;line-height:1.7}
 .card{border:1px solid var(--line);border-radius:12px;padding:15px 16px;margin:16px 0;
 background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
 .card h3{font-size:15px;margin:0 0 8px;color:var(--fg);font-weight:600;line-height:1.65}
@@ -63,6 +68,11 @@ background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
 border:1px solid var(--line);color:#9aa7b3;white-space:nowrap}
 .b-confirmed,.b-pending{color:#7fe6d8;border-color:#2b4a58}
 .b-reported{color:var(--gold);border-color:#3a3320}
+.b-hit{color:#0a1410;background:linear-gradient(180deg,#7fe6a8,#41b673);border-color:transparent;font-weight:600}
+.b-miss{color:#f0b3b3;border-color:#5a2b2b;background:rgba(120,40,40,.18)}
+.b-review{color:var(--gold);border-color:#3a3320}
+.hitrate{color:var(--teal);font-size:22px;font-weight:600;letter-spacing:.05em;
+text-shadow:0 0 16px rgba(95,215,200,.35)}
 .kv{font-size:12px;color:var(--dim)}
 .kv b{color:#aec4d4;font-weight:500}
 .deadline{color:var(--gold)}
@@ -78,21 +88,23 @@ border:1px solid var(--line);color:#9aa7b3;white-space:nowrap}
 <div class="progress" aria-hidden="true"></div>
 <main>
 <header class="hd"><h1>◇ シリコンバレー参謀</h1>
-<div class="d">2026.07.22 21:51 JST</div>
-<nav class="nav"><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a></nav></header>
+<div class="d">2026.07.23 07:41 JST</div>
+<nav class="nav"><a class="refresh" href="https://github.com/tensaikamo/stick-koubou/actions/workflows/sanbo.yml" target="_blank" rel="noopener">⟳ 参謀に調べ直させる</a><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a></nav>
+<div class="hint">「調べ直させる」→ GitHubで Run workflow を1タップ。数分で参謀が記憶を踏まえて考え直す。反映後にこのページを再読み込み。</div></header>
 <section class="reveal"><h2>今日の空気</h2>
-<p><span class="lb">表</span>OpenAIがChatGPT内に広告を掲載する「Advertise in ChatGPT」を公開した一方、米大手IT5社が<t data-d="貸借対照表外に隠す会計手法">オフバランス化</t>で1.6兆ドルのAI債務を隠蔽している実態が判明した。AIインフラの巨額投資回収期を迎え、大手各社は即金性の高いマネタイズと<t data-d="AIのデータ処理最小単位">トークン</t>消費の嵩増しへ一斉に走っている。</p>
-<p><span class="lb">裏</span>サブスク収益の限界を悟ったプラットフォーム側がユーザーからの絞り取りに入った証拠である。個人はプラットフォームを単純消費する側を脱し、彼らが広げた新インフラの隙間（広告枠・API差分）を直接叩いて利益を掠め取るべきだ。</p></section>
-<section class="reveal"><h2>で、どうする</h2><p>今夜iPhoneからOpenAI Adsの画面にアクセスし、プロンプト連動型広告の初期枠を押さえろ。さらに開発・自動化作業では公式の隠れコストを嫌い、オープンソースの<t data-d="端末のコマンド操作画面">CLI</t>でAPIを直叩きする環境へ即刻切り替えるはずだ。無駄な事前消費を7割削り、明日から個人エージェントの粗利率を最大化できる。</p></section>
-<section class="reveal"><h2>参謀の勘</h2><p>2週間以内に国内インフルエンサーがプロンプト検索最適化の商材を一斉に売り出すと見る。根拠はOpenAIの広告プラットフォーム公開を受け、海外の一次情報が日本へ流入するタイムラグが通常10日から14日だからだ。</p></section>
-<section class="reveal"><h2>未上陸</h2><div class="mj"><div class="mjt">Claude Code vs OpenCodeのトークン消費量比較</div><p>公式CLIが指示読込前に3万トークン超を浪費する中、オープンソースは7千に抑制している検証報告。</p><p class="mjw">先回りの価値:日本の開発者は公式ツールを無批判に使い高額な<t data-d="API利用料金を決める従量課金単位">トークンコスト</t>をドブに捨てているため、個人が自前軽量化でコスト優位を作れる。</p></div><div class="mj"><div class="mjt">ジャック・ドーシーのAI特化チャット Buzz</div><p>人と<t data-d="自律的にタスクを実行するAIプログラム">AIエージェント</t>が同等に協働する次世代グループチャット基盤。</p><p class="mjw">先回りの価値:日本企業がいまだSlack連携にとどまる中、複数エージェントを束ねてiPhone1台で50人規模の生産性を叩き出す構造を作れる。</p></div></section>
-<section class="reveal"><h2>今日の重要記事</h2><ul><li><a href="https://thenextweb.com/news/tech-giants-hidden-off-balance-sheet-debt-ai">Five tech giants are hiding $1.6T in AI debt, using the trick that toppled Enron</a> <span class="m">HN 91pt</span></li>
-<li><a href="https://apnews.com/article/ai-anthropic-copyright-settlement-claude-books-bartz-74b140444023898aeba8579b6e9f0d63">Judge approves $1.5B Anthropic settlement for pirated books used to train Claude</a> <span class="m">HN 432pt</span></li>
-<li><a href="https://ads.openai.com/">Advertise in ChatGPT</a> <span class="m">HN 881pt</span></li>
-<li><a href="https://old.reddit.com/r/math/comments/1uxj3cy/after_openais_cdc_proof_announcement_gpt56_used_a/">GPT-5.6 used a prompt to close a 30-year gap in convex optimization</a> <span class="m">HN 600pt</span></li>
+<p><span class="lb">表</span>米裁判所がAnthropicの書籍著作権訴訟における15億ドルの和解案を承認し、同時にOpenAIが<t data-d="ChatGPT内で企業が広告を自動出稿できる管理画面">ads.openai.com</t>を開設した。主要ラボは過去データの違法利用を資金で強引に解決しつつ、本格的な収益化フェーズへ一斉に舵を切った。</p>
+<p><span class="lb">裏</span>巨大資本が法的リスクを金で打ち消し、AIの回答枠を直接買い占める構造が完成したことを意味する。かつてのSEOにおいて検索結果がGoogle広告で埋め尽くされた現象と同じであり、個人がAIのオーガニックな回答に自社サービスを推薦させる隙間は急速に消滅する。</p></section>
+<section class="reveal"><h2>で、どうする</h2><p>広告主優遇のプラットフォーム依存から今すぐ離脱せよ。昨日触れた<t data-d="Anthropicが提供するCLIベースのAI開発ツール">Claude Code</t>の重いトークン消費と今回の広告化は根が同じであり、ラボはユーザーからトークン代と広告料を二重搾取し始めている。今夜は<t data-d="軽量でオープンソースのAI開発CLI工具">OpenCode</t>のような非中央集権型の軽量ツールへ環境を寄せつつ、AI回答に乗らない個人直通の通知・検索代行ロジックの構築に集中しろ。</p></section>
+<section class="reveal"><h2>参謀の勘</h2><p>3週間以内（2026-08-14まで）に、OpenCode開発コミュニティまたはサードパーティが、Claude CodeのAPI消費を迂回する『iPhone対応・軽量代行プラグイン』の正式提供を開始すると見る。根拠は、プロンプト前に33kトークンを消費するClaude Codeの浪費構造が暴かれ、APIコストを極限まで削りたい個人開発者の乗り換え需要が海外で急増しているためだ。</p></section>
+<section class="reveal"><h2>答え合わせ</h2><p><span class="m">まだ答え合わせ前。判定待ち 4 件(期日が来たら○×が付く)</span></p><p class="m"><a href="hunches.html">勘の台帳(全予測と○×)→</a></p></section>
+<section class="reveal"><h2>未上陸</h2><div class="mj"><div class="mjt">米財務省がMoonshotに制裁を示唆、Anthropicのモデル蒸留疑惑で</div><p>中国MoonshotがAnthropicの新モデル知識を無断抽出（蒸留）したとして、米政府が金融制裁の検討に入った。</p><p class="mjw">先回りの価値:米中間の<t data-d="親モデルの出力を使って別のモデルを安価に訓練する手法">モデル蒸留</t>取締りが厳格化すれば、オープン系モデルの更新が突然ストップするリスクが生じるため、自前ホスト環境の確保に先回りする価値がある。</p></div><div class="mj"><div class="mjt">LLMの推論コスト（Reasoning Effort）を動的に制御する技術手法</div><p>推論モデルの思考プロセスの長さをプロンプト側から制御し、APIコストと応答速度を最適化する検証データ。</p><p class="mjw">先回りの価値:従量課金のAI APIを使って個人で自動化を組む際、不要な思考ステップを削ってコストを1/5以下に抑える技術は、個人の利益率を直結で左右するため。</p></div></section>
+<section class="reveal"><h2>今日の重要記事</h2><ul><li><a href="https://ads.openai.com/">Advertise in ChatGPT</a> <span class="m">HN 1050pt</span></li>
+<li><a href="https://apnews.com/article/ai-anthropic-copyright-settlement-claude-books-bartz-74b140444023898aeba8579b6e9f0d63">Judge approves $1.5B Anthropic settlement for pirated books used to train Claude</a> <span class="m">HN 543pt</span></li>
+<li><a href="https://www.emergingtrajectories.com/lh/frontier-lab-economics/">Kimi K3, Qwen 3.8, and Anthropic&#x27;s (Potential) Unravelling</a> <span class="m">HN 366pt</span></li>
 <li><a href="https://systima.ai/blog/claude-code-vs-opencode-token-overhead">Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k</a> <span class="m">HN 705pt</span></li>
-<li><a href="https://techcrunch.com/2026/07/21/the-anthropic-physical-intelligence-rumor-roiling-ai-twitter/">The Anthropic-Physical Intelligence rumor roiling AI Twitter</a> <span class="m">TechCrunch </span></li>
-<li><a href="https://techcrunch.com/2026/07/21/jack-dorsey-is-taking-on-slack-with-buzz-a-group-chat-platform-for-teams-and-their-ai-agents/">Jack Dorsey is taking on Slack with Buzz, a group chat platform for teams and their AI agents</a> <span class="m">TechCrunch </span></li></ul></section>
+<li><a href="https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms">Controlling Reasoning Effort in LLMs</a> <span class="m">HN 84pt</span></li>
+<li><a href="https://techcrunch.com/2026/07/22/treasury-threatens-sanctions-after-white-house-claims-moonshot-distilled-anthropics-fable/">Treasury threatens sanctions after White House claims Moonshot distilled Anthropic’s Fable</a> <span class="m">TechCrunch </span></li>
+<li><a href="https://techcrunch.com/2026/07/22/how-an-openais-human-mistake-led-to-the-ai-powered-hack-on-hugging-face/">How OpenAI’s human mistake led to the AI-powered hack on Hugging Face</a> <span class="m">TechCrunch </span></li></ul></section>
 </main>
 <script>
 (function(){
