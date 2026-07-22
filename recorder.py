@@ -13,6 +13,7 @@ from zoneinfo import ZoneInfo
 import requests  # 分岐1: 本文取得は requests を使う(明示指示)
 
 from common import GeminiClient, fetch_hn, fetch_tc, parse_json, PAGE_CSS
+import memory
 
 JST = ZoneInfo("Asia/Tokyo")
 DATA_DIR = "data"
@@ -29,6 +30,11 @@ DEADLINE_MAX_DAYS = 30
 
 # decider が観測手続きに落ちない曖昧表現(PHASE 3 の遮断キーワード・ヒューリスティック)
 VAGUE_WORDS = ["話題", "注目", "バズ", "盛り上が", "期待", "騒がれ", "人気", "有名", "評判"]
+
+# 第三者が公開情報だけで○×できない=検証不能な予測を弾く語(claim/deciderを走査)。
+# "裏付け"の"裏"を誤爆しないよう、単独の"裏"は避けて具体語に限定する。
+UNVERIFIABLE_WORDS = ["非公開", "未公表", "秘密", "極秘", "リーク", "水面下", "こっそり",
+                      "内部情報", "内部で", "裏で", "裏枠", "裏api", "非公表", "密かに"]
 
 PERSONA = """読者は個人で情報優位を作り先回りを狙う人物。断言型・根拠つき。
 「確実だ」「間違いない」等の断定語は使わない。企業向け提言・一般論は書かない。"""
@@ -95,8 +101,13 @@ def build_prompt(articles, today_str):
             + "body_fetched: " + ("true" if a["body_fetched"] else "false") + "\n"
             + "本文抜粋: " + (body[:1500] if body else "") + "\n")
     material = "\n".join(lines)
-    return (PERSONA + "\n\n"
-        "本日はJST(日本標準時)で " + today_str + " である。予測期限はこの日付を基準に相対日数で示せ。\n"
+    recs, huns = memory.load_ledger()
+    digest = memory.build_digest(recs, huns)  # 過去の自分の観測・読み・結果
+    mem_block = (digest + "\n\n") if digest else ""
+    return (PERSONA + "\n\n" + mem_block
+        + "本日はJST(日本標準時)で " + today_str + " である。予測期限はこの日付を基準に相対日数で示せ。\n"
+        "上の【参謀の記憶】がある場合は、過去の読みと結果を踏まえて確度を較正し、外した型を繰り返すな。"
+        "既存スレッドの話題は新ネタ扱いせず「続き」として捉え、乗り換えずに深めよ。\n"
         "以下は本日の候補記事。シリコンバレーAI業界の観点で重要なものについて、"
         "後から採点できる『事実(record)』と『予測(hunch)』を作れ。\n"
         "次のJSONオブジェクトだけを返せ(前置き・コードフェンス・配列ラップ禁止):\n"
@@ -121,14 +132,21 @@ def build_prompt(articles, today_str):
         '      "resolution": {\n'
         '        "source": "判定時に見る場所(公式サイト/報道/指標名)",\n'
         '        "check_query": "英語のみ2〜4語",\n'
-        '        "decider": "何が満たされたら的中か。閾値または具体的事象を明記。『話題になる』等の曖昧表現は禁止"\n'
+        '        "decider": "何が満たされたら的中か。公式発表/公開リーダーボード/公開リポジトリ/報道など"'
+        '『第三者が公開情報だけで期日に○×を付けられる観測点』で書け。『話題になる』等の曖昧表現は禁止"\n'
         '      },\n'
         '      "deadline_days": 判定期限までの日数(今日からの相対、3〜30の整数。絶対日付は書くな),\n'
         '      "confidence": 0.50〜0.95 の数値\n'
         '    }\n'
         '  ]\n'
         '}\n'
-        "record は重要な記事のみ(最大" + str(TOP_N) + "件)。hunch は 1〜3件、必ず record を根拠にせよ。\n\n"
+        "record は重要な記事のみ(最大" + str(TOP_N) + "件)。hunch は 1〜3件、必ず record を根拠にせよ。\n"
+        "【予測の絶対条件】第三者が公開情報だけで期日に○×を判定できる予測に限る。"
+        "非公開・秘密・リーク・内部情報・水面下の動きを前提にした予測は禁止(検証できないため失格)。"
+        "可の例:『9月中にOpenAIが日本でセルフサーブ受付を開始する』。"
+        "不可の例:『裏で〜枠を売る』『非公開で〜と提携する』。\n"
+        "【誰を利するか点検】その変化が資本・既存プレイヤーを利するものを、個人の先回り機会として"
+        "描くな(例:広告枠の新設は推薦を「買える場所」にし、オーガニックな差し込み余地はむしろ縮む)。\n\n"
         + material)
 
 
@@ -212,6 +230,11 @@ def validate_hunch(h, records, created_dt):
         return "deadline_days が欠落または整数でない"
     if any(w in decider for w in VAGUE_WORDS):
         return "decider が観測手続きに落ちない曖昧表現"
+    # 第三者が公開情報で判定できない予測(裏API枠型)は失格
+    claim = str(h.get("claim") or "")
+    blob = (claim + " " + decider).lower()
+    if any(w in blob for w in UNVERIFIABLE_WORDS):
+        return "第三者が公開情報で○×判定できない予測(非公開・秘密・リーク前提)"
     if not (DEADLINE_MIN_DAYS <= dd <= DEADLINE_MAX_DAYS):
         return "deadline_days が+3〜+30日の範囲外"
     # based_on: 1件以上・実在index・rumorのみは不可
@@ -296,7 +319,10 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
             },
             "body_fetched": bool(art["body_fetched"]) if art else False,
             "model": model,
-            "related_ids": [],
+            # 同一主体の過去record(直近)へ紐づけ、記憶を"線"にする(スレッド化)
+            "related_ids": memory.related_ids_for(
+                str(rec.get("headline") or ""),
+                (art["title"] if art else ""), existing_records),
         }
         if valid_record_schema(obj):
             internal_records.append({"id": rid, "certainty": certainty,
@@ -454,47 +480,72 @@ def render_records_page(records):
     return _page_shell("記録の台帳", sub, nav, body)
 
 
+RESULT_BADGE = {"hit": ("b-hit", "○ 的中"), "miss": ("b-miss", "× 外し"),
+                "unclear": ("b-review", "— 判定不能")}
+
+
+def _hunch_card(h, today):
+    res = h.get("resolution", {}) if isinstance(h.get("resolution"), dict) else {}
+    dl = h.get("deadline", "")
+    drem = ""
+    try:
+        delta = (datetime.strptime(dl, "%Y-%m-%d").date() - today).days
+        drem = ("・残り" + str(delta) + "日") if delta >= 0 else ("・期限超過" + str(-delta) + "日")
+    except Exception:
+        pass
+    parts = ['<article class="card reveal">', '<h3>' + _esc(h.get("claim", "")) + '</h3>', '<div class="row">']
+    result = h.get("result")
+    if result in RESULT_BADGE:
+        cls, lab = RESULT_BADGE[result]
+        parts.append('<span class="badge ' + cls + '">' + lab + '</span>')
+    elif h.get("needs_review"):
+        parts.append('<span class="badge b-review">要確認</span>')
+    else:
+        parts.append('<span class="badge b-pending">判定待ち</span>')
+    parts.append('<span class="kv">確度 ' + _esc(h.get("confidence", "")) + '</span>')
+    if dl:
+        parts.append('<span class="kv deadline">期限 ' + _esc(dl) + drem + '</span>')
+    parts.append('</div>')
+    if h.get("prose"):
+        parts.append('<p>' + _esc(h["prose"]) + '</p>')
+    ev = h.get("evidence") if isinstance(h.get("evidence"), dict) else None
+    if ev and ev.get("summary"):
+        link = ' <a href="' + _esc(ev.get("url", "")) + '">証拠</a>' if ev.get("url") else ""
+        parts.append('<p class="kv"><b>答え合わせ</b> ' + _esc(ev["summary"]) + link + '</p>')
+    parts.append('<p class="kv"><b>主体</b> ' + _esc(h.get("subject", "")) + '</p>')
+    if res.get("decider"):
+        parts.append('<p class="kv"><b>的中条件</b> ' + _esc(res["decider"]) + '</p>')
+    if res.get("source") or res.get("check_query"):
+        parts.append('<p class="kv"><b>確認先</b> ' + _esc(res.get("source", ""))
+                     + ' / <code>' + _esc(res.get("check_query", "")) + '</code></p>')
+    based = h.get("based_on", []) if isinstance(h.get("based_on"), list) else []
+    parts.append('<p class="kv"><b>根拠の記録</b> ' + _esc("、".join(based) or "—") + '</p>')
+    parts.append('<p class="kv">' + _esc(h.get("id", "")) + '</p></article>')
+    return "".join(parts)
+
+
 def render_hunches_page(hunches):
     today = datetime.now(JST).date()
     sub = datetime.now(JST).strftime("%Y.%m.%d %H:%M") + " 更新 · 予測の台帳"
     nav = '<nav class="nav"><a href="index.html">← ブリーフィング</a><a href="records.html">記録の台帳</a></nav>'
+    st = memory.hit_stats(hunches)
+    if st["total"]:
+        rate = ('<p><span class="hitrate">的中率 ' + str(round(st["rate"] * 100)) + '%</span> '
+                '<span class="kv">(的中' + str(st["hit"]) + ' / 外し' + str(st["miss"]) + ' / 判定不能除く)</span></p>')
+    else:
+        rate = '<p class="kv">まだ答え合わせ前。的中率は期日到来分の決着後に出る。</p>'
     if not hunches:
         body = '<p class="empty">まだ予測がありません。</p>'
     else:
-        cards = []
-        for h in reversed(hunches):  # 新しい順
-            st = h.get("status", "")
-            res = h.get("resolution", {}) if isinstance(h.get("resolution"), dict) else {}
-            dl = h.get("deadline", "")
-            drem = ""
-            try:
-                delta = (datetime.strptime(dl, "%Y-%m-%d").date() - today).days
-                drem = ("・残り" + str(delta) + "日") if delta >= 0 else ("・期限超過" + str(-delta) + "日")
-            except Exception:
-                pass
-            parts = ['<article class="card reveal">',
-                     '<h3>' + _esc(h.get("claim", "")) + '</h3>',
-                     '<div class="row">',
-                     '<span class="badge b-' + _esc(st) + '">' + _esc(STATUS_JA.get(st, st)) + '</span>',
-                     '<span class="kv">確度 ' + _esc(h.get("confidence", "")) + '</span>']
-            if dl:
-                parts.append('<span class="kv deadline">期限 ' + _esc(dl) + drem + '</span>')
-            parts.append('</div>')
-            if h.get("prose"):
-                parts.append('<p>' + _esc(h["prose"]) + '</p>')
-            parts.append('<p class="kv"><b>主体</b> ' + _esc(h.get("subject", "")) + '</p>')
-            if res.get("decider"):
-                parts.append('<p class="kv"><b>的中条件</b> ' + _esc(res["decider"]) + '</p>')
-            if res.get("source") or res.get("check_query"):
-                parts.append('<p class="kv"><b>確認先</b> ' + _esc(res.get("source", ""))
-                             + ' / <code>' + _esc(res.get("check_query", "")) + '</code></p>')
-            based = h.get("based_on", []) if isinstance(h.get("based_on"), list) else []
-            parts.append('<p class="kv"><b>根拠の記録</b> ' + _esc("、".join(based) or "—") + '</p>')
-            parts.append('<p class="kv">' + _esc(h.get("id", "")) + '</p></article>')
-            cards.append("".join(parts))
-        pend = sum(1 for h in hunches if h.get("status") == "pending")
-        body = ('<section><h2>勘の台帳 <span class="kv">(判定待ち ' + str(pend) + ' / 全'
-                + str(len(hunches)) + '件)</span></h2>' + "".join(cards) + '</section>')
+        resolved = [h for h in reversed(hunches) if h.get("status") == "resolved"]
+        pending = [h for h in reversed(hunches) if h.get("status") != "resolved"]
+        secs = ['<section><h2>打率 <span class="kv">(判定待ち ' + str(st["pending"]) + '件)</span></h2>' + rate + '</section>']
+        if resolved:
+            secs.append('<section><h2>答え合わせ済 <span class="kv">(' + str(len(resolved)) + '件)</span></h2>'
+                        + "".join(_hunch_card(h, today) for h in resolved) + '</section>')
+        secs.append('<section><h2>判定待ち <span class="kv">(' + str(len(pending)) + '件)</span></h2>'
+                    + "".join(_hunch_card(h, today) for h in pending) + '</section>')
+        body = "".join(secs)
     return _page_shell("勘の台帳", sub, nav, body)
 
 

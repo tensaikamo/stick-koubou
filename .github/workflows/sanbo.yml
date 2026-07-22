@@ -35,6 +35,11 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python recorder.py
+      - name: Resolve hunches
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python resolver.py
       - name: Commit records
         continue-on-error: true
         run: |

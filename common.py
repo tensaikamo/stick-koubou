@@ -116,8 +116,9 @@ background:linear-gradient(90deg,var(--gold),transparent)}
 section{margin-top:36px}
 p{font-size:15px}
 .lb{color:#04121a;font-size:11px;letter-spacing:.2em;border-radius:5px;
-padding:2px 9px;margin-right:9px;white-space:nowrap;font-weight:600;
-background:linear-gradient(180deg,#7fe6d8,#41b6a7);box-shadow:0 2px 10px rgba(95,215,200,.25)}
+padding:2px 10px;margin-right:12px;white-space:nowrap;font-weight:600;display:inline-block;
+transform:translateY(-1px);background:linear-gradient(180deg,#7fe6d8,#41b6a7);
+box-shadow:0 2px 10px rgba(95,215,200,.25)}
 .mj{border:1px solid var(--line);border-radius:10px;padding:13px 15px;margin:14px 0;
 background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
 .mjt{font-size:14px;color:var(--fg)}
@@ -151,6 +152,10 @@ transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7
 .nav a{color:var(--gold);border:1px solid var(--line);border-radius:20px;padding:5px 14px;
 font-size:12px;letter-spacing:.08em;transition:color .15s,border-color .15s}
 .nav a:hover{color:var(--teal);border-color:#2b4a58}
+.nav a.refresh{color:#04121a;font-weight:600;border-color:transparent;
+background:linear-gradient(180deg,#7fe6d8,#41b6a7);box-shadow:0 2px 12px rgba(95,215,200,.3)}
+.nav a.refresh:hover{color:#04121a;filter:brightness(1.08)}
+.hint{color:var(--dim);font-size:11px;margin-top:10px;line-height:1.7}
 .card{border:1px solid var(--line);border-radius:12px;padding:15px 16px;margin:16px 0;
 background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
 .card h3{font-size:15px;margin:0 0 8px;color:var(--fg);font-weight:600;line-height:1.65}
@@ -160,6 +165,11 @@ background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
 border:1px solid var(--line);color:#9aa7b3;white-space:nowrap}
 .b-confirmed,.b-pending{color:#7fe6d8;border-color:#2b4a58}
 .b-reported{color:var(--gold);border-color:#3a3320}
+.b-hit{color:#0a1410;background:linear-gradient(180deg,#7fe6a8,#41b673);border-color:transparent;font-weight:600}
+.b-miss{color:#f0b3b3;border-color:#5a2b2b;background:rgba(120,40,40,.18)}
+.b-review{color:var(--gold);border-color:#3a3320}
+.hitrate{color:var(--teal);font-size:22px;font-weight:600;letter-spacing:.05em;
+text-shadow:0 0 16px rgba(95,215,200,.35)}
 .kv{font-size:12px;color:var(--dim)}
 .kv b{color:#aec4d4;font-weight:500}
 .deadline{color:var(--gold)}
