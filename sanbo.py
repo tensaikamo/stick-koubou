@@ -180,58 +180,131 @@ if final["mijoriku"]:
     mj_html = "<h2>未上陸</h2>" + "".join(
         '<div class="mj"><div class="mjt">' + render_rich(x["title"]) + "</div><p>" + render_rich(x["desc"])
         + '</p><p class="mjw">先回りの価値:' + render_rich(x["why"]) + "</p></div>" for x in final["mijoriku"])
+    mj_html = '<section class="reveal">' + mj_html + "</section>"
 
-page = """<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+page = """<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
 <title>シリコンバレー参謀</title><style>
-body{background:#0b0f14;color:#dbe4ec;font-family:system-ui,'Hiragino Sans',sans-serif;
-margin:0;padding:24px 18px;line-height:1.9}
+:root{--bg:#0b0f14;--fg:#dbe4ec;--teal:#5fd7c8;--gold:#d6a24c;--line:#1a2431;--dim:#586a7a}
+*{box-sizing:border-box}
+body{background:radial-gradient(1200px 600px at 50% -10%,#0f1720 0%,var(--bg) 60%) no-repeat,var(--bg);
+color:var(--fg);font-family:system-ui,'Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif;
+margin:0;padding:24px 18px 64px;line-height:1.9;-webkit-font-smoothing:antialiased;
+text-rendering:optimizeLegibility}
 main{max-width:640px;margin:0 auto}
-h1{font-size:15px;letter-spacing:.3em;color:#5fd7c8;font-weight:400}
-.d{color:#586a7a;font-size:12px;letter-spacing:.15em;margin-bottom:28px}
-h2{font-size:13px;letter-spacing:.25em;color:#d6a24c;border-bottom:1px solid #1a2431;
-padding-bottom:8px;margin-top:36px;font-weight:400}
+.hd{margin-bottom:28px}
+h1{font-size:15px;letter-spacing:.3em;color:var(--teal);font-weight:400;margin:0;
+text-shadow:0 0 18px rgba(95,215,200,.35)}
+.d{color:var(--dim);font-size:12px;letter-spacing:.15em;margin-top:8px}
+h2{font-size:13px;letter-spacing:.25em;color:var(--gold);border-bottom:1px solid var(--line);
+padding-bottom:8px;margin-top:0;font-weight:400;position:relative}
+h2::after{content:"";position:absolute;left:0;bottom:-1px;width:38px;height:1px;
+background:linear-gradient(90deg,var(--gold),transparent)}
+section{margin-top:36px}
 p{font-size:15px}
-.lb{color:#5fd7c8;font-size:11px;letter-spacing:.2em;border:1px solid #24414d;border-radius:4px;
-padding:1px 8px;margin-right:8px;white-space:nowrap}
-.mj{border:1px solid #1a2431;border-radius:8px;padding:12px 14px;margin:14px 0}
-.mjt{font-size:14px;color:#dbe4ec}
+.lb{color:#04121a;font-size:11px;letter-spacing:.2em;border-radius:5px;
+padding:2px 9px;margin-right:9px;white-space:nowrap;font-weight:600;
+background:linear-gradient(180deg,#7fe6d8,#41b6a7);box-shadow:0 2px 10px rgba(95,215,200,.25)}
+.mj{border:1px solid var(--line);border-radius:10px;padding:13px 15px;margin:14px 0;
+background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
+.mjt{font-size:14px;color:var(--fg)}
 .mj p{font-size:13px;margin:6px 0}
 .mjw{color:#8fb8d8}
-t{border-bottom:1px dotted #5fd7c8;cursor:pointer}
-.tip{display:block;background:#101a26;border:1px solid #24414d;border-radius:8px;
-padding:8px 12px;margin:6px 0;font-size:13px;line-height:1.7;color:#aec4d4;max-width:100%}
+t{border-bottom:1px dotted var(--teal);cursor:pointer;transition:color .15s,border-color .15s;
+-webkit-tap-highlight-color:transparent}
+t:active,t:hover{color:var(--teal);border-bottom-style:solid}
+.tip{position:fixed;margin:0;z-index:50;background:#101a26;border:1px solid #2b4a58;
+border-radius:10px;padding:10px 13px;font-size:13px;line-height:1.7;color:#c7dbe8;
+max-width:calc(100vw - 24px);box-shadow:0 10px 34px rgba(0,0,0,.55);
+opacity:0;transform:translateY(-6px) scale(.98);transition:opacity .22s ease,transform .22s ease}
+.tip.show{opacity:1;transform:none}
+[popover].tip{inset:unset}
+[popover].tip:popover-open{opacity:1;transform:none}
+@starting-style{[popover].tip:popover-open{opacity:0;transform:translateY(-6px) scale(.98)}}
 ul{padding-left:0;list-style:none}
 li{margin:14px 0;font-size:14px}
 a{color:#8fb8d8;text-decoration:none}
-.m{color:#586a7a;font-size:11px;margin-left:6px}
-</style></head><body><main>
-<h1>◇ シリコンバレー参謀</h1>
-<div class="d">""" + jst.strftime("%Y.%m.%d %H:%M") + """ JST</div>
-<h2>今日の空気</h2>
+li a{transition:color .15s}
+li a:hover{color:var(--teal)}
+.m{color:var(--dim);font-size:11px;margin-left:6px}
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);
+transform-origin:0 50%;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:60}
+.hd{animation:rise .8s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.js .reveal{opacity:0;transform:translateY(18px);
+transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+@supports (animation-timeline:scroll()){
+.progress{animation:grow linear both;animation-timeline:scroll(root)}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}}
+@media (prefers-reduced-motion:reduce){
+.hd{animation:none}
+.js .reveal{opacity:1;transform:none;transition:none}
+.tip{transition:none;opacity:1;transform:none}
+.progress{display:none}}
+</style></head><body>
+<div class="progress" aria-hidden="true"></div>
+<main>
+<header class="hd"><h1>◇ シリコンバレー参謀</h1>
+<div class="d">""" + jst.strftime("%Y.%m.%d %H:%M") + """ JST</div></header>
+<section class="reveal"><h2>今日の空気</h2>
 <p><span class="lb">表</span>""" + render_rich(final["omote"]) + """</p>
-<p><span class="lb">裏</span>""" + render_rich(final["ura"]) + """</p>
-<h2>で、どうする</h2><p>""" + render_rich(final["dousuru"]) + """</p>
-<h2>参謀の勘</h2><p>""" + render_rich(final["kan"]) + """</p>
+<p><span class="lb">裏</span>""" + render_rich(final["ura"]) + """</p></section>
+<section class="reveal"><h2>で、どうする</h2><p>""" + render_rich(final["dousuru"]) + """</p></section>
+<section class="reveal"><h2>参謀の勘</h2><p>""" + render_rich(final["kan"]) + """</p></section>
 """ + mj_html + """
-<h2>今日の重要記事</h2><ul>""" + links + """</ul>
+<section class="reveal"><h2>今日の重要記事</h2><ul>""" + links + """</ul></section>
 </main>
 <script>
-document.addEventListener("click", function (e) {
-  var t = e.target.closest ? e.target.closest("t") : null;
-  var old = document.querySelector(".tip");
-  if (old) {
-    var same = old.tipSource === t;
-    old.remove();
-    if (same) return;  // 同じ用語の再タップは閉じるだけ
+(function(){
+  var root=document.documentElement;
+  root.className="js";
+  var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // セクションのスクロール・イン(iOS Safari含め実動。JS無効時は全表示のまま)
+  var rev=document.querySelectorAll(".reveal");
+  if(!reduce && "IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+    },{threshold:0.12,rootMargin:"0px 0px -8% 0px"});
+    rev.forEach(function(el){ io.observe(el); });
+  } else { rev.forEach(function(el){ el.classList.add("in"); }); }
+
+  // 用語タップ解説: Popover API(iOS 17+)、未対応は同等のフォールバック配置
+  var canPop = ("popover" in HTMLElement.prototype);
+  var tip=null, anchor=null;
+  function place(t,el){
+    var r=el.getBoundingClientRect();
+    var w=Math.min(t.offsetWidth, window.innerWidth-24);
+    var left=Math.min(Math.max(12, r.left), window.innerWidth-12-w);
+    t.style.left=left+"px"; t.style.top=(r.bottom+8)+"px";
   }
-  if (!t) return;
-  var s = document.createElement("span");
-  s.className = "tip";
-  s.textContent = t.getAttribute("data-d") || "";
-  s.tipSource = t;
-  t.insertAdjacentElement("afterend", s);
-});
+  function close(){
+    if(!tip) return;
+    var t=tip; tip=null; anchor=null;
+    if(canPop){ try{ t.hidePopover(); }catch(e){} }
+    t.remove();
+  }
+  function open(el){
+    close();
+    tip=document.createElement("div"); tip.className="tip";
+    tip.textContent=el.getAttribute("data-d")||"";
+    if(canPop) tip.setAttribute("popover","manual");
+    document.body.appendChild(tip);
+    if(canPop){ try{ tip.showPopover(); }catch(e){} }
+    place(tip,el);
+    if(!canPop) requestAnimationFrame(function(){ tip.classList.add("show"); });
+    anchor=el;
+  }
+  function vt(fn){ if(!reduce && document.startViewTransition){ document.startViewTransition(fn); } else fn(); }
+  document.addEventListener("click", function(e){
+    var el=e.target.closest?e.target.closest("t"):null;
+    if(el){ e.preventDefault(); if(anchor===el){ vt(close); } else { vt(function(){ open(el); }); } }
+    else if(tip && !(e.target.closest&&e.target.closest(".tip"))){ vt(close); }
+  });
+  window.addEventListener("scroll", function(){ if(tip) close(); }, {passive:true});
+})();
 </script>
 </body></html>"""
 
