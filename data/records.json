@@ -1,1 +1,92 @@
-[]
+[
+  {
+    "id": "2026-07-22-r01",
+    "created_at": "2026-07-22T21:27:58.551300+09:00",
+    "headline": "OpenAIとHugging Faceがモデル評価時のセキュリティインシデントに対処",
+    "what_happened": "OpenAIとHugging Faceは、モデル評価プロセス中に発生したセキュリティインシデントに対応した旨を発表した。なお、本記事はbody_fetched=falseであるためタイトル情報のみに基づく。",
+    "background": "AIモデルの安全性や性能評価を行う評価基盤において、権限管理やデータ隔離の脆弱性が指摘されるケースが増加している。",
+    "changed": "両社間のモデル評価環境における安全対策およびアクセス管理の強化が推進される契機となった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://openai.com/index/hugging-face-model-evaluation-security-incident/",
+      "title": "OpenAI and Hugging Face address security incident during model evaluation",
+      "hn_score": 1287
+    },
+    "body_fetched": false,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
+  },
+  {
+    "id": "2026-07-22-r02",
+    "created_at": "2026-07-22T21:27:58.551300+09:00",
+    "headline": "Fireworks.aiがKimi K3とFableのモデルルーティングによる50倍のコスト削減を発表",
+    "what_happened": "Fireworks.aiは、オープンモデル「Kimi K3」と商用モデル「Fable 5」を組み合わせたタスクルーティングシステムを発表した。約1,000件のエージェントタスク検証で93%の精度を達成し、Fable単体利用と比較して最大50倍のコスト削減を実現したと報告した。",
+    "background": "大規模言語モデルのAPI利用料が高額化するなか、オープンモデルとフロンティアモデルを動的に使い分けるコスト最適化手法が注目されている。",
+    "changed": "単一の商用モデルに頼らず、タスク特性に応じてモデルを動的に切り替える運用手法の実効性がベンチマーク結果として示された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://fireworks.ai/blog/kimik3-fable",
+      "title": "Kimi K3 Is Competitive with Fable; Kimi K3 and Fable Is SoTA",
+      "hn_score": 714
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
+  },
+  {
+    "id": "2026-07-22-r03",
+    "created_at": "2026-07-22T21:27:58.551300+09:00",
+    "headline": "GoogleがGemini 3.6 Flash、3.5 Flash-Lite、および3.5 Flash Cyberを発表",
+    "what_happened": "Google DeepMindは、軽量・高速モデルの最新ラインナップとして「Gemini 3.6 Flash」「3.5 Flash-Lite」「3.5 Flash Cyber」を発表した。開発者向けツールやGoogle Cloud基盤等への順次展開が開始された。",
+    "background": "Googleは応答速度と運用コストを重視したFlashモデルシリーズの更新を加速させており、サイバーセキュリティ特化型モデルの拡充も進めている。",
+    "changed": "開発者が選択できる高速度・低コストモデルの選択肢が増加し、特にセキュリティ用途に特化したAI利用のハードルが下がった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/",
+      "title": "Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "hn_score": 714
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
+  },
+  {
+    "id": "2026-07-22-r04",
+    "created_at": "2026-07-22T21:27:58.551300+09:00",
+    "headline": "Claude CodeがOpenCodeに比べプロンプト読込前に約4.7倍のトークンを消費することが判明",
+    "what_happened": "Systimaによる調査報告で、Anthropicの「Claude Code」がプロンプト処理前に約33,000トークンを送信しているのに対し、オープンソースの「OpenCode」は約7,000トークンにとどまることが計測された。システム指示ファイルやMCPサーバー等の固定オーバーヘッドの大きさがトークン消費量の差につながっている。",
+    "background": "コーディングエージェントツールの普及が進む一方、バックグラウンドで消費されるコンテキストトークンがユーザーのAPIコストを押し上げる要因となっている。",
+    "changed": "コーディングエージェント選定において、初期オーバーヘッドによる隠れコストが定量比較可能な評価指標として提示された。",
+    "certainty": "reported",
+    "source_tier": "secondary",
+    "source": {
+      "url": "https://systima.ai/blog/claude-code-vs-opencode-token-overhead",
+      "title": "Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k",
+      "hn_score": 705
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
+  },
+  {
+    "id": "2026-07-22-r05",
+    "created_at": "2026-07-22T21:27:58.551300+09:00",
+    "headline": "米裁判所がAnthropicによる書籍著作権訴訟の15億ドル和解案を承認",
+    "what_happened": "米連邦裁判所の判事は、Claudeの学習に海賊版書籍が使用されたとする著作権侵害訴訟において、Anthropicが提示した15億ドルの和解案を承認した。大規模言語モデルの学習データを巡る著作権訴訟として過去最大級の示談金規模となる。",
+    "background": "生成AI企業は著作権保護された書籍やコンテンツを無断学習したとして著者や出版業界から相次いで提訴されており、法的リスクの解決が課題となっていた。",
+    "changed": "大規模モデルの学習データ侵害に対する法的責任の金銭的基準が確定し、AI業界における学習データライセンス交渉や和解の先行事例となった。",
+    "certainty": "confirmed",
+    "source_tier": "secondary",
+    "source": {
+      "url": "https://apnews.com/article/ai-anthropic-copyright-settlement-claude-books-bartz-74b140444023898aeba8579b6e9f0d63",
+      "title": "Judge approves $1.5B Anthropic settlement for pirated books used to train Claude",
+      "hn_score": 418
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
+  }
+]

@@ -1,1 +1,149 @@
-[]
+[
+  {
+    "id": "2026-07-22-h01",
+    "created_at": "2026-07-22T21:27:58.551300+09:00",
+    "based_on": [
+      "2026-07-22-r02"
+    ],
+    "prose": "Fireworks.aiによるKimi K3とFableのモデルルーティングを通じた50倍のコスト削減発表は、推論コスト最適化のトレンドを加速させる。開発者からの再現性検証の要求に応えるため、同社は近いうちにルーティング制御用のオープンソースライブラリまたは公式サンプルコードを更新・公開する動きを見せる。この技術を早期に把握することで、個人でのマルチモデル運用におけるコスト競争力を優位に保つことが可能になる。",
+    "claim": "Fireworks.aiがKimi K3のモデルルーティング再現用コードまたは関連設定ライブラリをGitHub公式リポジトリに公開する。",
+    "subject": "Fireworks.ai",
+    "resolution": {
+      "source": "GitHub Fireworks.ai Organization",
+      "check_query": "Fireworks AI routing",
+      "decider": "github.com/fireworks-ai 以下のリポジトリにおいて、「Kimi」または「routing」をコミットメッセージやREADMEに含む新規コミットまたはリポジトリ追加が1件以上確認されること。"
+    },
+    "deadline": "2026-08-05",
+    "confidence": 0.75,
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [
+      {
+        "draft": {
+          "based_on": [
+            5
+          ],
+          "prose": "Claude Codeの初期オーバーヘッドコスト（約33kトークン）の高さが提示されたことで、API従量課金を気にする個人開発者やスタートアップの間で、軽量なOpenCodeへの流入が進む。オープンソース系エージェントの注目度の高まりが見込まれる。",
+          "claim": "OpenCodeのGitHubリポジトリにおけるスター数が急増する。",
+          "subject": "OpenCode",
+          "resolution": {
+            "source": "GitHub repository stats",
+            "check_query": "OpenCode github stars",
+            "decider": "GitHub上のOpenCode公式リポジトリのスター数が本日時点から3,000以上増加する"
+          },
+          "deadline_days": 14,
+          "confidence": 0.8
+        },
+        "reason": "based_on が空、または実在 record を参照していない"
+      }
+    ],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-22-h02",
+    "created_at": "2026-07-22T21:27:58.551300+09:00",
+    "based_on": [],
+    "prose": "裁判所がAnthropicの15億ドル和解案を承認した前例により、未解決の著作権訴訟を抱えるOpenAIなど他社も訴訟の長期化リスクを避けるため、大型和解へ舵を切る。法的リスク解消の動きが業界全体へ拡大する。",
+    "claim": "OpenAIが著者団体等との大型著作権和解案を米裁判所に提出する。",
+    "subject": "OpenAI",
+    "resolution": {
+      "source": "AP News",
+      "check_query": "OpenAI copyright settlement",
+      "decider": "OpenAIによる10億ドル規模以上の著作権訴訟和解合意が主要報道機関にて報じられる"
+    },
+    "deadline": "2026-08-19",
+    "confidence": 0.75,
+    "status": "unscorable",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [
+      {
+        "draft": {
+          "based_on": [
+            7
+          ],
+          "prose": "裁判所がAnthropicの15億ドル和解案を承認した前例により、未解決の著作権訴訟を抱えるOpenAIなど他社も訴訟の長期化リスクを避けるため、大型和解へ舵を切る。法的リスク解消の動きが業界全体へ拡大する。",
+          "claim": "OpenAIが著者団体等との大型著作権和解案を米裁判所に提出する。",
+          "subject": "OpenAI",
+          "resolution": {
+            "source": "AP News",
+            "check_query": "OpenAI copyright settlement",
+            "decider": "OpenAIによる10億ドル規模以上の著作権訴訟和解合意が主要報道機関にて報じられる"
+          },
+          "deadline_days": 28,
+          "confidence": 0.75
+        },
+        "reason": "based_on が空、または実在 record を参照していない"
+      },
+      {
+        "draft": {
+          "based_on": [
+            7
+          ],
+          "prose": "裁判所がAnthropicの15億ドル和解案を承認した前例により、未解決の著作権訴訟を抱えるOpenAIなど他社も訴訟の長期化リスクを避けるため、大型和解へ舵を切る。法的リスク解消の動きが業界全体へ拡大する。",
+          "claim": "OpenAIが著者団体等との大型著作権和解案を米裁判所に提出する。",
+          "subject": "OpenAI",
+          "resolution": {
+            "source": "AP News",
+            "check_query": "OpenAI copyright settlement",
+            "decider": "OpenAIによる10億ドル規模以上の著作権訴訟和解合意が主要報道機関にて報じられる"
+          },
+          "deadline_days": 28,
+          "confidence": 0.75
+        },
+        "reason": "based_on が空、または実在 record を参照していない"
+      },
+      {
+        "draft": {
+          "based_on": [
+            7
+          ],
+          "prose": "裁判所がAnthropicの15億ドル和解案を承認した前例により、未解決の著作権訴訟を抱えるOpenAIなど他社も訴訟の長期化リスクを避けるため、大型和解へ舵を切る。法的リスク解消の動きが業界全体へ拡大する。",
+          "claim": "OpenAIが著者団体等との大型著作権和解案を米裁判所に提出する。",
+          "subject": "OpenAI",
+          "resolution": {
+            "source": "AP News",
+            "check_query": "OpenAI copyright settlement",
+            "decider": "OpenAIによる10億ドル規模以上の著作権訴訟和解合意が主要報道機関にて報じられる"
+          },
+          "deadline_days": 28,
+          "confidence": 0.75
+        },
+        "reason": "based_on が空、または実在 record を参照していない"
+      }
+    ],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-22-h03",
+    "created_at": "2026-07-22T21:27:58.551300+09:00",
+    "based_on": [
+      "2026-07-22-r04"
+    ],
+    "prose": "Fireworks.aiが示した50倍のコスト削減実証により、単一のフロンティアモデルへの直接接続から、タスクに応じてモデルを動的に振り分けるミドルウェア構成への移行が急加速する。",
+    "claim": "Fireworks.aiが自動モデルルーティング機能を一般向け新機能として正式提供開始する。",
+    "subject": "Fireworks.ai",
+    "resolution": {
+      "source": "Fireworks.ai Blog",
+      "check_query": "Fireworks AI routing",
+      "decider": "Fireworks.ai公式ブログでモデル自動ルーティング機能の一般利用開始（GA）が告知される"
+    },
+    "deadline": "2026-08-05",
+    "confidence": 0.85,
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  }
+]
