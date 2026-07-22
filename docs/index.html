@@ -1,8 +1,7 @@
 <!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>シリコンバレー参謀</title><style>
-:root{--bg:#0b0f14;--fg:#dbe4ec;--teal:#5fd7c8;--gold:#d6a24c;--line:#1a2431;--dim:#586a7a}
+<title>シリコンバレー参謀</title><style>:root{--bg:#0b0f14;--fg:#dbe4ec;--teal:#5fd7c8;--gold:#d6a24c;--line:#1a2431;--dim:#586a7a}
 *{box-sizing:border-box}
 body{background:radial-gradient(1200px 600px at 50% -10%,#0f1720 0%,var(--bg) 60%) no-repeat,var(--bg);
 color:var(--fg);font-family:system-ui,'Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif;
@@ -51,6 +50,23 @@ transform-origin:0 50%;background:linear-gradient(90deg,var(--teal),var(--gold))
 .js .reveal{opacity:0;transform:translateY(18px);
 transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 .js .reveal.in{opacity:1;transform:none}
+.nav{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.nav a{color:var(--gold);border:1px solid var(--line);border-radius:20px;padding:5px 14px;
+font-size:12px;letter-spacing:.08em;transition:color .15s,border-color .15s}
+.nav a:hover{color:var(--teal);border-color:#2b4a58}
+.card{border:1px solid var(--line);border-radius:12px;padding:15px 16px;margin:16px 0;
+background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
+.card h3{font-size:15px;margin:0 0 8px;color:var(--fg);font-weight:600;line-height:1.65}
+.card p{font-size:13.5px;margin:8px 0;color:#c2d0dc}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+.badge{font-size:10.5px;letter-spacing:.08em;border-radius:20px;padding:2px 10px;
+border:1px solid var(--line);color:#9aa7b3;white-space:nowrap}
+.b-confirmed,.b-pending{color:#7fe6d8;border-color:#2b4a58}
+.b-reported{color:var(--gold);border-color:#3a3320}
+.kv{font-size:12px;color:var(--dim)}
+.kv b{color:#aec4d4;font-weight:500}
+.deadline{color:var(--gold)}
+.empty{color:var(--dim);font-size:13px;margin-top:24px}
 @supports (animation-timeline:scroll()){
 .progress{animation:grow linear both;animation-timeline:scroll(root)}
 @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}}
@@ -58,25 +74,25 @@ transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7
 .hd{animation:none}
 .js .reveal{opacity:1;transform:none;transition:none}
 .tip{transition:none;opacity:1;transform:none}
-.progress{display:none}}
-</style></head><body>
+.progress{display:none}}</style></head><body>
 <div class="progress" aria-hidden="true"></div>
 <main>
 <header class="hd"><h1>◇ シリコンバレー参謀</h1>
-<div class="d">2026.07.22 21:34 JST</div></header>
+<div class="d">2026.07.22 21:51 JST</div>
+<nav class="nav"><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a></nav></header>
 <section class="reveal"><h2>今日の空気</h2>
-<p><span class="lb">表</span>本日の生成に失敗。次回実行で回復します。</p>
-<p><span class="lb">裏</span>-</p></section>
-<section class="reveal"><h2>で、どうする</h2><p>-</p></section>
-<section class="reveal"><h2>参謀の勘</h2><p>-</p></section>
-
+<p><span class="lb">表</span>OpenAIがChatGPT内に広告を掲載する「Advertise in ChatGPT」を公開した一方、米大手IT5社が<t data-d="貸借対照表外に隠す会計手法">オフバランス化</t>で1.6兆ドルのAI債務を隠蔽している実態が判明した。AIインフラの巨額投資回収期を迎え、大手各社は即金性の高いマネタイズと<t data-d="AIのデータ処理最小単位">トークン</t>消費の嵩増しへ一斉に走っている。</p>
+<p><span class="lb">裏</span>サブスク収益の限界を悟ったプラットフォーム側がユーザーからの絞り取りに入った証拠である。個人はプラットフォームを単純消費する側を脱し、彼らが広げた新インフラの隙間（広告枠・API差分）を直接叩いて利益を掠め取るべきだ。</p></section>
+<section class="reveal"><h2>で、どうする</h2><p>今夜iPhoneからOpenAI Adsの画面にアクセスし、プロンプト連動型広告の初期枠を押さえろ。さらに開発・自動化作業では公式の隠れコストを嫌い、オープンソースの<t data-d="端末のコマンド操作画面">CLI</t>でAPIを直叩きする環境へ即刻切り替えるはずだ。無駄な事前消費を7割削り、明日から個人エージェントの粗利率を最大化できる。</p></section>
+<section class="reveal"><h2>参謀の勘</h2><p>2週間以内に国内インフルエンサーがプロンプト検索最適化の商材を一斉に売り出すと見る。根拠はOpenAIの広告プラットフォーム公開を受け、海外の一次情報が日本へ流入するタイムラグが通常10日から14日だからだ。</p></section>
+<section class="reveal"><h2>未上陸</h2><div class="mj"><div class="mjt">Claude Code vs OpenCodeのトークン消費量比較</div><p>公式CLIが指示読込前に3万トークン超を浪費する中、オープンソースは7千に抑制している検証報告。</p><p class="mjw">先回りの価値:日本の開発者は公式ツールを無批判に使い高額な<t data-d="API利用料金を決める従量課金単位">トークンコスト</t>をドブに捨てているため、個人が自前軽量化でコスト優位を作れる。</p></div><div class="mj"><div class="mjt">ジャック・ドーシーのAI特化チャット Buzz</div><p>人と<t data-d="自律的にタスクを実行するAIプログラム">AIエージェント</t>が同等に協働する次世代グループチャット基盤。</p><p class="mjw">先回りの価値:日本企業がいまだSlack連携にとどまる中、複数エージェントを束ねてiPhone1台で50人規模の生産性を叩き出す構造を作れる。</p></div></section>
 <section class="reveal"><h2>今日の重要記事</h2><ul><li><a href="https://thenextweb.com/news/tech-giants-hidden-off-balance-sheet-debt-ai">Five tech giants are hiding $1.6T in AI debt, using the trick that toppled Enron</a> <span class="m">HN 91pt</span></li>
-<li><a href="https://ads.openai.com/">Advertise in ChatGPT</a> <span class="m">HN 873pt</span></li>
-<li><a href="https://www.ft.com/content/1b8c9d52-88a9-426b-ba47-f1811f859166">Apple targets dozens of OpenAI employees with legal letters</a> <span class="m">HN 410pt</span></li>
-<li><a href="https://www.emergingtrajectories.com/lh/frontier-lab-economics/">Kimi K3, Qwen 3.8, and Anthropic&#x27;s (Potential) Unravelling</a> <span class="m">HN 365pt</span></li>
+<li><a href="https://apnews.com/article/ai-anthropic-copyright-settlement-claude-books-bartz-74b140444023898aeba8579b6e9f0d63">Judge approves $1.5B Anthropic settlement for pirated books used to train Claude</a> <span class="m">HN 432pt</span></li>
+<li><a href="https://ads.openai.com/">Advertise in ChatGPT</a> <span class="m">HN 881pt</span></li>
+<li><a href="https://old.reddit.com/r/math/comments/1uxj3cy/after_openais_cdc_proof_announcement_gpt56_used_a/">GPT-5.6 used a prompt to close a 30-year gap in convex optimization</a> <span class="m">HN 600pt</span></li>
 <li><a href="https://systima.ai/blog/claude-code-vs-opencode-token-overhead">Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k</a> <span class="m">HN 705pt</span></li>
 <li><a href="https://techcrunch.com/2026/07/21/the-anthropic-physical-intelligence-rumor-roiling-ai-twitter/">The Anthropic-Physical Intelligence rumor roiling AI Twitter</a> <span class="m">TechCrunch </span></li>
-<li><a href="https://techcrunch.com/2026/07/21/openai-says-hugging-face-was-breached-by-its-pre-release-models/">OpenAI says Hugging Face was breached by its pre-release models</a> <span class="m">TechCrunch </span></li></ul></section>
+<li><a href="https://techcrunch.com/2026/07/21/jack-dorsey-is-taking-on-slack-with-buzz-a-group-chat-platform-for-teams-and-their-ai-agents/">Jack Dorsey is taking on Slack with Buzz, a group chat platform for teams and their AI agents</a> <span class="m">TechCrunch </span></li></ul></section>
 </main>
 <script>
 (function(){
