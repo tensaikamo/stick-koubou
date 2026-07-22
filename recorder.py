@@ -12,7 +12,7 @@ from zoneinfo import ZoneInfo
 
 import requests  # 分岐1: 本文取得は requests を使う(明示指示)
 
-from common import GeminiClient, fetch_hn, fetch_tc, parse_json
+from common import GeminiClient, fetch_hn, fetch_tc, parse_json, PAGE_CSS
 
 JST = ZoneInfo("Asia/Tokyo")
 DATA_DIR = "data"
@@ -70,6 +70,8 @@ def fetch_body(url):
     ここでの失敗が記録処理・サイト生成を止めることは絶対にない。"""
     try:
         r = requests.get(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
+        if r.status_code != 200:
+            return "", False  # 404/500等のエラーページ本文を記録しない
         ctype = r.headers.get("Content-Type", "")
         if "html" not in ctype and "text" not in ctype and ctype:
             return "", False
@@ -380,6 +382,136 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
     return new_records, new_hunches
 
 
+# ---- 台帳ページ生成(記録・勘を別ページに) ------------------------------
+# 記録層の副産物。サイト本体(index.html)とは別ファイルなので、ここが失敗しても
+# ブリーフィング本体の生成・公開には一切影響しない。全フィールドを html.escape する。
+
+CERT_JA = {"confirmed": "確定", "reported": "報道", "rumor": "噂"}
+TIER_JA = {"primary": "一次", "secondary": "二次"}
+STATUS_JA = {"pending": "判定待ち", "unscorable": "採点対象外"}
+
+
+def _esc(v):
+    return html.escape(str(v if v is not None else ""))
+
+
+def _page_shell(title, subtitle, nav_html, body_html):
+    return ("""<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>""" + _esc(title) + """</title><style>""" + PAGE_CSS + """</style></head><body>
+<div class="progress" aria-hidden="true"></div>
+<main>
+<header class="hd"><h1>◇ """ + _esc(title) + """</h1>
+<div class="d">""" + _esc(subtitle) + """</div>
+""" + nav_html + """</header>
+""" + body_html + """
+</main>
+<script>
+(function(){var root=document.documentElement;root.className="js";
+var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+var rev=document.querySelectorAll(".reveal");
+if(!reduce&&"IntersectionObserver"in window){var io=new IntersectionObserver(function(es){
+es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},
+{threshold:0.08,rootMargin:"0px 0px -6% 0px"});rev.forEach(function(el){io.observe(el);});}
+else{rev.forEach(function(el){el.classList.add("in");});}})();
+</script>
+</body></html>""")
+
+
+def render_records_page(records):
+    sub = datetime.now(JST).strftime("%Y.%m.%d %H:%M") + " 更新 · 事実の台帳"
+    nav = '<nav class="nav"><a href="index.html">← ブリーフィング</a><a href="hunches.html">勘の台帳</a></nav>'
+    if not records:
+        body = '<p class="empty">まだ記録がありません。</p>'
+    else:
+        cards = []
+        for r in reversed(records):  # 新しい順
+            c = r.get("certainty", "")
+            src = r.get("source", {}) if isinstance(r.get("source"), dict) else {}
+            url = src.get("url", "")
+            date = (r.get("created_at", "") or "")[:10]
+            bf = "本文取得済" if r.get("body_fetched") else "タイトルのみ"
+            parts = ['<article class="card reveal">',
+                     '<h3>' + _esc(r.get("headline", "")) + '</h3>',
+                     '<div class="row">',
+                     '<span class="badge b-' + _esc(c) + '">' + _esc(CERT_JA.get(c, c)) + '</span>',
+                     '<span class="badge">' + _esc(TIER_JA.get(r.get("source_tier", ""), "")) + '情報源</span>',
+                     '<span class="kv">' + _esc(date) + ' · ' + bf + '</span>',
+                     '</div>',
+                     '<p>' + _esc(r.get("what_happened", "")) + '</p>']
+            if r.get("changed"):
+                parts.append('<p class="kv"><b>何が変わったか</b> ' + _esc(r["changed"]) + '</p>')
+            if r.get("background"):
+                parts.append('<p class="kv"><b>背景</b> ' + _esc(r["background"]) + '</p>')
+            if url:
+                parts.append('<p><a href="' + _esc(url) + '">' + _esc(src.get("title") or "ソースを開く")
+                             + '</a> <span class="m">HN ' + _esc(src.get("hn_score", 0)) + 'pt</span></p>')
+            parts.append('<p class="kv">' + _esc(r.get("id", "")) + '</p></article>')
+            cards.append("".join(parts))
+        body = ('<section><h2>記録の台帳 <span class="kv">(全' + str(len(records)) + '件)</span></h2>'
+                + "".join(cards) + '</section>')
+    return _page_shell("記録の台帳", sub, nav, body)
+
+
+def render_hunches_page(hunches):
+    today = datetime.now(JST).date()
+    sub = datetime.now(JST).strftime("%Y.%m.%d %H:%M") + " 更新 · 予測の台帳"
+    nav = '<nav class="nav"><a href="index.html">← ブリーフィング</a><a href="records.html">記録の台帳</a></nav>'
+    if not hunches:
+        body = '<p class="empty">まだ予測がありません。</p>'
+    else:
+        cards = []
+        for h in reversed(hunches):  # 新しい順
+            st = h.get("status", "")
+            res = h.get("resolution", {}) if isinstance(h.get("resolution"), dict) else {}
+            dl = h.get("deadline", "")
+            drem = ""
+            try:
+                delta = (datetime.strptime(dl, "%Y-%m-%d").date() - today).days
+                drem = ("・残り" + str(delta) + "日") if delta >= 0 else ("・期限超過" + str(-delta) + "日")
+            except Exception:
+                pass
+            parts = ['<article class="card reveal">',
+                     '<h3>' + _esc(h.get("claim", "")) + '</h3>',
+                     '<div class="row">',
+                     '<span class="badge b-' + _esc(st) + '">' + _esc(STATUS_JA.get(st, st)) + '</span>',
+                     '<span class="kv">確度 ' + _esc(h.get("confidence", "")) + '</span>']
+            if dl:
+                parts.append('<span class="kv deadline">期限 ' + _esc(dl) + drem + '</span>')
+            parts.append('</div>')
+            if h.get("prose"):
+                parts.append('<p>' + _esc(h["prose"]) + '</p>')
+            parts.append('<p class="kv"><b>主体</b> ' + _esc(h.get("subject", "")) + '</p>')
+            if res.get("decider"):
+                parts.append('<p class="kv"><b>的中条件</b> ' + _esc(res["decider"]) + '</p>')
+            if res.get("source") or res.get("check_query"):
+                parts.append('<p class="kv"><b>確認先</b> ' + _esc(res.get("source", ""))
+                             + ' / <code>' + _esc(res.get("check_query", "")) + '</code></p>')
+            based = h.get("based_on", []) if isinstance(h.get("based_on"), list) else []
+            parts.append('<p class="kv"><b>根拠の記録</b> ' + _esc("、".join(based) or "—") + '</p>')
+            parts.append('<p class="kv">' + _esc(h.get("id", "")) + '</p></article>')
+            cards.append("".join(parts))
+        pend = sum(1 for h in hunches if h.get("status") == "pending")
+        body = ('<section><h2>勘の台帳 <span class="kv">(判定待ち ' + str(pend) + ' / 全'
+                + str(len(hunches)) + '件)</span></h2>' + "".join(cards) + '</section>')
+    return _page_shell("勘の台帳", sub, nav, body)
+
+
+def render_pages():
+    """現在の records.json / hunches.json から台帳ページを生成(冪等)。
+    失敗しても記録・サイト本体を止めないよう握りつぶす。"""
+    try:
+        os.makedirs("docs", exist_ok=True)
+        with open("docs/records.html", "w", encoding="utf-8") as f:
+            f.write(render_records_page(load_json_array(RECORDS_PATH)))
+        with open("docs/hunches.html", "w", encoding="utf-8") as f:
+            f.write(render_hunches_page(load_json_array(HUNCHES_PATH)))
+        print("recorder: 台帳ページ(records.html / hunches.html)を生成")
+    except Exception as e:
+        print("render_pages", repr(e)[:160])
+
+
 # ---- メイン --------------------------------------------------------------
 
 def main():
@@ -387,9 +519,11 @@ def main():
     date_str = now.strftime("%Y-%m-%d")
     runs_path = os.path.join(RUNS_DIR, date_str + ".json")
 
-    # 冪等: runs ファイルがあれば全スキップ(id走査はしない)
+    # 冪等: runs ファイルがあれば記録はスキップ。ただし台帳ページは現在のJSONから再生成
+    # しておく(既存データと同一なら実質無変更=冪等)。
     if os.path.exists(runs_path):
         print("recorder: runs/" + date_str + ".json が存在。記録処理をスキップ")
+        render_pages()
         return
 
     os.makedirs(DATA_DIR, exist_ok=True)
@@ -473,6 +607,7 @@ def main():
         "hunch_ids": [h["id"] for h in new_hunches],
         "status": status,
     })
+    render_pages()  # 台帳ページを最新データで再生成
     print("recorder: done records=%d hunches=%d status=%s" % (
         len(new_records), len(new_hunches), status))
 

@@ -40,7 +40,7 @@ jobs:
         run: |
           git config user.name "sanbo-bot"
           git config user.email "actions@github.com"
-          git add data/
+          git add data/ docs/records.html docs/hunches.html
           git commit -m "record predictions [skip ci]" || echo "no changes"
           git pull --rebase
           git push || (sleep 3 && git pull --rebase && git push)
