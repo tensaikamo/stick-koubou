@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>勘の台帳</title><style>:root{--bg:#0b0f14;--fg:#dbe4ec;--teal:#5fd7c8;--gold:#d6a24c;--line:#1a2431;--dim:#586a7a}
+*{box-sizing:border-box}
+body{background:radial-gradient(1200px 600px at 50% -10%,#0f1720 0%,var(--bg) 60%) no-repeat,var(--bg);
+color:var(--fg);font-family:system-ui,'Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif;
+margin:0;padding:24px 18px 64px;line-height:1.9;-webkit-font-smoothing:antialiased;
+text-rendering:optimizeLegibility}
+main{max-width:640px;margin:0 auto}
+.hd{margin-bottom:28px}
+h1{font-size:15px;letter-spacing:.3em;color:var(--teal);font-weight:400;margin:0;
+text-shadow:0 0 18px rgba(95,215,200,.35)}
+.d{color:var(--dim);font-size:12px;letter-spacing:.15em;margin-top:8px}
+h2{font-size:13px;letter-spacing:.25em;color:var(--gold);border-bottom:1px solid var(--line);
+padding-bottom:8px;margin-top:0;font-weight:400;position:relative}
+h2::after{content:"";position:absolute;left:0;bottom:-1px;width:38px;height:1px;
+background:linear-gradient(90deg,var(--gold),transparent)}
+section{margin-top:36px}
+p{font-size:15px}
+.lb{color:#04121a;font-size:11px;letter-spacing:.2em;border-radius:5px;
+padding:2px 9px;margin-right:9px;white-space:nowrap;font-weight:600;
+background:linear-gradient(180deg,#7fe6d8,#41b6a7);box-shadow:0 2px 10px rgba(95,215,200,.25)}
+.mj{border:1px solid var(--line);border-radius:10px;padding:13px 15px;margin:14px 0;
+background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
+.mjt{font-size:14px;color:var(--fg)}
+.mj p{font-size:13px;margin:6px 0}
+.mjw{color:#8fb8d8}
+t{border-bottom:1px dotted var(--teal);cursor:pointer;transition:color .15s,border-color .15s;
+-webkit-tap-highlight-color:transparent}
+t:active,t:hover{color:var(--teal);border-bottom-style:solid}
+.tip{position:fixed;margin:0;z-index:50;background:#101a26;border:1px solid #2b4a58;
+border-radius:10px;padding:10px 13px;font-size:13px;line-height:1.7;color:#c7dbe8;
+max-width:calc(100vw - 24px);box-shadow:0 10px 34px rgba(0,0,0,.55);
+opacity:0;transform:translateY(-6px) scale(.98);transition:opacity .22s ease,transform .22s ease}
+.tip.show{opacity:1;transform:none}
+[popover].tip{inset:unset}
+[popover].tip:popover-open{opacity:1;transform:none}
+@starting-style{[popover].tip:popover-open{opacity:0;transform:translateY(-6px) scale(.98)}}
+ul{padding-left:0;list-style:none}
+li{margin:14px 0;font-size:14px}
+a{color:#8fb8d8;text-decoration:none}
+li a{transition:color .15s}
+li a:hover{color:var(--teal)}
+.m{color:var(--dim);font-size:11px;margin-left:6px}
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);
+transform-origin:0 50%;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:60}
+.hd{animation:rise .8s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.js .reveal{opacity:0;transform:translateY(18px);
+transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+.nav{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.nav a{color:var(--gold);border:1px solid var(--line);border-radius:20px;padding:5px 14px;
+font-size:12px;letter-spacing:.08em;transition:color .15s,border-color .15s}
+.nav a:hover{color:var(--teal);border-color:#2b4a58}
+.card{border:1px solid var(--line);border-radius:12px;padding:15px 16px;margin:16px 0;
+background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
+.card h3{font-size:15px;margin:0 0 8px;color:var(--fg);font-weight:600;line-height:1.65}
+.card p{font-size:13.5px;margin:8px 0;color:#c2d0dc}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+.badge{font-size:10.5px;letter-spacing:.08em;border-radius:20px;padding:2px 10px;
+border:1px solid var(--line);color:#9aa7b3;white-space:nowrap}
+.b-confirmed,.b-pending{color:#7fe6d8;border-color:#2b4a58}
+.b-reported{color:var(--gold);border-color:#3a3320}
+.kv{font-size:12px;color:var(--dim)}
+.kv b{color:#aec4d4;font-weight:500}
+.deadline{color:var(--gold)}
+.empty{color:var(--dim);font-size:13px;margin-top:24px}
+@supports (animation-timeline:scroll()){
+.progress{animation:grow linear both;animation-timeline:scroll(root)}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}}
+@media (prefers-reduced-motion:reduce){
+.hd{animation:none}
+.js .reveal{opacity:1;transform:none;transition:none}
+.tip{transition:none;opacity:1;transform:none}
+.progress{display:none}}</style></head><body>
+<div class="progress" aria-hidden="true"></div>
+<main>
+<header class="hd"><h1>◇ 勘の台帳</h1>
+<div class="d">2026.07.22 21:52 更新 · 予測の台帳</div>
+<nav class="nav"><a href="index.html">← ブリーフィング</a><a href="records.html">記録の台帳</a></nav></header>
+<section><h2>勘の台帳 <span class="kv">(判定待ち 2 / 全3件)</span></h2><article class="card reveal"><h3>Fireworks.aiが自動モデルルーティング機能を一般向け新機能として正式提供開始する。</h3><div class="row"><span class="badge b-pending">判定待ち</span><span class="kv">確度 0.85</span><span class="kv deadline">期限 2026-08-05・残り14日</span></div><p>Fireworks.aiが示した50倍のコスト削減実証により、単一のフロンティアモデルへの直接接続から、タスクに応じてモデルを動的に振り分けるミドルウェア構成への移行が急加速する。</p><p class="kv"><b>主体</b> Fireworks.ai</p><p class="kv"><b>的中条件</b> Fireworks.ai公式ブログでモデル自動ルーティング機能の一般利用開始（GA）が告知される</p><p class="kv"><b>確認先</b> Fireworks.ai Blog / <code>Fireworks AI routing</code></p><p class="kv"><b>根拠の記録</b> 2026-07-22-r04</p><p class="kv">2026-07-22-h03</p></article><article class="card reveal"><h3>OpenAIが著者団体等との大型著作権和解案を米裁判所に提出する。</h3><div class="row"><span class="badge b-unscorable">採点対象外</span><span class="kv">確度 0.75</span><span class="kv deadline">期限 2026-08-19・残り28日</span></div><p>裁判所がAnthropicの15億ドル和解案を承認した前例により、未解決の著作権訴訟を抱えるOpenAIなど他社も訴訟の長期化リスクを避けるため、大型和解へ舵を切る。法的リスク解消の動きが業界全体へ拡大する。</p><p class="kv"><b>主体</b> OpenAI</p><p class="kv"><b>的中条件</b> OpenAIによる10億ドル規模以上の著作権訴訟和解合意が主要報道機関にて報じられる</p><p class="kv"><b>確認先</b> AP News / <code>OpenAI copyright settlement</code></p><p class="kv"><b>根拠の記録</b> —</p><p class="kv">2026-07-22-h02</p></article><article class="card reveal"><h3>Fireworks.aiがKimi K3のモデルルーティング再現用コードまたは関連設定ライブラリをGitHub公式リポジトリに公開する。</h3><div class="row"><span class="badge b-pending">判定待ち</span><span class="kv">確度 0.75</span><span class="kv deadline">期限 2026-08-05・残り14日</span></div><p>Fireworks.aiによるKimi K3とFableのモデルルーティングを通じた50倍のコスト削減発表は、推論コスト最適化のトレンドを加速させる。開発者からの再現性検証の要求に応えるため、同社は近いうちにルーティング制御用のオープンソースライブラリまたは公式サンプルコードを更新・公開する動きを見せる。この技術を早期に把握することで、個人でのマルチモデル運用におけるコスト競争力を優位に保つことが可能になる。</p><p class="kv"><b>主体</b> Fireworks.ai</p><p class="kv"><b>的中条件</b> github.com/fireworks-ai 以下のリポジトリにおいて、「Kimi」または「routing」をコミットメッセージやREADMEに含む新規コミットまたはリポジトリ追加が1件以上確認されること。</p><p class="kv"><b>確認先</b> GitHub Fireworks.ai Organization / <code>Fireworks AI routing</code></p><p class="kv"><b>根拠の記録</b> 2026-07-22-r02</p><p class="kv">2026-07-22-h01</p></article></section>
+</main>
+<script>
+(function(){var root=document.documentElement;root.className="js";
+var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+var rev=document.querySelectorAll(".reveal");
+if(!reduce&&"IntersectionObserver"in window){var io=new IntersectionObserver(function(es){
+es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},
+{threshold:0.08,rootMargin:"0px 0px -6% 0px"});rev.forEach(function(el){io.observe(el);});}
+else{rev.forEach(function(el){el.classList.add("in");});}})();
+</script>
+</body></html>
