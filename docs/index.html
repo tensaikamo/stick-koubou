@@ -88,23 +88,24 @@ text-shadow:0 0 16px rgba(95,215,200,.35)}
 <div class="progress" aria-hidden="true"></div>
 <main>
 <header class="hd"><h1>◇ シリコンバレー参謀</h1>
-<div class="d">2026.07.23 07:41 JST</div>
+<div class="d">2026.07.23 15:44 JST</div>
 <nav class="nav"><a class="refresh" href="https://github.com/tensaikamo/stick-koubou/actions/workflows/sanbo.yml" target="_blank" rel="noopener">⟳ 参謀に調べ直させる</a><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a></nav>
 <div class="hint">「調べ直させる」→ GitHubで Run workflow を1タップ。数分で参謀が記憶を踏まえて考え直す。反映後にこのページを再読み込み。</div></header>
 <section class="reveal"><h2>今日の空気</h2>
-<p><span class="lb">表</span>米裁判所がAnthropicの書籍著作権訴訟における15億ドルの和解案を承認し、同時にOpenAIが<t data-d="ChatGPT内で企業が広告を自動出稿できる管理画面">ads.openai.com</t>を開設した。主要ラボは過去データの違法利用を資金で強引に解決しつつ、本格的な収益化フェーズへ一斉に舵を切った。</p>
-<p><span class="lb">裏</span>巨大資本が法的リスクを金で打ち消し、AIの回答枠を直接買い占める構造が完成したことを意味する。かつてのSEOにおいて検索結果がGoogle広告で埋め尽くされた現象と同じであり、個人がAIのオーガニックな回答に自社サービスを推薦させる隙間は急速に消滅する。</p></section>
-<section class="reveal"><h2>で、どうする</h2><p>広告主優遇のプラットフォーム依存から今すぐ離脱せよ。昨日触れた<t data-d="Anthropicが提供するCLIベースのAI開発ツール">Claude Code</t>の重いトークン消費と今回の広告化は根が同じであり、ラボはユーザーからトークン代と広告料を二重搾取し始めている。今夜は<t data-d="軽量でオープンソースのAI開発CLI工具">OpenCode</t>のような非中央集権型の軽量ツールへ環境を寄せつつ、AI回答に乗らない個人直通の通知・検索代行ロジックの構築に集中しろ。</p></section>
-<section class="reveal"><h2>参謀の勘</h2><p>3週間以内（2026-08-14まで）に、OpenCode開発コミュニティまたはサードパーティが、Claude CodeのAPI消費を迂回する『iPhone対応・軽量代行プラグイン』の正式提供を開始すると見る。根拠は、プロンプト前に33kトークンを消費するClaude Codeの浪費構造が暴かれ、APIコストを極限まで削りたい個人開発者の乗り換え需要が海外で急増しているためだ。</p></section>
+<p><span class="lb">表</span>OpenAIのシステム改定による通信急増で<t data-d="AIモデルやデータセットを共有する巨大プラットフォーム">Hugging Face</t>のサーバーが物理的に停止する障害が発生した。同時にGoogleは<t data-d="Googleの対話型AIサービスおよびそのAPI群">Gemini API</t>の最新版で<t data-d="AIの出力のランダム性や多様性を制御する設定値">temperature</t>などのパラメータ指定をサイレント廃止し、出力をプラットフォーム側で完全制御する仕様へと変更した。巨大プラットフォーム主導による中央集権化と周辺エコシステムの排除が極限まで加速している。</p>
+<p><span class="lb">裏</span>昨日のOpenAIとHugging Faceの評価連携の裏で、プラットフォームの都合ひとつで周辺のインフラが途絶する脆さが露呈した。企業側は個人開発者から出力のチューニング権限を剥奪し、出力をブラックボックス化して広告や自社ロジックを挟み込む準備を進めている。中央の仕様変更に脅かされない<t data-d="手元の環境で直接モデルを動かす推論手法">ローカル推論</t>ノードを確保し、障害時の代替経路を仕込んだ個人がインフラ代替需要を奪うはずだ。</p></section>
+<section class="reveal"><h2>で、どうする</h2><p>昨日に続き<t data-d="Anthropicが提供するAIコーディングツール">Claude Code</t>のトークン隠れ浪費問題を追え。商用ツールが初期化だけで33kトークンを消費する一方、軽量な<t data-d="Claude Code互換のオープンソースツール">OpenCode</t>は7kで済むことが判明している。中央にプロンプトを横取りされて無駄な課金をされる前に、自分のiPhoneから叩くAPIの間にトークン削減プロキシを挟め。今夜中に軽量代替ツールの構成をデプロイし、同じAPI予算で他人の4倍試行錯誤を回せる環境を完成させろ。</p></section>
+<section class="reveal"><h2>参謀の勘</h2><p>2週間以内に、OpenAIはHugging Faceの障害を受け、外部APIアクセスに対するレート制限の厳格化と自社完結型モデル評価機能の追加を公式発表すると見る。根拠は、外部インフラへのトラフィック流出による自社障害リスクを遮断し、エコシステムを完全に閉じ込めるインフラ防衛が急務だからだ。</p></section>
 <section class="reveal"><h2>答え合わせ</h2><p><span class="m">まだ答え合わせ前。判定待ち 4 件(期日が来たら○×が付く)</span></p><p class="m"><a href="hunches.html">勘の台帳(全予測と○×)→</a></p></section>
-<section class="reveal"><h2>未上陸</h2><div class="mj"><div class="mjt">米財務省がMoonshotに制裁を示唆、Anthropicのモデル蒸留疑惑で</div><p>中国MoonshotがAnthropicの新モデル知識を無断抽出（蒸留）したとして、米政府が金融制裁の検討に入った。</p><p class="mjw">先回りの価値:米中間の<t data-d="親モデルの出力を使って別のモデルを安価に訓練する手法">モデル蒸留</t>取締りが厳格化すれば、オープン系モデルの更新が突然ストップするリスクが生じるため、自前ホスト環境の確保に先回りする価値がある。</p></div><div class="mj"><div class="mjt">LLMの推論コスト（Reasoning Effort）を動的に制御する技術手法</div><p>推論モデルの思考プロセスの長さをプロンプト側から制御し、APIコストと応答速度を最適化する検証データ。</p><p class="mjw">先回りの価値:従量課金のAI APIを使って個人で自動化を組む際、不要な思考ステップを削ってコストを1/5以下に抑える技術は、個人の利益率を直結で左右するため。</p></div></section>
-<section class="reveal"><h2>今日の重要記事</h2><ul><li><a href="https://ads.openai.com/">Advertise in ChatGPT</a> <span class="m">HN 1050pt</span></li>
-<li><a href="https://apnews.com/article/ai-anthropic-copyright-settlement-claude-books-bartz-74b140444023898aeba8579b6e9f0d63">Judge approves $1.5B Anthropic settlement for pirated books used to train Claude</a> <span class="m">HN 543pt</span></li>
-<li><a href="https://www.emergingtrajectories.com/lh/frontier-lab-economics/">Kimi K3, Qwen 3.8, and Anthropic&#x27;s (Potential) Unravelling</a> <span class="m">HN 366pt</span></li>
+<section class="reveal"><h2>未上陸</h2><div class="mj"><div class="mjt">Gemini APIが生成パラメータを廃止し出力を強制制御化</div><p>GoogleがGemini API最新版でtemperatureやtop_p等のパラメーターを無効化し、出力を中央制御する仕様へサイレント変更した。</p><p class="mjw">先回りの価値:出力制御権を奪われた開発者のGoogle離れが発生する。パラメータ完全解放型のオープンモデル運用ノウハウを日本市場でいち早く提示すれば、不満を抱えた開発者層の移行先を独占できる。</p></div><div class="mj"><div class="mjt">Claude Codeの初期トークン33k自動消費とOpenCodeの格差</div><p>Anthropic公式ツールが指示入力前に33kトークンを自動消費しているのに対し、オープン版のOpenCodeは7kで動作することが比較検証された。</p><p class="mjw">先回りの価値:日本の開発者は隠れたAPIコストに気づかず課金され続けている。無駄なオーバーヘッドを削るプロキシや代替ツールの導入手法を先回りで発信すれば、コスト感度の高い個人開発者から絶大な信頼を獲得できる。</p></div></section>
+<section class="reveal"><h2>今日の重要記事</h2><ul><li><a href="https://simonwillison.net/2026/Jul/22/openai-cyberattack/">OpenAI’s accidental attack against Hugging Face is science fiction that happened</a> <span class="m">HN 95pt</span></li>
+<li><a href="https://ads.openai.com/">Advertise in ChatGPT</a> <span class="m">HN 1061pt</span></li>
+<li><a href="https://old.reddit.com/r/math/comments/1uxj3cy/after_openais_cdc_proof_announcement_gpt56_used_a/">GPT-5.6 used a prompt to close a 30-year gap in convex optimization</a> <span class="m">HN 600pt</span></li>
+<li><a href="https://apnews.com/article/ai-anthropic-copyright-settlement-claude-books-bartz-74b140444023898aeba8579b6e9f0d63">Judge approves $1.5B Anthropic settlement for pirated books used to train Claude</a> <span class="m">HN 552pt</span></li>
+<li><a href="https://www.emergingtrajectories.com/lh/frontier-lab-economics/">Kimi K3, Qwen 3.8, and Anthropic&#x27;s (Potential) Unravelling</a> <span class="m">HN 368pt</span></li>
 <li><a href="https://systima.ai/blog/claude-code-vs-opencode-token-overhead">Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k</a> <span class="m">HN 705pt</span></li>
-<li><a href="https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms">Controlling Reasoning Effort in LLMs</a> <span class="m">HN 84pt</span></li>
-<li><a href="https://techcrunch.com/2026/07/22/treasury-threatens-sanctions-after-white-house-claims-moonshot-distilled-anthropics-fable/">Treasury threatens sanctions after White House claims Moonshot distilled Anthropic’s Fable</a> <span class="m">TechCrunch </span></li>
-<li><a href="https://techcrunch.com/2026/07/22/how-an-openais-human-mistake-led-to-the-ai-powered-hack-on-hugging-face/">How OpenAI’s human mistake led to the AI-powered hack on Hugging Face</a> <span class="m">TechCrunch </span></li></ul></section>
+<li><a href="https://ai.google.dev/gemini-api/docs/latest-model">Gemini last models: temperature, top_p, and top_k are deprecated and ignored</a> <span class="m">HN 129pt</span></li>
+<li><a href="https://techcrunch.com/2026/07/22/treasury-threatens-sanctions-after-white-house-claims-moonshot-distilled-anthropics-fable/">Treasury threatens sanctions after White House claims Moonshot distilled Anthropic’s Fable</a> <span class="m">TechCrunch </span></li></ul></section>
 </main>
 <script>
 (function(){
