@@ -284,7 +284,7 @@ page = """<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-
 <main>
 <header class="hd"><h1>◇ シリコンバレー参謀</h1>
 <div class="d">""" + jst.strftime("%Y.%m.%d %H:%M") + """ JST</div>
-<nav class="nav"><a class="refresh" href="https://github.com/tensaikamo/stick-koubou/actions/workflows/sanbo.yml" target="_blank" rel="noopener">⟳ 参謀に調べ直させる</a><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a><a href="threads.html">記憶の物語</a></nav>
+<nav class="nav"><a class="refresh" href="https://github.com/tensaikamo/stick-koubou/actions/workflows/sanbo.yml" target="_blank" rel="noopener">⟳ 参謀に調べ直させる</a><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a><a href="threads.html">記憶の物語</a><a href="play.html">渦で遊ぶ</a></nav>
 <div class="hint">「調べ直させる」→ GitHubで Run workflow を1タップ。数分で参謀が記憶を踏まえて考え直す。反映後にこのページを再読み込み。</div></header>
 <section class="reveal"><h2>今日の空気</h2>
 <p><span class="lb">表</span>""" + render_rich(final["omote"]) + """</p>
