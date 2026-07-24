@@ -195,5 +195,55 @@
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-24-h01",
+    "created_at": "2026-07-24T14:11:42.788758+09:00",
+    "based_on": [
+      "2026-07-24-r05"
+    ],
+    "prose": "Claude Codeにおける大量の初期トークン消費は、API従量課金を行う開発者にとって深刻なコスト圧迫要因となっている。オープンソースのOpenCodeなど軽量代替ツールとの差が明示されたことで、Anthropicはクライアント側のコンテキスト初期化アルゴリズム修正を迫られるシナリオが考えられる。短期的にはトークン削減を掲げたCLIのマイナーアップデートが提供される見通しである。",
+    "claim": "AnthropicはClaude CodeのCLIアップデートにおいてシステムプロンプトおよび環境スキャンのトークン消費量を削減するキャッシュ最適化または初期化見直しをリリースする。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "GitHub Anthropic Claude Code release notes",
+      "check_query": "Claude Code release",
+      "decider": "Anthropicが公式リポジトリまたはチェンジログにて、Claude Codeの初期トークン消費量削減またはプロンプトキャッシュ効率化に関する修正を公開すること。"
+    },
+    "deadline": "2026-08-13",
+    "confidence": 0.8,
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-24-h02",
+    "created_at": "2026-07-24T14:11:42.788758+09:00",
+    "based_on": [
+      "2026-07-24-r04"
+    ],
+    "prose": "GoogleによるGemini 3.5 Flash-Liteの発表は、軽量モデル分野における価格破壊を狙った動きである。個人開発者や低コストなマルチエージェント環境を構築したい層を早期に囲い込むため、Google AI StudioおよびGoogle Cloud経由でのパブリックAPI提供が即座に進められる可能性が高い。",
+    "claim": "GoogleはGoogle AI StudioにおいてGemini 3.5 Flash-Liteの一般提供APIを開始する。",
+    "subject": "Google",
+    "resolution": {
+      "source": "Google Developers Blog or Google AI Studio documentation",
+      "check_query": "Gemini Flash-Lite API",
+      "decider": "Google AI StudioまたはGoogle Cloudの公式ドキュメントにてGemini 3.5 Flash-LiteのAPIエンドポイントが一般利用可能(GA)として公開されること。"
+    },
+    "deadline": "2026-08-07",
+    "confidence": 0.85,
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
