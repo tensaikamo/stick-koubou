@@ -88,23 +88,24 @@ text-shadow:0 0 16px rgba(95,215,200,.35)}
 <div class="progress" aria-hidden="true"></div>
 <main>
 <header class="hd"><h1>◇ シリコンバレー参謀</h1>
-<div class="d">2026.07.24 18:01 JST</div>
-<nav class="nav"><a class="refresh" href="https://github.com/tensaikamo/stick-koubou/actions/workflows/sanbo.yml" target="_blank" rel="noopener">⟳ 参謀に調べ直させる</a><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a></nav>
+<div class="d">2026.07.24 19:46 JST</div>
+<nav class="nav"><a class="refresh" href="https://github.com/tensaikamo/stick-koubou/actions/workflows/sanbo.yml" target="_blank" rel="noopener">⟳ 参謀に調べ直させる</a><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a><a href="threads.html">記憶の物語</a></nav>
 <div class="hint">「調べ直させる」→ GitHubで Run workflow を1タップ。数分で参謀が記憶を踏まえて考え直す。反映後にこのページを再読み込み。</div></header>
 <section class="reveal"><h2>今日の空気</h2>
-<p><span class="lb">表</span>OpenAIとAnthropicが<t data-d="API経由で独占的にモデルを貸し出すビジネスモデル">オープンウェイトAI</t>の脅威に対抗するため規制ロビーで結託する一方、<t data-d="重い公式プロンプトの裏でAPI代を無駄に搾取する仕組み">Claude Code</t>の無駄なトークン消費構造が暴露された。昨日の「公式API独占の加速」という読みに対し、大手が自社利益を守るために国家権力を使ってOSSを縛りにかかる動きが表面化したと見る。</p>
-<p><span class="lb">裏</span>クローズドAIのAPI代は資本が個人から搾取する仕組みであり、大手が規制で縛りを入れるほど、規制の及ばない軽量OSSや<t data-d="BitTorrentのように分散してモデルを動かすインフラ">分散型基盤</t>へ逃げ込む個人に勝機が生まれる。表面的なAPI依存から離脱し、安価なオープンモデルを自前で回す層だけが価格競争から抜け出せるはずだ。</p></section>
-<section class="reveal"><h2>で、どうする</h2><p>まずは自分の<t data-d="ターミナルから直接AIを動かす開発ツール">CLIツール</t>や開発環境がどれだけ裏でトークンを垂れ流しているか直ちに実測しろ。大手APIの肥大化したラッパーを作るのはやめ、オープンウェイトのローカル実行環境に乗り換えの準備を始めろ。明日から公式プロンプト依存の設計を捨て、軽量なオープンモデルで同等の出力が作れるかを自分のiPhoneから検証し倒せ。</p></section>
-<section class="reveal"><h2>参謀の勘</h2><p>2週間以内にAnthropic側から「安全性の担保」を名目とした非公式なAPI制限の強化、あるいはOSSモデルの利用を牽制する追加のオープンレターが発表されると見る。根拠は、彼らの収益の根幹である高コストなトークン消費モデルが、軽量なオープンウェイト勢に急速に食い破られているからだ。</p></section>
+<p><span class="lb">表</span>Claude Codeがユーザー指示の読み込み前に3万3千<t data-d="LLMに与える入力・出力の文字列量の単位">トークン</t>もの隠れデータを自動送信している検証結果が公開された。オープン版のOpenCodeは7千トークンで収まっており、消費量に4倍以上の開きが存在する。</p>
+<p><span class="lb">裏</span>昨日指摘した内部プロンプトの消費構造について具体的数字が出た格好だ。<t data-d="開発元が内部構造やコードを非公開にしている形態">プロプライエタリ</t>なツールは、裏で肥大化した<t data-d="指示の文脈や制約を規定する隠れた初期入力データ">システムプロンプト</t>を流し込むことでユーザーのAPI利用料を吊り上げ、インフラ収益を水増ししている。原価率を圧迫される個人の仕掛け側は、プロンプトが透明なオープン代替品へ環境を移行させることで利益率の優位を作れるはずだ。</p></section>
+<section class="reveal"><h2>で、どうする</h2><p>iPhoneのSSH端末から開発環境へ接続し、依存している<t data-d="コマンドラインで操作する対話型ツール">CLIツール</t>の<t data-d="サービス利用に必要な認証用暗号キー">APIキー</t>消費ログを確認しろ。過剰な前処理トークンを消費する標準ツールから、OpenCodeのような軽量・透明な代替実装へ設定を差し替えるべきだ。無駄なインフラ課金で資本に吸い上げられる原資をカットすることだけが、個人の粗利益率を守る動きとなる。</p></section>
+<section class="reveal"><h2>参謀の勘</h2><p>2週間後の2026年8月7日までに、AnthropicがClaude Codeの初期トークン消費量を削減する調整アップデートを公式発表すると見る。根拠は、オープンソース陣営との消費量比較データが拡散し、開発者コミュニティからの<t data-d="システムの背後で自動実行される処理環境">バックエンド</t>課金に対する批判が急増しているためだ。</p></section>
+<section class="reveal"><h2>一般人の超参謀</h2><p class="m">AIを普通に使う人向け・今日からできる一手</p><p>AIアプリを使う際、短い質問しかしていないのに利用料金や制限回数が一気に減る現象に注意が必要だ。提供元が裏で大量の制御命令を一緒に送信しており、無駄な<t data-d="AIが文字や画像を生成する際にかかるデータ処理単位">トークン量</t>を消費させているケースがある。毎回の利用履歴やデータ消費量が明確に画面表示されるツールを選ぶことで、不透明な課金や無駄な出費を回避できる。</p></section>
 <section class="reveal"><h2>追跡中の予測</h2><p class="m">期日が来たら、この予測に○×が付く。参謀の読みのうち、実際に採点される予測がこれだ。</p><ul><li>GoogleはGoogle AI StudioにおいてGemini 3.5 Flash-Liteの一般提供APIを開始する。 <span class="m">期限2026-08-07・残り14日</span></li><li>AnthropicはClaude CodeのCLIアップデートにおいてシステムプロンプトおよび環境スキャンのトークン消費量を削減 <span class="m">期限2026-08-13・残り20日</span></li><li>AnthropicはClaude Codeの初期化トークン消費量を削減するアップデートを公開する。 <span class="m">期限2026-08-13・残り20日</span></li></ul><p class="m"><a href="hunches.html">すべての予測と答え合わせ →</a></p></section>
-<section class="reveal"><h2>答え合わせ</h2><p><span class="m">まだ答え合わせ前。判定待ち 6 件(期日が来たら○×が付く)</span></p><p class="m"><a href="hunches.html">勘の台帳(全予測と○×)→</a></p></section>
-<section class="reveal"><h2>未上陸</h2><div class="mj"><div class="mjt">OpenAI and Anthropic unite against open-weight AI risks to their bottom line</div><p>米大手がオープンウェイトの脅威に対して規制圧力で結託する動きの暴露</p><p class="mjw">先回りの価値:シリコンバレーの政治的利害の裏側であり、日本語のITメディアでは構造が報じられていないため。</p></div><div class="mj"><div class="mjt">Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k</div><p>公式ツールの過剰なトークン消費と軽量競合のオーバーヘッド比較データ</p><p class="mjw">先回りの価値:公式ツールの裏にある搾取構造を暴くものであり、日本の開発者コミュニティで見落とされているため。</p></div></section>
-<section class="reveal"><h2>今日の重要記事</h2><ul><li><a href="https://news.ycombinator.com/item?id=49026810">Show HN: Echo – Fable-level results at 1/3 the cost using open-weight models</a> <span class="m">HN 376pt</span></li>
-<li><a href="https://news.ycombinator.com/item?id=49024620">Launch HN: Screenpipe (YC S26) – Record how you work and turn that into agents</a> <span class="m">HN 74pt</span></li>
-<li><a href="https://www.axios.com/2026/07/22/openai-anthropic-open-models-trump-china">OpenAI and Anthropic unite against open-weight AI risks to their bottom line</a> <span class="m">HN 283pt</span></li>
-<li><a href="https://www.emergingtrajectories.com/lh/frontier-lab-economics/">Kimi K3, Qwen 3.8, and Anthropic&#x27;s (Potential) Unravelling</a> <span class="m">HN 369pt</span></li>
+<section class="reveal"><h2>答え合わせ</h2><p><span class="m">まだ答え合わせ前。判定待ち 6 件(期日が来たら○×が付く)</span></p><p class="m">次の決着: 8/5(あと12日)</p><p class="m"><a href="hunches.html">勘の台帳(全予測と○×)→</a></p></section>
+<section class="reveal"><h2>未上陸</h2><div class="mj"><div class="mjt">Google Gemini APIにおけるハイパーパラメーターの非推奨化</div><p>Googleが最新Gemini APIにおいて、<t data-d="AIの出力のランダム性や創造性を調整する設定値">temperature</t>などの出力制御設定を無視する仕様変更を実施した。</p><p class="mjw">先回りの価値:パラメーター調整による設定の差異化が無効化されたため、外部データを読み込ませる<t data-d="外部データベースから最新情報を検索してAIに読み込ませる拡張技術">RAG</t>設計へ主戦場が移ったことを先回りして構造に反映できるため。</p></div><div class="mj"><div class="mjt">Screenpipe</div><p>画面操作と音声をローカルで常時記録し、人間の作業手順を再現する<t data-d="自律的にタスクを計画・実行するAIプログラム">AIエージェント</t>を構築する<t data-d="ソースコードが一般公開されているソフトウェア">オープンソース</t>基盤。</p><p class="mjw">先回りの価値:クラウド企業にデータを渡すことなく、個人がPC上で行う泥臭い作業パターンを直接自動化エージェントへ変換して先回り運用できるため。</p></div></section>
+<section class="reveal"><h2>今日の重要記事</h2><ul><li><a href="https://news.ycombinator.com/item?id=49026810">Show HN: Echo – Fable-level results at 1/3 the cost using open-weight models</a> <span class="m">HN 393pt</span></li>
+<li><a href="https://news.ycombinator.com/item?id=49024620">Launch HN: Screenpipe (YC S26) – Record how you work and turn that into agents</a> <span class="m">HN 76pt</span></li>
+<li><a href="https://github.com/onecli/onecli">Show HN: OneCLI – OSS credential gateway that keeps secrets out of AI agents</a> <span class="m">HN 100pt</span></li>
+<li><a href="https://www.axios.com/2026/07/22/openai-anthropic-open-models-trump-china">OpenAI and Anthropic unite against open-weight AI risks to their bottom line</a> <span class="m">HN 285pt</span></li>
 <li><a href="https://systima.ai/blog/claude-code-vs-opencode-token-overhead">Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k</a> <span class="m">HN 705pt</span></li>
-<li><a href="https://github.com/juggler-ai/juggler">Show HN: Juggler – an open-source GUI coding agent, by the creator of JUCE</a> <span class="m">HN 280pt</span></li>
+<li><a href="https://ai.google.dev/gemini-api/docs/latest-model">Gemini last models: temperature, top_p, and top_k are deprecated and ignored</a> <span class="m">HN 133pt</span></li>
 <li><a href="https://petals.dev/">Petals: Run LLMs at home, BitTorrent-style</a> <span class="m">HN 133pt</span></li></ul></section>
 </main>
 <script>
