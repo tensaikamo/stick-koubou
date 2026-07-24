@@ -88,24 +88,25 @@ text-shadow:0 0 16px rgba(95,215,200,.35)}
 <div class="progress" aria-hidden="true"></div>
 <main>
 <header class="hd"><h1>◇ シリコンバレー参謀</h1>
-<div class="d">2026.07.23 15:44 JST</div>
+<div class="d">2026.07.24 14:11 JST</div>
 <nav class="nav"><a class="refresh" href="https://github.com/tensaikamo/stick-koubou/actions/workflows/sanbo.yml" target="_blank" rel="noopener">⟳ 参謀に調べ直させる</a><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a></nav>
 <div class="hint">「調べ直させる」→ GitHubで Run workflow を1タップ。数分で参謀が記憶を踏まえて考え直す。反映後にこのページを再読み込み。</div></header>
 <section class="reveal"><h2>今日の空気</h2>
-<p><span class="lb">表</span>OpenAIのシステム改定による通信急増で<t data-d="AIモデルやデータセットを共有する巨大プラットフォーム">Hugging Face</t>のサーバーが物理的に停止する障害が発生した。同時にGoogleは<t data-d="Googleの対話型AIサービスおよびそのAPI群">Gemini API</t>の最新版で<t data-d="AIの出力のランダム性や多様性を制御する設定値">temperature</t>などのパラメータ指定をサイレント廃止し、出力をプラットフォーム側で完全制御する仕様へと変更した。巨大プラットフォーム主導による中央集権化と周辺エコシステムの排除が極限まで加速している。</p>
-<p><span class="lb">裏</span>昨日のOpenAIとHugging Faceの評価連携の裏で、プラットフォームの都合ひとつで周辺のインフラが途絶する脆さが露呈した。企業側は個人開発者から出力のチューニング権限を剥奪し、出力をブラックボックス化して広告や自社ロジックを挟み込む準備を進めている。中央の仕様変更に脅かされない<t data-d="手元の環境で直接モデルを動かす推論手法">ローカル推論</t>ノードを確保し、障害時の代替経路を仕込んだ個人がインフラ代替需要を奪うはずだ。</p></section>
-<section class="reveal"><h2>で、どうする</h2><p>昨日に続き<t data-d="Anthropicが提供するAIコーディングツール">Claude Code</t>のトークン隠れ浪費問題を追え。商用ツールが初期化だけで33kトークンを消費する一方、軽量な<t data-d="Claude Code互換のオープンソースツール">OpenCode</t>は7kで済むことが判明している。中央にプロンプトを横取りされて無駄な課金をされる前に、自分のiPhoneから叩くAPIの間にトークン削減プロキシを挟め。今夜中に軽量代替ツールの構成をデプロイし、同じAPI予算で他人の4倍試行錯誤を回せる環境を完成させろ。</p></section>
-<section class="reveal"><h2>参謀の勘</h2><p>2週間以内に、OpenAIはHugging Faceの障害を受け、外部APIアクセスに対するレート制限の厳格化と自社完結型モデル評価機能の追加を公式発表すると見る。根拠は、外部インフラへのトラフィック流出による自社障害リスクを遮断し、エコシステムを完全に閉じ込めるインフラ防衛が急務だからだ。</p></section>
+<p><span class="lb">表</span>OpenAIとAnthropicが<t data-d="重みデータが公開されローカル稼働可能なAIモデル">オープンウェイトモデル</t>の規制に向けて米政府へ協調アプローチを開始した一方、Claude Codeの初期化トークン消費量が<t data-d="ソースコードが公開されたオープンソースソフトウェア">OSS</t>代替のOpenCode（7k）に比して33kと過剰に肥大化している実態が暴露された。中国勢のKimi K3やQwen 3.8の台頭により、閉鎖型巨大モデルの経済的優位は破綻に向かっている。</p>
+<p><span class="lb">裏</span>機能差別化で行き詰まった閉鎖型巨頭が規制による参入障壁構築へ舵を切ったと見る。昨日読み取ったClaude Codeのトークン浪費の実態が露呈したが、彼らが水増し請求で収益を維持する構造は軽量プロキシの普及で無力化するはずだ。資本側が防衛に入った今、個人が狙うべきはオープンモデルを組み合わせた自前ルーティングとトークン削減技術による利ざやの奪取だ。</p></section>
+<section class="reveal"><h2>で、どうする</h2><p>iPhoneからGitHubでOpenCodeやOneCLIの構造を確認し、無駄な初期化プロンプトを削る<t data-d="通信の仲介を行い処理を制御する仕組み">プロキシ</t>構成を仕込め。Claude等の純正<t data-d="コマンドラインから操作する対話型インターフェース">CLI</t>に頼らず、オープンモデルへ即座に迂回できる環境を朝のうちに整えておけ。巨大APIの過剰課金から逃避する層に向け、トークン節約型エージェントの構築ノウハウを先回りで提示しろ。</p></section>
+<section class="reveal"><h2>参謀の勘</h2><p>Anthropicは開発者の流出を止めるため、3週間以内（2026-08-14まで）にClaude Codeの<t data-d="モデルに事前入力される初期設定命令群">システムプロンプト</t>削減アップデートを公式リリースすると見る。根拠はOpenCodeとの4倍以上のコスト格差が暴露され、規制による競合排除よりも緊急の製品改修を行わざるを得ないからだ。</p></section>
+<section class="reveal"><h2>追跡中の予測</h2><p class="m">期日が来たら、この予測に○×が付く。参謀の読みのうち、実際に採点される予測がこれだ。</p><ul><li>AnthropicはClaude Codeの初期化トークン消費量を削減するアップデートを公開する。 <span class="m">期限2026-08-13・残り20日</span></li><li>OpenAIは広告主向けのセルフサーブ型広告出稿プラットフォームの一般提供を年内に開始する。 <span class="m">期限2026-08-22・残り29日</span></li><li>Fireworks.aiが自動モデルルーティング機能を一般向け新機能として正式提供開始する。 <span class="m">期限2026-08-05・残り12日</span></li></ul><p class="m"><a href="hunches.html">すべての予測と答え合わせ →</a></p></section>
 <section class="reveal"><h2>答え合わせ</h2><p><span class="m">まだ答え合わせ前。判定待ち 4 件(期日が来たら○×が付く)</span></p><p class="m"><a href="hunches.html">勘の台帳(全予測と○×)→</a></p></section>
-<section class="reveal"><h2>未上陸</h2><div class="mj"><div class="mjt">Gemini APIが生成パラメータを廃止し出力を強制制御化</div><p>GoogleがGemini API最新版でtemperatureやtop_p等のパラメーターを無効化し、出力を中央制御する仕様へサイレント変更した。</p><p class="mjw">先回りの価値:出力制御権を奪われた開発者のGoogle離れが発生する。パラメータ完全解放型のオープンモデル運用ノウハウを日本市場でいち早く提示すれば、不満を抱えた開発者層の移行先を独占できる。</p></div><div class="mj"><div class="mjt">Claude Codeの初期トークン33k自動消費とOpenCodeの格差</div><p>Anthropic公式ツールが指示入力前に33kトークンを自動消費しているのに対し、オープン版のOpenCodeは7kで動作することが比較検証された。</p><p class="mjw">先回りの価値:日本の開発者は隠れたAPIコストに気づかず課金され続けている。無駄なオーバーヘッドを削るプロキシや代替ツールの導入手法を先回りで発信すれば、コスト感度の高い個人開発者から絶大な信頼を獲得できる。</p></div></section>
-<section class="reveal"><h2>今日の重要記事</h2><ul><li><a href="https://simonwillison.net/2026/Jul/22/openai-cyberattack/">OpenAI’s accidental attack against Hugging Face is science fiction that happened</a> <span class="m">HN 95pt</span></li>
-<li><a href="https://ads.openai.com/">Advertise in ChatGPT</a> <span class="m">HN 1061pt</span></li>
-<li><a href="https://old.reddit.com/r/math/comments/1uxj3cy/after_openais_cdc_proof_announcement_gpt56_used_a/">GPT-5.6 used a prompt to close a 30-year gap in convex optimization</a> <span class="m">HN 600pt</span></li>
-<li><a href="https://apnews.com/article/ai-anthropic-copyright-settlement-claude-books-bartz-74b140444023898aeba8579b6e9f0d63">Judge approves $1.5B Anthropic settlement for pirated books used to train Claude</a> <span class="m">HN 552pt</span></li>
-<li><a href="https://www.emergingtrajectories.com/lh/frontier-lab-economics/">Kimi K3, Qwen 3.8, and Anthropic&#x27;s (Potential) Unravelling</a> <span class="m">HN 368pt</span></li>
+<section class="reveal"><h2>未上陸</h2><div class="mj"><div class="mjt">Screenpipe: 操作ログのエージェント化</div><p>デスクトップの全操作画面・音声ログをローカルで常時記録し、AIエージェントの行動手順へ直接変換するツール。</p><p class="mjw">先回りの価値:日本語圏では画面解析による自動化を<t data-d="端末内だけで処理を完結させる設計">ローカルファースト</t>で構築する視点が皆無であり、大企業がプライバシー問題で足踏みする間に個人が自動化資産を構築できるから。</p></div><div class="mj"><div class="mjt">OneCLI: エージェント向け認証情報ゲートウェイ</div><p>AIエージェントに生APIキーを渡さず、権限を制限したプロキシ経由でCLIコマンドを実行させるセキュリティ機構。</p><p class="mjw">先回りの価値:自律型エージェントの運用軸がプロンプト作成からセキュリティ制御へ移る中、日本でこの<t data-d="APIやシステムへのアクセス鍵情報">クレデンシャル</t>隔離ノウハウを保持している個人がほぼ存在しないため先回りできる。</p></div></section>
+<section class="reveal"><h2>今日の重要記事</h2><ul><li><a href="https://news.ycombinator.com/item?id=49026810">Show HN: Echo – Fable-level results at 1/3 the cost using open-weight models</a> <span class="m">HN 290pt</span></li>
+<li><a href="https://www.msn.com/en-us/money/economy/ai-bet-goes-awry-oracle-fires-21-000-employees/ar-AA28vWuD">AI bet goes awry: Oracle fires 21,000 employees</a> <span class="m">HN 90pt</span></li>
+<li><a href="https://news.ycombinator.com/item?id=49024620">Launch HN: Screenpipe (YC S26) – Record how you work and turn that into agents</a> <span class="m">HN 66pt</span></li>
+<li><a href="https://github.com/onecli/onecli">Show HN: OneCLI – OSS credential gateway that keeps secrets out of AI agents</a> <span class="m">HN 85pt</span></li>
+<li><a href="https://www.axios.com/2026/07/22/openai-anthropic-open-models-trump-china">OpenAI and Anthropic unite against open-weight AI risks to their bottom line</a> <span class="m">HN 281pt</span></li>
+<li><a href="https://www.emergingtrajectories.com/lh/frontier-lab-economics/">Kimi K3, Qwen 3.8, and Anthropic&#x27;s (Potential) Unravelling</a> <span class="m">HN 369pt</span></li>
 <li><a href="https://systima.ai/blog/claude-code-vs-opencode-token-overhead">Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k</a> <span class="m">HN 705pt</span></li>
-<li><a href="https://ai.google.dev/gemini-api/docs/latest-model">Gemini last models: temperature, top_p, and top_k are deprecated and ignored</a> <span class="m">HN 129pt</span></li>
-<li><a href="https://techcrunch.com/2026/07/22/treasury-threatens-sanctions-after-white-house-claims-moonshot-distilled-anthropics-fable/">Treasury threatens sanctions after White House claims Moonshot distilled Anthropic’s Fable</a> <span class="m">TechCrunch </span></li></ul></section>
+<li><a href="https://techcrunch.com/2026/07/23/runway-bets-on-ai-model-routing-as-generative-media-gets-crowded/">Runway launches AI model router as generative media gets crowded</a> <span class="m">TechCrunch </span></li></ul></section>
 </main>
 <script>
 (function(){
