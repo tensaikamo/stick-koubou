@@ -60,29 +60,79 @@ def gather_evidence(h):
     return "\n".join(lines) if lines else "(公開情報から証拠を取得できず)"
 
 
-def judge(client, h, evidence, fake=None):
+def _last_json(text):
+    """テキスト中で最後に完全デコードできる"トップレベル"JSON値を返す(グラウンディングは
+    散文の末尾に判定JSONを置くため、common.parse_json の"最初"ではなく"最後"を拾う)。
+    デコード済み範囲はスキップし、ネストした内側オブジェクトを誤って拾わない。"""
+    dec = json.JSONDecoder()
+    found = None
+    i, n = 0, len(text or "")
+    while i < n:
+        if text[i] in "{[":
+            try:
+                v, end = dec.raw_decode(text[i:])
+                found = v
+                i += end
+                continue
+            except ValueError:
+                pass
+        i += 1
+    return found
+
+
+def _norm_verdict(d):
+    """{result, evidence{summary,url}, confidence} に正規化。不正なら None。"""
+    if not isinstance(d, dict) or d.get("result") not in RESULT_SET:
+        return None
+    ev = d.get("evidence") if isinstance(d.get("evidence"), dict) else {}
+    d["evidence"] = {"summary": str(ev.get("summary", ""))[:400], "url": str(ev.get("url", ""))[:400]}
+    return d
+
+
+def _judge_prompt(h, grounded):
+    res = h.get("resolution", {}) if isinstance(h.get("resolution"), dict) else {}
+    today = datetime.now(JST).strftime("%Y-%m-%d")
+    head = ("本日はJSTで " + today + "。次の予測が作成日から期日までに的中したかを、"
+            + ("Google検索で最新の公開情報を実際に確認して" if grounded else "集めた証拠だけで")
+            + "判定せよ。\n")
+    body = ("予測(claim): " + str(h.get("claim", "")) + "\n"
+            "的中条件(decider): " + str(res.get("decider", "")) + "\n"
+            "主体: " + str(h.get("subject", "")) + " / 作成日: " + str(h.get("created_at", ""))[:10]
+            + " / 期限: " + str(h.get("deadline", "")) + "\n")
+    rule = ("厳守: 公開情報で確認できない/不十分なら必ず unclear。憶測で hit/miss を出すな。"
+            "miss は『起きなかったと確信できる時』だけ(単に証拠が見つからないだけなら unclear)。\n")
+    tail = ('最後に判定を次のJSON1つだけで出力せよ(前に説明があってもよい): '
+            '{"result":"hit|miss|unclear",'
+            '"evidence":{"summary":"判定根拠を一文・日本語","url":"最も根拠になるURL(なければ空文字)"},'
+            '"confidence":0〜1の数値}')
+    return head + body + rule + tail
+
+
+def judge(client, h, fake=None):
+    """答え合わせ。グラウンディング(実Web検索)を優先し、失敗時はHN証拠にフォールバック。"""
     if fake is not None:
         return fake
-    res = h.get("resolution", {}) if isinstance(h.get("resolution"), dict) else {}
-    prompt = (
-        "あなたは予測の答え合わせ担当。集めた証拠だけで、期日までに的中したか判定せよ。\n"
-        "厳守: 証拠が無い/不十分なら必ず unclear。憶測で hit/miss を出すな。"
-        "miss は『起きなかったと確信できる時』だけ(単に証拠が見つからないだけなら unclear)。\n\n"
-        "予測(claim): " + str(h.get("claim", "")) + "\n"
-        "的中条件(decider): " + str(res.get("decider", "")) + "\n"
-        "主体: " + str(h.get("subject", "")) + " / 作成日: " + str(h.get("created_at", ""))[:10]
-        + " / 期限: " + str(h.get("deadline", "")) + "\n\n"
-        "集めた証拠:\n" + evidence + "\n\n"
-        '次のJSONだけ返せ: {"result":"hit|miss|unclear",'
-        '"evidence":{"summary":"判定根拠を一文・日本語","url":"最も根拠になるURL(なければ空文字)"},'
-        '"confidence":0〜1の数値}')
+    # 1) Google検索グラウンディングで実際に確認
+    try:
+        text = client.generate_grounded(_judge_prompt(h, grounded=True))
+        v = _norm_verdict(_last_json(text))
+        if v:
+            if not v["evidence"].get("url") and getattr(client, "last_grounding_urls", None):
+                v["evidence"]["url"] = client.last_grounding_urls[0]["url"]
+            return v
+        print("resolver: grounding応答から判定JSONを抽出できず→HNフォールバック")
+    except Exception as e:
+        print("resolver: grounding失敗→HNフォールバック", repr(e)[:120])
+    # 2) フォールバック: HN全文検索の証拠でJSON判定
+    evidence = gather_evidence(h)
+    prompt = _judge_prompt(h, grounded=False) + "\n\n集めた証拠:\n" + evidence
     for _ in range(2):
         try:
-            d = parse_json(client.generate(prompt))
-            if isinstance(d, dict) and d.get("result") in RESULT_SET:
-                return d
+            v = _norm_verdict(parse_json(client.generate(prompt)))
+            if v:
+                return v
         except Exception as e:
-            print("judge", repr(e)[:120])
+            print("judge(fallback)", repr(e)[:120])
     return None
 
 
@@ -118,8 +168,7 @@ def resolve_all(fake_map=None):
     changed = False
     for h in due:
         fake = (fake_map or {}).get(h.get("id")) if fake_map is not None else None
-        evidence = "(fake)" if fake is not None else gather_evidence(h)
-        verd = judge(client, h, evidence, fake=fake)
+        verd = judge(client, h, fake=fake)
         if not verd:
             # 判定できず → 保留(要確認)。既にreviewなら再書き込みしない(冪等)
             if not h.get("needs_review"):

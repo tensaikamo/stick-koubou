@@ -58,15 +58,10 @@ class GeminiClient:
         self._model_ok = []
         self.last_model_version = None  # 直近レスポンスの実モデルID(APIレスポンス由来)
 
-    def generate(self, prompt, response_schema=None):
-        """プロンプトを投げ、生成テキストを返す。実際に応答したモデルIDは
-        self.last_model_version に保存する(呼び出し側が model フィールドに使う)。
-        response_schema を渡すと構造化出力(JSON準拠保証)を要求する(任意・後方互換)。"""
-        cfg = {"responseMimeType": "application/json"}
-        if response_schema is not None:
-            cfg["responseSchema"] = response_schema
-        body = json.dumps({"contents": [{"parts": [{"text": prompt}]}],
-                           "generationConfig": cfg}).encode()
+    def _request(self, payload):
+        """モデルフォールバック+過負荷バックオフでリクエストし、生の応答dictを返す。
+        実応答モデルIDは last_model_version に保存。generate / generate_grounded の共通土台。"""
+        body = json.dumps(payload).encode()
         last = None
         for m in (self._model_ok or MODELS):
             url = "https://generativelanguage.googleapis.com/v1beta/models/" + m + ":generateContent"
@@ -83,7 +78,7 @@ class GeminiClient:
                                                  "x-goog-api-key": self.api_key}).decode())
                     self._model_ok[:] = [m]
                     self.last_model_version = d.get("modelVersion") or m
-                    return d["candidates"][0]["content"]["parts"][0]["text"]
+                    return d
                 except urllib.error.HTTPError as e:
                     last = e
                     if e.code in (429, 503):
@@ -103,6 +98,31 @@ class GeminiClient:
             except Exception as e2:
                 print("listmodels", e2)
         raise last
+
+    def generate(self, prompt, response_schema=None):
+        """プロンプトを投げ、生成テキストを返す。response_schema を渡すと構造化出力
+        (JSON準拠保証)を要求する(任意・後方互換)。"""
+        cfg = {"responseMimeType": "application/json"}
+        if response_schema is not None:
+            cfg["responseSchema"] = response_schema
+        d = self._request({"contents": [{"parts": [{"text": prompt}]}], "generationConfig": cfg})
+        return d["candidates"][0]["content"]["parts"][0]["text"]
+
+    def generate_grounded(self, prompt):
+        """Google検索グラウンディング付き生成。実Web検索の根拠付きでテキストを返し、
+        出典URLを self.last_grounding_urls に格納する。grounding と responseSchema/JSON強制は
+        併用不可のため、ここでは付けない(呼び出し側が末尾JSONを parse する)。"""
+        self.last_grounding_urls = []
+        d = self._request({"contents": [{"parts": [{"text": prompt}]}],
+                           "tools": [{"google_search": {}}]})
+        cand = (d.get("candidates") or [{}])[0]
+        gm = cand.get("groundingMetadata") or {}
+        for ch in gm.get("groundingChunks", []):
+            w = ch.get("web") or {}
+            if w.get("uri"):
+                self.last_grounding_urls.append({"title": w.get("title", ""), "url": w["uri"]})
+        parts = (cand.get("content") or {}).get("parts") or []
+        return "".join(p.get("text", "") for p in parts)
 
 
 # サイト(index)と台帳(records/hunches)ページで共有するCSS。3ページで見た目を統一する。

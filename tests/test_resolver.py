@@ -59,6 +59,29 @@ def test_hybrid_no_false_negative(workdir, monkeypatch):
     assert st["hit"] == 1 and st["miss"] == 1 and round(st["rate"] * 100) == 50
 
 
+class _GroundingClient:
+    """generate_grounded が散文+末尾JSONを返すダミー(ネットワーク不使用)。"""
+    def __init__(self):
+        self.last_grounding_urls = [{"title": "OpenAI Blog", "url": "https://openai.com/src"}]
+
+    def generate_grounded(self, prompt):
+        return ("検索の結果、公式ブログで一般提供が告知されていた。\n"
+                '{"result":"hit","evidence":{"summary":"公式が一般提供を告知","url":""},"confidence":0.9}')
+
+
+def test_grounding_verdict_and_source_fill():
+    now = datetime.now(resolver.JST)
+    h = _mk("g1", "OpenAIがGAする", (now - timedelta(days=1)).strftime("%Y-%m-%d"))
+    v = resolver.judge(_GroundingClient(), h)
+    assert v and v["result"] == "hit"
+    # evidence.url が空でもグラウンディング出典で補完される
+    assert v["evidence"]["url"] == "https://openai.com/src"
+
+
+def test_last_json_takes_final_object():
+    assert resolver._last_json('前置き {"a":1} 途中 {"result":"hit"}')["result"] == "hit"
+
+
 def test_resolved_are_idempotent(workdir, monkeypatch):
     fp = _setup(workdir)
     monkeypatch.setenv("RESOLVER_FAKE_RESPONSE", str(fp))
