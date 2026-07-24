@@ -8,7 +8,7 @@
 
 依存は標準ライブラリのみ(recorder/sanbo/resolver から安全に import できるよう疎結合に保つ)。
 """
-import os, json
+import os, re, json
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -19,12 +19,36 @@ HUNCHES_PATH = os.path.join(DATA_DIR, "hunches.json")
 
 RESULT_JA = {"hit": "的中", "miss": "外し", "unclear": "判定不能"}
 
-# スレッド化のための主体(固有名)辞書。headline/source.title に現れたものを主体タグにする。
-ENTITIES = [
-    "OpenAI", "ChatGPT", "Anthropic", "Claude", "Google", "Gemini", "DeepMind", "Meta", "Llama",
-    "Mistral", "xAI", "Grok", "Microsoft", "Copilot", "Apple", "Amazon", "Nvidia", "DeepSeek",
-    "Qwen", "Alibaba", "Kimi", "Moonshot", "Fireworks", "Hugging Face", "Perplexity", "Cohere",
-    "Stability", "Runway", "Midjourney", "Groq", "Cerebras", "Together", "Replicate", "Tencent",
+# スレッド化のための主体(固有名)辞書。正準名 → 別名(小文字)。別名は単語境界一致で拾う
+# (部分文字列一致だと "Meta"⊂"metadata" のような誤爆や、Google/Gemini・Moonshot/Kimi のような
+#  別名の取りこぼしが起きるため)。
+ENTITY_ALIASES = {
+    "OpenAI": ["openai", "chatgpt", "gpt-4", "gpt-5", "sora"],
+    "Anthropic": ["anthropic", "claude"],
+    "Google": ["google", "gemini", "deepmind", "alphabet"],
+    "Meta": ["meta", "llama"],
+    "Mistral": ["mistral"],
+    "xAI": ["xai", "grok"],
+    "Microsoft": ["microsoft", "copilot"],
+    "Apple": ["apple"],
+    "Amazon": ["amazon", "bedrock"],
+    "Nvidia": ["nvidia"],
+    "DeepSeek": ["deepseek"],
+    "Alibaba": ["alibaba", "qwen"],
+    "Moonshot": ["moonshot", "kimi"],
+    "Fireworks": ["fireworks"],
+    "Hugging Face": ["hugging face", "huggingface"],
+    "Perplexity": ["perplexity"],
+    "Cohere": ["cohere"],
+    "Stability": ["stability ai", "stable diffusion"],
+    "Groq": ["groq"],
+    "Cerebras": ["cerebras"],
+    "Tencent": ["tencent"],
+}
+# 別名の前後が英数字でない=独立トークンの時だけ一致(metadata の meta を弾く)
+_ENTITY_PATTERNS = [
+    (canon, [re.compile(r"(?<![a-z0-9])" + re.escape(a) + r"(?![a-z0-9])") for a in aliases])
+    for canon, aliases in ENTITY_ALIASES.items()
 ]
 
 
@@ -43,7 +67,7 @@ def load_ledger():
 
 def entities_of(text):
     tl = (text or "").lower()
-    return {e for e in ENTITIES if e.lower() in tl}
+    return {canon for canon, pats in _ENTITY_PATTERNS if any(p.search(tl) for p in pats)}
 
 
 def hit_stats(hunches):

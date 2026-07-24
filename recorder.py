@@ -136,7 +136,8 @@ def build_prompt(articles, today_str):
         '『第三者が公開情報だけで期日に○×を付けられる観測点』で書け。『話題になる』等の曖昧表現は禁止"\n'
         '      },\n'
         '      "deadline_days": 判定期限までの日数(今日からの相対、3〜30の整数。絶対日付は書くな),\n'
-        '      "confidence": 0.50〜0.95 の数値\n'
+        '      "confidence": 0.50〜0.95 の数値,\n'
+        '      "counter": "この予測が外れるとしたら最も強い理由(1文・具体的に)。過信を戒め自分で反証せよ"\n'
         '    }\n'
         '  ]\n'
         '}\n'
@@ -183,7 +184,7 @@ def regen_hunch(client, base_records, reason, today_str, fake_response=None):
         "次のJSONオブジェクトだけを返せ:\n"
         '{"based_on":[index...],"prose":"...","claim":"...","subject":"...",'
         '"resolution":{"source":"...","check_query":"英語2〜4語","decider":"..."},'
-        '"deadline_days":3〜30の整数,"confidence":0.5〜0.95}\n\n'
+        '"deadline_days":3〜30の整数,"confidence":0.5〜0.95,"counter":"外れる最も強い理由(1文)"}\n\n'
         "records:\n" + json.dumps(recs, ensure_ascii=False, indent=2))
     for attempt in range(2):
         try:
@@ -391,6 +392,7 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
             },
             "deadline": deadline,
             "confidence": conf,
+            "counter": str(current.get("counter") or "").strip(),  # 反証条件(外れる最も強い理由)
             "status": status,
             "resolved_at": None,
             "result": None,
@@ -513,6 +515,8 @@ def _hunch_card(h, today):
         link = ' <a href="' + _esc(ev.get("url", "")) + '">証拠</a>' if ev.get("url") else ""
         parts.append('<p class="kv"><b>答え合わせ</b> ' + _esc(ev["summary"]) + link + '</p>')
     parts.append('<p class="kv"><b>主体</b> ' + _esc(h.get("subject", "")) + '</p>')
+    if h.get("counter"):
+        parts.append('<p class="kv"><b>外れるとすれば</b> ' + _esc(h["counter"]) + '</p>')
     if res.get("decider"):
         parts.append('<p class="kv"><b>的中条件</b> ' + _esc(res["decider"]) + '</p>')
     if res.get("source") or res.get("check_query"):

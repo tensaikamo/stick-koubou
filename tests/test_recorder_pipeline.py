@@ -36,7 +36,8 @@ def _fake_response():
             {"based_on": [0], "prose": "OpenAIは新階層で企業取り込みを進めると見る。",
              "claim": "OpenAIは新エンタープライズ階層を一般提供(GA)する", "subject": "OpenAI",
              "resolution": {"source": "公式ブログ", "check_query": "openai enterprise GA",
-                            "decider": "公式が新階層の一般提供開始を告知"}, "deadline_days": 10, "confidence": 0.72},
+                            "decider": "公式が新階層の一般提供開始を告知"}, "deadline_days": 10, "confidence": 0.72,
+             "counter": "提供が限定プレビューに留まりGAが遅れる可能性"},
             {"based_on": [1], "prose": "Anthropicは資金を計算資源に振ると見る。",
              "claim": "Anthropicが話題になる", "subject": "Anthropic",
              "resolution": {"source": "報道", "check_query": "anthropic news", "decider": "広く話題になる"},
@@ -97,6 +98,12 @@ def test_pipeline(workdir, monkeypatch):
 
     # runs ファイル
     assert (workdir / ("data/runs/%s.json" % today.strftime("%Y-%m-%d"))).exists()
+
+    # 反証条件(counter)が hunch に格納され、台帳HTMLに「外れるとすれば」で載る
+    h1 = next(h for h in hunches if h["status"] == "pending" and h["subject"] == "OpenAI")
+    assert h1.get("counter") and "限定プレビュー" in h1["counter"]
+    hp = (workdir / "docs/hunches.html").read_text(encoding="utf-8")
+    assert "外れるとすれば" in hp
 
 
 def test_idempotent_second_run(workdir, monkeypatch):

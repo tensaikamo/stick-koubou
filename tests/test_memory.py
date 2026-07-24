@@ -50,3 +50,15 @@ def test_threads_group_by_subject():
     recs = [_r("r1", "OpenAI ships A"), _r("r2", "OpenAI ships B")]
     th = memory.threads(recs)
     assert any(s == "OpenAI" and len(evs) >= 2 for s, evs in th)
+
+
+def test_entities_word_boundary_no_false_positive():
+    assert memory.entities_of("New metadata format for schemas") == set()
+    assert memory.entities_of("Meta releases a model") == {"Meta"}
+
+
+def test_entities_alias_resolution():
+    assert memory.entities_of("Alphabet earnings and Gemini update") == {"Google"}
+    assert memory.entities_of("Kimi K3 by Moonshot") == {"Moonshot"}
+    assert memory.entities_of("ChatGPT gets ads") == {"OpenAI"}
+    assert "Meta" in memory.entities_of("Llama 4 released")
