@@ -1,0 +1,28 @@
+name: ci
+# コード変更時のみ回帰テストを走らせる土台。日次の docs/data コミットでは起動しない
+# (paths-ignore)。日次生成 sanbo.yml とは完全に分離。
+on:
+  push:
+    paths-ignore:
+      - 'docs/**'
+      - 'data/**'
+  pull_request:
+    paths-ignore:
+      - 'docs/**'
+      - 'data/**'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: pip install requests pytest
+      - name: Compile
+        run: python -m py_compile common.py memory.py recorder.py resolver.py sanbo.py
+      - name: Tests (offline, no API)
+        run: pytest -q tests/
