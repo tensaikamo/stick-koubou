@@ -12,8 +12,28 @@ if not API_KEY:
 _client = GeminiClient(API_KEY, call_limit=16)
 
 
-def gemini(prompt):
-    return _client.generate(prompt)
+def gemini(prompt, response_schema=None):
+    return _client.generate(prompt, response_schema=response_schema)
+
+
+# ブリーフィング執筆の構造化出力スキーマ(responseSchema)。JSON準拠を保証し、
+# セクション増加でJSONが肥大してもパース失敗(=古いページ保持)を減らす。OpenAPI 3.0 サブセット。
+BRIEF_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "kuki": {"type": "object",
+                 "properties": {"omote": {"type": "string"}, "ura": {"type": "string"}},
+                 "required": ["omote", "ura"]},
+        "dousuru": {"type": "string"},
+        "kan": {"type": "string"},
+        "ippan": {"type": "string"},
+        "mijoriku": {"type": "array", "items": {
+            "type": "object",
+            "properties": {"title": {"type": "string"}, "desc": {"type": "string"}, "why": {"type": "string"}},
+            "required": ["title", "desc", "why"]}},
+    },
+    "required": ["kuki", "dousuru", "kan", "ippan"],
+}
 
 
 PERSONA = """読者はただ一人。以下の人物だけに向けて書け。
@@ -125,6 +145,7 @@ def norm_final(b):
     k = b.get("kuki") if isinstance(b.get("kuki"), dict) else {}
     r = {"omote": str(k.get("omote") or "").strip(), "ura": str(k.get("ura") or "").strip(),
          "dousuru": str(b.get("dousuru") or "").strip(), "kan": str(b.get("kan") or "").strip(),
+         "ippan": str(b.get("ippan") or "").strip(),  # 一般人の超参謀(任意・無くてもフォールバックは動く)
          "mijoriku": []}
     if not (r["omote"] and r["ura"] and r["dousuru"] and r["kan"]):
         print("final missing sections:", repr(b)[:200])
@@ -152,6 +173,7 @@ if picked:
         '"ura": "裏:それが本当に意味すること・裏で誰が何を狙っているかの見立て。2〜3文"}, '
         '"dousuru": "読者個人への具体的な示唆のみ。日本企業・業界への提言は禁止。「明日これを見ておけ」レベルまで具体化。2〜4文", '
         '"kan": "参謀の勘:確証はないが匂う話を1つ。第三者が公開情報で後から○×を付けられる、期限つき予測の形で書く(例:2週間以内に◯◯が公式発表する と見る。根拠は◯◯)。非公開・秘密・リーク前提の当てられない予測は書くな", '
+        '"ippan": "AIが使える一般人用超参謀:AIを日常で使う普通の人向けに、今日のニュースを専門知識ゼロでも今日から得する/損しない具体行動へ翻訳(2〜4文)。煽らず・実用・すぐできる。誇大広告や詐欺から守る視点も。※この項目だけは一般読者向け(他の先回り個人像とは別)", '
         '"mijoriku": [{"title": "記事タイトル(日本語訳可)", "desc": "一言説明", "why": "なぜ日本で先回りの価値があるか"}]}\n'
         "mijorikuは材料の中から日本語圏でまだほぼ話題になっていなさそうな話を1〜2本選ぶこと。弱い根拠を『確実』で塗るな。\n"
         "【記憶がある場合】上の【参謀の記憶】を踏まえ、omote/ura/kan は過去の自分の読みと結果に触れて自己更新せよ"
@@ -161,8 +183,11 @@ if picked:
         "JSON文字列を壊す二重引用符は文中で使わない。t以外のタグは使わない。"
         "語を分割・重複させてタグ付けするな——直前に同じ字を残す『独<t>独占</t>』のような重複を作らず、タグは語全体に付けろ)。\n\n" + material)
     for attempt in range(2):  # 応答形式が不正だった場合は1回だけ再生成を試す
+        # attempt0 は構造化出力(JSON準拠保証)。schema起因の失敗があっても attempt1 は
+        # schema なしで従来動作に退避(グレースフル=壊さない)。
+        schema = BRIEF_SCHEMA if attempt == 0 else None
         try:
-            final = norm_final(parse_json(gemini(prompt3)))
+            final = norm_final(parse_json(gemini(prompt3, response_schema=schema)))
         except Exception as e:
             print("final", e)
         if final:
@@ -254,6 +279,8 @@ page = """<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-
 <p><span class="lb">裏</span>""" + render_rich(final["ura"]) + """</p></section>
 <section class="reveal"><h2>で、どうする</h2><p>""" + render_rich(final["dousuru"]) + """</p></section>
 <section class="reveal"><h2>参謀の勘</h2><p>""" + render_rich(final["kan"]) + """</p></section>
+""" + (('<section class="reveal"><h2>一般人の超参謀</h2><p class="m">AIを普通に使う人向け・今日からできる一手</p><p>'
+        + render_rich(final["ippan"]) + "</p></section>") if final.get("ippan") else "") + """
 """ + track_html + """
 """ + ans_html + """
 """ + mj_html + """
