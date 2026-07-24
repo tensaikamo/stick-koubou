@@ -82,6 +82,40 @@ def test_last_json_takes_final_object():
     assert resolver._last_json('前置き {"a":1} 途中 {"result":"hit"}')["result"] == "hit"
 
 
+def test_no_source_url_is_not_auto_resolved(workdir, monkeypatch):
+    # #1: 出典URLが無い高確度hitは自動確定させない(needs_reviewで保留)
+    today = datetime.now(resolver.JST).date()
+    y = (today - timedelta(days=1)).strftime("%Y-%m-%d")
+    (workdir / "data/hunches.json").write_text(
+        json.dumps([_mk("h-nosrc", "OpenAIがGAする", y)], ensure_ascii=False), encoding="utf-8")
+    (workdir / "data/records.json").write_text("[]", encoding="utf-8")
+    fake = {"h-nosrc": {"result": "hit", "confidence": 0.95,
+                        "evidence": {"summary": "たぶんGAした", "url": ""}}}
+    fp = workdir / "fake.json"; fp.write_text(json.dumps(fake, ensure_ascii=False), encoding="utf-8")
+    monkeypatch.setenv("RESOLVER_FAKE_RESPONSE", str(fp))
+    resolver.main()
+    h = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))[0]
+    assert h["status"] == "pending" and h["result"] is None and h["needs_review"]
+
+
+def test_needs_review_not_rejudged_and_terminal(workdir, monkeypatch):
+    # #3: 既 needs_review は再判定しない。期日+STALE_DAYS 超で unscorable 終端。
+    now = datetime.now(resolver.JST)
+    fresh = _mk("h-fresh", "近い期日", (now - timedelta(days=1)).strftime("%Y-%m-%d"))
+    fresh["needs_review"] = True                       # 期日超過わずか → 再判定しないだけ
+    stale = _mk("h-stale", "古い期日", (now - timedelta(days=resolver.STALE_DAYS + 2)).strftime("%Y-%m-%d"))
+    stale["needs_review"] = True                        # 期日+STALE_DAYS 超 → unscorable
+    (workdir / "data/hunches.json").write_text(json.dumps([fresh, stale], ensure_ascii=False), encoding="utf-8")
+    (workdir / "data/records.json").write_text("[]", encoding="utf-8")
+    # fake_map は空でも良い(needs_review は judge を呼ばない)。空 map で密閉も確認。
+    fp = workdir / "fake.json"; fp.write_text("{}", encoding="utf-8")
+    monkeypatch.setenv("RESOLVER_FAKE_RESPONSE", str(fp))
+    resolver.main()
+    h = {x["id"]: x for x in json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))}
+    assert h["h-fresh"]["status"] == "pending" and h["h-fresh"]["needs_review"]   # 触らない
+    assert h["h-stale"]["status"] == "unscorable" and not h["h-stale"]["needs_review"]  # 終端
+
+
 def test_resolved_are_idempotent(workdir, monkeypatch):
     fp = _setup(workdir)
     monkeypatch.setenv("RESOLVER_FAKE_RESPONSE", str(fp))

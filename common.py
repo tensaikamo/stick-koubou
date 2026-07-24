@@ -56,6 +56,8 @@ class GeminiClient:
         self.call_limit = call_limit
         self.calls = 0
         self._model_ok = []
+        self._grounding_tools = None  # 通った google_search ツール指定形式のキャッシュ
+        self.last_grounding_urls = []
         self.last_model_version = None  # 直近レスポンスの実モデルID(APIレスポンス由来)
 
     def _request(self, payload):
@@ -108,21 +110,36 @@ class GeminiClient:
         d = self._request({"contents": [{"parts": [{"text": prompt}]}], "generationConfig": cfg})
         return d["candidates"][0]["content"]["parts"][0]["text"]
 
+    # google_search ツールの指定形式は API 版で揺れる(現行 {"google_search":{}} / 別表記
+    # {"type":"google_search"})。400 が返ったら別形式に切替し、通った形式をキャッシュする。
+    GROUNDING_TOOLS = [{"google_search": {}}, {"type": "google_search"}]
+
     def generate_grounded(self, prompt):
         """Google検索グラウンディング付き生成。実Web検索の根拠付きでテキストを返し、
         出典URLを self.last_grounding_urls に格納する。grounding と responseSchema/JSON強制は
         併用不可のため、ここでは付けない(呼び出し側が末尾JSONを parse する)。"""
         self.last_grounding_urls = []
-        d = self._request({"contents": [{"parts": [{"text": prompt}]}],
-                           "tools": [{"google_search": {}}]})
-        cand = (d.get("candidates") or [{}])[0]
-        gm = cand.get("groundingMetadata") or {}
-        for ch in gm.get("groundingChunks", []):
-            w = ch.get("web") or {}
-            if w.get("uri"):
-                self.last_grounding_urls.append({"title": w.get("title", ""), "url": w["uri"]})
-        parts = (cand.get("content") or {}).get("parts") or []
-        return "".join(p.get("text", "") for p in parts)
+        candidates = [self._grounding_tools] if self._grounding_tools else self.GROUNDING_TOOLS
+        last = None
+        for tool in candidates:
+            try:
+                d = self._request({"contents": [{"parts": [{"text": prompt}]}], "tools": [tool]})
+            except urllib.error.HTTPError as e:
+                last = e
+                if e.code == 400:  # ツール指定形式が不正 → 別形式を試す
+                    print("grounding tools 形式を切替(HTTP 400)")
+                    continue
+                raise
+            self._grounding_tools = tool  # 通った形式をキャッシュ
+            cand = (d.get("candidates") or [{}])[0]
+            gm = cand.get("groundingMetadata") or {}
+            for ch in gm.get("groundingChunks", []):
+                w = ch.get("web") or {}
+                if w.get("uri"):
+                    self.last_grounding_urls.append({"title": w.get("title", ""), "url": w["uri"]})
+            parts = (cand.get("content") or {}).get("parts") or []
+            return "".join(p.get("text", "") for p in parts)
+        raise last
 
 
 # サイト(index)と台帳(records/hunches)ページで共有するCSS。3ページで見た目を統一する。

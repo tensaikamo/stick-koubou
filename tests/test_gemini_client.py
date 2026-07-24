@@ -73,3 +73,33 @@ def test_non_overload_error_raises(monkeypatch):
     c = common.GeminiClient("k", call_limit=10)
     with pytest.raises(urllib.error.HTTPError):
         c.generate("p")
+
+
+def _grounded_resp(text="判定します\n{\"result\":\"hit\"}", uri="https://src"):
+    return json.dumps({"candidates": [{"content": {"parts": [{"text": text}]},
+                                       "groundingMetadata": {"groundingChunks": [{"web": {"uri": uri, "title": "t"}}]}}],
+                       "modelVersion": "gemini-flash-latest-1"}).encode()
+
+
+def test_grounding_falls_back_to_alt_tool_format(monkeypatch):
+    # 第一形式 {"google_search":{}} が 400 → 別形式 {"type":"google_search"} で成功
+    stub = Seq([_err(400), _grounded_resp()])
+    monkeypatch.setattr(common, "http", stub)
+    c = common.GeminiClient("k", call_limit=10)
+    text = c.generate_grounded("p")
+    assert "hit" in text
+    assert c.last_grounding_urls and c.last_grounding_urls[0]["url"] == "https://src"
+    # 通った形式(2番目)がキャッシュされる
+    assert c._grounding_tools == {"type": "google_search"}
+    sent = json.loads(stub.bodies[1].decode())
+    assert sent["tools"] == [{"type": "google_search"}]
+
+
+def test_grounding_caches_working_format(monkeypatch):
+    stub = Seq([_grounded_resp(), _grounded_resp()])  # 1回目で {"google_search":{}} が通る
+    monkeypatch.setattr(common, "http", stub)
+    c = common.GeminiClient("k", call_limit=10)
+    c.generate_grounded("p")
+    c.generate_grounded("p")  # 2回目はキャッシュ形式のみ(400試行なし=1リクエスト)
+    assert c._grounding_tools == {"google_search": {}}
+    assert len(stub.bodies) == 2  # 各回1リクエストのみ

@@ -17,7 +17,17 @@ from recorder import load_json_array, dump_json, fetch_body, HUNCHES_PATH, JST, 
 CONF_HIT = 0.66      # hit を自動確定する最低確度
 CONF_MISS = 0.75     # miss はより慎重に(偽×を出さない)
 MAX_PER_RUN = 12     # 1実行で判定する期日到来hunchの上限
+STALE_DAYS = 14      # 期日から この日数 を過ぎてなお未解決なら unscorable で終端
 RESULT_SET = ("hit", "miss", "unclear")
+
+
+def _past_stale(h, today):
+    """期日から STALE_DAYS を超えて経過しているか(終端判定用)。"""
+    try:
+        dl = datetime.strptime(str(h.get("deadline", "")), "%Y-%m-%d").date()
+        return (today - dl).days > STALE_DAYS
+    except Exception:
+        return False
 
 
 def hn_search(query, since_dt):
@@ -167,13 +177,25 @@ def resolve_all(fake_map=None):
 
     changed = False
     for h in due:
+        # #3 既に needs_review の予測は再判定しない(grounding quota / 毎日のコミットチャーンを回避)。
+        # 期日を大きく過ぎてなお未解決なら unscorable で終端(judge を呼ばない=ネット/fake不要)。
+        if h.get("needs_review"):
+            if _past_stale(h, today):
+                h["status"] = "unscorable"
+                h["needs_review"] = False
+                changed = True
+                print("resolver:", h.get("id"), "→ unscorable(期日+%d日超・終端)" % STALE_DAYS)
+            continue
+
+        # #5 fake密閉: fakeモードで応答が用意されていない due は触らない(実ネット遮断)
         fake = (fake_map or {}).get(h.get("id")) if fake_map is not None else None
+        if fake_map is not None and fake is None:
+            continue
+
         verd = judge(client, h, fake=fake)
         if not verd:
-            # 判定できず → 保留(要確認)。既にreviewなら再書き込みしない(冪等)
-            if not h.get("needs_review"):
-                h["needs_review"] = True
-                changed = True
+            h["needs_review"] = True
+            changed = True
             continue
         result = verd.get("result")
         try:
@@ -183,7 +205,10 @@ def resolve_all(fake_map=None):
         ev = verd.get("evidence") if isinstance(verd.get("evidence"), dict) else {}
         ev = {"summary": str(ev.get("summary", ""))[:400], "url": str(ev.get("url", ""))[:400]}
 
-        auto = (result == "hit" and conf >= CONF_HIT) or (result == "miss" and conf >= CONF_MISS)
+        # #1 出典URLが無い hit/miss は自動確定しない(出典ゼロの判定を打率に載せない)
+        has_src = bool(ev.get("url"))
+        auto = has_src and ((result == "hit" and conf >= CONF_HIT)
+                            or (result == "miss" and conf >= CONF_MISS))
         if auto:
             h["result"] = result
             h["evidence"] = ev
@@ -191,14 +216,14 @@ def resolve_all(fake_map=None):
             h["status"] = "resolved"
             h["needs_review"] = False
             changed = True
-            print("resolver:", h.get("id"), "→", result, "(conf %.2f)" % conf)
+            print("resolver:", h.get("id"), "→", result, "(conf %.2f, 出典あり)" % conf)
         else:
-            # 曖昧/確度不足 → 保留(要確認)。証拠メモは残す。偽×は出さない。
-            if not h.get("needs_review") or (h.get("evidence") or {}) != ev:
-                h["needs_review"] = True
-                h["evidence"] = ev  # 人が確認するための手掛かり
-                changed = True
-            print("resolver:", h.get("id"), "→ 保留(要確認) result=%s conf=%.2f" % (result, conf))
+            # 曖昧/確度不足/出典なし → 保留(要確認)。証拠メモは残す。偽×は出さない。
+            h["needs_review"] = True
+            h["evidence"] = ev  # 人が確認するための手掛かり
+            changed = True
+            why = "出典なし" if (result in ("hit", "miss") and not has_src) else "確度不足/unclear"
+            print("resolver:", h.get("id"), "→ 保留(要確認 %s) result=%s conf=%.2f" % (why, result, conf))
 
     if changed:
         dump_json(HUNCHES_PATH, hunches)

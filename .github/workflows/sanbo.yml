@@ -15,19 +15,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run sanbo
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python sanbo.py
-      - name: Commit
-        run: |
-          git config user.name "sanbo-bot"
-          git config user.email "actions@github.com"
-          git add docs/
-          git commit -m "sanbo update" || echo "no changes"
-          git pull --rebase
-          git push
-      # --- 予測記録層(サイト公開の後・別ステップ・失敗してもサイトは止めない) ---
+      # --- 記録層を先に実行(別ステップ・continue-on-error)。sanbo が当日の hunch を
+      #     「追跡中の予測」に同日反映できるようにする。記録が失敗してもサイト生成は止めない。
       - name: Install requests
         run: pip install requests
       - name: Record predictions
@@ -47,5 +36,18 @@ jobs:
           git config user.email "actions@github.com"
           git add data/ docs/records.html docs/hunches.html
           git commit -m "record predictions [skip ci]" || echo "no changes"
+          git pull --rebase
+          git push || (sleep 3 && git pull --rebase && git push)
+      # --- サイト生成(記録の後・当日 hunch を読んで公開)。記録の永続とは別コミットで独立 ---
+      - name: Run sanbo
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python sanbo.py
+      - name: Commit
+        run: |
+          git config user.name "sanbo-bot"
+          git config user.email "actions@github.com"
+          git add docs/
+          git commit -m "sanbo update" || echo "no changes"
           git pull --rebase
           git push || (sleep 3 && git pull --rebase && git push)
