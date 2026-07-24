@@ -9,7 +9,7 @@
 サイト本体とは独立。CIでは別ステップ・continue-on-error で走り、失敗しても公開を止めない。
 """
 import os, json, urllib.parse
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from common import GeminiClient, http, parse_json
 from recorder import load_json_array, dump_json, fetch_body, HUNCHES_PATH, JST, render_pages
@@ -30,15 +30,16 @@ def _past_stale(h, today):
         return False
 
 
-def hn_search(query, since_dt):
-    """check_query で HN を検索し、作成日以降のヒットを証拠候補として返す。"""
+def hn_search(query, since_dt, until_dt=None):
+    """check_query で HN を検索し、作成日以降(必要なら期日まで)のヒットを証拠候補として返す。"""
     if not query.strip():
         return []
     try:
-        since_ts = int(since_dt.timestamp())
+        nf = "created_at_i>%d" % int(since_dt.timestamp())
+        if until_dt is not None:  # 期日の上限=期日後の証拠を「期日までの的中」と誤認しない
+            nf += ",created_at_i<%d" % int(until_dt.timestamp())
         url = ("https://hn.algolia.com/api/v1/search?query=" + urllib.parse.quote(query)
-               + "&tags=story&hitsPerPage=8&numericFilters="
-               + urllib.parse.quote("created_at_i>%d" % since_ts))
+               + "&tags=story&hitsPerPage=8&numericFilters=" + urllib.parse.quote(nf))
         d = json.loads(http(url).decode())
         out = []
         for h in d.get("hits", []):
@@ -58,7 +59,12 @@ def gather_evidence(h):
         since = datetime.strptime((h.get("created_at", "") or "")[:10], "%Y-%m-%d").replace(tzinfo=JST)
     except Exception:
         since = datetime.now(JST)
-    hits = hn_search(str(res.get("check_query") or h.get("subject") or ""), since)
+    until = None  # 期日+2日を証拠の上限に(期日後の出来事を的中証拠にしない)
+    try:
+        until = datetime.strptime(str(h.get("deadline", "")), "%Y-%m-%d").replace(tzinfo=JST) + timedelta(days=2)
+    except Exception:
+        pass
+    hits = hn_search(str(res.get("check_query") or h.get("subject") or ""), since, until)
     lines = []
     for x in hits:
         lines.append("- [%s] %s (%spt) %s" % (x["date"], x["title"], x["points"], x["url"]))

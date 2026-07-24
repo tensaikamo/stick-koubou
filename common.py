@@ -57,6 +57,7 @@ class GeminiClient:
         self.calls = 0
         self._model_ok = []
         self._grounding_tools = None  # 通った google_search ツール指定形式のキャッシュ
+        self._grounding_disabled = False  # 全形式400=grounding未対応と判明したら以後スキップ
         self.last_grounding_urls = []
         self.last_model_version = None  # 直近レスポンスの実モデルID(APIレスポンス由来)
 
@@ -118,6 +119,8 @@ class GeminiClient:
         """Google検索グラウンディング付き生成。実Web検索の根拠付きでテキストを返し、
         出典URLを self.last_grounding_urls に格納する。grounding と responseSchema/JSON強制は
         併用不可のため、ここでは付けない(呼び出し側が末尾JSONを parse する)。"""
+        if self._grounding_disabled:  # 既に未対応と判明 → 無駄試行せず即フォールバックさせる
+            raise RuntimeError("grounding unavailable (cached)")
         self.last_grounding_urls = []
         candidates = [self._grounding_tools] if self._grounding_tools else self.GROUNDING_TOOLS
         last = None
@@ -139,6 +142,9 @@ class GeminiClient:
                     self.last_grounding_urls.append({"title": w.get("title", ""), "url": w["uri"]})
             parts = (cand.get("content") or {}).get("parts") or []
             return "".join(p.get("text", "") for p in parts)
+        # 全形式が400 = この環境では grounding 未対応。以後はスキップして HN 判定に委ねる。
+        self._grounding_disabled = True
+        raise last
         raise last
 
 

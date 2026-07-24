@@ -103,3 +103,17 @@ def test_grounding_caches_working_format(monkeypatch):
     c.generate_grounded("p")  # 2回目はキャッシュ形式のみ(400試行なし=1リクエスト)
     assert c._grounding_tools == {"google_search": {}}
     assert len(stub.bodies) == 2  # 各回1リクエストのみ
+
+
+def test_grounding_disabled_after_all_formats_400(monkeypatch):
+    # 両形式とも400 → 未対応と判断し、以後は http を呼ばず即例外(無駄試行を1回きりに)
+    stub = Seq([_err(400), _err(400)])
+    monkeypatch.setattr(common, "http", stub)
+    c = common.GeminiClient("k", call_limit=10)
+    with pytest.raises(Exception):
+        c.generate_grounded("p")
+    assert c._grounding_disabled is True
+    n = len(stub.bodies)
+    with pytest.raises(Exception):
+        c.generate_grounded("p")  # 2回目は http を一切叩かない
+    assert len(stub.bodies) == n

@@ -82,6 +82,22 @@ def test_last_json_takes_final_object():
     assert resolver._last_json('前置き {"a":1} 途中 {"result":"hit"}')["result"] == "hit"
 
 
+def test_hn_search_adds_upper_bound(monkeypatch):
+    cap = {}
+
+    def fake_http(url, data=None, headers=None):
+        cap["url"] = url
+        return json.dumps({"hits": []}).encode()
+
+    monkeypatch.setattr(resolver, "http", fake_http)
+    since = datetime(2026, 7, 1, tzinfo=resolver.JST)
+    until = datetime(2026, 8, 1, tzinfo=resolver.JST)
+    resolver.hn_search("openai ga", since, until)
+    assert cap["url"].count("created_at_i") == 2  # 下限+上限
+    resolver.hn_search("openai ga", since)  # until 無しなら下限のみ
+    assert cap["url"].count("created_at_i") == 1
+
+
 def test_no_source_url_is_not_auto_resolved(workdir, monkeypatch):
     # #1: 出典URLが無い高確度hitは自動確定させない(needs_reviewで保留)
     today = datetime.now(resolver.JST).date()
