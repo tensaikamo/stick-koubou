@@ -9,7 +9,8 @@ html,body{margin:0;height:100%;overflow:hidden;background:var(--bg)}
 body{font-family:system-ui,'Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif;color:var(--fg);
 -webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
 #c{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;touch-action:none;cursor:crosshair}
-.ov{position:fixed;z-index:2;pointer-events:none}
+.ov{position:fixed;z-index:2;pointer-events:none;transition:opacity .6s ease}
+body.interacting .ov{opacity:.14}
 .top{top:0;left:0;right:0;padding:16px 18px;
 background:linear-gradient(180deg,rgba(11,15,20,.72),rgba(11,15,20,0))}
 h1{margin:0;font-size:clamp(16px,4.4vw,20px);letter-spacing:.12em;color:var(--teal);font-weight:700;
@@ -51,9 +52,9 @@ text-align:center;color:var(--dim);font-size:15px;line-height:1.9}
   </nav>
 </div>
 <div class="ov ctl">
-  <button class="btn" id="burst">渦を放つ</button>
-  <button class="btn ghost" id="reset">リセット</button>
-  <button class="btn ghost" id="save">画を保存</button>
+  <button class="btn" id="burst">✦ 渦を放つ</button>
+  <button class="btn ghost" id="reset">↺ リセット</button>
+  <button class="btn ghost" id="save">⤓ 画を保存</button>
 </div>
 <div class="err" id="err">この端末のブラウザは WebGL2 に対応していないため、この流体プレイグラウンドを表示できません。<br>最新の Chrome / Safari / Edge でお試しください。</div>
 
@@ -72,8 +73,8 @@ gl.getExtension("OES_texture_float_linear");
 
 /* ---------- 設定 ---------- */
 var SIM_RES=128, DYE_RES=1024;
-var DENSITY_DISSIPATION=0.985, VELOCITY_DISSIPATION=0.997, PRESSURE=0.8, PRESSURE_ITER=20, CURL=32;
-var SPLAT_RADIUS=0.22, SPLAT_FORCE=6200;
+var DENSITY_DISSIPATION=0.992, VELOCITY_DISSIPATION=0.998, PRESSURE=0.8, PRESSURE_ITER=20, CURL=40;
+var SPLAT_RADIUS=0.28, SPLAT_FORCE=6600;
 var DPR=Math.min(devicePixelRatio||1,2);
 
 /* ---------- シェーダ ---------- */
@@ -153,14 +154,25 @@ float L=texture(uPressure,vL).x;float R=texture(uPressure,vR).x;
 float T=texture(uPressure,vT).x;float B=texture(uPressure,vB).x;
 vec2 vel=texture(uVelocity,vUv).xy;vel-=vec2(R-L,T-B);o=vec4(vel,0.0,1.0);}`));
 
-var displayProg=prog(frag(`in vec2 vUv;uniform sampler2D uTexture;out vec4 o;
+var displayProg=prog(frag(`in vec2 vUv;uniform sampler2D uTexture;uniform vec2 texelSize;out vec4 o;
+vec3 samp(vec2 uv){return texture(uTexture,uv).rgb;}
 void main(){
-vec3 c=texture(uTexture,vUv).rgb;
-float a=max(c.r,max(c.g,c.b));
-// ダーク地に発光を乗せ、わずかにトーン。arを陰影に使い立体感を出す。
-c=c/(0.6+0.7*a);
-vec3 bg=vec3(0.043,0.059,0.078);
-o=vec4(bg*(1.0-min(a,1.0))+c,1.0);}`));
+vec3 c=samp(vUv);
+// ブルーム: 2リングで近傍をぼかし発光として加算(インクが光る)
+vec3 g=vec3(0.0);
+for(int i=0;i<8;i++){
+ float aa=6.2831853*float(i)/8.0;vec2 d=vec2(cos(aa),sin(aa));
+ g+=samp(vUv+d*2.5*texelSize);
+ g+=samp(vUv+d*6.0*texelSize)*0.55;
+}
+g/=12.4;
+vec3 col=c+g*1.18;
+float a=max(col.r,max(col.g,col.b));
+col=col/(0.72+0.5*a);                      // ソフトトーンマップ
+float vig=smoothstep(1.25,0.35,length(vUv-0.5));
+col*=mix(0.78,1.0,vig);                     // ヴィネット(縁を締める)
+vec3 bg=vec3(0.035,0.049,0.067);
+o=vec4(bg*(1.0-min(a,1.0))+col,1.0);}`));
 
 /* ---------- 全画面 blit ---------- */
 var quad=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,quad);
@@ -280,6 +292,7 @@ function step(dt){
 }
 function render(){
   gl.useProgram(displayProg.program);
+  gl.uniform2f(displayProg.uniforms.texelSize,dye.texelX,dye.texelY);
   gl.uniform1i(displayProg.uniforms.uTexture,dye.read.attach(0));
   blit(null);
 }
@@ -303,14 +316,16 @@ function HSVtoRGB(h,s,v){var i=Math.floor(h*6),f=h*6-i,p=v*(1-s),q=v*(1-f*s),t=v
   case 3:r=p;g=q;b=v;break;case 4:r=t;g=p;b=v;break;case 5:r=v;g=p;b=q;break;}
   return {r:r,g:g,b:b};}
 function genColor(){
-  // サイトの世界観: ティール/ゴールド帯を主に、時々差し色。
-  var bands=[0.47,0.50,0.53,0.11,0.09,0.13,0.55,0.05,0.83];
-  var h=bands[Math.floor(Math.random()*bands.length)]+(Math.random()-0.5)*0.03;
-  var c=HSVtoRGB((h+1)%1,0.9,1.0);var k=0.16;
+  // ティール〜シアン/ゴールド〜琥珀を主役に、時々ロゼ/藍の差し色。彩度・明度に揺らぎで深みを出す。
+  var bands=[0.48,0.50,0.52,0.54,0.10,0.12,0.11,0.09,0.51,0.13,0.93,0.66];
+  var h=bands[Math.floor(Math.random()*bands.length)]+(Math.random()-0.5)*0.025;
+  var s=0.78+Math.random()*0.22, v=0.9+Math.random()*0.1;
+  var c=HSVtoRGB((h+1)%1,s,v);var k=0.15;
   return {r:c.r*k,g:c.g*k,b:c.b*k};
 }
 
-var pointers={};
+var pointers={},uiT=null;
+function anyDown(){for(var k in pointers)if(pointers[k].down)return true;return false;}
 function posX(e){return e.clientX/canvas.clientWidth;}
 function posY(e){return 1.0-e.clientY/canvas.clientHeight;}
 function down(e){
@@ -318,6 +333,7 @@ function down(e){
   pointers[id]={x:posX(e),y:posY(e),px:posX(e),py:posY(e),color:genColor(),down:true};
   // タップで弾ける: 中心から放射の初速
   var p=pointers[id];splat(p.x,p.y,(Math.random()-0.5)*30,(Math.random()-0.5)*30,p.color);
+  clearTimeout(uiT);document.body.classList.add("interacting");  // なぞる間はUIをフェード
   hideHint();
 }
 function move(e){
@@ -332,7 +348,8 @@ function move(e){
   }
   hideHint();
 }
-function up(e){var id=e.pointerId==null?"m":e.pointerId;if(pointers[id])pointers[id].down=false;}
+function up(e){var id=e.pointerId==null?"m":e.pointerId;if(pointers[id])pointers[id].down=false;
+  if(!anyDown()){clearTimeout(uiT);uiT=setTimeout(function(){document.body.classList.remove("interacting");},1100);}}
 canvas.addEventListener("pointerdown",down);
 canvas.addEventListener("pointermove",move,{passive:true});
 addEventListener("pointerup",up);addEventListener("pointercancel",up);
