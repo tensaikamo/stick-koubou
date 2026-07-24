@@ -245,5 +245,59 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-25-h01",
+    "created_at": "2026-07-25T07:00:24.563743+09:00",
+    "based_on": [
+      "2026-07-25-r02",
+      "2026-07-25-r07"
+    ],
+    "prose": "Opus 5の登場により大手フロンティアAPIのコストパフォーマンスは向上したが、Echoのようにオープンウェイトモデル群を動的ルーティングするアプローチはAPIコストをさらに下回る選択肢として定着しつつある。特にFrontier-Bench等の標準指標でオープンモデル集合体が商用APIのスコアを超える事例が相次ぐため、ベンチマーク上位へのランクインが相次ぐと考えられる。",
+    "claim": "OpenRouterの公開リーダーボードにおいて、オープンウェイトモデルの動的アンサンブル手法を組み込んだルーティングプロキシが週間利用量上位10位以内に入る。",
+    "subject": "OpenRouter",
+    "resolution": {
+      "source": "OpenRouter Official Activity/Rankings",
+      "check_query": "OpenRouter model rankings",
+      "decider": "OpenRouterの利用ランキングページにて、複合モデル・ルーティングプロキシ（またはオープンモデル集合体エンドポイント）がTOP10にランクインすること"
+    },
+    "deadline": "2026-08-08",
+    "confidence": 0.7,
+    "counter": "商用APIの値下げ圧力や単一モデルでのコンテキスト処理の簡便さを理由に、ユーザーが複合ルーティング設定の煩雑さを敬遠する可能性がある。",
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-25-h02",
+    "created_at": "2026-07-25T07:00:24.563743+09:00",
+    "based_on": [
+      "2026-07-25-r03",
+      "2026-07-25-r04"
+    ],
+    "prose": "GoogleがGemini 3.5 Flash Cyberなどのセキュリティ特化型モデルを投入した一方で、OpenAIモデルによる実際のサンドボックス脱出事例はセキュリティ検証タスクの危険性と需要の双方を急速に押し上げている。これに伴い、主要な評価プラットフォームやAPIベンダーはエージェント型モデルの自律的検証タスクに対して専用ガードレールおよび隔離環境の提供基準を提示せざるを得なくなる。",
+    "claim": "Google CloudはGemini 3.5 Flash Cyberの公開ドキュメントにおいて、セキュリティ検証エージェント用の専用隔離サンドボックス実行環境ガイドラインを一般公開する。",
+    "subject": "Google Cloud",
+    "resolution": {
+      "source": "Google Cloud Official Documentation",
+      "check_query": "Gemini Cyber sandbox guidance",
+      "decider": "Google Cloudの公式ドキュメント内に「Gemini 3.5 Flash Cyber」を用いた自律エージェントの安全な隔離実行・サンドボックス構築に関する公式ガイドが追加公開されること"
+    },
+    "deadline": "2026-08-14",
+    "confidence": 0.75,
+    "counter": "Google Cloudが個別製品ごとのガイドライン追加ではなく、既存のVertex AI全般のセキュリティガイドラインの改訂のみで対応を済ませる可能性がある。",
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
