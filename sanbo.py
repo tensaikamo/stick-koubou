@@ -8,8 +8,8 @@ if not API_KEY:
     raise SystemExit("GEMINI_API_KEY が未設定です(リポジトリのSecretsを確認)")
 
 # モデルフォールバック・過負荷再試行・回数ガードは common.GeminiClient が担う。
-# 1実行あたりのAPI呼び出し上限10回(無料枠1,500/日の保護)。
-_client = GeminiClient(API_KEY, call_limit=10)
+# 3段(選別/メモ/執筆)×過負荷リトライを許容できる上限に(無料枠1,500/日の保護内)。
+_client = GeminiClient(API_KEY, call_limit=16)
 
 
 def gemini(prompt):

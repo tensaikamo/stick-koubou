@@ -1,12 +1,16 @@
 """サイト生成(sanbo.py)と予測記録層(recorder.py)で共有するヘルパ群。
 標準ライブラリのみに依存する(依存追加は recorder.py 側の requests のみ)。"""
-import json, re, urllib.request, urllib.parse, urllib.error, time
+import json, re, random, urllib.request, urllib.parse, urllib.error, time
 import xml.etree.ElementTree as ET
 
-# gemini-2.5-flash は 2026-07 時点で API が 404 を返す(提供終了)ため候補から除外。
-# 常に現行の flash 系を指す公式エイリアス gemini-flash-latest を第一候補にし、
-# 過負荷時は旧名 → 別容量プールの flash-lite へ順にフォールバックする(全て無料のflash系)
-MODELS = ["gemini-flash-latest", "gemini-2.0-flash", "gemini-flash-lite-latest"]
+# 無料枠は Flash 系のみ(Pro は2026-04以降 無料枠外、gemini-2.0/2.5系は退役・退役予定)。
+# 常に現行の flash を指す公式エイリアス gemini-flash-latest を第一候補、別容量プールの
+# flash-lite をフォールバックにする。退役済みの固定バージョン名は候補から外す(429の無駄撃ち防止)。
+MODELS = ["gemini-flash-latest", "gemini-flash-lite-latest"]
+
+# 過負荷(429/503)時の待機秒(指数+ジッタ)。同一モデルでこの回数試す。無料枠の一時的な
+# 過負荷は数十秒で解けることが多く、当日ブリーフィングの生成失敗を実質的に減らす。
+BACKOFFS = [0, 10, 30]
 
 
 def http(url, data=None, headers=None):
@@ -54,18 +58,22 @@ class GeminiClient:
         self._model_ok = []
         self.last_model_version = None  # 直近レスポンスの実モデルID(APIレスポンス由来)
 
-    def generate(self, prompt):
+    def generate(self, prompt, response_schema=None):
         """プロンプトを投げ、生成テキストを返す。実際に応答したモデルIDは
-        self.last_model_version に保存する(呼び出し側が model フィールドに使う)。"""
+        self.last_model_version に保存する(呼び出し側が model フィールドに使う)。
+        response_schema を渡すと構造化出力(JSON準拠保証)を要求する(任意・後方互換)。"""
+        cfg = {"responseMimeType": "application/json"}
+        if response_schema is not None:
+            cfg["responseSchema"] = response_schema
         body = json.dumps({"contents": [{"parts": [{"text": prompt}]}],
-                           "generationConfig": {"responseMimeType": "application/json"}}).encode()
+                           "generationConfig": cfg}).encode()
         last = None
         for m in (self._model_ok or MODELS):
             url = "https://generativelanguage.googleapis.com/v1beta/models/" + m + ":generateContent"
-            # 429/503(一時的な過負荷)は20秒待って同モデルに1回だけ再試行(計2回)。
-            for wait in (0, 20):
+            # 429/503(一時的な過負荷)は指数バックオフ+ジッタで同モデルを複数回試す。
+            for i, wait in enumerate(BACKOFFS):
                 if wait:
-                    time.sleep(wait)
+                    time.sleep(wait + random.uniform(0, wait * 0.3))
                 if self.calls >= self.call_limit:
                     raise RuntimeError("API呼び出し上限(" + str(self.call_limit) + "回/実行)に到達")
                 self.calls += 1
@@ -79,7 +87,7 @@ class GeminiClient:
                 except urllib.error.HTTPError as e:
                     last = e
                     if e.code in (429, 503):
-                        print("model", m, "-> HTTP", e.code, "(過負荷) retrying")
+                        print("model", m, "-> HTTP", e.code, "(過負荷) retry", i + 1, "/", len(BACKOFFS))
                         continue
                     if e.code != 404:
                         raise
