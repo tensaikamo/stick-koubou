@@ -257,10 +257,22 @@ if _ans_huns:
                  + '・判定待ち' + str(_ans_st["pending"]) + ')</span>')
     else:
         _head = '<span class="m">まだ答え合わせ前。判定待ち ' + str(_ans_st["pending"]) + ' 件(期日が来たら○×が付く)</span>'
+    # 次の決着(判定待ち期間にも張りを作る): 最近接の未来期日と残り日数
+    _nd = memory.next_due(_ans_huns, jst.date())
+    _due_line = ""
+    if _nd:
+        _dd, _rem = _nd
+        try:
+            _mdt = datetime.strptime(_dd, "%Y-%m-%d")
+            _mds = str(_mdt.month) + "/" + str(_mdt.day)
+        except Exception:
+            _mds = _dd
+        _due_line = '<p class="m">次の決着: ' + html.escape(_mds) + '(あと' + str(_rem) + '日)</p>'
     _decided = [h for h in reversed(_ans_huns) if h.get("status") == "resolved"][:3]
     _rows = "".join('<li>' + {"hit": "○", "miss": "×"}.get(h.get("result"), "—") + " "
                     + html.escape((h.get("claim", "") or "")[:48]) + "</li>" for h in _decided)
     ans_html = ('<section class="reveal"><h2>答え合わせ</h2><p>' + _head + "</p>"
+                + _due_line
                 + ("<ul>" + _rows + "</ul>" if _rows else "")
                 + '<p class="m"><a href="hunches.html">勘の台帳(全予測と○×)→</a></p></section>')
 
@@ -272,7 +284,7 @@ page = """<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-
 <main>
 <header class="hd"><h1>◇ シリコンバレー参謀</h1>
 <div class="d">""" + jst.strftime("%Y.%m.%d %H:%M") + """ JST</div>
-<nav class="nav"><a class="refresh" href="https://github.com/tensaikamo/stick-koubou/actions/workflows/sanbo.yml" target="_blank" rel="noopener">⟳ 参謀に調べ直させる</a><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a></nav>
+<nav class="nav"><a class="refresh" href="https://github.com/tensaikamo/stick-koubou/actions/workflows/sanbo.yml" target="_blank" rel="noopener">⟳ 参謀に調べ直させる</a><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a><a href="threads.html">記憶の物語</a></nav>
 <div class="hint">「調べ直させる」→ GitHubで Run workflow を1タップ。数分で参謀が記憶を踏まえて考え直す。反映後にこのページを再読み込み。</div></header>
 <section class="reveal"><h2>今日の空気</h2>
 <p><span class="lb">表</span>""" + render_rich(final["omote"]) + """</p>

@@ -449,7 +449,8 @@ else{rev.forEach(function(el){el.classList.add("in");});}})();
 
 def render_records_page(records):
     sub = datetime.now(JST).strftime("%Y.%m.%d %H:%M") + " 更新 · 事実の台帳"
-    nav = '<nav class="nav"><a href="index.html">← ブリーフィング</a><a href="hunches.html">勘の台帳</a></nav>'
+    nav = ('<nav class="nav"><a href="index.html">← ブリーフィング</a>'
+           '<a href="hunches.html">勘の台帳</a><a href="threads.html">記憶の物語</a></nav>')
     if not records:
         body = '<p class="empty">まだ記録がありません。</p>'
     else:
@@ -531,8 +532,20 @@ def _hunch_card(h, today):
 def render_hunches_page(hunches):
     today = datetime.now(JST).date()
     sub = datetime.now(JST).strftime("%Y.%m.%d %H:%M") + " 更新 · 予測の台帳"
-    nav = '<nav class="nav"><a href="index.html">← ブリーフィング</a><a href="records.html">記録の台帳</a></nav>'
+    nav = ('<nav class="nav"><a href="index.html">← ブリーフィング</a>'
+           '<a href="records.html">記録の台帳</a><a href="threads.html">記憶の物語</a></nav>')
     st = memory.hit_stats(hunches)
+    nd = memory.next_due(hunches, today)
+    due_html = ""
+    if nd:
+        _dd, _rem = nd
+        try:
+            _md = datetime.strptime(_dd, "%Y-%m-%d")
+            _mds = str(_md.month) + "/" + str(_md.day)
+        except Exception:
+            _mds = _dd
+        due_html = ('<p class="kv"><b>次の決着</b> ' + _esc(_mds)
+                    + '(あと' + str(_rem) + '日)</p>')
     if st["total"]:
         rate = ('<p><span class="hitrate">的中率 ' + str(round(st["rate"] * 100)) + '%</span> '
                 '<span class="kv">(的中' + str(st["hit"]) + ' / 外し' + str(st["miss"]) + ' / 判定不能除く)</span></p>')
@@ -543,7 +556,7 @@ def render_hunches_page(hunches):
     else:
         resolved = [h for h in reversed(hunches) if h.get("status") == "resolved"]
         pending = [h for h in reversed(hunches) if h.get("status") != "resolved"]
-        secs = ['<section><h2>打率 <span class="kv">(判定待ち ' + str(st["pending"]) + '件)</span></h2>' + rate + '</section>']
+        secs = ['<section><h2>打率 <span class="kv">(判定待ち ' + str(st["pending"]) + '件)</span></h2>' + rate + due_html + '</section>']
         if resolved:
             secs.append('<section><h2>答え合わせ済 <span class="kv">(' + str(len(resolved)) + '件)</span></h2>'
                         + "".join(_hunch_card(h, today) for h in resolved) + '</section>')
@@ -553,16 +566,48 @@ def render_hunches_page(hunches):
     return _page_shell("勘の台帳", sub, nav, body)
 
 
+def render_threads_page(records):
+    """記憶の物語ページ。主体ごとの記録を時系列で束ね(memory.all_threads)、"線"を読者に見せる。
+    決着待ち期間でも、参謀が何を追ってきたかの文脈を辿れるようにする。"""
+    sub = datetime.now(JST).strftime("%Y.%m.%d %H:%M") + " 更新 · 記憶の物語"
+    nav = ('<nav class="nav"><a href="index.html">← ブリーフィング</a>'
+           '<a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a></nav>')
+    threads = memory.all_threads(records)
+    if not threads:
+        body = ('<p class="empty">まだスレッドがありません。'
+                '同じ主体が2回以上登場すると、ここで時系列の"線"になります。</p>')
+    else:
+        cards = []
+        for subj, evs in threads:
+            items = []
+            for d, hl, url in evs:
+                head = _esc(hl)
+                if url:
+                    head = '<a href="' + _esc(url) + '">' + head + '</a>'
+                items.append('<li><span class="kv">' + _esc(d) + '</span> ' + head + '</li>')
+            cards.append('<article class="card reveal"><h3>' + _esc(subj)
+                         + ' <span class="kv">(' + str(len(evs)) + '件)</span></h3>'
+                         + '<ul>' + "".join(items) + '</ul></article>')
+        body = ('<section><h2>記憶の物語 <span class="kv">(' + str(len(threads))
+                + 'スレッド)</span></h2>'
+                '<p class="kv">参謀が追ってきた主体ごとの時系列。線がつながるほど、勘は文脈を持つ。</p>'
+                + "".join(cards) + '</section>')
+    return _page_shell("記憶の物語", sub, nav, body)
+
+
 def render_pages():
     """現在の records.json / hunches.json から台帳ページを生成(冪等)。
     失敗しても記録・サイト本体を止めないよう握りつぶす。"""
     try:
         os.makedirs("docs", exist_ok=True)
+        records = load_json_array(RECORDS_PATH)
         with open("docs/records.html", "w", encoding="utf-8") as f:
-            f.write(render_records_page(load_json_array(RECORDS_PATH)))
+            f.write(render_records_page(records))
         with open("docs/hunches.html", "w", encoding="utf-8") as f:
             f.write(render_hunches_page(load_json_array(HUNCHES_PATH)))
-        print("recorder: 台帳ページ(records.html / hunches.html)を生成")
+        with open("docs/threads.html", "w", encoding="utf-8") as f:
+            f.write(render_threads_page(records))
+        print("recorder: 台帳ページ(records.html / hunches.html / threads.html)を生成")
     except Exception as e:
         print("render_pages", repr(e)[:160])
 

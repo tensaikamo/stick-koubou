@@ -105,6 +105,10 @@ def test_pipeline(workdir, monkeypatch):
     hp = (workdir / "docs/hunches.html").read_text(encoding="utf-8")
     assert "外れるとすれば" in hp
 
+    # 記憶の物語ページが生成され壊れない(主体はどれも単発=スレッドなしでも空表示で成立)
+    tp = (workdir / "docs/threads.html").read_text(encoding="utf-8")
+    assert "記憶の物語" in tp and "<html" in tp
+
 
 def test_idempotent_second_run(workdir, monkeypatch):
     _run(workdir, monkeypatch)

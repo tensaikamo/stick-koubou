@@ -62,3 +62,42 @@ def test_entities_alias_resolution():
     assert memory.entities_of("Kimi K3 by Moonshot") == {"Moonshot"}
     assert memory.entities_of("ChatGPT gets ads") == {"OpenAI"}
     assert "Meta" in memory.entities_of("Llama 4 released")
+
+
+def _rs(rid, headline, title, url, days_ago):
+    now = datetime.now(JST)
+    return {"id": rid, "created_at": (now - timedelta(days=days_ago)).isoformat(),
+            "headline": headline, "source": {"title": title, "url": url}}
+
+
+def test_all_threads_groups_orders_and_carries_url():
+    now = datetime.now(JST)
+    d0 = (now - timedelta(days=3)).strftime("%Y-%m-%d")
+    d1 = (now - timedelta(days=1)).strftime("%Y-%m-%d")
+    recs = [_rs("a", "OpenAI ships A", "OpenAI", "https://o/a", 3),
+            _rs("b", "OpenAI ships B", "OpenAI", "https://o/b", 1),
+            _rs("c", "Anthropic ships once", "Anthropic", "", 0)]
+    th = dict(memory.all_threads(recs))
+    # 2件以上ある主体だけがスレッド化(単発の Anthropic は除外)
+    assert "OpenAI" in th and "Anthropic" not in th
+    assert len(th["OpenAI"]) == 2
+    # 時系列昇順(古い→新しい)で url を保持
+    assert th["OpenAI"][0][0] == d0 and th["OpenAI"][0][2] == "https://o/a"
+    assert th["OpenAI"][1][0] == d1 and th["OpenAI"][1][2] == "https://o/b"
+
+
+def test_next_due_returns_nearest_future():
+    today = datetime.now(JST).date()
+    huns = [_h("a", "x", status="pending"),   # deadline = today+5
+            _h("b", "y", status="pending")]
+    huns[1]["deadline"] = (datetime.now(JST) + timedelta(days=2)).strftime("%Y-%m-%d")
+    nd = memory.next_due(huns, today)
+    assert nd is not None and nd[1] == 2  # 最近接=2日後
+
+
+def test_next_due_none_when_all_past_or_empty():
+    today = datetime.now(JST).date()
+    assert memory.next_due([], today) is None
+    h = _h("a", "x", status="pending")
+    h["deadline"] = (datetime.now(JST) - timedelta(days=3)).strftime("%Y-%m-%d")  # 過去
+    assert memory.next_due([h], today) is None

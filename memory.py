@@ -123,6 +123,52 @@ def threads(records, days=45, top=4, compact=False):
     return out
 
 
+def all_threads(records, days=90, min_len=2):
+    """物語ページ用: 主体ごとに直近records(days日以内)を時系列で束ね、min_len件以上の
+    スレッドを活発順(件数降順)に返す。戻り: [(主体, [(日付, 見出し, url), ...時系列昇順]), ...]。
+    memory.threads は digest 用に top/compact で絞るが、こちらは全件を返して"線"を読者に見せる。"""
+    today = datetime.now(JST).date()
+    groups = {}
+    for r in records:
+        d = (r.get("created_at", "") or "")[:10]
+        try:
+            if (today - datetime.strptime(d, "%Y-%m-%d").date()).days > days:
+                continue
+        except Exception:
+            pass
+        src = r.get("source") if isinstance(r.get("source"), dict) else {}
+        headline = r.get("headline", "") or ""
+        url = src.get("url", "") or ""
+        for e in entities_of(headline + " " + (src.get("title", "") or "")):
+            groups.setdefault(e, []).append((d, headline, url))
+    out = []
+    for e, evs in groups.items():
+        uniq = sorted(set(evs))  # 日付昇順(古い→新しい)・重複除去
+        if len(uniq) >= min_len:
+            out.append((e, uniq))
+    out.sort(key=lambda x: len(x[1]), reverse=True)
+    return out
+
+
+def next_due(hunches, today):
+    """pending の最近接『未来(今日以降)』期日と残り日数を返す。無ければ None。
+    戻り: (期日 'YYYY-MM-DD', 残り日数int)。判定待ち期間にも"次の決着"の張りを作るため。"""
+    best = None
+    for h in hunches:
+        if h.get("status") != "pending" or h.get("resolved_at"):
+            continue
+        try:
+            dl = datetime.strptime(str(h.get("deadline", "")), "%Y-%m-%d").date()
+        except Exception:
+            continue
+        rem = (dl - today).days
+        if rem < 0:
+            continue
+        if best is None or rem < best[1]:
+            best = (dl.strftime("%Y-%m-%d"), rem)
+    return best
+
+
 def related_ids_for(headline, source_title, existing_records, days=45, limit=6):
     """新recordの主体と重なる直近recordのidを返す(related_ids 実働化=記憶を線にする)。"""
     ents = entities_of((headline or "") + " " + (source_title or ""))
