@@ -202,6 +202,28 @@ if final["mijoriku"]:
 # 答え合わせ節(過去の勘の実績=成長する参謀。dataから作り、執筆LLMの成否と独立)
 _ans_recs, _ans_huns = memory.load_ledger()
 _ans_st = memory.hit_stats(_ans_huns)
+
+# 追跡中の予測(読む勘=採点される勘の一致): 表示している散文の勘の下に、実際に○×が付く
+# 追跡対象の予測を並べる。記録が別ステップのため直近分は前サイクルの可能性あり(予測は数日〜)。
+_tracking = [h for h in reversed(_ans_huns) if h.get("status") == "pending"][:3]
+track_html = ""
+if _tracking:
+    _trows = ""
+    for _h in _tracking:
+        _dl = _h.get("deadline", "")
+        _drem = ""
+        try:
+            _delta = (datetime.strptime(_dl, "%Y-%m-%d").date() - jst.date()).days
+            _drem = ("・残り%d日" % _delta) if _delta >= 0 else ("・期限超過%d日" % (-_delta))
+        except Exception:
+            pass
+        _trows += ('<li>' + html.escape((_h.get("claim", "") or "")[:64])
+                   + ' <span class="m">期限' + html.escape(_dl) + _drem + '</span></li>')
+    track_html = ('<section class="reveal"><h2>追跡中の予測</h2>'
+                  '<p class="m">期日が来たら、この予測に○×が付く。参謀の読みのうち、実際に採点される予測がこれだ。</p>'
+                  '<ul>' + _trows + '</ul>'
+                  '<p class="m"><a href="hunches.html">すべての予測と答え合わせ →</a></p></section>')
+
 ans_html = ""
 if _ans_huns:
     if _ans_st["total"]:
@@ -232,6 +254,7 @@ page = """<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-
 <p><span class="lb">裏</span>""" + render_rich(final["ura"]) + """</p></section>
 <section class="reveal"><h2>で、どうする</h2><p>""" + render_rich(final["dousuru"]) + """</p></section>
 <section class="reveal"><h2>参謀の勘</h2><p>""" + render_rich(final["kan"]) + """</p></section>
+""" + track_html + """
 """ + ans_html + """
 """ + mj_html + """
 <section class="reveal"><h2>今日の重要記事</h2><ul>""" + links + """</ul></section>
