@@ -1,6 +1,6 @@
 """サイト生成(sanbo.py)と予測記録層(recorder.py)で共有するヘルパ群。
 標準ライブラリのみに依存する(依存追加は recorder.py 側の requests のみ)。"""
-import json, re, random, urllib.request, urllib.parse, urllib.error, time
+import os, json, re, random, urllib.request, urllib.parse, urllib.error, time
 import xml.etree.ElementTree as ET
 
 # 無料枠は Flash 系のみ(Pro は2026-04以降 無料枠外、gemini-2.0/2.5系は退役・退役予定)。
@@ -218,16 +218,121 @@ def fetch_reddit():
         return []
 
 
+def _key_terms(q):
+    """固有名詞らしき語(英数4文字以上・カタカナ4文字以上)を抜く。日本語ヒットの照合に使う。"""
+    return [w for w in re.findall(r"[A-Za-z][A-Za-z0-9.\-]{3,}|[ァ-ヴー]{4,}", q or "")
+            if w.lower() not in ("that", "with", "this", "from", "have", "する", "ため")]
+
+
 def fetch_jp_hits(query, limit=3):
     """Google News(日本語)で当該話題の日本語記事を引く。「未上陸」をLLMの主観でなく実測にする。
+    固有名詞が見出しに含まれるものだけを数える(緩い全文一致で無関係記事を「上陸済み」と誤判定しないため)。
     戻り: 日本語見出しのリスト(空=日本語圏でほぼ未到達)。"""
     try:
         url = ("https://news.google.com/rss/search?q=" + urllib.parse.quote(query)
                + "&hl=ja&gl=JP&ceid=JP:ja")
-        return [t for t, _ in _feed_items(http(url, timeout=FEED_TIMEOUT), limit)]
+        titles = [t for t, _ in _feed_items(http(url, timeout=FEED_TIMEOUT), 10)]
+        terms = _key_terms(query)
+        if terms:  # 固有名詞があるなら、それを含む見出しだけを本物のヒットとする
+            titles = [t for t in titles if any(w.lower() in t.lower() for w in terms)]
+        return titles[:limit]
     except Exception as e:
         print("jp_hits", repr(e)[:90])
         return []
+
+
+# ---- 時間優位: 差分検知 -------------------------------------------------
+# 「発表」ではなく「静かに変わったもの」を捕まえる。OpenRouter のモデル一覧は全社のモデル・
+# 価格・退役予定日を1本で見られるため、値下げ/新モデル/非推奨化が公式発表より先に現れる。
+WATCH_PATH = os.path.join("data", "watch.json")
+# 差分として報じる価値のある主要ラボ(無名の小型モデル追加はノイズなので除く)
+MAJOR_LABS = ("anthropic/", "openai/", "google/", "meta-llama/", "mistralai/", "deepseek/",
+              "qwen/", "x-ai/", "moonshotai/", "amazon/", "microsoft/", "nvidia/")
+
+
+def watch_fetch():
+    """監視対象の現在値を {model_id: {p,c,ctx,exp,name}} で返す。失敗時は {}。"""
+    try:
+        d = json.loads(http("https://openrouter.ai/api/v1/models", timeout=FEED_TIMEOUT).decode())
+    except Exception as e:
+        print("watch_fetch", repr(e)[:90])
+        return {}
+    out = {}
+    for m in d.get("data") or []:
+        mid = m.get("id")
+        if not mid:
+            continue
+        p = m.get("pricing") or {}
+        out[mid] = {"p": str(p.get("prompt", "")), "c": str(p.get("completion", "")),
+                    "ctx": m.get("context_length"), "exp": str(m.get("expiration_date") or ""),
+                    "name": str(m.get("name") or mid)}
+    return out
+
+
+def _price_move(a, b):
+    """価格の増減を「値下げ/値上げ」の日本語にする。数値化できなければ None。"""
+    try:
+        x, y = float(a), float(b)
+    except Exception:
+        return None
+    if x == y:
+        return None
+    if x == 0:
+        return "有料化"
+    pct = (y - x) / x * 100
+    if abs(pct) < 1:
+        return None
+    return ("値下げ %.0f%%" % -pct) if y < x else ("値上げ %.0f%%" % pct)
+
+
+def watch_diff(prev, cur, limit=6):
+    """前回スナップショットとの差分を記事形式で返す。優先度: 退役予告 > 価格変更 > 新モデル > 消滅。
+    初回(prev が空)は何も報じない(全件を「新着」と誤報しないため)。"""
+    if not prev or not cur:
+        return []
+    exp_, price_, add_, del_ = [], [], [], []
+    for mid, c in cur.items():
+        p = prev.get(mid)
+        if not p:
+            if mid.startswith(MAJOR_LABS):
+                add_.append(_art("[差分] 新モデルが登場: " + c["name"] + " (" + mid + ")",
+                                 "https://openrouter.ai/models", "差分:新モデル", 1, "静かな変化"))
+            continue
+        if c["exp"] and c["exp"] != p.get("exp", ""):
+            exp_.append(_art("[差分] 退役予定日が設定された: " + c["name"] + " → " + c["exp"],
+                             "https://openrouter.ai/models", "差分:退役", 1, "静かな変化"))
+        mv = _price_move(p.get("p", ""), c["p"]) or _price_move(p.get("c", ""), c["c"])
+        if mv:
+            price_.append(_art("[差分] 価格が動いた: " + c["name"] + " " + mv,
+                               "https://openrouter.ai/models", "差分:価格", 1, "静かな変化"))
+    for mid, p in prev.items():
+        if mid not in cur and mid.startswith(MAJOR_LABS):
+            del_.append(_art("[差分] 提供が終了した: " + p.get("name", mid),
+                             "https://openrouter.ai/models", "差分:終了", 1, "静かな変化"))
+    return (exp_ + price_ + add_ + del_)[:limit]
+
+
+def watch_step(limit=6):
+    """前回スナップショットを読み→現在値と差分→スナップショットを更新し、差分記事を返す。
+    失敗しても [] を返すだけ(サイト生成を止めない)。"""
+    prev = {}
+    try:
+        with open(WATCH_PATH, encoding="utf-8") as f:
+            prev = json.load(f) or {}
+    except Exception:
+        pass
+    cur = watch_fetch()
+    if not cur:
+        return []
+    diffs = watch_diff(prev, cur, limit)
+    try:
+        os.makedirs(os.path.dirname(WATCH_PATH) or ".", exist_ok=True)
+        with open(WATCH_PATH, "w", encoding="utf-8") as f:
+            json.dump(cur, f, ensure_ascii=False)
+        print("watch: %d件を記録(前回 %d件) / 差分 %d件" % (len(cur), len(prev), len(diffs)))
+    except Exception as e:
+        print("watch save", repr(e)[:90])
+    return diffs
 
 
 def _sources():

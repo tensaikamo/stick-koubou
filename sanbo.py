@@ -1,6 +1,6 @@
 import os, re, json, html
 from datetime import datetime, timezone, timedelta
-from common import GeminiClient, fetch_all, fetch_jp_hits, parse_json, PAGE_CSS
+from common import GeminiClient, fetch_all, fetch_jp_hits, watch_step, parse_json, PAGE_CSS
 from recorder import fetch_body   # 記録層のテスト済み本文取得を再利用(失敗は ("",False))
 import memory
 
@@ -96,9 +96,15 @@ def render_rich(text):
 # 情報源は3層(T1=一次情報・発表前の兆候 / T2=実勢 / T3=二次)。話題化した記事だけを読む
 # 構造から抜けるため、公式ブログ・arXiv・求人・規制・SEC・SDKリリースを直接読む。
 arts = fetch_all()
+# 時間優位: 昨日との差分(値下げ・新モデル・退役予告)。発表を待たずに変化を掴む最上位の材料。
+diffs = watch_step()
+if diffs:
+    arts = diffs + [a for a in arts if a["title"] not in {d["title"] for d in diffs}]
 TIER_JA = {1: "一次", 2: "実勢", 3: "二次"}
 lst = "\n".join(str(i) + ". [" + TIER_JA.get(a.get("tier", 3), "二次") + "/" + a["src"] + "] " + a["title"]
                 for i, a in enumerate(arts))
+diff_block = ("\n\n=== 本日検知した「静かな変化」(公式発表なしに変わったもの。最優先の材料) ===\n"
+              + "\n".join("- " + d["title"] for d in diffs)) if diffs else ""
 
 # --- 1段目: 選別 ---
 sel = None
@@ -108,7 +114,8 @@ if arts:
             "\n以下は過去24時間の候補。[一次]=公式発表・論文・求人・規制・SDKリリース等の一次情報や"
             "発表前の兆候、[実勢]=数字で分かる現実、[二次]=既に話題化した記事。\n"
             "重要な記事を6〜8本選び、番号だけをJSON配列で返せ。\n"
-            "【選定の原則】**[一次]を優先しろ。最低3本は[一次]から選べ**。"
+            "【選定の原則】**[差分]は最優先(公式発表なしに静かに変わったもの=最も早い兆候)。"
+            "次に[一次]を優先し、最低3本は[差分]か[一次]から選べ**。"
             "[二次]だけで埋めるな(全員が読んだ記事の要約に価値はない)。"
             "特に『まだ誰も繋げていない兆候』(求人の職種・SDKの新機能・論文・規制の条文)を拾え。\n"
             "選定基準はシリコンバレーAI業界の重要度と先回り価値のみ。読者の職業に寄せない。"
@@ -191,7 +198,7 @@ def norm_final(b):
 
 final = None
 if picked:
-    material = "今日の重要記事:\n" + plist
+    material = "今日の重要記事:\n" + plist + diff_block
     if memos:
         material += "\n\n参謀の分析メモ(2段目の下書き。これを材料に磨き上げろ):\n" + json.dumps(memos, ensure_ascii=False)
     _recs, _huns = memory.load_ledger()
@@ -202,7 +209,7 @@ if picked:
         "\n以下の材料から今朝のブリーフィングを執筆し、次のJSONオブジェクトだけを返せ(配列で包まない):\n"
         '{"kuki": {"omote": "表:何が起きたか。2〜3文", '
         '"ura": "裏:それが本当に意味すること・裏で誰が何を狙っているかの見立て。2〜3文"}, '
-        '"dousuru": "読者個人への具体的な示唆のみ。日本企業・業界への提言は禁止。「明日これを見ておけ」レベルまで具体化。2〜4文", '
+        '"dousuru": "読者個人への具体的な示唆のみ。日本企業・業界への提言は禁止。「明日これを見ておけ」レベルまで具体化。2〜4文。**これは読者への指示だから命令形で書け**(「〜しろ」「〜を終わらせておけ」)。推量形(「〜するはずだ」「〜だろう」)で指示を書くな", '
         '"kan": "参謀の勘:確証はないが匂う話を1つ。第三者が公開情報で後から○×を付けられる、期限つき予測の形で書く。基準率から入って調整しろ(滅多に起きない事象に短い期限を付けるな)。非公開・秘密・リーク前提の当てられない予測は書くな", '
         '"kan_konkyo": "その勘の根拠。今日のどの材料(どの一次情報・数字)から来たかを1文で", '
         '"kan_hantai": "外れるとすれば最も強い理由を1文(自分で反証しろ)", '

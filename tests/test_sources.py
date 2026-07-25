@@ -88,8 +88,57 @@ def test_fetch_all_keeps_secondary_sources(monkeypatch):
     assert any(a["src"] == "HN" for a in got)                                # 空気が残る
 
 
-def test_jp_hits_measures_untranslated(monkeypatch):
-    monkeypatch.setattr(common, "http", FakeHTTP({"news.google.com": RSS}))
-    assert common.fetch_jp_hits("test") == ["Introducing something", "Second post"]
+JP_RSS = """<?xml version="1.0"?><rss version="2.0"><channel>
+ <item><title>Screenpipeが国内で話題に</title><link>https://a</link></item>
+ <item><title>先週あなたがやると言ったことは何ですか</title><link>https://b</link></item>
+</channel></rss>"""
+
+
+def test_jp_hits_requires_proper_noun_match(monkeypatch):
+    # 固有名詞を含む見出しだけを「上陸済み」と数える(緩い全文一致の誤判定を防ぐ)
+    monkeypatch.setattr(common, "http", FakeHTTP({"news.google.com": JP_RSS}))
+    assert common.fetch_jp_hits("Screenpipe local agent") == ["Screenpipeが国内で話題に"]
+    assert common.fetch_jp_hits("Nunchaku quantization") == []  # 無関係な見出しは数えない
     monkeypatch.setattr(common, "http", FakeHTTP({}))
     assert common.fetch_jp_hits("test") == []  # 取得失敗でも落ちない
+
+
+# ---- 差分検知(時間優位) ----
+def _snap(pid="anthropic/claude-x", p="0.00001", c="0.00002", exp="", name="Claude X"):
+    return {pid: {"p": p, "c": c, "ctx": 100, "exp": exp, "name": name}}
+
+
+def test_watch_first_run_reports_nothing():
+    # 初回は全件を「新着」と誤報しない
+    assert common.watch_diff({}, _snap()) == []
+
+
+def test_watch_detects_price_cut_and_retirement_and_new_model():
+    prev = _snap()
+    cur = _snap(p="0.000005")                       # 半額
+    d = common.watch_diff(prev, cur)
+    assert d and "値下げ" in d[0]["title"] and d[0]["tier"] == 1
+
+    d = common.watch_diff(prev, _snap(exp="2026-10-16"))
+    assert d and "退役予定日" in d[0]["title"]        # 退役予告が最優先
+
+    cur2 = dict(prev); cur2.update(_snap("openai/gpt-9", name="GPT-9"))
+    d = common.watch_diff(prev, cur2)
+    assert any("新モデル" in x["title"] and "GPT-9" in x["title"] for x in d)
+
+
+def test_watch_ignores_minor_labs_and_noise():
+    prev = _snap()
+    cur = dict(prev); cur.update(_snap("tinylab/nano-7b", name="Nano"))   # 無名ラボの追加はノイズ
+    assert common.watch_diff(prev, cur) == []
+    assert common.watch_diff(prev, _snap(p="0.0000100001")) == []          # 1%未満は報じない
+
+
+def test_watch_step_saves_snapshot_and_survives_failure(workdir, monkeypatch):
+    monkeypatch.setattr(common, "watch_fetch", lambda: _snap())
+    assert common.watch_step() == []                     # 初回は差分なし
+    monkeypatch.setattr(common, "watch_fetch", lambda: _snap(p="0.000002"))
+    d = common.watch_step()                              # 2回目は保存済みと比較して検知
+    assert d and "値下げ" in d[0]["title"]
+    monkeypatch.setattr(common, "watch_fetch", lambda: {})   # 取得失敗
+    assert common.watch_step() == []                     # 落ちない

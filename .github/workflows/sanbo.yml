@@ -47,7 +47,7 @@ jobs:
         run: |
           git config user.name "sanbo-bot"
           git config user.email "actions@github.com"
-          git add docs/
+          git add docs/ data/          # data/watch.json(差分検知のスナップショット)も残す
           git commit -m "sanbo update" || echo "no changes"
           git pull --rebase
           git push || (sleep 3 && git pull --rebase && git push)
