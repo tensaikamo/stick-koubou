@@ -451,7 +451,7 @@ def render_records_page(records):
     sub = datetime.now(JST).strftime("%Y.%m.%d %H:%M") + " 更新 · 事実の台帳"
     nav = ('<nav class="nav"><a href="index.html">← ブリーフィング</a>'
            '<a href="hunches.html">勘の台帳</a><a href="threads.html">記憶の物語</a>'
-           '<a href="play.html">渦で遊ぶ</a></nav>')
+           '<a href="reactor.html">発想炉</a><a href="play.html">渦で遊ぶ</a></nav>')
     if not records:
         body = '<p class="empty">まだ記録がありません。</p>'
     else:
@@ -535,7 +535,7 @@ def render_hunches_page(hunches):
     sub = datetime.now(JST).strftime("%Y.%m.%d %H:%M") + " 更新 · 予測の台帳"
     nav = ('<nav class="nav"><a href="index.html">← ブリーフィング</a>'
            '<a href="records.html">記録の台帳</a><a href="threads.html">記憶の物語</a>'
-           '<a href="play.html">渦で遊ぶ</a></nav>')
+           '<a href="reactor.html">発想炉</a><a href="play.html">渦で遊ぶ</a></nav>')
     st = memory.hit_stats(hunches)
     nd = memory.next_due(hunches, today)
     due_html = ""
@@ -574,7 +574,7 @@ def render_threads_page(records):
     sub = datetime.now(JST).strftime("%Y.%m.%d %H:%M") + " 更新 · 記憶の物語"
     nav = ('<nav class="nav"><a href="index.html">← ブリーフィング</a>'
            '<a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a>'
-           '<a href="play.html">渦で遊ぶ</a></nav>')
+           '<a href="reactor.html">発想炉</a><a href="play.html">渦で遊ぶ</a></nav>')
     threads = memory.all_threads(records)
     if not threads:
         body = ('<p class="empty">まだスレッドがありません。'

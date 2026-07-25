@@ -1,0 +1,369 @@
+<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>発想炉 — 連想ジャンプを成果に変える</title>
+<style>
+:root{--bg:#0a0e13;--fg:#e6edf4;--teal:#5fd7c8;--gold:#e3b366;--indigo:#8aa0ff;--line:#212c3b;--dim:#8698a9}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--bg)}
+body{font-family:system-ui,'Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif;color:var(--fg);
+-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+#map{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;touch-action:pan-y}
+.ov{position:fixed;z-index:2;transition:opacity .4s}
+.top{top:0;left:0;right:0;padding:12px 14px;pointer-events:none;
+background:linear-gradient(180deg,rgba(10,14,19,.82),rgba(10,14,19,0))}
+.top>*{pointer-events:auto}
+.hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h1{margin:0;font-size:clamp(15px,4.2vw,19px);letter-spacing:.08em;color:var(--teal);font-weight:700;
+text-shadow:0 0 18px rgba(95,215,200,.45)}
+.sub{color:var(--dim);font-size:12px}
+.nav{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+.nav a{color:var(--gold);border:1px solid var(--line);border-radius:18px;padding:5px 11px;font-size:12.5px;
+text-decoration:none;background:rgba(10,14,19,.5);backdrop-filter:blur(6px)}
+.nav a:hover{color:var(--teal);border-color:#2b4a58}
+.topbar{display:flex;gap:8px;margin-top:10px;align-items:center}
+.topbar input{flex:1;min-width:0;font:inherit;font-size:15px;color:var(--fg);background:rgba(255,255,255,.05);
+border:1px solid var(--line);border-radius:12px;padding:10px 13px;outline:none}
+.topbar input:focus{border-color:#2b4a58}
+.icon{flex:0 0 auto;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);
+background:rgba(10,14,19,.5);color:var(--gold);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.icon.on{color:#04121a;background:linear-gradient(180deg,#7fe6d8,#41b6a7);border-color:transparent}
+.card{position:fixed;z-index:2;left:50%;top:31%;transform:translate(-50%,-50%);width:min(560px,92vw);
+padding:22px 22px;border-radius:18px;text-align:center;pointer-events:auto;
+background:linear-gradient(180deg,rgba(18,28,40,.86),rgba(10,14,19,.86));border:1px solid var(--line);
+box-shadow:0 18px 60px rgba(0,0,0,.5);backdrop-filter:blur(10px)}
+.card .lab{color:var(--gold);font-size:11px;letter-spacing:.22em;margin-bottom:10px}
+.card .prov{font-size:clamp(18px,5.2vw,25px);line-height:1.6;font-weight:700;color:#f1f6fb;text-wrap:balance;min-height:2.4em}
+.card .cr{display:flex;gap:9px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.btn{font:inherit;font-size:14px;font-weight:700;border:0;border-radius:20px;padding:10px 18px;cursor:pointer;
+color:#04121a;background:linear-gradient(180deg,#7fe6d8,#41b6a7);box-shadow:0 3px 14px rgba(95,215,200,.28);
+transition:filter .15s,transform .08s}
+.btn:hover{filter:brightness(1.08)}.btn:active{transform:translateY(1px)}
+.btn.ghost{color:var(--gold);background:rgba(10,14,19,.4);border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{color:var(--teal);border-color:#2b4a58}
+.btn.ghost.on{color:#04121a;background:linear-gradient(180deg,#e9c07a,#c9973f);border-color:transparent}
+.bottom{left:0;right:0;bottom:0;padding:12px 14px calc(12px + env(safe-area-inset-bottom));
+background:linear-gradient(0deg,rgba(10,14,19,.85),rgba(10,14,19,0));pointer-events:none}
+.bottom>*{pointer-events:auto}
+.cap{display:flex;gap:8px;align-items:center}
+.cap input{flex:1;min-width:0;font:inherit;font-size:16px;color:var(--fg);background:rgba(255,255,255,.06);
+border:1px solid #2b4a58;border-radius:14px;padding:12px 14px;outline:none}
+.cap input:focus{border-color:var(--teal)}
+.foot{display:flex;gap:8px;align-items:center;margin-top:9px;flex-wrap:wrap;font-size:12.5px;color:var(--dim)}
+.foot .combo{color:var(--gold);font-weight:700}
+.foot .sp{flex:1}
+.chip{font:inherit;font-size:12.5px;color:var(--gold);border:1px solid var(--line);border-radius:16px;
+padding:5px 11px;background:rgba(10,14,19,.4);cursor:pointer}
+.chip:hover{color:var(--teal);border-color:#2b4a58}
+.chip.on{color:#04121a;background:linear-gradient(180deg,#7fe6d8,#41b6a7);border-color:transparent}
+.toast{position:fixed;left:50%;bottom:120px;transform:translateX(-50%);z-index:4;pointer-events:none;
+background:rgba(10,14,19,.9);border:1px solid var(--line);border-radius:12px;padding:8px 14px;font-size:13px;
+color:var(--teal);opacity:0;transition:opacity .3s}
+.toast.show{opacity:1}
+.help{position:fixed;left:50%;top:64%;transform:translateX(-50%);z-index:1;pointer-events:none;color:var(--dim);
+font-size:13px;text-align:center;line-height:1.9;max-width:90vw}
+</style></head>
+<body>
+<canvas id="map"></canvas>
+<div class="ov top">
+  <div class="hd"><h1>◇ 発想炉</h1><span class="sub">連想ジャンプを、成果に変える</span></div>
+  <nav class="nav">
+    <a href="index.html">← ブリーフィング</a><a href="records.html">記録</a>
+    <a href="hunches.html">勘</a><a href="threads.html">記憶の物語</a>
+  </nav>
+  <div class="topbar">
+    <input id="topic" placeholder="お題を入れる（例：新しい参謀の機能／週末の予定／小説のネタ）" autocomplete="off">
+    <button class="icon" id="mic" title="声で入力" hidden>🎤</button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="lab">挑 発</div>
+  <div class="prov" id="prov">お題を入れて「点火」。あなたの脳が飛びつくのを待つ。</div>
+  <div class="cr">
+    <button class="btn" id="next">次の挑発 →</button>
+    <button class="btn ghost" id="auto">自動</button>
+    <button class="btn ghost" id="grab">この挑発を捕獲</button>
+  </div>
+</div>
+
+<div class="help" id="help">挑発に脳が反応したら、下にその閃きを打って <b>Enter</b>。<br>捕まえた閃きが地図の星になり、近い発想どうし線でつながる。</div>
+
+<div class="ov bottom">
+  <div class="cap">
+    <input id="spark" placeholder="閃きを捕獲（Enterで星になる）" autocomplete="off" enterkeyhint="done">
+    <button class="btn" id="capture">⚡ 捕獲</button>
+  </div>
+  <div class="foot">
+    <span id="count">0 個の閃き</span>
+    <span class="combo" id="combo"></span>
+    <span class="sp"></span>
+    <button class="chip on" id="sound">🔊 音</button>
+    <button class="chip" id="md">MD書き出し</button>
+    <button class="chip" id="png">画像保存</button>
+    <button class="chip" id="clear">クリア</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+document.documentElement.className="js";
+var $=function(id){return document.getElementById(id);};
+function toast(m){var t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove("show");},1400);}
+
+/* ================= 挑発エンジン(AI不要・オフライン) ================= */
+var CONCEPTS=("水 火 風 森 海 砂 氷 雷 月 星 影 光 鏡 骨 血 蜂 蟻 猫 鴉 蛇 鯨 珊瑚 苔 胞子 ウイルス 群れ 巣 迷路 結晶 磁石 歯車 振り子 天秤 レンズ 望遠鏡 顕微鏡 地図 羅針盤 時計 砂時計 鍵 錠 扉 橋 塔 迷宮 温室 灯台 井戸 洞窟 火山 潮汐 季節 発酵 錆 影絵 折り紙 結び目 波紋 渦 泡 煙 霧 虹 稲妻 静電気 重力 慣性 摩擦 共鳴 反射 屈折 増幅 減衰 沈黙 余白 間 呼吸 心拍 反射神経 記憶 忘却 夢 直感 衝動 好奇心 退屈 焦り 恐怖 快感 中毒 儀式 習慣 締切 制約 賭け 交渉 沈没船 密輸 スパイ 手品 錬金術 占い 神話 祭り 市場 通貨 利子 保険 在庫 物流 行列 待ち時間 渋滞 信号 電池 発電 送電 冷却 圧縮 蒸留 濾過 培養 接ぎ木 剪定 受粉 擬態 共生 寄生 縄張り 回遊 冬眠 脱皮 変態 繁殖 淘汰 突然変異 免疫 抗体 酵素 触媒 連鎖反応 臨界 相転移 対流 拡散 表面張力 毛細管 レバレッジ 複利 ネットワーク 感染 バズ 噂 検閲 匿名 評判 信用 借金 中古 転売 サブスク 課金 無料 依存 解約").split(/\s+/).filter(Boolean);
+
+function rc(){return CONCEPTS[(Math.random()*CONCEPTS.length)|0];}
+function pick(a){return a[(Math.random()*a.length)|0];}
+var ADV=["速く","安く","変に","小さく","大胆に","静かに","危険に","優しく","逆に","極端に"];
+var LENS=["子供","敵","未来人","初心者","職人","詐欺師","科学者","詩人","投資家","5歳児","宇宙人","10年後の自分"];
+
+// お題(T)を使うテンプレ
+var TT=[
+  function(T){return "もし「"+T+"」が「"+rc()+"」だったら、何が変わる？";},
+  function(T){return "「"+T+"」から「"+rc()+"」の要素を奪ったら、何が残る？";},
+  function(T){return "「"+T+"」と「"+rc()+"」を無理やり合体させたら？";},
+  function(T){return "「"+T+"」を"+pick(ADV)+"するには？";},
+  function(T){return pick(LENS)+"なら「"+T+"」をどう壊す？";},
+  function(T){return "「"+T+"」の一番ダサい所を、主役にしたら？";},
+  function(T){return "「"+T+"」の一部を「"+rc()+"」で代用したら？（代用）";},
+  function(T){return "「"+T+"」を逆さまにしたら？（逆転）";},
+  function(T){return "「"+T+"」から一つ削って、それでも成立させるなら何を削る？";},
+  function(T){return "「"+T+"」を「"+rc()+"」の仕組みで動かすと？";},
+  function(T){return "「"+T+"」が"+pick(LENS)+"に絶対バレたくない秘密を持つとしたら？";},
+  function(T){return "締切があと1時間なら、「"+T+"」で今すぐ何を切り捨てる？";},
+  function(T){return "「"+T+"」の最悪版をわざと作れ。そこから何を直す？";},
+  function(T){return "「"+T+"」を「"+rc()+"」と「"+rc()+"」の間に置いたら、どんな橋が架かる？";},
+  function(T){return "10年後、「"+T+"」が当たり前になった世界の“次の不満”は？";},
+  function(T){return "「"+T+"」を、説明ゼロで一発で伝える比喩は？（"+rc()+"を使って）";}
+];
+// お題不要の一般挑発(オブリーク)
+var OB=[
+  "逆をやれ。","一番弱い所を、強みに変えろ。","制約を1つ足せ。窮屈さが形を決める。",
+  "他人ならどうする？その人になりきれ。","半分捨てろ。残った半分が本体だ。",
+  "一番つまらない部分を、主役に据えろ。","もし失敗が許されるなら、何を試す？",
+  "今ある道具だけで、今日中に作れる最小版は？","誰も頼んでいないものを足せ。",
+  "順番を入れ替えろ。最後を最初に。","声に出して、5歳児に説明しろ。",
+  "“ちゃんと”を捨てろ。雑に速く。","隠れている前提を1つ疑え。",
+  "隣の業界からパクれ。誰が同じ問題を解いた？","感情から入れ。何にゾクッとする？"
+];
+
+var streamId=null;
+function provoke(){
+  var T=($("topic").value||"").trim();
+  var s;
+  if(!T){ s=pick(OB); }
+  else { s = (Math.random()<0.18) ? pick(OB) : pick(TT)(T); }
+  var el=$("prov"); el._last=s;
+  // 軽い出現アニメ
+  el.style.opacity="0"; el.textContent=s;
+  requestAnimationFrame(function(){el.style.transition="opacity .28s";el.style.opacity="1";});
+  var h=$("help"); if(h&&T){h.style.display="none";}
+}
+$("next").addEventListener("click",provoke);
+$("topic").addEventListener("keydown",function(e){if(e.key==="Enter"){provoke();$("spark").focus();}});
+function setAuto(on){var b=$("auto");if(on){b.classList.add("on");b.textContent="自動 ●";streamId=setInterval(provoke,4200);provoke();}
+  else{b.classList.remove("on");b.textContent="自動";clearInterval(streamId);streamId=null;}}
+$("auto").addEventListener("click",function(){setAuto(!streamId);});
+
+/* ================= 地図(Canvas2D・力学) ================= */
+var canvas=$("map"),ctx=canvas.getContext("2d");
+var DPR=Math.min(devicePixelRatio||1,2),W=1,H=1;
+function resize(){W=canvas.width=Math.floor(innerWidth*DPR);H=canvas.height=Math.floor(innerHeight*DPR);
+  canvas.style.width=innerWidth+"px";canvas.style.height=innerHeight+"px";}
+resize();addEventListener("resize",resize);
+
+var COLS=[[95,215,200],[227,179,102],[138,160,255]]; // teal/gold/indigo
+function glowSprite(rgb){var s=document.createElement("canvas");s.width=s.height=64;var g=s.getContext("2d");
+  var rad=g.createRadialGradient(32,32,0,32,32,32);
+  rad.addColorStop(0,"rgba("+rgb[0]+","+rgb[1]+","+rgb[2]+",0.9)");
+  rad.addColorStop(0.4,"rgba("+rgb[0]+","+rgb[1]+","+rgb[2]+",0.35)");
+  rad.addColorStop(1,"rgba("+rgb[0]+","+rgb[1]+","+rgb[2]+",0)");
+  g.fillStyle=rad;g.fillRect(0,0,64,64);return s;}
+var SPRITES=COLS.map(glowSprite);
+
+var NODE_MAX=300;
+var nodes=[], links=[], pulses=[];
+function bigrams(s){s=(s||"").replace(/\s+/g,"");var set={};for(var i=0;i<s.length-1;i++)set[s.substr(i,2)]=1;
+  if(s.length===1)set[s]=1;return set;}
+function jac(a,b){var na=0,nb=0,inter=0,k;for(k in a){na++;if(b[k])inter++;}for(k in b)nb++;
+  var uni=na+nb-inter;return uni?inter/uni:0;}
+
+function addNode(text){
+  text=(text||"").trim();if(!text)return false;
+  if(nodes.length>=NODE_MAX){toast("上限に達しました（クリアで再開）");return false;}
+  var cx=W/2/DPR,cy=H*0.5/DPR;
+  var n={id:nodes.length,text:text,bg:bigrams(text),
+    x:cx+(Math.random()-0.5)*80,y:cy+(Math.random()-0.5)*80,vx:0,vy:0,col:nodes.length%3,born:performance.now()};
+  // 類似リンク
+  for(var i=0;i<nodes.length;i++){var s=jac(n.bg,nodes[i].bg);if(s>0.14){links.push({a:i,b:n.id,w:s});
+    n.col=nodes[i].col;}} // つながった相手の色に寄せる=クラスタが色で見える
+  nodes.push(n);
+  pulses.push({x:n.x,y:n.y,r:2,born:performance.now()});
+  onCapture();save();
+  return true;
+}
+
+function step(){
+  var i,j,n,m;
+  // 斥力(全ペア)
+  for(i=0;i<nodes.length;i++){n=nodes[i];
+    for(j=i+1;j<nodes.length;j++){m=nodes[j];
+      var dx=n.x-m.x,dy=n.y-m.y,d2=dx*dx+dy*dy+0.01,d=Math.sqrt(d2);
+      if(d<170){var f=380/d2;var ux=dx/d,uy=dy/d;n.vx+=ux*f;n.vy+=uy*f;m.vx-=ux*f;m.vy-=uy*f;}
+    }}
+  // リンク引力(ばね)
+  for(i=0;i<links.length;i++){var L=links[i];n=nodes[L.a];m=nodes[L.b];if(!n||!m)continue;
+    var dx=m.x-n.x,dy=m.y-n.y,d=Math.sqrt(dx*dx+dy*dy)+0.01,rest=90;
+    var f=(d-rest)*0.0025*(0.6+L.w);var ux=dx/d,uy=dy/d;
+    n.vx+=ux*f*d;n.vy+=uy*f*d;m.vx-=ux*f*d;m.vy-=uy*f*d;}
+  // 中心引力＋減衰＋積分＋clamp
+  var cx=W/2/DPR,cy=H/2/DPR,mV=6,mg=18;
+  for(i=0;i<nodes.length;i++){n=nodes[i];
+    n.vx+=(cx-n.x)*0.0009;n.vy+=(cy-n.y)*0.0009;
+    n.vx*=0.86;n.vy*=0.86;
+    if(!isFinite(n.vx))n.vx=0;if(!isFinite(n.vy))n.vy=0;
+    n.vx=Math.max(-mV,Math.min(mV,n.vx));n.vy=Math.max(-mV,Math.min(mV,n.vy));
+    n.x+=n.vx;n.y+=n.vy;
+    var wv=innerWidth,hv=innerHeight;
+    if(!isFinite(n.x))n.x=cx;if(!isFinite(n.y))n.y=cy;
+    n.x=Math.max(mg,Math.min(wv-mg,n.x));n.y=Math.max(74,Math.min(hv-150,n.y));
+  }
+}
+function draw(){
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  ctx.clearRect(0,0,innerWidth,innerHeight);
+  // リンク
+  ctx.lineWidth=1;
+  for(var i=0;i<links.length;i++){var L=links[i],n=nodes[L.a],m=nodes[L.b];if(!n||!m)continue;
+    ctx.strokeStyle="rgba(95,215,200,"+(0.05+L.w*0.18)+")";
+    ctx.beginPath();ctx.moveTo(n.x,n.y);ctx.lineTo(m.x,m.y);ctx.stroke();}
+  // パルス(捕獲の波紋)
+  ctx.globalCompositeOperation="lighter";
+  var now=performance.now();
+  for(i=pulses.length-1;i>=0;i--){var p=pulses[i],age=(now-p.born)/700;if(age>=1){pulses.splice(i,1);continue;}
+    var pn=nodes.find(function(x){return Math.abs(x.x-p.x)<200;});
+    ctx.strokeStyle="rgba(127,230,216,"+(0.5*(1-age))+")";ctx.lineWidth=2;
+    ctx.beginPath();ctx.arc(p.x,p.y,4+age*46,0,6.2832);ctx.stroke();}
+  // ノード発光
+  for(i=0;i<nodes.length;i++){var nn=nodes[i];var pop=Math.min(1,(now-nn.born)/300);
+    var sz=(24+Math.min(nn.text.length,20)*0.7)*pop;
+    ctx.drawImage(SPRITES[nn.col],nn.x-sz/2,nn.y-sz/2,sz,sz);}
+  ctx.globalCompositeOperation="source-over";
+  // ラベル
+  ctx.font="12px system-ui,'Hiragino Sans',sans-serif";ctx.textAlign="center";
+  for(i=0;i<nodes.length;i++){var l=nodes[i];if(l.born&&now-l.born<120)continue;
+    var t=l.text.length>14?l.text.slice(0,14)+"…":l.text;
+    ctx.fillStyle="rgba(230,237,244,0.86)";ctx.fillText(t,l.x,l.y-13);}
+}
+function loop(){step();draw();requestAnimationFrame(loop);}
+resize();requestAnimationFrame(loop);
+
+/* ================= 捕獲・コンボ・音・保存 ================= */
+var lastCap=0,combo=0;
+function onCapture(){
+  var now=performance.now();
+  combo=(now-lastCap<6000)?combo+1:1;lastCap=now;
+  $("count").textContent=nodes.length+" 個の閃き";
+  $("combo").textContent=combo>1?("🔥 x"+combo):"";
+  beep(combo);
+}
+function doCapture(){
+  var sp=$("spark"),v=sp.value.trim();
+  if(!v){ // 空なら現在の挑発を捕獲
+    var pv=$("prov")._last; if(pv&&addNode(pv))toast("挑発を捕獲");return; }
+  if(addNode(v)){sp.value="";}
+}
+$("capture").addEventListener("click",doCapture);
+$("spark").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();doCapture();}});
+$("grab").addEventListener("click",function(){var pv=$("prov")._last;if(pv&&addNode(pv))toast("挑発を捕獲");});
+
+/* --- WebAudio(任意) --- */
+var actx=null,soundOn=true;
+function beep(c){ if(!soundOn)return; try{
+  if(!actx)actx=new (window.AudioContext||window.webkitAudioContext)();
+  var o=actx.createOscillator(),g=actx.createGain();
+  o.type="triangle";o.frequency.value=330*Math.pow(1.06,Math.min(c,12));
+  g.gain.value=0.0001;o.connect(g);g.connect(actx.destination);
+  var t=actx.currentTime;g.gain.setValueAtTime(0.14,t);g.gain.exponentialRampToValueAtTime(0.0001,t+0.18);
+  o.start(t);o.stop(t+0.2);
+}catch(e){} }
+$("sound").addEventListener("click",function(){soundOn=!soundOn;this.classList.toggle("on",soundOn);
+  this.textContent=soundOn?"🔊 音":"🔇 音";});
+
+/* --- 永続化(localStorage・任意) --- */
+var saveT=null;
+function save(){clearTimeout(saveT);saveT=setTimeout(function(){ try{
+  var d={topic:$("topic").value,nodes:nodes.map(function(n){return {text:n.text,x:n.x,y:n.y,col:n.col};}),links:links};
+  localStorage.setItem("reactor_v1",JSON.stringify(d));
+}catch(e){} },600);}
+function load(){ try{
+  var raw=localStorage.getItem("reactor_v1");if(!raw)return;var d=JSON.parse(raw);
+  if(d.topic)$("topic").value=d.topic;
+  if(Array.isArray(d.nodes)){d.nodes.forEach(function(o,i){nodes.push({id:i,text:o.text,bg:bigrams(o.text),
+    x:o.x||innerWidth/2,y:o.y||innerHeight/2,vx:0,vy:0,col:o.col||0,born:0});});}
+  if(Array.isArray(d.links))links=d.links.filter(function(L){return L&&nodes[L.a]&&nodes[L.b];});
+  $("count").textContent=nodes.length+" 個の閃き";
+  if(nodes.length)$("help").style.display="none";
+}catch(e){} }
+load();
+
+/* --- 書き出し --- */
+$("md").addEventListener("click",function(){
+  var T=$("topic").value.trim();
+  var lines=["# 発想炉"+(T?"：「"+T+"」":""),"",""+nodes.length+" 個の閃き",""];
+  nodes.forEach(function(n){lines.push("- "+n.text);});
+  var md=lines.join("\n");
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(md).then(function(){toast("Markdownをコピーしました");},dl);}
+  else dl();
+  function dl(){try{var a=document.createElement("a");a.href="data:text/markdown;charset=utf-8,"+encodeURIComponent(md);
+    a.download="hassouro.md";a.click();toast("Markdownを保存しました");}catch(e){toast("書き出せませんでした");}}
+});
+$("png").addEventListener("click",function(){try{
+  var a=document.createElement("a");a.href=canvas.toDataURL("image/png");a.download="hassouro-map.png";a.click();
+}catch(e){toast("保存できませんでした");}});
+$("clear").addEventListener("click",function(){
+  if(nodes.length&&!confirm("地図をクリアします。よろしいですか？"))return;
+  nodes=[];links=[];pulses=[];combo=0;$("count").textContent="0 個の閃き";$("combo").textContent="";
+  try{localStorage.removeItem("reactor_v1");}catch(e){}
+  $("help").style.display="";
+});
+
+/* --- 音声入力(任意・feature-detect) --- */
+(function(){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR)return; var mic=$("mic");mic.hidden=false;var rec=null,on=false,target=null;
+  function start(t){try{rec=new SR();rec.lang="ja-JP";rec.interimResults=true;rec.continuous=false;
+    rec.onresult=function(ev){var s="";for(var i=0;i<ev.results.length;i++)s+=ev.results[i][0].transcript;
+      t.value=s; if(ev.results[ev.results.length-1].isFinal&&t===$("spark")){} };
+    rec.onend=function(){on=false;mic.classList.remove("on");};
+    rec.onerror=function(){on=false;mic.classList.remove("on");};
+    rec.start();on=true;mic.classList.add("on");
+  }catch(e){toast("音声を開始できません");}}
+  mic.addEventListener("click",function(){ if(on){if(rec)rec.stop();return;} start($("topic")); });
+})();
+
+/* --- オンデバイスAI(任意・あれば挑発を増幅) --- */
+(function(){
+  var LM=window.LanguageModel||(window.ai&&window.ai.languageModel);
+  if(!LM)return;
+  var cr=document.querySelector(".card .cr");
+  var b=document.createElement("button");b.className="btn ghost";b.textContent="🔥 AIで暴走";cr.appendChild(b);
+  var sess=null;
+  b.addEventListener("click",async function(){
+    var T=$("topic").value.trim();if(!T){toast("先にお題を入れて");return;}
+    b.disabled=true;var old=$("prov").textContent;$("prov").textContent="AIが暴走中…";
+    try{ if(!sess)sess=await LM.create({initialPrompts:[{role:"system",content:"あなたは発想を暴走させる装置。突飛で具体的な挑発を日本語で1つだけ、40字以内で返す。説明・前置き禁止。"}]});
+      var out=await sess.prompt("お題:「"+T+"」に対する、脳が跳ねる挑発を1つ。");
+      $("prov").textContent=(out||"").trim()||old;$("prov")._last=$("prov").textContent;
+    }catch(e){$("prov").textContent=old;toast("AI不発（通常挑発で続行）");}
+    b.disabled=false;
+  });
+})();
+
+/* 初期挑発 */
+provoke();
+</script>
+</body></html>
