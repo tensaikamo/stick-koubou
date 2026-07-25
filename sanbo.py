@@ -1,6 +1,7 @@
 import os, re, json, html
 from datetime import datetime, timezone, timedelta
-from common import GeminiClient, fetch_hn, fetch_tc, parse_json, PAGE_CSS
+from common import GeminiClient, fetch_all, fetch_jp_hits, parse_json, PAGE_CSS
+from recorder import fetch_body   # 記録層のテスト済み本文取得を再利用(失敗は ("",False))
 import memory
 
 API_KEY = os.environ.get("GEMINI_API_KEY", "")
@@ -26,6 +27,8 @@ BRIEF_SCHEMA = {
                  "required": ["omote", "ura"]},
         "dousuru": {"type": "string"},
         "kan": {"type": "string"},
+        "kan_konkyo": {"type": "string"},   # 勘の根拠(任意・鎖を読者に見せる)
+        "kan_hantai": {"type": "string"},   # 勘が外れるとすればの反証条件(任意)
         "ippan": {"type": "string"},
         "mijoriku": {"type": "array", "items": {
             "type": "object",
@@ -49,6 +52,17 @@ PERSONA = """読者はただ一人。以下の人物だけに向けて書け。
 注意:読者の「現場仕事」は生活制約(動ける時間が朝晩のみ・装備はiPhone一台)を示す情報であり、興味領域ではない。現場作業・建設・ブルーカラー向けAIといった職業連想で記事を選んだり話題を寄せたりするな。関心はあくまでシリコンバレーAI業界の権力・金・技術の動きと、そこで個人が先回りできる隙だ。
 
 【逆読み厳禁・誰を利するか点検】ある変化について「個人が先回りできる」と書く前に、その変化が誰を利するかを必ず確認しろ。資本・既存プレイヤー・プラットフォーム側を利する変化を、個人の先回り機会として描くのは逆読みだ。例:ChatGPTに広告枠ができる=推薦が「金で買える場所」になり、無料のオーガニックな差し込み余地はむしろ縮む(SEOにAdWordsが来たのと同じ)。「出稿画面を見ろ」は金を払う側=資本の土俵の話。個人の隙はむしろ「その有料化で締め出される層がどこへ逃げるか」の側にある。結論が「巨大資本から横取りする個人」の趣旨と矛盾していないか、書き終わりに自己点検しろ。
+
+【月並み禁止・非コンセンサス】その説明を既に他の誰かが言っているなら、書くな。「規制は独占を守るため」
+「大手が囲い込む」「安全性は建前」「オープンソースが追い上げる」の類は、世界中が言っている定型であり価値はゼロだ。
+裏には**この材料を読んだ者にしか出せない具体**を書け——誰が・何を・いつ動かしたか、数字、条件、当事者の実利。
+一般論を1つ書く代わりに、外れうる具体を1つ書け。書き終えたら「これは今日この材料を読まなくても書けた文章か?」
+と自問し、YESなら書き直せ。
+
+【基準率(base rate)】勘は思いつきの具体から書くな。まず参照クラスの頻度から入れ——「この種の企業が
+新サービスを公表する頻度は年に何回か」「この会社が2週間以内に何かを出した回数は」。滅多に起きない事象に
+短い期限を付けるのは、外れるための予測だ。基準率で外枠を決め、今日の材料で上下に調整し、その調整理由を
+根拠として書け。確度は基準率と根拠の強さで決めろ(願望で上げるな)。
 
 【危険語禁止】「確実」「確実な」「間違いなく」等の、根拠を伴わない断定安全語を使うな。断言はしてよいが必ず一言の根拠を添えろ。根拠が弱いなら弱いと認めて確度を下げろ(見栄で「確実」と塗るな)。
 
@@ -79,23 +93,24 @@ def render_rich(text):
     out.append(html.escape(text[pos:]))
     return "".join(out)
 
-items = fetch_hn() + fetch_tc()
-seen, arts = set(), []
-for a in items:
-    k = a["title"].lower().strip()
-    if k and k not in seen:
-        seen.add(k); arts.append(a)
-arts = arts[:40]
-
-lst = "\n".join(str(i) + ". [" + a["src"] + "] " + a["title"] for i, a in enumerate(arts))
+# 情報源は3層(T1=一次情報・発表前の兆候 / T2=実勢 / T3=二次)。話題化した記事だけを読む
+# 構造から抜けるため、公式ブログ・arXiv・求人・規制・SEC・SDKリリースを直接読む。
+arts = fetch_all()
+TIER_JA = {1: "一次", 2: "実勢", 3: "二次"}
+lst = "\n".join(str(i) + ". [" + TIER_JA.get(a.get("tier", 3), "二次") + "/" + a["src"] + "] " + a["title"]
+                for i, a in enumerate(arts))
 
 # --- 1段目: 選別 ---
 sel = None
 if arts:
     try:
         sel = unwrap_list(parse_json(gemini(PERSONA +
-            "\n以下は過去24時間の英語ヘッドライン。\n"
-            "『シリコンバレーのAI業界の空気を掴む』観点で重要な記事を6〜8本選び、番号だけをJSON配列で返せ。\n"
+            "\n以下は過去24時間の候補。[一次]=公式発表・論文・求人・規制・SDKリリース等の一次情報や"
+            "発表前の兆候、[実勢]=数字で分かる現実、[二次]=既に話題化した記事。\n"
+            "重要な記事を6〜8本選び、番号だけをJSON配列で返せ。\n"
+            "【選定の原則】**[一次]を優先しろ。最低3本は[一次]から選べ**。"
+            "[二次]だけで埋めるな(全員が読んだ記事の要約に価値はない)。"
+            "特に『まだ誰も繋げていない兆候』(求人の職種・SDKの新機能・論文・規制の条文)を拾え。\n"
             "選定基準はシリコンバレーAI業界の重要度と先回り価値のみ。読者の職業に寄せない。"
             "AIと無関係な記事(収集ノイズ)は選ばない。\n"
             "説明不要、JSON配列のみ。\n\n" + lst)))
@@ -117,6 +132,17 @@ if not picked:
 plist = "\n".join(str(i) + ". [" + a["src"] + "] " + a["title"] + " (" + a["url"] + ")"
                   for i, a in enumerate(picked))
 
+# --- 本文を読ませる(質の根本原因) -------------------------------------------
+# 従来は見出しだけで分析していたため、中身を知らないモデルが定型の一般論で埋めていた。
+# 上位6本の本文抜粋を渡す。取得失敗は握りつぶし、タイトルのみで続行する(止めない)。
+_bodies = []
+for _i, _a in enumerate(picked[:6]):
+    _txt, _ok = fetch_body(_a["url"])
+    _bodies.append(str(_i) + ". " + _a["title"] + "\n  body_fetched: " + ("true" if _ok else "false")
+                   + "\n  本文抜粋: " + (_txt[:1200] if _ok else "(取得できず。タイトルのみで判断せよ)"))
+body_block = "\n\n".join(_bodies)
+print("本文取得: %d/%d 件成功" % (sum(1 for b in _bodies if "body_fetched: true" in b), len(_bodies)))
+
 # --- 2段目: 分析メモ ---
 memos = None
 if picked:
@@ -125,7 +151,10 @@ if picked:
             "\n以下は今日の重要記事。参謀として各記事を分析し、次のJSON配列だけを返せ:\n"
             '[{"i": 記事番号, "omote": "表:何が起きたか(1〜2文)", '
             '"ura": "裏:それが本当に意味すること・裏で誰が何を狙っているかの見立て(1〜2文)", '
-            '"nihon": "日本語圏への未到達度(高/中/低)とその理由を一言"}]\n\n' + plist)))
+            '"nihon": "日本語圏への未到達度(高/中/低)とその理由を一言"}]\n'
+            "【厳守】uraは本文の具体(誰が何をいつ・数字・条件)に基づいて書け。"
+            "body_fetched:false の記事について中身を断定するな(タイトルから言えることだけ書け)。\n\n"
+            + plist + "\n\n=== 本文抜粋 ===\n" + body_block)))
         if m is not None:
             memos = [x for x in m if isinstance(x, dict) and str(x.get("omote") or "").strip()] or None
         if memos is None:
@@ -145,6 +174,8 @@ def norm_final(b):
     k = b.get("kuki") if isinstance(b.get("kuki"), dict) else {}
     r = {"omote": str(k.get("omote") or "").strip(), "ura": str(k.get("ura") or "").strip(),
          "dousuru": str(b.get("dousuru") or "").strip(), "kan": str(b.get("kan") or "").strip(),
+         "kan_konkyo": str(b.get("kan_konkyo") or "").strip(),  # 勘の根拠(任意)
+         "kan_hantai": str(b.get("kan_hantai") or "").strip(),  # 反証条件(任意)
          "ippan": str(b.get("ippan") or "").strip(),  # 一般人の超参謀(任意・無くてもフォールバックは動く)
          "mijoriku": []}
     if not (r["omote"] and r["ura"] and r["dousuru"] and r["kan"]):
@@ -172,7 +203,9 @@ if picked:
         '{"kuki": {"omote": "表:何が起きたか。2〜3文", '
         '"ura": "裏:それが本当に意味すること・裏で誰が何を狙っているかの見立て。2〜3文"}, '
         '"dousuru": "読者個人への具体的な示唆のみ。日本企業・業界への提言は禁止。「明日これを見ておけ」レベルまで具体化。2〜4文", '
-        '"kan": "参謀の勘:確証はないが匂う話を1つ。第三者が公開情報で後から○×を付けられる、期限つき予測の形で書く(例:2週間以内に◯◯が公式発表する と見る。根拠は◯◯)。非公開・秘密・リーク前提の当てられない予測は書くな", '
+        '"kan": "参謀の勘:確証はないが匂う話を1つ。第三者が公開情報で後から○×を付けられる、期限つき予測の形で書く。基準率から入って調整しろ(滅多に起きない事象に短い期限を付けるな)。非公開・秘密・リーク前提の当てられない予測は書くな", '
+        '"kan_konkyo": "その勘の根拠。今日のどの材料(どの一次情報・数字)から来たかを1文で", '
+        '"kan_hantai": "外れるとすれば最も強い理由を1文(自分で反証しろ)", '
         '"ippan": "AIが使える一般人用超参謀:AIを日常で使う普通の人向けに、今日のニュースを専門知識ゼロでも今日から得する/損しない具体行動へ翻訳(2〜4文)。煽らず・実用・すぐできる。誇大広告や詐欺から守る視点も。※この項目だけは一般読者向け(他の先回り個人像とは別)", '
         '"mijoriku": [{"title": "記事タイトル(日本語訳可)", "desc": "一言説明", "why": "なぜ日本で先回りの価値があるか"}]}\n'
         "mijorikuは材料の中から日本語圏でまだほぼ話題になっていなさそうな話を1〜2本選ぶこと。弱い根拠を『確実』で塗るな。\n"
@@ -193,6 +226,32 @@ if picked:
         if final:
             break
         print("final attempt", attempt + 1, "failed,", "retrying" if attempt == 0 else "giving up")
+
+# --- 赤ペン(自己添削): 公開前に自分の草稿を殴る -----------------------------
+# 一直線の生成は「それらしい定型」で落ち着きやすい。公開前に1回だけ批判→修正させる。
+# 失敗・不正形なら草稿をそのまま使う(壊さない)。
+if final:
+    try:
+        _crit = norm_final(parse_json(gemini(
+            PERSONA + "\n次はあなたが書いた今朝の草稿だ。公開前に自分で赤を入れろ。\n"
+            + json.dumps(final, ensure_ascii=False) + "\n\n"
+            "点検項目:\n"
+            "1. 裏が『誰でも言える定型』(規制=独占防衛/大手の囲い込み/安全性は建前 等)になっていないか。"
+            "なっていれば、材料の具体(誰が・何を・いつ・数字)に基づく非コンセンサスな読みへ**書き直せ**。\n"
+            "2. 逆読みしていないか(資本・既存プレイヤーを利する変化を、個人の先回り機会として描いていないか)。\n"
+            "3. 『確実』等の危険語を使っていないか。\n"
+            "4. 勘に期限があるか。基準率を無視した過剰具体になっていないか。kan_konkyo(根拠)と"
+            "kan_hantai(外れるとすれば)が埋まっているか。空なら埋めろ。\n"
+            "5. 『今日この材料を読まなくても書けた文章』が混じっていないか。あれば差し替えろ。\n"
+            "問題が無い項目はそのまま残してよい。**同じスキーマのJSONだけ**を返せ(説明禁止)。",
+            response_schema=BRIEF_SCHEMA)))
+        if _crit:
+            print("赤ペン: 草稿を更新")
+            final = _crit
+        else:
+            print("赤ペン: 応答が不正のため草稿を維持")
+    except Exception as e:
+        print("赤ペン失敗(草稿を維持):", repr(e)[:120])
 
 # 執筆(LLM)が成功したか。失敗時は既存の良好なページを保持し上書きしない。
 generation_ok = bool(final)
@@ -271,10 +330,17 @@ links = "\n".join('<li><a href="' + html.escape(a["url"]) + '">' + html.escape(a
 
 mj_html = ""
 if final["mijoriku"]:
-    mj_html = "<h2>未上陸</h2>" + "".join(
-        '<div class="mj"><div class="mjt">' + render_rich(x["title"]) + "</div><p>" + render_rich(x["desc"])
-        + '</p><p class="mjw">先回りの価値:' + render_rich(x["why"]) + "</p></div>" for x in final["mijoriku"])
-    mj_html = '<section class="reveal">' + mj_html + "</section>"
+    # 「未上陸」をLLMの主観でなく実測にする: 日本語ニュースを実際に引き、0件なら本当に未到達と言える。
+    _mj_parts = []
+    for x in final["mijoriku"]:
+        _jp = fetch_jp_hits(x["title"], limit=3)
+        _ev = ('<p class="m">日本語記事: <b>0件</b>(実測・本当に未到達)</p>' if not _jp
+               else '<p class="m">日本語記事: ' + str(len(_jp)) + '件あり(例: '
+                    + html.escape(_jp[0][:40]) + ')</p>')
+        _mj_parts.append('<div class="mj"><div class="mjt">' + render_rich(x["title"]) + "</div><p>"
+                         + render_rich(x["desc"]) + '</p><p class="mjw">先回りの価値:'
+                         + render_rich(x["why"]) + "</p>" + _ev + "</div>")
+    mj_html = '<section class="reveal"><h2>未上陸</h2>' + "".join(_mj_parts) + "</section>"
 
 # 答え合わせ節(過去の勘の実績=成長する参謀。dataから作り、執筆LLMの成否と独立)
 _ans_recs, _ans_huns = memory.load_ledger()
@@ -342,7 +408,9 @@ page = """<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-
 <p><span class="lb">表</span>""" + render_rich(final["omote"]) + """</p>
 <p><span class="lb">裏</span>""" + render_rich(final["ura"]) + """</p></section>
 <section class="reveal"><h2>で、どうする</h2><p>""" + render_rich(final["dousuru"]) + """</p></section>
-<section class="reveal"><h2>参謀の勘</h2><p>""" + render_rich(final["kan"]) + """</p></section>
+<section class="reveal"><h2>参謀の勘</h2><p>""" + render_rich(final["kan"]) + """</p>""" + (
+  ('<p class="m"><b>根拠</b> ' + render_rich(final["kan_konkyo"]) + "</p>") if final.get("kan_konkyo") else "") + (
+  ('<p class="m"><b>外れるとすれば</b> ' + render_rich(final["kan_hantai"]) + "</p>") if final.get("kan_hantai") else "") + """</section>
 """ + (('<section class="reveal"><h2>一般人の超参謀</h2><p class="m">AIを普通に使う人向け・今日からできる一手</p><p>'
         + render_rich(final["ippan"]) + "</p></section>") if final.get("ippan") else "") + """
 """ + track_html + """

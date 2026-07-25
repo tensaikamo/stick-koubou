@@ -13,10 +13,265 @@ MODELS = ["gemini-flash-latest", "gemini-flash-lite-latest"]
 BACKOFFS = [0, 10, 30]
 
 
-def http(url, data=None, headers=None):
+def http(url, data=None, headers=None, timeout=90):
     req = urllib.request.Request(url, data=data, headers=headers or {"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(req, timeout=90) as r:
+    with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read()
+
+
+# ---- 情報源の層 ---------------------------------------------------------
+# T1=一次情報・発表前の兆候(誰も見ていない) / T2=実勢(数字で分かる) / T3=二次(空気の確認)。
+# 「先回り」を名乗る以上、話題化した二次情報だけを読む構造から抜ける。
+# 各フェッチャは失敗時に [] を返す(1つ落ちても他が生きる)。全て無料・APIキー不要。
+FEED_TIMEOUT = 12  # フィードは短く切る(1つ遅くても全体を止めない)
+
+
+def _feed_items(raw, limit):
+    """RSS/Atom いずれの形でも (タイトル, リンク) を抜く。名前空間は無視する。"""
+    out = []
+    root = ET.fromstring(raw)
+    for el in root.iter():
+        if el.tag.split("}")[-1] not in ("item", "entry"):
+            continue
+        title, link = "", ""
+        for c in el:
+            t = c.tag.split("}")[-1]
+            if t == "title" and not title:
+                title = " ".join((c.text or "").split())
+            elif t == "link" and not link:
+                link = (c.get("href") or c.text or "").strip()
+        if title:
+            out.append((title, link))
+        if len(out) >= limit:
+            break
+    return out
+
+
+def _art(title, url, src, tier, meta="", points=0):
+    return {"title": title, "url": url, "meta": meta, "src": src, "points": points, "tier": tier}
+
+
+def _feed_source(url, src, tier, limit=6, meta=""):
+    try:
+        return [_art(t, u, src, tier, meta) for t, u in _feed_items(http(url, timeout=FEED_TIMEOUT), limit)]
+    except Exception as e:
+        print("feed", src, repr(e)[:90])
+        return []
+
+
+def fetch_arxiv():
+    """arXiv 新着(cs.AI/cs.CL)。研究は製品の6〜18ヶ月先を走る=未到達の源泉。"""
+    return _feed_source(
+        "http://export.arxiv.org/api/query?search_query=cat:cs.AI+OR+cat:cs.CL"
+        "&sortBy=submittedDate&sortOrder=descending&max_results=6", "arXiv", 1, 6)
+
+
+BLOG_FEEDS = [
+    ("https://openai.com/blog/rss.xml", "OpenAI公式"),
+    ("https://deepmind.google/blog/rss.xml", "DeepMind公式"),
+    ("https://huggingface.co/blog/feed.xml", "HF公式"),
+    ("https://blog.google/technology/ai/rss/", "Google AI公式"),
+    ("https://qwenlm.github.io/blog/index.xml", "Qwen公式"),      # 中国勢=日本語圏で最も未到達
+    ("https://blog.mozilla.ai/rss/", "Mozilla.ai"),
+]
+
+
+def fetch_blogs():
+    """各社公式ブログ(一次情報)。中国勢を含めるのは日本語圏で最も遅れる領域だから。"""
+    out = []
+    for url, name in BLOG_FEEDS:
+        out += _feed_source(url, name, 1, 2)
+    return out
+
+
+GH_REPOS = ["vllm-project/vllm", "ggml-org/llama.cpp", "ollama/ollama", "huggingface/transformers"]
+
+
+def fetch_gh():
+    """主要リポの Releases。実装は公式発表より先に出ることが多い。"""
+    out = []
+    for r in GH_REPOS:
+        out += _feed_source("https://github.com/" + r + "/releases.atom", "GH:" + r.split("/")[-1], 1, 2)
+    return out
+
+
+def fetch_pkg():
+    """公式SDKの最新リリース。新機能のフラグは発表前にSDKへ現れることがある。
+    RSSのタイトルはバージョン番号だけなので、パッケージ名を補って情報にする。"""
+    out = []
+    for p in ["openai", "anthropic", "google-genai"]:
+        for a in _feed_source("https://pypi.org/rss/project/" + p + "/releases.xml",
+                              "PyPI:" + p, 1, 1, meta="SDK"):
+            a["title"] = p + " Python SDK v" + a["title"] + " リリース"
+            out.append(a)
+    return out
+
+
+JOB_BOARDS = ["anthropic", "xai"]  # 公開Greenhouseボード(存在しないものは404で静かにスキップ)
+
+
+def fetch_jobs():
+    """公開求人ボード。求人は企業戦略の最速の先行指標(この職種の募集開始=この方向に賭けた)。
+    公開日の新しい順に取る=「今この会社が新たに賭けた領域」が見える。"""
+    out = []
+    for b in JOB_BOARDS:
+        try:
+            d = json.loads(http("https://boards-api.greenhouse.io/v1/boards/" + b + "/jobs",
+                                timeout=FEED_TIMEOUT).decode())
+            jobs = [j for j in d.get("jobs", []) if j.get("title")]
+            jobs.sort(key=lambda j: str(j.get("first_published") or j.get("updated_at") or ""), reverse=True)
+            for j in jobs[:3]:
+                loc = ((j.get("location") or {}).get("name") or "")
+                out.append(_art("[新規求人] " + b + ": " + str(j["title"]) + (" (" + loc + ")" if loc else ""),
+                                j.get("absolute_url", ""), "求人:" + b, 1,
+                                str(j.get("first_published") or "")[:10]))
+        except Exception as e:
+            print("jobs", b, repr(e)[:90])
+    return out
+
+
+# Federal Register は全文一致のため無関係文書(漁業委員会等)が混ざる。表題でAI関連に絞る。
+_AI_TITLE = re.compile(r"(?i)artificial intelligence|\bAI\b|machine learning|frontier model|compute")
+
+
+def fetch_gov():
+    """Federal Register(米国の規則・大統領令)。一次かつ日本語圏未到達度が高い。
+    表題にAI語が無いものはノイズなので落とす(0件なら0件でよい=雑音を混ぜない)。"""
+    try:
+        d = json.loads(http("https://www.federalregister.gov/api/v1/documents.json?"
+                            "conditions%5Bterm%5D=%22artificial+intelligence%22&order=newest&per_page=20"
+                            "&fields%5B%5D=title&fields%5B%5D=html_url&fields%5B%5D=publication_date",
+                            timeout=FEED_TIMEOUT).decode())
+        out = []
+        for x in d.get("results", []):
+            t = str(x.get("title", ""))
+            if _AI_TITLE.search(t):
+                out.append(_art("[米規制] " + t, x.get("html_url", ""), "FederalRegister", 1,
+                                str(x.get("publication_date", ""))))
+            if len(out) >= 3:
+                break
+        return out
+    except Exception as e:
+        print("gov", repr(e)[:90])
+        return []
+
+
+def fetch_sec():
+    """SEC EDGAR 全文検索。8-K/S-1 等で資金・提携が一次で出る(UA制限時は静かにスキップ)。"""
+    try:
+        d = json.loads(http('https://efts.sec.gov/LATEST/search-index?q=%22artificial+intelligence%22'
+                            '&forms=8-K&dateRange=custom', timeout=FEED_TIMEOUT,
+                            headers={"User-Agent": "sanbo-research contact@example.com"}).decode())
+        hits = ((d.get("hits") or {}).get("hits") or [])[:5]
+        out = []
+        for h in hits:
+            s = h.get("_source") or {}
+            name = (s.get("display_names") or [""])[0]
+            out.append(_art("[SEC 8-K] " + str(name), "https://www.sec.gov/edgar/search/#/q=artificial%20intelligence",
+                            "SEC", 1, str(s.get("file_date", ""))))
+        return out
+    except Exception as e:
+        print("sec", repr(e)[:90])
+        return []
+
+
+def fetch_hf():
+    """Hugging Face: 日次論文(キュレーション済み)とトレンドモデル(オープン側の実勢)。"""
+    out = []
+    try:
+        d = json.loads(http("https://huggingface.co/api/daily_papers?limit=6", timeout=FEED_TIMEOUT).decode())
+        for x in d[:6]:
+            p = x.get("paper") or {}
+            t = p.get("title") or x.get("title") or ""
+            if t:
+                out.append(_art("[論文] " + t, "https://huggingface.co/papers/" + str(p.get("id", "")),
+                                "HF日次論文", 2, str(p.get("upvotes", "")) + "up", p.get("upvotes", 0) or 0))
+    except Exception as e:
+        print("hf papers", repr(e)[:90])
+    try:
+        d = json.loads(http("https://huggingface.co/api/models?sort=trendingScore&limit=6",
+                            timeout=FEED_TIMEOUT).decode())
+        for m in d[:6]:
+            mid = m.get("id") or m.get("modelId") or ""
+            if mid:
+                out.append(_art("[HFトレンド] " + mid, "https://huggingface.co/" + mid, "HFトレンド", 2,
+                                str(m.get("downloads", 0)) + "DL", m.get("likes", 0) or 0))
+    except Exception as e:
+        print("hf models", repr(e)[:90])
+    return out
+
+
+def fetch_reddit():
+    """r/LocalLLaMA。オープンモデル実勢の最前線(403等は静かにスキップ)。"""
+    try:
+        d = json.loads(http("https://www.reddit.com/r/LocalLLaMA/top.json?t=day&limit=8",
+                            timeout=FEED_TIMEOUT).decode())
+        out = []
+        for c in (d.get("data") or {}).get("children", [])[:8]:
+            x = c.get("data") or {}
+            if x.get("title"):
+                out.append(_art(x["title"], "https://reddit.com" + str(x.get("permalink", "")),
+                                "r/LocalLLaMA", 2, str(x.get("ups", 0)) + "up", x.get("ups", 0) or 0))
+        return out
+    except Exception as e:
+        print("reddit", repr(e)[:90])
+        return []
+
+
+def fetch_jp_hits(query, limit=3):
+    """Google News(日本語)で当該話題の日本語記事を引く。「未上陸」をLLMの主観でなく実測にする。
+    戻り: 日本語見出しのリスト(空=日本語圏でほぼ未到達)。"""
+    try:
+        url = ("https://news.google.com/rss/search?q=" + urllib.parse.quote(query)
+               + "&hl=ja&gl=JP&ceid=JP:ja")
+        return [t for t, _ in _feed_items(http(url, timeout=FEED_TIMEOUT), limit)]
+    except Exception as e:
+        print("jp_hits", repr(e)[:90])
+        return []
+
+
+def _sources():
+    # fetch_hn/fetch_tc は下方で定義されるため、呼び出し時に解決する
+    return [("arxiv", fetch_arxiv), ("blogs", fetch_blogs), ("gh", fetch_gh), ("pkg", fetch_pkg),
+            ("jobs", fetch_jobs), ("gov", fetch_gov), ("sec", fetch_sec),
+            ("hf", fetch_hf), ("hn", fetch_hn), ("tc", fetch_tc)]
+
+# 1ソースが候補枠を独占しないための上限(層ごと)。T1を優先しつつ、T3(空気)も必ず残す。
+SRC_CAP = {1: 3, 2: 4, 3: 14}
+
+
+def fetch_all(limit=56):
+    """全ソースを並列取得し、重複除去→ソース毎に上限→T1優先で並べて候補を返す。
+    1つが遅くても・落ちても全体は止まらない(各フェッチャは失敗時 [])。"""
+    import concurrent.futures
+    got = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
+        futs = {ex.submit(f): n for n, f in _sources()}
+        try:
+            for fu in concurrent.futures.as_completed(futs, timeout=90):
+                n = futs[fu]
+                try:
+                    r = fu.result() or []
+                    print("source %s: %d件" % (n, len(r)))
+                    got += r
+                except Exception as e:
+                    print("source", n, repr(e)[:90])
+        except Exception as e:  # 全体タイムアウト時も取れた分で続行
+            print("fetch_all timeout", repr(e)[:90])
+    seen, per, out = set(), {}, []
+    for a in got:
+        k = (a.get("title") or "").lower().strip()
+        if not k or k in seen:
+            continue
+        s = a.get("src", "")
+        cap = SRC_CAP.get(a.get("tier", 3), 3)
+        if per.get(s, 0) >= cap:      # 1ソースの独占を防ぐ(T1の雑多な項目でT3が消える事故の防止)
+            continue
+        seen.add(k)
+        per[s] = per.get(s, 0) + 1
+        out.append(a)
+    out.sort(key=lambda a: (a.get("tier", 3), -(a.get("points", 0) or 0)))
+    return out[:limit]
 
 
 def fetch_hn():
