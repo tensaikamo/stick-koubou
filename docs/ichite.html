@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>今日の一手 — 参謀</title>
+<style>
+:root{--bg:#0b0f14;--fg:#e6edf4;--teal:#5fd7c8;--gold:#e3b366;--line:#202b3a;--dim:#8698a9;--ok:#41b673}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:radial-gradient(1200px 600px at 50% -10%,#0f1720 0%,var(--bg) 60%) no-repeat,var(--bg);
+color:var(--fg);font-family:system-ui,'Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif;
+margin:0;padding:28px 20px 80px;line-height:1.95;font-size:clamp(16px,3.9vw,18px);-webkit-font-smoothing:antialiased}
+main{max-width:min(680px,94vw);margin:0 auto}
+h1{font-size:clamp(18px,4.6vw,22px);letter-spacing:.14em;color:var(--teal);font-weight:600;margin:0;
+text-shadow:0 0 18px rgba(95,215,200,.35)}
+.d{color:var(--dim);font-size:13px;letter-spacing:.1em;margin-top:10px}
+.nav{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.nav a{color:var(--gold);border:1px solid var(--line);border-radius:22px;padding:7px 16px;font-size:14px;text-decoration:none}
+.nav a:hover{color:var(--teal);border-color:#2b4a58}
+h2{font-size:clamp(19px,4.8vw,23px);letter-spacing:.02em;color:var(--gold);border-bottom:1px solid var(--line);
+padding-bottom:12px;margin:0 0 6px;font-weight:700;position:relative}
+h2::after{content:"";position:absolute;left:0;bottom:-1px;width:56px;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+section{margin-top:44px}
+p.lead{color:var(--dim);font-size:14px;margin:10px 0 0;text-wrap:pretty}
+.q{border:1px solid var(--line);border-radius:14px;padding:16px 17px;margin:16px 0;
+background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,0))}
+.q .qt{font-size:16px;font-weight:600;color:#eef4fa;line-height:1.6;text-wrap:pretty}
+.q textarea{width:100%;margin-top:10px;font:inherit;font-size:15.5px;color:var(--fg);background:rgba(255,255,255,.05);
+border:1px solid var(--line);border-radius:12px;padding:10px 12px;outline:none;resize:vertical;min-height:62px}
+.q textarea:focus{border-color:#2b4a58}
+.mv{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;padding:14px 15px;
+margin:12px 0;background:rgba(255,255,255,.02);cursor:pointer;transition:border-color .15s,background .15s}
+.mv:hover{border-color:#2b4a58}
+.mv.sel{border-color:var(--teal);background:rgba(95,215,200,.08)}
+.mv .rd{flex:0 0 auto;width:18px;height:18px;border-radius:50%;border:2px solid #3a4658;margin-top:5px}
+.mv.sel .rd{border-color:var(--teal);background:radial-gradient(circle,var(--teal) 45%,transparent 47%)}
+.mv .t{font-size:16px;font-weight:600;color:#eef4fa;line-height:1.55}
+.mv .w{font-size:13px;color:var(--dim);margin-top:4px;line-height:1.7;text-wrap:pretty}
+.own{display:flex;gap:8px;margin-top:12px}
+.own input{flex:1;min-width:0;font:inherit;font-size:15.5px;color:var(--fg);background:rgba(255,255,255,.05);
+border:1px solid var(--line);border-radius:12px;padding:11px 13px;outline:none}
+.own input:focus{border-color:#2b4a58}
+.btn{font:inherit;font-size:15px;font-weight:700;border:0;border-radius:22px;padding:11px 20px;cursor:pointer;
+color:#04121a;background:linear-gradient(180deg,#7fe6d8,#41b6a7);box-shadow:0 3px 14px rgba(95,215,200,.28)}
+.btn:hover{filter:brightness(1.08)}.btn:active{transform:translateY(1px)}
+.btn.ghost{color:var(--gold);background:none;border:1px solid var(--line);box-shadow:none;font-weight:600;font-size:13.5px;padding:8px 15px}
+.btn.ghost:hover{color:var(--teal);border-color:#2b4a58}
+.locked{border:1px solid #295a4e;border-radius:16px;padding:20px;background:linear-gradient(180deg,rgba(95,215,200,.10),rgba(95,215,200,.02));margin-top:16px}
+.locked .lb{color:var(--teal);font-size:11px;letter-spacing:.2em}
+.locked .lt{font-size:clamp(18px,4.8vw,22px);font-weight:700;color:#f1f6fb;margin-top:8px;line-height:1.55;text-wrap:balance}
+.row{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px;align-items:center}
+.past{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0;background:rgba(255,255,255,.02)}
+.past .pd{font-size:12.5px;color:var(--dim)}
+.past .pt{font-size:15px;color:#dbe6f0;margin-top:3px;line-height:1.55}
+.badge{font-size:12.5px;border-radius:20px;padding:3px 11px;border:1px solid var(--line);color:#aab7c3;white-space:nowrap}
+.b-done{color:#0a1410;background:linear-gradient(180deg,#7fe6a8,#41b673);border-color:transparent;font-weight:700}
+.b-skip{color:#f0b3b3;border-color:#5a2b2b;background:rgba(120,40,40,.18)}
+.rate{color:var(--teal);font-size:29px;font-weight:700;text-shadow:0 0 16px rgba(95,215,200,.35)}
+.kv{font-size:13.5px;color:var(--dim)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9;pointer-events:none;
+background:rgba(11,15,20,.94);border:1px solid var(--line);border-radius:12px;padding:9px 15px;font-size:14px;
+color:var(--teal);opacity:0;transition:opacity .3s;max-width:90vw;text-align:center}
+.toast.show{opacity:1}
+.mic{flex:0 0 auto;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);
+color:var(--gold);font-size:18px;cursor:pointer}
+.mic.on{color:#04121a;background:linear-gradient(180deg,#ff9e7a,#e3654c);border-color:transparent}
+</style></head>
+<body><main>
+<header>
+  <h1>◇ 今日の一手</h1>
+  <div class="d" id="date">—</div>
+  <nav class="nav"><a href="index.html">← ブリーフィング</a><a href="records.html">記録</a>
+    <a href="hunches.html">勘</a><a href="threads.html">記憶の物語</a></nav>
+</header>
+
+<section id="carry" hidden>
+  <h2>前回の一手</h2>
+  <p class="lead">やったか、やらなかったか。ここだけは正直に。</p>
+  <div class="locked"><div class="lb">前回決めた一手</div><div class="lt" id="carryT"></div>
+    <div class="row"><button class="btn" id="did">やった</button>
+      <button class="btn ghost" id="didnt">やらなかった</button></div></div>
+</section>
+
+<section>
+  <h2>今日の問い</h2>
+  <p class="lead" id="qlead">答えると、今日の一手が決まる。</p>
+  <div id="qs"></div>
+</section>
+
+<section>
+  <h2>一手を決める</h2>
+  <p class="lead">1つだけ選ぶ。今日30分で始められるもの。</p>
+  <div id="moves"></div>
+  <div class="own"><input id="ownT" placeholder="自分で書く（例：◯◯を試す）" maxlength="60">
+    <button class="mic" id="mic" title="声で入力" hidden>🎤</button></div>
+  <div class="row"><button class="btn" id="lock">この一手に決める</button></div>
+  <div class="locked" id="lockedBox" hidden><div class="lb">今日の一手</div>
+    <div class="lt" id="lockedT"></div>
+    <div class="row"><button class="btn ghost" id="unlock">選び直す</button></div></div>
+</section>
+
+<section>
+  <h2>着地の記録</h2>
+  <p><span class="rate" id="rate">—</span> <span class="kv" id="rateSub">まだ記録がありません</span></p>
+  <div id="past"></div>
+  <div class="row"><button class="btn ghost" id="md">書き出し</button>
+    <button class="btn ghost" id="clear">すべて消す</button></div>
+</section>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+var $=function(id){return document.getElementById(id);};
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function toast(m){var t=$("toast");t.textContent=m;t.classList.add("show");
+  clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove("show");},1600);}
+function today(){var d=new Date(Date.now()+ (new Date().getTimezoneOffset()*60000) + 9*3600000);
+  return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);}
+
+/* ---- 保存(localStorage・失敗しても動く) ---- */
+var KEY="ichite_v1", S={days:{}};
+function load(){try{var r=localStorage.getItem(KEY);if(r){var v=JSON.parse(r);if(v&&v.days)S=v;}}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function day(d){d=d||today();if(!S.days[d])S.days[d]={answers:["","",""],move:"",done:null};return S.days[d];}
+load();
+
+/* ---- 材料(参謀が毎朝生成)。無ければ汎用でも必ず動く ---- */
+var FALLBACK={questions:[
+  "今日の記事で、いちばん自分の賭けに近いのはどれか？",
+  "その賭けを1歩進めるために、今日できる最小の作業は？",
+  "今日やらないと決めるものは何か？"],
+  moves:[{t:"追跡中の予測を1つ見直す",why:"根拠が変わっていないか確かめる"},
+    {t:"気になった記事を1本、原文で読む",why:"見出しだけでは裏が読めない"},
+    {t:"思いついた一手を3行で書き出す",why:"書けば着地する。頭の中では消える"}]};
+var DATA=FALLBACK, dataDate="";
+
+function render(){
+  var t=today(), D=day(t);
+  $("date").textContent=t+(dataDate&&dataDate!==t?"（材料は "+dataDate+" 版）":"")+" JST";
+
+  // 前回の一手(未判定のもの)
+  var keys=Object.keys(S.days).filter(function(k){return k!==t&&S.days[k].move&&S.days[k].done===null;}).sort();
+  var carry=keys.length?keys[keys.length-1]:null;
+  if(carry){$("carry").hidden=false;$("carryT").textContent=S.days[carry].move;$("carry")._d=carry;}
+  else $("carry").hidden=true;
+
+  // 今日の問い
+  $("qs").innerHTML=DATA.questions.map(function(q,i){
+    return '<div class="q"><div class="qt">'+esc(q)+'</div>'+
+      '<textarea data-i="'+i+'" placeholder="ここに答える（短くていい）">'+esc(D.answers[i]||"")+'</textarea></div>';}).join("");
+  Array.prototype.forEach.call($("qs").querySelectorAll("textarea"),function(ta){
+    ta.addEventListener("input",function(){day().answers[+ta.dataset.i]=ta.value;save();});});
+
+  // 一手候補
+  $("moves").innerHTML=DATA.moves.map(function(m,i){
+    var sel=(D.move===m.t)?" sel":"";
+    return '<div class="mv'+sel+'" data-t="'+esc(m.t)+'"><div class="rd"></div><div><div class="t">'+esc(m.t)+
+      '</div>'+(m.why?'<div class="w">'+esc(m.why)+'</div>':'')+'</div></div>';}).join("");
+  Array.prototype.forEach.call($("moves").querySelectorAll(".mv"),function(el){
+    el.addEventListener("click",function(){
+      Array.prototype.forEach.call($("moves").querySelectorAll(".mv"),function(x){x.classList.remove("sel");});
+      el.classList.add("sel");$("ownT").value="";});});
+
+  // 確定表示
+  if(D.move){$("lockedBox").hidden=false;$("lockedT").textContent=D.move;}
+  else $("lockedBox").hidden=true;
+
+  // 着地の記録
+  var all=Object.keys(S.days).filter(function(k){return S.days[k].move;}).sort().reverse();
+  var done=0,judged=0;
+  all.forEach(function(k){if(S.days[k].done===true){done++;judged++;}else if(S.days[k].done===false)judged++;});
+  $("rate").textContent=judged?Math.round(done/judged*100)+"%":"—";
+  $("rateSub").textContent=judged?("やった "+done+" / 判定済 "+judged+"（全"+all.length+"手）"):"まだ判定済みの一手がありません";
+  $("past").innerHTML=all.slice(0,12).map(function(k){
+    var d=S.days[k],b=d.done===true?'<span class="badge b-done">やった</span>':
+      (d.done===false?'<span class="badge b-skip">やらず</span>':'<span class="badge">判定待ち</span>');
+    return '<div class="past"><div class="pd">'+esc(k)+' '+b+'</div><div class="pt">'+esc(d.move)+'</div></div>';}).join("");
+}
+
+/* ---- 操作 ---- */
+$("lock").addEventListener("click",function(){
+  var own=$("ownT").value.trim();
+  var sel=$("moves").querySelector(".mv.sel");
+  var v=own||(sel?sel.dataset.t:"");
+  if(!v){toast("候補を選ぶか、自分で書いてください");return;}
+  day().move=v;day().done=null;save();render();toast("今日の一手を決めた");
+});
+$("unlock").addEventListener("click",function(){day().move="";day().done=null;save();render();});
+$("did").addEventListener("click",function(){var d=$("carry")._d;if(d){S.days[d].done=true;save();render();toast("よし。積み上がった");}});
+$("didnt").addEventListener("click",function(){var d=$("carry")._d;if(d){S.days[d].done=false;save();render();toast("正直が一番効く");}});
+$("md").addEventListener("click",function(){
+  var ks=Object.keys(S.days).sort().reverse(),L=["# 今日の一手 の記録",""];
+  ks.forEach(function(k){var d=S.days[k];if(!d.move&&!(d.answers||[]).join(""))return;
+    L.push("## "+k);if(d.move)L.push("- 一手: "+d.move+"（"+(d.done===true?"やった":d.done===false?"やらず":"判定待ち")+"）");
+    (d.answers||[]).forEach(function(a){if(a)L.push("- "+a);});L.push("");});
+  var md=L.join("\n");
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(md).then(function(){toast("コピーしました");},dl);else dl();
+  function dl(){try{var a=document.createElement("a");a.href="data:text/markdown;charset=utf-8,"+encodeURIComponent(md);
+    a.download="ichite.md";a.click();toast("保存しました");}catch(e){toast("書き出せませんでした");}}
+});
+$("clear").addEventListener("click",function(){if(!confirm("すべての記録を消します。よろしいですか？"))return;
+  S={days:{}};save();render();});
+
+/* ---- 音声(任意・無くても完全動作) ---- */
+(function(){var SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return;
+  var mic=$("mic");mic.hidden=false;var rec=null,on=false;
+  mic.addEventListener("click",function(){
+    if(on){try{rec.stop();}catch(e){}return;}
+    try{rec=new SR();}catch(e){toast("音声を開始できません");return;}
+    rec.lang="ja-JP";rec.interimResults=true;rec.continuous=false;
+    rec.onresult=function(ev){var s="";for(var i=0;i<ev.results.length;i++)s+=ev.results[i][0].transcript;$("ownT").value=s;};
+    rec.onerror=function(){on=false;mic.classList.remove("on");};
+    rec.onend=function(){on=false;mic.classList.remove("on");};
+    try{rec.start();on=true;mic.classList.add("on");}catch(e){toast("音声を開始できません");}});
+})();
+
+/* ---- 材料の取得(失敗しても汎用で動く) ---- */
+render();
+try{
+  fetch("ichite.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(j){
+    if(j&&Array.isArray(j.questions)&&j.questions.length&&Array.isArray(j.moves)&&j.moves.length){
+      DATA={questions:j.questions.slice(0,3),moves:j.moves.slice(0,3)};dataDate=j.date||"";
+      if(j.kan)$("qlead").textContent="今朝の勘：「"+j.kan+"」— これを踏まえて答える。";
+      render();}
+  }).catch(function(){});
+}catch(e){}
+</script>
+</body></html>

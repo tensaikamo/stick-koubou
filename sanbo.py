@@ -197,6 +197,58 @@ if picked:
 # 執筆(LLM)が成功したか。失敗時は既存の良好なページを保持し上書きしない。
 generation_ok = bool(final)
 
+# --- 「今日の一手」の材料生成(docs/ichite.json) ---------------------------
+# 着地不足を叩く道具。ランダムな一般論ではなく、今日の記事+参謀の記憶+今日のブリーフィングから
+# 「あなたが今日動くための問い」と「30分で始められる一手」を作る。
+# 失敗しても既存の JSON を残すだけ(サイト本体には一切影響しない)。
+ICHITE_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "questions": {"type": "array", "items": {"type": "string"}},
+        "moves": {"type": "array", "items": {
+            "type": "object",
+            "properties": {"t": {"type": "string"}, "why": {"type": "string"}},
+            "required": ["t", "why"]}},
+    },
+    "required": ["questions", "moves"],
+}
+
+if generation_ok:
+    try:
+        _ich_prompt = (PERSONA +
+            "\n今朝のブリーフィングは次の通り:\n"
+            + json.dumps({"omote": final["omote"], "ura": final["ura"],
+                          "dousuru": final["dousuru"], "kan": final["kan"]}, ensure_ascii=False)
+            + ("\n\n" + _digest if _digest else "")
+            + "\n\n読者は着想は溢れるほど出るが『着地』しない人物だ。今日この人を1歩だけ動かすための材料を作れ。\n"
+            "次のJSONだけを返せ:\n"
+            '{"questions": ["今日の状況を踏まえた、答えると自分の一手が決まる問い(3つ・各40字以内)。'
+            "抽象的な自己啓発でなく、今日の記事の具体に紐づけろ。『どう思う？』ではなく『あなたは何をするか』を引き出せ\"], "
+            '"moves": [{"t": "今日30分以内に始められる具体行動(25字以内・動詞で始める)", '
+            '"why": "なぜ今日これなのか、今日の記事や過去の読みに紐づけて1文"}]}\n'
+            "movesは3つ。『情報収集する』『検討する』のような曖昧な行動は禁止。"
+            "手を動かして終わる形(作る/送る/申し込む/書く/試す/測る)にしろ。"
+            "新しいネタへ乗り換えさせず、既に動いている流れの続きを優先しろ。")
+        _ich = parse_json(gemini(_ich_prompt, response_schema=ICHITE_SCHEMA))
+        _qs = [str(q).strip() for q in (_ich.get("questions") or []) if str(q).strip()][:3] if isinstance(_ich, dict) else []
+        _mv = []
+        for _m in ((_ich.get("moves") or []) if isinstance(_ich, dict) else []):
+            if isinstance(_m, dict) and str(_m.get("t") or "").strip():
+                _mv.append({"t": str(_m["t"]).strip(), "why": str(_m.get("why") or "").strip()})
+            if len(_mv) == 3:
+                break
+        if _qs and _mv:
+            os.makedirs("docs", exist_ok=True)
+            with open("docs/ichite.json", "w", encoding="utf-8") as f:
+                json.dump({"date": datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d"),
+                           "questions": _qs, "moves": _mv,
+                           "kan": final.get("kan", "")}, f, ensure_ascii=False, indent=2)
+            print("ichite: docs/ichite.json を更新 (問い%d・一手%d)" % (len(_qs), len(_mv)))
+        else:
+            print("ichite: 形が不正のため据え置き:", repr(_ich)[:160])
+    except Exception as e:
+        print("ichite 生成失敗(据え置き):", repr(e)[:160])
+
 # フォールバック: 各段が失敗しても前段の結果で劣化版を出す(白紙ページ禁止)
 if not final:
     if memos:
@@ -284,7 +336,7 @@ page = """<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-
 <main>
 <header class="hd"><h1>◇ シリコンバレー参謀</h1>
 <div class="d">""" + jst.strftime("%Y.%m.%d %H:%M") + """ JST</div>
-<nav class="nav"><a class="refresh" href="https://github.com/tensaikamo/stick-koubou/actions/workflows/sanbo.yml" target="_blank" rel="noopener">⟳ 参謀に調べ直させる</a><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a><a href="threads.html">記憶の物語</a><a href="reactor.html">発想炉</a><a href="play.html">渦で遊ぶ</a></nav>
+<nav class="nav"><a class="refresh" href="https://github.com/tensaikamo/stick-koubou/actions/workflows/sanbo.yml" target="_blank" rel="noopener">⟳ 参謀に調べ直させる</a><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a><a href="threads.html">記憶の物語</a><a href="ichite.html">今日の一手</a></nav>
 <div class="hint">「調べ直させる」→ GitHubで Run workflow を1タップ。数分で参謀が記憶を踏まえて考え直す。反映後にこのページを再読み込み。</div></header>
 <section class="reveal"><h2>今日の空気</h2>
 <p><span class="lb">表</span>""" + render_rich(final["omote"]) + """</p>
