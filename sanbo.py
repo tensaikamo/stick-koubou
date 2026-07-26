@@ -5,6 +5,7 @@ from common import (GeminiClient, fetch_all, fetch_jp_hits, fetch_markets, watch
 from recorder import (fetch_body, load_json_array, dump_json, HUNCHES_PATH,
                       render_pages)   # 記録層のテスト済み実装を再利用
 import memory
+import panels
 
 API_KEY = os.environ.get("GEMINI_API_KEY", "")
 if not API_KEY:
@@ -490,64 +491,9 @@ if final["mijoriku"]:
 _ans_recs, _ans_huns = memory.load_ledger()
 _ans_st = memory.hit_stats(_ans_huns)
 
-# 追跡中の予測(読む勘=採点される勘の一致): 表示している散文の勘の下に、実際に○×が付く
-# 追跡対象の予測を並べる。記録が別ステップのため直近分は前サイクルの可能性あり(予測は数日〜)。
-_tracking = [h for h in reversed(_ans_huns) if h.get("status") == "pending"][:3]
-track_html = ""
-if _tracking:
-    _trows = ""
-    for _h in _tracking:
-        _dl = _h.get("deadline", "")
-        _drem = ""
-        try:
-            _delta = (datetime.strptime(_dl, "%Y-%m-%d").date() - jst.date()).days
-            _drem = ("・残り%d日" % _delta) if _delta >= 0 else ("・期限超過%d日" % (-_delta))
-        except Exception:
-            pass
-        # 指標監視: 点灯したシグナルがあれば、期日を待たずに生死を出す
-        _sg = ""
-        for _s in (_h.get("signals") or [])[-2:]:
-            _cls = "b-miss" if _s.get("dir") == "kill" else "b-hit"
-            _lab = "⚠ 死亡シグナル" if _s.get("dir") == "kill" else "🔥 確認シグナル"
-            _sg += ('<br><span class="badge ' + _cls + '">' + _lab + '</span> <span class="m">'
-                    + html.escape(str(_s.get("date", "")) + " " + str(_s.get("why") or _s.get("sign", ""))[:70])
-                    + '</span>')
-        _trows += ('<li>' + html.escape((_h.get("claim", "") or "")[:64])
-                   + ' <span class="m">期限' + html.escape(_dl) + _drem + '</span>' + _sg + '</li>')
-    track_html = ('<section class="reveal"><h2>追跡中の予測</h2>'
-                  '<p class="m">期日が来たら○×が付く。加えて毎日、生死を示す指標が点灯していないかを見張っている。</p>'
-                  '<ul>' + _trows + '</ul>'
-                  '<p class="m"><a href="hunches.html">すべての予測と答え合わせ →</a></p></section>')
-
-ans_html = ""
-if _ans_huns:
-    if _ans_st["total"]:
-        _br = memory.brier(_ans_huns)
-        _head = ('<span class="hitrate">的中率 ' + str(round(_ans_st["rate"] * 100)) + '%</span> '
-                 '<span class="m">(的中' + str(_ans_st["hit"]) + '/外し' + str(_ans_st["miss"])
-                 + '・判定待ち' + str(_ans_st["pending"]) + ')</span>'
-                 + (('<br><span class="m">Brier ' + ("%.3f" % _br["score"])
-                     + '（低いほど良い。常に50%と答えるだけなら0.250）</span>') if _br["score"] is not None else ""))
-    else:
-        _head = '<span class="m">まだ答え合わせ前。判定待ち ' + str(_ans_st["pending"]) + ' 件(期日が来たら○×が付く)</span>'
-    # 次の決着(判定待ち期間にも張りを作る): 最近接の未来期日と残り日数
-    _nd = memory.next_due(_ans_huns, jst.date())
-    _due_line = ""
-    if _nd:
-        _dd, _rem = _nd
-        try:
-            _mdt = datetime.strptime(_dd, "%Y-%m-%d")
-            _mds = str(_mdt.month) + "/" + str(_mdt.day)
-        except Exception:
-            _mds = _dd
-        _due_line = '<p class="m">次の決着: ' + html.escape(_mds) + '(あと' + str(_rem) + '日)</p>'
-    _decided = [h for h in reversed(_ans_huns) if h.get("status") == "resolved"][:3]
-    _rows = "".join('<li>' + {"hit": "○", "miss": "×"}.get(h.get("result"), "—") + " "
-                    + html.escape((h.get("claim", "") or "")[:48]) + "</li>" for h in _decided)
-    ans_html = ('<section class="reveal"><h2>答え合わせ</h2><p>' + _head + "</p>"
-                + _due_line
-                + ("<ul>" + _rows + "</ul>" if _rows else "")
-                + '<p class="m"><a href="hunches.html">勘の台帳(全予測と○×)→</a></p></section>')
+# 追跡中の予測・答え合わせは panels.py の純関数に切り出し済み(プレビューと同一コードを使う)。
+track_html = panels.tracking_html(_ans_huns, jst.date())
+ans_html = panels.answers_html(_ans_huns, jst.date(), memory)
 
 page = """<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
