@@ -112,8 +112,8 @@ diff_block = ("\n\n=== 本日検知した「静かな変化」(公式発表な�
 # コンセンサスの値段: 予測市場の価格=群衆が金を賭けた確率。相場を知らずに「非コンセンサス」は名乗れない。
 markets = fetch_markets()
 market_block = ("\n\n=== 予測市場の現在値(群衆のコンセンサス。ここから外れる読みだけが edge) ===\n"
-                + "\n".join("- %d%% %s [%s]" % (round(m["p"] * 100), m["q"], m["src"]) for m in markets)
-                ) if markets else ""
+                + "\n".join("[%d] %d%% %s [%s]" % (i, round(m["p"] * 100), m["q"], m["src"])
+                            for i, m in enumerate(markets))) if markets else ""
 print("予測市場: %d件" % len(markets))
 
 # --- 1段目: 選別 ---
@@ -231,6 +231,8 @@ if picked:
         '"kan_konkyo": "その勘の根拠。今日のどの材料(どの一次情報・数字)から来たかを1文で", '
         '"kan_hantai": "外れるとすれば最も強い理由を1文(自分で反証しろ)", '
         '"kan_conf": 勘が的中する確率(0.05〜0.95の数値。基準率から入って調整した値), '
+        "※kan の文体は kan_conf と矛盾させるな。確度が50%未満なら『〜する』と言い切らず"
+        "『本命ではないが〜と見る』『五分に満たないが〜の目がある』のように、確度と整合する書き方にしろ。 "
         '"ura_taikou": "裏を書く際に検討して退けた対抗仮説と、退けた理由を1文(ACH)", '
         '"ippan": "AIが使える一般人用超参謀:AIを日常で使う普通の人向けに、今日のニュースを専門知識ゼロでも今日から得する/損しない具体行動へ翻訳(2〜4文)。煽らず・実用・すぐできる。誇大広告や詐欺から守る視点も。※この項目だけは一般読者向け(他の先回り個人像とは別)", '
         '"mijoriku": [{"title": "記事タイトル(日本語訳可)", "desc": "一言説明", "why": "なぜ日本で先回りの価値があるか"}]}\n'
@@ -289,19 +291,34 @@ if final and final.get("kan"):
                    + ("\n外れるとすれば: " + final["kan_hantai"] if final.get("kan_hantai") else "")
                    + market_block
                    + "\n\n手順を厳守しろ: (1)この種の事象が起きる**基準率**を先に置く "
-                   "(2)今日の材料で上下に調整する (3)**その確度は過信/過小でないか**を自問して補正する。"
-                   "予測市場の値がある場合、そこから乖離するなら理由を持て。\n"
-                   '{"p": 0.05〜0.95の数値, "why": "基準率と調整理由を1文"} のJSONだけを返せ。')
-    _ens_schema = {"type": "object", "properties": {"p": {"type": "number"}, "why": {"type": "string"}},
+                   "(2)今日の材料で上下に調整する (3)**その確度は過信/過小でないか**を自問して補正する。\n"
+                   "さらに market_i: 上の予測市場の中に**この予測とまったく同じ事象の成否を問うもの**が"
+                   "あればその番号を、無ければ -1 を返せ。**主体(企業名)が同じだけでは同じ事象ではない**"
+                   "(例: 『Anthropicが買収を発表するか』と『Anthropicの訴訟が和解するか』は別物なので -1)。\n"
+                   '{"p": 0.05〜0.95の数値, "why": "基準率と調整理由を1文", "market_i": 整数} のJSONだけを返せ。')
+    _ens_schema = {"type": "object",
+                   "properties": {"p": {"type": "number"}, "why": {"type": "string"},
+                                  "market_i": {"type": "integer"}},
                    "required": ["p"]}
+    mkt_votes = []
     for _mdl in (None, None, "gemini-flash-lite-latest"):   # 3票(うち1票は低相関メンバー)
         try:
             _v = parse_json(gemini(_ens_prompt, response_schema=_ens_schema, model=_mdl))
             _p = float(_v.get("p")) if isinstance(_v, dict) else None
             if _p is not None and 0.0 < _p < 1.0:
                 ens_votes.append(round(_p, 2))
+            _mi = _v.get("market_i") if isinstance(_v, dict) else None
+            if isinstance(_mi, int) and 0 <= _mi < len(markets):
+                mkt_votes.append(_mi)
         except Exception as e:
             print("ensemble vote", repr(e)[:100])
+    # 同じ事象を問う市場は、多数決で2票以上一致した時だけ採用する(1票の思い込みで誤対応させない)
+    market_match = None
+    for _i in set(mkt_votes):
+        if mkt_votes.count(_i) >= 2:
+            market_match = markets[_i]
+            break
+    print("市場マッチ:", (market_match["q"][:60] if market_match else "該当なし(乖離は表示しない)"))
     _med = median(ens_votes)
     if _med is not None:
         print("勘の確度: 票", ens_votes, "→ 中央値", _med)
@@ -387,21 +404,15 @@ links = "\n".join('<li><a href="' + html.escape(a["url"]) + '">' + html.escape(a
 # variant perception: 参謀の確度と、最も近い市場価格の**乖離**こそが edge。
 # 相場を知らずに「非コンセンサス」は名乗れない。近い市場が無ければ何も出さない。
 edge_html = ""
-if final.get("kan_conf") and markets:
-    _kw = [w for w in re.findall(r"[A-Za-z][A-Za-z0-9.\-]{3,}", final.get("kan", ""))]
-    _near = None
-    for _m in markets:
-        if any(w.lower() in _m["q"].lower() for w in _kw):
-            _near = _m
-            break
-    if _near:
-        _mine = round(float(final["kan_conf"]) * 100)
-        _mkt = round(_near["p"] * 100)
-        _gap = _mine - _mkt
-        edge_html = ('<p class="m"><b>市場との差</b> 市場 ' + str(_mkt) + '% / 参謀 ' + str(_mine)
-                     + '% → 乖離 ' + ("+" if _gap >= 0 else "") + str(_gap) + 'pt'
-                     + ('（ここが edge。一致なら妙味なし）' if abs(_gap) >= 10 else '（ほぼ市場並み＝妙味は薄い）')
-                     + '<br><span class="kv">' + html.escape(_near["q"][:70]) + ' [' + _near["src"] + ']</span></p>')
+_near = globals().get("market_match")   # 同一事象と2票以上で判定された市場だけ(語の一致では対応させない)
+if final.get("kan_conf") and _near:
+    _mine = round(float(final["kan_conf"]) * 100)
+    _mkt = round(_near["p"] * 100)
+    _gap = _mine - _mkt
+    edge_html = ('<p class="m"><b>市場との差</b> 市場 ' + str(_mkt) + '% / 参謀 ' + str(_mine)
+                 + '% → 乖離 ' + ("+" if _gap >= 0 else "") + str(_gap) + 'pt'
+                 + ('（ここが edge。一致なら妙味なし）' if abs(_gap) >= 10 else '（ほぼ市場並み＝妙味は薄い）')
+                 + '<br><span class="kv">' + html.escape(_near["q"][:70]) + ' [' + _near["src"] + ']</span></p>')
 
 mj_html = ""
 if final["mijoriku"]:
