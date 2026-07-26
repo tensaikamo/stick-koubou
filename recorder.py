@@ -137,11 +137,16 @@ def build_prompt(articles, today_str):
         '      },\n'
         '      "deadline_days": 判定期限までの日数(今日からの相対、3〜30の整数。絶対日付は書くな),\n'
         '      "confidence": 0.50〜0.95 の数値,\n'
-        '      "counter": "この予測が外れるとしたら最も強い理由(1文・具体的に)。過信を戒め自分で反証せよ"\n'
+        '      "counter": "この予測が外れるとしたら最も強い理由(1文・具体的に)。過信を戒め自分で反証せよ",\n'
+        '      "indicators": [{"sign": "この予測の生死を示す、公開情報で毎日観測できる具体的な事象", "dir": "confirm または kill"}]\n'
         '    }\n'
         '  ]\n'
         '}\n'
         "record は重要な記事のみ(最大" + str(TOP_N) + "件)。hunch は 1〜3件、必ず record を根拠にせよ。\n"
+        "【指標(indicators)】各 hunch に2〜3個。期日を待たずに生死が分かる観測点を置け。"
+        "dir=confirm は『これが起きたら的中に近づく』、dir=kill は『これが起きたらこの予測は死ぬ』。"
+        "毎日の公開情報で観測できる形にしろ(例:『APIの価格表に新モデルが載る』『◯◯社が該当職種の求人を出す』"
+        "『モデル一覧から非推奨になる』)。『話題になる』等の観測できない表現は禁止。\n"
         "【予測の絶対条件】第三者が公開情報だけで期日に○×を判定できる予測に限る。"
         "非公開・秘密・リーク・内部情報・水面下の動きを前提にした予測は禁止(検証できないため失格)。"
         "可の例:『9月中にOpenAIが日本でセルフサーブ受付を開始する』。"
@@ -393,6 +398,12 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
             "deadline": deadline,
             "confidence": conf,
             "counter": str(current.get("counter") or "").strip(),  # 反証条件(外れる最も強い理由)
+            # 指標監視(I&W): 期日を待たず生死が分かる観測点と、その点灯履歴。任意=既存データと後方互換。
+            "indicators": [
+                {"sign": str(x.get("sign") or "").strip(), "dir": ("kill" if x.get("dir") == "kill" else "confirm")}
+                for x in (current.get("indicators") or [])
+                if isinstance(x, dict) and str(x.get("sign") or "").strip()][:3],
+            "signals": [],
             "status": status,
             "resolved_at": None,
             "result": None,
@@ -519,6 +530,16 @@ def _hunch_card(h, today):
     parts.append('<p class="kv"><b>主体</b> ' + _esc(h.get("subject", "")) + '</p>')
     if h.get("counter"):
         parts.append('<p class="kv"><b>外れるとすれば</b> ' + _esc(h["counter"]) + '</p>')
+    inds = h.get("indicators") if isinstance(h.get("indicators"), list) else []
+    if inds:
+        parts.append('<p class="kv"><b>見張り</b> ' + "、".join(
+            _esc(x.get("sign", "")) + ("（死亡）" if x.get("dir") == "kill" else "（確認）") for x in inds) + '</p>')
+    sigs = h.get("signals") if isinstance(h.get("signals"), list) else []
+    for s in sigs[-3:]:   # 点灯履歴(新しい方から数件)
+        cls = "b-miss" if s.get("dir") == "kill" else "b-hit"
+        lab = "⚠ 死亡シグナル" if s.get("dir") == "kill" else "🔥 確認シグナル"
+        parts.append('<p class="kv"><span class="badge ' + cls + '">' + lab + '</span> '
+                     + _esc(s.get("date", "")) + " " + _esc(s.get("why", "") or s.get("sign", "")) + '</p>')
     if res.get("decider"):
         parts.append('<p class="kv"><b>的中条件</b> ' + _esc(res["decider"]) + '</p>')
     if res.get("source") or res.get("check_query"):

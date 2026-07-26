@@ -37,7 +37,10 @@ def _fake_response():
              "claim": "OpenAIは新エンタープライズ階層を一般提供(GA)する", "subject": "OpenAI",
              "resolution": {"source": "公式ブログ", "check_query": "openai enterprise GA",
                             "decider": "公式が新階層の一般提供開始を告知"}, "deadline_days": 10, "confidence": 0.72,
-             "counter": "提供が限定プレビューに留まりGAが遅れる可能性"},
+             "counter": "提供が限定プレビューに留まりGAが遅れる可能性",
+             "indicators": [{"sign": "料金ページに新階層が載る", "dir": "confirm"},
+                            {"sign": "公式が延期を告知する", "dir": "kill"},
+                            {"sign": "", "dir": "confirm"}]},   # 空の指標は捨てられる
             {"based_on": [1], "prose": "Anthropicは資金を計算資源に振ると見る。",
              "claim": "Anthropicが話題になる", "subject": "Anthropic",
              "resolution": {"source": "報道", "check_query": "anthropic news", "decider": "広く話題になる"},
@@ -108,6 +111,30 @@ def test_pipeline(workdir, monkeypatch):
     # 記憶の物語ページが生成され壊れない(主体はどれも単発=スレッドなしでも空表示で成立)
     tp = (workdir / "docs/threads.html").read_text(encoding="utf-8")
     assert "記憶の物語" in tp and "<html" in tp
+
+    # 指標監視(I&W): 空の指標は捨て、confirm/kill を保持し、点灯履歴は空で初期化される
+    assert [i["sign"] for i in h1["indicators"]] == ["料金ページに新階層が載る", "公式が延期を告知する"]
+    assert [i["dir"] for i in h1["indicators"]] == ["confirm", "kill"]
+    assert h1["signals"] == []
+    assert "見張り" in hp and "料金ページに新階層が載る" in hp
+
+
+def test_signal_display_and_no_false_verdict(workdir, monkeypatch):
+    # 点灯履歴が台帳に出ること。kill が点灯しても result は None のまま(偽×を出さない)
+    import recorder as R
+    _run(workdir, monkeypatch)
+    huns = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))
+    h = next(x for x in huns if x["status"] == "pending" and x.get("indicators"))
+    h["signals"] = [{"date": "2026-07-25", "sign": "公式が延期を告知する", "dir": "kill",
+                     "why": "公式ブログが延期を明記した"}]
+    h["needs_review"] = True
+    R.dump_json(str(workdir / "data/hunches.json"), huns)
+    R.render_pages()
+    page = (workdir / "docs/hunches.html").read_text(encoding="utf-8")
+    assert "死亡シグナル" in page and "公式ブログが延期を明記した" in page
+    after = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))
+    hit = next(x for x in after if x["id"] == h["id"])
+    assert hit["result"] is None and hit["status"] == "pending"   # 自動で×にしない
 
 
 def test_idempotent_second_run(workdir, monkeypatch):

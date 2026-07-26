@@ -2,7 +2,8 @@ import os, re, json, html
 from datetime import datetime, timezone, timedelta
 from common import (GeminiClient, fetch_all, fetch_jp_hits, fetch_markets, watch_step,
                     median, parse_json, PAGE_CSS)
-from recorder import fetch_body   # 記録層のテスト済み本文取得を再利用(失敗は ("",False))
+from recorder import (fetch_body, load_json_array, dump_json, HUNCHES_PATH,
+                      render_pages)   # 記録層のテスト済み実装を再利用
 import memory
 
 API_KEY = os.environ.get("GEMINI_API_KEY", "")
@@ -11,7 +12,9 @@ if not API_KEY:
 
 # モデルフォールバック・過負荷再試行・回数ガードは common.GeminiClient が担う。
 # 3段(選別/メモ/執筆)×過負荷リトライを許容できる上限に(無料枠1,500/日の保護内)。
-_client = GeminiClient(API_KEY, call_limit=16)
+# 段数が増えた(見張り1+選別1+メモ1+執筆1〜2+赤ペン1+確度3+一手1 ≒ 10)。過負荷リトライの
+# 余裕を残して上限を置く。無料枠1,500/日に対し十分小さい(暴走ガードとしては機能する)。
+_client = GeminiClient(API_KEY, call_limit=22)
 
 
 def gemini(prompt, response_schema=None, model=None):
@@ -108,6 +111,61 @@ lst = "\n".join(str(i) + ". [" + TIER_JA.get(a.get("tier", 3), "二次") + "/" +
                 for i, a in enumerate(arts))
 diff_block = ("\n\n=== 本日検知した「静かな変化」(公式発表なしに変わったもの。最優先の材料) ===\n"
               + "\n".join("- " + d["title"] for d in diffs)) if diffs else ""
+
+# --- 指標監視(I&W): 判定待ち予測の「生死シグナル」が今日点灯したかを見る ---------
+# 期日まで放置せず、毎日「もう死んでいないか」を見る(thesis monitoring)。
+# hunch毎ではなく**1回の呼び出し**で全件を突き合わせる(コスト固定)。
+# kill が点灯しても自動で×にはしない(needs_review を立てるだけ)=偽×を出さない原則を守る。
+watchdog_note = ""
+try:
+    _huns = load_json_array(HUNCHES_PATH)
+    _pend = [h for h in _huns if h.get("status") == "pending" and h.get("indicators")]
+    if _pend and (diffs or arts):
+        _events = ("\n".join("- " + d["title"] for d in diffs[:8])
+                   + "\n" + "\n".join("- " + a["title"] for a in arts[:20]))
+        _watch_list = "\n".join(
+            "%s / %s: " % (h.get("id"), str(h.get("claim", ""))[:50])
+            + " | ".join("[%d]%s(%s)" % (i, x.get("sign", ""), x.get("dir", ""))
+                         for i, x in enumerate(h.get("indicators") or []))
+            for h in _pend[:12])
+        _wd = parse_json(gemini(
+            "次は追跡中の予測と、その『生死を示す観測点(指標)』の一覧だ。\n" + _watch_list
+            + "\n\n次は本日実際に起きた事象の一覧だ。\n" + _events
+            + "\n\n本日の事象によって**実際に点灯した指標だけ**を返せ。"
+            "こじつけは禁止。曖昧なら返すな。該当が無ければ空配列を返せ。\n"
+            '{"hits":[{"hid":"予測ID","idx":指標番号,"why":"点灯したと言える理由を1文"}]} のJSONだけ。',
+            response_schema={"type": "object", "properties": {"hits": {"type": "array", "items": {
+                "type": "object",
+                "properties": {"hid": {"type": "string"}, "idx": {"type": "integer"}, "why": {"type": "string"}},
+                "required": ["hid", "idx"]}}}, "required": ["hits"]}))
+        _by_id = {h.get("id"): h for h in _huns}
+        _lit, _today = [], datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d")
+        for _hit in ((_wd or {}).get("hits") or [])[:12]:
+            _h = _by_id.get(str(_hit.get("hid")))
+            _inds = (_h or {}).get("indicators") or []
+            _idx = _hit.get("idx")
+            if not _h or not isinstance(_idx, int) or not (0 <= _idx < len(_inds)):
+                continue
+            _ind = _inds[_idx]
+            _h.setdefault("signals", [])
+            if any(s.get("sign") == _ind.get("sign") and s.get("date") == _today for s in _h["signals"]):
+                continue                                   # 同日重複は積まない(冪等)
+            _h["signals"].append({"date": _today, "sign": _ind.get("sign", ""),
+                                  "dir": _ind.get("dir", "confirm"),
+                                  "why": str(_hit.get("why") or "")[:200]})
+            if _ind.get("dir") == "kill":
+                _h["needs_review"] = True                  # 人の目を入れる。自動で×にはしない
+            _lit.append((_h.get("id"), _ind.get("dir"), _ind.get("sign", "")))
+        if _lit:
+            dump_json(HUNCHES_PATH, _huns)                 # 追記のみ・他フィールドは不変
+            render_pages()                                 # 台帳へ即反映
+            watchdog_note = ("\n\n=== 追跡中の予測に本日点灯したシグナル(自分の読みの生死) ===\n"
+                             + "\n".join("- %s [%s] %s" % (i, d, s) for i, d, s in _lit))
+        print("watchdog: 点灯 %d件 / 監視中 %d件" % (len(_lit), len(_pend)))
+    else:
+        print("watchdog: 監視対象なし(指標つき判定待ち予測が0件)")
+except Exception as e:
+    print("watchdog 失敗(無視して続行):", repr(e)[:140])
 
 # コンセンサスの値段: 予測市場の価格=群衆が金を賭けた確率。相場を知らずに「非コンセンサス」は名乗れない。
 markets = fetch_markets()
@@ -215,7 +273,7 @@ def norm_final(b):
 
 final = None
 if picked:
-    material = "今日の重要記事:\n" + plist + diff_block + market_block
+    material = "今日の重要記事:\n" + plist + diff_block + market_block + watchdog_note
     if memos:
         material += "\n\n参謀の分析メモ(2段目の下書き。これを材料に磨き上げろ):\n" + json.dumps(memos, ensure_ascii=False)
     _recs, _huns = memory.load_ledger()
@@ -446,10 +504,18 @@ if _tracking:
             _drem = ("・残り%d日" % _delta) if _delta >= 0 else ("・期限超過%d日" % (-_delta))
         except Exception:
             pass
+        # 指標監視: 点灯したシグナルがあれば、期日を待たずに生死を出す
+        _sg = ""
+        for _s in (_h.get("signals") or [])[-2:]:
+            _cls = "b-miss" if _s.get("dir") == "kill" else "b-hit"
+            _lab = "⚠ 死亡シグナル" if _s.get("dir") == "kill" else "🔥 確認シグナル"
+            _sg += ('<br><span class="badge ' + _cls + '">' + _lab + '</span> <span class="m">'
+                    + html.escape(str(_s.get("date", "")) + " " + str(_s.get("why") or _s.get("sign", ""))[:70])
+                    + '</span>')
         _trows += ('<li>' + html.escape((_h.get("claim", "") or "")[:64])
-                   + ' <span class="m">期限' + html.escape(_dl) + _drem + '</span></li>')
+                   + ' <span class="m">期限' + html.escape(_dl) + _drem + '</span>' + _sg + '</li>')
     track_html = ('<section class="reveal"><h2>追跡中の予測</h2>'
-                  '<p class="m">期日が来たら、この予測に○×が付く。参謀の読みのうち、実際に採点される予測がこれだ。</p>'
+                  '<p class="m">期日が来たら○×が付く。加えて毎日、生死を示す指標が点灯していないかを見張っている。</p>'
                   '<ul>' + _trows + '</ul>'
                   '<p class="m"><a href="hunches.html">すべての予測と答え合わせ →</a></p></section>')
 
