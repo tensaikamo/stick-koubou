@@ -12,7 +12,7 @@
 
 使い方: python preview.py
 """
-import os, json, shutil, tempfile
+import os, shutil, tempfile
 from datetime import datetime, timedelta
 
 import recorder
@@ -88,17 +88,20 @@ def demo_ledger():
     return records, hunches
 
 
-def _inject_banner(path):
-    """生成済みHTMLの <main> 直後にデモバナーを差し込む(実績との誤認を防ぐ)。"""
+def _finish_page(path):
+    """生成済みHTMLに (1)デモバナーを差し込み (2)プレビュー内に存在しないページへの
+    相対リンクを1階層上(本物)へ向け直す。preview/ 配下でリンク切れを出さないため。"""
     try:
         with open(path, encoding="utf-8") as f:
             s = f.read()
         if "<main>" in s and "これはデモデータです" not in s:
             s = s.replace("<main>", "<main>\n" + BANNER, 1)
-            with open(path, "w", encoding="utf-8") as f:
-                f.write(s)
+        for name in ("ichite.html",):   # preview/ には複製しないページ
+            s = s.replace('href="' + name + '"', 'href="../' + name + '"')
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(s)
     except Exception as e:
-        print("banner", path, repr(e)[:100])
+        print("finish_page", path, repr(e)[:100])
 
 
 def preview_index(records, hunches):
@@ -138,7 +141,7 @@ def main():
             src = os.path.join(tmp, "docs", name)
             if os.path.exists(src):
                 shutil.copy(src, os.path.join(out, name))
-                _inject_banner(os.path.join(out, name))
+                _finish_page(os.path.join(out, name))
         st = memory.hit_stats(hunches)
         br = memory.brier(hunches)
         print("preview: %s に生成 / 的中率 %s / Brier %s (n=%d)" % (
