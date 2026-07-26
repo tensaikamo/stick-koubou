@@ -29,6 +29,19 @@ def test_hit_stats_excludes_unclear_and_pending():
     assert round(st["rate"] * 100) == 50 and st["pending"] == 2
 
 
+def test_brier_scores_confidence_not_just_hits():
+    # 確度0.9でhit → (0.9-1)^2=0.01 / 確度0.8でmiss → 0.64 → 平均0.325
+    huns = [_h("a", "x", "hit", 0.9, "resolved"), _h("b", "y", "miss", 0.8, "resolved")]
+    b = memory.brier(huns)
+    assert b["n"] == 2 and abs(b["score"] - 0.325) < 1e-9
+    # 自信満々で当てる方が良いスコア(小さい)になる
+    assert memory.brier([_h("c", "z", "hit", 0.95, "resolved")])["score"] < \
+           memory.brier([_h("d", "w", "hit", 0.55, "resolved")])["score"]
+    # 未確定・判定不能は母数外
+    assert memory.brier([_h("e", "v", None, 0.7, "pending"),
+                         _h("f", "u", "unclear", 0.3, "pending")]) == {"score": None, "n": 0}
+
+
 def test_digest_zero_data_is_safe_string():
     d = memory.build_digest([], [])
     assert isinstance(d, str)  # 空データでも例外なく文字列

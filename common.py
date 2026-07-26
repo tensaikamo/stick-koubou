@@ -218,6 +218,62 @@ def fetch_reddit():
         return []
 
 
+# ---- コンセンサスの値段(予測市場) --------------------------------------
+# 「誰も言っていない」は、相場を知らなければ自称でしかない。予測市場の価格=群衆が金を賭けた確率
+# を取り、参謀の確度との**乖離**を edge として数値化する(ヘッジファンドの variant perception)。
+MARKET_TERMS = ["OpenAI", "Anthropic", "AGI", "AI model"]
+
+
+def fetch_markets(limit=6):
+    """AI関連の予測市場を取得し [{q, p(0-1), src, url}] を返す。無料・APIキー不要。失敗時 []。"""
+    out, seen = [], set()
+    for term in MARKET_TERMS:                      # Manifold(確率が素直に取れる)
+        try:
+            d = json.loads(http("https://api.manifold.markets/v0/search-markets?term="
+                                + urllib.parse.quote(term) + "&limit=8",
+                                timeout=FEED_TIMEOUT).decode())
+        except Exception as e:
+            print("manifold", repr(e)[:80])
+            continue
+        for m in d if isinstance(d, list) else []:
+            p, q = m.get("probability"), (m.get("question") or "").strip()
+            # 二択かつ確率が意味を持つものだけ(多肢/日付市場の 0 や 1 は捨てる)
+            if m.get("outcomeType") != "BINARY" or not isinstance(p, (int, float)):
+                continue
+            if p <= 0.02 or p >= 0.98 or not q or q in seen or m.get("isResolved"):
+                continue
+            seen.add(q)
+            out.append({"q": q, "p": float(p), "src": "Manifold", "url": m.get("url", "")})
+    try:                                            # Polymarket(実弾の相場)
+        d = json.loads(http("https://gamma-api.polymarket.com/markets?closed=false&limit=120"
+                            "&order=volume&ascending=false", timeout=FEED_TIMEOUT).decode())
+        for m in d if isinstance(d, list) else []:
+            q = (m.get("question") or "").strip()
+            if not q or q in seen or not re.search(r"(?i)\bAI\b|OpenAI|Anthropic|AGI|GPT|Gemini|Claude", q):
+                continue
+            try:
+                pr = json.loads(m.get("outcomePrices") or "[]")
+                p = float(pr[0])
+            except Exception:
+                continue
+            if p <= 0.02 or p >= 0.98:
+                continue
+            seen.add(q)
+            out.append({"q": q, "p": p, "src": "Polymarket", "url": "https://polymarket.com/"})
+    except Exception as e:
+        print("polymarket", repr(e)[:80])
+    return out[:limit]
+
+
+def median(xs):
+    """中央値。外れ値に引きずられない集約(Halawi/Nostreambot がアンサンブルの既定に採る)。"""
+    v = sorted(x for x in xs if isinstance(x, (int, float)))
+    if not v:
+        return None
+    n = len(v)
+    return v[n // 2] if n % 2 else (v[n // 2 - 1] + v[n // 2]) / 2.0
+
+
 def _key_terms(q):
     """固有名詞らしき語(英数4文字以上・カタカナ4文字以上)を抜く。日本語ヒットの照合に使う。"""
     return [w for w in re.findall(r"[A-Za-z][A-Za-z0-9.\-]{3,}|[ァ-ヴー]{4,}", q or "")
@@ -421,12 +477,14 @@ class GeminiClient:
         self.last_grounding_urls = []
         self.last_model_version = None  # 直近レスポンスの実モデルID(APIレスポンス由来)
 
-    def _request(self, payload):
+    def _request(self, payload, model=None):
         """モデルフォールバック+過負荷バックオフでリクエストし、生の応答dictを返す。
-        実応答モデルIDは last_model_version に保存。generate / generate_grounded の共通土台。"""
+        実応答モデルIDは last_model_version に保存。generate / generate_grounded の共通土台。
+        model を指定すると、そのモデルだけを使う(アンサンブルの低相関メンバー用。
+        成功しても _model_ok を書き換えないので通常経路に影響しない)。"""
         body = json.dumps(payload).encode()
         last = None
-        for m in (self._model_ok or MODELS):
+        for m in ([model] if model else (self._model_ok or MODELS)):
             url = "https://generativelanguage.googleapis.com/v1beta/models/" + m + ":generateContent"
             # 429/503(一時的な過負荷)は指数バックオフ+ジッタで同モデルを複数回試す。
             for i, wait in enumerate(BACKOFFS):
@@ -439,7 +497,8 @@ class GeminiClient:
                     d = json.loads(http(url, data=body,
                                         headers={"Content-Type": "application/json",
                                                  "x-goog-api-key": self.api_key}).decode())
-                    self._model_ok[:] = [m]
+                    if not model:            # 明示指定時は通常経路のモデル選択を汚さない
+                        self._model_ok[:] = [m]
                     self.last_model_version = d.get("modelVersion") or m
                     return d
                 except urllib.error.HTTPError as e:
@@ -462,13 +521,15 @@ class GeminiClient:
                 print("listmodels", e2)
         raise last
 
-    def generate(self, prompt, response_schema=None):
+    def generate(self, prompt, response_schema=None, model=None):
         """プロンプトを投げ、生成テキストを返す。response_schema を渡すと構造化出力
-        (JSON準拠保証)を要求する(任意・後方互換)。"""
+        (JSON準拠保証)を要求する(任意・後方互換)。model 指定でモデルを固定できる
+        (アンサンブルの低相関メンバー用・任意)。"""
         cfg = {"responseMimeType": "application/json"}
         if response_schema is not None:
             cfg["responseSchema"] = response_schema
-        d = self._request({"contents": [{"parts": [{"text": prompt}]}], "generationConfig": cfg})
+        d = self._request({"contents": [{"parts": [{"text": prompt}]}], "generationConfig": cfg},
+                          model=model)
         return d["candidates"][0]["content"]["parts"][0]["text"]
 
     # google_search ツールの指定形式は API 版で揺れる(現行 {"google_search":{}} / 別表記

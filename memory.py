@@ -82,6 +82,26 @@ def hit_stats(hunches):
             "rate": (hit / total) if total else None, "pending": pending, "review": review}
 
 
+def brier(hunches):
+    """Brier スコア = Σ(確度 − 実現)² / n。予測の世界の標準指標。
+    的中率は「当たったか」しか見ないが、Brier は**確度の正しさ**まで測る(低いほど良い)。
+    常に50%と答えるだけのベースラインは 0.25。これを下回れば「情報がある」証拠になる。
+    戻り: {"score": float, "n": int} / 確定分が無ければ {"score": None, "n": 0}。"""
+    s, n = 0.0, 0
+    for h in hunches:
+        r = h.get("result")
+        if r not in ("hit", "miss"):
+            continue
+        try:
+            c = float(h.get("confidence"))
+        except Exception:
+            continue
+        c = max(0.0, min(1.0, c))
+        s += (c - (1.0 if r == "hit" else 0.0)) ** 2
+        n += 1
+    return {"score": (s / n) if n else None, "n": n}
+
+
 def _calibration(hunches):
     bands = {}  # band -> [hit, total]
     for h in hunches:

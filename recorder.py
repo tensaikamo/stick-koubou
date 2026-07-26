@@ -549,8 +549,11 @@ def render_hunches_page(hunches):
         due_html = ('<p class="kv"><b>次の決着</b> ' + _esc(_mds)
                     + '(あと' + str(_rem) + '日)</p>')
     if st["total"]:
+        _br = memory.brier(hunches)
         rate = ('<p><span class="hitrate">的中率 ' + str(round(st["rate"] * 100)) + '%</span> '
-                '<span class="kv">(的中' + str(st["hit"]) + ' / 外し' + str(st["miss"]) + ' / 判定不能除く)</span></p>')
+                '<span class="kv">(的中' + str(st["hit"]) + ' / 外し' + str(st["miss"]) + ' / 判定不能除く)</span></p>'
+                + (('<p class="kv"><b>Brier</b> ' + ("%.3f" % _br["score"]) + '（n=' + str(_br["n"])
+                    + '・低いほど良い。常に50%と答えるだけなら 0.250）</p>') if _br["score"] is not None else ""))
     else:
         rate = '<p class="kv">まだ答え合わせ前。的中率は期日到来分の決着後に出る。</p>'
     if not hunches:

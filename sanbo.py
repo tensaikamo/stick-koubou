@@ -1,6 +1,7 @@
 import os, re, json, html
 from datetime import datetime, timezone, timedelta
-from common import GeminiClient, fetch_all, fetch_jp_hits, watch_step, parse_json, PAGE_CSS
+from common import (GeminiClient, fetch_all, fetch_jp_hits, fetch_markets, watch_step,
+                    median, parse_json, PAGE_CSS)
 from recorder import fetch_body   # 記録層のテスト済み本文取得を再利用(失敗は ("",False))
 import memory
 
@@ -13,8 +14,8 @@ if not API_KEY:
 _client = GeminiClient(API_KEY, call_limit=16)
 
 
-def gemini(prompt, response_schema=None):
-    return _client.generate(prompt, response_schema=response_schema)
+def gemini(prompt, response_schema=None, model=None):
+    return _client.generate(prompt, response_schema=response_schema, model=model)
 
 
 # ブリーフィング執筆の構造化出力スキーマ(responseSchema)。JSON準拠を保証し、
@@ -29,6 +30,8 @@ BRIEF_SCHEMA = {
         "kan": {"type": "string"},
         "kan_konkyo": {"type": "string"},   # 勘の根拠(任意・鎖を読者に見せる)
         "kan_hantai": {"type": "string"},   # 勘が外れるとすればの反証条件(任意)
+        "kan_conf": {"type": "number"},     # 勘の確度0-1(任意・市場価格との乖離を測るため)
+        "ura_taikou": {"type": "string"},   # 退けた対抗仮説と、退けた理由(ACH・任意)
         "ippan": {"type": "string"},
         "mijoriku": {"type": "array", "items": {
             "type": "object",
@@ -106,6 +109,13 @@ lst = "\n".join(str(i) + ". [" + TIER_JA.get(a.get("tier", 3), "二次") + "/" +
 diff_block = ("\n\n=== 本日検知した「静かな変化」(公式発表なしに変わったもの。最優先の材料) ===\n"
               + "\n".join("- " + d["title"] for d in diffs)) if diffs else ""
 
+# コンセンサスの値段: 予測市場の価格=群衆が金を賭けた確率。相場を知らずに「非コンセンサス」は名乗れない。
+markets = fetch_markets()
+market_block = ("\n\n=== 予測市場の現在値(群衆のコンセンサス。ここから外れる読みだけが edge) ===\n"
+                + "\n".join("- %d%% %s [%s]" % (round(m["p"] * 100), m["q"], m["src"]) for m in markets)
+                ) if markets else ""
+print("予測市場: %d件" % len(markets))
+
 # --- 1段目: 選別 ---
 sel = None
 if arts:
@@ -158,7 +168,12 @@ if picked:
             "\n以下は今日の重要記事。参謀として各記事を分析し、次のJSON配列だけを返せ:\n"
             '[{"i": 記事番号, "omote": "表:何が起きたか(1〜2文)", '
             '"ura": "裏:それが本当に意味すること・裏で誰が何を狙っているかの見立て(1〜2文)", '
-            '"nihon": "日本語圏への未到達度(高/中/低)とその理由を一言"}]\n'
+            '"nihon": "日本語圏への未到達度(高/中/低)とその理由を一言", '
+            '"hypotheses": [{"h": "この件の裏で何が起きているかの仮説", '
+            '"kill": "この仮説を殺しうる事実・矛盾(無ければ「見当たらない」)"}]}]\n'
+            "【ACH=対立仮説分析】hypotheses は必ず2〜3個。**自分の推し仮説を含め、各仮説を"
+            "『支持する証拠』ではなく『反証する事実』で潰しにいけ**(確証バイアス対策・諜報分析の定石)。"
+            "反証に最も耐えた仮説が本命だ。\n"
             "【厳守】uraは本文の具体(誰が何をいつ・数字・条件)に基づいて書け。"
             "body_fetched:false の記事について中身を断定するな(タイトルから言えることだけ書け)。\n\n"
             + plist + "\n\n=== 本文抜粋 ===\n" + body_block)))
@@ -183,6 +198,8 @@ def norm_final(b):
          "dousuru": str(b.get("dousuru") or "").strip(), "kan": str(b.get("kan") or "").strip(),
          "kan_konkyo": str(b.get("kan_konkyo") or "").strip(),  # 勘の根拠(任意)
          "kan_hantai": str(b.get("kan_hantai") or "").strip(),  # 反証条件(任意)
+         "kan_conf": b.get("kan_conf"),                          # 確度(任意・後段で中央値に置換)
+         "ura_taikou": str(b.get("ura_taikou") or "").strip(),   # 退けた対抗仮説(ACH・任意)
          "ippan": str(b.get("ippan") or "").strip(),  # 一般人の超参謀(任意・無くてもフォールバックは動く)
          "mijoriku": []}
     if not (r["omote"] and r["ura"] and r["dousuru"] and r["kan"]):
@@ -198,7 +215,7 @@ def norm_final(b):
 
 final = None
 if picked:
-    material = "今日の重要記事:\n" + plist + diff_block
+    material = "今日の重要記事:\n" + plist + diff_block + market_block
     if memos:
         material += "\n\n参謀の分析メモ(2段目の下書き。これを材料に磨き上げろ):\n" + json.dumps(memos, ensure_ascii=False)
     _recs, _huns = memory.load_ledger()
@@ -213,6 +230,8 @@ if picked:
         '"kan": "参謀の勘:確証はないが匂う話を1つ。第三者が公開情報で後から○×を付けられる、期限つき予測の形で書く。基準率から入って調整しろ(滅多に起きない事象に短い期限を付けるな)。非公開・秘密・リーク前提の当てられない予測は書くな", '
         '"kan_konkyo": "その勘の根拠。今日のどの材料(どの一次情報・数字)から来たかを1文で", '
         '"kan_hantai": "外れるとすれば最も強い理由を1文(自分で反証しろ)", '
+        '"kan_conf": 勘が的中する確率(0.05〜0.95の数値。基準率から入って調整した値), '
+        '"ura_taikou": "裏を書く際に検討して退けた対抗仮説と、退けた理由を1文(ACH)", '
         '"ippan": "AIが使える一般人用超参謀:AIを日常で使う普通の人向けに、今日のニュースを専門知識ゼロでも今日から得する/損しない具体行動へ翻訳(2〜4文)。煽らず・実用・すぐできる。誇大広告や詐欺から守る視点も。※この項目だけは一般読者向け(他の先回り個人像とは別)", '
         '"mijoriku": [{"title": "記事タイトル(日本語訳可)", "desc": "一言説明", "why": "なぜ日本で先回りの価値があるか"}]}\n'
         "mijorikuは材料の中から日本語圏でまだほぼ話題になっていなさそうな話を1〜2本選ぶこと。弱い根拠を『確実』で塗るな。\n"
@@ -259,6 +278,36 @@ if final:
             print("赤ペン: 応答が不正のため草稿を維持")
     except Exception as e:
         print("赤ペン失敗(草稿を維持):", repr(e)[:120])
+
+# --- 勘の確度をアンサンブルで決める(赤ペンで勘が確定した後に実施) --------------
+# Halawi(NeurIPS24)/Nostreambot: 単発より複数見積もりの集約が強い。独立にK回見積もり中央値を採る
+# (外れ値に強い)。1票は別モデル(flash-lite)へ振り相関を下げる。失敗時は執筆時の確度のまま(壊さない)。
+ens_votes = []
+if final and final.get("kan"):
+    _ens_prompt = (PERSONA + "\n次の予測が的中する確率だけを見積もれ。\n予測: " + final["kan"]
+                   + ("\n根拠: " + final["kan_konkyo"] if final.get("kan_konkyo") else "")
+                   + ("\n外れるとすれば: " + final["kan_hantai"] if final.get("kan_hantai") else "")
+                   + market_block
+                   + "\n\n手順を厳守しろ: (1)この種の事象が起きる**基準率**を先に置く "
+                   "(2)今日の材料で上下に調整する (3)**その確度は過信/過小でないか**を自問して補正する。"
+                   "予測市場の値がある場合、そこから乖離するなら理由を持て。\n"
+                   '{"p": 0.05〜0.95の数値, "why": "基準率と調整理由を1文"} のJSONだけを返せ。')
+    _ens_schema = {"type": "object", "properties": {"p": {"type": "number"}, "why": {"type": "string"}},
+                   "required": ["p"]}
+    for _mdl in (None, None, "gemini-flash-lite-latest"):   # 3票(うち1票は低相関メンバー)
+        try:
+            _v = parse_json(gemini(_ens_prompt, response_schema=_ens_schema, model=_mdl))
+            _p = float(_v.get("p")) if isinstance(_v, dict) else None
+            if _p is not None and 0.0 < _p < 1.0:
+                ens_votes.append(round(_p, 2))
+        except Exception as e:
+            print("ensemble vote", repr(e)[:100])
+    _med = median(ens_votes)
+    if _med is not None:
+        print("勘の確度: 票", ens_votes, "→ 中央値", _med)
+        final["kan_conf"] = _med
+    else:
+        print("勘の確度: アンサンブル不成立。執筆時の値を使用")
 
 # 執筆(LLM)が成功したか。失敗時は既存の良好なページを保持し上書きしない。
 generation_ok = bool(final)
@@ -335,6 +384,25 @@ jst = datetime.now(timezone(timedelta(hours=9)))
 links = "\n".join('<li><a href="' + html.escape(a["url"]) + '">' + html.escape(a["title"])
                   + '</a> <span class="m">' + html.escape(a["src"] + " " + a["meta"]) + "</span></li>" for a in picked)
 
+# variant perception: 参謀の確度と、最も近い市場価格の**乖離**こそが edge。
+# 相場を知らずに「非コンセンサス」は名乗れない。近い市場が無ければ何も出さない。
+edge_html = ""
+if final.get("kan_conf") and markets:
+    _kw = [w for w in re.findall(r"[A-Za-z][A-Za-z0-9.\-]{3,}", final.get("kan", ""))]
+    _near = None
+    for _m in markets:
+        if any(w.lower() in _m["q"].lower() for w in _kw):
+            _near = _m
+            break
+    if _near:
+        _mine = round(float(final["kan_conf"]) * 100)
+        _mkt = round(_near["p"] * 100)
+        _gap = _mine - _mkt
+        edge_html = ('<p class="m"><b>市場との差</b> 市場 ' + str(_mkt) + '% / 参謀 ' + str(_mine)
+                     + '% → 乖離 ' + ("+" if _gap >= 0 else "") + str(_gap) + 'pt'
+                     + ('（ここが edge。一致なら妙味なし）' if abs(_gap) >= 10 else '（ほぼ市場並み＝妙味は薄い）')
+                     + '<br><span class="kv">' + html.escape(_near["q"][:70]) + ' [' + _near["src"] + ']</span></p>')
+
 mj_html = ""
 if final["mijoriku"]:
     # 「未上陸」をLLMの主観でなく実測にする: 日本語ニュースを実際に引き、0件なら本当に未到達と言える。
@@ -377,9 +445,12 @@ if _tracking:
 ans_html = ""
 if _ans_huns:
     if _ans_st["total"]:
+        _br = memory.brier(_ans_huns)
         _head = ('<span class="hitrate">的中率 ' + str(round(_ans_st["rate"] * 100)) + '%</span> '
                  '<span class="m">(的中' + str(_ans_st["hit"]) + '/外し' + str(_ans_st["miss"])
-                 + '・判定待ち' + str(_ans_st["pending"]) + ')</span>')
+                 + '・判定待ち' + str(_ans_st["pending"]) + ')</span>'
+                 + (('<br><span class="m">Brier ' + ("%.3f" % _br["score"])
+                     + '（低いほど良い。常に50%と答えるだけなら0.250）</span>') if _br["score"] is not None else ""))
     else:
         _head = '<span class="m">まだ答え合わせ前。判定待ち ' + str(_ans_st["pending"]) + ' 件(期日が来たら○×が付く)</span>'
     # 次の決着(判定待ち期間にも張りを作る): 最近接の未来期日と残り日数
@@ -413,11 +484,15 @@ page = """<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-
 <div class="hint">「調べ直させる」→ GitHubで Run workflow を1タップ。数分で参謀が記憶を踏まえて考え直す。反映後にこのページを再読み込み。</div></header>
 <section class="reveal"><h2>今日の空気</h2>
 <p><span class="lb">表</span>""" + render_rich(final["omote"]) + """</p>
-<p><span class="lb">裏</span>""" + render_rich(final["ura"]) + """</p></section>
+<p><span class="lb">裏</span>""" + render_rich(final["ura"]) + """</p>""" + (
+  ('<p class="m"><b>退けた説</b> ' + render_rich(final["ura_taikou"]) + "</p>") if final.get("ura_taikou") else "") + """</section>
 <section class="reveal"><h2>で、どうする</h2><p>""" + render_rich(final["dousuru"]) + """</p></section>
 <section class="reveal"><h2>参謀の勘</h2><p>""" + render_rich(final["kan"]) + """</p>""" + (
   ('<p class="m"><b>根拠</b> ' + render_rich(final["kan_konkyo"]) + "</p>") if final.get("kan_konkyo") else "") + (
-  ('<p class="m"><b>外れるとすれば</b> ' + render_rich(final["kan_hantai"]) + "</p>") if final.get("kan_hantai") else "") + """</section>
+  ('<p class="m"><b>外れるとすれば</b> ' + render_rich(final["kan_hantai"]) + "</p>") if final.get("kan_hantai") else "") + (
+  ('<p class="m"><b>確度</b> ' + str(round(float(final["kan_conf"]) * 100)) + "%"
+   + ("（独立見積り " + "・".join(str(round(v * 100)) + "%" for v in ens_votes) + " の中央値）" if len(ens_votes) > 1 else "")
+   + "</p>") if final.get("kan_conf") else "") + edge_html + """</section>
 """ + (('<section class="reveal"><h2>一般人の超参謀</h2><p class="m">AIを普通に使う人向け・今日からできる一手</p><p>'
         + render_rich(final["ippan"]) + "</p></section>") if final.get("ippan") else "") + """
 """ + track_html + """

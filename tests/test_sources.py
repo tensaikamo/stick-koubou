@@ -134,6 +134,36 @@ def test_watch_ignores_minor_labs_and_noise():
     assert common.watch_diff(prev, _snap(p="0.0000100001")) == []          # 1%未満は報じない
 
 
+# ---- コンセンサスの値段(予測市場) ----
+def test_markets_parse_and_filter(monkeypatch):
+    manifold = json.dumps([
+        {"question": "Will OpenAI ship X?", "probability": 0.23, "outcomeType": "BINARY", "url": "u1"},
+        {"question": "解決済み", "probability": 0.5, "outcomeType": "BINARY", "isResolved": True},
+        {"question": "多肢の市場", "probability": 0.0, "outcomeType": "MULTIPLE_CHOICE"},  # 確率が無意味
+        {"question": "ほぼ確定", "probability": 0.995, "outcomeType": "BINARY"},           # 妙味なし
+    ])
+    poly = json.dumps([{"question": "Will Anthropic raise?", "outcomePrices": "[\"0.61\", \"0.39\"]"},
+                       {"question": "サッカーの試合", "outcomePrices": "[\"0.5\",\"0.5\"]"}])  # AI無関係
+    monkeypatch.setattr(common, "http", FakeHTTP({"manifold.markets": manifold,
+                                                  "gamma-api.polymarket.com": poly}))
+    got = common.fetch_markets()
+    qs = [m["q"] for m in got]
+    assert "Will OpenAI ship X?" in qs and "Will Anthropic raise?" in qs
+    assert "解決済み" not in qs and "多肢の市場" not in qs and "ほぼ確定" not in qs and "サッカーの試合" not in qs
+    assert all(0 < m["p"] < 1 for m in got)
+
+
+def test_markets_survive_failure(monkeypatch):
+    monkeypatch.setattr(common, "http", FakeHTTP({}))
+    assert common.fetch_markets() == []
+
+
+def test_median_resists_outlier():
+    assert common.median([0.3, 0.35, 0.95]) == 0.35     # 外れ値1票に引きずられない
+    assert common.median([0.2, 0.4]) == 0.30000000000000004 or abs(common.median([0.2, 0.4]) - 0.3) < 1e-9
+    assert common.median([]) is None
+
+
 def test_watch_step_saves_snapshot_and_survives_failure(workdir, monkeypatch):
     monkeypatch.setattr(common, "watch_fetch", lambda: _snap())
     assert common.watch_step() == []                     # 初回は差分なし
