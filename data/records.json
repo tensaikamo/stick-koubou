@@ -774,5 +774,30 @@
     "body_fetched": false,
     "model": "gemini-3.6-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-07-29-r01",
+    "created_at": "2026-07-29T07:35:27.051461+09:00",
+    "headline": "Anthropic CEOがオープンウェイトモデルの規制禁止に反対を表明",
+    "what_happened": "AnthropicのCEOであるDario Amodeiは公開声明を発表し、同社がオープンウェイトモデルの全面禁止を求めているという見方を否定した。危険な機能を持たないオープンモデルは公共財であるとし、保護主義的な禁止措置は国家安全保障上の懸念の解決にならないと主張した。",
+    "background": "米国政府内で外国製オープンウェイトモデルの使用規制が議論される中、大手AI企業によるロビー活動への批判が高まっていた。",
+    "changed": "Anthropicの公式見解として、安全リスクの管理とオープンモデル許容の境界線が明確化された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://www.anthropic.com/news/position-open-weights-models",
+      "title": "Our position on open-weights models",
+      "hn_score": 1142
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-07-28-r04",
+      "2026-07-28-r02",
+      "2026-07-28-r01",
+      "2026-07-27-r04",
+      "2026-07-27-r01",
+      "2026-07-26-r02"
+    ]
   }
 ]

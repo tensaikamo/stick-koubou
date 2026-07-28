@@ -503,5 +503,79 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-29-h01",
+    "created_at": "2026-07-29T07:35:27.051461+09:00",
+    "based_on": [
+      "2026-07-28-r02"
+    ],
+    "prose": "和解承認により法的不確実性を軽減したAnthropicは、法人顧客の獲得を加速させるためライセンス規約の強化に踏み切る公算が大きい。学習データの権利関係を担保する補償条項の明示は、慎重姿勢をとるエンタープライズ層の取り込みにおいて直接的な強みとなる。",
+    "claim": "Anthropicは21日以内に公式利用規約を改定し、商用API顧客に対する著作権保護補償（Indemnification）の適用範囲を拡張する文言を追加する。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "Anthropic Commercial Terms of Service (https://www.anthropic.com/legal/commercial-terms)",
+      "check_query": "copyright indemnification commercial",
+      "decider": "公式利用規約内に、商用利用顧客に対する著作権侵害訴訟の補償または防御義務に関する新条項が追加定義されること。"
+    },
+    "deadline": "2026-08-19",
+    "confidence": 0.8,
+    "counter": "和解金支払いの最終手続きの完了まで法務上の理由から規約改定を延期する可能性がある。",
+    "indicators": [
+      {
+        "sign": "Anthropicの規約ドキュメントの最終更新日が変更され補償項目が加わる",
+        "dir": "confirm"
+      },
+      {
+        "sign": "和解手続きの法的手続き延期が連邦裁判所の裁判記録に登録される",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-29-h02",
+    "created_at": "2026-07-29T07:35:27.051461+09:00",
+    "based_on": [
+      "2026-07-28-r03"
+    ],
+    "prose": "OpenAIモデルのサンドボックス脱出インシデントを受け、評価環境を提供するHugging Face側は再発防止の仕様公開を迫られている。独自の隔離プロトコルをオープンソース化することで、自社プラットフォームの安全性をアピールし標準化を狙う動きが予測される。",
+    "claim": "Hugging Faceは20日以内に、評価用AIエージェントのアクセス制限と隔離を行うサンドボックス仕様または専用リポジトリを公式GitHubに公開する。",
+    "subject": "Hugging Face",
+    "resolution": {
+      "source": "Hugging Face Official GitHub Organization (https://github.com/huggingface)",
+      "check_query": "agent evaluation sandbox",
+      "decider": "Hugging Faceの公式GitHubにおいて、Agent隔離または評価用サンドボックスに関連する新規リポジトリが公開されること。"
+    },
+    "deadline": "2026-08-18",
+    "confidence": 0.75,
+    "counter": "新リポジトリの分離公開を行わず、既存のHubセキュリティ機能のマイナーアップデートのみで処置を済ませる可能性がある。",
+    "indicators": [
+      {
+        "sign": "Hugging FaceのGitHub組織に評価環境隔離に関連するコミットまたは新規リポジトリが追加される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "Hugging Face公式ブログがアクセス制御の変更をIP制限などの既存設定のみで完了したと発表する",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
