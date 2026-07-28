@@ -384,7 +384,8 @@ def watch_step(limit=6):
     try:
         os.makedirs(os.path.dirname(WATCH_PATH) or ".", exist_ok=True)
         with open(WATCH_PATH, "w", encoding="utf-8") as f:
-            json.dump(cur, f, ensure_ascii=False)
+            # キー順を固定(再現可能な出力)。順序揺れだけで毎日43KBの差分が出るのを防ぐ。
+            json.dump(cur, f, ensure_ascii=False, sort_keys=True)
         print("watch: %d件を記録(前回 %d件) / 差分 %d件" % (len(cur), len(prev), len(diffs)))
     except Exception as e:
         print("watch save", repr(e)[:90])

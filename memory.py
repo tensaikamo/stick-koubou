@@ -125,7 +125,7 @@ def threads(records, days=45, top=4, compact=False):
     戻り: [(主体, [(日付, 見出し), ...(最大3件)]), ...]"""
     today = datetime.now(JST).date()
     groups = {}
-    for r in records:
+    for r in dedupe_by_url(records):      # 重複記事で「継続」を水増ししない
         d = (r.get("created_at", "") or "")[:10]
         try:
             if (today - datetime.strptime(d, "%Y-%m-%d").date()).days > days:
@@ -143,13 +143,29 @@ def threads(records, days=45, top=4, compact=False):
     return out
 
 
+def dedupe_by_url(records):
+    """同一 source.url の record は最初の1件だけ残す。
+    取り込み側でも重複は防いでいるが、**過去に溜まった重複**(実測54%)がスレッドを水増しし、
+    『同じ話が4日続く重要テーマ』という偽の継続性を作るため、読む側でも必ず落とす。
+    履歴そのものは改変しない(台帳には全件残る)。"""
+    seen, out = set(), []
+    for r in records:
+        u = ((r.get("source") or {}).get("url") or "").strip()
+        if u and u in seen:
+            continue
+        if u:
+            seen.add(u)
+        out.append(r)
+    return out
+
+
 def all_threads(records, days=90, min_len=2):
     """物語ページ用: 主体ごとに直近records(days日以内)を時系列で束ね、min_len件以上の
     スレッドを活発順(件数降順)に返す。戻り: [(主体, [(日付, 見出し, url), ...時系列昇順]), ...]。
     memory.threads は digest 用に top/compact で絞るが、こちらは全件を返して"線"を読者に見せる。"""
     today = datetime.now(JST).date()
     groups = {}
-    for r in records:
+    for r in dedupe_by_url(records):      # 同じ記事を毎日拾い直した分を落とす
         d = (r.get("created_at", "") or "")[:10]
         try:
             if (today - datetime.strptime(d, "%Y-%m-%d").date()).days > days:
@@ -222,8 +238,9 @@ def build_digest(records, hunches, compact=False):
     else:
         cal = "通算 的中%d/外し%d(的中率%d%%)。" % (st["hit"], st["miss"], round(st["rate"] * 100))
         parts = []
+        bands = _calibration(hunches)          # ループ外で1回だけ計算する
         for b in ["0.9+", "0.8-0.9", "0.7-0.8", "0.6-0.7", "0.5-0.6"]:
-            bd = _calibration(hunches).get(b)
+            bd = bands.get(b)
             if bd and bd[1] > 0:
                 parts.append("確度%s→実際%d%%(n=%d)" % (b, round(bd[0] / bd[1] * 100), bd[1]))
         if parts:

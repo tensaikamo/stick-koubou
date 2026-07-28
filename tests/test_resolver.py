@@ -132,6 +132,37 @@ def test_needs_review_not_rejudged_and_terminal(workdir, monkeypatch):
     assert h["h-stale"]["status"] == "unscorable" and not h["h-stale"]["needs_review"]  # 終端
 
 
+def test_kill_signal_does_not_remove_from_scoring(workdir, monkeypatch):
+    """生存者バイアス防止(B1): 死亡シグナルが点灯した予測も、期日には通常どおり採点される。
+    watchdog が needs_review を立てると resolver が二度と判定せず unscorable 化し、
+    『外れそうな予測ほど成績から消える』=打率が実際より良く見える、という穴があった。"""
+    today = datetime.now(resolver.JST).date()
+    y = (today - timedelta(days=1)).strftime("%Y-%m-%d")
+    h = _mk("h-alert", "OpenAIがGAする", y)
+    h["alert"] = True                      # 死亡シグナル点灯(表示用フラグ)
+    h["signals"] = [{"date": y, "sign": "公式が延期を告知", "dir": "kill", "why": "延期が公式に出た"}]
+    (workdir / "data/hunches.json").write_text(json.dumps([h], ensure_ascii=False), encoding="utf-8")
+    (workdir / "data/records.json").write_text("[]", encoding="utf-8")
+    fake = {"h-alert": {"result": "miss", "confidence": 0.9,
+                        "evidence": {"summary": "期日までにGAされなかった", "url": "https://x/y"}}}
+    fp = workdir / "fake.json"; fp.write_text(json.dumps(fake, ensure_ascii=False), encoding="utf-8")
+    monkeypatch.setenv("RESOLVER_FAKE_RESPONSE", str(fp))
+    resolver.main()
+    got = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))[0]
+    assert got["status"] == "resolved" and got["result"] == "miss"   # 採点された(消えていない)
+    assert memory.hit_stats([got])["total"] == 1                     # 打率の母数に載る
+
+
+def test_signals_are_passed_to_judge():
+    # 観測された兆候が判定プロンプトに含まれる(一次材料の取りこぼし防止)
+    now = datetime.now(resolver.JST)
+    h = _mk("s1", "何かが起きる", (now - timedelta(days=1)).strftime("%Y-%m-%d"))
+    h["signals"] = [{"date": "2026-07-26", "sign": "料金表に載る", "dir": "confirm",
+                     "why": "一覧に追加された"}]
+    p = resolver._judge_prompt(h, grounded=False)
+    assert "一覧に追加された" in p and "確認寄り" in p
+
+
 def test_resolved_are_idempotent(workdir, monkeypatch):
     fp = _setup(workdir)
     monkeypatch.setenv("RESOLVER_FAKE_RESPONSE", str(fp))

@@ -7,6 +7,12 @@ on:
 permissions:
   contents: write
 
+# cron と手動実行が重なると、両者が同じブランチへ push して rebase が衝突し
+# 最終コミットで失敗しうる。直列化する(実行中のものは止めない)。
+concurrency:
+  group: sanbo
+  cancel-in-progress: false
+
 jobs:
   run:
     runs-on: ubuntu-latest

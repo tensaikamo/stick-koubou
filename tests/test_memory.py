@@ -83,6 +83,19 @@ def _rs(rid, headline, title, url, days_ago):
             "headline": headline, "source": {"title": title, "url": url}}
 
 
+def test_dedupe_by_url_removes_fake_continuity():
+    """同じ記事を毎日拾い直した分を落とす(実測で重複率54%・スレッドが水増しされていた)。
+    履歴自体は消さず、読む側で落とす。"""
+    recs = [_rs("a", "和解が承認", "settle", "https://n/1", 3),
+            _rs("b", "和解が承認(再掲)", "settle", "https://n/1", 2),   # 同一URL
+            _rs("c", "和解が承認(再々掲)", "settle", "https://n/1", 1),  # 同一URL
+            _rs("d", "別のニュース", "other", "https://n/2", 1)]
+    assert len(memory.dedupe_by_url(recs)) == 2
+    # スレッドが「1つの話題が3日続いた」ように見えないこと
+    th = dict(memory.all_threads(recs, min_len=2))
+    assert not any(len(evs) > 2 for evs in th.values())
+
+
 def test_all_threads_groups_orders_and_carries_url():
     now = datetime.now(JST)
     d0 = (now - timedelta(days=3)).strftime("%Y-%m-%d")

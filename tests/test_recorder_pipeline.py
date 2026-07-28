@@ -137,6 +137,27 @@ def test_signal_display_and_no_false_verdict(workdir, monkeypatch):
     assert hit["result"] is None and hit["status"] == "pending"   # 自動で×にしない
 
 
+def test_duplicate_urls_do_not_create_new_records(workdir, monkeypatch):
+    """記憶の汚染防止(B2): 同じURLの記事が翌日も来た場合に record を増やさない。
+    HN上位は数日居座るため、素朴に記録すると重複率54%になり、記憶が
+    『同じ話が4日続く重要テーマ』という偽の継続性で汚染されていた。"""
+    _run(workdir, monkeypatch)
+    first = json.loads((workdir / "data/records.json").read_text(encoding="utf-8"))
+    assert len(first) == 3
+    # 翌日ぶんとして同じ記事集合をもう一度流す(runs の冪等ガードは外す)
+    (workdir / ("data/runs/%s.json" % datetime.now(recorder.JST).strftime("%Y-%m-%d"))).unlink()
+    _run(workdir, monkeypatch)
+    second = json.loads((workdir / "data/records.json").read_text(encoding="utf-8"))
+    assert len(second) == 3, "同一URLで record が増えている(重複)"
+    urls = [(r.get("source") or {}).get("url") for r in second]
+    assert len(set(urls)) == len(urls), "URLが重複している"
+    # 根拠の鎖は保たれる: hunch は既存 record の id を指す
+    huns = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))
+    ids = {r["id"] for r in second}
+    pend = [h for h in huns if h["status"] == "pending"]
+    assert pend and all(all(b in ids for b in h["based_on"]) for h in pend)
+
+
 def test_idempotent_second_run(workdir, monkeypatch):
     _run(workdir, monkeypatch)
     r1 = (workdir / "data/records.json").read_text(encoding="utf-8")

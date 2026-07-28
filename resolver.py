@@ -115,6 +115,14 @@ def _judge_prompt(h, grounded):
             "的中条件(decider): " + str(res.get("decider", "")) + "\n"
             "主体: " + str(h.get("subject", "")) + " / 作成日: " + str(h.get("created_at", ""))[:10]
             + " / 期限: " + str(h.get("deadline", "")) + "\n")
+    # 期間中に観測された指標の点灯は一次材料なので判定に渡す(見落とさないため)
+    sigs = h.get("signals") if isinstance(h.get("signals"), list) else []
+    if sigs:
+        body += ("期間中に観測された兆候(参考。これ自体は的中の証明ではない):\n"
+                 + "\n".join("- [%s] %s: %s" % (s.get("date", ""),
+                                                "確認寄り" if s.get("dir") != "kill" else "否定寄り",
+                                                str(s.get("why") or s.get("sign", ""))[:120])
+                             for s in sigs[-5:]) + "\n")
     rule = ("厳守: 公開情報で確認できない/不十分なら必ず unclear。憶測で hit/miss を出すな。"
             "miss は『起きなかったと確信できる時』だけ(単に証拠が見つからないだけなら unclear)。\n")
     tail = ('最後に判定を次のJSON1つだけで出力せよ(前に説明があってもよい): '

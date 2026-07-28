@@ -27,6 +27,8 @@ BODY_LIMIT = 8000            # 本文テキストは先頭8000字まで
 TOP_N = 8                    # 本文取得・記録対象にする上位記事数
 DEADLINE_MIN_DAYS = 3
 DEADLINE_MAX_DAYS = 30
+DEDUPE_DAYS = 30             # この日数内に同一URLの record があれば新規に起こさない
+RENDER_LIMIT = 100           # 台帳ページに描画する最大件数(全件描画だと確実に肥大する)
 
 # decider が観測手続きに落ちない曖昧表現(PHASE 3 の遮断キーワード・ヒューリスティック)
 VAGUE_WORDS = ["話題", "注目", "バズ", "盛り上が", "期待", "騒がれ", "人気", "有名", "評判"]
@@ -244,7 +246,8 @@ def validate_hunch(h, records, created_dt):
     if not (DEADLINE_MIN_DAYS <= dd <= DEADLINE_MAX_DAYS):
         return "deadline_days が+3〜+30日の範囲外"
     # based_on: 1件以上・実在index・rumorのみは不可
-    idxs = [i for i in based if isinstance(i, int) and 0 <= i < len(records)]
+    # 索引ずれ防止の空プレースホルダ(id="")は根拠として数えない
+    idxs = [i for i in based if isinstance(i, int) and 0 <= i < len(records) and records[i].get("id")]
     if not idxs:
         return "based_on が空、または実在 record を参照していない"
     if all(records[i].get("certainty") == "rumor" for i in idxs):
@@ -298,6 +301,21 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
     model = gen.get("_model") or "unknown"
 
     # --- records: article_index から source/body_fetched を実データで確定 ---
+    # 既出URLは新recordを起こさない(冪等な取り込み)。HN上位は数日居座るため、
+    # 素朴に記録すると同じ記事が毎日別recordになり(実測で重複率54%)、記憶が
+    # 「同じ話が4日続く重要テーマ」という**偽の継続性**で汚染される。
+    seen_urls = {}
+    for r in existing_records:
+        d = (r.get("created_at", "") or "")[:10]
+        try:
+            if (created_dt.date() - datetime.strptime(d, "%Y-%m-%d").date()).days > DEDUPE_DAYS:
+                continue
+        except Exception:
+            pass
+        u = ((r.get("source") or {}).get("url") or "").strip()
+        if u:
+            seen_urls[u] = r.get("id")
+
     internal_records = []   # 検証・based_on解決用の内部表現(certainty含む)
     new_records = []
     for rec in gen.get("records", []):
@@ -305,6 +323,13 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
             continue
         ai = rec.get("article_index")
         art = articles[ai] if isinstance(ai, int) and 0 <= ai < len(articles) else None
+        _u = (art or {}).get("url", "")
+        if _u and _u in seen_urls:
+            # 既出の事実。新recordは起こさず、根拠の鎖は既存recordのidで保つ。
+            internal_records.append({"id": seen_urls[_u], "certainty": "reported",
+                                     "headline": str(rec.get("headline") or "")})
+            print("record 重複のためスキップ(既出:%s): %s" % (seen_urls[_u], _u[:70]))
+            continue
         certainty = rec.get("certainty") if rec.get("certainty") in ("confirmed", "reported", "rumor") else "reported"
         source_tier = rec.get("source_tier") if rec.get("source_tier") in ("primary", "secondary") else "secondary"
         r_seq += 1
@@ -335,6 +360,9 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
                                      "headline": obj["headline"]})
             new_records.append(obj)
         else:
+            # 除外しても **索引をずらさない**(based_on はLLMが返した records の位置を指すため、
+            # 詰めると別の record に根拠が付け替わる)。空idはbased_on解決時に落とす。
+            internal_records.append({"id": "", "certainty": certainty, "headline": ""})
             print("record スキーマ不正のため除外:", repr(obj)[:160])
 
     # --- hunches: 検証ゲート + 再生成 + 採番 ---
@@ -365,7 +393,7 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
         # based_on(index)→ 実 record id へ変換
         based_idx = [i for i in (current.get("based_on") or []) if isinstance(i, int)
                      and 0 <= i < len(internal_records)]
-        based_ids = [internal_records[i]["id"] for i in based_idx]
+        based_ids = [internal_records[i]["id"] for i in based_idx if internal_records[i]["id"]]
 
         res = current.get("resolution") if isinstance(current.get("resolution"), dict) else {}
         try:
@@ -467,7 +495,7 @@ def render_records_page(records):
         body = '<p class="empty">まだ記録がありません。</p>'
     else:
         cards = []
-        for r in reversed(records):  # 新しい順
+        for r in list(reversed(records))[:RENDER_LIMIT]:  # 新しい順・上限(全件描画は必ず肥大する)
             c = r.get("certainty", "")
             src = r.get("source", {}) if isinstance(r.get("source"), dict) else {}
             url = src.get("url", "")
@@ -490,7 +518,9 @@ def render_records_page(records):
                              + '</a> <span class="m">HN ' + _esc(src.get("hn_score", 0)) + 'pt</span></p>')
             parts.append('<p class="kv">' + _esc(r.get("id", "")) + '</p></article>')
             cards.append("".join(parts))
-        body = ('<section><h2>記録の台帳 <span class="kv">(全' + str(len(records)) + '件)</span></h2>'
+        _more = ('（全' + str(len(records)) + '件中、新しい' + str(RENDER_LIMIT) + '件を表示）'
+                 if len(records) > RENDER_LIMIT else '(全' + str(len(records)) + '件)')
+        body = ('<section><h2>記録の台帳 <span class="kv">' + _more + '</span></h2>'
                 + "".join(cards) + '</section>')
     return _page_shell("記録の台帳", sub, nav, body)
 
@@ -515,6 +545,9 @@ def _hunch_card(h, today):
         parts.append('<span class="badge ' + cls + '">' + lab + '</span>')
     elif h.get("needs_review"):
         parts.append('<span class="badge b-review">要確認</span>')
+    elif h.get("alert"):
+        # 死亡シグナル点灯。判定は期日に通常どおり行う(採点から外さない)
+        parts.append('<span class="badge b-miss">危険信号</span>')
     else:
         parts.append('<span class="badge b-pending">判定待ち</span>')
     parts.append('<span class="kv">確度 ' + _esc(h.get("confidence", "")) + '</span>')
@@ -580,8 +613,8 @@ def render_hunches_page(hunches):
     if not hunches:
         body = '<p class="empty">まだ予測がありません。</p>'
     else:
-        resolved = [h for h in reversed(hunches) if h.get("status") == "resolved"]
-        pending = [h for h in reversed(hunches) if h.get("status") != "resolved"]
+        resolved = [h for h in reversed(hunches) if h.get("status") == "resolved"][:RENDER_LIMIT]
+        pending = [h for h in reversed(hunches) if h.get("status") != "resolved"][:RENDER_LIMIT]
         secs = ['<section><h2>打率 <span class="kv">(判定待ち ' + str(st["pending"]) + '件)</span></h2>' + rate + due_html + '</section>']
         if resolved:
             secs.append('<section><h2>答え合わせ済 <span class="kv">(' + str(len(resolved)) + '件)</span></h2>'
