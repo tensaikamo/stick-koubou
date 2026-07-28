@@ -12,7 +12,7 @@
 
 使い方: python preview.py
 """
-import os, shutil, tempfile
+import os, json, shutil, tempfile
 from datetime import datetime, timedelta
 
 import recorder
@@ -88,6 +88,88 @@ def demo_ledger():
     return records, hunches
 
 
+def b1_demo():
+    """B1(生存者バイアス)の before/after を**実際に resolver を動かして**測る。
+
+    同じ予測・同じ現実(=同じ判定結果)を、旧挙動(kill点灯で needs_review)と
+    新挙動(alert のみ)の2通りで通し、打率と Brier がどう変わるかを出す。
+    旧挙動では「外れそうだと自分で気づいた予測」が採点から消え、打率が実際より良く見えた。
+    戻り: (旧, 新) それぞれ {"rate","brier","n","dropped","detail"}。
+    LLM・ネットワークは使わない(resolver の fake seam を使う)。
+    """
+    import resolver
+    now = datetime.now(JST)
+    past = (now - timedelta(days=resolver.STALE_DAYS + 2)).strftime("%Y-%m-%d")  # 期日+STALE超
+
+    def make(old_style):
+        # 2件とも期日到来。h-a は当たり、h-b は外れ(死亡シグナルが点灯していた)
+        a = _hunch("b1-a", "当たった予測", -20, 0.80, subject="OpenAI")
+        b = _hunch("b1-b", "外れた予測(死亡シグナルが点灯していた)", -20, 0.75, subject="Anthropic")
+        for h in (a, b):
+            h["deadline"] = past
+        b["signals"] = [{"date": past, "sign": "公式が延期を告知", "dir": "kill",
+                         "why": "公式ブログが延期を明記した"}]
+        if old_style:
+            b["needs_review"] = True      # 旧: watchdog が needs_review を立てていた
+        else:
+            b["alert"] = True             # 新: 表示専用フラグ。判定は止めない
+        return [a, b]
+
+    fake = {"b1-a": {"result": "hit", "confidence": 0.9,
+                     "evidence": {"summary": "公式が告知した", "url": "https://example.com/a"}},
+            "b1-b": {"result": "miss", "confidence": 0.9,
+                     "evidence": {"summary": "期日までに起きなかった", "url": "https://example.com/b"}}}
+
+    out = []
+    cwd = os.getcwd()
+    for old_style in (True, False):
+        tmp = tempfile.mkdtemp(prefix="sanbo-b1-")
+        try:
+            os.makedirs(os.path.join(tmp, "data"), exist_ok=True)
+            os.chdir(tmp)
+            recorder.dump_json(recorder.HUNCHES_PATH, make(old_style))
+            recorder.dump_json(recorder.RECORDS_PATH, [])
+            fp = os.path.join(tmp, "fake.json")
+            with open(fp, "w", encoding="utf-8") as f:
+                json.dump(fake, f)
+            os.environ["RESOLVER_FAKE_RESPONSE"] = fp
+            resolver.main()
+            hs = recorder.load_json_array(recorder.HUNCHES_PATH)
+            st, br = memory.hit_stats(hs), memory.brier(hs)
+            out.append({
+                "rate": (round(st["rate"] * 100) if st["total"] else None),
+                "brier": br["score"], "n": br["n"],
+                "dropped": [h["id"] for h in hs if h.get("result") not in ("hit", "miss")],
+                "detail": [(h["id"], h.get("status"), h.get("result")) for h in hs]})
+        finally:
+            os.environ.pop("RESOLVER_FAKE_RESPONSE", None)
+            os.chdir(cwd)
+            shutil.rmtree(tmp, ignore_errors=True)
+    return out[0], out[1]
+
+
+def b1_html(old, new):
+    def cell(x):
+        return ("的中率 <b>" + (str(x["rate"]) + "%" if x["rate"] is not None else "—") + "</b>"
+                + " / Brier " + (("%.3f" % x["brier"]) if x["brier"] is not None else "—")
+                + " <span class=\"kv\">(採点された予測 " + str(x["n"]) + "件"
+                + (("・採点から消えた: " + "、".join(x["dropped"])) if x["dropped"] else "")
+                + ")</span>")
+    rows = "".join("<li>%s → status=%s result=%s</li>" % t for t in new["detail"])
+    return ('<section class="reveal"><h2>B1: 生存者バイアスの修正（実証）</h2>'
+            '<p class="lead">同じ予測・同じ現実（当たり1件／外れ1件。外れの方は事前に'
+            '「死亡シグナル」が点灯していた）を、修正前と修正後の両方で実際に答え合わせした結果。</p>'
+            '<div class="q"><div class="qt">修正前（kill点灯で needs_review を立てていた）</div>'
+            '<p class="kv">' + cell(old) + '</p>'
+            '<p class="kv">→ resolver が「判定済み」とみなして二度と採点せず、期日+' +
+            str(__import__("resolver").STALE_DAYS) + '日で採点対象外に。'
+            '<b>外れそうだと自分で気づいた予測ほど成績から消え、打率が実際より良く見えていた。</b></p></div>'
+            '<div class="q"><div class="qt">修正後（表示用の alert のみ。判定は止めない）</div>'
+            '<p class="kv">' + cell(new) + '</p>'
+            '<p class="kv">→ 死亡シグナルが点灯していても期日に通常どおり採点され、'
+            '<b>× が正しく成績に載る</b>。<ul class="kv">' + rows + '</ul></p></div></section>')
+
+
 def _finish_page(path):
     """生成済みHTMLに (1)デモバナーを差し込み (2)プレビュー内に存在しないページへの
     相対リンクを1階層上(本物)へ向け直す。preview/ 配下でリンク切れを出さないため。"""
@@ -104,10 +186,13 @@ def _finish_page(path):
         print("finish_page", path, repr(e)[:100])
 
 
-def preview_index(records, hunches):
-    """index の決着まわり(追跡中の予測 / 答え合わせ)だけを、本番と同じ panels で描く。"""
+def preview_index(records, hunches, b1=None):
+    """index の決着まわり(追跡中の予測 / 答え合わせ)だけを、本番と同じ panels で描く。
+    b1 が渡されれば、生存者バイアス修正の before/after 実証も載せる。"""
     today = datetime.now(JST).date()
     body = (panels.tracking_html(hunches, today) + panels.answers_html(hunches, today, memory))
+    if b1:
+        body = b1_html(*b1) + body
     return ("""<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark"><title>プレビュー — 決着表示の確認</title>
@@ -123,6 +208,9 @@ def preview_index(records, hunches):
 
 def main():
     records, hunches = demo_ledger()
+    b1 = b1_demo()          # 実際に resolver を動かして before/after を測る
+    print("B1実証: 修正前 的中率%s%% (採点%d件・消失%s) / 修正後 的中率%s%% (採点%d件)" % (
+        b1[0]["rate"], b1[0]["n"], b1[0]["dropped"] or "なし", b1[1]["rate"], b1[1]["n"]))
     out = os.path.abspath(OUT_DIR)
     cwd = os.getcwd()
     tmp = tempfile.mkdtemp(prefix="sanbo-preview-")
@@ -134,7 +222,7 @@ def main():
         recorder.dump_json(recorder.HUNCHES_PATH, hunches)
         recorder.render_pages()
         with open(os.path.join("docs", "index.html"), "w", encoding="utf-8") as f:
-            f.write(preview_index(records, hunches))
+            f.write(preview_index(records, hunches, b1))
         os.chdir(cwd)
         os.makedirs(out, exist_ok=True)
         for name in ("index.html", "hunches.html", "records.html", "threads.html"):
