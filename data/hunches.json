@@ -577,5 +577,79 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-30-h01",
+    "created_at": "2026-07-30T07:30:51.726476+09:00",
+    "based_on": [
+      "2026-07-28-r01"
+    ],
+    "prose": "Opus 5の投入により、エージェント環境におけるコード実行と検証の要求が急速に高まっている。これに伴い、Anthropicはサードパーティ製のMCPサーバー依存から脱却し、APIレイヤーでの直接実行環境を整える方向に動く可能性が高い。",
+    "claim": "Anthropicは12日以内に、Claude APIの公式ドキュメントにおいてOpus 5向けのコード実行サンドボックス環境（Code Execution Tool）のパブリックベータ仕様を公開する。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "Anthropic公式APIドキュメント(docs.anthropic.com)",
+      "check_query": "docs.anthropic.com code execution tool",
+      "decider": "docs.anthropic.comのツール利用ガイドに、APIから直接呼び出し可能なコード実行ツール（code_executionまたは類似の組み込みツール）の仕様およびパラメータ説明が掲載されること。"
+    },
+    "deadline": "2026-08-11",
+    "confidence": 0.78,
+    "counter": "自社インフラでのコード実行リスクを避け、既存のMCP（Model Context Protocol）経由の外部環境接続を推奨し続ける設計を選択する可能性がある。",
+    "indicators": [
+      {
+        "sign": "AnthropicのAPI変更履歴（Changelog）に「built-in tools」または「sandbox」に関する項目が追加される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "公式DiscordのAPIチャンネルで「コード実行は引き続きMCPを利用すること」とのアナウンスが出される",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-30-h02",
+    "created_at": "2026-07-30T07:30:51.726476+09:00",
+    "based_on": [
+      "2026-07-28-r02"
+    ],
+    "prose": "OpenAIがCodex SecurityをOSS化した目的は、自動修正エージェントの安全性をコミュニティに検証させる点にある。CLIの公開にとどまらず、CI/CDに直接組み込める自動検証用コンテナのテンプレートが追加される筋道が自然である。",
+    "claim": "OpenAIは15日以内に、GitHubのopenai/codex-securityリポジトリに修復コードの隔離検証用Dockerコンテナ構成ファイルをコミットする。",
+    "subject": "OpenAI",
+    "resolution": {
+      "source": "GitHubリポジトリ (github.com/openai/codex-security)",
+      "check_query": "openai/codex-security Dockerfile devcontainer",
+      "decider": "github.com/openai/codex-security のメインブランチに Dockerfile または .devcontainer フォルダが追加・マージされること。"
+    },
+    "deadline": "2026-08-14",
+    "confidence": 0.72,
+    "counter": "CLIツールの個別環境依存を解決できず、Docker構成の公式提供を延期してユーザー側でのビルドに任せる方針をとる可能性がある。",
+    "indicators": [
+      {
+        "sign": "リポジトリのPR一覧に「container」または「sandbox」を含むプルリクエストがOpenAI所属アカウントから作成される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "リポジトリのコミット履歴が10日間更新されない",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]

@@ -799,5 +799,30 @@
       "2026-07-27-r01",
       "2026-07-26-r02"
     ]
+  },
+  {
+    "id": "2026-07-30-r01",
+    "created_at": "2026-07-30T07:30:51.726476+09:00",
+    "headline": "OpenAIが脆弱性修復ツールCodex SecurityのCLIおよびSDKをOSS公開",
+    "what_happened": "OpenAIはGitHub上で「codex-security」リポジトリを開設し、ソフトウェアのセキュリティ脆弱性を検出・検証・修正するためのCLIツールおよびTypeScript SDKをオープンソースとして公開した。",
+    "background": "OpenAIはコード生成モデルのセキュリティ応用を進めており、自動修正エージェントの安全な運用基盤を整備する動きを見せている。",
+    "changed": "外部の開発者がOpenAIのセキュリティ検証ロジックやCLIツールを自身の開発パイプラインに直接組み込めるようになった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://github.com/openai/codex-security",
+      "title": "Codex Security",
+      "hn_score": 585
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-07-28-r03",
+      "2026-07-27-r03",
+      "2026-07-26-r03",
+      "2026-07-25-r03",
+      "2026-07-24-r01",
+      "2026-07-23-r02"
+    ]
   }
 ]
