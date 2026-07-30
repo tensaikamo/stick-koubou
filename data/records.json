@@ -824,5 +824,23 @@
       "2026-07-24-r01",
       "2026-07-23-r02"
     ]
+  },
+  {
+    "id": "2026-07-31-r01",
+    "created_at": "2026-07-31T07:38:35.651029+09:00",
+    "headline": "AI新興企業による研究論文の発表頻度が低下",
+    "what_happened": "本記事はタイトルのみに基づく。主要なAIスタートアップ企業が以前に比べて研究論文の公開を大幅に控える傾向にあることが論じられている。",
+    "background": "AI開発の商用化が進むにつれ、技術的優位性の維持や競合への情報漏洩防止のために商業的秘密主義が強まっているとされる。",
+    "changed": "AI技術の最新知見が公開論文ではなく独自のプロダクトやクローズドな技術として保持される傾向が顕著になっている。",
+    "certainty": "reported",
+    "source_tier": "secondary",
+    "source": {
+      "url": "https://www.science.org/content/article/ai-s-top-startups-are-barely-publishing-their-research",
+      "title": "AI's top startups are barely publishing their research",
+      "hn_score": 589
+    },
+    "body_fetched": false,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
   }
 ]

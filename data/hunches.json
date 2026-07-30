@@ -651,5 +651,116 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-31-h01",
+    "created_at": "2026-07-31T07:38:35.651029+09:00",
+    "based_on": [
+      "2026-07-28-r01"
+    ],
+    "prose": "15億ドルの著作権訴訟和解が承認されたことで、Anthropicは商用API顧客向けの権利保護規定を固める段階に入った。Opus 5の本格運用開始に合わせ、企業や個人開発者が安心して商用利用できるよう、同社は利用規約の補償条項を改定してリスク回避の姿勢を明確にする。この変化は商用プロダクトへの組み込みを進める個人開発者にとって権利上の保証を得る好機となる。",
+    "claim": "Anthropicは14日以内に公式利用規約（API Terms of Service）を更新し、商用API顧客に対する著作権侵害補償範囲を規定した新条項を追加する。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "Anthropic Commercial Terms of Service ページ",
+      "check_query": "Anthropic terms copyright indemnity",
+      "decider": "Anthropicの公式商用規約ページに「Copyright Indemnification」またはそれと同等の補償条項が追加更新されること"
+    },
+    "deadline": "2026-08-14",
+    "confidence": 0.8,
+    "counter": "和解手続きの完了処理に時間を要し、法務チームの判断で利用規約の文言変更が次四半期まで見送られる可能性がある。",
+    "indicators": [
+      {
+        "sign": "AnthropicのAPI利用規約ページ（/legal/commercial-terms）の最終更新日が更新される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "規約更新の告知メールまたは公式ブログでの法務関連アナウンスが発表されないまま14日が経過する",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-31-h02",
+    "created_at": "2026-07-31T07:38:35.651029+09:00",
+    "based_on": [
+      "2026-07-28-r02"
+    ],
+    "prose": "OpenAIがCodex SecurityのCLIとTypeScript SDKをGitHubで公開した流れを受け、 CI/CDパイプラインへの自動組み込みを加速させる動きが出る。個人の開発者が開発ワークフローに先回りして組み込むためのツールとして、GitHub Actions用のアクションまたはPyPIパッケージの公式配布が手配される。",
+    "claim": "OpenAIは12日以内に、GitHubの「openai/codex-security」リポジトリにGitHub Actions統合用ファイル（action.yml）を追加するか、またはPyPIへ公式Pythonパッケージを登録する。",
+    "subject": "OpenAI",
+    "resolution": {
+      "source": "GitHubリポジトリ openai/codex-security および PyPI",
+      "check_query": "openai codex-security action.yml",
+      "decider": "openai/codex-security リポジトリに action.yml が追加されるか、PyPIに codex-security パッケージが公開されること"
+    },
+    "deadline": "2026-08-12",
+    "confidence": 0.75,
+    "counter": "OpenAIがCLIとTypeScript SDKの初期メンテナスおよびバグ修正に注力し、CI統合機能の公式提供を後回しにする可能性がある。",
+    "indicators": [
+      {
+        "sign": "GitHubのopenai/codex-securityリポジトリのコミット履歴にCI関連のコミットが入る",
+        "dir": "confirm"
+      },
+      {
+        "sign": "リポジトリのREADME更新でTypeScript SDKのみのサポート継続が明記される",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-07-31-h03",
+    "created_at": "2026-07-31T07:38:35.651029+09:00",
+    "based_on": [
+      "2026-07-30-r01"
+    ],
+    "prose": "GoogleがGemini 3.6 Flashを投入したことで、既存のGemini 3.5 Flashモデルの位置付けが整理される。開発者が料金面での先回りを行えるよう、Google API Studioでの価格改定が実施され、旧世代モデルの非推奨化と3.6 Flashへの低価格移行が進む。",
+    "claim": "Googleは10日以内に、Google AI Studioの公式価格表ページにおいてGemini 3.6 Flashの価格を確定させ、Gemini 3.5 Flashを「Legacy」扱いに移動する。",
+    "subject": "Google",
+    "resolution": {
+      "source": "Google AI Studio Pricing ページ",
+      "check_query": "Google AI Studio pricing Gemini 3.6 Flash",
+      "decider": "Google AI Studioの価格表においてGemini 3.6 Flashのトークン単価が明記され、Gemini 3.5 FlashにLegacyまたは非推奨の注記が付与されること"
+    },
+    "deadline": "2026-08-10",
+    "confidence": 0.85,
+    "counter": "プレビュー期間が長引き、既存3.5 Flashの料金設定と非推奨化スケジュールが来月以降に先送りされる可能性がある。",
+    "indicators": [
+      {
+        "sign": "Google AI Studioのモデル選択ドロップダウンで3.6 Flashに「Default」タグが付く",
+        "dir": "confirm"
+      },
+      {
+        "sign": "Google CloudのリリースノートでGemini 3.5 Flashのサポート終了予定日に関する記載が提示されない",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
