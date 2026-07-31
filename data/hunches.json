@@ -762,5 +762,100 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-01-h01",
+    "created_at": "2026-08-01T07:34:16.192258+09:00",
+    "based_on": [
+      "2026-07-29-r01"
+    ],
+    "prose": "2026年8月1日にArtificial AnalysisがDeepSeek V4 Flash 0731のベンチマーク結果を公開した背景から、近いうちに同社の公式LLMリーダーボードに独立した評価対象として正式追加される動きが加速する。",
+    "claim": "Artificial Analysisの公式LLMリーダーボードにDeepSeek V4 Flash 0731が独立したモデルとして正式掲載される。",
+    "subject": "Artificial Analysis",
+    "resolution": {
+      "source": "Artificial Analysis Official Leaderboard",
+      "check_query": "DeepSeek V4 Flash",
+      "decider": "Artificial AnalysisのWebサイト上のLLM Leaderboardに「DeepSeek V4 Flash 0731」のモデル名とスコアが一覧表に追加されること。"
+    },
+    "deadline": "2026-08-15",
+    "confidence": 0.85,
+    "counter": "テストデータの不備や追加検証の必要性により、リーダーボードへの一般公開更新が延期される可能性がある。",
+    "indicators": [],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [
+      {
+        "draft": {
+          "based_on": [
+            6
+          ],
+          "prose": "OpenAIがCodex Securityをnpmパッケージとして無償公開した流れを受け、個人開発者のCI/CD統合を標準化させる動きが加速する。OpenAIは14日以内に、GitHubの「openai/codex-security」リポジトリのREADME.mdにおいて、GitHub Actions用の公式ワークフロー記述（action.ymlまたは利用例）のドキュメント追記を行う。",
+          "claim": "OpenAIは14日以内に、GitHubの「openai/codex-security」リポジトリのREADME.mdにGitHub Actions設定例を追加する。",
+          "subject": "OpenAI",
+          "resolution": {
+            "source": "https://github.com/openai/codex-security",
+            "check_query": "codex security github actions",
+            "decider": "GitHubの「openai/codex-security」リポジトリのREADME.md内に「uses:」または「.github/workflows」に関する記載が追加されること"
+          },
+          "deadline_days": 14,
+          "confidence": 0.75,
+          "counter": "CLIおよびSDKとしての単体利用に留め、GitHub Actions化はコミュニティ製サードパーティプラグインに委ねる可能性がある。",
+          "indicators": [
+            {
+              "sign": "リポジトリ内に.github/workflowsディレクトリまたはaction.ymlファイルがコミットされる",
+              "dir": "confirm"
+            },
+            {
+              "sign": "npmパッケージ@openai/codex-securityのアップデートログでCLI機能の削除が通知される",
+              "dir": "kill"
+            }
+          ]
+        },
+        "reason": "based_on が空、または実在 record を参照していない"
+      }
+    ],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-01-h02",
+    "created_at": "2026-08-01T07:34:16.192258+09:00",
+    "based_on": [
+      "2026-07-28-r01"
+    ],
+    "prose": "Claude Opus 5の提供開始に伴い、エージェント開発者はプロンプトキャッシュを利用した大容量コードベースの低コスト処理を狙う。Anthropicは10日以内に、Claude APIの公式モデル一覧ページ（docs.anthropic.com）において、Claude Opus 5のプロンプトキャッシュ（Prompt Caching）の書き込み・読み取り価格仕様を公式に明記する。",
+    "claim": "Anthropicは10日以内に、Claude API公式ドキュメントのモデル価格一覧ページにおいてClaude Opus 5のプロンプトキャッシュ価格単価を公開する。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://docs.anthropic.com/en/docs/about-claude/models",
+      "check_query": "Opus 5 prompt caching",
+      "decider": "公式ドキュメントのモデル一覧/価格表ページに「Claude Opus 5」のPrompt Caching単価が明記されること"
+    },
+    "deadline": "2026-08-11",
+    "confidence": 0.8,
+    "counter": "Opus 5の初期展開においてプロンプトキャッシュ機能の解放が遅れ、ドキュメント更新が保留される可能性がある。",
+    "indicators": [
+      {
+        "sign": "Anthropic公式Discordまたは開発者フォーラムでOpus 5のキャッシュ機能有効化がアナウンスされる",
+        "dir": "confirm"
+      },
+      {
+        "sign": "API呼び出し時にOpus 5モデル指定でprompt_cachingパラメータを設定すると400エラーが返り続ける",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]

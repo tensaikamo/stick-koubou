@@ -842,5 +842,48 @@
     "body_fetched": false,
     "model": "gemini-3.6-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-08-01-r01",
+    "created_at": "2026-08-01T07:34:16.192258+09:00",
+    "headline": "OpenAIがGPT-5.6の価格対性能の向上を発表",
+    "what_happened": "OpenAIは公式ブログにて「Advancing the price-performance frontier with GPT-5.6」と題する記事を公開した。なお、本文取得に失敗したためタイトルのみに基づいている。",
+    "background": "GPT-5系列のAPI運用において、各社とのトークンコストおよび処理速度を巡る競争が激化している。",
+    "changed": "GPT-5.6世代における推論コストあたりの処理性能水準が更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/",
+      "title": "Advancing the price-performance frontier with GPT‑5.6",
+      "hn_score": 598
+    },
+    "body_fetched": false,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-07-30-r01",
+      "2026-07-28-r03",
+      "2026-07-27-r03",
+      "2026-07-26-r03",
+      "2026-07-25-r03",
+      "2026-07-24-r01"
+    ]
+  },
+  {
+    "id": "2026-08-01-r02",
+    "created_at": "2026-08-01T07:34:16.192258+09:00",
+    "headline": "Artificial AnalysisがDeepSeek V4 Flash 0731のベンチマーク結果を公開",
+    "what_happened": "Artificial Analysisは、オープンウェイトモデル「DeepSeek V4 Flash 0731」の性能・価格分析を発表した。本モデルは1Mトークンのコンテキスト窓を備え、Intelligence Indexで50を記録しつつ、キャッシュ命中時$0.003/1Mトークンという低価格を実現した。",
+    "background": "中国のDeepSeekは高効率なアーキテクチャ設計により、極めて低いAPI価格でSOTA級性能を提供するオープンモデルを開発している。",
+    "changed": "長文コンテキストを前提としたエージェント構築におけるトークンコストの底値水準が更新された。",
+    "certainty": "reported",
+    "source_tier": "secondary",
+    "source": {
+      "url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+      "title": "DeepSeek V4 Flash 0731 Intelligence, Performance and Price Analysis",
+      "hn_score": 504
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
   }
 ]
