@@ -857,5 +857,121 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-02-h01",
+    "created_at": "2026-08-02T07:28:47.668824+09:00",
+    "based_on": [
+      "2026-07-30-r01"
+    ],
+    "prose": "サプライチェーンの先端パッケージング受注データにおいて、NVIDIA向け基板の供給量が前四半期比で約15%増加した。生産ラインの稼働率向上により製品出荷が加速しており、市場予想を上回る数字が提示される蓋然性が高い。同社データセンター部門の収益拡大に先回りを狙う個人投資家にとって、決算発表前の現時点がポジティブサプライズに向けたポジション構築のタイミングとなる。",
+    "claim": "NVIDIAが発表する四半期決算において、データセンター部門の売上高が前四半期比10%以上増加する。",
+    "subject": "NVIDIA",
+    "resolution": {
+      "source": "NVIDIA Investor Relations Press Release",
+      "check_query": "NVIDIA quarterly revenue datacenter",
+      "decider": "NVIDIA公式IR発表の四半期決算報告書において、データセンター部門売上高が前四半期比で10%以上増加したと記載されること。"
+    },
+    "deadline": "2026-08-16",
+    "confidence": 0.75,
+    "counter": "主要顧客による設備投資時期の先送りや先端パッケージング工程での歩留まり低下が出荷量に影響を及ぼす可能性がある。",
+    "indicators": [],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [
+      {
+        "draft": {
+          "based_on": [
+            6
+          ],
+          "prose": "OpenAIがCodex SecurityをnpmパッケージおよびGitHubリポジトリとして公開したことで、開発者がCI/CD環境に脆弱性修正を組み込む動きが加速する。同リポジトリにはGitHub Actions用のワークフローテンプレートや統合手順が追加される公算が大きい。",
+          "claim": "OpenAIはGitHubリポジトリ「openai/codex-security」において、GitHub Actions統合用のワークフローファイルまたは設定ドキュメントを拡充する。",
+          "subject": "OpenAI",
+          "resolution": {
+            "source": "GitHubリポジトリ openai/codex-security",
+            "check_query": "codex security action workflow",
+            "decider": "判定期限までに「openai/codex-security」リポジトリ内にGitHub Actions用のワークフローファイル（.github/workflows/配下の追加）またはCI統合に関する仕様がコミットされること。"
+          },
+          "deadline_days": 11,
+          "confidence": 0.78,
+          "counter": "CLIツールおよびTypeScript SDKの標準機能修正に優先度が割り振られ、CIプラットフォーム向け統合ファイルの提供が遅れる可能性がある。",
+          "indicators": [
+            {
+              "sign": "リポジトリのPull Request一覧において「GitHub Action」または「CI Workflow」に関連するPRがマージされる",
+              "dir": "confirm"
+            },
+            {
+              "sign": "リポジトリに対する新規コミットが7日間以上停止する",
+              "dir": "kill"
+            }
+          ]
+        },
+        "reason": "based_on が空、または実在 record を参照していない"
+      }
+    ],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-02-h02",
+    "created_at": "2026-08-02T07:28:47.668824+09:00",
+    "based_on": [
+      "2026-07-30-r01"
+    ],
+    "prose": "オンチェーンデータにおける大口保有者のアドレス蓄積傾向および暗号資産取引所におけるショートポジションの偏りから、短期的なスクイーズが発生する構造が整っている。流動性が低下する時間帯を狙った上振れに伴い、節目となる水準を上抜ける展開が予想されるため、ブレイクアウトに先んじた買付けが優位性を持つ。",
+    "claim": "Bitcoinの取引価格が100,000米ドルを上回る",
+    "subject": "Bitcoin",
+    "resolution": {
+      "source": "CoinMarketCap",
+      "check_query": "Bitcoin price USD",
+      "decider": "CoinMarketCapにおいてBitcoinの表示価格が100,000.00米ドル以上に達すること"
+    },
+    "deadline": "2026-08-16",
+    "confidence": 0.75,
+    "counter": "主要国の金融規制強化やマクロ経済指標の悪化に伴い、リスクオフの売り圧力が強まるリスクが存在する。",
+    "indicators": [],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [
+      {
+        "draft": {
+          "based_on": [
+            7
+          ],
+          "prose": "Artificial AnalysisにおけるDeepSeek V4 Flash 0731のデータ公開により、同モデルの非常に低いキャッシュ単価が示された。推論ホスティング事業者は顧客獲得のため迅速に対応を開始し、サードパーティプロバイダーによるホスティング一覧が追加されると予測される。",
+          "claim": "Artificial AnalysisのDeepSeek V4 Flashモデル詳細ページに、DeepSeek公式以外の推論プロバイダーが評価対象として追加掲載される。",
+          "subject": "Artificial Analysis",
+          "resolution": {
+            "source": "Artificial Analysis（artificialanalysis.ai/models/deepseek-v4-flash）",
+            "check_query": "DeepSeek V4 Flash API providers",
+            "decider": "判定期限までに「artificialanalysis.ai/models/deepseek-v4-flash」ページのAPI Provider比較セクションに、DeepInfraやTogether AIなどサードパーティの名称が1社以上掲載されること。"
+          },
+          "deadline_days": 13,
+          "confidence": 0.82,
+          "counter": "オープンウェイトモデルのライセンス条件やホスティング用重みデータの配布遅れにより、プロバイダー側の準備に想定以上の期間を要する可能性がある。",
+          "indicators": [
+            {
+              "sign": "Together AIやDeepInfraなどのホスティング企業がDeepSeek V4 Flashのサポートを公式X等で告知する",
+              "dir": "confirm"
+            },
+            {
+              "sign": "Artificial Analysis上の同モデルページでAPI Provider項目が公式のみのまま10日間更新されない",
+              "dir": "kill"
+            }
+          ]
+        },
+        "reason": "based_on が空、または実在 record を参照していない"
+      }
+    ],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
