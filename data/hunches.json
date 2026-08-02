@@ -973,5 +973,79 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-03-h01",
+    "created_at": "2026-08-03T07:29:32.595066+09:00",
+    "based_on": [
+      "2026-07-30-r01"
+    ],
+    "prose": "OpenAIが脆弱性検出・修復ツール「Codex Security」のTypeScript SDKとCLIを公開した流れを受け、既存のPython主導なセキュリティ研究・開発エコシステムを取り込む動きが見込まれる。CLI構成に加えてPython開発者が直接組み込めるライブラリの整備が進行中である。",
+    "claim": "OpenAIは10日以内に、PyPI（Python Package Index）にて「codex-security」またはそれに類する公式Pythonパッケージを公開する。",
+    "subject": "OpenAI",
+    "resolution": {
+      "source": "PyPI (pypi.org)",
+      "check_query": "codex security openai pypi",
+      "decider": "PyPIにOpenAI公式のCodex Security用Pythonパッケージが登録・公開されること。"
+    },
+    "deadline": "2026-08-13",
+    "confidence": 0.75,
+    "counter": "TypeScript SDKとCLIのバイナリ配布のみに機能を絞り、Python用パッケージの個別提供を見送る可能性がある。",
+    "indicators": [
+      {
+        "sign": "GitHubの openai/codex-security リポジトリに pyproject.toml または setup.py が追加される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "リポジトリのREADMEでPython非対応（TS/JS専業）が明確に提示される",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-03-h02",
+    "created_at": "2026-08-03T07:29:32.595066+09:00",
+    "based_on": [
+      "2026-07-27-r02"
+    ],
+    "prose": "GoogleがGemini 3.5 Flash Cyberを発表したことにより、セキュリティ分析市場におけるAPI顧客の獲得競走が開始されている。開発者が即座にテストおよび導入を開始できるよう、Google AI Studioでの価格掲載とAPI提供の準備が整いつつある。",
+    "claim": "Googleは7日以内に、Google AI Studioの公式価格一覧ドキュメントに「Gemini 3.5 Flash Cyber」の従量課金単価を追加する。",
+    "subject": "Google",
+    "resolution": {
+      "source": "Google AI Studio Pricing Documentation",
+      "check_query": "gemini 3.5 flash cyber pricing",
+      "decider": "Google AI StudioまたはVertex AIの公式価格表ページに「Gemini 3.5 Flash Cyber」のモデル名および入力/出力トークン単価が明記されること。"
+    },
+    "deadline": "2026-08-10",
+    "confidence": 0.7,
+    "counter": "限定的な招待制プライベートプレビューとして運用され、一般公開価格の表示が延期される可能性がある。",
+    "indicators": [
+      {
+        "sign": "Google AI Studioのモデルドロップダウン一覧に 3.5-flash-cyber が選択肢として出現する",
+        "dir": "confirm"
+      },
+      {
+        "sign": "公式ブログに『エンタープライズ個別契約限定モデル』である旨の追記が行われる",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
