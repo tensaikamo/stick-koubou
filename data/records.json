@@ -885,5 +885,23 @@
     "body_fetched": true,
     "model": "gemini-3.6-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-08-04-r01",
+    "created_at": "2026-08-04T07:34:06.377562+09:00",
+    "headline": "JFrogがSQLiteに対する大量の偽CVE報告（LLM Slop）の存在とNVDの評価過誤を指摘",
+    "what_happened": "セキュリティ企業のJFrogは、GitHub上の特定リポジトリから公開されたSQLiteに関する脆弱性レポート（CVE）の多くがAIによって自動生成された根拠のないハルシネーション（LLM slop）であると報告した。NVDやRed Hatなどの初期評価で高い深刻度スコアが誤って付与されていた実態を検証分析によって明かした。",
+    "background": "AIモデルを用いた脆弱性探索やコード生成の普及に伴い、検証が不十分な自動生成セキュリティレポートがデータベースへ混入するリスクが懸念されている。",
+    "changed": "自動生成された脆弱性報告によるセキュリティデータベースの汚染実態が可視化され、NVD等の一次審査プロセスにおける見直しの必要性が示された。",
+    "certainty": "reported",
+    "source_tier": "secondary",
+    "source": {
+      "url": "https://research.jfrog.com/post/sqlite-critical-cves-or-llm-slops/",
+      "title": "SQLite Critical CVEs or LLM Slop?",
+      "hn_score": 688
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
   }
 ]

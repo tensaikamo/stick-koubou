@@ -1047,5 +1047,79 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-04-h01",
+    "created_at": "2026-08-04T07:34:06.377562+09:00",
+    "based_on": [
+      "2026-07-28-r01"
+    ],
+    "prose": "Claude Opus 5のリリースにより、高精度かつ低単価なコーディングモデルの提供速度が加速している。AnthropicはWebユーザー向けの展開に続き、開発者の組み込み需要を囲い込むため、API料金表へOpus 5のBatch API適用価格を追加する手続きを即座に進める構造にある。",
+    "claim": "Anthropicは10日以内に、Anthropic APIの公式ドキュメント（料金ページ）において「Claude Opus 5」のBatch API料金体系を公表する。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "Anthropic API Pricing Documentation",
+      "check_query": "Claude Opus 5 pricing",
+      "decider": "Anthropic公式ドキュメント（docs.anthropic.com）の料金一覧ページに「Claude Opus 5」のBatch API価格（または50%割引等の適用）が明記されること。"
+    },
+    "deadline": "2026-08-14",
+    "confidence": 0.85,
+    "counter": "AnthropicがOpus 5の初期トラフィックをリアルタイムAPIリクエストの安定化に集中させ、Batch API対応の公開を次月中旬以降に延期する可能性がある。",
+    "indicators": [
+      {
+        "sign": "Anthropic APIのモデル一覧ページにOpus 5のAPIモデルIDが追加される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "公式Discordの発表チャネルでOpus 5のBatch API非対応が明告される",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-04-h02",
+    "created_at": "2026-08-04T07:34:06.377562+09:00",
+    "based_on": [
+      "2026-08-01-r01"
+    ],
+    "prose": "GoogleによるGemini 3.6 Flashの発表は、開発者プラットフォームであるVertex AIへの迅速な統合を前提としている。エンタープライズ顧客の獲得を巡るOpenAIやAnthropicとの競争上、クラウド側のモデル一覧ドキュメントへの仕様掲載は数日内に行われる見込みが高い。",
+    "claim": "Googleは14日以内に、Google Cloud Vertex AIの公式モデルドキュメントに「Gemini 3.6 Flash」のエンドポイント仕様と価格案内を追加する。",
+    "subject": "Google",
+    "resolution": {
+      "source": "Google Cloud Vertex AI Documentation",
+      "check_query": "Gemini 3 6 Flash",
+      "decider": "Google Cloud Vertex AIの公式ドキュメント（cloud.google.com/vertex-ai/generative-ai/docs/learn/models）に「Gemini 3.6 Flash」が追加・掲載されること。"
+    },
+    "deadline": "2026-08-18",
+    "confidence": 0.8,
+    "counter": "Gemini 3.6 Flashの初期提供がGoogle AI Studio（プロトタイプ環境）限定に留まり、Vertex AI側へのロールアウトが遅延する可能性がある。",
+    "indicators": [
+      {
+        "sign": "Google Cloud リリースノートに Vertex AI での Gemini 3.6 Flash サポートが記載される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "Vertex AI Model Garden の更新履歴で Gemini 3.6 Flash の追加見送りが通知される",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
