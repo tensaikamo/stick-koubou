@@ -18,7 +18,10 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "判定に必要な証拠情報が確認できなかったため、的中したかどうかの判定が不可能です。",
+      "url": ""
+    },
     "rejected": [
       {
         "draft": {
@@ -41,7 +44,8 @@
     ],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": true
   },
   {
     "id": "2026-07-22-h02",
@@ -140,11 +144,15 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "対象期間内にFireworks.ai公式ブログでモデル自動ルーティング機能の一般利用開始（GA）が告知されたか確認できる情報を取得できなかったため。",
+      "url": ""
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": true
   },
   {
     "id": "2026-07-23-h01",
@@ -1118,6 +1126,150 @@
     "result": null,
     "evidence": null,
     "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-05-h01",
+    "created_at": "2026-08-05T07:37:37.708779+09:00",
+    "based_on": [
+      "2026-07-28-r01"
+    ],
+    "prose": "Opus 5の発表により、API経由でコード生成タスクを自動化する開発者のモデル移行が急速に進む。開発コスト削減を狙うAPI利用者の需要に応えるため、Anthropicは開発者向けAPIドキュメントにおける料金表の更新を早期に行う足取りを見せている。",
+    "claim": "Anthropicは10日以内に、Anthropic APIの公式価格ドキュメントにおいて「Claude Opus 5」の入力・出力トークン単価を正式掲載する。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "Anthropic API Official Pricing Page",
+      "check_query": "Claude Opus 5 pricing",
+      "decider": "Anthropicの公式API価格ページ（docs.anthropic.comまたはanthropic.com/pricing）において「Claude Opus 5」の名称とトークン単位の利用料金が記載されること。"
+    },
+    "deadline": "2026-08-15",
+    "confidence": 0.85,
+    "counter": "Opus 5のAPIインフラプロビジョニングの負荷調整を理由に、パブリックAPIの価格掲載が数週間延期される可能性がある。",
+    "indicators": [
+      {
+        "sign": "Anthropic公式Discordの開発者チャネルでOpus 5のAPIモデルIDに関するアナウンスが行われる",
+        "dir": "confirm"
+      },
+      {
+        "sign": "AnthropicステータスページでAPIモデル追加に伴うメンテナンス告知が出される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "Anthropic公式ブログでOpus 5のAPI一般提供が翌月以降になると延期通知が掲載される",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-05-h02",
+    "created_at": "2026-08-05T07:37:37.708779+09:00",
+    "based_on": [
+      "2026-08-04-r01"
+    ],
+    "prose": "GoogleはGemini 3.5 Flash Cyberの発表により、エンタープライズおよび開発者向けのセキュリティ自動化市場での優位を固めようとしている。APIアクセス環境であるGoogle AI Studioへの早期展開が、開発者の囲い込みにおいて直接的な打撃となる。",
+    "claim": "Googleは12日以内に、Google AI Studioの利用可能モデル一覧および公式ドキュメントに「Gemini 3.5 Flash Cyber」を追加する。",
+    "subject": "Google",
+    "resolution": {
+      "source": "Google AI Studio Model Documentation",
+      "check_query": "Gemini Flash Cyber",
+      "decider": "Google AI Studioのモデル選択画面または公式ドキュメント（ai.google.dev/models）に「gemini-3.5-flash-cyber」のモデルIDが追加反映されること。"
+    },
+    "deadline": "2026-08-17",
+    "confidence": 0.8,
+    "counter": "サイバーセキュリティ特化モデルの性質上、誤用リスクを防ぐためにVertex AI限定の審査制提供に留まり、パブリックなAI Studioには展開されないリスクが存在する。",
+    "indicators": [
+      {
+        "sign": "Google Cloudの公式リリースノートにGemini 3.5 Flash Cyberのエンドポイント情報が追加される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "Google Developerの公式XアカウントでFlash CyberのAPI利用開始が周知される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "Google DeepMindの公式文書でFlash Cyberが「個別審査制の限定プレビュー」と定義される",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-05-h03",
+    "created_at": "2026-08-05T07:37:37.708779+09:00",
+    "based_on": [
+      "2026-07-28-r01"
+    ],
+    "prose": "大手クラウド事業者の設備投資計画増額と主要サプライヤーの出荷実績から、AIアクセラレータ需要の供給不足は継続している。市場コンセンサスは供給制約を過小評価しており、決算発表時の売上高は上方サプライズとなる軌道にある。直近の調整局面でポジションを仕込むことが、個人として市場の織り込みに先回りする有効な手段となる。",
+    "claim": "NVIDIAの次回決算におけるデータセンター部門売上高が280億ドルを上回る。",
+    "subject": "NVIDIA",
+    "resolution": {
+      "source": "NVIDIA Investor Relations SEC Form 8-K",
+      "check_query": "NVIDIA datacenter quarterly revenue",
+      "decider": "NVIDIAが開示する2027年度第2四半期決算の8-Kレポートにおいて、Data Center部門の四半期売上高が280億米ドル以上と記載されること。"
+    },
+    "deadline": "2026-08-26",
+    "confidence": 0.82,
+    "counter": "主要カスタマーによる自社製AIチップへの切り替え速度が予想を超えた場合、成長率が急速に鈍化するリスクがある。",
+    "indicators": [],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [
+      {
+        "draft": {
+          "based_on": [
+            4
+          ],
+          "prose": "SQLiteの偽CVE事案で露呈したAIスロップによる脆弱性データベースの汚染は、オープンソースエコシステムの信用を揺るがしている。リポジトリ管理と脆弱性データベースを運用するGitHubは、スパム的なAI報告の排除に向けた運用規約の改訂に踏み切る。",
+          "claim": "GitHubは14日以内に、GitHub Advisory Databaseへの報告ガイドラインにおいてAI生成コンテンツの提出・検証に関する明確な規制基準を公表する。",
+          "subject": "GitHub",
+          "resolution": {
+            "source": "GitHub Blog or Advisory Database Repository",
+            "check_query": "GitHub Advisory AI rules",
+            "decider": "GitHub公式ブログまたはGitHub Advisory Database（github/advisory-database）のCONTRIBUTINGガイドラインにおいて、AI/LLMによって生成された脆弱性アドバイザリの受付条件または事前検証義務に関する公式方針が追加記載されること。"
+          },
+          "deadline_days": 14,
+          "confidence": 0.75,
+          "counter": "GitHubが個別の規約改訂を行わず、NVDやCISAなどの外部機関による全般的な脆弱性評価プロセスの変更を静観する姿勢をとる可能性がある。",
+          "indicators": [
+            {
+              "sign": "github/advisory-databaseリポジトリのPull Requestテンプレートに「AI利用の有無」を尋ねるチェックボックスが追加される",
+              "dir": "confirm"
+            },
+            {
+              "sign": "GitHub Security Blogで脆弱性報告におけるハルシネーション対策に関する記事が公開される",
+              "dir": "confirm"
+            },
+            {
+              "sign": "NVDがAI生成脆弱性報告の受付を全面停止する声明を単独で発行しGitHub側の動きが不必要となる",
+              "dir": "kill"
+            }
+          ]
+        },
+        "reason": "based_on が空、または実在 record を参照していない"
+      }
+    ],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1"
