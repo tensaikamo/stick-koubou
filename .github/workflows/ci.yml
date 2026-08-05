@@ -23,6 +23,6 @@ jobs:
       - name: Install deps
         run: pip install requests pytest
       - name: Compile
-        run: python -m py_compile common.py memory.py recorder.py resolver.py sanbo.py
+        run: python -m py_compile common.py memory.py recorder.py resolver.py sanbo.py brief.py panels.py preview.py
       - name: Tests (offline, no API)
         run: pytest -q tests/

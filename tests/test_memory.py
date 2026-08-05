@@ -121,6 +121,35 @@ def test_next_due_returns_nearest_future():
     assert nd is not None and nd[1] == 2  # 最近接=2日後
 
 
+def test_confidence_moves_on_signal_and_stays_bounded():
+    """指標が点灯したら確度を1段動かす(逐次ベイズ更新)。従来は点灯を表示するだけで、
+    確度は作成日のまま固まっていた。Brier は確度の正しさを測るので、期日に近いほど
+    確度が実態へ寄る方がスコアも良くなる。"""
+    up = memory.update_confidence(0.70, "confirm")
+    dn = memory.update_confidence(0.70, "kill")
+    assert up > 0.70 > dn
+    # ログオッズ空間なので上下は対称(0.7から同じ幅だけ動く)
+    assert abs((up - 0.70) - (0.70 - dn)) < 0.02
+    # 0/1 に振り切らない(振り切ると Brier が壊滅的に効く)
+    c = 0.9
+    for _ in range(30):
+        c = memory.update_confidence(c, "confirm")
+    assert c <= memory.CONF_CEIL
+    c = 0.5
+    for _ in range(30):
+        c = memory.update_confidence(c, "kill")
+    assert c >= memory.CONF_FLOOR
+    # すでに確信している読みは小さな兆候で揺れにくい(中央付近より動きが小さい)
+    assert (memory.update_confidence(0.92, "confirm") - 0.92) < \
+           (memory.update_confidence(0.50, "confirm") - 0.50)
+
+
+def test_confidence_update_is_safe_on_garbage():
+    assert memory.update_confidence(None, "confirm") is None
+    assert memory.update_confidence("x", "kill") == "x"
+    assert memory.update_confidence(0.7, "unknown") == 0.7   # 未知の向きは動かさない
+
+
 def test_next_due_none_when_all_past_or_empty():
     today = datetime.now(JST).date()
     assert memory.next_due([], today) is None

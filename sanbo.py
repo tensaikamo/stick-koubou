@@ -1,4 +1,4 @@
-import os, re, json, html
+import os, json, html
 from datetime import datetime, timezone, timedelta
 from common import (GeminiClient, fetch_all, fetch_jp_hits, fetch_markets, watch_step,
                     median, parse_json, PAGE_CSS)
@@ -6,6 +6,8 @@ from recorder import (fetch_body, load_json_array, dump_json, HUNCHES_PATH,
                       render_pages)   # 記録層のテスト済み実装を再利用
 import memory
 import panels
+# 組み立ての判断ロジックはテスト可能な純関数として brief.py に置く(sanbo.py は台本のまま)
+from brief import unwrap_list, render_rich, norm_final, consensus_note, T_RE  # noqa: F401
 
 API_KEY = os.environ.get("GEMINI_API_KEY", "")
 if not API_KEY:
@@ -86,30 +88,6 @@ PERSONA = """読者はただ一人。以下の人物だけに向けて書け。
 【反ピボット・着地優先】読者が詰まっているのは着想不足ではなく着地不足だ。毎朝「今すぐ新しいことを始めろ」と別のネタへ乗り換えさせるのは、弱点を増幅する。「で、どうする」は、既に動いている流れに乗る/仕込む/続きを追う具体を優先しろ。過去の【参謀の記憶】がある場合は、それを踏まえて同じ賭けを継続・更新しろ(毎朝ピボットを作るな)。
 """
 
-def unwrap_list(v):
-    # {"selected": [..]} のようにオブジェクトで包まれた配列も許容する
-    if isinstance(v, dict):
-        v = next((x for x in v.values() if isinstance(x, list)), None)
-    return v if isinstance(v, list) else None
-
-# 正しい形の用語タグ <t data-d='解説'>用語</t> だけを通すパターン。
-# 属性はシングルクォート指定(JSON文字列内の二重引用符エスケープ漏れでJSON全体が
-# 壊れる事故が実際に起きたため)だが、二重引用符も後方互換で受ける
-T_RE = re.compile(r"""<t\s+data-d=(?:'([^'<>]{1,160})'|"([^"<>]{1,160})")\s*>([^<>]{1,60})</t>""")
-
-def render_rich(text):
-    # モデル出力をHTML化する唯一の経路。正規形のtタグのみ再構築し、
-    # それ以外(他のタグ・壊れたtタグ)はすべてエスケープしてページ破壊を防ぐ
-    text = str(text)
-    out, pos = [], 0
-    for m in T_RE.finditer(text):
-        out.append(html.escape(text[pos:m.start()]))
-        out.append('<t data-d="' + html.escape(m.group(1) or m.group(2), quote=True) + '">'
-                   + html.escape(m.group(3)) + "</t>")
-        pos = m.end()
-    out.append(html.escape(text[pos:]))
-    return "".join(out)
-
 # 情報源は3層(T1=一次情報・発表前の兆候 / T2=実勢 / T3=二次)。話題化した記事だけを読む
 # 構造から抜けるため、公式ブログ・arXiv・求人・規制・SEC・SDKリリースを直接読む。
 arts = fetch_all()
@@ -130,10 +108,15 @@ diff_block = ("\n\n=== 本日検知した「静かな変化」(公式発表な�
 # resolver は needs_review が立った予測を二度と判定しないため、それを使うと「外れそうだと
 # 自分で気づいた予測ほど採点から消える」(生存者バイアスで打率が実際より良く見える)。
 # 表示専用の alert を立て、判定は必ず resolver が期日に行う。
+WATCH_MAX = 24       # 1回の見張りで対象にする判定待ち予測の上限(期日の近い順に取る)
 watchdog_note = ""
 try:
     _huns = load_json_array(HUNCHES_PATH)
     _pend = [h for h in _huns if h.get("status") == "pending" and h.get("indicators")]
+    # 期日の近い順に見張る。台帳順(=古い順)で上限を切ると、決着が近い新しい予測ほど
+    # 監視から落ちる(実測: 監視中18件に対し上限12で6件が黙って外れていた)。
+    _pend.sort(key=lambda h: str(h.get("deadline", "9999-99-99")))
+    _pend = _pend[:WATCH_MAX]
     if _pend and (diffs or arts):
         _events = ("\n".join("- " + d["title"] for d in diffs[:8])
                    + "\n" + "\n".join("- " + a["title"] for a in arts[:20]))
@@ -141,7 +124,7 @@ try:
             "%s / %s: " % (h.get("id"), str(h.get("claim", ""))[:50])
             + " | ".join("[%d]%s(%s)" % (i, x.get("sign", ""), x.get("dir", ""))
                          for i, x in enumerate(h.get("indicators") or []))
-            for h in _pend[:12])
+            for h in _pend)
         _wd = parse_json(gemini(
             "次は追跡中の予測と、その『生死を示す観測点(指標)』の一覧だ。\n" + _watch_list
             + "\n\n次は本日実際に起きた事象の一覧だ。\n" + _events
@@ -164,14 +147,23 @@ try:
             _h.setdefault("signals", [])
             if any(s.get("sign") == _ind.get("sign") and s.get("date") == _today for s in _h["signals"]):
                 continue                                   # 同日重複は積まない(冪等)
+            _dir = _ind.get("dir", "confirm")
+            # 逐次ベイズ更新: 点灯したら確度を1段だけ動かす。従来は点灯を**表示するだけ**で
+            # 確度は作成日のまま固まっていた。Brier は確度の正しさを測るので、期日に近いほど
+            # 確度が実態へ寄る方がスコアも良くなる。動かした跡は signals に残して追えるようにする。
+            _before = _h.get("confidence")
+            _after = memory.update_confidence(_before, _dir)
             _h["signals"].append({"date": _today, "sign": _ind.get("sign", ""),
-                                  "dir": _ind.get("dir", "confirm"),
-                                  "why": str(_hit.get("why") or "")[:200]})
+                                  "dir": _dir,
+                                  "why": str(_hit.get("why") or "")[:200],
+                                  "conf_before": _before, "conf_after": _after})
             _h["signals"] = _h["signals"][-10:]            # 際限なく積まない
-            if _ind.get("dir") == "kill":
+            if isinstance(_after, float):
+                _h["confidence"] = _after
+            if _dir == "kill":
                 # 表示用の警告のみ。needs_review は resolver 専用(判定を止めない)
                 _h["alert"] = True
-            _lit.append((_h.get("id"), _ind.get("dir"), _ind.get("sign", "")))
+            _lit.append((_h.get("id"), _dir, _ind.get("sign", "")))
         if _lit:
             dump_json(HUNCHES_PATH, _huns)                 # 追記のみ・他フィールドは不変
             render_pages()                                 # 台帳へ即反映
@@ -261,34 +253,6 @@ if picked:
         print("memo", e)
 
 # --- 3段目: 執筆 ---
-def norm_final(b):
-    # 配列ラップを剥がし、4セクションが揃っているかを検証する
-    if isinstance(b, list):
-        b = next((x for x in b if isinstance(x, dict)), None)
-    if not isinstance(b, dict):
-        if b is not None:
-            print("final unexpected shape:", repr(b)[:200])
-        return None
-    k = b.get("kuki") if isinstance(b.get("kuki"), dict) else {}
-    r = {"omote": str(k.get("omote") or "").strip(), "ura": str(k.get("ura") or "").strip(),
-         "dousuru": str(b.get("dousuru") or "").strip(), "kan": str(b.get("kan") or "").strip(),
-         "kan_konkyo": str(b.get("kan_konkyo") or "").strip(),  # 勘の根拠(任意)
-         "kan_hantai": str(b.get("kan_hantai") or "").strip(),  # 反証条件(任意)
-         "kan_conf": b.get("kan_conf"),                          # 確度(任意・後段で中央値に置換)
-         "ura_taikou": str(b.get("ura_taikou") or "").strip(),   # 退けた対抗仮説(ACH・任意)
-         "ippan": str(b.get("ippan") or "").strip(),  # 一般人の超参謀(任意・無くてもフォールバックは動く)
-         "mijoriku": []}
-    if not (r["omote"] and r["ura"] and r["dousuru"] and r["kan"]):
-        print("final missing sections:", repr(b)[:200])
-        return None
-    mj = b.get("mijoriku")
-    for x in (mj if isinstance(mj, list) else []):
-        if isinstance(x, dict) and all(str(x.get(f) or "").strip() for f in ("title", "desc", "why")):
-            r["mijoriku"].append({f: str(x[f]) for f in ("title", "desc", "why")})
-        if len(r["mijoriku"]) == 2:
-            break
-    return r
-
 final = None
 if picked:
     # 外部由来のテキストは資料として明示的に囲う(中の命令には従わない=PERSONAで規定)
@@ -366,6 +330,7 @@ if final:
 # Halawi(NeurIPS24)/Nostreambot: 単発より複数見積もりの集約が強い。独立にK回見積もり中央値を採る
 # (外れ値に強い)。1票は別モデル(flash-lite)へ振り相関を下げる。失敗時は執筆時の確度のまま(壊さない)。
 ens_votes = []
+ens_note = ""   # 票が割れたかの注記(accuracy–correlation effect: 似た票の合議は利得が無い)
 if final and final.get("kan"):
     _ens_prompt = (PERSONA + "\n次の予測が的中する確率だけを見積もれ。\n予測: " + final["kan"]
                    + ("\n根拠: " + final["kan_konkyo"] if final.get("kan_konkyo") else "")
@@ -409,8 +374,10 @@ if final and final.get("kan"):
             break
     print("市場マッチ:", (market_match["q"][:60] if market_match else "該当なし(乖離は表示しない)"))
     _med = median(ens_votes)
+    _spread, ens_note = consensus_note(ens_votes)
     if _med is not None:
-        print("勘の確度: 票", ens_votes, "→ 中央値", _med)
+        print("勘の確度: 票", ens_votes, "→ 中央値", _med,
+              ("/ 票の幅 %.2f" % _spread) if _spread is not None else "")
         final["kan_conf"] = _med
     else:
         print("勘の確度: アンサンブル不成立。執筆時の値を使用")
@@ -544,6 +511,7 @@ page = """<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-
   ('<p class="m"><b>外れるとすれば</b> ' + render_rich(final["kan_hantai"]) + "</p>") if final.get("kan_hantai") else "") + (
   ('<p class="m"><b>確度</b> ' + str(round(float(final["kan_conf"]) * 100)) + "%"
    + ("（独立見積り " + "・".join(str(round(v * 100)) + "%" for v in ens_votes) + " の中央値）" if len(ens_votes) > 1 else "")
+   + (' <span class="kv">' + html.escape(ens_note) + "</span>" if ens_note else "")
    + "</p>") if final.get("kan_conf") else "") + edge_html + """</section>
 """ + (('<section class="reveal"><h2>一般人の超参謀</h2><p class="m">AIを普通に使う人向け・今日からできる一手</p><p>'
         + render_rich(final["ippan"]) + "</p></section>") if final.get("ippan") else "") + """

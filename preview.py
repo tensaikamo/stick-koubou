@@ -58,13 +58,16 @@ def demo_ledger():
         _hunch("demo-h04", "証拠が足りず判定不能のまま保留", -6, 0.60, "pending", None,
                subject="Meta", needs_review=True,
                evidence={"summary": "公開情報では確認できなかった", "url": ""}),
-        _hunch("demo-h05", "確認シグナルが点灯した判定待ちの予測", 9, 0.45, "pending", None,
+        _hunch("demo-h05", "確認シグナルが点灯して確度が上がった判定待ちの予測", 9, 0.62, "pending", None,
                subject="Anthropic",
                indicators=[{"sign": "料金ページに新モデルが載る", "dir": "confirm"},
                            {"sign": "公式が延期を告知する", "dir": "kill"}],
+               # 逐次ベイズ更新の跡: 点灯で 0.45 → 0.62 へ動いた(従来は表示するだけで動かなかった)
                signals=[{"date": datetime.now(JST).strftime("%Y-%m-%d"),
                          "sign": "料金ページに新モデルが載る", "dir": "confirm",
-                         "why": "OpenRouterの一覧に該当モデルが追加された"}]),
+                         "why": "OpenRouterの一覧に該当モデルが追加された",
+                         "conf_before": 0.45,
+                         "conf_after": memory.update_confidence(0.45, "confirm")}]),
         _hunch("demo-h06", "死亡シグナルが点灯し要確認になった予測", 14, 0.30, "pending", None,
                subject="xAI", needs_review=True,
                indicators=[{"sign": "当該部門の求人が取り下げられる", "dir": "kill"}],
@@ -75,14 +78,17 @@ def demo_ledger():
                indicators=[{"sign": "SDKに新フラグが追加される", "dir": "confirm"}]),
     ]
     now = datetime.now(JST)
+    # 最後の1件は3日前と同じURL(=同じ記事の再掲)。台帳が重複を1件にまとめることを見せる。
     records = [{"id": "demo-r01", "created_at": (now - timedelta(days=d)).isoformat(),
                 "headline": h, "what_happened": "デモ用の記録です。", "background": "デモ",
                 "changed": "デモ", "certainty": "reported", "source_tier": "secondary",
-                "source": {"url": "https://example.com/demo", "title": t, "hn_score": 100},
+                "source": {"url": u, "title": t, "hn_score": 100},
                 "body_fetched": True, "model": "demo", "related_ids": []}
-               for d, h, t in [(3, "OpenAIが新機能を発表", "OpenAI ships feature"),
-                               (2, "OpenAIが価格を改定", "OpenAI changes pricing"),
-                               (1, "Anthropicが提携を発表", "Anthropic partners")]]
+               for d, h, t, u in [
+                   (3, "OpenAIが新機能を発表", "OpenAI ships feature", "https://example.com/a"),
+                   (2, "OpenAIが価格を改定", "OpenAI changes pricing", "https://example.com/b"),
+                   (1, "Anthropicが提携を発表", "Anthropic partners", "https://example.com/c"),
+                   (0, "OpenAIが新機能を発表(再掲)", "OpenAI ships feature", "https://example.com/a")]]
     for i, r in enumerate(records):
         r["id"] = "demo-r%02d" % (i + 1)
     return records, hunches
@@ -148,6 +154,109 @@ def b1_demo():
     return out[0], out[1]
 
 
+class _QuotaClient:
+    """API が 429 で落ち、実Web確認(グラウンディング)に届かない状態のダミー。
+    2026-08-05 に実際に起きた障害の再現。"""
+    last_grounding_urls = None
+
+    def generate_grounded(self, prompt):
+        raise RuntimeError("HTTPError 429: Too Many Requests")
+
+    def generate(self, prompt, response_schema=None, model=None):
+        return ('{"result":"unclear","evidence":{"summary":"証拠情報を取得できなかったため",'
+                '"url":""},"confidence":0.0}')
+
+
+class _RecoveredClient:
+    """翌日、APIが復旧して実Web確認ができた状態のダミー。"""
+    last_grounding_urls = [{"title": "公式ブログ", "url": "https://example.com/official"}]
+
+    def generate_grounded(self, prompt):
+        return ('検索の結果、公式ブログで一般提供が告知されていた。'
+                '{"result":"hit","evidence":{"summary":"公式が一般提供を告知","url":""},"confidence":0.9}')
+
+
+def a1_demo():
+    """A1(決着を落とさない)の before/after を**実際に resolver を動かして**測る。
+
+    1日目に API が 429 で落ち、2日目には復旧する、という同じ現実を2通りで通す。
+    旧挙動: 1日目の失敗で needs_review が立ち、以後 resolver は二度と判定せず、
+            期日+STALE_DAYS で unscorable=**永久に採点から消える**。
+    新挙動: 1日目は「やり直す」と記録するだけ。2日目に判定され、正しく採点される。
+    2026-08-05、参謀の初の答え合わせ2件はこれで失われた。
+    戻り: (旧, 新) それぞれ {"n","rate","status","result","note"}。
+    """
+    import resolver
+    now = datetime.now(JST)
+    cwd, out = os.getcwd(), []
+
+    def run(old_style):
+        tmp = tempfile.mkdtemp(prefix="sanbo-a1-")
+        real_client = resolver.GeminiClient
+        try:
+            os.makedirs(os.path.join(tmp, "data"), exist_ok=True)
+            os.chdir(tmp)
+            h = _hunch("a1-x", "APIが詰まった日に期日を迎えた予測", -20, 0.70)
+            # 期日は STALE_DAYS を超えて過去(=旧挙動なら終端まで進む)
+            h["deadline"] = (now - timedelta(days=resolver.STALE_DAYS + 2)).strftime("%Y-%m-%d")
+            recorder.dump_json(recorder.HUNCHES_PATH, [h])
+            recorder.dump_json(recorder.RECORDS_PATH, [])
+            os.environ["GEMINI_API_KEY"] = "demo"
+
+            if old_style:
+                # 旧: 429 の unclear で needs_review が立っていた状態を作る
+                h["needs_review"] = True
+                h["evidence"] = {"summary": "証拠情報を取得できなかったため", "url": ""}
+                recorder.dump_json(recorder.HUNCHES_PATH, [h])
+                resolver.GeminiClient = lambda *a, **k: _RecoveredClient()
+                resolver.main()          # 翌日=復旧しても、needs_review なので判定されない
+                note = "APIが復旧しても二度と判定されず、期日+%d日で採点対象外に" % resolver.STALE_DAYS
+            else:
+                resolver.GeminiClient = lambda *a, **k: _QuotaClient()
+                resolver.main()          # 1日目: 429 → やり直す(needs_review を立てない)
+                resolver.GeminiClient = lambda *a, **k: _RecoveredClient()
+                resolver.main()          # 2日目: 復旧 → 通常どおり判定
+                note = "1日目は「やり直す」と記録するだけ。2日目に判定され採点される"
+
+            hs = recorder.load_json_array(recorder.HUNCHES_PATH)
+            st = memory.hit_stats(hs)
+            g = hs[0]
+            return {"n": st["total"], "rate": (round(st["rate"] * 100) if st["total"] else None),
+                    "status": g.get("status"), "result": g.get("result"),
+                    "attempts": g.get("judge_attempts"), "note": note}
+        finally:
+            resolver.GeminiClient = real_client
+            os.environ.pop("GEMINI_API_KEY", None)
+            os.chdir(cwd)
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    for old_style in (True, False):
+        out.append(run(old_style))
+    return out[0], out[1]
+
+
+def a1_html(old, new):
+    def cell(x):
+        return ("採点された予測 <b>" + str(x["n"]) + "件</b>"
+                + " / 的中率 " + (str(x["rate"]) + "%" if x["rate"] is not None else "—")
+                + ' <span class="kv">(status=' + str(x["status"])
+                + " result=" + str(x["result"]) + ")</span>")
+    return ('<section class="reveal"><h2>A1: 決着を落とさない（実証）</h2>'
+            '<p class="lead">2026-08-05、参謀の<b>はじめての答え合わせ2件</b>が'
+            'API の 429（一時的な過負荷）で失われた。世界が曖昧だったのではなく、'
+            'こちらが見に行けなかっただけなのに、恒久的な判定として固まっていた。<br>'
+            '下は「1日目にAPIが詰まり、2日目には復旧する」という同じ現実を、修正前後で通した結果。</p>'
+            '<div class="q"><div class="qt">修正前（一時障害でも needs_review を立てていた）</div>'
+            '<p class="kv">' + cell(old) + '</p>'
+            '<p class="kv">→ ' + old["note"] + '。'
+            '<b>較正も Brier も、決着が1件も確定しなければ永久に始まらない。</b></p></div>'
+            '<div class="q"><div class="qt">修正後（実Web確認に届かなかった日はやり直す）</div>'
+            '<p class="kv">' + cell(new) + '</p>'
+            '<p class="kv">→ ' + new["note"] + '（やり直し回数 ' + str(new["attempts"] or 0)
+            + '回・上限' + str(__import__("resolver").MAX_ATTEMPTS) + '回）。'
+            '<b>決着が成績に載る。</b></p></div></section>')
+
+
 def b1_html(old, new):
     def cell(x):
         return ("的中率 <b>" + (str(x["rate"]) + "%" if x["rate"] is not None else "—") + "</b>"
@@ -186,13 +295,15 @@ def _finish_page(path):
         print("finish_page", path, repr(e)[:100])
 
 
-def preview_index(records, hunches, b1=None):
+def preview_index(records, hunches, b1=None, a1=None):
     """index の決着まわり(追跡中の予測 / 答え合わせ)だけを、本番と同じ panels で描く。
-    b1 が渡されれば、生存者バイアス修正の before/after 実証も載せる。"""
+    a1/b1 が渡されれば、決着を落とさない修正・生存者バイアス修正の実証も載せる。"""
     today = datetime.now(JST).date()
     body = (panels.tracking_html(hunches, today) + panels.answers_html(hunches, today, memory))
     if b1:
         body = b1_html(*b1) + body
+    if a1:
+        body = a1_html(*a1) + body
     return ("""<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark"><title>プレビュー — 決着表示の確認</title>
@@ -211,6 +322,9 @@ def main():
     b1 = b1_demo()          # 実際に resolver を動かして before/after を測る
     print("B1実証: 修正前 的中率%s%% (採点%d件・消失%s) / 修正後 的中率%s%% (採点%d件)" % (
         b1[0]["rate"], b1[0]["n"], b1[0]["dropped"] or "なし", b1[1]["rate"], b1[1]["n"]))
+    a1 = a1_demo()
+    print("A1実証: 修正前 採点%d件 status=%s / 修正後 採点%d件 status=%s result=%s" % (
+        a1[0]["n"], a1[0]["status"], a1[1]["n"], a1[1]["status"], a1[1]["result"]))
     out = os.path.abspath(OUT_DIR)
     cwd = os.getcwd()
     tmp = tempfile.mkdtemp(prefix="sanbo-preview-")
@@ -222,7 +336,7 @@ def main():
         recorder.dump_json(recorder.HUNCHES_PATH, hunches)
         recorder.render_pages()
         with open(os.path.join("docs", "index.html"), "w", encoding="utf-8") as f:
-            f.write(preview_index(records, hunches, b1))
+            f.write(preview_index(records, hunches, b1, a1))
         os.chdir(cwd)
         os.makedirs(out, exist_ok=True)
         for name in ("index.html", "hunches.html", "records.html", "threads.html"):

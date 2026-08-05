@@ -18,10 +18,7 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": {
-      "summary": "判定に必要な証拠情報が確認できなかったため、的中したかどうかの判定が不可能です。",
-      "url": ""
-    },
+    "evidence": null,
     "rejected": [
       {
         "draft": {
@@ -45,7 +42,8 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "needs_review": true
+    "needs_review": false,
+    "judge_attempts": 1
   },
   {
     "id": "2026-07-22-h02",
@@ -144,15 +142,13 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": {
-      "summary": "対象期間内にFireworks.ai公式ブログでモデル自動ルーティング機能の一般利用開始（GA）が告知されたか確認できる情報を取得できなかったため。",
-      "url": ""
-    },
+    "evidence": null,
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "needs_review": true
+    "needs_review": false,
+    "judge_attempts": 1
   },
   {
     "id": "2026-07-23-h01",

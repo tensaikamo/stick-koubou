@@ -6,6 +6,11 @@
 - 曖昧/証拠なしは unclear のまま needs_review=True で保留(人が最終確認)
 **誤った○×は絶対に出さない**(打率の信頼が命)。特に miss は「起きなかったと確信できる時」だけ。
 
+同時に**決着を落とさない**ことも守る。API の 429 やタイムアウトで実Web確認ができなかった日は、
+「世界が曖昧だった」のではなく「こちらが見に行けなかった」だけなので、needs_review にせず
+翌日やり直す(judge_attempts / MAX_ATTEMPTS)。一時的な詰まりを恒久的な判決にすると、
+外れかけの予測ほど成績から消えて打率が実際より良く見える(生存者バイアス)。
+
 サイト本体とは独立。CIでは別ステップ・continue-on-error で走り、失敗しても公開を止めない。
 """
 import os, json, urllib.parse
@@ -18,6 +23,7 @@ CONF_HIT = 0.66      # hit を自動確定する最低確度
 CONF_MISS = 0.75     # miss はより慎重に(偽×を出さない)
 MAX_PER_RUN = 12     # 1実行で判定する期日到来hunchの上限
 STALE_DAYS = 14      # 期日から この日数 を過ぎてなお未解決なら unscorable で終端
+MAX_ATTEMPTS = 3     # 一時障害でのやり直し上限(これを超えたら needs_review で人に回す)
 RESULT_SET = ("hit", "miss", "unclear")
 
 
@@ -132,15 +138,25 @@ def _judge_prompt(h, grounded):
     return head + body + rule + tail
 
 
-def judge(client, h, fake=None):
-    """答え合わせ。グラウンディング(実Web検索)を優先し、失敗時はHN証拠にフォールバック。"""
+def judge(client, h, fake=None, meta=None):
+    """答え合わせ。グラウンディング(実Web検索)を優先し、失敗時はHN証拠にフォールバック。
+
+    meta: dict を渡すと {"grounded": bool} を書き戻す。grounded=False は
+    **実Web確認ができなかった**印。呼び出し側はこれを見て、一時障害由来の unclear を
+    恒久的な保留(needs_review)に変えず、翌日やり直す。
+    """
+    if meta is None:
+        meta = {}
+    meta["grounded"] = False
     if fake is not None:
+        meta["grounded"] = True      # fake は「判定できた」扱い(オフラインテストの意味を保つ)
         return fake
     # 1) Google検索グラウンディングで実際に確認
     try:
         text = client.generate_grounded(_judge_prompt(h, grounded=True))
         v = _norm_verdict(_last_json(text))
         if v:
+            meta["grounded"] = True
             if not v["evidence"].get("url") and getattr(client, "last_grounding_urls", None):
                 v["evidence"]["url"] = client.last_grounding_urls[0]["url"]
             return v
@@ -160,6 +176,18 @@ def judge(client, h, fake=None):
     return None
 
 
+def _defer_or_review(h, why):
+    """一時障害で判定できなかった時の扱い。needs_review を立てず**翌日やり直す**。
+    MAX_ATTEMPTS 回続けて駄目なら、そこで初めて人に回す(無限リトライでチャーンさせない)。"""
+    n = int(h.get("judge_attempts") or 0) + 1
+    h["judge_attempts"] = n
+    if n >= MAX_ATTEMPTS:
+        h["needs_review"] = True
+        print("resolver:", h.get("id"), "→ 保留(要確認 %s・%d回失敗)" % (why, n))
+    else:
+        print("resolver:", h.get("id"), "→ 再挑戦へ(%s %d/%d)" % (why, n, MAX_ATTEMPTS))
+
+
 def resolve_all(fake_map=None):
     hunches = load_json_array(HUNCHES_PATH)
     today = datetime.now(JST).date()
@@ -175,6 +203,7 @@ def resolve_all(fake_map=None):
                 due.append(h)
         except Exception:
             continue
+    due.sort(key=lambda x: str(x.get("deadline", "")))   # 期日を過ぎた順=待たせている順に判定
     due = due[:MAX_PER_RUN]
     if not due:
         print("resolver: 期日到来の未判定予測なし。無操作")
@@ -206,9 +235,10 @@ def resolve_all(fake_map=None):
         if fake_map is not None and fake is None:
             continue
 
-        verd = judge(client, h, fake=fake)
+        meta = {}
+        verd = judge(client, h, fake=fake, meta=meta)
         if not verd:
-            h["needs_review"] = True
+            _defer_or_review(h, "判定応答なし")   # 応答が取れないのは一時障害。翌日やり直す
             changed = True
             continue
         result = verd.get("result")
@@ -231,6 +261,13 @@ def resolve_all(fake_map=None):
             h["needs_review"] = False
             changed = True
             print("resolver:", h.get("id"), "→", result, "(conf %.2f, 出典あり)" % conf)
+        elif result == "unclear" and not meta.get("grounded"):
+            # **決着を落とさない**: 実Web確認(グラウンディング)ができないまま出た unclear は、
+            # 「世界が曖昧」ではなく「こちらが見に行けなかった」。恒久的な保留にせず翌日やり直す。
+            # (429 で初の答え合わせ2件を永久に失った実障害への対策)
+            h["evidence"] = ev
+            _defer_or_review(h, "実Web確認できず")
+            changed = True
         else:
             # 曖昧/確度不足/出典なし → 保留(要確認)。証拠メモは残す。偽×は出さない。
             h["needs_review"] = True

@@ -314,8 +314,11 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
             pass
         u = ((r.get("source") or {}).get("url") or "").strip()
         if u:
-            seen_urls[u] = r.get("id")
+            # certainty も覚える。噂として記録した事実を、翌日の重複経路で
+            # 勝手に「報道」へ格上げしない(下の噂ゲートをすり抜けさせない)。
+            seen_urls[u] = (r.get("id"), r.get("certainty") or "reported")
 
+    _uniq_existing = memory.dedupe_by_url(existing_records)   # 関連付けは重複を除いた履歴で行う
     internal_records = []   # 検証・based_on解決用の内部表現(certainty含む)
     new_records = []
     for rec in gen.get("records", []):
@@ -326,9 +329,13 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
         _u = (art or {}).get("url", "")
         if _u and _u in seen_urls:
             # 既出の事実。新recordは起こさず、根拠の鎖は既存recordのidで保つ。
-            internal_records.append({"id": seen_urls[_u], "certainty": "reported",
+            # certainty は**元のrecordのものを引き継ぐ**。決め打ちで "reported" にすると、
+            # 昨日 rumor として記録した噂が今日は報道扱いになり、噂だけを根拠にした
+            # 予測を弾くゲート(validate_hunch)を通ってしまう。
+            _dup_id, _dup_cert = seen_urls[_u]
+            internal_records.append({"id": _dup_id, "certainty": _dup_cert,
                                      "headline": str(rec.get("headline") or "")})
-            print("record 重複のためスキップ(既出:%s): %s" % (seen_urls[_u], _u[:70]))
+            print("record 重複のためスキップ(既出:%s certainty=%s): %s" % (_dup_id, _dup_cert, _u[:70]))
             continue
         certainty = rec.get("certainty") if rec.get("certainty") in ("confirmed", "reported", "rumor") else "reported"
         source_tier = rec.get("source_tier") if rec.get("source_tier") in ("primary", "secondary") else "secondary"
@@ -351,9 +358,11 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
             "body_fetched": bool(art["body_fetched"]) if art else False,
             "model": model,
             # 同一主体の過去record(直近)へ紐づけ、記憶を"線"にする(スレッド化)
+            # 重複を除いてから紐づける。素のままだと「関連6件」が同じ記事6本になり、
+            # 枠を使い切って本当に別の出来事が入らない。
             "related_ids": memory.related_ids_for(
                 str(rec.get("headline") or ""),
-                (art["title"] if art else ""), existing_records),
+                (art["title"] if art else ""), _uniq_existing),
         }
         if valid_record_schema(obj):
             internal_records.append({"id": rid, "certainty": certainty,
@@ -491,11 +500,14 @@ def render_records_page(records):
     nav = ('<nav class="nav"><a href="index.html">← ブリーフィング</a>'
            '<a href="hunches.html">勘の台帳</a><a href="threads.html">記憶の物語</a>'
            '<a href="ichite.html">今日の一手</a></nav>')
-    if not records:
+    # 同じ記事を毎日拾い直した分を読む側で落とす(実測36件中ユニーク13件。AP記事が7回並んでいた)。
+    # 台帳の履歴そのものは改変しない — 表示だけを1件にまとめる。
+    shown = memory.dedupe_by_url(records)
+    if not shown:
         body = '<p class="empty">まだ記録がありません。</p>'
     else:
         cards = []
-        for r in list(reversed(records))[:RENDER_LIMIT]:  # 新しい順・上限(全件描画は必ず肥大する)
+        for r in list(reversed(shown))[:RENDER_LIMIT]:  # 新しい順・上限(全件描画は必ず肥大する)
             c = r.get("certainty", "")
             src = r.get("source", {}) if isinstance(r.get("source"), dict) else {}
             url = src.get("url", "")
@@ -518,8 +530,11 @@ def render_records_page(records):
                              + '</a> <span class="m">HN ' + _esc(src.get("hn_score", 0)) + 'pt</span></p>')
             parts.append('<p class="kv">' + _esc(r.get("id", "")) + '</p></article>')
             cards.append("".join(parts))
-        _more = ('（全' + str(len(records)) + '件中、新しい' + str(RENDER_LIMIT) + '件を表示）'
-                 if len(records) > RENDER_LIMIT else '(全' + str(len(records)) + '件)')
+        _dup = len(records) - len(shown)
+        _more = ('（全' + str(len(shown)) + '件中、新しい' + str(RENDER_LIMIT) + '件を表示）'
+                 if len(shown) > RENDER_LIMIT else '(全' + str(len(shown)) + '件)')
+        if _dup > 0:
+            _more += '（同一記事の再掲' + str(_dup) + '件は除外）'
         body = ('<section><h2>記録の台帳 <span class="kv">' + _more + '</span></h2>'
                 + "".join(cards) + '</section>')
     return _page_shell("記録の台帳", sub, nav, body)
@@ -571,8 +586,17 @@ def _hunch_card(h, today):
     for s in sigs[-3:]:   # 点灯履歴(新しい方から数件)
         cls = "b-miss" if s.get("dir") == "kill" else "b-hit"
         lab = "⚠ 死亡シグナル" if s.get("dir") == "kill" else "🔥 確認シグナル"
+        # 確度が動いたなら、いくつからいくつへ動いたかまで見せる(逐次ベイズ更新の跡)
+        _mv = ""
+        try:
+            _b, _a = float(s.get("conf_before")), float(s.get("conf_after"))
+            if abs(_a - _b) >= 0.005:
+                _mv = " <b>確度 %d%%→%d%%</b>" % (round(_b * 100), round(_a * 100))
+        except (TypeError, ValueError):
+            pass
         parts.append('<p class="kv"><span class="badge ' + cls + '">' + lab + '</span> '
-                     + _esc(s.get("date", "")) + " " + _esc(s.get("why", "") or s.get("sign", "")) + '</p>')
+                     + _esc(s.get("date", "")) + " " + _esc(s.get("why", "") or s.get("sign", ""))
+                     + _mv + '</p>')
     if res.get("decider"):
         parts.append('<p class="kv"><b>的中条件</b> ' + _esc(res["decider"]) + '</p>')
     if res.get("source") or res.get("check_query"):

@@ -158,6 +158,47 @@ def test_duplicate_urls_do_not_create_new_records(workdir, monkeypatch):
     assert pend and all(all(b in ids for b in h["based_on"]) for h in pend)
 
 
+def test_duplicate_path_keeps_the_original_certainty(workdir, monkeypatch):
+    """重複スキップ時に certainty を "reported" へ決め打ちしない。
+
+    決め打ちすると、昨日 rumor(噂)として記録した事実が今日は報道扱いになり、
+    『根拠が rumor の record のみ』の予測を弾くゲート(validate_hunch)をすり抜ける。
+    噂を根拠に自信満々の予測が生まれる穴だった。"""
+    _run(workdir, monkeypatch)
+    recs = json.loads((workdir / "data/records.json").read_text(encoding="utf-8"))
+    rumor = next(r for r in recs if r["certainty"] == "rumor")
+
+    seen = {}
+    monkeypatch.setattr(recorder.memory, "related_ids_for", lambda *a, **k: [])
+    # 重複経路が内部表現に何を積むかを覗く
+    orig = recorder.validate_hunch
+    monkeypatch.setattr(recorder, "validate_hunch",
+                        lambda h, records, *a, **k: (seen.update({"records": records}), orig(h, records, *a, **k))[1])
+    (workdir / ("data/runs/%s.json" % datetime.now(recorder.JST).strftime("%Y-%m-%d"))).unlink()
+    _run(workdir, monkeypatch)
+
+    passed = seen.get("records") or []
+    dup = next((r for r in passed if r.get("id") == rumor["id"]), None)
+    assert dup is not None, "重複した record が内部表現に現れていない"
+    assert dup["certainty"] == "rumor", "噂が勝手に報道へ格上げされている"
+
+
+def test_records_page_shows_each_article_once(workdir, monkeypatch):
+    """記録の台帳が同じ記事を何度も並べない(実測: 36件中ユニーク13件、AP記事が7回)。
+    履歴は台帳に全件残したまま、読む側で1件にまとめる。"""
+    _run(workdir, monkeypatch)
+    recs = json.loads((workdir / "data/records.json").read_text(encoding="utf-8"))
+    # 過去に溜まった重複を模す(同一URLの再掲を2件足す)
+    dupes = [dict(recs[0], id="dup-1"), dict(recs[0], id="dup-2")]
+    recorder.dump_json(str(workdir / "data/records.json"), recs + dupes)
+    recorder.render_pages()
+    page = (workdir / "docs/records.html").read_text(encoding="utf-8")
+    assert page.count(recs[0]["headline"]) == 1, "同じ記事が複数回描画されている"
+    assert "再掲2件は除外" in page          # 何件隠したかは読者に伝える
+    # 履歴そのものは改変しない
+    assert len(json.loads((workdir / "data/records.json").read_text(encoding="utf-8"))) == len(recs) + 2
+
+
 def test_idempotent_second_run(workdir, monkeypatch):
     _run(workdir, monkeypatch)
     r1 = (workdir / "data/records.json").read_text(encoding="utf-8")

@@ -8,7 +8,7 @@
 
 依存は標準ライブラリのみ(recorder/sanbo/resolver から安全に import できるよう疎結合に保つ)。
 """
-import os, re, json
+import os, re, json, math
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -100,6 +100,33 @@ def brier(hunches):
         s += (c - (1.0 if r == "hit" else 0.0)) ** 2
         n += 1
     return {"score": (s / n) if n else None, "n": n}
+
+
+CONF_FLOOR, CONF_CEIL = 0.05, 0.95   # 確度は0/1に振り切らない(振り切ると Brier が壊滅的に効く)
+LOGIT_STEP = 0.45                     # 1回の点灯で動かすログオッズ量(≒確度0.7で±0.08)
+
+
+def update_confidence(conf, direction, step=LOGIT_STEP):
+    """指標が点灯した時に確度を1段だけ動かす(逐次ベイズ更新の最小形)。
+
+    ログオッズ空間で足し引きするので、0/1 に近いほど動きが鈍る=すでに確信している読みは
+    小さな兆候で揺れない。確度は CONF_FLOOR〜CONF_CEIL でクリップする。
+    従来は指標が点灯しても**表示するだけ**で確度は作成日のまま動かなかった。
+    Brier は「確度の正しさ」を測るので、期日に近いほど確度が実態に寄る方がスコアも良くなる。
+
+    conf: 現在の確度(0-1) / direction: "confirm"(上げる) or "kill"(下げる)
+    戻り: 更新後の確度(float)。入力が不正、または direction が未知ならそのまま返す。
+    """
+    try:
+        c = float(conf)
+    except (TypeError, ValueError):
+        return conf
+    if direction not in ("confirm", "kill"):
+        return c
+    c = min(max(c, CONF_FLOOR), CONF_CEIL)
+    lo = math.log(c / (1.0 - c)) + (step if direction == "confirm" else -step)
+    c2 = 1.0 / (1.0 + math.exp(-lo))
+    return round(min(max(c2, CONF_FLOOR), CONF_CEIL), 3)
 
 
 def _calibration(hunches):

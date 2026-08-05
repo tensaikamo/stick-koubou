@@ -163,6 +163,99 @@ def test_signals_are_passed_to_judge():
     assert "一覧に追加された" in p and "確認寄り" in p
 
 
+class _QuotaClient:
+    """grounding が 429 で落ち、フォールバックの素の生成だけが通るダミー。
+    2026-08-05 の実障害(初の答え合わせ2件が429で失われた)の再現。"""
+    last_grounding_urls = None
+
+    def generate_grounded(self, prompt):
+        raise RuntimeError("HTTPError 429: Too Many Requests")
+
+    def generate(self, prompt, response_schema=None, model=None):
+        # 実Web確認ができていないので、モデルは正直に「確認できない」と答える
+        return ('{"result":"unclear","evidence":{"summary":"証拠情報を取得できなかったため",'
+                '"url":""},"confidence":0.0}')
+
+
+def _due_one(workdir, hid="h-429"):
+    today = datetime.now(resolver.JST).date()
+    y = (today - timedelta(days=1)).strftime("%Y-%m-%d")
+    h = _mk(hid, "OpenAIがGAする", y)
+    (workdir / "data/hunches.json").write_text(json.dumps([h], ensure_ascii=False), encoding="utf-8")
+    (workdir / "data/records.json").write_text("[]", encoding="utf-8")
+    return h
+
+
+def test_quota_failure_does_not_freeze_the_verdict(workdir, monkeypatch):
+    """決着を落とさない: 429で実Web確認ができなかった日の unclear は needs_review にしない。
+
+    2026-08-05、参謀の初の答え合わせ2件がこれで失われた。needs_review が立つと resolver は
+    二度と判定せず、期日+STALE_DAYS で unscorable になり**永久に採点から消える**。
+    世界が曖昧だったのではなく、こちらが見に行けなかっただけなので翌日やり直す。"""
+    _due_one(workdir)
+    monkeypatch.setattr(resolver, "GeminiClient", lambda *a, **k: _QuotaClient())
+    monkeypatch.setattr(resolver, "gather_evidence", lambda h: "(証拠なし)")
+    monkeypatch.setenv("GEMINI_API_KEY", "dummy")
+    resolver.main()
+    h = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))[0]
+    assert not h.get("needs_review"), "一時障害で恒久的な保留にしてはいけない"
+    assert h["judge_attempts"] == 1 and h["status"] == "pending" and h["result"] is None
+
+
+def test_quota_failure_gives_up_after_max_attempts(workdir, monkeypatch):
+    # 無限リトライはしない。MAX_ATTEMPTS 回続けて駄目なら人に回す(毎日のチャーンを避ける)。
+    _due_one(workdir)
+    monkeypatch.setattr(resolver, "GeminiClient", lambda *a, **k: _QuotaClient())
+    monkeypatch.setattr(resolver, "gather_evidence", lambda h: "(証拠なし)")
+    monkeypatch.setenv("GEMINI_API_KEY", "dummy")
+    for _ in range(resolver.MAX_ATTEMPTS):
+        resolver.main()
+    h = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))[0]
+    assert h["judge_attempts"] == resolver.MAX_ATTEMPTS and h["needs_review"]
+
+
+def test_genuine_unclear_after_grounding_still_holds(workdir, monkeypatch):
+    # 対比: 実Web確認が**成功した上で** unclear なら、従来どおり保留(人が確認)にする。
+    _due_one(workdir, "h-amb")
+
+    class _AmbiguousClient:
+        last_grounding_urls = None
+
+        def generate_grounded(self, prompt):
+            return ('検索したが決め手がなかった。'
+                    '{"result":"unclear","evidence":{"summary":"賛否が割れている","url":""},"confidence":0.2}')
+
+    monkeypatch.setattr(resolver, "GeminiClient", lambda *a, **k: _AmbiguousClient())
+    monkeypatch.setenv("GEMINI_API_KEY", "dummy")
+    resolver.main()
+    h = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))[0]
+    assert h["needs_review"] and h.get("judge_attempts") is None   # やり直さない
+
+
+def test_judge_reports_whether_it_reached_the_web():
+    now = datetime.now(resolver.JST)
+    h = _mk("m1", "OpenAIがGAする", (now - timedelta(days=1)).strftime("%Y-%m-%d"))
+    meta = {}
+    resolver.judge(_GroundingClient(), h, meta=meta)
+    assert meta["grounded"] is True
+
+
+def test_due_is_ordered_by_deadline(workdir, monkeypatch):
+    # 期日を過ぎた順=待たせている順に判定する(上限で古い決着が置き去りにならない)
+    today = datetime.now(resolver.JST).date()
+    old = _mk("h-old", "古い", (today - timedelta(days=9)).strftime("%Y-%m-%d"))
+    new = _mk("h-new", "新しい", (today - timedelta(days=1)).strftime("%Y-%m-%d"))
+    (workdir / "data/hunches.json").write_text(json.dumps([new, old], ensure_ascii=False), encoding="utf-8")
+    (workdir / "data/records.json").write_text("[]", encoding="utf-8")
+    seen = []
+    monkeypatch.setattr(resolver, "MAX_PER_RUN", 1)
+    monkeypatch.setattr(resolver, "judge", lambda c, h, fake=None, meta=None: seen.append(h["id"]))
+    monkeypatch.setenv("GEMINI_API_KEY", "dummy")
+    monkeypatch.setattr(resolver, "GeminiClient", lambda *a, **k: object())
+    resolver.main()
+    assert seen == ["h-old"]
+
+
 def test_resolved_are_idempotent(workdir, monkeypatch):
     fp = _setup(workdir)
     monkeypatch.setenv("RESOLVER_FAKE_RESPONSE", str(fp))
