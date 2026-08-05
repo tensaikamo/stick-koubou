@@ -417,8 +417,17 @@ ICHITE_SCHEMA = {
         "questions": {"type": "array", "items": {"type": "string"}},
         "moves": {"type": "array", "items": {
             "type": "object",
-            "properties": {"t": {"type": "string"}, "why": {"type": "string"}},
-            "required": ["t", "why"]}},
+            "properties": {
+                "t": {"type": "string"}, "why": {"type": "string"},
+                "cost_min": {"type": "integer"}, "cost_max": {"type": "integer"},
+                "loss_max": {"type": "integer"}, "success_p": {"type": "number"},
+                "success_why": {"type": "string"}, "payback_days": {"type": "integer"},
+                "value_score": {"type": "integer"}, "learning_value": {"type": "integer"},
+                "time_minutes": {"type": "integer"}, "outcome": {"type": "string"},
+                "continue_if": {"type": "string"}, "stop": {"type": "string"}},
+            "required": ["t", "why", "cost_min", "cost_max", "loss_max", "success_p",
+                         "success_why", "payback_days", "value_score", "learning_value",
+                         "time_minutes", "outcome", "continue_if", "stop"]}},
     },
     "required": ["questions", "moves"],
 }
@@ -437,8 +446,16 @@ if generation_ok:
             '{"questions": ["今日の状況を踏まえた、答えると自分の一手が決まる問い(3つ・各40字以内)。'
             "抽象的な自己啓発でなく、今日の記事の具体に紐づけろ。『どう思う？』ではなく『あなたは何をするか』を引き出せ\"], "
             '"moves": [{"t": "今日30分以内に始められる具体行動(25字以内・動詞で始める)", '
-            '"why": "なぜ今日これなのか、今日の記事や過去の読みに紐づけて1文"}]}\n'
-            "movesは3つ。『情報収集する』『検討する』のような曖昧な行動は禁止。"
+            '"why": "なぜ今日これなのか、今日の記事や過去の読みに紐づけて1文", '
+            '"cost_min": 費用下限円, "cost_max": 費用上限円, "loss_max": 失敗時の最大損失円, '
+            '"success_p": 成功見込み0.05〜0.95, "success_why": "その見込みの観測可能な根拠", '
+            '"payback_days": 費用または投入価値の回収目安日数（無料は0）, "value_score": 成果価値1〜5, '
+            '"learning_value": 次の判断に残る学習価値0〜5, "time_minutes": 所要分1〜30, '
+            '"outcome": "完了時に残る観測可能な成果", "continue_if": "追加投資を続ける条件", '
+            '"stop": "続行をやめる具体条件"}]}\n'
+            "movesは5つ。無料を優先せず、費用帯を0円/小額/標準/積極に分散させる。"
+            "成功見込みは願望で上げず、根拠が弱い案は低く置く。costは点でなく上下幅を出す。"
+            "有料案でcontinue_ifまたはstopが空なら不合格。『情報収集する』『検討する』のような曖昧な行動は禁止。"
             "手を動かして終わる形(作る/送る/申し込む/書く/試す/測る)にしろ。"
             "新しいネタへ乗り換えさせず、既に動いている流れの続きを優先しろ。")
         _ich = parse_json(gemini(_ich_prompt, response_schema=ICHITE_SCHEMA))
@@ -446,12 +463,13 @@ if generation_ok:
         _raw_mv = []
         for _m in ((_ich.get("moves") or []) if isinstance(_ich, dict) else []):
             if isinstance(_m, dict) and str(_m.get("t") or "").strip():
-                _raw_mv.append({"t": str(_m["t"]).strip(), "why": str(_m.get("why") or "").strip()})
-            if len(_raw_mv) == 6:
+                _raw_mv.append(_m)
+            if len(_raw_mv) == 8:
                 break
-        _mv = decision.safe_moves(_raw_mv)
+        _mv = decision.safe_moves(_raw_mv, limit=5)
         if _qs and _mv:
-            today_move = _mv[0]
+            today_move = {"t": "予算に合わせて今日の一手を選ぶ",
+                          "why": "残額・成果見込み・学習価値・撤退条件を比べてから、一つだけ決める。"}
             os.makedirs("docs", exist_ok=True)
             with open("docs/ichite.json", "w", encoding="utf-8") as f:
                 json.dump({"date": datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d"),
@@ -491,8 +509,8 @@ if not today_move:
     except Exception:
         today_move = decision.SAFE_FALLBACK_MOVES[0]
 
-_action_title = (today_move or {}).get("t") or final["dousuru"]
-_action_why = (today_move or {}).get("why") or "今日30分で一つだけ終わらせる。"
+_action_title = "予算に合わせて今日の一手を選ぶ"
+_action_why = "残額・成果見込み・学習価値・撤退条件を比べてから、一つだけ決める。"
 _kan_meta = ""
 if canonical_hunch:
     _br = canonical_hunch.get("base_rate")

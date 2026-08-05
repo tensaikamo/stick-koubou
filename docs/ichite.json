@@ -8,15 +8,83 @@
   "moves": [
     {
       "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。"
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "payback_days": 0,
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 15,
+      "outcome": "次に直す内容がIssueとして1件残る",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了"
     },
     {
       "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。"
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "payback_days": 0,
+      "value_score": 2,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "outcome": "一次情報の要点メモが3行残る",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了"
     },
     {
       "t": "予測を1件確認し確度メモを1行更新する",
-      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。"
+      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_why": "既存予測の更新なので新規企画より着地しやすい",
+      "payback_days": 0,
+      "value_score": 2,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "outcome": "追跡中予測の確度メモが更新される",
+      "continue_if": "確度を動かす一次根拠が見つかった",
+      "stop": "根拠URLを1本確認したら終了"
+    },
+    {
+      "t": "独自ドメイン候補を決め購入画面まで進める",
+      "why": "公開先の名前を固定し、アプリを他人へ渡せる形に近づけるため。",
+      "cost_min": 1000,
+      "cost_max": 4000,
+      "loss_max": 4000,
+      "success_p": 0.65,
+      "success_why": "候補比較までは容易だが、名前の決定と購入で迷う余地がある",
+      "payback_days": 180,
+      "value_score": 4,
+      "learning_value": 2,
+      "time_minutes": 30,
+      "outcome": "候補ドメインと年間費用が確定する",
+      "continue_if": "公開予定日と最初に見せる相手が決まっている",
+      "stop": "年間4000円を超えたら購入しない"
+    },
+    {
+      "t": "有料AI機能を1か月だけ比較検証する",
+      "why": "無料制約で実装速度を落とさず、支払う価値を成果物で測るため。",
+      "cost_min": 3000,
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.55,
+      "success_why": "作業短縮は見込めるが、利用量と成果の相関がまだ未計測",
+      "payback_days": 30,
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 30,
+      "outcome": "同じ作業の無料版との比較メモが1件残る",
+      "continue_if": "無料版より月2件以上多く成果物が完成する",
+      "stop": "30日で成果物が2件増えなければ解約する"
     }
   ],
   "kan": "Anthropicは3週間以内に、自社のカスタムシリコンに関するパートナーシップまたは専用アクセラレータの開発方針について公式ブログや求人背景の補足で何らかの言及を行う。"
