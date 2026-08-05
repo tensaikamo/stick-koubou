@@ -24,13 +24,14 @@ def test_answers_before_any_resolution():
     assert "的中率" not in h and "Brier" not in h
 
 
-def test_answers_after_resolution_shows_rate_and_brier():
+def test_answers_after_resolution_shows_provisional_score_and_brier():
     huns = [_h("a", "当てた予測", -5, 0.9, "resolved", "hit"),
             _h("b", "外した予測", -4, 0.8, "resolved", "miss"),
             _h("c", "判定待ち", 9)]
     h = panels.answers_html(huns, datetime.now(JST).date(), memory)
-    assert "的中率 50%" in h and "(的中1/外し1・判定待ち1)" in h
-    assert "Brier 0.325" in h and "0.250" in h          # 確度の正しさも表示される
+    assert "暫定成績" in h and "的中1/外し1" in h and "n=2" in h
+    assert "参考Brier 0.325" in h                        # 少標本では参考値と明記する
+    assert "的中率 50%" not in h                         # n=2の派手な率表示を避ける
     assert "○ 当てた予測" in h and "× 外した予測" in h   # 直近の○×が並ぶ
 
 
@@ -53,7 +54,7 @@ def test_empty_and_resolved_only_are_safe():
     assert panels.answers_html([], today, memory) == ""
     # 決着済みだけ(判定待ちゼロ)でも落ちない
     h = panels.answers_html([_h("a", "済", -3, 0.6, "resolved", "hit")], today, memory)
-    assert "的中率 100%" in h and "次の決着" not in h
+    assert "暫定成績" in h and "的中1/外し0" in h and "次の決着" not in h
 
 
 def test_escapes_user_content():

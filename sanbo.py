@@ -6,6 +6,7 @@ from recorder import (fetch_body, load_json_array, dump_json, HUNCHES_PATH,
                       render_pages)   # 記録層のテスト済み実装を再利用
 import memory
 import panels
+import decision
 # 組み立ての判断ロジックはテスト可能な純関数として brief.py に置く(sanbo.py は台本のまま)
 from brief import unwrap_list, render_rich, norm_final, consensus_note, T_RE  # noqa: F401
 
@@ -87,6 +88,7 @@ PERSONA = """読者はただ一人。以下の人物だけに向けて書け。
 
 【反ピボット・着地優先】読者が詰まっているのは着想不足ではなく着地不足だ。毎朝「今すぐ新しいことを始めろ」と別のネタへ乗り換えさせるのは、弱点を増幅する。「で、どうする」は、既に動いている流れに乗る/仕込む/続きを追う具体を優先しろ。過去の【参謀の記憶】がある場合は、それを踏まえて同じ賭けを継続・更新しろ(毎朝ピボットを作るな)。
 """
+PERSONA += "\n\n" + decision.PROFILE_PROMPT
 
 # 情報源は3層(T1=一次情報・発表前の兆候 / T2=実勢 / T3=二次)。話題化した記事だけを読む
 # 構造から抜けるため、公式ブログ・arXiv・求人・規制・SEC・SDKリリースを直接読む。
@@ -264,6 +266,18 @@ if picked:
     _digest = memory.build_digest(_recs, _huns, compact=True)  # 過去の自分の読み・結果・スレッド
     if _digest:
         material = _digest + "\n\n" + material
+    # 会話全文ではなく、利用者が実際に完了/中断した「行動結果イベント」だけを記憶する。
+    _feedback_path = os.path.join("data", "action_feedback.json")
+    _feedback = decision.fetch_action_feedback(
+        os.environ.get("GITHUB_REPOSITORY", "tensaikamo/stick-koubou"),
+        os.environ.get("GITHUB_TOKEN", ""))
+    if _feedback:
+        dump_json(_feedback_path, _feedback)
+    else:
+        _feedback = load_json_array(_feedback_path)
+    _feedback_digest = decision.feedback_digest(_feedback)
+    if _feedback_digest:
+        material = _feedback_digest + "\n\n" + material
     prompt3 = (PERSONA +
         "\n以下の材料から今朝のブリーフィングを執筆し、次のJSONオブジェクトだけを返せ(配列で包まない):\n"
         '{"kuki": {"omote": "表:何が起きたか。2〜3文", '
@@ -331,7 +345,15 @@ if final:
 # (外れ値に強い)。1票は別モデル(flash-lite)へ振り相関を下げる。失敗時は執筆時の確度のまま(壊さない)。
 ens_votes = []
 ens_note = ""   # 票が割れたかの注記(accuracy–correlation effect: 似た票の合議は利得が無い)
-if final and final.get("kan"):
+canonical_hunch = decision.select_canonical_hunch(
+    _huns if "_huns" in globals() else [],
+    datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d"))
+if final and canonical_hunch:
+    # 表で見せる予測と、裏で採点する予測を同一オブジェクトにする。
+    final = decision.apply_canonical_hunch(final, canonical_hunch)
+    print("トップの勘を採点台帳へ一本化:", canonical_hunch.get("id"))
+
+if final and final.get("kan") and not canonical_hunch:
     _ens_prompt = (PERSONA + "\n次の予測が的中する確率だけを見積もれ。\n予測: " + final["kan"]
                    + ("\n根拠: " + final["kan_konkyo"] if final.get("kan_konkyo") else "")
                    + ("\n外れるとすれば: " + final["kan_hantai"] if final.get("kan_hantai") else "")
@@ -395,12 +417,22 @@ ICHITE_SCHEMA = {
         "questions": {"type": "array", "items": {"type": "string"}},
         "moves": {"type": "array", "items": {
             "type": "object",
-            "properties": {"t": {"type": "string"}, "why": {"type": "string"}},
-            "required": ["t", "why"]}},
+            "properties": {
+                "t": {"type": "string"}, "why": {"type": "string"},
+                "cost_min": {"type": "integer"}, "cost_max": {"type": "integer"},
+                "loss_max": {"type": "integer"}, "success_p": {"type": "number"},
+                "success_why": {"type": "string"}, "payback_days": {"type": "integer"},
+                "value_score": {"type": "integer"}, "learning_value": {"type": "integer"},
+                "time_minutes": {"type": "integer"}, "outcome": {"type": "string"},
+                "continue_if": {"type": "string"}, "stop": {"type": "string"}},
+            "required": ["t", "why", "cost_min", "cost_max", "loss_max", "success_p",
+                         "success_why", "payback_days", "value_score", "learning_value",
+                         "time_minutes", "outcome", "continue_if", "stop"]}},
     },
     "required": ["questions", "moves"],
 }
 
+today_move = None
 if generation_ok:
     try:
         _ich_prompt = (PERSONA +
@@ -408,24 +440,36 @@ if generation_ok:
             + json.dumps({"omote": final["omote"], "ura": final["ura"],
                           "dousuru": final["dousuru"], "kan": final["kan"]}, ensure_ascii=False)
             + ("\n\n" + _digest if _digest else "")
+            + ("\n\n" + _feedback_digest if _feedback_digest else "")
             + "\n\n読者は着想は溢れるほど出るが『着地』しない人物だ。今日この人を1歩だけ動かすための材料を作れ。\n"
             "次のJSONだけを返せ:\n"
             '{"questions": ["今日の状況を踏まえた、答えると自分の一手が決まる問い(3つ・各40字以内)。'
             "抽象的な自己啓発でなく、今日の記事の具体に紐づけろ。『どう思う？』ではなく『あなたは何をするか』を引き出せ\"], "
             '"moves": [{"t": "今日30分以内に始められる具体行動(25字以内・動詞で始める)", '
-            '"why": "なぜ今日これなのか、今日の記事や過去の読みに紐づけて1文"}]}\n'
-            "movesは3つ。『情報収集する』『検討する』のような曖昧な行動は禁止。"
+            '"why": "なぜ今日これなのか、今日の記事や過去の読みに紐づけて1文", '
+            '"cost_min": 費用下限円, "cost_max": 費用上限円, "loss_max": 失敗時の最大損失円, '
+            '"success_p": 成功見込み0.05〜0.95, "success_why": "その見込みの観測可能な根拠", '
+            '"payback_days": 費用または投入価値の回収目安日数（無料は0）, "value_score": 成果価値1〜5, '
+            '"learning_value": 次の判断に残る学習価値0〜5, "time_minutes": 所要分1〜30, '
+            '"outcome": "完了時に残る観測可能な成果", "continue_if": "追加投資を続ける条件", '
+            '"stop": "続行をやめる具体条件"}]}\n'
+            "movesは5つ。無料を優先せず、費用帯を0円/小額/標準/積極に分散させる。"
+            "成功見込みは願望で上げず、根拠が弱い案は低く置く。costは点でなく上下幅を出す。"
+            "有料案でcontinue_ifまたはstopが空なら不合格。『情報収集する』『検討する』のような曖昧な行動は禁止。"
             "手を動かして終わる形(作る/送る/申し込む/書く/試す/測る)にしろ。"
             "新しいネタへ乗り換えさせず、既に動いている流れの続きを優先しろ。")
         _ich = parse_json(gemini(_ich_prompt, response_schema=ICHITE_SCHEMA))
         _qs = [str(q).strip() for q in (_ich.get("questions") or []) if str(q).strip()][:3] if isinstance(_ich, dict) else []
-        _mv = []
+        _raw_mv = []
         for _m in ((_ich.get("moves") or []) if isinstance(_ich, dict) else []):
             if isinstance(_m, dict) and str(_m.get("t") or "").strip():
-                _mv.append({"t": str(_m["t"]).strip(), "why": str(_m.get("why") or "").strip()})
-            if len(_mv) == 3:
+                _raw_mv.append(_m)
+            if len(_raw_mv) == 8:
                 break
+        _mv = decision.safe_moves(_raw_mv, limit=5)
         if _qs and _mv:
+            today_move = {"t": "予算に合わせて今日の一手を選ぶ",
+                          "why": "残額・成果見込み・学習価値・撤退条件を比べてから、一つだけ決める。"}
             os.makedirs("docs", exist_ok=True)
             with open("docs/ichite.json", "w", encoding="utf-8") as f:
                 json.dump({"date": datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d"),
@@ -454,6 +498,25 @@ if not final:
                  "kan": "-", "mijoriku": []}
 
 jst = datetime.now(timezone(timedelta(hours=9)))
+
+# 生成が失敗した日も、前回の実行可能な一手をトップに残す。危険な旧提案はゲートで落とす。
+if not today_move:
+    try:
+        with open("docs/ichite.json", encoding="utf-8") as _f:
+            _old_ich = json.load(_f)
+        _old_moves = decision.safe_moves((_old_ich or {}).get("moves") or [])
+        today_move = _old_moves[0] if _old_moves else None
+    except Exception:
+        today_move = decision.SAFE_FALLBACK_MOVES[0]
+
+_action_title = "予算に合わせて今日の一手を選ぶ"
+_action_why = "残額・成果見込み・学習価値・撤退条件を比べてから、一つだけ決める。"
+_kan_meta = ""
+if canonical_hunch:
+    _br = canonical_hunch.get("base_rate")
+    _br_text = (" · 基準率%d%%" % round(float(_br) * 100)) if isinstance(_br, (int, float)) else ""
+    _kan_meta = ('<p class="m"><b>採点対象</b> ' + html.escape(str(canonical_hunch.get("id") or ""))
+                 + _br_text + ' · <a href="hunches.html">根拠・期限・答え合わせを見る →</a></p>')
 links = "\n".join('<li><a href="' + html.escape(a["url"]) + '">' + html.escape(a["title"])
                   + '</a> <span class="m">' + html.escape(a["src"] + " " + a["meta"]) + "</span></li>" for a in picked)
 
@@ -501,18 +564,21 @@ page = """<!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-
 <div class="d">""" + jst.strftime("%Y.%m.%d %H:%M") + """ JST</div>
 <nav class="nav"><a class="refresh" href="https://github.com/tensaikamo/stick-koubou/actions/workflows/sanbo.yml" target="_blank" rel="noopener">⟳ 参謀に調べ直させる</a><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a><a href="threads.html">記憶の物語</a><a href="ichite.html">今日の一手</a></nav>
 <div class="hint">「調べ直させる」→ GitHubで Run workflow を1タップ。数分で参謀が記憶を踏まえて考え直す。反映後にこのページを再読み込み。</div></header>
+<section class="focus reveal"><div class="focus-kicker">TODAY · 30分 · iPhoneだけ</div><h2>今日やること</h2>
+<p class="focus-title">""" + render_rich(_action_title) + """</p>
+<p class="m">""" + render_rich(_action_why) + """</p>
+<p><a class="focus-btn" href="ichite.html">この一手を決める →</a></p></section>
 <section class="reveal"><h2>今日の空気</h2>
 <p><span class="lb">表</span>""" + render_rich(final["omote"]) + """</p>
 <p><span class="lb">裏</span>""" + render_rich(final["ura"]) + """</p>""" + (
   ('<p class="m"><b>退けた説</b> ' + render_rich(final["ura_taikou"]) + "</p>") if final.get("ura_taikou") else "") + """</section>
-<section class="reveal"><h2>で、どうする</h2><p>""" + render_rich(final["dousuru"]) + """</p></section>
 <section class="reveal"><h2>参謀の勘</h2><p>""" + render_rich(final["kan"]) + """</p>""" + (
   ('<p class="m"><b>根拠</b> ' + render_rich(final["kan_konkyo"]) + "</p>") if final.get("kan_konkyo") else "") + (
   ('<p class="m"><b>外れるとすれば</b> ' + render_rich(final["kan_hantai"]) + "</p>") if final.get("kan_hantai") else "") + (
   ('<p class="m"><b>確度</b> ' + str(round(float(final["kan_conf"]) * 100)) + "%"
    + ("（独立見積り " + "・".join(str(round(v * 100)) + "%" for v in ens_votes) + " の中央値）" if len(ens_votes) > 1 else "")
    + (' <span class="kv">' + html.escape(ens_note) + "</span>" if ens_note else "")
-   + "</p>") if final.get("kan_conf") else "") + edge_html + """</section>
+   + "</p>") if final.get("kan_conf") else "") + _kan_meta + edge_html + """</section>
 """ + (('<section class="reveal"><h2>一般人の超参謀</h2><p class="m">AIを普通に使う人向け・今日からできる一手</p><p>'
         + render_rich(final["ippan"]) + "</p></section>") if final.get("ippan") else "") + """
 """ + track_html + """

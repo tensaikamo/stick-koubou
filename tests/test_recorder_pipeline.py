@@ -72,8 +72,9 @@ def _fake_response():
 
 
 def _run(workdir, monkeypatch):
-    monkeypatch.setattr(recorder, "fetch_hn", lambda: [dict(a) for a in FAKE_ARTS])
-    monkeypatch.setattr(recorder, "fetch_tc", lambda: [])
+    # recorder は情報源を個別に固定せず、共通の多ソース取得層を使う。
+    monkeypatch.setattr(recorder, "fetch_all",
+                        lambda limit=20: [dict(a, tier=3) for a in FAKE_ARTS])
     fp = workdir / "fake.json"
     fp.write_text(json.dumps(_fake_response(), ensure_ascii=False), encoding="utf-8")
     monkeypatch.setenv("RECORDER_FAKE_RESPONSE", str(fp))
@@ -150,6 +151,7 @@ def test_duplicate_urls_do_not_create_new_records(workdir, monkeypatch):
     『同じ話が4日続く重要テーマ』という偽の継続性で汚染されていた。"""
     _run(workdir, monkeypatch)
     first = json.loads((workdir / "data/records.json").read_text(encoding="utf-8"))
+    first_hunches = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))
     assert len(first) == 3
     # 翌日ぶんとして同じ記事集合をもう一度流す(runs の冪等ガードは外す)
     (workdir / ("data/runs/%s.json" % datetime.now(recorder.JST).strftime("%Y-%m-%d"))).unlink()
@@ -160,6 +162,7 @@ def test_duplicate_urls_do_not_create_new_records(workdir, monkeypatch):
     assert len(set(urls)) == len(urls), "URLが重複している"
     # 根拠の鎖は保たれる: hunch は既存 record の id を指す
     huns = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))
+    assert len(huns) == len(first_hunches), "新情報ゼロの日に予測を水増ししている"
     ids = {r["id"] for r in second}
     pend = [h for h in huns if h["status"] == "pending"]
     assert pend and all(all(b in ids for b in h["based_on"]) for h in pend)
@@ -181,8 +184,21 @@ def test_duplicate_path_keeps_the_original_certainty(workdir, monkeypatch):
     orig = recorder.validate_hunch
     monkeypatch.setattr(recorder, "validate_hunch",
                         lambda h, records, *a, **k: (seen.update({"records": records}), orig(h, records, *a, **k))[1])
-    (workdir / ("data/runs/%s.json" % datetime.now(recorder.JST).strftime("%Y-%m-%d"))).unlink()
-    _run(workdir, monkeypatch)
+    # 重複1件と新規1件を同時に処理し、hunch検証まで進める。
+    # 全件重複の日は仕様どおりhunch自体を作らず、validate_hunchも呼ばれない。
+    fresh_art = {"title": "Fresh official release", "url": "https://example.com/fresh",
+                 "meta": "official", "src": "Official", "points": 0, "tier": 1,
+                 "hn_score": 0, "body_fetched": False}
+    gen = _fake_response()
+    rumor_rec = dict(gen["records"][2], article_index=0)
+    fresh_rec = dict(gen["records"][0], article_index=1,
+                     headline="新しい公式発表", certainty="confirmed")
+    mixed_hunch = dict(gen["hunches"][0], based_on=[0, 1])
+    recorder.process([dict(FAKE_ARTS[2], tier=3, hn_score=400, body_fetched=False), fresh_art],
+                     {"_model": "test", "records": [rumor_rec, fresh_rec],
+                      "hunches": [mixed_hunch]},
+                     datetime.now(recorder.JST), datetime.now(recorder.JST).strftime("%Y-%m-%d"),
+                     recs, [])
 
     passed = seen.get("records") or []
     dup = next((r for r in passed if r.get("id") == rumor["id"]), None)

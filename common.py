@@ -654,6 +654,15 @@ font-size:14px;letter-spacing:.03em;transition:color .15s,border-color .15s}
 background:linear-gradient(180deg,#7fe6d8,#41b6a7);box-shadow:0 2px 12px rgba(95,215,200,.3)}
 .nav a.refresh:hover{color:#04121a;filter:brightness(1.08)}
 .hint{color:var(--dim);font-size:13px;margin-top:12px;line-height:1.75}
+.focus{border:1px solid #315b59;border-radius:18px;padding:22px 20px 20px;margin-top:32px;
+background:linear-gradient(145deg,rgba(95,215,200,.10),rgba(227,179,102,.035));
+box-shadow:0 18px 50px rgba(0,0,0,.22)}
+.focus h2{margin:8px 0 14px;border:0;padding:0;color:var(--teal)}
+.focus h2::after{display:none}
+.focus-kicker{font-size:12px;color:var(--gold);letter-spacing:.12em;font-weight:700}
+.focus-title{font-size:clamp(20px,5.3vw,26px);line-height:1.55;font-weight:750;margin:10px 0}
+.focus-btn{display:inline-block;color:#04121a!important;background:linear-gradient(180deg,#7fe6d8,#41b6a7);
+border-radius:12px;padding:10px 16px;font-weight:750;font-size:15px;box-shadow:0 4px 16px rgba(95,215,200,.25)}
 .card{border:1px solid var(--line);border-radius:14px;padding:19px 20px;margin:22px 0;
 background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,0))}
 .card h3{font-size:clamp(16.5px,4.3vw,18.5px);margin:0 0 11px;color:var(--fg);font-weight:700;
