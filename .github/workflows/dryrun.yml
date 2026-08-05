@@ -1,0 +1,25 @@
+name: dryrun
+# 予測生成の素振り。手動起動のみ。生成規律を変えた直後に、翌朝を待たずに
+# 「効いているか」を確かめるためのもの。一時ディレクトリで走らせ、
+# **リポジトリには一切書き込まない**(コミットもプッシュもしない)。
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  dryrun:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install requests
+        run: pip install requests
+      - name: Dry run (no writes to the repo)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python dryrun.py
+      - name: Assert the repo is untouched
+        run: git diff --exit-code && git status --porcelain | tee /dev/stderr | wc -l | grep -qx 0
