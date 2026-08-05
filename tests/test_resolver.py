@@ -194,7 +194,7 @@ def test_quota_failure_does_not_freeze_the_verdict(workdir, monkeypatch):
     世界が曖昧だったのではなく、こちらが見に行けなかっただけなので翌日やり直す。"""
     _due_one(workdir)
     monkeypatch.setattr(resolver, "GeminiClient", lambda *a, **k: _QuotaClient())
-    monkeypatch.setattr(resolver, "gather_evidence", lambda h: "(証拠なし)")
+    monkeypatch.setattr(resolver, "gather_evidence", lambda h, meta=None: "(証拠なし)")
     monkeypatch.setenv("GEMINI_API_KEY", "dummy")
     resolver.main()
     h = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))[0]
@@ -206,7 +206,7 @@ def test_quota_failure_gives_up_after_max_attempts(workdir, monkeypatch):
     # 無限リトライはしない。MAX_ATTEMPTS 回続けて駄目なら人に回す(毎日のチャーンを避ける)。
     _due_one(workdir)
     monkeypatch.setattr(resolver, "GeminiClient", lambda *a, **k: _QuotaClient())
-    monkeypatch.setattr(resolver, "gather_evidence", lambda h: "(証拠なし)")
+    monkeypatch.setattr(resolver, "gather_evidence", lambda h, meta=None: "(証拠なし)")
     monkeypatch.setenv("GEMINI_API_KEY", "dummy")
     for _ in range(resolver.MAX_ATTEMPTS):
         resolver.main()
@@ -230,6 +230,93 @@ def test_genuine_unclear_after_grounding_still_holds(workdir, monkeypatch):
     resolver.main()
     h = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))[0]
     assert h["needs_review"] and h.get("judge_attempts") is None   # やり直さない
+
+
+class _PageClient:
+    """判定先ページを読んだ前提で、渡されたプロンプトを記録して miss を返すダミー。"""
+    last_grounding_urls = None
+    seen = ""
+
+    def generate_grounded(self, prompt):
+        raise AssertionError("URLを開けた時はグラウンディングを使わない")
+
+    def generate(self, prompt, response_schema=None, model=None):
+        _PageClient.seen = prompt
+        return ('{"result":"miss","evidence":{"summary":"判定先ページに該当の記載がなかった",'
+                '"url":""},"confidence":0.85}')
+
+
+def test_direct_url_check_is_the_primary_path_and_enables_miss(workdir, monkeypatch):
+    """判定先URLを自分で開けたら、それが主経路になる(グラウンディング不要)。
+
+    そして『開いた上で載っていない』は不在の証拠として miss にできる。これが無いと、
+    外れた予測の観測結果(=証拠が見つからない)が毎回 unclear になり、当たった分だけが
+    採点されて的中率が実際より良く見える。"""
+    today = datetime.now(resolver.JST).date()
+    h = _mk("h-url", "Fireworks.aiが自動ルーティングをGAする",
+            (today - timedelta(days=1)).strftime("%Y-%m-%d"))
+    h["resolution"]["source"] = "https://fireworks.ai/blog"
+    (workdir / "data/hunches.json").write_text(json.dumps([h], ensure_ascii=False), encoding="utf-8")
+    (workdir / "data/records.json").write_text("[]", encoding="utf-8")
+    monkeypatch.setattr(resolver, "fetch_body", lambda u: ("ブログ本文。自動ルーティングの記載はない。", True))
+    monkeypatch.setattr(resolver, "hn_search", lambda *a, **k: [])
+    monkeypatch.setattr(resolver, "GeminiClient", lambda *a, **k: _PageClient())
+    monkeypatch.setenv("GEMINI_API_KEY", "dummy")
+    resolver.main()
+
+    # 判定プロンプトに「実際に開いた」事実と miss を許す条件が入っている
+    assert "https://fireworks.ai/blog" in _PageClient.seen
+    assert "miss と判定してよい" in _PageClient.seen
+    got = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))[0]
+    assert got["status"] == "resolved" and got["result"] == "miss"
+    # 証拠URLが空でも、開いた判定先URLで補完される(出典なしでは自動確定しないため)
+    assert got["evidence"]["url"] == "https://fireworks.ai/blog"
+    assert memory.hit_stats([got])["total"] == 1          # 打率の母数に載る
+
+
+def test_unreachable_url_falls_back_and_does_not_freeze(workdir, monkeypatch):
+    # URLが開けなければ「見に行けなかった」扱い。miss を許す条件は出さず、翌日やり直す。
+    today = datetime.now(resolver.JST).date()
+    h = _mk("h-dead", "何かがGAする", (today - timedelta(days=1)).strftime("%Y-%m-%d"))
+    h["resolution"]["source"] = "https://example.invalid/x"
+    (workdir / "data/hunches.json").write_text(json.dumps([h], ensure_ascii=False), encoding="utf-8")
+    (workdir / "data/records.json").write_text("[]", encoding="utf-8")
+    monkeypatch.setattr(resolver, "fetch_body", lambda u: ("", False))
+    monkeypatch.setattr(resolver, "hn_search", lambda *a, **k: [])
+    monkeypatch.setattr(resolver, "GeminiClient", lambda *a, **k: _QuotaClient())
+    monkeypatch.setenv("GEMINI_API_KEY", "dummy")
+    resolver.main()
+    got = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))[0]
+    assert not got.get("needs_review") and got["judge_attempts"] == 1
+
+
+def test_backfill_only_accepts_urls_that_actually_open(monkeypatch):
+    """判定先URLの補完は、**実際に取得できたURLだけ**採用する。
+    モデルがURLを幻覚しても取得に失敗すれば不採用なので、誤りが判定に混入しない。"""
+    now = datetime.now(resolver.JST)
+    h = _mk("b1", "OpenAIがGAする", (now - timedelta(days=1)).strftime("%Y-%m-%d"))
+
+    class C:
+        def generate(self, prompt, response_schema=None, model=None):
+            return '{"url":"https://openai.com/blog"}'
+
+    monkeypatch.setattr(resolver, "fetch_body", lambda u: ("本文", True))
+    assert resolver.backfill_check_url(C(), h) == "https://openai.com/blog"
+    monkeypatch.setattr(resolver, "fetch_body", lambda u: ("", False))   # 開けない
+    assert resolver.backfill_check_url(C(), h) is None
+
+    class Bad:
+        def generate(self, prompt, response_schema=None, model=None):
+            return '{"url":"公式ブログ"}'                                 # URLですらない
+
+    monkeypatch.setattr(resolver, "fetch_body", lambda u: ("本文", True))
+    assert resolver.backfill_check_url(Bad(), h) is None
+
+    class Boom:
+        def generate(self, prompt, response_schema=None, model=None):
+            raise RuntimeError("429")
+
+    assert resolver.backfill_check_url(Boom(), h) is None                # 落ちない
 
 
 def test_judge_reports_whether_it_reached_the_web():

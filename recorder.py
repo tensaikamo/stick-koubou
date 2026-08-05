@@ -132,7 +132,9 @@ def build_prompt(articles, today_str):
         '      "claim": "予測本文(1文)",\n'
         '      "subject": "主体(企業/製品/組織の固有名)",\n'
         '      "resolution": {\n'
-        '        "source": "判定時に見る場所(公式サイト/報道/指標名)",\n'
+        '        "source": "判定時に実際に開くURL(https://で始まる1本。例 https://github.com/fw-ai '
+        'や https://fireworks.ai/blog や 料金ページ)。説明文ではなくURLを書け。'
+        '**期日にそのページを開けば的中/外れが分かる**場所を選べ",\n'
         '        "check_query": "英語のみ2〜4語",\n'
         '        "decider": "何が満たされたら的中か。公式発表/公開リーダーボード/公開リポジトリ/報道など"'
         '『第三者が公開情報だけで期日に○×を付けられる観測点』で書け。『話題になる』等の曖昧表現は禁止"\n'
@@ -185,12 +187,13 @@ def regen_hunch(client, base_records, reason, today_str, fake_response=None):
     prompt = (PERSONA + "\n\n"
         "本日はJSTで " + today_str + "。次の事実(records)を根拠に、採点可能な予測(hunch)を1件だけ作り直せ。\n"
         "前回の不合格理由: " + reason + "\n"
-        "不合格を避ける要件: subject(固有名)・resolution.decider(観測可能な閾値/事象、"
+        "不合格を避ける要件: subject(固有名)・resolution.source(https://で始まる実URL。期日にそこを"
+        "開けば○×が分かる場所)・resolution.decider(観測可能な閾値/事象、"
         "『話題になる』等の曖昧語禁止)・deadline_days(今日からの相対日数、3〜30の整数。絶対日付は書くな)を"
         "必ず満たし、based_on は下記 index を1件以上参照(rumor のみを根拠にしない)。\n"
         "次のJSONオブジェクトだけを返せ:\n"
         '{"based_on":[index...],"prose":"...","claim":"...","subject":"...",'
-        '"resolution":{"source":"...","check_query":"英語2〜4語","decider":"..."},'
+        '"resolution":{"source":"https://で始まる実URL","check_query":"英語2〜4語","decider":"..."},'
         '"deadline_days":3〜30の整数,"confidence":0.5〜0.95,"counter":"外れる最も強い理由(1文)"}\n\n'
         "records:\n" + json.dumps(recs, ensure_ascii=False, indent=2))
     for attempt in range(2):
@@ -233,6 +236,11 @@ def validate_hunch(h, records, created_dt):
         return "subject が欠落"
     if not decider:
         return "resolution.decider が欠落"
+    # 判定先は**実URL**であること。説明文("公式ブログ")だと答え合わせ側で開けず、
+    # 検索グラウンディング頼みになる。無料枠ではそれが枯れて実際に決着を落とした
+    # (2026-08-05)。開けるURLがあれば、クォータに依存せず自力で確かめられる。
+    if not str(res.get("source") or "").strip().lower().startswith("https://"):
+        return "resolution.source が https:// で始まる実URLでない(期日に開ける場所を書け)"
     dd = coerce_deadline_days(h)
     if dd is None:
         return "deadline_days が欠落または整数でない"
