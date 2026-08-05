@@ -61,6 +61,15 @@ font-size:14px;letter-spacing:.03em;transition:color .15s,border-color .15s}
 background:linear-gradient(180deg,#7fe6d8,#41b6a7);box-shadow:0 2px 12px rgba(95,215,200,.3)}
 .nav a.refresh:hover{color:#04121a;filter:brightness(1.08)}
 .hint{color:var(--dim);font-size:13px;margin-top:12px;line-height:1.75}
+.focus{border:1px solid #315b59;border-radius:18px;padding:22px 20px 20px;margin-top:32px;
+background:linear-gradient(145deg,rgba(95,215,200,.10),rgba(227,179,102,.035));
+box-shadow:0 18px 50px rgba(0,0,0,.22)}
+.focus h2{margin:8px 0 14px;border:0;padding:0;color:var(--teal)}
+.focus h2::after{display:none}
+.focus-kicker{font-size:12px;color:var(--gold);letter-spacing:.12em;font-weight:700}
+.focus-title{font-size:clamp(20px,5.3vw,26px);line-height:1.55;font-weight:750;margin:10px 0}
+.focus-btn{display:inline-block;color:#04121a!important;background:linear-gradient(180deg,#7fe6d8,#41b6a7);
+border-radius:12px;padding:10px 16px;font-weight:750;font-size:15px;box-shadow:0 4px 16px rgba(95,215,200,.25)}
 .card{border:1px solid var(--line);border-radius:14px;padding:19px 20px;margin:22px 0;
 background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,0))}
 .card h3{font-size:clamp(16.5px,4.3vw,18.5px);margin:0 0 11px;color:var(--fg);font-weight:700;
@@ -94,14 +103,17 @@ text-shadow:0 0 16px rgba(95,215,200,.35)}
 <div class="d">2026.08.05 23:46 JST</div>
 <nav class="nav"><a class="refresh" href="https://github.com/tensaikamo/stick-koubou/actions/workflows/sanbo.yml" target="_blank" rel="noopener">⟳ 参謀に調べ直させる</a><a href="records.html">記録の台帳</a><a href="hunches.html">勘の台帳</a><a href="threads.html">記憶の物語</a><a href="ichite.html">今日の一手</a></nav>
 <div class="hint">「調べ直させる」→ GitHubで Run workflow を1タップ。数分で参謀が記憶を踏まえて考え直す。反映後にこのページを再読み込み。</div></header>
+<section class="focus reveal"><div class="focus-kicker">TODAY · 30分 · iPhoneだけ</div><h2>今日やること</h2>
+<p class="focus-title">GitHubの改善候補を1件Issueに書く</p>
+<p class="m">iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。</p>
+<p><a class="focus-btn" href="ichite.html">この一手を決める →</a></p></section>
 <section class="reveal"><h2>今日の空気</h2>
 <p><span class="lb">表</span>Anthropicがシリコン設計エンジニアの求人を開始し、DeepMindがロボット制御モデル「Gemini Robotics ER 2」を発表した。また、Hugging FaceではGPUの遊休状態管理の重要性が指摘され、vLLMは新バージョンを公開した。</p>
 <p><span class="lb">裏</span>NVIDIA依存からの脱却と推論コスト削減を狙う独自チップ開発の動きは、基盤モデルの価格競争のフェーズがインフラの垂直統合へ移ったことを意味する。大手資本がハードウェアとモデルを直結させる囲い込みを急ぐ裏で、個人の隙は高騰するインフラの「無駄」を削るレイヤーや、既存の重いシステムから締め出された層の受け皿にある。</p><p class="m"><b>退けた説</b> 独自シリコンの採用はコスト削減ではなく、単に汎用的なアクセラレータの供給不足を補うための分散投資に過ぎないという仮説を検討したが、採用ドメインがフロントエンドおよび物理設計のコア層に及んでいるため退けた。</p></section>
-<section class="reveal"><h2>で、どうする</h2><p>Hugging Face上で公開されたGPUの稼働率最適化に関するドキュメントと、vLLMの最新リリースノートに目を通せ。自前でモデルを回す際のアイドルコストがどこで発生しているかを数値で洗い出せ。クラウドの従量課金に頼っている部分の代替手段を今日中に一つ検証しておけ。</p></section>
-<section class="reveal"><h2>参謀の勘</h2><p>Anthropicは3週間以内に、自社のカスタムシリコンに関するパートナーシップまたは専用アクセラレータの開発方針について公式ブログや求人背景の補足で何らかの言及を行う。</p><p class="m"><b>根拠</b> 求人情報の公開という初期段階の動きから、競合への牽制や開発加速のために早い段階で方向性がリーク・公表されるパターンが過去の半導体シフトの歴史で見られるため。</p><p class="m"><b>外れるとすれば</b> 採用活動の開始は単なるエンジニアの獲得であり、直近で具体的な開発方針やハードウェア戦略が外部に開示される必然性は低い。</p><p class="m"><b>確度</b> 18%（独立見積り 18%・12%・18% の中央値） <span class="kv">3つの立場が割れた(票の幅0.06)ので中央値を採った。</span></p></section>
-<section class="reveal"><h2>一般人の超参謀</h2><p class="m">AIを普通に使う人向け・今日からできる一手</p><p>AIサービスの利用料やクラウドの維持費が高いと感じているなら、提供されているモデルの性能だけでなく、裏でどれだけ無駄な計算資源が回されているかに目を向けるとよい。安いからといって検証なしに高頻度でAPIを叩くのではなく、ローカルで動く軽量モデルへの切り替えやキャッシュの仕組みを少し知るだけで、無駄な出費を大きく減らすことができる。</p></section>
+<section class="reveal"><h2>参謀の勘</h2><p>Googleは12日以内に、Google AI Studioの利用可能モデル一覧および公式ドキュメントに「Gemini 3.5 Flash Cyber」を追加する。</p><p class="m"><b>根拠</b> Googleの発表後、開発者の利用経路であるAI Studioへの展開が囲い込みに直結するという読み。</p><p class="m"><b>外れるとすれば</b> 誤用リスクを理由にVertex AI限定の審査制提供に留まり、AI Studioには展開されない。</p><p class="m"><b>確度</b> 80%</p><p class="m"><b>採点対象</b> 2026-08-05-h02 · <a href="hunches.html">根拠・期限・答え合わせを見る →</a></p></section>
+<section class="reveal"><h2>一般人の超参謀</h2><p class="m">AIを普通に使う人向け・今日からできる一手</p><p>AIサービスの利用料が高いと感じるなら、iPhoneで各サービスの利用履歴を開き、今週使わなかった有料機能を1つだけ書き出せ。解約や下位プランへの変更は、その記録を見てから決めればよい。</p></section>
 <section class="reveal"><h2>追跡中の予測</h2><p class="m">期日が来たら○×が付く。加えて毎日、生死を示す指標が点灯していないかを見張っている。</p><ul><li>NVIDIAの次回決算におけるデータセンター部門売上高が280億ドルを上回る。 <span class="m">期限2026-08-26・残り21日</span></li><li>Googleは12日以内に、Google AI Studioの利用可能モデル一覧および公式ドキュメントに「Gemini 3.5  <span class="m">期限2026-08-17・残り12日</span></li><li>Anthropicは10日以内に、Anthropic APIの公式価格ドキュメントにおいて「Claude Opus 5」の入力・ <span class="m">期限2026-08-15・残り10日</span></li></ul><p class="m"><a href="hunches.html">すべての予測と答え合わせ →</a></p></section>
-<section class="reveal"><h2>答え合わせ</h2><p><span class="hitrate">的中率 0%</span> <span class="m">(的中0/外し2・判定待ち30)</span><br><span class="m">Brier 0.642（低いほど良い。常に50%と答えるだけなら0.250）</span></p><p class="m">次の決着: 8/7(あと2日)</p><ul><li>× Fireworks.aiが自動モデルルーティング機能を一般向け新機能として正式提供開始する。</li><li>× Fireworks.aiがKimi K3のモデルルーティング再現用コードまたは関連設定ライブラリ</li></ul><p class="m"><a href="hunches.html">勘の台帳(全予測と○×)→</a></p></section>
+<section class="reveal"><h2>答え合わせ</h2><p><span class="kv"><b>暫定成績</b> 的中0/外し2（n=2。20件までは能力値として扱わない）</span><br><span class="m">参考Brier 0.642（標本不足）</span></p><p class="m">次の決着: 8/7(あと2日)</p><ul><li>× Fireworks.aiが自動モデルルーティング機能を一般向け新機能として正式提供開始する。</li><li>× Fireworks.aiがKimi K3のモデルルーティング再現用コードまたは関連設定ライブラリ</li></ul><p class="m"><a href="hunches.html">勘の台帳(全予測と○×)→</a></p></section>
 <section class="reveal"><h2>未上陸</h2><div class="mj"><div class="mjt">GPU Management: Why Idle GPUs Are the New Grounded Aircraft</div><p>AIインフラにおけるGPUの遊休状態（アイドルタイム）の管理と最適化の重要性を説いた記事</p><p class="mjw">先回りの価値:国内ではGPUの「不足」ばかりが議論され、既存リソースの稼働率をいかに削るかという運用効率化の視点が完全に抜け落ちているため</p><p class="m">日本語記事: <b>0件</b>(実測・本当に未到達)</p></div><div class="mj"><div class="mjt">RestoreKV: Recovering Full-Cache Behavior Under Aggressive Query-Agnostic KV Cache Eviction</div><p>積極的なKVキャッシュ破棄環境下でフルキャッシュの挙動を復元する手法を扱った論文</p><p class="mjw">先回りの価値:長文処理のメモリ圧迫とコスト削減を同時に解決する技術であり、国内の応用開発者にはまだその実装インパクトが認識されていないため</p><p class="m">日本語記事: <b>0件</b>(実測・本当に未到達)</p></div></section>
 <section class="reveal"><h2>今日の重要記事</h2><ul><li><a href="https://job-boards.greenhouse.io/anthropic/jobs/5286348008">[新規求人] anthropic: Silicon Engineer (San Francisco, CA | New York City, NY | Seattle, WA)</a> <span class="m">求人:anthropic 2026-08-04</span></li>
 <li><a href="https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/">Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration</a> <span class="m">DeepMind公式 </span></li>

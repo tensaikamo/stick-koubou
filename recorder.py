@@ -12,8 +12,9 @@ from zoneinfo import ZoneInfo
 
 import requests  # 分岐1: 本文取得は requests を使う(明示指示)
 
-from common import GeminiClient, fetch_hn, fetch_tc, parse_json, PAGE_CSS
+from common import GeminiClient, fetch_all, parse_json, PAGE_CSS
 import memory
+import decision
 
 JST = ZoneInfo("Asia/Tokyo")
 DATA_DIR = "data"
@@ -174,7 +175,7 @@ def build_prompt(articles, today_str):
         body = a["body"] if a["body_fetched"] else "(本文取得に失敗。タイトルのみ)"
         lines.append(
             "[記事 " + str(i) + "] " + a["title"]
-            + " (HN " + str(a["hn_score"]) + "pt, " + a["src"] + ")\n"
+            + " (signal " + str(a["hn_score"]) + ", " + a["src"] + ")\n"
             + "URL: " + a["url"] + "\n"
             + "body_fetched: " + ("true" if a["body_fetched"] else "false") + "\n"
             + "本文抜粋: " + (body[:1500] if body else "") + "\n")
@@ -228,7 +229,9 @@ def build_prompt(articles, today_str):
         '    }\n'
         '  ]\n'
         '}\n'
-        "record は重要な記事のみ(最大" + str(TOP_N) + "件)。hunch は 1〜3件、必ず record を根拠にせよ。\n"
+        "record は重要な記事のみ(最大" + str(TOP_N) + "件)。hunch は 0〜2件、必ず**本日初めて得た**recordを根拠にせよ。"
+        "新しい事実が無い、既存予測と実質同じ、基準率から見てedgeが無い場合はhunchを0件にしろ。"
+        "予測を毎日作ること自体には価値がない。\n"
         "【指標(indicators)】各 hunch に2〜3個。期日を待たずに生死が分かる観測点を置け。"
         "dir=confirm は『これが起きたら的中に近づく』、dir=kill は『これが起きたらこの予測は死ぬ』。"
         "毎日の公開情報で観測できる形にしろ(例:『APIの価格表に新モデルが載る』『◯◯社が該当職種の求人を出す』"
@@ -355,6 +358,8 @@ def validate_hunch(h, records, created_dt):
     idxs = [i for i in based if isinstance(i, int) and 0 <= i < len(records) and records[i].get("id")]
     if not idxs:
         return "based_on が空、または実在 record を参照していない"
+    if not any(records[i].get("is_new", True) for i in idxs):
+        return "本日初めて得た事実を根拠にしていない"
     if all(records[i].get("certainty") == "rumor" for i in idxs):
         return "根拠が certainty=rumor の record のみ"
     return None
@@ -438,12 +443,13 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
             # 昨日 rumor として記録した噂が今日は報道扱いになり、噂だけを根拠にした
             # 予測を弾くゲート(validate_hunch)を通ってしまう。
             _dup_id, _dup_cert = seen_urls[_u]
-            internal_records.append({"id": _dup_id, "certainty": _dup_cert,
+            internal_records.append({"id": _dup_id, "certainty": _dup_cert, "is_new": False,
                                      "headline": str(rec.get("headline") or "")})
             print("record 重複のためスキップ(既出:%s certainty=%s): %s" % (_dup_id, _dup_cert, _u[:70]))
             continue
         certainty = rec.get("certainty") if rec.get("certainty") in ("confirmed", "reported", "rumor") else "reported"
-        source_tier = rec.get("source_tier") if rec.get("source_tier") in ("primary", "secondary") else "secondary"
+        # 一次/二次はモデルに自己申告させず、収集器が付けた層を正とする。
+        source_tier = "primary" if (art or {}).get("tier") == 1 else "secondary"
         r_seq += 1
         rid = date_str + "-r%02d" % r_seq
         obj = {
@@ -459,6 +465,8 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
                 "url": art["url"] if art else "",
                 "title": art["title"] if art else str(rec.get("headline") or ""),
                 "hn_score": art["hn_score"] if art else 0,
+                "name": art.get("src", "") if art else "",
+                "tier": art.get("tier", 3) if art else 3,
             },
             "body_fetched": bool(art["body_fetched"]) if art else False,
             "model": model,
@@ -470,13 +478,13 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
                 (art["title"] if art else ""), _uniq_existing),
         }
         if valid_record_schema(obj):
-            internal_records.append({"id": rid, "certainty": certainty,
+            internal_records.append({"id": rid, "certainty": certainty, "is_new": True,
                                      "headline": obj["headline"]})
             new_records.append(obj)
         else:
             # 除外しても **索引をずらさない**(based_on はLLMが返した records の位置を指すため、
             # 詰めると別の record に根拠が付け替わる)。空idはbased_on解決時に落とす。
-            internal_records.append({"id": "", "certainty": certainty, "headline": ""})
+            internal_records.append({"id": "", "certainty": certainty, "is_new": False, "headline": ""})
             print("record スキーマ不正のため除外:", repr(obj)[:160])
 
     # --- hunches: 検証ゲート + 再生成 + 採番 ---
@@ -484,6 +492,12 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
     fakes = gen.get("_fake_regens", [])  # テスト用: 再生成応答の順次差し込み
     for hraw in gen.get("hunches", []):
         if not isinstance(hraw, dict):
+            continue
+        # 同じ記事を拾い直しただけの日に、新しい予測を捏造しない。
+        _raw_idxs = [i for i in (hraw.get("based_on") or [])
+                     if isinstance(i, int) and 0 <= i < len(internal_records)]
+        if not any(internal_records[i].get("is_new") for i in _raw_idxs):
+            print("hunch スキップ: 本日初めて得た事実を根拠にしていない")
             continue
         rejected = []
         current = hraw
@@ -497,7 +511,9 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
                 status = "unscorable"
                 break
             fake = fakes.pop(0) if fakes else None
-            regen = regen_hunch(getattr(process, "_client", None), new_records, reason,
+            # based_on はこの実行内の article_index を指す。重複URLを含む日は
+            # new_records だけを渡すと添字がずれるため、内部表現と同じ並びを渡す。
+            regen = regen_hunch(getattr(process, "_client", None), internal_records, reason,
                                 date_str, fake_response=fake)
             if not isinstance(regen, dict):
                 # 再生成できなければ現案のまま次周(3回目で unscorable)
@@ -567,6 +583,13 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
             "schema_version": SCHEMA_VERSION,
             "generator_ver": GENERATOR_VER,
         }
+        dup_id, dup_sim = decision.duplicate_claim(obj["claim"], existing_hunches + new_hunches)
+        if dup_id:
+            print("hunch 重複のためスキップ: %s と類似 %.2f" % (dup_id, dup_sim))
+            continue
+        if status == "pending" and sum(1 for h in new_hunches if h.get("status") == "pending") >= 2:
+            print("hunch 上限のためスキップ: 採点対象は1日最大2件")
+            continue
         if valid_hunch_schema(obj):
             new_hunches.append(obj)
         else:
@@ -643,8 +666,11 @@ def render_records_page(records):
             if r.get("background"):
                 parts.append('<p class="kv"><b>背景</b> ' + _esc(r["background"]) + '</p>')
             if url:
+                _src_name = str(src.get("name") or "ソース")
+                _score = src.get("hn_score", 0)
+                _score_text = (" · signal " + str(_score)) if _score else ""
                 parts.append('<p><a href="' + _esc(url) + '">' + _esc(src.get("title") or "ソースを開く")
-                             + '</a> <span class="m">HN ' + _esc(src.get("hn_score", 0)) + 'pt</span></p>')
+                             + '</a> <span class="m">' + _esc(_src_name + _score_text) + '</span></p>')
             parts.append('<p class="kv">' + _esc(r.get("id", "")) + '</p></article>')
             cards.append("".join(parts))
         _dup = len(records) - len(shown)
@@ -760,10 +786,17 @@ def render_hunches_page(hunches):
                     + '(あと' + str(_rem) + '日)</p>')
     if st["total"]:
         _br = memory.brier(hunches)
-        rate = ('<p><span class="hitrate">的中率 ' + str(round(st["rate"] * 100)) + '%</span> '
-                '<span class="kv">(的中' + str(st["hit"]) + ' / 外し' + str(st["miss"]) + ' / 判定不能除く)</span></p>'
-                + (('<p class="kv"><b>Brier</b> ' + ("%.3f" % _br["score"]) + '（n=' + str(_br["n"])
-                    + '・低いほど良い。常に50%と答えるだけなら 0.250）</p>') if _br["score"] is not None else ""))
+        if st["total"] < 20:
+            rate = ('<p class="kv"><b>暫定成績</b> 的中' + str(st["hit"]) + ' / 外し' + str(st["miss"])
+                    + '（n=' + str(st["total"]) + '。20件までは能力値として扱わない）</p>'
+                    + (('<p class="kv"><b>参考Brier</b> ' + ("%.3f" % _br["score"])
+                        + '（標本不足）</p>') if _br["score"] is not None else ""))
+        else:
+            rate = ('<p><span class="hitrate">的中率 ' + str(round(st["rate"] * 100)) + '%</span> '
+                    '<span class="kv">(的中' + str(st["hit"]) + ' / 外し' + str(st["miss"])
+                    + ' / 判定不能除く)</span></p>'
+                    + (('<p class="kv"><b>Brier</b> ' + ("%.3f" % _br["score"]) + '（n=' + str(_br["n"])
+                        + '・低いほど良い。常に50%と答えるだけなら 0.250）</p>') if _br["score"] is not None else ""))
     else:
         rate = '<p class="kv">まだ答え合わせ前。的中率は期日到来分の決着後に出る。</p>'
     if not hunches:
@@ -851,7 +884,8 @@ def main():
     started_at = now.isoformat()
 
     # --- 記事収集 + 本文取得(分岐1) ---
-    items = fetch_hn() + fetch_tc()
+    # サイト本体と同じ収集器を使う。表示用と採点用が別の世界を見る状態をやめる。
+    items = fetch_all(limit=TOP_N * 3)
     seen, uniq = set(), []
     for a in items:
         k = (a.get("title") or "").lower().strip()
@@ -870,6 +904,7 @@ def main():
             body, ok = fetch_body(a["url"])
         articles.append({"title": a.get("title") or "", "url": a.get("url") or "",
                          "hn_score": a.get("points", 0), "src": a.get("src", ""),
+                         "tier": a.get("tier", 3),
                          "body": body, "body_fetched": ok})
 
     # --- LLM 生成(records+hunches 同時、1回・失敗時2回再試行) ---

@@ -50,11 +50,17 @@ def answers_html(hunches, today, memory):
     st = memory.hit_stats(hunches)
     if st["total"]:
         br = memory.brier(hunches)
-        head = ('<span class="hitrate">的中率 ' + str(round(st["rate"] * 100)) + '%</span> '
-                '<span class="m">(的中' + str(st["hit"]) + '/外し' + str(st["miss"])
-                + '・判定待ち' + str(st["pending"]) + ')</span>'
-                + (('<br><span class="m">Brier ' + ("%.3f" % br["score"])
-                    + '（低いほど良い。常に50%と答えるだけなら0.250）</span>') if br["score"] is not None else ""))
+        if st["total"] < 20:
+            head = ('<span class="kv"><b>暫定成績</b> 的中' + str(st["hit"]) + '/外し' + str(st["miss"])
+                    + '（n=' + str(st["total"]) + '。20件までは能力値として扱わない）</span>'
+                    + (('<br><span class="m">参考Brier ' + ("%.3f" % br["score"])
+                        + '（標本不足）</span>') if br["score"] is not None else ""))
+        else:
+            head = ('<span class="hitrate">的中率 ' + str(round(st["rate"] * 100)) + '%</span> '
+                    '<span class="m">(的中' + str(st["hit"]) + '/外し' + str(st["miss"])
+                    + '・判定待ち' + str(st["pending"]) + ')</span>'
+                    + (('<br><span class="m">Brier ' + ("%.3f" % br["score"])
+                        + '（低いほど良い。常に50%と答えるだけなら0.250）</span>') if br["score"] is not None else ""))
     else:
         head = '<span class="m">まだ答え合わせ前。判定待ち ' + str(st["pending"]) + ' 件(期日が来たら○×が付く)</span>'
     nd = memory.next_due(hunches, today)
