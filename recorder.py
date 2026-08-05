@@ -39,7 +39,26 @@ UNVERIFIABLE_WORDS = ["非公開", "未公表", "秘密", "極秘", "リーク",
                       "内部情報", "内部で", "裏で", "裏枠", "裏api", "非公表", "密かに"]
 
 PERSONA = """読者は個人で情報優位を作り先回りを狙う人物。断言型・根拠つき。
-「確実だ」「間違いない」等の断定語は使わない。企業向け提言・一般論は書かない。"""
+「確実だ」「間違いない」等の断定語は使わない。企業向け提言・一般論は書かない。
+
+【外部視点を先に置け(参照クラス予測)】
+実データで測ったら、台帳の予測33件が**33件とも「XがYをする」型**で、確度は0.60〜0.85の
+狭い帯(標準偏差0.06)に固まっていた。つまりこの参謀は「起きる方に賭け続け、しかも
+どれが確からしいか区別できていない」。中央値14日という短期に企業が特定の新しい行動を
+取る基準率は低いので、これは体系的な過信であり、実際に最初の決着は外れだった。
+
+だから順番を守れ。まず**参照クラスの頻度**(この種の企業が、この種のことを、この日数で
+実際にやる頻度)を置く。次に今日の材料で上下に調整する。確度は基準率からの乖離として
+決めろ。願望や語調の強さで上げるな。
+
+【起きない方にも賭けろ】
+「起きない」「見送られる」「期日までに出ない」という予測も**同じだけ価値がある**。
+短期では大半のことは起きないのだから、むしろそちらが基準率に沿う。的中しやすい方に
+逃げず、外部視点が示す方に賭けろ。
+
+【確度は本気で刻め】
+0.75・0.80・0.85 のようなキリの良い値に逃げるな。0.05〜0.95 の全域を使い、
+自信が無いなら0.3や0.15と書け。全部同じ確度を付ける予測者は、何も予測していない。"""
 
 
 # ---- 入出力ユーティリティ ------------------------------------------------
@@ -140,7 +159,13 @@ def build_prompt(articles, today_str):
         '『第三者が公開情報だけで期日に○×を付けられる観測点』で書け。『話題になる』等の曖昧表現は禁止"\n'
         '      },\n'
         '      "deadline_days": 判定期限までの日数(今日からの相対、3〜30の整数。絶対日付は書くな),\n'
-        '      "confidence": 0.50〜0.95 の数値,\n'
+        '      "base_rate": 0.01〜0.95の数値。**先にこれを決めろ**。今日の材料を一切見ずに、'
+        '「この種の企業が・この種のことを・この日数で実際にやる」参照クラスの頻度はいくつか。'
+        '短期に特定の新しい行動が起きる頻度は普通かなり低い,\n'
+        '      "base_rate_class": "どの参照クラスで数えたか(例『大手AI企業が予告なしに新モデルをGAする・14日窓』)",\n'
+        '      "confidence": 0.05〜0.95の数値。base_rate を出発点に、今日の材料の強さで**上下に**調整した値。'
+        'キリの良い値(0.75/0.80/0.85)に逃げず刻め。材料が弱いなら base_rate を下回ってよい,\n'
+        '      "confidence_why": "base_rate からどちら向きに何故ずらしたか(1文)。ずらさないならその理由",\n'
         '      "counter": "この予測が外れるとしたら最も強い理由(1文・具体的に)。過信を戒め自分で反証せよ",\n'
         '      "indicators": [{"sign": "この予測の生死を示す、公開情報で毎日観測できる具体的な事象", "dir": "confirm または kill"}]\n'
         '    }\n'
@@ -194,7 +219,9 @@ def regen_hunch(client, base_records, reason, today_str, fake_response=None):
         "次のJSONオブジェクトだけを返せ:\n"
         '{"based_on":[index...],"prose":"...","claim":"...","subject":"...",'
         '"resolution":{"source":"https://で始まる実URL","check_query":"英語2〜4語","decider":"..."},'
-        '"deadline_days":3〜30の整数,"confidence":0.5〜0.95,"counter":"外れる最も強い理由(1文)"}\n\n'
+        '"deadline_days":3〜30の整数,"base_rate":0.01〜0.95,"base_rate_class":"参照クラス",'
+        '"confidence":0.05〜0.95,"confidence_why":"基準率からのずらし方",'
+        '"counter":"外れる最も強い理由(1文)"}\n\n'
         "records:\n" + json.dumps(recs, ensure_ascii=False, indent=2))
     for attempt in range(2):
         try:
@@ -241,6 +268,19 @@ def validate_hunch(h, records, created_dt):
     # (2026-08-05)。開けるURLがあれば、クォータに依存せず自力で確かめられる。
     if not str(res.get("source") or "").strip().lower().startswith("https://"):
         return "resolution.source が https:// で始まる実URLでない(期日に開ける場所を書け)"
+    # 外部視点(参照クラス)を通っていない予測は採らない。実測で33件中33件が「起きる」型・
+    # 確度は0.60〜0.85の狭い帯に固まっており、体系的に過信していた。基準率を必須の
+    # 構造化フィールドにして、確度を「基準率からどうずらしたか」として説明させる。
+    br = h.get("base_rate")
+    if not isinstance(br, (int, float)) or not (0.0 < float(br) < 1.0):
+        return "base_rate(参照クラスの頻度)が欠落、または0〜1の数値でない"
+    if not str(h.get("base_rate_class") or "").strip():
+        return "base_rate_class(何をどの窓で数えたか)が欠落"
+    conf = h.get("confidence")
+    if isinstance(conf, (int, float)):
+        # 基準率から大きく離すなら理由が要る(材料の強さで説明できない乖離を通さない)
+        if abs(float(conf) - float(br)) > 0.25 and not str(h.get("confidence_why") or "").strip():
+            return "confidence が base_rate から0.25超離れているのに confidence_why がない"
     dd = coerce_deadline_days(h)
     if dd is None:
         return "deadline_days が欠落または整数でない"
@@ -417,7 +457,14 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
             conf = float(current.get("confidence"))
         except Exception:
             conf = 0.5
-        conf = max(0.50, min(0.95, conf))
+        # 下限は 0.05。**0.50 で床を張ってはいけない**——「起きないと思う」を表明できず、
+        # 確度が0.60〜0.85の狭い帯に潰れていた(実測 標準偏差0.06=判別力ゼロ)。
+        # Brier は確度の正しさを測るので、低く言えないことは一方的な損になる。
+        conf = max(0.05, min(0.95, conf))
+        try:
+            base_rate = max(0.01, min(0.99, float(current.get("base_rate"))))
+        except (TypeError, ValueError):
+            base_rate = None
 
         # deadline は相対日数からコード側で JST 絶対日付に確定(+3〜+30日内のときのみ)
         dd = coerce_deadline_days(current)
@@ -442,6 +489,11 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
             },
             "deadline": deadline,
             "confidence": conf,
+            # 外部視点(参照クラス予測)の記録。確度を「基準率からどうずらしたか」として残すと、
+            # 後から『材料に酔って上振れさせる癖』が測れる(較正の材料になる)。
+            "base_rate": base_rate,
+            "base_rate_class": str(current.get("base_rate_class") or "").strip(),
+            "confidence_why": str(current.get("confidence_why") or "").strip(),
             "counter": str(current.get("counter") or "").strip(),  # 反証条件(外れる最も強い理由)
             # 指標監視(I&W): 期日を待たず生死が分かる観測点と、その点灯履歴。任意=既存データと後方互換。
             "indicators": [
@@ -573,7 +625,18 @@ def _hunch_card(h, today):
         parts.append('<span class="badge b-miss">危険信号</span>')
     else:
         parts.append('<span class="badge b-pending">判定待ち</span>')
-    parts.append('<span class="kv">確度 ' + _esc(h.get("confidence", "")) + '</span>')
+    # 確度は「基準率をどうずらしたか」として見せる。数字だけだとどこから来たか分からない。
+    _br = h.get("base_rate")
+    if isinstance(_br, (int, float)):
+        try:
+            _c = float(h.get("confidence"))
+            _arrow = "↑" if _c > _br else ("↓" if _c < _br else "→")
+            parts.append('<span class="kv">基準率 %d%% %s 確度 %d%%</span>'
+                         % (round(_br * 100), _arrow, round(_c * 100)))
+        except (TypeError, ValueError):
+            parts.append('<span class="kv">確度 ' + _esc(h.get("confidence", "")) + '</span>')
+    else:
+        parts.append('<span class="kv">確度 ' + _esc(h.get("confidence", "")) + '</span>')
     if dl:
         parts.append('<span class="kv deadline">期限 ' + _esc(dl) + drem + '</span>')
     parts.append('</div>')
@@ -605,6 +668,10 @@ def _hunch_card(h, today):
         parts.append('<p class="kv"><span class="badge ' + cls + '">' + lab + '</span> '
                      + _esc(s.get("date", "")) + " " + _esc(s.get("why", "") or s.get("sign", ""))
                      + _mv + '</p>')
+    if h.get("base_rate_class"):
+        parts.append('<p class="kv"><b>参照クラス</b> ' + _esc(h["base_rate_class"])
+                     + ((' / <b>ずらした理由</b> ' + _esc(h["confidence_why"]))
+                        if h.get("confidence_why") else "") + '</p>')
     if res.get("decider"):
         parts.append('<p class="kv"><b>的中条件</b> ' + _esc(res["decider"]) + '</p>')
     if res.get("source") or res.get("check_query"):

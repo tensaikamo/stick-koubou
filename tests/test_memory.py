@@ -121,6 +121,42 @@ def test_next_due_returns_nearest_future():
     assert nd is not None and nd[1] == 2  # 最近接=2日後
 
 
+def test_brier_decomposition_separates_calibration_from_discrimination():
+    """合計の Brier だけでは『自信の付け方が下手』と『どれが当たるか区別できていない』を
+    区別できない。実測で確度が0.60〜0.85に潰れていた(標準偏差0.06)ので後者が疑わしく、
+    どちらを直すべきかを数字で出せるようにする。"""
+    # (A) 全部同じ確度 → 判別力ゼロ(何も予測していないのと同じ)
+    flat = [_h("a", "x", "hit", 0.7, "resolved"), _h("b", "y", "miss", 0.7, "resolved"),
+            _h("c", "z", "hit", 0.7, "resolved"), _h("d", "w", "miss", 0.7, "resolved")]
+    pa = memory.brier_parts(flat)
+    assert pa["n"] == 4 and pa["resolution"] < 1e-9
+
+    # (B) 当たる方を高く・外す方を低く → 判別力が出る
+    sharp = [_h("a", "x", "hit", 0.9, "resolved"), _h("b", "y", "miss", 0.1, "resolved"),
+             _h("c", "z", "hit", 0.9, "resolved"), _h("d", "w", "miss", 0.1, "resolved")]
+    pb = memory.brier_parts(sharp)
+    assert pb["resolution"] > pa["resolution"]
+    assert pb["reliability"] < 0.05          # 言った確度どおりに当たっている
+    assert pb["brier"] < pa["brier"]
+
+    # 分解は恒等式 Brier = 較正誤差 − 判別力 + 不確実性 を満たす
+    for p in (pa, pb):
+        assert abs(p["brier"] - (p["reliability"] - p["resolution"] + p["uncertainty"])) < 1e-9
+    assert memory.brier_parts([])["n"] == 0
+
+
+def test_digest_warns_about_flat_confidence_and_one_sided_claims():
+    flat = [_h(str(i), "OpenAIが新機能を出す", "hit" if i % 2 else "miss", 0.7, "resolved")
+            for i in range(6)]
+    d = memory.build_digest([], flat)
+    assert "判別力がほぼゼロ" in d          # 全部同じ確度
+    assert "起きない方に賭ける勇気" in d    # 「起きる」型しかない
+    # 否定型が十分あれば偏りの警告は出ない
+    mixed = flat[:3] + [_h("n%d" % i, "OpenAIは期日までに公開しない", "hit", 0.7, "resolved")
+                        for i in range(3)]
+    assert "起きない方に賭ける勇気" not in memory.build_digest([], mixed)
+
+
 def test_confidence_moves_on_signal_and_stays_bounded():
     """指標が点灯したら確度を1段動かす(逐次ベイズ更新)。従来は点灯を表示するだけで、
     確度は作成日のまま固まっていた。Brier は確度の正しさを測るので、期日に近いほど

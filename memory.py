@@ -102,6 +102,58 @@ def brier(hunches):
     return {"score": (s / n) if n else None, "n": n}
 
 
+# 「起きない」方向の予測を見分ける語。短期では大半のことは起きないので、
+# 否定型の予測は基準率に沿う=本来もっとあってよい。
+_NEGATIVE_CLAIM = re.compile(r"しない|されない|見送|撤回|停止|中止|延期|公開されず|"
+                             r"出ない|届かない|下回|割れ|落ち込|失速|達しない|至らない")
+
+
+def _is_negative_claim(claim):
+    return bool(_NEGATIVE_CLAIM.search(str(claim or "")))
+
+
+def brier_parts(hunches, bins=5):
+    """Brier をマーフィー分解する: Brier = 較正誤差 − 判別力 + 不確実性。
+
+    合計の Brier だけ見ても「自信の付け方が下手(較正が悪い)」のか
+    「そもそもどれが当たるか区別できていない(判別力が無い)」のか分からない。
+    実測で確度が0.60〜0.85の狭い帯(標準偏差0.06)に潰れていたので、後者が疑わしい。
+    分解すればどちらを直すべきかが数字で出る。
+
+    - reliability(較正誤差): 小さいほど良い。「確度80%と言った群が実際に80%当たる」なら0
+    - resolution(判別力): **大きいほど良い**。全部同じ確度なら0=何も予測していないのと同じ
+    - uncertainty: 事象そのもののばらつき(打率p̄(1−p̄))。実力ではなく問題の難しさ
+    戻り: {"reliability","resolution","uncertainty","brier","n"} / 確定分が無ければ n=0。
+    """
+    obs = []
+    for h in hunches:
+        r = h.get("result")
+        if r not in ("hit", "miss"):
+            continue
+        try:
+            c = min(max(float(h.get("confidence")), 0.0), 1.0)
+        except (TypeError, ValueError):
+            continue
+        obs.append((c, 1.0 if r == "hit" else 0.0))
+    n = len(obs)
+    if not n:
+        return {"reliability": None, "resolution": None, "uncertainty": None, "brier": None, "n": 0}
+    base = sum(o for _, o in obs) / n
+    groups = {}
+    for c, o in obs:
+        k = min(int(c * bins), bins - 1)      # 確度を bins 個の帯にまとめる
+        groups.setdefault(k, []).append((c, o))
+    rel = res = 0.0
+    for g in groups.values():
+        nk = len(g)
+        ck = sum(c for c, _ in g) / nk        # その帯で言った確度の平均
+        ok = sum(o for _, o in g) / nk        # その帯で実際に当たった割合
+        rel += nk * (ck - ok) ** 2
+        res += nk * (ok - base) ** 2
+    return {"reliability": rel / n, "resolution": res / n,
+            "uncertainty": base * (1 - base), "brier": brier(hunches)["score"], "n": n}
+
+
 CONF_FLOOR, CONF_CEIL = 0.05, 0.95   # 確度は0/1に振り切らない(振り切ると Brier が壊滅的に効く)
 LOGIT_STEP = 0.45                     # 1回の点灯で動かすログオッズ量(≒確度0.7で±0.08)
 
@@ -273,6 +325,30 @@ def build_digest(records, hunches, compact=False):
         if parts:
             cal += " 較正実績: " + " / ".join(parts) + "。実績が確度を下回る帯は確度を下げよ。"
         lines.append("較正: " + cal)
+
+        # Brier とその分解。合計だけだと「較正が悪い」のか「判別力が無い」のか区別できない。
+        bp = brier_parts(hunches)
+        if bp["n"]:
+            b = brier(hunches)["score"]
+            lines.append(
+                "Brier %.3f(n=%d / 常に50%%と答えるだけのベースラインは0.250。これを上回っていたら情報が無い)。"
+                "内訳: 較正誤差%.3f(小さいほど良い) / 判別力%.3f(**大きいほど良い**)。"
+                % (b, bp["n"], bp["reliability"], bp["resolution"]))
+            if bp["resolution"] < 0.01:
+                lines.append("警告: 判別力がほぼゼロ。全部に似た確度を付けている=何も予測していないのと同じ。"
+                             "確からしい読みと怪しい読みで確度をはっきり変えろ。")
+            if b is not None and b > 0.25:
+                lines.append("警告: ベースライン(0.250)より悪い。確度を付けすぎている。"
+                             "基準率まで引き戻し、迷うものは0.5未満で出せ。")
+
+    # 予測の向きの偏り。短期では大半のことは起きないので、「起きる」型ばかり作るのは
+    # 体系的な過信になる(実測33件中33件が「起きる」型で、最初の決着は外れだった)。
+    scored = [h for h in hunches if h.get("result") in ("hit", "miss")] or hunches
+    if len(scored) >= 5:
+        neg = sum(1 for h in scored if _is_negative_claim(h.get("claim", "")))
+        if neg * 4 < len(scored):     # 「起きない」型が1/4未満
+            lines.append("偏り: 直近の予測%d件中『起きない/見送られる』型は%d件しかない。"
+                         "短期では大半のことは起きない。起きない方に賭ける勇気を持て。" % (len(scored), neg))
 
     recent = list(reversed(hunches))[:(5 if compact else 10)]
     if recent:
