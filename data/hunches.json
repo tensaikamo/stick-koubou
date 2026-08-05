@@ -15,10 +15,13 @@
     },
     "deadline": "2026-08-05",
     "confidence": 0.75,
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-05T23:42:15.745384+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "Fireworks.aiの公式GitHubリポジトリ一覧を確認したが、Kimi K3やモデルルーティングに関連するリポジトリやコミットは確認されず、期限内に条件を満たす公開が行われていないため。",
+      "url": "https://github.com/fireworks-ai"
+    },
     "rejected": [
       {
         "draft": {
