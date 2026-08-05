@@ -53,13 +53,16 @@ def test_feedback_issue_parser_and_digest():
         "number": 7,
         "title": "[一手フィードバック] 2026-08-06",
         "body": "<!-- stick-koubou-action-feedback -->\n"
-                "date: 2026-08-06\naction: Issueを1件書く\nresult: blocked\nnote: 権限で詰まった",
+                "date: 2026-08-06\naction: Issueを1件書く\nresult: blocked\n"
+                "category: build\ngoal_advanced: no\nactual_value_band: unset\nnote: 権限で詰まった",
         "html_url": "https://github.com/example/repo/issues/7",
     }
     event = decision.parse_feedback_issue(issue)
     assert event == {"kind": "action", "id": 7, "date": "2026-08-06", "action": "Issueを1件書く",
-                     "result": "blocked", "note": "権限で詰まった",
+                     "result": "blocked", "category": "build", "goal_advanced": "no",
+                     "note": "権限で詰まった",
                      "budget_band": "", "planned_cost_band": "", "actual_cost_band": "",
+                     "actual_value_band": "unset",
                      "url": "https://github.com/example/repo/issues/7"}
     digest = decision.feedback_digest([event])
     assert "完了0/1件" in digest and "blocked" in digest and "繰り返すな" in digest
@@ -103,12 +106,21 @@ def paid_move(**overrides):
         "cost_max": 3000,
         "loss_max": 3000,
         "success_p": 0.8,
+        "success_p_min": 0.65,
+        "success_p_max": 0.9,
         "success_why": "同じ作業で所要時間を比較できる",
         "payback_days": 30,
         "value_score": 5,
         "learning_value": 5,
         "time_minutes": 30,
         "outcome": "無料版との比較表が残る",
+        "category": "buy",
+        "impact_min": 0.05,
+        "impact_max": 0.15,
+        "impact_why": "完成速度が上がれば目標達成に寄与する",
+        "evidence_ids": ["user-goal", "action-history"],
+        "assumptions": ["週2回以上使う"],
+        "disconfirm": "完成件数が増えない",
         "continue_if": "月2件以上多く完成する",
         "stop": "30日で差がなければ解約する",
     }
@@ -144,6 +156,48 @@ def test_high_value_paid_move_can_outrank_low_value_free_move():
     assert ranked[0]["decision_score"] > ranked[1]["decision_score"]
 
 
+def test_expected_value_is_a_range_not_a_fake_single_number():
+    move = paid_move(success_p_min=0.5, success_p_max=0.8,
+                     impact_min=0.05, impact_max=0.15)
+    ev = decision.expected_value_range(move, 100000)
+    assert ev == {"min_yen": -500, "max_yen": 10000, "mid_yen": 4750}
+    ranked = decision.rank_moves([move],
+                                 {"total_yen": 10000, "per_action_yen": 5000,
+                                  "risk_limit_yen": 5000, "period_months": 6},
+                                 goal_value_yen=100000)
+    assert ranked[0]["expected_value"] == ev
+
+
+def test_intelligence_gate_rejects_unsupported_or_invented_evidence():
+    assert decision.move_quality_problem(paid_move(evidence_ids=[])) == "有料・高確度案に証拠IDがない"
+    assert decision.move_quality_problem(paid_move(evidence_ids=["made-up"]), {"r1"}) == \
+        "存在しない証拠IDを参照している"
+    assert decision.move_quality_problem(paid_move(evidence_ids=["r1"]), {"r1"}) is None
+    assert decision.move_quality_problem(paid_move(evidence_ids=["r1"]), {"r1"}, set()) == \
+        "有料・高確度案に確認済み証拠がない"
+    assert decision.move_quality_problem(paid_move(evidence_ids=["r1"]), {"r1"}, {"r1"}) is None
+    assert decision.move_quality_problem(paid_move(evidence_ids=["action-history"]), set(), set()) == \
+        "有料・高確度案に確認済み証拠がない"
+    assert decision.move_quality_problem(paid_move(evidence_ids=["action-history"]), set(),
+                                         {"action-history"}) is None
+    assert decision.move_quality_problem(paid_move(evidence_ids=["user-goal"])) == \
+        "有料・高確度案に確認済み証拠がない"
+    assert decision.move_quality_problem(paid_move(disconfirm="")) == "価値仮説の反証条件がない"
+    assert decision.move_quality_problem(paid_move(impact_max=0.8, terminal=False)) == \
+        "30分の一手として目標寄与を過大評価している"
+    assert decision.move_quality_problem(paid_move(impact_max=0.8, terminal=True)) is None
+
+
+def test_action_history_calibrates_slowly_instead_of_overfitting():
+    events = [{"kind": "action", "category": "buy", "result": "blocked", "goal_advanced": "no"}
+              for _ in range(3)]
+    stats = decision.action_category_stats(events)
+    assert stats["buy"]["posterior_p"] == 0.2
+    calibrated = decision.calibrate_moves([paid_move(success_p=0.8)], events)[0]
+    assert 0.5 < calibrated["success_p"] < 0.8
+    assert "弱く較正" in calibrated["success_why"]
+
+
 def test_budget_issue_parser_and_digest_keep_only_bands():
     event = decision.parse_budget_issue({
         "number": 8,
@@ -165,5 +219,20 @@ def test_iphone_ui_has_real_budget_cycle_and_recoverable_local_backup():
     for required in ("budgetTotal", "budgetMonths", "budgetStart", "budgetPer", "budgetRisk",
                      "cycleEnd", "payback_days", "success_why", "continue_if",
                      "stick-koubou-backup-", "restoreFile", "ownCost", "ownLoss",
-                     "ownPayback", "ownContinue", "ownStop", "committed(excludeDate)", "予約中"):
+                     "ownPayback", "ownContinue", "ownStop", "committed(excludeDate)", "予約中",
+                     "goalTitle", "goalMetric", "goalValue", "goalDeadline", "expectedValue",
+                     "carryValue", "carryAdvance", "actual_value_band", "goal_advanced"):
         assert required in html
+
+
+def test_static_moves_carry_intelligence_fields_and_pass_quality_gate():
+    import json
+    from pathlib import Path
+
+    moves = json.loads((Path(__file__).parents[1] / "docs" / "ichite.json").read_text(encoding="utf-8"))["moves"]
+    required = {"success_p_min", "success_p_max", "category", "terminal", "impact_min",
+                "impact_max", "impact_why", "evidence_ids", "assumptions", "disconfirm"}
+    assert len(moves) == 5
+    for move in moves:
+        assert required <= set(move)
+        assert decision.move_quality_problem(move) is None

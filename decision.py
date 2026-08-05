@@ -40,6 +40,9 @@ _PASSIVE_END = re.compile(r"(?:読む|調べる|検討する|眺める|確認す
 _OUTCOME_WORDS = ("書く", "残す", "作る", "送る", "測る", "Issue", "応募", "公開", "投稿",
                   "更新", "修正", "解約", "申し込", "登録", "削除", "比較表")
 
+ACTION_CATEGORIES = ("build", "publish", "sell", "buy", "research", "review", "apply", "learn", "other")
+SPECIAL_EVIDENCE_IDS = {"user-goal", "action-history"}
+
 SAFE_FALLBACK_MOVES = [
     {"t": "GitHubの改善候補を1件Issueに書く",
      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
@@ -47,6 +50,10 @@ SAFE_FALLBACK_MOVES = [
      "value_score": 3, "learning_value": 2, "time_minutes": 15,
      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
      "payback_days": 0, "outcome": "次に直す内容がIssueとして1件残る",
+     "category": "build", "success_p_min": 0.7, "success_p_max": 0.9,
+     "impact_min": 0.01, "impact_max": 0.04, "impact_why": "次の実装を固定して停滞を減らす",
+     "evidence_ids": ["user-goal", "action-history"], "assumptions": ["Issueが次の実装に使われる"],
+     "disconfirm": "Issueを作っても7日以内に実装へ進まない",
      "continue_if": "実装対象と完了条件を1文で書けた", "stop": "Issueを1件作成したら終了"},
     {"t": "今日の一次情報を1本選び要点を3行残す",
      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
@@ -54,6 +61,10 @@ SAFE_FALLBACK_MOVES = [
      "value_score": 2, "learning_value": 3, "time_minutes": 20,
      "success_why": "読む対象を1本に固定すれば30分内に収まる",
      "payback_days": 0, "outcome": "一次情報の要点メモが3行残る",
+     "category": "research", "success_p_min": 0.6, "success_p_max": 0.85,
+     "impact_min": 0.0, "impact_max": 0.02, "impact_why": "意思決定へ使えた時だけ価値になる",
+     "evidence_ids": ["user-goal", "action-history"], "assumptions": ["読む情報が現在の目標に関係する"],
+     "disconfirm": "要点が次の行動を一つも変えない",
      "continue_if": "次の判断に使える差分が1つ見つかった", "stop": "3行書いたら終了"},
     {"t": "予測を1件確認し確度メモを1行更新する",
      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
@@ -61,7 +72,33 @@ SAFE_FALLBACK_MOVES = [
      "value_score": 2, "learning_value": 4, "time_minutes": 20,
      "success_why": "既存予測の更新なので新規企画より着地しやすい",
      "payback_days": 0, "outcome": "追跡中予測の確度メモが更新される",
+     "category": "review", "success_p_min": 0.55, "success_p_max": 0.8,
+     "impact_min": 0.0, "impact_max": 0.02, "impact_why": "誤った前提で投資する損失を減らす",
+     "evidence_ids": ["action-history"], "assumptions": ["予測が現在の投資判断に関係する"],
+     "disconfirm": "確度更新が次の行動や支出を変えない",
      "continue_if": "確度を動かす一次根拠が見つかった", "stop": "根拠URLを1本確認したら終了"},
+    {"t": "独自ドメイン候補を決め購入画面まで進める",
+     "why": "公開先を固定し、他人へ渡せる形へ近づけるため。",
+     "cost_min": 1000, "cost_max": 4000, "loss_max": 4000, "success_p": 0.65,
+     "value_score": 4, "learning_value": 2, "time_minutes": 30,
+     "success_why": "価格と空きを確認できるが、名前の決定で迷う余地がある", "payback_days": 180,
+     "outcome": "候補ドメインと年間費用が確定する", "category": "buy",
+     "success_p_min": 0.45, "success_p_max": 0.75, "impact_min": 0.02, "impact_max": 0.08,
+     "impact_why": "公開と共有の摩擦を下げるが、ドメインだけでは成果にならない",
+     "evidence_ids": ["user-goal", "action-history"], "assumptions": ["90日以内に公開する"],
+     "disconfirm": "公開日や見せる相手が決まっていない",
+     "continue_if": "公開予定日と最初に見せる相手が決まっている", "stop": "年間4000円を超えたら購入しない"},
+    {"t": "有料AI機能を1か月だけ比較検証する",
+     "why": "無料制約で実装速度を落とさず、支払う価値を測るため。",
+     "cost_min": 3000, "cost_max": 5000, "loss_max": 5000, "success_p": 0.55,
+     "value_score": 4, "learning_value": 5, "time_minutes": 30,
+     "success_why": "短縮効果はあり得るが、成果との相関は未計測", "payback_days": 30,
+     "outcome": "無料版との比較メモが1件残る", "category": "buy",
+     "success_p_min": 0.35, "success_p_max": 0.7, "impact_min": 0.02, "impact_max": 0.12,
+     "impact_why": "実装速度を上げる可能性はあるが成果増加は未確認",
+     "evidence_ids": ["user-goal", "action-history"], "assumptions": ["週2回以上使う"],
+     "disconfirm": "無料版と完成件数が変わらない",
+     "continue_if": "無料版より月2件以上多く成果物が完成する", "stop": "30日で成果物が2件増えなければ解約する"},
 ]
 
 DEFAULT_BUDGET = {
@@ -100,22 +137,81 @@ def normalize_move(move):
     m = move if isinstance(move, dict) else {}
     lo = max(0, round(_number(m.get("cost_min"))))
     hi = max(lo, round(_number(m.get("cost_max"), lo)))
+    success = max(0.05, min(0.95, _number(m.get("success_p"), 0.5)))
+    success_lo = max(0.05, min(success, _number(m.get("success_p_min"), success - 0.15)))
+    success_hi = max(success, min(0.95, _number(m.get("success_p_max"), success + 0.15)))
+    impact_lo = max(0.0, min(1.0, _number(m.get("impact_min"), 0.0)))
+    impact_hi = max(impact_lo, min(1.0, _number(m.get("impact_max"), impact_lo)))
+    evidence = m.get("evidence_ids") if isinstance(m.get("evidence_ids"), list) else []
+    assumptions = m.get("assumptions") if isinstance(m.get("assumptions"), list) else []
+    category = str(m.get("category") or "other").strip().lower()
     return {
         "t": str(m.get("t") or "").strip(),
         "why": str(m.get("why") or "").strip(),
         "cost_min": lo,
         "cost_max": hi,
         "loss_max": max(0, round(_number(m.get("loss_max"), hi))),
-        "success_p": max(0.05, min(0.95, _number(m.get("success_p"), 0.5))),
+        "success_p": success,
+        "success_p_min": success_lo,
+        "success_p_max": success_hi,
         "success_why": str(m.get("success_why") or "根拠未記入").strip(),
         "value_score": max(1, min(5, round(_number(m.get("value_score"), 3)))),
         "learning_value": max(0, min(5, round(_number(m.get("learning_value"), 2)))),
         "time_minutes": max(1, min(180, round(_number(m.get("time_minutes"), 30)))),
         "payback_days": max(0, min(3650, round(_number(m.get("payback_days"), 0)))),
         "outcome": str(m.get("outcome") or "").strip(),
+        "category": category if category in ACTION_CATEGORIES else "other",
+        "terminal": bool(m.get("terminal", False)),
+        "impact_min": impact_lo,
+        "impact_max": impact_hi,
+        "impact_why": str(m.get("impact_why") or "").strip(),
+        "evidence_ids": list(dict.fromkeys(str(x).strip() for x in evidence if str(x).strip()))[:5],
+        "assumptions": [str(x).strip()[:160] for x in assumptions if str(x).strip()][:4],
+        "disconfirm": str(m.get("disconfirm") or "").strip(),
         "continue_if": str(m.get("continue_if") or "").strip(),
         "stop": str(m.get("stop") or "").strip(),
     }
+
+
+def move_quality_problem(move, valid_evidence_ids=None, trusted_evidence_ids=None):
+    """もっともらしいだけの案を、証拠・反証・価値仮説の固定条件で落とす。"""
+    m = normalize_move(move)
+    if not m["outcome"]:
+        return "観測可能な成果がない"
+    if not m["impact_why"]:
+        return "目標への寄与根拠がない"
+    if not m["disconfirm"]:
+        return "価値仮説の反証条件がない"
+    if m["impact_max"] > 0.3 and not m["terminal"]:
+        return "30分の一手として目標寄与を過大評価している"
+    if m["cost_max"] > 0 and not m["assumptions"]:
+        return "有料案の前提条件がない"
+    if (m["cost_max"] > 0 or m["success_p"] >= 0.75) and not m["evidence_ids"]:
+        return "有料・高確度案に証拠IDがない"
+    if valid_evidence_ids is not None:
+        allowed = set(valid_evidence_ids) | SPECIAL_EVIDENCE_IDS
+        if any(e not in allowed for e in m["evidence_ids"]):
+            return "存在しない証拠IDを参照している"
+    if m["cost_max"] > 0 or m["success_p"] >= 0.75:
+        informative = set(m["evidence_ids"]) - {"user-goal"}
+        # action-history は呼び出し側が実際に履歴を取得できた時だけ trusted に入れる。
+        # 名前だけ書けば経験済みに見える抜け道を作らない。
+        trusted = set(trusted_evidence_ids) if trusted_evidence_ids is not None else informative
+        if not informative & trusted:
+            return "有料・高確度案に確認済み証拠がない"
+    return None
+
+
+def expected_value_range(move, goal_value_yen):
+    """成功確率幅×目標寄与幅から、費用と失敗損失を引いた円の期待値幅を返す。"""
+    m = normalize_move(move)
+    goal = max(0, round(_number(goal_value_yen)))
+    extra_failure_loss = max(0, m["loss_max"] - m["cost_max"])
+    low = (m["success_p_min"] * m["impact_min"] * goal - m["cost_max"]
+           - (1 - m["success_p_min"]) * extra_failure_loss)
+    high = m["success_p_max"] * m["impact_max"] * goal - m["cost_min"]
+    midpoint = (low + high) / 2
+    return {"min_yen": round(low), "max_yen": round(high), "mid_yen": round(midpoint)}
 
 
 def budget_problem(move, budget=None):
@@ -149,14 +245,18 @@ def move_score(move, budget=None):
     return round(benefit - cost_pressure - risk_pressure - time_pressure - payback_pressure, 3)
 
 
-def rank_moves(moves, budget=None, limit=5):
+def rank_moves(moves, budget=None, limit=5, goal_value_yen=0, valid_evidence_ids=None,
+               trusted_evidence_ids=None):
     """実行可能な案だけを、予算内の限界価値順に並べる。"""
     ranked = []
     for pos, raw in enumerate(moves or []):
         m = normalize_move(raw)
-        if action_problem(m["t"]) or budget_problem(m, budget):
+        if (action_problem(m["t"]) or budget_problem(m, budget)
+                or move_quality_problem(m, valid_evidence_ids, trusted_evidence_ids)):
             continue
-        ranked.append((move_score(m, budget), -pos, m))
+        ev = expected_value_range(m, goal_value_yen)
+        score = ev["mid_yen"] if _number(goal_value_yen) > 0 else move_score(m, budget)
+        ranked.append((score, -pos, dict(m, expected_value=ev)))
     ranked.sort(reverse=True, key=lambda x: (x[0], x[1]))
     return [dict(m, decision_score=score) for score, _, m in ranked[:limit]]
 
@@ -176,7 +276,8 @@ def action_problem(text):
     return None
 
 
-def safe_moves(moves, limit=3):
+def safe_moves(moves, limit=3, valid_evidence_ids=None, trusted_evidence_ids=None,
+               strict_quality=False):
     """実行可能な候補だけを残し、足りなければ安全な既定案で補う。"""
     out, seen = [], set()
     for move in moves or []:
@@ -184,7 +285,9 @@ def safe_moves(moves, limit=3):
             continue
         item = normalize_move(move)
         title = item["t"]
-        if action_problem(title) or title in seen:
+        if (action_problem(title) or title in seen
+                or (strict_quality and move_quality_problem(
+                    item, valid_evidence_ids, trusted_evidence_ids))):
             continue
         seen.add(title)
         out.append(item)
@@ -195,6 +298,48 @@ def safe_moves(moves, limit=3):
             out.append(normalize_move(move))
         if len(out) >= limit:
             break
+    return out
+
+
+def action_category_stats(events):
+    """選んだ行動だけ観測できる少標本を、Beta(1,1)で過信せず集計する。"""
+    groups = {}
+    for e in events or []:
+        if e.get("kind", "action") != "action":
+            continue
+        cat = str(e.get("category") or "other")
+        if cat not in ACTION_CATEGORIES:
+            cat = "other"
+        g = groups.setdefault(cat, {"n": 0, "positive": 0, "done": 0, "blocked": 0})
+        g["n"] += 1
+        if e.get("result") == "done":
+            g["done"] += 1
+        if e.get("result") == "blocked":
+            g["blocked"] += 1
+        advanced = e.get("goal_advanced")
+        if advanced == "yes" or (advanced not in ("yes", "no") and e.get("result") == "done"):
+            g["positive"] += 1
+    for g in groups.values():
+        g["posterior_p"] = round((g["positive"] + 1) / (g["n"] + 2), 3)
+    return groups
+
+
+def calibrate_moves(moves, events):
+    """行動履歴を最大50%だけ混ぜ、少数結果でモデル推定を反転させない。"""
+    stats = action_category_stats(events)
+    out = []
+    for raw in moves or []:
+        m = normalize_move(raw)
+        g = stats.get(m["category"])
+        if g and g["n"]:
+            weight = min(0.5, g["n"] / 10)
+            p = (1 - weight) * m["success_p"] + weight * g["posterior_p"]
+            width = max(0.1, (m["success_p_max"] - m["success_p_min"]) * (1 - weight / 2))
+            m["success_p"] = round(max(0.05, min(0.95, p)), 3)
+            m["success_p_min"] = round(max(0.05, m["success_p"] - width / 2), 3)
+            m["success_p_max"] = round(min(0.95, m["success_p"] + width / 2), 3)
+            m["success_why"] += " / 行動履歴%s n=%dで弱く較正" % (m["category"], g["n"])
+        out.append(m)
     return out
 
 
@@ -269,7 +414,7 @@ def parse_feedback_issue(issue):
     body = str(issue.get("body") or "")
     vals = {}
     for line in body.splitlines():
-        m = re.match(r"^(date|action|result|note|budget_band|planned_cost_band|actual_cost_band):\s*(.*)$",
+        m = re.match(r"^(date|action|result|note|category|goal_advanced|budget_band|planned_cost_band|actual_cost_band|actual_value_band):\s*(.*)$",
                      line.strip())
         if m:
             vals[m.group(1)] = m.group(2).strip()[:300]
@@ -277,9 +422,13 @@ def parse_feedback_issue(issue):
         return None
     return {"kind": "action", "id": issue.get("number"), "date": vals.get("date", ""),
             "action": vals["action"], "result": vals["result"],
+            "category": vals.get("category", "other") if vals.get("category") in ACTION_CATEGORIES else "other",
+            "goal_advanced": vals.get("goal_advanced", "unknown")
+            if vals.get("goal_advanced") in ("yes", "no", "unknown") else "unknown",
             "note": vals.get("note", ""), "budget_band": vals.get("budget_band", ""),
             "planned_cost_band": vals.get("planned_cost_band", ""),
             "actual_cost_band": vals.get("actual_cost_band", ""),
+            "actual_value_band": vals.get("actual_value_band", ""),
             "url": issue.get("html_url", "")}
 
 
@@ -289,7 +438,7 @@ def parse_budget_issue(issue):
         return None
     vals = {}
     for line in str(issue.get("body") or "").splitlines():
-        m = re.match(r"^(date|budget_band|period_months|per_action_band|risk_band):\s*(.*)$", line.strip())
+        m = re.match(r"^(date|budget_band|period_months|per_action_band|risk_band|goal_value_band|goal_deadline_band):\s*(.*)$", line.strip())
         if m:
             vals[m.group(1)] = m.group(2).strip()[:100]
     allowed = ("small", "standard", "expanded", "active")
@@ -298,7 +447,8 @@ def parse_budget_issue(issue):
     return {"kind": "budget", "id": issue.get("number"), "date": vals.get("date", ""),
             "budget_band": vals["budget_band"], "period_months": vals.get("period_months", ""),
             "per_action_band": vals.get("per_action_band", ""),
-            "risk_band": vals.get("risk_band", ""), "url": issue.get("html_url", "")}
+            "risk_band": vals.get("risk_band", ""), "goal_value_band": vals.get("goal_value_band", ""),
+            "goal_deadline_band": vals.get("goal_deadline_band", ""), "url": issue.get("html_url", "")}
 
 
 def fetch_action_feedback(repository, token=""):
@@ -343,6 +493,14 @@ def feedback_digest(events):
         lines.append("【予算帯】%s / 期間%sか月 / 1回%s / 許容損失%s。正確な金額は非公開。"
                      % (b.get("budget_band", ""), b.get("period_months", ""),
                         b.get("per_action_band", ""), b.get("risk_band", "")))
+        if b.get("goal_value_band"):
+            lines.append("【目標価値帯】%s / 期限%s。正確な金額と目標文は端末内のみ。"
+                         % (b.get("goal_value_band", ""), b.get("goal_deadline_band", "")))
+    stats = action_category_stats(actions)
+    for cat, g in sorted(stats.items(), key=lambda x: x[1]["n"], reverse=True)[:4]:
+        lines.append("行動型%s: 目標前進の事後推定%d%%(n=%d%s)。n<5は参考値。"
+                     % (cat, round(g["posterior_p"] * 100), g["n"],
+                        " / blocked %d" % g["blocked"] if g["blocked"] else ""))
     for e in actions[-6:]:
         lines.append("- %s [%s] %s%s" % (e.get("date", ""), e.get("result", ""),
                                          e.get("action", ""),
