@@ -8,9 +8,26 @@ import xml.etree.ElementTree as ET
 # flash-lite をフォールバックにする。退役済みの固定バージョン名は候補から外す(429の無駄撃ち防止)。
 MODELS = ["gemini-flash-latest", "gemini-flash-lite-latest"]
 
-# 過負荷(429/503)時の待機秒(指数+ジッタ)。同一モデルでこの回数試す。無料枠の一時的な
-# 過負荷は数十秒で解けることが多く、当日ブリーフィングの生成失敗を実質的に減らす。
-BACKOFFS = [0, 10, 30]
+# 過負荷(429/503)時の待機秒(指数+ジッタ)。同一モデルでこの回数試す。
+# 無料枠の律速は**毎分あたりの要求数(RPM)**で、窓は60秒。旧設定 [0,10,30] は累計40秒で
+# 窓を跨げず、3回とも同じ窓の中で弾かれていた(2026-08-05、参謀の初の答え合わせ2件が
+# これで失われた)。最終待機を伸ばして t=0/15/65秒とし、必ず次の窓に入るようにする。
+BACKOFFS = [0, 15, 50]
+MAX_RETRY_WAIT = 75          # サーバ推奨待機(RetryInfo)を尊重する際の上限秒
+
+
+def _retry_after(err):
+    """429応答に入っているサーバ推奨待機秒(RetryInfo.retryDelay 例 "27s")を返す。
+    取れなければ None。あくまで best-effort で、失敗しても通常のバックオフに任せる。"""
+    try:
+        d = json.loads(err.read().decode())
+        for det in ((d.get("error") or {}).get("details") or []):
+            v = str(det.get("retryDelay") or "")
+            if v.endswith("s"):
+                return min(float(v[:-1]), MAX_RETRY_WAIT)
+    except Exception:
+        pass
+    return None
 
 
 def http(url, data=None, headers=None, timeout=90):
@@ -488,7 +505,11 @@ class GeminiClient:
         for m in ([model] if model else (self._model_ok or MODELS)):
             url = "https://generativelanguage.googleapis.com/v1beta/models/" + m + ":generateContent"
             # 429/503(一時的な過負荷)は指数バックオフ+ジッタで同モデルを複数回試す。
+            server_wait = None      # 直前の429がサーバ推奨待機を返していれば、それを優先する
             for i, wait in enumerate(BACKOFFS):
+                if server_wait is not None:
+                    wait = max(wait, server_wait)
+                    server_wait = None
                 if wait:
                     time.sleep(wait + random.uniform(0, wait * 0.3))
                 if self.calls >= self.call_limit:
@@ -505,7 +526,9 @@ class GeminiClient:
                 except urllib.error.HTTPError as e:
                     last = e
                     if e.code in (429, 503):
-                        print("model", m, "-> HTTP", e.code, "(過負荷) retry", i + 1, "/", len(BACKOFFS))
+                        server_wait = _retry_after(e) if e.code == 429 else None
+                        print("model", m, "-> HTTP", e.code, "(過負荷) retry", i + 1, "/", len(BACKOFFS),
+                              ("推奨待機 %.0f秒" % server_wait) if server_wait else "")
                         continue
                     if e.code != 404:
                         raise
