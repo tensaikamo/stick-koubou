@@ -1275,5 +1275,45 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-06-h01",
+    "created_at": "2026-08-06T07:35:56.593175+09:00",
+    "based_on": [
+      "2026-08-06-r01"
+    ],
+    "prose": "AnthropicがカスタムハードウェアチームのTPM求人を公開したことで、同社が基板やラックレベルの独自インフラ設計に着手していることが判明した。しかしハードウェア開発は仕様策定からNPI（新製品立ち上げ）、実機検証に至るまで物理的なリードタイムを要する。初期求人の段階からわずか14日以内に自社設計チップや専用ハードウェアの完成・発表へ至る確率は参照クラス上きわめて低い。事前リーク対応等の緊急発表のリスクを差し引いても、短期間での公式発表見送り側に優位性がある。",
+    "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社設計ハードウェアまたは独自カスタムチップに関する公式発表を行わない。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "hardware custom silicon",
+      "decider": "2026-08-20時点で https://www.anthropic.com/news の記事一覧において、Anthropic自社設計のハードウェアシステムまたは独自シリコンに関するプレスリリースが1件も確認できない場合に的中。"
+    },
+    "deadline": "2026-08-20",
+    "confidence": 0.91,
+    "base_rate": 0.98,
+    "base_rate_class": "AI企業がハードウェア初期求人を公開した直後14日窓で自社ハードウェア製品を正式発表しない頻度",
+    "confidence_why": "基準率（0.98）はきわめて高いが、クラウド事業者との共同提携やプロトタイプ発表が電撃的に行われる可能性をわずかに考慮し、自信過剰回避のため0.91へ下方較正した。",
+    "counter": "求人公開にあわせてクラウドパートナー（AWS等）との提携による共同設計チップの概念発表が電撃的に行われる可能性がある。",
+    "indicators": [
+      {
+        "sign": "https://www.anthropic.com/news の掲載記事一覧に『hardware』や『chip』を含む新着発表が存在しない状態が維持される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "Anthropic公式ニュースルームに独自ハードウェアまたは共同開発シリコンに関する記事が追加される",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]

@@ -903,5 +903,71 @@
     "body_fetched": true,
     "model": "gemini-3.6-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-08-06-r01",
+    "created_at": "2026-08-06T07:35:56.593175+09:00",
+    "headline": "Anthropic、基板・ラック設計を担うカスタムハードウェア担当TPMの新規求人を公開",
+    "what_happened": "Anthropicは、基板・ラック・インターコネクト・電力・冷却システムを含む自社カスタムハードウェアの構想から量産配備までを統括するTechnical Program Manager, Hardware Systemsの新規求人を公開した。ODMやCM、コンポーネントベンダーの管理に加え、シリコン・インフラ・データセンター部門との横断調整を担う新設ハードウェアチームの体制構築を進めている。",
+    "background": "Anthropicはこれまで主にAWSやGoogle Cloud等のクラウド基盤上で大規模モデルの学習および推論を実行してきたが、計算効率最適化に向けインフラの独自設計領域を拡大している。",
+    "changed": "Anthropic内部に新たなハードウェア開発組織が存在し、ラックレベルに及ぶシステム設計を直轄で推進している事実が公開求人により判明した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5380379008",
+      "title": "[新規求人] anthropic: Technical Program Manager, Hardware Systems (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-07-29-r01",
+      "2026-07-28-r04",
+      "2026-07-25-r01",
+      "2026-07-22-r05",
+      "2026-07-22-r04"
+    ]
+  },
+  {
+    "id": "2026-08-06-r02",
+    "created_at": "2026-08-06T07:35:56.593175+09:00",
+    "headline": "xAI、XのデータおよびAIエージェント接続を統合する開発者プラットフォームエンジニアを募集",
+    "what_happened": "xAIは、X（旧Twitter）が保持するリアルタイム投稿・メディア・コミュニティデータを外部B2B/B2C開発者およびAIエージェントに提供する「X Developer Platform」のソフトウェアエンジニア求人を公開した。大規模なアクティビティシグナルを統合API経由で利用可能にする基盤開発を主導する人材を求めている。",
+    "background": "xAIはイーロン・マスク氏主導の下、Xのリアルタイム情報と連携したモデル構築を強みとしており、開発者エコシステムとAIエージェントの接続性を強化している。",
+    "changed": "xAIがXのシグナル群をAIエージェント時代に向けた統一APIサービスとして再構築する方針が公になった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5204788007",
+      "title": "[新規求人] xai: Software Engineer - X Developer Platform (Palo Alto, California, United States)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
+  },
+  {
+    "id": "2026-08-06-r03",
+    "created_at": "2026-08-06T07:35:56.593175+09:00",
+    "headline": "xAI、超高密度データセンターおよび発電施設向け運用技術エンジニアの求人を開始",
+    "what_happened": "xAIは、次世代ハイパースケールデータセンターおよび併設発電施設におけるBMS、EPMS、SCADA、PLCなどの産業制御・監視システム設計・運用を担うOperational Technology Engineerの募集を開始した。メンフィス等の拠点において超高密度AI計算負荷に耐えうる電力・冷却インフラの信頼性確保を目指す。",
+    "background": "xAIは自社専用クラスター「Colossus」をはじめとする大規模計算資源の自前構築を急速に推進しており、電力確保とデータセンター運用の内製化を強めている。",
+    "changed": "自前電力供給およびデータセンター制御システムの運用技術を専門に担うエンジニアの直接採用を開始した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5204393007",
+      "title": "[新規求人] xai: Operational Technology Engineer  (Memphis, Tennessee, United States; Southaven, Mississippi, United States)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
   }
 ]
