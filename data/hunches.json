@@ -9,7 +9,7 @@
     "claim": "Fireworks.aiがKimi K3のモデルルーティング再現用コードまたは関連設定ライブラリをGitHub公式リポジトリに公開する。",
     "subject": "Fireworks.ai",
     "resolution": {
-      "source": "GitHub Fireworks.ai Organization",
+      "source": "https://github.com/fireworks-ai",
       "check_query": "Fireworks AI routing",
       "decider": "github.com/fireworks-ai 以下のリポジトリにおいて、「Kimi」または「routing」をコミットメッセージやREADMEに含む新規コミットまたはリポジトリ追加が1件以上確認されること。"
     },
@@ -19,8 +19,8 @@
     "resolved_at": null,
     "result": null,
     "evidence": {
-      "summary": "公開情報から判定に必要な証拠が確認できなかったため。",
-      "url": ""
+      "summary": "提供されたGitHubページのコンテンツ読み込みでエラーが発生しており、リポジトリ一覧や更新内容を正常に確認できないため判定不能です。",
+      "url": "https://github.com/fireworks-ai"
     },
     "rejected": [
       {
@@ -45,7 +45,7 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "needs_review": false,
+    "needs_review": true,
     "judge_attempts": 2
   },
   {
@@ -136,18 +136,18 @@
     "claim": "Fireworks.aiが自動モデルルーティング機能を一般向け新機能として正式提供開始する。",
     "subject": "Fireworks.ai",
     "resolution": {
-      "source": "Fireworks.ai Blog",
+      "source": "https://fireworks.ai/blog",
       "check_query": "Fireworks AI routing",
       "decider": "Fireworks.ai公式ブログでモデル自動ルーティング機能の一般利用開始（GA）が告知される"
     },
     "deadline": "2026-08-05",
     "confidence": 0.85,
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-05T23:06:58.921177+09:00",
+    "result": "miss",
     "evidence": {
-      "summary": "Fireworks.ai公式ブログでのモデル自動ルーティング機能のGA告知について確認できる十分な情報が得られなかったため。",
-      "url": ""
+      "summary": "Fireworks.ai公式ブログの作成日から期限までの投稿において、モデル自動ルーティング機能の一般利用開始（GA）を告知する記事が確認できないため。",
+      "url": "https://fireworks.ai/blog"
     },
     "rejected": [],
     "model": "gemini-3.6-flash",
