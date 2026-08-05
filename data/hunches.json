@@ -18,10 +18,7 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": {
-      "summary": "提供されたGitHubページのコンテンツ読み込みでエラーが発生しており、リポジトリ一覧や更新内容を正常に確認できないため判定不能です。",
-      "url": "https://github.com/fireworks-ai"
-    },
+    "evidence": null,
     "rejected": [
       {
         "draft": {
@@ -45,8 +42,8 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "needs_review": true,
-    "judge_attempts": 2
+    "needs_review": false,
+    "judge_attempts": 0
   },
   {
     "id": "2026-07-22-h02",
