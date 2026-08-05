@@ -31,9 +31,9 @@ border:1px solid var(--line);border-radius:12px;padding:10px 12px;outline:none;r
 background:linear-gradient(145deg,rgba(95,215,200,.08),rgba(227,179,102,.025))}
 .budget-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
 .budget-grid label{font-size:12.5px;color:var(--dim);line-height:1.5}
-.budget-grid input,.budget-grid select{display:block;width:100%;margin-top:5px;font:inherit;font-size:16px;
+.budget-grid input,.budget-grid select,.budget-grid textarea{display:block;width:100%;margin-top:5px;font:inherit;font-size:16px;
 color:var(--fg);background:#111923;border:1px solid var(--line);border-radius:10px;padding:9px 10px;outline:none}
-.budget-grid input:focus,.budget-grid select:focus{border-color:var(--teal)}
+.budget-grid input:focus,.budget-grid select:focus,.budget-grid textarea:focus{border-color:var(--teal)}
 .budget-summary{font-size:15px;line-height:1.7;color:#dbe6f0;margin-top:13px}
 .budget-summary b{color:var(--teal);font-size:21px}
 .private{font-size:12.5px;color:var(--dim);line-height:1.65;margin-top:10px}
@@ -93,10 +93,30 @@ color:var(--gold);font-size:18px;cursor:pointer}
   <p class="lead">やったか、やらなかったか。ここだけは正直に。</p>
   <div class="locked"><div class="lb">前回決めた一手</div><div class="lt" id="carryT"></div>
     <div class="budget-grid"><label>実際に使った金額（円）
-      <input type="number" id="carryCost" min="0" step="100" inputmode="numeric" value="0"></label></div>
+      <input type="number" id="carryCost" min="0" step="100" inputmode="numeric" value="0"></label>
+      <label>実際に生んだ価値（円・仮置き可）
+      <input type="number" id="carryValue" min="0" step="100" inputmode="numeric" value="0"></label>
+      <label>目標は前進したか<select id="carryAdvance"><option value="unknown">まだ不明</option>
+        <option value="yes">前進した</option><option value="no">前進しなかった</option></select></label></div>
     <div class="row"><button class="btn" id="did">やった</button>
       <button class="btn ghost" id="blocked">詰まった</button>
       <button class="btn ghost" id="didnt">やらなかった</button></div></div>
+</section>
+
+<section>
+  <h2>目標と価値</h2>
+  <p class="lead">何に勝ちたいかを固定しないと、期待値は計算できない。正確な内容と金額はiPhone内だけ。</p>
+  <div class="budget">
+    <div class="budget-grid">
+      <label>目標<input id="goalTitle" maxlength="100" placeholder="例：Stick工房を他人が使える状態にする"></label>
+      <label>成功の判定基準<input id="goalMetric" maxlength="120" placeholder="例：3人が使い、1人が再訪する"></label>
+      <label>達成した時の価値（円）<input type="number" id="goalValue" min="0" step="1000" inputmode="numeric"></label>
+      <label>期限<input type="date" id="goalDeadline"></label>
+    </div>
+    <div class="budget-summary" id="goalSummary"></div>
+    <div class="row"><button class="btn" id="goalSave">目標を保存</button></div>
+    <p class="private">価値が未設定なら従来の成果・学習スコアで並べます。設定後は成功確率幅×目標寄与幅−費用−失敗損失で、期待値を円のレンジ表示に切り替えます。</p>
+  </div>
 </section>
 
 <section>
@@ -113,7 +133,7 @@ color:var(--gold);font-size:18px;cursor:pointer}
     </div>
     <div class="budget-summary" id="budgetSummary"></div>
     <div class="row"><button class="btn" id="budgetSave">予算を保存</button>
-      <button class="btn ghost" id="budgetSync">予算帯だけ参謀に送る</button>
+      <button class="btn ghost" id="budgetSync">予算帯・目標帯を参謀に送る</button>
       <button class="btn ghost" id="backup">バックアップ</button>
       <button class="btn ghost" id="restore">復元</button>
       <input type="file" id="restoreFile" accept="application/json,.json" hidden></div>
@@ -135,9 +155,14 @@ color:var(--gold);font-size:18px;cursor:pointer}
   <div class="own"><input id="ownT" placeholder="自分で書く（例：◯◯を試す）" maxlength="60">
     <button class="mic" id="mic" title="声で入力" hidden>🎤</button></div>
   <div class="budget-grid" id="ownMeta" hidden>
+    <label>行動の種類<select id="ownCategory"><option value="build">作る</option><option value="publish">公開</option>
+      <option value="sell">販売</option><option value="buy">購入</option><option value="research">調査</option>
+      <option value="review">見直し</option><option value="apply">応募</option><option value="learn">学習</option><option value="other">その他</option></select></label>
     <label>自分案の費用上限（円）<input type="number" id="ownCost" min="0" step="500" inputmode="numeric" value="0"></label>
     <label>最大損失（円）<input type="number" id="ownLoss" min="0" step="500" inputmode="numeric" value="0"></label>
     <label>回収目安（日）<input type="number" id="ownPayback" min="0" step="1" inputmode="numeric" value="0"></label>
+    <label>目標寄与・悲観（%）<input type="number" id="ownImpactMin" min="0" max="100" step="1" inputmode="decimal" value="0"></label>
+    <label>目標寄与・楽観（%）<input type="number" id="ownImpactMax" min="0" max="100" step="1" inputmode="decimal" value="0"></label>
     <label>続行条件<input id="ownContinue" maxlength="100" placeholder="例：成果物が月2件増える"></label>
     <label>撤退条件<input id="ownStop" maxlength="100" placeholder="例：30日で差がなければ解約"></label>
   </div>
@@ -171,14 +196,18 @@ function today(){var d=new Date(Date.now()+ (new Date().getTimezoneOffset()*6000
 
 /* ---- 保存(localStorage・失敗しても動く) ---- */
 var KEY="ichite_v1", DEFAULT_BUDGET={total_yen:10000,period_months:6,started_on:today(),per_action_yen:5000,risk_limit_yen:5000};
-var S={days:{},budget:Object.assign({},DEFAULT_BUDGET)};
+var DEFAULT_GOAL={title:"",metric:"",value_yen:0,deadline:""};
+var S={days:{},budget:Object.assign({},DEFAULT_BUDGET),goal:Object.assign({},DEFAULT_GOAL)};
 function repair(){if(!S||typeof S!=="object")S={};if(!S.days||typeof S.days!=="object"||Array.isArray(S.days))S.days={};
   if(!S.budget||typeof S.budget!=="object"||Array.isArray(S.budget))S.budget=Object.assign({},DEFAULT_BUDGET);
   ["total_yen","period_months","per_action_yen","risk_limit_yen"].forEach(function(k){if(!isFinite(+S.budget[k]))S.budget[k]=DEFAULT_BUDGET[k];});
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(String(S.budget.started_on||"")))S.budget.started_on=today();}
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(String(S.budget.started_on||"")))S.budget.started_on=today();
+  if(!S.goal||typeof S.goal!=="object"||Array.isArray(S.goal))S.goal=Object.assign({},DEFAULT_GOAL);
+  if(!isFinite(+S.goal.value_yen))S.goal.value_yen=0;if(!/^\d{4}-\d{2}-\d{2}$/.test(String(S.goal.deadline||"")))S.goal.deadline="";
+  S.goal.title=String(S.goal.title||"").slice(0,100);S.goal.metric=String(S.goal.metric||"").slice(0,120);}
 function load(){try{var r=localStorage.getItem(KEY);if(r){var v=JSON.parse(r);if(v&&v.days)S=v;}}catch(e){}repair();}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
-function day(d){d=d||today();if(!S.days[d])S.days[d]={answers:["","",""],move:"",move_meta:null,actual_cost_yen:null,done:null,result:null};return S.days[d];}
+function day(d){d=d||today();if(!S.days[d])S.days[d]={answers:["","",""],move:"",move_meta:null,actual_cost_yen:null,actual_value_yen:null,goal_advanced:"unknown",done:null,result:null};return S.days[d];}
 load();
 
 function money(n){return "¥"+Math.max(0,Math.round(+n||0)).toLocaleString("ja-JP");}
@@ -194,15 +223,23 @@ function committed(excludeDate){var start=S.budget.started_on,end=cycleEnd();ret
 function remaining(excludeDate){return Math.max(0,(+S.budget.total_yen||0)-spent()-committed(excludeDate));}
 function budgetBand(){var n=+S.budget.total_yen||0;return n<=3000?"small":n<=10000?"standard":n<=30000?"expanded":"active";}
 function costBand(n){n=Math.max(0,+n||0);return n===0?"free":n<=1000?"under-1000":n<=5000?"under-5000":n<=10000?"under-10000":"over-10000";}
+function valueBand(n){n=Math.max(0,+n||0);return n===0?"unset":n<=10000?"under-10000":n<=50000?"under-50000":n<=100000?"under-100000":"over-100000";}
+function deadlineBand(){if(!S.goal.deadline)return "unset";var days=Math.ceil((new Date(S.goal.deadline+"T00:00:00Z")-new Date(today()+"T00:00:00Z"))/86400000);
+  return days<=30?"within-30d":days<=90?"within-90d":days<=180?"within-180d":"later";}
 function num(v,d){v=+v;return isFinite(v)?v:d;}
 function actionProblem(t){return /\b(?:vllm|docker|python|bash|npm|pip|terminal|cli)\b|GPU|ローカルモデル|ローカル環境|パソコン|\bPC\b|Mac|Windows/i.test(t||"")?"iPhoneだけで完了できない":"";}
 function normMove(m){m=m||{};var lo=Math.max(0,Math.round(num(m.cost_min,0))),hi=Math.max(lo,Math.round(num(m.cost_max,lo)));
+  var sp=Math.max(.05,Math.min(.95,num(m.success_p,.5))),slo=Math.max(.05,Math.min(sp,num(m.success_p_min,sp-.15))),shi=Math.max(sp,Math.min(.95,num(m.success_p_max,sp+.15)));
+  var ilo=Math.max(0,Math.min(1,num(m.impact_min,0))),ihi=Math.max(ilo,Math.min(1,num(m.impact_max,ilo)));
   return {t:String(m.t||""),why:String(m.why||""),cost_min:lo,cost_max:hi,
-    loss_max:Math.max(0,Math.round(num(m.loss_max,hi))),success_p:Math.max(.05,Math.min(.95,num(m.success_p,.5))),
+    loss_max:Math.max(0,Math.round(num(m.loss_max,hi))),success_p:sp,success_p_min:slo,success_p_max:shi,
     success_why:String(m.success_why||"根拠未記入"),payback_days:Math.max(0,Math.min(3650,Math.round(num(m.payback_days,0)))),
     value_score:Math.max(1,Math.min(5,Math.round(num(m.value_score,3)))),
     learning_value:Math.max(0,Math.min(5,Math.round(num(m.learning_value,2)))),
-    time_minutes:Math.max(1,Math.min(180,Math.round(num(m.time_minutes,30)))),
+    time_minutes:Math.max(1,Math.min(180,Math.round(num(m.time_minutes,30)))),category:String(m.category||"other"),terminal:!!m.terminal,
+    impact_min:ilo,impact_max:ihi,impact_why:String(m.impact_why||""),
+    evidence_ids:Array.isArray(m.evidence_ids)?m.evidence_ids.slice(0,5).map(String):[],
+    assumptions:Array.isArray(m.assumptions)?m.assumptions.slice(0,4).map(String):[],disconfirm:String(m.disconfirm||""),
     outcome:String(m.outcome||""),continue_if:String(m.continue_if||""),stop:String(m.stop||"")};}
 function budgetProblem(m){var cycle=cycleProblem();if(cycle)return cycle;var rem=remaining(today());if(m.cost_max>rem)return "残額超過";
   if(m.cost_max>(+S.budget.per_action_yen||0))return "1回上限超過";
@@ -211,6 +248,10 @@ function budgetProblem(m){var cycle=cycleProblem();if(cycle)return cycle;var rem
 function decisionScore(m){var rem=Math.max(1,remaining(today())),risk=Math.max(1,+S.budget.risk_limit_yen||+S.budget.total_yen||1);
   var horizon=Math.max(30,(+S.budget.period_months||6)*30),payback=.4*Math.min(2,m.payback_days/horizon);
   return m.value_score*m.success_p+.35*m.learning_value-2*(m.cost_max/rem)-.8*(m.loss_max/risk)-.2*(m.time_minutes/30)-payback;}
+function expectedValue(m){var goal=Math.max(0,+S.goal.value_yen||0),extra=Math.max(0,m.loss_max-m.cost_max);
+  var low=m.success_p_min*m.impact_min*goal-m.cost_max-(1-m.success_p_min)*extra;
+  var high=m.success_p_max*m.impact_max*goal-m.cost_min;return {min:Math.round(low),max:Math.round(high),mid:Math.round((low+high)/2)};}
+function signedMoney(n){return (n<0?"−":"+")+money(Math.abs(n));}
 
 /* ---- 材料(参謀が毎朝生成)。無ければ汎用でも必ず動く ---- */
 var FALLBACK={questions:[
@@ -221,28 +262,44 @@ var FALLBACK={questions:[
     {t:"GitHubの改善候補を1件Issueに書く",why:"次の実装内容を固定し、思いつきで終わらせない",
       cost_min:0,cost_max:0,loss_max:0,success_p:.8,value_score:3,learning_value:2,time_minutes:15,
       success_why:"作成画面までiPhoneだけで完結し、成果物が明確",payback_days:0,
+      success_p_min:.7,success_p_max:.9,category:"build",impact_min:.01,impact_max:.04,impact_why:"次の実装を固定して停滞を減らす",
+      evidence_ids:["user-goal","action-history"],assumptions:["Issueが次の実装に使われる"],disconfirm:"7日以内に実装へ進まない",
       outcome:"次に直す内容がIssueとして1件残る",continue_if:"実装対象と完了条件を1文で書けた",stop:"Issueを1件作成したら終了"},
     {t:"今日の一次情報を1本選び要点を3行残す",why:"読むだけで終えず、次の判断に再利用する",
       cost_min:0,cost_max:0,loss_max:0,success_p:.75,value_score:2,learning_value:3,time_minutes:20,
       success_why:"読む対象を1本に固定すれば30分内に収まる",payback_days:0,
+      success_p_min:.6,success_p_max:.85,category:"research",impact_min:0,impact_max:.02,impact_why:"意思決定へ使えた時だけ価値になる",
+      evidence_ids:["user-goal","action-history"],assumptions:["情報が現在の目標に関係する"],disconfirm:"次の行動を一つも変えない",
       outcome:"一次情報の要点メモが3行残る",continue_if:"次の判断に使える差分が1つ見つかった",stop:"3行書いたら終了"},
     {t:"予測を1件確認し確度メモを1行更新する",why:"新しい予測を増やす前に過去の読みを更新する",
       cost_min:0,cost_max:0,loss_max:0,success_p:.7,value_score:2,learning_value:4,time_minutes:20,
       success_why:"既存予測の更新なので新規企画より着地しやすい",payback_days:0,
+      success_p_min:.55,success_p_max:.8,category:"review",impact_min:0,impact_max:.02,impact_why:"誤った前提で投資する損失を減らす",
+      evidence_ids:["action-history"],assumptions:["予測が投資判断に関係する"],disconfirm:"行動や支出を変えない",
       outcome:"追跡中予測の確度メモが更新される",continue_if:"確度を動かす一次根拠が見つかった",stop:"根拠URLを1本確認したら終了"},
     {t:"独自ドメイン候補を決め購入画面まで進める",why:"公開先の名前を固定し、アプリを他人へ渡せる形に近づける",
       cost_min:1000,cost_max:4000,loss_max:4000,success_p:.65,value_score:4,learning_value:2,time_minutes:30,
       success_why:"候補比較までは容易だが、名前の決定と購入で迷う余地がある",payback_days:180,
+      success_p_min:.45,success_p_max:.75,category:"buy",impact_min:.02,impact_max:.08,impact_why:"公開と共有の摩擦を下げるが単独では成果にならない",
+      evidence_ids:["user-goal","action-history"],assumptions:["90日以内に公開する"],disconfirm:"公開日や見せる相手が決まっていない",
       outcome:"候補ドメインと年間費用が確定する",continue_if:"公開予定日と最初に見せる相手が決まっている",stop:"年間4000円を超えたら購入しない"},
     {t:"有料AI機能を1か月だけ比較検証する",why:"無料制約で実装速度を落とさず、支払う価値を成果物で測る",
       cost_min:3000,cost_max:5000,loss_max:5000,success_p:.55,value_score:4,learning_value:5,time_minutes:30,
       success_why:"作業短縮は見込めるが、利用量と成果の相関がまだ未計測",payback_days:30,
+      success_p_min:.35,success_p_max:.7,category:"buy",impact_min:.02,impact_max:.12,impact_why:"実装速度を上げる可能性はあるが成果増加は未確認",
+      evidence_ids:["user-goal","action-history"],assumptions:["週2回以上使う"],disconfirm:"無料版と完成件数が変わらない",
       outcome:"同じ作業の無料版との比較メモが1件残る",continue_if:"無料版より月2件以上多く成果物が完成する",stop:"30日で成果物が2件増えなければ解約する"}]};
 var DATA=FALLBACK, dataDate="";
 
 function render(){
   var t=today(), D=day(t);
   $("date").textContent=t+(dataDate&&dataDate!==t?"（材料は "+dataDate+" 版）":"")+" JST";
+
+  $("goalTitle").value=S.goal.title;$("goalMetric").value=S.goal.metric;
+  $("goalValue").value=Math.max(0,+S.goal.value_yen||0);$("goalDeadline").value=S.goal.deadline;
+  $("goalSummary").innerHTML=S.goal.value_yen?("達成価値 <b>"+money(S.goal.value_yen)+"</b>"+
+    (S.goal.deadline?" / 期限 "+esc(S.goal.deadline):"")+"<br><span class='kv'>"+esc(S.goal.title||"目標名未設定")+" · "+esc(S.goal.metric||"判定基準未設定")+"</span>"):
+    "<span class='kv'>達成価値を設定すると、円の期待値レンジで候補を並べます。</span>";
 
   // 予算設定と残額。正確な金額はlocalStorageの外へ出さない。
   $("budgetTotal").value=Math.max(0,+S.budget.total_yen||0);
@@ -257,7 +314,8 @@ function render(){
   var keys=Object.keys(S.days).filter(function(k){return k!==t&&S.days[k].move&&S.days[k].done===null&&!S.days[k].result;}).sort();
   var carry=keys.length?keys[keys.length-1]:null;
   if(carry){$("carry").hidden=false;$("carryT").textContent=S.days[carry].move;$("carry")._d=carry;
-    var cm=S.days[carry].move_meta||{};$("carryCost").value=S.days[carry].actual_cost_yen==null?(cm.cost_min||0):S.days[carry].actual_cost_yen;}
+    var cd=S.days[carry],cm=cd.move_meta||{};$("carryCost").value=cd.actual_cost_yen==null?(cm.cost_min||0):cd.actual_cost_yen;
+    $("carryValue").value=cd.actual_value_yen==null?0:cd.actual_value_yen;$("carryAdvance").value=cd.goal_advanced||"unknown";}
   else $("carry").hidden=true;
 
   // 今日の問い
@@ -268,16 +326,23 @@ function render(){
     ta.addEventListener("input",function(){day().answers[+ta.dataset.i]=ta.value;save();});});
 
   // 一手候補
-  var ranked=DATA.moves.map(function(raw,i){var m=normMove(raw);return {m:m,i:i,problem:budgetProblem(m),score:decisionScore(m)};});
+  var ranked=DATA.moves.map(function(raw,i){var m=normMove(raw),ev=expectedValue(m);return {m:m,i:i,problem:budgetProblem(m),ev:ev,score:S.goal.value_yen?ev.mid:decisionScore(m)};});
   ranked.sort(function(a,b){if(!!a.problem!==!!b.problem)return a.problem?1:-1;return b.score-a.score;});
   $("moves").innerHTML=ranked.map(function(x){var m=x.m,i=x.i;
     var sel=(D.move===m.t)?" sel":"";
     var over=x.problem?" over":"",cost=m.cost_min===m.cost_max?money(m.cost_max):(money(m.cost_min)+"〜"+money(m.cost_max));
     return '<div class="mv'+sel+over+'" data-i="'+i+'" data-t="'+esc(m.t)+'"><div class="rd"></div><div><div class="t">'+esc(m.t)+
       '</div>'+(m.why?'<div class="w">'+esc(m.why)+'</div>':'')+
-      '<div class="meta"><span>'+cost+'</span><span>'+m.time_minutes+'分</span><span>成功見込 '+Math.round(m.success_p*100)+'%</span>'+
-      '<span>回収目安 '+(m.payback_days?m.payback_days+'日':'即時')+'</span><span>成果 '+m.value_score+'/5</span><span>学習 '+m.learning_value+'/5</span><span>判断 '+x.score.toFixed(1)+'</span></div>'+
+      '<div class="meta"><span>'+cost+'</span><span>'+m.time_minutes+'分</span><span>成功 '+Math.round(m.success_p_min*100)+'〜'+Math.round(m.success_p_max*100)+'%</span>'+
+      '<span>回収目安 '+(m.payback_days?m.payback_days+'日':'即時')+'</span><span>成果 '+m.value_score+'/5</span><span>学習 '+m.learning_value+'/5</span><span>'+
+      (S.goal.value_yen?'期待中央値 '+signedMoney(x.score):'判断 '+x.score.toFixed(1))+'</span></div>'+
+      (S.goal.value_yen?'<div class="outcome"><b>期待値レンジ（AI仮説）</b> '+signedMoney(x.ev.min)+' 〜 '+signedMoney(x.ev.max)+
+        '（目標寄与 '+Math.round(m.impact_min*100)+'〜'+Math.round(m.impact_max*100)+'%）</div>':'')+
       '<div class="outcome"><b>見込みの根拠</b> '+esc(m.success_why)+'</div>'+
+      (m.impact_why?'<div class="outcome"><b>寄与の根拠</b> '+esc(m.impact_why)+'</div>':'')+
+      (m.evidence_ids.length?'<div class="outcome"><b>証拠</b> '+esc(m.evidence_ids.join(' · '))+'</div>':'')+
+      (m.assumptions.length?'<div class="outcome"><b>前提</b> '+esc(m.assumptions.join(' / '))+'</div>':'')+
+      (m.disconfirm?'<div class="stop"><b>反証</b> '+esc(m.disconfirm)+'</div>':'')+
       (m.outcome?'<div class="outcome"><b>残る成果</b> '+esc(m.outcome)+'</div>':'')+
       (m.continue_if?'<div class="outcome"><b>続行</b> '+esc(m.continue_if)+'</div>':'')+
       (m.stop?'<div class="stop"><b>撤退</b> '+esc(m.stop)+'</div>':'')+
@@ -304,11 +369,17 @@ function render(){
       b=r==="done"?'<span class="badge b-done">やった</span>':
       (r==="blocked"?'<span class="badge b-skip">詰まった</span>':
       (r==="skipped"?'<span class="badge b-skip">やらず</span>':'<span class="badge">判定待ち</span>'));
-    var cost=d.actual_cost_yen==null?"":(" · "+money(d.actual_cost_yen));
-    return '<div class="past"><div class="pd">'+esc(k)+' '+b+cost+'</div><div class="pt">'+esc(d.move)+'</div></div>';}).join("");
+    var cost=d.actual_cost_yen==null?"":(" · 費用"+money(d.actual_cost_yen));
+    var value=d.actual_value_yen==null?"":(" · 価値"+money(d.actual_value_yen));
+    var advance=d.goal_advanced==="yes"?" · 目標前進":d.goal_advanced==="no"?" · 前進なし":"";
+    return '<div class="past"><div class="pd">'+esc(k)+' '+b+cost+value+advance+'</div><div class="pt">'+esc(d.move)+'</div></div>';}).join("");
 }
 
 /* ---- 操作 ---- */
+$("goalSave").addEventListener("click",function(){S.goal={title:$("goalTitle").value.trim().slice(0,100),
+  metric:$("goalMetric").value.trim().slice(0,120),value_yen:Math.max(0,Math.round(num($("goalValue").value,0))),
+  deadline:/^\d{4}-\d{2}-\d{2}$/.test($("goalDeadline").value)?$("goalDeadline").value:""};
+  save();render();toast("目標と価値を保存しました");});
 $("budgetSave").addEventListener("click",function(){
   S.budget={total_yen:Math.max(0,Math.round(num($("budgetTotal").value,0))),
     period_months:Math.max(1,Math.min(24,Math.round(num($("budgetMonths").value,6)))),
@@ -321,20 +392,21 @@ $("budgetSync").addEventListener("click",function(){
   var b=budgetBand(),title="[参謀設定] 予算帯 "+today();
   var body="<!-- stick-koubou-budget-band -->\n"+"date: "+today()+"\n"+"budget_band: "+b+"\n"+
     "period_months: "+S.budget.period_months+"\n"+"per_action_band: "+costBand(S.budget.per_action_yen)+"\n"+
-    "risk_band: "+costBand(S.budget.risk_limit_yen)+"\n\n正確な金額はiPhone内だけに保存され、このIssueには含まれません。";
+    "risk_band: "+costBand(S.budget.risk_limit_yen)+"\n"+"goal_value_band: "+valueBand(S.goal.value_yen)+"\n"+
+    "goal_deadline_band: "+deadlineBand()+"\n\n正確な金額・目標文はiPhone内だけに保存され、このIssueには含まれません。";
   location.href="https://github.com/tensaikamo/stick-koubou/issues/new?title="+encodeURIComponent(title)+"&body="+encodeURIComponent(body);
 });
 function downloadFile(name,text,type){var a=document.createElement("a"),url="";
   try{url=URL.createObjectURL(new Blob([text],{type:type}));a.href=url;}catch(e){a.href="data:"+type+";charset=utf-8,"+encodeURIComponent(text);}
   a.download=name;document.body.appendChild(a);a.click();a.remove();if(url)setTimeout(function(){URL.revokeObjectURL(url);},1000);}
 $("backup").addEventListener("click",function(){downloadFile("stick-koubou-backup-"+today()+".json",
-  JSON.stringify({version:1,exported_at:new Date().toISOString(),days:S.days,budget:S.budget},null,2),"application/json");
+  JSON.stringify({version:1,exported_at:new Date().toISOString(),days:S.days,budget:S.budget,goal:S.goal},null,2),"application/json");
   toast("バックアップを保存しました");});
 $("restore").addEventListener("click",function(){$("restoreFile").value="";$("restoreFile").click();});
 $("restoreFile").addEventListener("change",function(){var f=this.files&&this.files[0];if(!f)return;
   f.text().then(function(raw){var v=JSON.parse(raw);if(!v||v.version!==1||!v.days||!v.budget)throw new Error("format");
     if(!confirm("現在の予算設定と行動記録を、バックアップの内容で置き換えますか？"))return;
-    S={days:v.days,budget:v.budget};repair();save();render();toast("復元しました");
+    S={days:v.days,budget:v.budget,goal:v.goal||Object.assign({},DEFAULT_GOAL)};repair();save();render();toast("復元しました");
   }).catch(function(){toast("このバックアップは読み込めません");});});
 $("ownT").addEventListener("input",function(){$("ownMeta").hidden=!this.value.trim();});
 $("lock").addEventListener("click",function(){
@@ -344,7 +416,12 @@ $("lock").addEventListener("click",function(){
   var v=own||(sel?sel.dataset.t:"");
   if(!v){toast("候補を選ぶか、自分で書いてください");return;}
   var ownCost=Math.max(0,Math.round(num($("ownCost").value,0))),ownLoss=Math.max(0,Math.round(num($("ownLoss").value,ownCost)));
+  var ownImpactMin=Math.max(0,Math.min(1,num($("ownImpactMin").value,0)/100));
+  var ownImpactMax=Math.max(ownImpactMin,Math.min(1,num($("ownImpactMax").value,0)/100));
   var meta=own?normMove({t:own,why:"自分で決めた一手",cost_min:ownCost,cost_max:ownCost,loss_max:ownLoss,success_p:.5,
+    success_p_min:.35,success_p_max:.65,category:$("ownCategory").value,impact_min:ownImpactMin,impact_max:ownImpactMax,
+    impact_why:"利用者が設定した目標寄与",evidence_ids:["user-goal"],assumptions:[$("ownContinue").value.trim()||"利用者の前提"],
+    disconfirm:$("ownStop").value.trim()||"30分で成果物が残らない",
     success_why:"利用者自身の判断",payback_days:Math.max(0,Math.round(num($("ownPayback").value,0))),
     value_score:3,learning_value:2,time_minutes:30,outcome:"自分で定義した成果",
     continue_if:$("ownContinue").value.trim()||(ownCost?"":"成果物が残る"),
@@ -352,11 +429,15 @@ $("lock").addEventListener("click",function(){
     normMove(DATA.moves[+sel.dataset.i]);
   var actionErr=actionProblem(v);if(actionErr){toast(actionErr);return;}
   var problem=budgetProblem(meta);if(problem){toast(problem+"ため選べません");return;}
-  day().move=v;day().move_meta=meta;day().actual_cost_yen=null;day().done=null;day().result=null;save();render();toast("今日の一手を決めた");
+  day().move=v;day().move_meta=meta;day().actual_cost_yen=null;day().actual_value_yen=null;day().goal_advanced="unknown";
+  day().done=null;day().result=null;save();render();toast("今日の一手を決めた");
 });
-$("unlock").addEventListener("click",function(){day().move="";day().move_meta=null;day().actual_cost_yen=null;day().done=null;day().result=null;save();render();});
+$("unlock").addEventListener("click",function(){day().move="";day().move_meta=null;day().actual_cost_yen=null;day().actual_value_yen=null;
+  day().goal_advanced="unknown";day().done=null;day().result=null;save();render();});
 function judgeCarry(result){var k=$("carry")._d;if(!k)return;var d=S.days[k],actual=Math.max(0,Math.round(num($("carryCost").value,0)));
-  d.done=result==="done";d.result=result;d.actual_cost_yen=result==="skipped"?0:actual;save();render();
+  var actualValue=Math.max(0,Math.round(num($("carryValue").value,0)));
+  d.done=result==="done";d.result=result;d.actual_cost_yen=result==="skipped"?0:actual;
+  d.actual_value_yen=result==="skipped"?0:actualValue;d.goal_advanced=result==="skipped"?"no":$("carryAdvance").value;save();render();
   toast(result==="done"?"よし。費用と成果を記録した":result==="blocked"?"詰まりと費用を次へ残した":"正直が一番効く");}
 $("did").addEventListener("click",function(){judgeCarry("done");});
 $("blocked").addEventListener("click",function(){judgeCarry("blocked");});
@@ -365,7 +446,8 @@ $("md").addEventListener("click",function(){
   var ks=Object.keys(S.days).sort().reverse(),L=["# 今日の一手 の記録",""];
   ks.forEach(function(k){var d=S.days[k];if(!d.move&&!(d.answers||[]).join(""))return;
     L.push("## "+k);if(d.move)L.push("- 一手: "+d.move+"（"+(d.result==="done"?"やった":d.result==="blocked"?"詰まった":d.result==="skipped"?"やらず":"判定待ち")+"）",
-      "- 実費: "+money(d.actual_cost_yen||0));
+      "- 実費: "+money(d.actual_cost_yen||0),"- 実現価値: "+money(d.actual_value_yen||0),
+      "- 目標前進: "+(d.goal_advanced||"unknown"));
     (d.answers||[]).forEach(function(a){if(a)L.push("- "+a);});L.push("");});
   var md=L.join("\n");
   if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(md).then(function(){toast("コピーしました");},dl);else dl();
@@ -377,18 +459,20 @@ $("sync").addEventListener("click",function(){
     return d.move&&(d.result||d.done===true||d.done===false);}).sort().reverse();
   if(!ks.length){toast("先に「やった・詰まった・やらなかった」を記録してください");return;}
   var k=ks[0],d=S.days[k],r=d.result||(d.done===true?"done":"skipped");
-  var planned=(d.move_meta||{}).cost_max||0,actual=d.actual_cost_yen||0;
+  var meta=d.move_meta||{},planned=meta.cost_max||0,actual=d.actual_cost_yen||0,actualValue=d.actual_value_yen||0;
   var title="[一手フィードバック] "+k;
   var body="<!-- stick-koubou-action-feedback -->\n"+
-    "date: "+k+"\n"+"action: "+d.move+"\n"+"result: "+r+"\n"+
+    "date: "+k+"\n"+"action: "+d.move+"\n"+"result: "+r+"\n"+"category: "+(meta.category||"other")+"\n"+
+    "goal_advanced: "+(d.goal_advanced||"unknown")+"\n"+
     "budget_band: "+budgetBand()+"\n"+"planned_cost_band: "+costBand(planned)+"\n"+
     "actual_cost_band: "+costBand(actual)+"\n"+
+    "actual_value_band: "+valueBand(actualValue)+"\n"+
     "note: \n\nこのIssueは次回の参謀更新で読み込まれます。必要ならnoteを追記してください。";
   var u="https://github.com/tensaikamo/stick-koubou/issues/new?title="+encodeURIComponent(title)+
     "&body="+encodeURIComponent(body);
   location.href=u;
 });
-$("clear").addEventListener("click",function(){if(!confirm("行動記録をすべて消します。予算設定は残ります。よろしいですか？"))return;
+$("clear").addEventListener("click",function(){if(!confirm("行動記録をすべて消します。予算と目標設定は残ります。よろしいですか？"))return;
   S.days={};save();render();});
 
 /* ---- 音声(任意・無くても完全動作) ---- */

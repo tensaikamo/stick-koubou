@@ -308,6 +308,61 @@ def related_ids_for(headline, source_title, existing_records, days=45, limit=6):
     return out
 
 
+def _text_grams(text, n=3):
+    s = re.sub(r"[^a-z0-9ぁ-んァ-ヶ一-龠]+", "", str(text or "").lower())
+    if not s:
+        return set()
+    return {s} if len(s) <= n else {s[i:i + n] for i in range(len(s) - n + 1)}
+
+
+def relevant_records(records, context, limit=6):
+    """現在の判断に関係する証拠だけを、主体・文字類似・鮮度・確度で選ぶ。"""
+    ctx = str(context or "")
+    ctx_entities, ctx_grams = entities_of(ctx), _text_grams(ctx)
+    today = datetime.now(JST).date()
+    ranked = []
+    for pos, r in enumerate(dedupe_by_url(records)):
+        src = r.get("source") if isinstance(r.get("source"), dict) else {}
+        text = "%s %s" % (r.get("headline", ""), src.get("title", ""))
+        grams = _text_grams(text)
+        overlap = len(ctx_grams & grams) / max(1, len(ctx_grams | grams))
+        entity_overlap = len(ctx_entities & entities_of(text))
+        if not entity_overlap and overlap < 0.02:
+            continue                              # 新しいだけの無関係な記録を混ぜない
+        try:
+            age = max(0, (today - datetime.strptime(str(r.get("created_at", ""))[:10], "%Y-%m-%d").date()).days)
+        except Exception:
+            age = 90
+        certainty = str(r.get("certainty") or "")
+        score = entity_overlap * 4 + overlap * 8 + max(0, 1.5 - age / 30)
+        score += 1 if certainty == "confirmed" else -1 if certainty == "rumor" else 0
+        if score > 0.4:
+            ranked.append((score, -pos, r))
+    ranked.sort(reverse=True, key=lambda x: (x[0], x[1]))
+    return [r for _, _, r in ranked[:limit]]
+
+
+def build_relevant_digest(records, hunches, context, limit=6):
+    """受動的な履歴一覧ではなく、今日の行動案が引用できる証拠束を作る。"""
+    chosen = relevant_records(records, context, limit=limit)
+    if not chosen:
+        return ""
+    ids = {r.get("id") for r in chosen if r.get("id")}
+    lines = ["【今回の判断に関係する証拠。行動案は evidence_ids でIDを引用せよ】"]
+    for r in chosen:
+        src = r.get("source") if isinstance(r.get("source"), dict) else {}
+        lines.append("- %s [%s] %s / %s" % (
+            r.get("id", ""), r.get("certainty", "unknown"),
+            str(r.get("headline") or "")[:90], str(src.get("url") or "")[:180]))
+    related_hunches = [h for h in reversed(hunches) if set(h.get("based_on") or []) & ids][:4]
+    if related_hunches:
+        lines.append("関連する過去の読み(結果を行動へ反映せよ):")
+        for h in related_hunches:
+            lines.append("- %s %s → %s" % (h.get("id", ""), str(h.get("claim") or "")[:70],
+                                             h.get("result") or "pending"))
+    return "\n".join(lines)
+
+
 def build_digest(records, hunches, compact=False):
     """生成プロンプトへ注入する記憶ダイジェスト。データが無ければ空文字。"""
     lines = []

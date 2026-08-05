@@ -51,10 +51,35 @@ def norm_final(b):
          "kan_conf": b.get("kan_conf"),                          # 確度(任意・後段で中央値に置換)
          "ura_taikou": str(b.get("ura_taikou") or "").strip(),   # 退けた対抗仮説(ACH・任意)
          "ippan": str(b.get("ippan") or "").strip(),  # 一般人の超参謀(任意・無くてもフォールバックは動く)
+         "evidence_map": [],
          "mijoriku": []}
     if not (r["omote"] and r["ura"] and r["dousuru"] and r["kan"]):
         print("final missing sections:", repr(b)[:200])
         return None
+    # 主張と資料を機械的に結ぶ。存在しない番号は公開直前にも picked の範囲で落とすが、
+    # ここでは型・負数・過大な配列を止めて「根拠っぽい自由文」への退化を防ぐ。
+    ev = b.get("evidence_map")
+    for x in (ev if isinstance(ev, list) else []):
+        if not isinstance(x, dict):
+            continue
+        claim = str(x.get("claim") or "").strip()
+        disconfirm = str(x.get("disconfirm") or "").strip()
+        ids = []
+        raw_ids = x.get("source_indices")
+        for i in (raw_ids if isinstance(raw_ids, list) else []):
+            if isinstance(i, int) and not isinstance(i, bool) and i >= 0 and i not in ids:
+                ids.append(i)
+            if len(ids) == 4:
+                break
+        try:
+            conf = max(0.05, min(0.95, float(x.get("confidence"))))
+        except (TypeError, ValueError):
+            continue
+        if claim and disconfirm and ids:
+            r["evidence_map"].append({"claim": claim, "source_indices": ids,
+                                      "confidence": conf, "disconfirm": disconfirm})
+        if len(r["evidence_map"]) == 3:
+            break
     mj = b.get("mijoriku")
     for x in (mj if isinstance(mj, list) else []):
         if isinstance(x, dict) and all(str(x.get(f) or "").strip() for f in ("title", "desc", "why")):

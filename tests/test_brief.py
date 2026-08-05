@@ -54,6 +54,18 @@ def test_norm_final_caps_mijoriku_and_drops_incomplete_entries():
     assert [m["title"] for m in r["mijoriku"]] == ["a", "d"]   # 2件で打ち止め
 
 
+def test_norm_final_keeps_only_structured_evidence():
+    ev = [
+        {"claim": "一次情報が変わった", "source_indices": [2, 2, -1, 0],
+         "confidence": 1.4, "disconfirm": "公式が撤回する"},
+        {"claim": "番号なし", "source_indices": [], "confidence": 0.5, "disconfirm": "x"},
+        {"claim": "確度なし", "source_indices": [1], "confidence": "不明", "disconfirm": "x"},
+    ]
+    got = brief.norm_final(_full(evidence_map=ev))["evidence_map"]
+    assert got == [{"claim": "一次情報が変わった", "source_indices": [2, 0],
+                    "confidence": 0.95, "disconfirm": "公式が撤回する"}]
+
+
 def test_vote_spread_measures_disagreement():
     assert brief.vote_spread([0.2, 0.38, 0.15]) == 0.38 - 0.15
     assert brief.vote_spread([0.12, 0.12, 0.12]) == 0.0

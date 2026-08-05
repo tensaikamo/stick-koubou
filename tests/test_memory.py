@@ -59,6 +59,18 @@ def test_related_ids_matches_same_subject_only():
     assert memory.related_ids_for("Totally unrelated topic", "", recs) == []
 
 
+def test_relevant_memory_prefers_current_grounded_evidence():
+    recs = [_rs("old", "Anthropic unrelated history", "Anthropic", "https://x/old", 80),
+            _rs("match", "OpenAI launches agent memory", "OpenAI memory", "https://x/match", 1),
+            _rs("noise", "Unrelated paint product", "paint", "https://x/noise", 0)]
+    recs[1]["certainty"] = "confirmed"
+    chosen = memory.relevant_records(recs, "OpenAIのagent memoryを使う", limit=2)
+    assert chosen[0]["id"] == "match"
+    digest = memory.build_relevant_digest(recs, [], "OpenAI agent memory")
+    assert "match [confirmed]" in digest and "https://x/match" in digest
+    assert "noise" not in digest
+
+
 def test_threads_group_by_subject():
     recs = [_r("r1", "OpenAI ships A"), _r("r2", "OpenAI ships B")]
     th = memory.threads(recs)
