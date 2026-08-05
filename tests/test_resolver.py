@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 
 import resolver
 import memory
+import recorder
 
 
 def _mk(hid, claim, deadline, conf=0.7):
@@ -232,6 +233,10 @@ def test_genuine_unclear_after_grounding_still_holds(workdir, monkeypatch):
     assert h["needs_review"] and h.get("judge_attempts") is None   # やり直さない
 
 
+# 実体のあるページ本文(判定先として「中身を読めた」と認められる長さ)
+_PAGE = "Fireworks.ai ブログの記事一覧。" + "推論基盤の高速化に関する記事本文。" * 40
+
+
 class _PageClient:
     """判定先ページを読んだ前提で、渡されたプロンプトを記録して miss を返すダミー。"""
     last_grounding_urls = None
@@ -258,7 +263,7 @@ def test_direct_url_check_is_the_primary_path_and_enables_miss(workdir, monkeypa
     h["resolution"]["source"] = "https://fireworks.ai/blog"
     (workdir / "data/hunches.json").write_text(json.dumps([h], ensure_ascii=False), encoding="utf-8")
     (workdir / "data/records.json").write_text("[]", encoding="utf-8")
-    monkeypatch.setattr(resolver, "fetch_body", lambda u: ("ブログ本文。自動ルーティングの記載はない。", True))
+    monkeypatch.setattr(resolver, "fetch_body", lambda u: (_PAGE, True))
     monkeypatch.setattr(resolver, "hn_search", lambda *a, **k: [])
     monkeypatch.setattr(resolver, "GeminiClient", lambda *a, **k: _PageClient())
     monkeypatch.setenv("GEMINI_API_KEY", "dummy")
@@ -300,7 +305,7 @@ def test_backfill_only_accepts_urls_that_actually_open(monkeypatch):
         def generate(self, prompt, response_schema=None, model=None):
             return '{"url":"https://openai.com/blog"}'
 
-    monkeypatch.setattr(resolver, "fetch_body", lambda u: ("本文", True))
+    monkeypatch.setattr(resolver, "fetch_body", lambda u: (_PAGE, True))
     assert resolver.backfill_check_url(C(), h) == "https://openai.com/blog"
     monkeypatch.setattr(resolver, "fetch_body", lambda u: ("", False))   # 開けない
     assert resolver.backfill_check_url(C(), h) is None
@@ -309,7 +314,7 @@ def test_backfill_only_accepts_urls_that_actually_open(monkeypatch):
         def generate(self, prompt, response_schema=None, model=None):
             return '{"url":"公式ブログ"}'                                 # URLですらない
 
-    monkeypatch.setattr(resolver, "fetch_body", lambda u: ("本文", True))
+    monkeypatch.setattr(resolver, "fetch_body", lambda u: (_PAGE, True))
     assert resolver.backfill_check_url(Bad(), h) is None
 
     class Boom:
@@ -317,6 +322,71 @@ def test_backfill_only_accepts_urls_that_actually_open(monkeypatch):
             raise RuntimeError("429")
 
     assert resolver.backfill_check_url(Boom(), h) is None                # 落ちない
+
+
+def test_js_shell_page_never_authorizes_a_miss(workdir, monkeypatch):
+    """JS描画の殻を掴んだ時に『載っていない→外れ』を出さない。
+
+    fetch_body は取得に成功しさえすれば ok=True を返すので、GitHubのような
+    JS描画ページでは**中身が空なのに「開いて確かめた」扱い**になっていた。
+    その状態で miss を許すと、何も読めていないのに偽×が自動確定する。
+    偽×は参謀の信用を壊す最悪の事故なので、殻は「見に行けなかった」側に倒す。"""
+    today = datetime.now(resolver.JST).date()
+    h = _mk("h-shell", "OpenAIがGAする", (today - timedelta(days=1)).strftime("%Y-%m-%d"))
+    h["resolution"]["source"] = "https://github.com/openai"
+    (workdir / "data/hunches.json").write_text(json.dumps([h], ensure_ascii=False), encoding="utf-8")
+    (workdir / "data/records.json").write_text("[]", encoding="utf-8")
+    seen = {}
+
+    class C:
+        last_grounding_urls = None
+
+        def generate_grounded(self, prompt):
+            raise RuntimeError("HTTPError 429")
+
+        def generate(self, prompt, response_schema=None, model=None):
+            seen["p"] = prompt
+            return ('{"result":"miss","evidence":{"summary":"記載が無い","url":"https://x/y"},'
+                    '"confidence":0.9}')
+
+    monkeypatch.setattr(resolver, "fetch_body", lambda u: ("Loading...", True))   # 殻
+    monkeypatch.setattr(resolver, "hn_search", lambda *a, **k: [])
+    monkeypatch.setattr(resolver, "GeminiClient", lambda *a, **k: C())
+    monkeypatch.setenv("GEMINI_API_KEY", "dummy")
+    resolver.main()
+    # miss を許す条件はプロンプトに入らず、代わりに「証拠にはならない」と明示される
+    assert "miss と判定してよい" not in seen["p"]
+    assert "証拠にはならない" in seen["p"]
+
+
+def test_is_substantive_rejects_thin_and_shell_pages():
+    assert not resolver.is_substantive("")
+    assert not resolver.is_substantive("短い本文")
+    assert not resolver.is_substantive("Loading..." + "x" * 300)          # JSの殻
+    assert not resolver.is_substantive("You need to enable JavaScript" + "y" * 300)
+    assert resolver.is_substantive("実体のある記事本文。" * 60)
+
+
+def test_github_urls_are_read_through_the_json_api():
+    """GitHubのHTMLはJS描画で中身が返らないので、判定先が github.com なら JSON API を叩く。
+    判定待ち31件のうち12件(39%)がGitHub絡みで、ここが読めないと決着が進まない。"""
+    u = recorder.github_api_urls("https://github.com/fireworks-ai")
+    assert u and all(x.startswith("https://api.github.com/") for x in u)
+    assert any("/orgs/fireworks-ai/repos" in x for x in u)
+    r = recorder.github_api_urls("https://github.com/anthropics/claude-code")
+    assert any(x.endswith("/repos/anthropics/claude-code") for x in r)
+    assert any("/releases" in x for x in r)
+    assert recorder.github_api_urls("https://fireworks.ai/blog") == []
+    assert recorder.github_api_urls("") == []
+
+
+def test_github_summary_folds_api_json_into_readable_text():
+    txt = recorder._github_summary([
+        {"full_name": "fw-ai/router", "pushed_at": "2026-08-01T00:00:00Z", "description": "model router"},
+        {"tag_name": "v1.2.0", "published_at": "2026-08-03T00:00:00Z", "body": "routing GA"}])
+    assert "fw-ai/router" in txt and "2026-08-01" in txt
+    assert "v1.2.0" in txt and "routing GA" in txt
+    assert recorder._github_summary({"name": "x"}).startswith("- x")
 
 
 def test_judge_reports_whether_it_reached_the_web():

@@ -92,9 +92,51 @@ def strip_html(raw):
     return txt.strip()
 
 
+_GH = re.compile(r"^https?://(?:www\.)?github\.com/([A-Za-z0-9._-]+)(?:/([A-Za-z0-9._-]+))?", re.I)
+
+
+def github_api_urls(url):
+    """github.com のページURLを、中身が確実に取れる api.github.com のURLに置き換える。
+
+    GitHubのHTMLはJSで描画されるため、取得は成功しても本文がほぼ空で返る。それを
+    「開いて確かめた」と扱うと、実際には何も読めていないのに『載っていない→外れ』と
+    判定しかねない(偽×は参謀の信用を壊す最悪の事故)。JSON API なら実体が取れる。
+    戻り: 取得すべきURLの配列(github.com でなければ空配列)。
+    """
+    m = _GH.match(url or "")
+    if not m:
+        return []
+    org, repo = m.group(1), m.group(2)
+    if repo and repo.lower() not in ("orgs", "search", "about", "features"):
+        return ["https://api.github.com/repos/%s/%s" % (org, repo),
+                "https://api.github.com/repos/%s/%s/releases?per_page=20" % (org, repo)]
+    return ["https://api.github.com/orgs/%s/repos?sort=updated&per_page=50" % org,
+            "https://api.github.com/users/%s/repos?sort=updated&per_page=50" % org]
+
+
 def fetch_body(url):
     """記事本文を best-effort で取得。失敗は握りつぶし ("", False) を返す。
-    ここでの失敗が記録処理・サイト生成を止めることは絶対にない。"""
+    ここでの失敗が記録処理・サイト生成を止めることは絶対にない。
+    github.com は JSON API へ振り替える(HTMLだとJS描画で中身が取れないため)。"""
+    api = github_api_urls(url)
+    if api:
+        # 匿名だと 60req/時(IP単位)で、Actions の共有IPだと詰まりうる。トークンがあれば使う。
+        hdr = {"User-Agent": "Mozilla/5.0", "Accept": "application/vnd.github+json"}
+        _tok = os.environ.get("GITHUB_TOKEN", "")
+        if _tok:
+            hdr["Authorization"] = "Bearer " + _tok
+        out = []
+        for u in api:
+            try:
+                r = requests.get(u, timeout=10, headers=hdr)
+                if r.status_code != 200:
+                    print("fetch_body(github)", u, "HTTP", r.status_code)
+                    continue
+                out.append(u + "\n" + _github_summary(r.json()))
+            except Exception as e:
+                print("fetch_body(github)", u, repr(e)[:120])
+        text = "\n\n".join(out)
+        return text[:BODY_LIMIT], bool(text.strip())
     try:
         r = requests.get(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
         if r.status_code != 200:
@@ -107,6 +149,21 @@ def fetch_body(url):
     except Exception as e:
         print("fetch_body", url, repr(e)[:120])
         return "", False
+
+
+def _github_summary(data):
+    """GitHub API の応答を、判定に使える平文へ畳む(名前・説明・更新日・公開日)。"""
+    def one(d):
+        if not isinstance(d, dict):
+            return ""
+        f = [str(d.get(k) or "") for k in ("full_name", "name", "tag_name")]
+        who = next((x for x in f if x), "")
+        when = str(d.get("published_at") or d.get("pushed_at") or d.get("updated_at") or "")[:10]
+        desc = str(d.get("description") or d.get("body") or "")[:300]
+        return "- %s%s%s" % (who, (" [%s]" % when if when else ""), (" : " + desc if desc else ""))
+    if isinstance(data, list):
+        return "\n".join(x for x in (one(d) for d in data[:50]) if x)
+    return one(data)
 
 
 # ---- LLM 生成 ------------------------------------------------------------
@@ -151,9 +208,9 @@ def build_prompt(articles, today_str):
         '      "claim": "予測本文(1文)",\n'
         '      "subject": "主体(企業/製品/組織の固有名)",\n'
         '      "resolution": {\n'
-        '        "source": "判定時に実際に開くURL(https://で始まる1本。例 https://github.com/fw-ai '
-        'や https://fireworks.ai/blog や 料金ページ)。説明文ではなくURLを書け。'
-        '**期日にそのページを開けば的中/外れが分かる**場所を選べ",\n'
+        '        "source": "判定時に実際に開くURL(https://で始まる1本。例 https://fireworks.ai/blog '
+        'や 料金ページ)。説明文ではなくURLを書け。**期日にそのページを開けば的中/外れが分かる**場所を選べ。'
+        'JSで描画されるページ(SPA)は中身が読めないので避けろ",\n'
         '        "check_query": "英語のみ2〜4語",\n'
         '        "decider": "何が満たされたら的中か。公式発表/公開リーダーボード/公開リポジトリ/報道など"'
         '『第三者が公開情報だけで期日に○×を付けられる観測点』で書け。『話題になる』等の曖昧表現は禁止"\n'

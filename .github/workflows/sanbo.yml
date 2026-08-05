@@ -34,6 +34,9 @@ jobs:
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # 判定先が github.com のとき JSON API を読む(HTMLはJS描画で中身が返らない)。
+          # 匿名だと 60req/時(IP単位)で共有IPだと詰まるため、既定トークンで読む。
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python resolver.py
       - name: Commit records
         continue-on-error: true

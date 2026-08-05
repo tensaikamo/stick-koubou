@@ -24,6 +24,24 @@ CONF_MISS = 0.75     # miss はより慎重に(偽×を出さない)
 MAX_PER_RUN = 12     # 1実行で判定する期日到来hunchの上限
 STALE_DAYS = 14      # 期日から この日数 を過ぎてなお未解決なら unscorable で終端
 MAX_ATTEMPTS = 3     # 一時障害でのやり直し上限(これを超えたら needs_review で人に回す)
+CHECK_MIN_CHARS = 400  # 判定先を「中身まで確認できた」と認める最低文字数(下記参照)
+
+# JS描画のページは取得に成功しても実体が返らない。その殻を「開いて確かめた」と扱うと、
+# 何も読めていないのに『載っていない→外れ』を出しかねない。偽×は参謀の信用を壊す
+# 最悪の事故なので、殻を検出したら「見に行けなかった」側に倒す。
+_SHELL_HINTS = ("enable javascript", "javascriptを有効", "please enable js",
+                "you need to enable javascript", "loading...", ":root{", "<noscript")
+
+
+def is_substantive(text):
+    """判定先として中身を読めたと言えるか。短すぎる/JSの殻だけなら False。"""
+    t = (text or "").strip()
+    if len(t) < CHECK_MIN_CHARS:
+        return False
+    low = t.lower()
+    if any(k in low for k in _SHELL_HINTS) and len(t) < CHECK_MIN_CHARS * 3:
+        return False
+    return True
 RESULT_SET = ("hit", "miss", "unclear")
 
 
@@ -83,9 +101,14 @@ def gather_evidence(h, meta=None):
     src = str(res.get("source") or "").strip()
     if src.startswith("http"):
         body, ok = fetch_body(src)
-        if ok:
+        if ok and is_substantive(body):
+            # 中身まで読めた時だけ checked_url を立てる。これが miss を許す唯一の根拠になる。
             meta["checked_url"] = src
             lines.append("判定先ページ(" + src + ")を実際に開いた内容:\n" + body[:2400])
+        elif ok:
+            lines.append("判定先ページ(" + src + ")は開けたが中身を読めなかった"
+                         "(JS描画などで実体が返らない)。**載っていないことの証拠にはならない**。")
+            print("resolver:", h.get("id"), "→ 判定先の中身を読めず(%d字)" % len(body or ""))
         else:
             lines.append("判定先ページ(" + src + ")を開けなかった。")
     hits = hn_search(str(res.get("check_query") or h.get("subject") or ""), since, until)
@@ -186,9 +209,11 @@ def backfill_check_url(client, h):
         return None
     if not u.lower().startswith("https://"):
         return None
-    _, ok = fetch_body(u)          # 実際に開けるURLだけを採用する(幻覚の混入を防ぐ)
-    if not ok:
-        print("resolver:", h.get("id"), "→ 判定先URL候補", u[:60], "は開けず不採用")
+    # 実際に開けて**中身まで読めた**URLだけを採用する(幻覚の混入と、JSの殻を掴むのを防ぐ)
+    body, ok = fetch_body(u)
+    if not ok or not is_substantive(body):
+        print("resolver:", h.get("id"), "→ 判定先URL候補", u[:60],
+              "は中身を読めず不採用(%d字)" % len(body or ""))
         return None
     print("resolver:", h.get("id"), "→ 判定先URLを補完:", u[:70])
     return u
