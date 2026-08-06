@@ -229,3 +229,36 @@ def test_idempotent_second_run(workdir, monkeypatch):
     _run(workdir, monkeypatch)  # 2回目: runs 存在でスキップ
     assert (workdir / "data/records.json").read_text(encoding="utf-8") == r1
     assert (workdir / "data/hunches.json").read_text(encoding="utf-8") == h1
+
+
+def test_same_subject_same_day_is_not_counted_as_two_bets(workdir, monkeypatch):
+    """相関した賭けを独立として数えない(実測の初決着2件がこれで二重計上された)。
+    『Fireworksがルーティング用コードを公開する』『Fireworksがルーティング機能をGAする』は
+    文面の類似度0.19で重複判定(閾値0.58)をすり抜け、一度の読み違いが打率とBrierに二重に効いた。"""
+    fake = _fake_response()
+    fake["hunches"] = [
+        {"based_on": [0], "prose": "Fireworksはルーティング用コードを公開すると見る。",
+         "claim": "Fireworks.aiがモデルルーティング再現用コードをGitHubへ公開する",
+         "subject": "Fireworks.ai",
+         "resolution": {"source": "https://github.com/fireworks-ai", "check_query": "fireworks routing repo",
+                        "decider": "公式リポジトリに該当コミットが1件以上出る"},
+         "deadline_days": 14, "base_rate": 0.2, "base_rate_class": "同社が14日窓でコードを公開する頻度",
+         "confidence": 0.3, "confidence_why": "基準率どおり", "counter": "公開が遅れる"},
+        {"based_on": [1], "prose": "Fireworksはルーティング機能をGAすると見る。",
+         "claim": "Fireworks.aiが自動モデルルーティング機能の一般提供を開始する",
+         "subject": "Fireworks.ai",
+         "resolution": {"source": "https://fireworks.ai/blog", "check_query": "fireworks routing GA",
+                        "decider": "公式ブログがGAを告知する"},
+         "deadline_days": 14, "base_rate": 0.2, "base_rate_class": "同社が14日窓でGAを出す頻度",
+         "confidence": 0.3, "confidence_why": "基準率どおり", "counter": "GAが遅れる"},
+    ]
+    fake["_fake_regens"] = []
+    monkeypatch.setattr(recorder, "fetch_all",
+                        lambda limit=20: [dict(a, tier=3) for a in FAKE_ARTS])
+    fp = workdir / "fake.json"
+    fp.write_text(json.dumps(fake, ensure_ascii=False), encoding="utf-8")
+    monkeypatch.setenv("RECORDER_FAKE_RESPONSE", str(fp))
+    recorder.main()
+    huns = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))
+    pend = [h for h in huns if h["status"] == "pending"]
+    assert [h["subject"] for h in pend].count("Fireworks.ai") <= 1, "同一主体の賭けが2件計上されている"

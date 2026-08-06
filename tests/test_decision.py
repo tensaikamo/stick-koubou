@@ -248,3 +248,38 @@ def test_static_moves_carry_intelligence_fields_and_pass_quality_gate():
     for move in moves:
         assert required <= set(move)
         assert decision.move_quality_problem(move) is None
+
+
+def test_safe_moves_reports_why_everything_was_rejected():
+    """既定案は枠を埋めるので、LLM案が全滅しても画面は5件で埋まって見える。
+    実際 docs/ichite.json は5件すべて既定案(=生存ゼロ)なのに、その事実がどこにも出ていなかった。"""
+    bad = [{"t": "有料の何かを試す", "cost_min": 500, "cost_max": 500,
+            "outcome": "何か残る", "impact_why": "寄与する", "disconfirm": "無価値と分かる観測",
+            "assumptions": ["前提"], "evidence_ids": ["存在しないID"]}]
+    rep = {}
+    out = decision.safe_moves(bad, limit=3, valid_evidence_ids={"r-1"},
+                              trusted_evidence_ids={"r-1"}, strict_quality=True, report=rep)
+    assert rep["generated"] == 1 and rep["kept"] == 0 and rep["fallback"] == 3
+    assert "存在しない証拠IDを参照している" in rep["reasons"]
+    # 既定案は「参謀が今日考えた案」ではないと分かる印が付く
+    assert all(m.get("fallback") for m in out)
+
+
+def test_safe_moves_keeps_good_moves_and_marks_only_the_filler():
+    good = {"t": "改善案を1件Issueに書く", "cost_min": 0, "cost_max": 0, "success_p": 0.6,
+            "outcome": "Issueが1件残る", "impact_why": "次の実装が固定される",
+            "disconfirm": "着手されないまま1週間残る"}
+    rep = {}
+    out = decision.safe_moves([good], limit=3, strict_quality=True, report=rep)
+    assert rep["generated"] == 1 and rep["kept"] == 1 and rep["fallback"] == 2
+    assert not out[0].get("fallback") and all(m.get("fallback") for m in out[1:])
+
+
+def test_number_survives_nan_and_infinity():
+    """NaN/Inf は round() が ValueError/OverflowError を投げて実行ごと落とす。
+    数値として無意味なので既定へ倒し、予算は 0(=有料案を通さない安全側)に落ち着かせる。"""
+    for bad in (float("nan"), float("inf"), -float("inf")):
+        b = decision.normalize_budget({"total_yen": bad})
+        assert b["total_yen"] == 0 and isinstance(b["total_yen"], int)
+    m = decision.normalize_move({"t": "x", "cost_min": float("inf"), "success_p": float("nan")})
+    assert m["cost_min"] == 0 and m["success_p"] == 0.5

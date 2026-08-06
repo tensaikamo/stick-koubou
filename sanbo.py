@@ -170,6 +170,11 @@ try:
                                   "conf_before": _before, "conf_after": _after})
             _h["signals"] = _h["signals"][-10:]            # 際限なく積まない
             if isinstance(_after, float):
+                # 当初の確度を1度だけ保存してから上書きする。signals は10件で切られるので
+                # そこだけに置くと、更新を重ねた予測の「作成日に何%と言ったか」が復元
+                # できなくなる。更新は現実の兆候に基づくぶん Brier を良い方へ動かすので、
+                # 当初値を残さないと『後知恵込みの成績』を予測成績として出すことになる。
+                _h.setdefault("initial_confidence", _before)
                 _h["confidence"] = _after
             if _dir == "kill":
                 # 表示用の警告のみ。needs_review は resolver 専用(判定を止めない)
@@ -286,7 +291,10 @@ if picked:
         _feedback = load_json_array(_feedback_path)
     _feedback_digest = decision.feedback_digest(_feedback)
     if _feedback_digest:
-        material = _feedback_digest + "\n\n" + material
+        # Issue本文(action/note)は人が自由に書く外部文字列。他の外部資料と同じく資料フェンスで
+        # 囲い、PERSONA直後という最も権限の高い位置に生テキストを置かない
+        # (所有者本人のIssueだけを読む著者フィルタが第一の防御。これは二重化)。
+        material = ("《資料ここから》\n" + _feedback_digest + "\n《資料ここまで》\n\n") + material
     prompt3 = (PERSONA +
         "\n以下の材料から今朝のブリーフィングを執筆し、次のJSONオブジェクトだけを返せ(配列で包まない):\n"
         '{"kuki": {"omote": "表:何が起きたか。2〜3文", '
@@ -455,7 +463,6 @@ ICHITE_SCHEMA = {
     "required": ["questions", "moves"],
 }
 
-today_move = None
 if generation_ok:
     try:
         _action_context = " ".join(str(final.get(k) or "") for k in ("omote", "ura", "dousuru", "kan"))
@@ -507,11 +514,24 @@ if generation_ok:
                 _raw_mv.append(_m)
             if len(_raw_mv) == 10:
                 break
+        _mv_report = {}
         _mv = decision.safe_moves(_raw_mv, limit=5, valid_evidence_ids=_valid_evidence_ids,
-                                  trusted_evidence_ids=_trusted_evidence_ids, strict_quality=True)
+                                  trusted_evidence_ids=_trusted_evidence_ids, strict_quality=True,
+                                  report=_mv_report)
+        # 既定案は枠を埋めてしまうので、黙っていると「全滅」が画面からも見えない。
+        # 生成数・採用数・却下理由を必ず出す(実測: 公開中の一手は5件とも既定案だった)。
+        print("一手: 生成%d件 → 採用%d件 / 既定案%d件%s"
+              % (_mv_report.get("generated", 0), _mv_report.get("kept", 0),
+                 _mv_report.get("fallback", 0),
+                 (" / 却下: " + ", ".join("%s×%d" % kv for kv in
+                                          sorted(_mv_report.get("reasons", {}).items(),
+                                                 key=lambda x: -x[1])))
+                 if _mv_report.get("reasons") else ""))
+        if not _mv_report.get("kept"):
+            print("::warning title=今日の一手が全て既定案::"
+                  "LLMが出した%d件は全て品質ゲートで落ちました。表示されているのは"
+                  "ハードコードされた既定案です" % _mv_report.get("generated", 0))
         if _qs and _mv:
-            today_move = {"t": "予算に合わせて今日の一手を選ぶ",
-                          "why": "残額・成果見込み・学習価値・撤退条件を比べてから、一つだけ決める。"}
             os.makedirs("docs", exist_ok=True)
             with open("docs/ichite.json", "w", encoding="utf-8") as f:
                 json.dump({"date": datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d"),
@@ -541,16 +561,10 @@ if not final:
 
 jst = datetime.now(timezone(timedelta(hours=9)))
 
-# 生成が失敗した日も、前回の実行可能な一手をトップに残す。危険な旧提案はゲートで落とす。
-if not today_move:
-    try:
-        with open("docs/ichite.json", encoding="utf-8") as _f:
-            _old_ich = json.load(_f)
-        _old_moves = decision.safe_moves((_old_ich or {}).get("moves") or [])
-        today_move = _old_moves[0] if _old_moves else None
-    except Exception:
-        today_move = decision.SAFE_FALLBACK_MOVES[0]
-
+# トップの「今日やること」は ichite.html へ送る固定の導線で、個別の一手は載せない
+# (一手そのものは docs/ichite.json → ichite.html 側で予算と突き合わせて選ばせる)。
+# ここで today_move を組み立てて捨てるコードが残っており、safe_moves を無駄に呼んで
+# 前回の ichite.json を読み直していた。表示に影響しないので落とす。
 _action_title = "予算に合わせて今日の一手を選ぶ"
 _action_why = "残額・成果見込み・学習価値・撤退条件を比べてから、一つだけ決める。"
 _kan_meta = ""

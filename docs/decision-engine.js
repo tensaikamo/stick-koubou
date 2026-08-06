@@ -67,7 +67,9 @@
       evidence_ids:Array.isArray(m.evidence_ids) ? m.evidence_ids.slice(0, 5).map(String) : [],
       assumptions:Array.isArray(m.assumptions) ? m.assumptions.slice(0, 4).map(String) : [],
       disconfirm:String(m.disconfirm || ""), outcome:String(m.outcome || ""),
-      continue_if:String(m.continue_if || ""), stop:String(m.stop || "")
+      continue_if:String(m.continue_if || ""), stop:String(m.stop || ""),
+      // 既定案(参謀が今日考えた案ではない)の印。ホワイトリストなので明示しないと落ちる
+      fallback:!!m.fallback
     };
   }
 

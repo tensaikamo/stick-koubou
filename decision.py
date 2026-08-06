@@ -119,9 +119,13 @@ DEFAULT_BUDGET = {
 
 def _number(value, default=0.0):
     try:
-        return float(value)
+        v = float(value)
     except (TypeError, ValueError):
         return float(default)
+    # NaN/Inf は後段の round() が ValueError/OverflowError で落ちる。数値として無意味なので
+    # 既定値へ倒す(現状 parse_budget_issue が enum帯しか通さないため到達しないが、
+    # LLM出力を直接 normalize_move へ渡す経路は塞いでおく)。
+    return v if -1e15 < v < 1e15 else float(default)
 
 
 def normalize_budget(budget=None):
@@ -284,27 +288,48 @@ def action_problem(text):
 
 
 def safe_moves(moves, limit=3, valid_evidence_ids=None, trusted_evidence_ids=None,
-               strict_quality=False):
-    """実行可能な候補だけを残し、足りなければ安全な既定案で補う。"""
-    out, seen = [], set()
+               strict_quality=False, report=None):
+    """実行可能な候補だけを残し、足りなければ安全な既定案で補う。
+
+    report に dict を渡すと選別結果を書き戻す(生成数・採用数・却下理由の内訳・既定案の使用数)。
+    既定案は上限まで枠を埋めるので、**LLMの案が全滅しても画面は5件で埋まって見える**。
+    実際 docs/ichite.json は5件すべてが既定案(=LLM案の生存ゼロ)なのに、
+    どこにもその事実が出ていなかった。数えて呼び出し側から見えるようにする。
+    """
+    out, seen, reasons, generated = [], set(), {}, 0
+
+    def _note(why):
+        reasons[why] = reasons.get(why, 0) + 1
+
     for move in moves or []:
         if not isinstance(move, dict):
+            _note("dictでない")
             continue
+        generated += 1
         item = normalize_move(move)
         title = item["t"]
-        if (action_problem(title) or title in seen
-                or (strict_quality and move_quality_problem(
-                    item, valid_evidence_ids, trusted_evidence_ids))):
+        bad = action_problem(title)
+        if not bad and title in seen:
+            bad = "重複"
+        if not bad and strict_quality:
+            bad = move_quality_problem(item, valid_evidence_ids, trusted_evidence_ids)
+        if bad:
+            _note(bad)
             continue
         seen.add(title)
         out.append(item)
         if len(out) >= limit:
-            return out
+            break
+    kept = len(out)
     for move in SAFE_FALLBACK_MOVES:
-        if move["t"] not in seen:
-            out.append(normalize_move(move))
         if len(out) >= limit:
             break
+        if move["t"] not in seen:
+            # 既定案は「参謀が今日考えた案」ではない。混ざったまま同じ顔で並べない。
+            out.append(dict(normalize_move(move), fallback=True))
+    if isinstance(report, dict):
+        report.update({"generated": generated, "kept": kept,
+                       "fallback": len(out) - kept, "reasons": reasons})
     return out
 
 
