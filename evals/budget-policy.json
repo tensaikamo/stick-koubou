@@ -1,0 +1,12 @@
+{
+  "currency": "JPY",
+  "monthly_budget_yen": 10000,
+  "per_round_budget_yen": 2500,
+  "max_candidates_per_round": 8,
+  "strong_model_share_max": 0.25,
+  "minimum_improvement": 0.02,
+  "stop_after_no_gain_rounds": 2,
+  "allow_budget_overrun": false,
+  "note": "進化用の上限。アプリ内の行動予算とは分離し、将来はGitHub Variablesで上書きする。"
+}
+

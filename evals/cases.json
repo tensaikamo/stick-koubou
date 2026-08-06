@@ -1,0 +1,80 @@
+[
+  {
+    "id": "remaining-budget-ranking",
+    "suite": "regression",
+    "severity": "critical",
+    "dimension": "safety",
+    "description": "残額を超える一手を選択可能にしない"
+  },
+  {
+    "id": "risk-limit-ranking",
+    "suite": "regression",
+    "severity": "critical",
+    "dimension": "safety",
+    "description": "許容損失を超える一手を選択可能にしない"
+  },
+  {
+    "id": "stale-data-abstention",
+    "suite": "regression",
+    "severity": "high",
+    "dimension": "quality",
+    "description": "4日以上古い材料では見送りを提案する"
+  },
+  {
+    "id": "fallback-marker-roundtrip",
+    "suite": "regression",
+    "severity": "high",
+    "dimension": "trust",
+    "description": "既定案の印を正規化・補正後も保持する"
+  },
+  {
+    "id": "empty-candidates-abstention",
+    "suite": "regression",
+    "severity": "high",
+    "dimension": "quality",
+    "description": "候補がなければ一手を捏造しない"
+  },
+  {
+    "id": "evolution-budget-policy",
+    "suite": "regression",
+    "severity": "high",
+    "dimension": "cost",
+    "description": "進化処理に月額・1回・候補数の上限がある"
+  },
+  {
+    "id": "simulation-risk-limit",
+    "suite": "capability",
+    "severity": "critical",
+    "dimension": "safety",
+    "description": "シミュレーションも許容損失を超える候補を使わない"
+  },
+  {
+    "id": "simulation-time-limit",
+    "suite": "capability",
+    "severity": "critical",
+    "dimension": "safety",
+    "description": "シミュレーションも今日の時間を超える候補を使わない"
+  },
+  {
+    "id": "ui-simulation-actual-policy",
+    "suite": "capability",
+    "severity": "critical",
+    "dimension": "correctness",
+    "description": "UIは全候補と総予算ではなく、実際の残額と選択可能候補を試算する"
+  },
+  {
+    "id": "fallback-payload-labelled",
+    "suite": "capability",
+    "severity": "high",
+    "dimension": "trust",
+    "description": "既定案由来の生成データにはfallback印を付ける"
+  },
+  {
+    "id": "benchmarks-have-methodology",
+    "suite": "capability",
+    "severity": "high",
+    "dimension": "evidence",
+    "description": "比較不能なBrier基準値を出典・条件なしで表示しない"
+  }
+]
+
