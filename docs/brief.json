@@ -1,0 +1,66 @@
+{
+  "date": "2026-08-06",
+  "updated_at": "2026-08-06 22:41",
+  "build_id": "truthful-ui-v1",
+  "omote": "Anthropicが独自基板やラック構成を手がけるハードウェア担当に続き、未発表データ漏洩を防ぐ内部リスク調査員の採用を開始した。OpenRouterではClaude Opus 5の<t data-d='時間差で大量データをまとめて安く処理するAPI形式'>バッチ枠</t>が追加された一方、Qwen3 VLの大型思考モデルは145%値上げされた。",
+  "ura": "巨大資本がハードウェア内製と軍事級セキュリティで自社基盤を固める中、リアルタイムAPIの高額化が進んでいる。資本力のない個人が勝つ隙は、高額な即時応答に固執せず、値下げモデルや非同期バッチを使い、夜間に<t data-d='実行エラーを自力で検知しコードを自己修正する仕組み'>自己進化エージェント</t>を放置稼働させる自動化の側に存在する。",
+  "ura_taikou": "Anthropicの採用強化は単なる政府案件用の形式的コンプライアンスだという説も検討したが、ハードウェアアセンブリの求人と同時進行しているため退けた。",
+  "dousuru": "iPhoneのSafariでGitHubを開き、夜間バッチで一括処理させるプロンプトテンプレートをGistに1件作成して保存しろ。即時応答のAPIに依存する構造を捨て、裏で安く動く非同期処理用のデータ形式へロジックを組み替えろ。朝と夜の隙間時間だけで回る放置型ワークフローの仕込みを終わらせておけ。",
+  "kan": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社設計ハードウェアまたは独自カスタムチップに関する公式発表を行わない。",
+  "kan_konkyo": "基準率（0.98）はきわめて高いが、クラウド事業者との共同提携やプロトタイプ発表が電撃的に行われる可能性をわずかに考慮し、自信過剰回避のため0.91へ下方較正した。",
+  "kan_hantai": "求人公開にあわせてクラウドパートナー（AWS等）との提携による共同設計チップの概念発表が電撃的に行われる可能性がある。",
+  "kan_conf": 0.91,
+  "ippan": "AIの利用料金は、すぐ返事が欲しい時と「後でまとめて処理する」時で価格差が大きく開き始めている。急ぎでない文章要約やデータ整理は、一括処理の設定や格安モデルを選ぶことでコストを半減できる。高額な最新AIを都度使うのではなく、用途に応じて処理形式やモデルを使い分ける設定を確認しておこう。",
+  "votes": [],
+  "mijoriku": [
+    {
+      "title": "Self-Evolving Coding Agents",
+      "desc": "実行ログとエラーからAIがロジックやツール使用を自前で自己修正・更新する枠組み。",
+      "why": "高価格なリアルタイム指示に頼らず、安いAPIで自己修復ループを放置実行させる個人のシステム構築に直結するため。"
+    }
+  ],
+  "diffs": [
+    "[差分] 価格が動いた: Z.ai: GLM 5.2 値下げ 26%",
+    "[差分] 価格が動いた: Qwen: Qwen3.6 27B 値上げ 108%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値下げ 37%",
+    "[差分] 価格が動いた: MoonshotAI: Kimi K2.6 値下げ 3%",
+    "[差分] 価格が動いた: Qwen: Qwen3 VL 235B A22B Thinking 値上げ 145%",
+    "[差分] 新モデルが登場: Claude Opus 5 (batch) (anthropic/claude-opus-5:batch)"
+  ],
+  "evidence": [
+    {
+      "claim": "Anthropicはハードウェアの自社設計と内部漏洩防止の防衛体制を同時に強化している",
+      "confidence": 0.85,
+      "disconfirm": "ハードウェア関連求人が取り下げられ既存クラウド依存の継続が発表されること",
+      "sources": [
+        {
+          "title": "[新規求人] anthropic: Insider Risk Investigator  (Boston, MA; New York City, NY; Washington, DC)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5380744008"
+        },
+        {
+          "title": "[新規求人] anthropic: Technical Program Manager, Hardware Systems (San Francisco, CA | New York City, NY)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5380379008"
+        }
+      ]
+    },
+    {
+      "claim": "API市場で即時思考モデルの値上げと非同期バッチ処理の安価提供という分極化が進んでいる",
+      "confidence": 0.9,
+      "disconfirm": "すべてのモデルの即時API単価が一律で定額化・標準化されること",
+      "sources": [
+        {
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値下げ 37%",
+          "url": "https://openrouter.ai/models"
+        },
+        {
+          "title": "[差分] 価格が動いた: Qwen: Qwen3 VL 235B A22B Thinking 値上げ 145%",
+          "url": "https://openrouter.ai/models"
+        },
+        {
+          "title": "[差分] 新モデルが登場: Claude Opus 5 (batch) (anthropic/claude-opus-5:batch)",
+          "url": "https://openrouter.ai/models"
+        }
+      ]
+    }
+  ]
+}

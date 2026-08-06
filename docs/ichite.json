@@ -1,171 +1,163 @@
 {
-  "date": "2026-08-05",
+  "date": "2026-08-06",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "いま作っているアプリで、今日直す1点はどれか？",
-    "iPhoneだけで30分以内に成果物を残せるか？",
-    "終わったと判断できる形は何か？"
+    "高額化する即時応答APIを捨て夜間バッチに移行させる処理はどれか？",
+    "Safari上でGistに保存する非同期プロンプトの設計要素は何か？",
+    "放置稼働させるエージェントが自己修復すべきエラー条件は何か？"
   ],
   "moves": [
     {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "t": "Gistにバッチ処理用プロンプト文脈を保存する",
+      "why": "Opus 5等の非同期枠活用のため即時応答依存から脱却したデータ形式を定義する必要があるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.8,
+      "success_p": 0.85,
       "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
-      "payback_days": 0,
-      "value_score": 3,
-      "learning_value": 2,
+      "success_p_max": 0.95,
+      "success_why": "SafariでGitHub Gistを開きMarkdown形式で記述する作業は15分で確実に完了できるため。",
+      "value_score": 4,
+      "learning_value": 4,
       "time_minutes": 15,
-      "outcome": "次に直す内容がIssueとして1件残る",
+      "payback_days": 0,
+      "outcome": "GitHub Gistに夜間バッチ用プロンプトテンプレートが1件保存された状態",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.1,
+      "impact_max": 0.25,
+      "impact_why": "非同期処理ロジックの骨組みを確定させることで、夜間自動化の設計が着地するため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-07-25-r01"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "GitHubのアカウントにiPhoneからログイン可能であること"
       ],
-      "disconfirm": "7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "OpenRouterなどの主要プロバイダで非同期バッチ割引が全廃された場合",
+      "continue_if": "作成したテンプレートが他モデル（Qwen等）でも流用可能な場合",
+      "stop": "バッチAPIの価格差が即時応答と比べて10%未満に縮小した場合"
     },
     {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
+      "t": "OpenRouterに1000円チャージしバッチ検証を行う",
+      "why": "リアルタイムAPIより大幅に安いバッチ枠の実体挙動と応答速度を確認するため。",
+      "cost_min": 1000,
+      "cost_max": 1000,
+      "loss_max": 1000,
       "success_p": 0.75,
-      "success_p_min": 0.6,
+      "success_p_min": 0.5,
       "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "payback_days": 0,
-      "value_score": 2,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "outcome": "一次情報の要点メモが3行残る",
-      "category": "research",
+      "success_why": "OpenRouterのクレジットカード決済はiPhoneのWeb画面から数分で完了するため。",
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 10,
+      "payback_days": 7,
+      "outcome": "OpenRouterに1000円分のデポジットが追加されテストリクエストが送れる状態",
+      "category": "buy",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "impact_min": 0.15,
+      "impact_max": 0.3,
+      "impact_why": "実際に資金を投入して低価格API枠を確保することが放置自動化の前提となるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-07-25-r01"
       ],
       "assumptions": [
-        "情報が現在の目標に関係する"
+        "OpenRouterのバッチ枠が即時リクエストに対して50%以上のコストカットになること"
       ],
-      "disconfirm": "次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
+      "disconfirm": "チャージしたにもかかわらず希望モデルのバッチ枠が利用不可だった場合",
+      "continue_if": "バッチ処理コストが即時APIの半額以下で稼働確認できた場合",
+      "stop": "バッチリクエストの保留時間が24時間以上となり実用性を欠くことが判明した場合"
     },
     {
-      "t": "予測を1件確認し確度メモを1行更新する",
-      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
+      "t": "既存アプリの非同期処理API設定画面のモックを作る",
+      "why": "既存の改善中Webアプリにバッチ処理用のエンドポイント切り替えUIを組み込むため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "既存予測の更新なので新規企画より着地しやすい",
+      "success_p_min": 0.5,
+      "success_p_max": 0.85,
+      "success_why": "ChatGPTとの対話でHTML/JSコードを生成し、GitHub上のファイルへ書き込むだけのため。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 25,
       "payback_days": 0,
-      "value_score": 2,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "outcome": "追跡中予測の確度メモが更新される",
-      "category": "review",
+      "outcome": "GitHub上のコードベースに非同期切り替え設定のフロントエンドコードが追加された状態",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "誤った前提で投資する損失を減らす",
+      "impact_min": 0.05,
+      "impact_max": 0.2,
+      "impact_why": "新規ネタに手を出さず既存Webアプリの機能追加に焦点を絞るため。",
       "evidence_ids": [
-        "action-history"
+        "2026-07-25-r01"
       ],
       "assumptions": [
-        "予測が投資判断に関係する"
+        "既存アプリのコードがGitHubリポジトリ上でSafariから編集可能であること"
       ],
-      "disconfirm": "行動や支出を変えない",
-      "continue_if": "確度を動かす一次根拠が見つかった",
-      "stop": "根拠URLを1本確認したら終了",
-      "fallback": true
+      "disconfirm": "既存アプリの構造上、非同期処理のWebフック受け取りが不可能な場合",
+      "continue_if": "設定UIの追加で夜間バッチと即時処理の切り替えロジックが成立する場合",
+      "stop": "既存コードの依存関係が複雑化しiPhoneのみでの改修が困難になった場合"
     },
     {
-      "t": "独自ドメイン候補を決め購入画面まで進める",
-      "why": "公開先の名前を固定し、アプリを他人へ渡せる形に近づけるため。",
-      "cost_min": 1000,
-      "cost_max": 4000,
-      "loss_max": 4000,
+      "t": "Makeの有料プランに加入し夜間Webhook連携を組む",
+      "why": "iPhoneからコードを書かずにGitHub GistとAPIを夜間定期実行する環境を確保するため。",
+      "cost_min": 1500,
+      "cost_max": 3000,
+      "loss_max": 3000,
       "success_p": 0.65,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "候補比較までは容易だが、名前の決定と購入で迷う余地がある",
-      "payback_days": 180,
+      "success_p_min": 0.4,
+      "success_p_max": 0.8,
+      "success_why": "Make(Integromat)のブラウザ操作はiPhoneでも完了可能だがシナリオ構築に少し手間取るため。",
       "value_score": 4,
-      "learning_value": 2,
+      "learning_value": 4,
       "time_minutes": 30,
-      "outcome": "候補ドメインと年間費用が確定する",
+      "payback_days": 14,
+      "outcome": "Make上に夜間1回バッチリクエストを発行する自動ワークフローが稼働した状態",
       "category": "buy",
       "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.08,
-      "impact_why": "公開と共有の摩擦を下げるが単独では成果にならない",
+      "impact_min": 0.1,
+      "impact_max": 0.25,
+      "impact_why": "サーバーレスで夜間放置自動化を実行するパイプラインが完成するため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-07-25-r01"
       ],
       "assumptions": [
-        "90日以内に公開する"
+        "MakeのHTTPモジュールからOpenRouterのAPIをWebhook経由で叩けること"
       ],
-      "disconfirm": "公開日や見せる相手が決まっていない",
-      "continue_if": "公開予定日と最初に見せる相手が決まっている",
-      "stop": "年間4000円を超えたら購入しない",
-      "fallback": true
+      "disconfirm": "Makeの無料枠のみで実行回数が十分間に合い有料化の必要がなかった場合",
+      "continue_if": "毎夜の自動バッチ実行がエラーなく3日以上連続して稼働した場合",
+      "stop": "Make側のWebhookタイムアウトにより長時間のバッチ処理レスポンスが受け取れない場合"
     },
     {
-      "t": "有料AI機能を1か月だけ比較検証する",
-      "why": "無料制約で実装速度を落とさず、支払う価値を成果物で測るため。",
-      "cost_min": 3000,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.55,
-      "success_p_min": 0.35,
-      "success_p_max": 0.7,
-      "success_why": "作業短縮は見込めるが、利用量と成果の相関がまだ未計測",
-      "payback_days": 30,
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "outcome": "同じ作業の無料版との比較メモが1件残る",
-      "category": "buy",
+      "t": "モデルごとのバッチ価格比較表をMarkdownで作成する",
+      "why": "値上げされたQwen3 VLとClaude Opus 5のバッチコスト差を可視化し最安経路を決めるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.9,
+      "success_p_min": 0.8,
+      "success_p_max": 0.95,
+      "success_why": "公開されているAPI価格テーブルを比較してGistにまとめる作業は極めて確実性が高いため。",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "主要モデルの即時・バッチ・トークン単価の比較表がGistに公開された状態",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.12,
-      "impact_why": "実装速度を上げる可能性はあるが成果増加は未確認",
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "判断の根拠となる数字を確定させ、ムダなAPI使用料の発生を防ぐため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-07-28-r04",
+        "2026-07-25-r01"
       ],
       "assumptions": [
-        "週2回以上使う"
+        "各プロバイダの公式ドキュメントにバッチAPIの価格が明記されていること"
       ],
-      "disconfirm": "無料版と完成件数が変わらない",
-      "continue_if": "無料版より月2件以上多く成果物が完成する",
-      "stop": "30日で成果物が2件増えなければ解約する",
-      "fallback": true
+      "disconfirm": "モデル間の価格差が誤差範囲でありバッチ化のコスト優位性が存在しない場合",
+      "continue_if": "バッチ価格が即時価格に比べて50%以上安いモデルが1つ以上特定できた場合",
+      "stop": "全モデルでバッチ枠の提供が停止または即時枠と同額に変更された場合"
     }
   ],
-  "kan": "Anthropicは3週間以内に、自社のカスタムシリコンに関するパートナーシップまたは専用アクセラレータの開発方針について公式ブログや求人背景の補足で何らかの言及を行う。"
+  "kan": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社設計ハードウェアまたは独自カスタムチップに関する公式発表を行わない。"
 }
