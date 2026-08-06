@@ -1,0 +1,7 @@
+# 参謀の憲法と評価器は、通常の機能実装者が単独で変更しない。
+/AI_CONSTITUTION.md @tensaikamo
+/AGENTS.md @tensaikamo
+/CLAUDE.md @tensaikamo
+/evals/ @tensaikamo
+/.github/workflows/evolution-evals.yml @tensaikamo
+

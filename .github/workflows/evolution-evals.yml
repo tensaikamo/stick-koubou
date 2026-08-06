@@ -1,0 +1,50 @@
+name: evolution-evals
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'メイン'
+    paths:
+      - 'AI_CONSTITUTION.md'
+      - 'AGENTS.md'
+      - 'CLAUDE.md'
+      - 'decision.py'
+      - 'recorder.py'
+      - 'docs/decision-engine.js'
+      - 'docs/ichite.html'
+      - 'docs/ichite.json'
+      - 'evals/**'
+      - '.github/workflows/evolution-evals.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run fixed evolution evaluations
+        run: node evals/run.js --report /tmp/evolution-report.json
+      - name: Upload evaluation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evolution-report
+          path: /tmp/evolution-report.json
+          if-no-files-found: error
+
+  existing-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Existing JavaScript regression tests
+        run: node tests/test_decision_engine.js
+
