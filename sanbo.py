@@ -1,4 +1,4 @@
-import os, json, html
+import os, sys, json, html
 from datetime import datetime, timezone, timedelta
 from common import (GeminiClient, fetch_all, fetch_jp_hits, fetch_markets, watch_step,
                     median, parse_json, PAGE_CSS)
@@ -701,4 +701,13 @@ if generation_ok or not os.path.exists("docs/index.html"):
     open("docs/index.html", "w", encoding="utf-8").write(page)
     print("done", len(picked), "api_calls", _client.calls, "generation_ok", generation_ok)
 else:
+    # 既存ページは保持する(壊れた紙面を出さない)。ただし**黙って古いまま**にはしない:
+    # 8/5 の本番実行はここを通り、サイトが前日のまま・Actionsは緑・通知なしで、
+    # 「毎朝更新される」という約束が誰にも気づかれずに破れていた。
+    # GitHub の注釈を出し、終了コードを立てて実行を赤くする(コミット段は別ステップで走る)。
+    _q = ("/quota " + ",".join(_client.quota_ids)) if _client.quota_ids else ""
     print("生成失敗のため既存ページを保持(上書きせず)。api_calls", _client.calls)
+    print("::error title=ブリーフィング生成に失敗::"
+          "docs/index.html は更新されず、サイトは前回の内容のままです"
+          "(api_calls %d%s)" % (_client.calls, _q))
+    sys.exit(1)

@@ -53,7 +53,10 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python sanbo.py
+      # 生成失敗時 sanbo.py は終了コード1で実行を赤くする。その場合でも watch.json など
+      # 途中まで得た記録は残したいので always() で必ずコミットへ進む(実行の赤は保たれる)。
       - name: Commit
+        if: always()
         run: |
           git config user.name "sanbo-bot"
           git config user.email "actions@github.com"
