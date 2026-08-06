@@ -1,0 +1,80 @@
+"use strict";
+const assert = require("assert");
+const fs = require("fs");
+const path = require("path");
+const root = path.resolve(__dirname, "..");
+const E = require(path.join(root, "docs", "decision-engine.js"));
+
+function move(title, category, extra) {
+  return Object.assign({
+    t:title, why:"test", category, cost_min:0, cost_max:0, loss_max:0,
+    success_p:.6, success_p_min:.5, success_p_max:.7,
+    success_why:"observable", value_score:3, learning_value:2, time_minutes:20,
+    payback_days:0, impact_min:.05, impact_max:.1, impact_why:"goal link",
+    evidence_ids:["r1"], assumptions:["a"], disconfirm:"fails", outcome:"artifact",
+    continue_if:"works", stop:"done"
+  }, extra || {});
+}
+
+const budget = {total_yen:10000, period_months:6, per_action_yen:5000, risk_limit_yen:5000};
+function opts(state, extra) {
+  return Object.assign({state:Object.assign({stage:"build", bottleneck:"technical", outcome:"complete",
+    minutes:30, risk:"balanced", configured:true}, state || {}), days:{}, fitOverrides:{},
+    goalValue:100000, budget, remaining:10000}, extra || {});
+}
+
+// 入力が飾りではなく、段階に応じて実際に順位を変える。
+let moves = [move("実装する", "build"), move("販売する", "sell")];
+let buildFirst = E.rankMoves(moves, opts({stage:"build"}));
+let sellFirst = E.rankMoves(moves, opts({stage:"revenue", outcome:"sell", bottleneck:"customer"}));
+assert.equal(buildFirst[0].move.t, "実装する");
+assert.equal(sellFirst[0].move.t, "販売する");
+
+// exactな段階×行動履歴を優先し、失敗が重なると成功率を慎重に下げる。
+let days = {};
+for (let i=1; i<=3; i++) days["2026-08-0"+i] = {goal_advanced:"no", move_meta:{category:"build", state_snapshot:{stage:"build"}}};
+let adjusted = E.adjustMove(move("実装する", "build", {success_p:.8, success_p_min:.7, success_p_max:.9}),
+  opts().state, days, "normal");
+assert.equal(adjusted.local_calibration.n, 3);
+assert(adjusted.success_p < .8 && adjusted.success_p > .5);
+
+// 利用者が「この目標には合わない」と直せば、寄与と順位が本当に落ちる。
+let fitted = E.rankMoves(moves, opts({stage:"build"}, {fitOverrides:{"実装する":"none"}}));
+assert.equal(fitted[0].move.t, "販売する");
+assert.equal(fitted.find(x => x.move.t === "実装する").move.impact_max, 0);
+
+// 今日使える時間を超える案は、良さそうでも選択不可。
+let tooLong = E.rankMoves([move("長い作業", "build", {time_minutes:30})], opts({minutes:15}));
+assert.match(tooLong[0].problem, /15分/);
+let cycleEnded = E.rankMoves(moves, opts({}, {globalProblem:"予算期間終了"}));
+assert(cycleEnded.every(x => x.problem === "予算期間終了"));
+
+// 目標金額が未設定でも、リスク方針は費用・最大損失の重みを変える。
+let riskMoves = [
+  move("有料ツールを試す", "buy", {value_score:4, success_p:.7, learning_value:2,
+    cost_min:5000, cost_max:5000, loss_max:5000}),
+  move("無料で小さく実装", "build", {value_score:2, success_p:.6, learning_value:1})
+];
+let cautious = E.rankMoves(riskMoves, opts({risk:"cautious"}, {goalValue:0}));
+let aggressive = E.rankMoves(riskMoves, opts({risk:"aggressive"}, {goalValue:0}));
+assert.equal(cautious[0].move.t, "無料で小さく実装");
+assert.equal(aggressive[0].move.t, "有料ツールを試す");
+
+// 全案が負なら無理に勧めず、古い材料でも保留する。
+let bad = E.rankMoves([move("損する案", "buy", {cost_min:5000, cost_max:5000, loss_max:5000,
+  impact_min:0, impact_max:0})], opts());
+assert.equal(E.recommendation(bad, {state:opts().state, goalValue:100000}).abstain, true);
+let fresh = E.rankMoves(moves, opts());
+assert.match(E.recommendation(fresh, {state:opts().state, goalValue:100000,
+  dataDate:"2026-08-01", today:"2026-08-06"}).reason, /古い/);
+
+// HTML内のインラインJavaScriptも構文として実行可能であることをCIで守る。
+const html = fs.readFileSync(path.join(root, "docs", "ichite.html"), "utf8");
+const scripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(m => m[1]).filter(s => s.trim());
+assert(scripts.length > 0);
+scripts.forEach(s => new Function(s));
+for (const marker of ["stateStage", "stateBottleneck", "recommended", "move_fit", "今日は決めない"]) {
+  assert(html.includes(marker), "missing UI marker: " + marker);
+}
+
+console.log("decision engine tests passed");

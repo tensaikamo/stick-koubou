@@ -54,7 +54,9 @@ def test_feedback_issue_parser_and_digest():
         "title": "[一手フィードバック] 2026-08-06",
         "body": "<!-- stick-koubou-action-feedback -->\n"
                 "date: 2026-08-06\naction: Issueを1件書く\nresult: blocked\n"
-                "category: build\ngoal_advanced: no\nactual_value_band: unset\nnote: 権限で詰まった",
+                "category: build\ngoal_advanced: no\nactual_value_band: unset\n"
+                "goal_stage: build\nbottleneck: time\ndesired_outcome: complete\n"
+                "risk_mode: balanced\nminutes_band: under-30\nnote: 権限で詰まった",
         "html_url": "https://github.com/example/repo/issues/7",
     }
     event = decision.parse_feedback_issue(issue)
@@ -63,6 +65,9 @@ def test_feedback_issue_parser_and_digest():
                      "note": "権限で詰まった",
                      "budget_band": "", "planned_cost_band": "", "actual_cost_band": "",
                      "actual_value_band": "unset",
+                     "state": {"goal_stage": "build", "bottleneck": "time",
+                               "desired_outcome": "complete", "risk_mode": "balanced",
+                               "minutes_band": "under-30"},
                      "url": "https://github.com/example/repo/issues/7"}
     digest = decision.feedback_digest([event])
     assert "完了0/1件" in digest and "blocked" in digest and "繰り返すな" in digest
@@ -203,26 +208,33 @@ def test_budget_issue_parser_and_digest_keep_only_bands():
         "number": 8,
         "title": "[参謀設定] 予算帯 2026-08-06",
         "body": "date: 2026-08-06\nbudget_band: standard\nperiod_months: 6\n"
-                "per_action_band: under-5000\nrisk_band: under-5000",
+                "per_action_band: under-5000\nrisk_band: under-5000\n"
+                "goal_stage: build\nbottleneck: time\ndesired_outcome: complete\n"
+                "risk_mode: balanced\nminutes_band: under-30",
         "html_url": "https://github.com/example/repo/issues/8",
     })
     assert event["kind"] == "budget" and event["budget_band"] == "standard"
     digest = decision.feedback_digest([event])
     assert "正確な金額は非公開" in digest and "standard" in digest
+    assert "段階build" in digest and "詰まりtime" in digest and "under-30" in digest
     assert "10000" not in digest
 
 
 def test_iphone_ui_has_real_budget_cycle_and_recoverable_local_backup():
     from pathlib import Path
 
-    html = (Path(__file__).parents[1] / "docs" / "ichite.html").read_text(encoding="utf-8")
+    docs = Path(__file__).parents[1] / "docs"
+    html = (docs / "ichite.html").read_text(encoding="utf-8")
+    engine = (docs / "decision-engine.js").read_text(encoding="utf-8")
     for required in ("budgetTotal", "budgetMonths", "budgetStart", "budgetPer", "budgetRisk",
                      "cycleEnd", "payback_days", "success_why", "continue_if",
                      "stick-koubou-backup-", "restoreFile", "ownCost", "ownLoss",
                      "ownPayback", "ownContinue", "ownStop", "committed(excludeDate)", "予約中",
                      "goalTitle", "goalMetric", "goalValue", "goalDeadline", "expectedValue",
-                     "carryValue", "carryAdvance", "actual_value_band", "goal_advanced"):
-        assert required in html
+                     "carryValue", "carryAdvance", "actual_value_band", "goal_advanced",
+                     "stateStage", "stateBottleneck", "stateOutcome", "stateMinutes", "stateRisk",
+                     "recommended", "move_fit", "ownMinutes", "今日は決めない", "decision-engine.js"):
+        assert required in html + engine
 
 
 def test_static_moves_carry_intelligence_fields_and_pass_quality_gate():

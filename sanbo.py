@@ -492,6 +492,8 @@ if generation_ok:
             '"stop": "続行をやめる具体条件"}]}\n'
             "movesは7つ作れ。後段の検証器が証拠不足を落として5つに絞る。無料を優先せず、費用帯を0円/小額/標準/積極に分散させる。"
             "成功見込みは願望で上げず、根拠が弱い案は低く置く。costは点でなく上下幅を出す。"
+            "行動履歴の成功率をsuccess_pへ数値合成するな。端末側が現在地と完全なローカル履歴で較正する。"
+            "履歴は同じ詰まりの反復を避け、案の種類を選ぶために使え。"
             "impactは1回30分の寄与なので過大評価するな。プロジェクト全体を完了させる最終行動でない限り0.3を超えるな。"
             "高確度案と有料案はconfirmedの証拠IDかaction-historyが必須。user-goalだけで正当化するな。存在しないIDを捏造するな。"
             "有料案でcontinue_ifまたはstopが空なら不合格。『情報収集する』『検討する』のような曖昧な行動は禁止。"
@@ -505,7 +507,6 @@ if generation_ok:
                 _raw_mv.append(_m)
             if len(_raw_mv) == 10:
                 break
-        _raw_mv = decision.calibrate_moves(_raw_mv, _feedback)
         _mv = decision.safe_moves(_raw_mv, limit=5, valid_evidence_ids=_valid_evidence_ids,
                                   trusted_evidence_ids=_trusted_evidence_ids, strict_quality=True)
         if _qs and _mv:

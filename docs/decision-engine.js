@@ -1,0 +1,202 @@
+(function (root, factory) {
+  var api = factory();
+  if (typeof module === "object" && module.exports) module.exports = api;
+  if (root) root.StickDecision = api;
+})(typeof globalThis !== "undefined" ? globalThis : this, function () {
+  "use strict";
+
+  var CATEGORIES = ["build", "publish", "sell", "buy", "research", "review", "apply", "learn", "other"];
+  var STAGE_AFFINITY = {
+    concept: {research:1.3, review:1.2, learn:1.15, build:.85, publish:.7, sell:.65, buy:.75},
+    build: {build:1.3, review:1.15, learn:1.08, buy:1.02, publish:.9, research:.85, sell:.7},
+    publish: {publish:1.35, build:1.12, review:1.08, buy:.95, research:.85, sell:.9},
+    acquire: {sell:1.3, publish:1.2, research:1.12, apply:1.1, review:1.02, build:.8},
+    revenue: {sell:1.35, publish:1.15, review:1.08, buy:1.05, research:.9, build:.85}
+  };
+  var OUTCOME_AFFINITY = {
+    complete: {build:1.18, publish:1.1, review:1.05},
+    validate: {research:1.2, review:1.18, learn:1.08},
+    publish: {publish:1.25, build:1.08, review:1.05},
+    sell: {sell:1.25, apply:1.15, publish:1.1, research:1.05}
+  };
+  var BOTTLENECK_AFFINITY = {
+    technical: {review:1.14, learn:1.12, buy:1.08, build:.92},
+    trust: {publish:1.18, review:1.08, sell:.9},
+    customer: {sell:1.22, research:1.15, publish:1.08, build:.85},
+    time: {},
+    cost: {}
+  };
+  var FIT = {none:0, low:.65, normal:1, high:1.35};
+
+  function num(v, d) { v = +v; return isFinite(v) ? v : d; }
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+  function normalizeState(raw) {
+    var s = raw && typeof raw === "object" ? raw : {};
+    return {
+      stage: ["concept","build","publish","acquire","revenue"].indexOf(s.stage) >= 0 ? s.stage : "build",
+      bottleneck: ["technical","trust","customer","time","cost"].indexOf(s.bottleneck) >= 0 ? s.bottleneck : "time",
+      outcome: ["complete","validate","publish","sell"].indexOf(s.outcome) >= 0 ? s.outcome : "complete",
+      minutes: clamp(Math.round(num(s.minutes, 30)), 10, 60),
+      risk: ["cautious","balanced","aggressive"].indexOf(s.risk) >= 0 ? s.risk : "balanced",
+      configured: !!s.configured
+    };
+  }
+
+  function normalizeMove(raw) {
+    var m = raw && typeof raw === "object" ? raw : {};
+    var lo = Math.max(0, Math.round(num(m.cost_min, 0)));
+    var hi = Math.max(lo, Math.round(num(m.cost_max, lo)));
+    var p = clamp(num(m.success_p, .5), .05, .95);
+    var pLo = clamp(num(m.success_p_min, p - .15), .05, p);
+    var pHi = clamp(num(m.success_p_max, p + .15), p, .95);
+    var iLo = clamp(num(m.impact_min, 0), 0, 1);
+    var iHi = clamp(num(m.impact_max, iLo), iLo, 1);
+    var category = String(m.category || "other").toLowerCase();
+    if (CATEGORIES.indexOf(category) < 0) category = "other";
+    return {
+      t:String(m.t || ""), why:String(m.why || ""), category:category, terminal:!!m.terminal,
+      cost_min:lo, cost_max:hi, loss_max:Math.max(0, Math.round(num(m.loss_max, hi))),
+      success_p:p, success_p_min:pLo, success_p_max:pHi,
+      success_why:String(m.success_why || "根拠未記入"),
+      value_score:clamp(Math.round(num(m.value_score, 3)), 1, 5),
+      learning_value:clamp(Math.round(num(m.learning_value, 2)), 0, 5),
+      time_minutes:clamp(Math.round(num(m.time_minutes, 30)), 1, 180),
+      payback_days:clamp(Math.round(num(m.payback_days, 0)), 0, 3650),
+      impact_min:iLo, impact_max:iHi, impact_why:String(m.impact_why || ""),
+      evidence_ids:Array.isArray(m.evidence_ids) ? m.evidence_ids.slice(0, 5).map(String) : [],
+      assumptions:Array.isArray(m.assumptions) ? m.assumptions.slice(0, 4).map(String) : [],
+      disconfirm:String(m.disconfirm || ""), outcome:String(m.outcome || ""),
+      continue_if:String(m.continue_if || ""), stop:String(m.stop || "")
+    };
+  }
+
+  function stateAffinity(move, state, fit) {
+    var m = normalizeMove(move), s = normalizeState(state);
+    var stage = (STAGE_AFFINITY[s.stage] || {})[m.category] || 1;
+    var outcome = (OUTCOME_AFFINITY[s.outcome] || {})[m.category] || 1;
+    var bottleneck = (BOTTLENECK_AFFINITY[s.bottleneck] || {})[m.category] || 1;
+    if (s.bottleneck === "cost") {
+      bottleneck = m.cost_max === 0 ? 1.18 : m.cost_max <= 1000 ? 1.05 : .75;
+    }
+    if (s.bottleneck === "time") {
+      bottleneck = clamp(s.minutes / Math.max(1, m.time_minutes), .65, 1.18);
+    }
+    return clamp(stage * outcome * bottleneck * (FIT[fit] == null ? 1 : FIT[fit]), 0, 1.65);
+  }
+
+  function localStats(days, category, stage) {
+    var exact = {n:0, positive:0}, broad = {n:0, positive:0};
+    Object.keys(days || {}).sort().slice(-60).forEach(function (date) {
+      var d = days[date] || {}, meta = d.move_meta || {};
+      if (meta.category !== category || (d.goal_advanced !== "yes" && d.goal_advanced !== "no")) return;
+      broad.n++; if (d.goal_advanced === "yes") broad.positive++;
+      if ((meta.state_snapshot || {}).stage === stage) {
+        exact.n++; if (d.goal_advanced === "yes") exact.positive++;
+      }
+    });
+    var g = exact.n ? exact : broad;
+    return {n:g.n, positive:g.positive, posterior:(g.positive + 1) / (g.n + 2), exact:!!exact.n};
+  }
+
+  function adjustMove(raw, state, days, fit) {
+    var m = normalizeMove(raw), s = normalizeState(state);
+    var affinity = stateAffinity(m, s, fit);
+    var stats = localStats(days || {}, m.category, s.stage);
+    var weight = Math.min(.5, stats.n / 10);
+    var p = (1 - weight) * m.success_p + weight * stats.posterior;
+    var width = Math.max(.1, (m.success_p_max - m.success_p_min) * (1 - weight / 2));
+    m.success_p = clamp(p, .05, .95);
+    m.success_p_min = clamp(m.success_p - width / 2, .05, m.success_p);
+    m.success_p_max = clamp(m.success_p + width / 2, m.success_p, .95);
+    m.impact_min = clamp(m.impact_min * affinity, 0, m.terminal ? 1 : .3);
+    m.impact_max = clamp(m.impact_max * affinity, m.impact_min, m.terminal ? 1 : .3);
+    m.state_affinity = affinity;
+    m.local_calibration = stats;
+    return m;
+  }
+
+  function expectedValue(move, goalValue) {
+    var m = normalizeMove(move), goal = Math.max(0, Math.round(num(goalValue, 0)));
+    var extra = Math.max(0, m.loss_max - m.cost_max);
+    var low = m.success_p_min * m.impact_min * goal - m.cost_max - (1 - m.success_p_min) * extra;
+    var high = m.success_p_max * m.impact_max * goal - m.cost_min;
+    return {min:Math.round(low), max:Math.round(high), mid:Math.round((low + high) / 2)};
+  }
+
+  function budgetProblem(move, budget, remaining, state) {
+    var m = normalizeMove(move), b = budget || {}, s = normalizeState(state);
+    if (m.time_minutes > s.minutes) return "今日の時間" + s.minutes + "分を超える";
+    if (m.cost_max > Math.max(0, num(remaining, 0))) return "残額を超える";
+    if (m.cost_max > Math.max(0, num(b.per_action_yen, 0))) return "1回の上限を超える";
+    if (m.loss_max > Math.max(0, num(b.risk_limit_yen, 0))) return "許容損失を超える";
+    if (m.cost_max > 0 && !m.stop) return "撤退条件がない";
+    if (m.cost_max > 0 && !m.continue_if) return "続行条件がない";
+    return "";
+  }
+
+  function fallbackScore(m, budget, remaining, riskMode) {
+    var rem = Math.max(1, num(remaining, 1));
+    var risk = Math.max(1, num((budget || {}).risk_limit_yen, num((budget || {}).total_yen, 1)));
+    var horizon = Math.max(30, num((budget || {}).period_months, 6) * 30);
+    var costWeight = riskMode === "cautious" ? 2.6 : riskMode === "aggressive" ? 1.2 : 2;
+    var lossWeight = riskMode === "cautious" ? 1.2 : riskMode === "aggressive" ? .4 : .8;
+    return (m.value_score * m.success_p + .35 * m.learning_value) * m.state_affinity
+      - costWeight * (m.cost_max / rem) - lossWeight * (m.loss_max / risk)
+      - .2 * (m.time_minutes / 30) - .4 * Math.min(2, m.payback_days / horizon);
+  }
+
+  function riskScore(ev, risk) {
+    if (risk === "cautious") return ev.min;
+    if (risk === "aggressive") return Math.round(.7 * ev.max + .3 * ev.mid);
+    return ev.mid;
+  }
+
+  function rankMoves(moves, opts) {
+    opts = opts || {};
+    var s = normalizeState(opts.state), goal = Math.max(0, num(opts.goalValue, 0));
+    var fits = opts.fitOverrides || {}, rem = num(opts.remaining, 0), budget = opts.budget || {};
+    var ranked = (moves || []).map(function (raw, index) {
+      var title = String((raw || {}).t || "");
+      var m = adjustMove(raw, s, opts.days || {}, fits[title] || "normal");
+      var ev = expectedValue(m, goal);
+      var problem = String(opts.globalProblem || "") || budgetProblem(m, budget, rem, s);
+      var score = goal > 0 ? riskScore(ev, s.risk) : fallbackScore(m, budget, rem, s.risk);
+      return {move:m, index:index, ev:ev, problem:problem, score:score, fit:fits[title] || "normal"};
+    });
+    ranked.sort(function (a, b) {
+      if (!!a.problem !== !!b.problem) return a.problem ? 1 : -1;
+      if (b.score !== a.score) return b.score - a.score;
+      return a.index - b.index;
+    });
+    return ranked;
+  }
+
+  function daysBetween(a, b) {
+    var x = new Date(String(a) + "T00:00:00Z"), y = new Date(String(b) + "T00:00:00Z");
+    return isFinite(x.getTime()) && isFinite(y.getTime()) ? Math.floor((y - x) / 86400000) : 0;
+  }
+
+  function recommendation(ranked, opts) {
+    opts = opts || {};
+    var valid = (ranked || []).filter(function (x) { return !x.problem; });
+    if (opts.dataDate && opts.today && daysBetween(opts.dataDate, opts.today) > 3) {
+      return {abstain:true, reason:"材料が4日以上古い。参謀を更新してから決める", top:valid[0] || null};
+    }
+    if (!valid.length) return {abstain:true, reason:"今日の時間・予算・損失条件を満たす案がない", top:null};
+    var top = valid[0], goal = Math.max(0, num(opts.goalValue, 0));
+    if (goal > 0 && top.ev.max <= 0) {
+      return {abstain:true, reason:"最良案でも期待値の上限が0円以下。今日は投資しない", top:top};
+    }
+    if (goal > 0 && top.score < 0 && normalizeState(opts.state).risk !== "aggressive") {
+      return {abstain:true, reason:"現在のリスク方針では最良案も割に合わない。条件を見直す", top:top};
+    }
+    return {abstain:false, reason:"", top:top};
+  }
+
+  return {
+    normalizeState:normalizeState, normalizeMove:normalizeMove, stateAffinity:stateAffinity,
+    localStats:localStats, adjustMove:adjustMove, expectedValue:expectedValue,
+    budgetProblem:budgetProblem, rankMoves:rankMoves, recommendation:recommendation
+  };
+});

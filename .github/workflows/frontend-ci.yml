@@ -1,0 +1,30 @@
+name: frontend-ci
+on:
+  push:
+    paths:
+      - 'docs/ichite.html'
+      - 'docs/ichite.json'
+      - 'docs/decision-engine.js'
+      - 'tests/test_decision_engine.js'
+      - '.github/workflows/frontend-ci.yml'
+  pull_request:
+    paths:
+      - 'docs/ichite.html'
+      - 'docs/ichite.json'
+      - 'docs/decision-engine.js'
+      - 'tests/test_decision_engine.js'
+      - '.github/workflows/frontend-ci.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Decision engine and iPhone page
+        run: node tests/test_decision_engine.js
+      - name: Generated action data
+        run: node -e "JSON.parse(require('fs').readFileSync('docs/ichite.json','utf8'))"
