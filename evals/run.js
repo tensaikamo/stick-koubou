@@ -102,6 +102,49 @@ const checks = {
     });
     check(r && r.spend.p50 === 0, `spend.p50=${r && r.spend.p50}`);
   },
+  "simulation-zero-per-action-limit": () => {
+    const paid = move("上限ゼロで有料", {cost_min: 100, cost_max: 100, loss_max: 100});
+    const r = Engine.simulate([paid], {
+      days: 1,
+      trials: 100,
+      seed: 43,
+      state: options().state,
+      budget: {total_yen: 1000, spent_yen: 0, per_action_yen: 0, risk_limit_yen: 1000}
+    });
+    check(r && r.spend.p90 === 0, `0円上限なのに spend.p90=${r && r.spend.p90}`);
+  },
+  "simulation-zero-risk-limit": () => {
+    const risky = move("損失許容ゼロ", {cost_min: 100, cost_max: 100, loss_max: 100});
+    const r = Engine.simulate([risky], {
+      days: 1,
+      trials: 100,
+      seed: 44,
+      state: options().state,
+      budget: {total_yen: 1000, spent_yen: 0, per_action_yen: 1000, risk_limit_yen: 0}
+    });
+    check(r && r.spend.p90 === 0, `0円損失許容なのに spend.p90=${r && r.spend.p90}`);
+  },
+  "maximum-loss-respects-remaining": () => {
+    const lossy = move("残額を超える最大損失", {
+      cost_min: 1000,
+      cost_max: 1000,
+      loss_max: 3000,
+      success_p: 0.05,
+      success_p_min: 0.05,
+      success_p_max: 0.05
+    });
+    const budget = {total_yen: 1000, spent_yen: 0, per_action_yen: 1000, risk_limit_yen: 3000};
+    const ranked = Engine.rankMoves([lossy], options({budget, remaining: 1000}));
+    check(/残額/.test(ranked[0].problem), `ranking problem=${ranked[0].problem}`);
+    const r = Engine.simulate([lossy], {
+      days: 1,
+      trials: 100,
+      seed: 45,
+      state: options().state,
+      budget
+    });
+    check(r && r.spend.p90 <= 1000, `残額1000円なのに spend.p90=${r && r.spend.p90}`);
+  },
   "simulation-time-limit": () => {
     const tooLong = move("180分必要", {time_minutes: 180, cost_min: 1000, cost_max: 1000});
     const r = Engine.simulate([tooLong], {
@@ -182,4 +225,3 @@ if (reportFlag >= 0 && process.argv[reportFlag + 1]) {
 
 const enforceCapability = process.argv.includes("--enforce-capability");
 if (!report.hard_gate_passed || (enforceCapability && capability.passed !== capability.total)) process.exitCode = 1;
-
