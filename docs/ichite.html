@@ -596,18 +596,29 @@ $("clear").addEventListener("click",function(){if(!confirm("行動記録をす�
 
 /* ---- 材料の取得(失敗しても汎用で動く) ---- */
 render();
-var dataSettled=false,dataTimer=null;
-function settleData(state){if(dataSettled)return;dataSettled=true;clearTimeout(dataTimer);DATA_STATE=state;DATA_READY=true;render();}
+var dataSettled=false,fetchDone=false,dataTimer=null;
+// 2200msは「待たせない」ための第一描画であって、取得の打ち切りではない。本物が後から
+// 届いたら既定案から差し替える(iPhoneのモバイル回線では2.2秒超えは普通に起きる。
+// 打ち切って中断すると、本来読めた今朝の材料を捨てて一日中『既定案で稼働』のままになる)。
+// 逆方向(daily→fallback)への降格は無視する。
+function settleData(state){
+  if(dataSettled&&!(state==="daily"&&DATA_STATE==="fallback"))return;
+  dataSettled=true;clearTimeout(dataTimer);DATA_STATE=state;DATA_READY=true;render();}
 try{
   var dataController="AbortController" in window?new AbortController():null;
-  dataTimer=setTimeout(function(){if(dataController)dataController.abort();settleData("fallback");},2200);
+  dataTimer=setTimeout(function(){settleData("fallback");},2200);
+  // 本当の打ち切りはここ。回線が死んでいる時に取得を永久に抱えない。
+  // 判定は「描画したか(dataSettled)」ではなく「取得が終わったか(fetchDone)」で行う
+  // (dataSettled は2.2秒で立つので、それを見ると打ち切りが永久に発火しない)。
+  setTimeout(function(){if(dataController&&!fetchDone)dataController.abort();},15000);
   fetch("ichite.json",{cache:"no-store",signal:dataController?dataController.signal:undefined}).then(function(r){return r.ok?r.json():null;}).then(function(j){
+    fetchDone=true;
     if(j&&Array.isArray(j.questions)&&j.questions.length&&Array.isArray(j.moves)&&j.moves.length){
       DATA={questions:j.questions.slice(0,3),moves:j.moves.slice(0,5)};dataDate=j.date||"";
       if(j.kan)$("qlead").textContent="今朝の勘：「"+j.kan+"」— 気づきを残す補助メモ。順位は現在地入力で変わります。";
       settleData("daily");return;}
     settleData("fallback");
-  }).catch(function(){settleData("fallback");});
+  }).catch(function(){fetchDone=true;settleData("fallback");});
 }catch(e){settleData("fallback");}
 </script>
 </body></html>

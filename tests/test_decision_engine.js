@@ -86,4 +86,28 @@ assert.strictEqual(
   "adjustMove を通すと印が消える");
 assert(html.includes("既定案"), "既定案バッジが画面に出ない");
 
+// 2200msの第一描画のあとに本物の材料が届いた場合、既定案のまま固定してはいけない
+// (iPhoneのモバイル回線では2.2秒超えは普通に起きる)。settleData を切り出して直接動かす。
+{
+  const src = html.match(/function settleData\(state\)\{[\s\S]*?render\(\);\}/);
+  assert(src, "settleData を取り出せない");
+  let renders = 0;
+  const sandbox = {dataSettled:false, DATA_STATE:null, DATA_READY:false,
+                   clearTimeout(){}, dataTimer:null, render(){renders++;}};
+  const settleData = new Function("ctx", `
+    with (ctx) { ${src[0]}
+      return function(s){ settleData(s); }; }`)(sandbox);
+  settleData("fallback");
+  assert.strictEqual(sandbox.DATA_STATE, "fallback");
+  settleData("daily");                        // 遅れて本物が届く
+  assert.strictEqual(sandbox.DATA_STATE, "daily", "遅れて届いた材料が反映されない");
+  assert.strictEqual(renders, 2, "差し替え時に描き直していない");
+  settleData("fallback");                     // 逆方向の降格は無視する
+  assert.strictEqual(sandbox.DATA_STATE, "daily");
+  assert.strictEqual(renders, 2);
+}
+// 2200msのタイマーは描画のためのもので、取得を中断してはいけない
+assert(!/dataTimer=setTimeout\(function\(\)\{if\(dataController\)dataController\.abort\(\)/.test(html),
+  "第一描画のタイマーが取得を中断している");
+
 console.log("decision engine tests passed");

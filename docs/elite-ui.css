@@ -77,7 +77,10 @@ h2::after{display:none}
 .recommend .reason{color:var(--washi);font-size:16px;line-height:1.7;margin-top:9px}
 .recommend .mv{border:0!important;background:none!important;padding:10px 0 0;margin:0;box-shadow:none;opacity:1;cursor:pointer}
 .recommend .mv .rd{display:none}.recommend .mv .t{font-size:clamp(21px,5.7vw,29px);line-height:1.52;font-weight:650;letter-spacing:.01em;text-wrap:balance;overflow-wrap:anywhere;color:#f5f0e7}
-.recommend .mv .t>.rk{display:none}
+/* 推奨カードでは見出しの「推奨」バッジが重複するので隠す。ただし「既定案」の印だけは
+   残す: これは装飾ではなく『参謀が今日考えた案ではない』という警告で、しかも一番効くのが
+   まさにこの推奨カード(利用者が実行する1件)だから。 */
+.recommend .mv .t>.rk:not(.fb){display:none}
 .recommend .mv .w{font-size:13px;line-height:1.7;margin-top:9px;color:var(--muted)}
 .recommend .mv .meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin:16px 0 0;border:1px solid var(--hair);border-radius:13px;overflow:hidden;background:var(--hair)}
 .recommend .mv .meta span{border:0;border-radius:0;background:rgba(8,12,14,.96);color:#b8bfbe;font:650 10px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;padding:9px 10px;white-space:normal}
