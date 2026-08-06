@@ -4,6 +4,7 @@ import json
 from datetime import datetime
 
 import recorder
+import memory
 
 FAKE_ARTS = [
     {"title": "OpenAI launches new enterprise model tier", "url": "https://openai.com/blog/x",
@@ -262,3 +263,28 @@ def test_same_subject_same_day_is_not_counted_as_two_bets(workdir, monkeypatch):
     huns = json.loads((workdir / "data/hunches.json").read_text(encoding="utf-8"))
     pend = [h for h in huns if h["status"] == "pending"]
     assert [h["subject"] for h in pend].count("Fireworks.ai") <= 1, "同一主体の賭けが2件計上されている"
+
+
+def test_ledger_json_carries_the_whole_memory(workdir, monkeypatch):
+    """参謀の記憶と成績が、別ページではなくアプリが読める1つのJSONに畳まれること。
+    同じ知識が records/hunches/threads の別デザインの別ページにしか無く、
+    司令室アプリから切り離されていた(利用者から見て『押しても何もない』の正体)。"""
+    _run(workdir, monkeypatch)
+    led = json.loads((workdir / "docs/ledger.json").read_text(encoding="utf-8"))
+    for key in ("score", "pending", "decided", "threads", "records", "record_count", "updated_at"):
+        assert key in led, key
+    # 世界の物差しを併記して、自分の数字の位置が読めるようにする
+    assert led["score"]["baseline"]["always50"] == 0.25
+    # 判定待ちは期日の近い順(決着が近いものから見せる)
+    dls = [p["deadline"] for p in led["pending"]]
+    assert dls == sorted(dls)
+    # 事実は重複除去後の件数で数える(過去に溜まった重複で水増ししない)
+    assert led["record_count"] == len(memory.dedupe_by_url(
+        json.loads((workdir / "data/records.json").read_text(encoding="utf-8"))))
+
+
+def test_ledger_json_is_safe_on_empty_ledger(workdir):
+    import recorder as R
+    led = R.build_ledger([], [])
+    assert led["score"]["total"] == 0 and led["next_due"] is None
+    assert led["pending"] == [] and led["records"] == [] and led["record_count"] == 0
