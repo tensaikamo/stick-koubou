@@ -8,9 +8,18 @@
 <meta name="description" content="予算・目標・証拠から、今日の一手を選ぶ個人参謀。">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="apple-touch-startup-image" href="assets/brand/launch-1170x2532.png" media="(device-width:390px) and (device-height:844px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait)">
 <link rel="icon" href="assets/brand/app-icon.svg" type="image/svg+xml">
 <title>参謀 — 今日の指令</title>
 <style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#07090b;color:#ede7dc}
+[hidden]{display:none!important}
+.boot{position:fixed;inset:0;z-index:100;display:grid;place-content:center;justify-items:center;background:radial-gradient(circle at 50% 44%,#11191d 0,#07090b 44%,#050607 100%);pointer-events:none}
+.boot-mark{width:76px;height:76px;display:grid;place-items:center;border:1px solid rgba(184,146,87,.4);border-radius:50%;background:#090c0e}
+.boot-mark svg{width:48px;height:48px}.boot-label{margin-top:18px;color:#969d9d;font:650 9px ui-monospace,monospace;letter-spacing:.3em}
+</style>
+<style media="not all" data-legacy-ui="disabled">
 :root{--bg:#0b0f14;--fg:#e6edf4;--teal:#5fd7c8;--gold:#e3b366;--line:#202b3a;--dim:#8698a9;--ok:#41b673}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -106,9 +115,27 @@ color:var(--gold);font-size:18px;cursor:pointer}
 </head>
 <body>
 <div class="boot" id="boot" aria-hidden="true">
-  <div class="boot-mark"><img src="assets/brand/creator-mark.svg" alt=""></div>
+  <div class="boot-mark">
+    <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="#b89257" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 12 52 52M52 12 12 52" stroke-width="4" opacity=".92"></path>
+        <circle cx="32" cy="32" r="9" stroke-width="4" fill="#07090b"></circle>
+        <circle cx="32" cy="32" r="2.5" stroke="none" fill="#67d8d0"></circle>
+      </g>
+    </svg>
+  </div>
   <div class="boot-label">参謀、起動</div>
 </div>
+<script>
+(function(){
+  var boot=document.getElementById("boot"),key="sanbo_boot_v2";
+  if(!boot)return;
+  try{if(sessionStorage.getItem(key)){boot.remove();return;}sessionStorage.setItem(key,"1");}catch(e){}
+  var done=false,finish=function(){if(done)return;done=true;boot.remove();};
+  boot.addEventListener("animationend",function(e){if(e.target===boot)finish();});
+  setTimeout(finish,1100);
+})();
+</script>
 <main>
 <header class="command-header">
   <a class="brand" href="#mission" aria-label="今日の指令へ">
@@ -251,10 +278,14 @@ color:var(--gold);font-size:18px;cursor:pointer}
 </footer>
 </main>
 <nav class="dock" aria-label="主要メニュー">
-  <a href="#mission" class="active"><span>⌁</span>今日</a>
-  <a href="index.html"><span>◫</span>情報</a>
-  <a href="#history"><span>◌</span>記憶</a>
-  <a href="#operations"><span>⌘</span>設定</a>
+  <a href="#mission" class="active" data-section="mission" aria-current="page">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14M8 8l8 8M16 8l-8 8"></path><circle cx="12" cy="12" r="2.4"></circle></svg>今日</a>
+  <a href="index.html">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM9 4v16M9 9h10M9 15h10"></path></svg>情報</a>
+  <a href="#history" data-section="history">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg>記憶</a>
+  <a href="#operations" data-section="operations">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"></path></svg>設定</a>
 </nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -369,7 +400,7 @@ function moveCard(x,D,isTop){var m=x.move,cost=m.cost_min===m.cost_max?money(m.c
     (S.goal.value_yen?signedMoney(x.score):x.score.toFixed(1))+'</span></div>'+
     (S.goal.value_yen?'<div class="outcome"><b>期待値レンジ（仮説）</b> '+signedMoney(x.ev.min)+' 〜 '+signedMoney(x.ev.max)+
       '（目標寄与 '+Math.round(m.impact_min*100)+'〜'+Math.round(m.impact_max*100)+'%）</div>':'')+
-    '<div class="fitrow">この目標への寄与を補正<select class="fit" data-title="'+esc(m.t)+'">'+fitOptions(x.fit)+'</select></div>'+
+    '<label class="fitrow">この目標への寄与を補正<select class="fit" data-title="'+esc(m.t)+'">'+fitOptions(x.fit)+'</select></label>'+
     '<div class="outcome"><b>見込みの根拠</b> '+esc(m.success_why)+'</div>'+
     (m.impact_why?'<div class="outcome"><b>寄与の根拠</b> '+esc(m.impact_why)+'</div>':'')+
     (m.evidence_ids.length?'<div class="outcome"><b>証拠</b> '+esc(m.evidence_ids.join(' · '))+'</div>':'')+
@@ -602,15 +633,27 @@ $("clear").addEventListener("click",function(){if(!confirm("行動記録をす�
     if(on){try{rec.stop();}catch(e){}return;}
     try{rec=new SR();}catch(e){toast("音声を開始できません");return;}
     rec.lang="ja-JP";rec.interimResults=true;rec.continuous=false;
-    rec.onresult=function(ev){var s="";for(var i=0;i<ev.results.length;i++)s+=ev.results[i][0].transcript;$("ownT").value=s;};
+    rec.onresult=function(ev){var s="";for(var i=0;i<ev.results.length;i++)s+=ev.results[i][0].transcript;
+      $("ownT").value=s;$("ownT").dispatchEvent(new Event("input",{bubbles:true}));};
     rec.onerror=function(){on=false;mic.classList.remove("on");};
     rec.onend=function(){on=false;mic.classList.remove("on");};
     try{rec.start();on=true;mic.classList.add("on");}catch(e){toast("音声を開始できません");}});
 })();
 
+/* ---- 下部ナビ(見ている区画と同期) ---- */
+(function(){var links=Array.prototype.slice.call(document.querySelectorAll(".dock [data-section]"));
+  function activate(id){links.forEach(function(a){var on=a.dataset.section===id;a.classList.toggle("active",on);
+    if(on)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});}
+  links.forEach(function(a){a.addEventListener("click",function(){activate(a.dataset.section);});});
+  var initial=location.hash.slice(1);if(initial)activate(initial);
+  if(!("IntersectionObserver" in window))return;
+  var observer=new IntersectionObserver(function(entries){var visible=entries.filter(function(e){return e.isIntersecting;})
+    .sort(function(a,b){return b.intersectionRatio-a.intersectionRatio;});if(visible[0])activate(visible[0].target.id);},
+    {rootMargin:"-18% 0px -62% 0px",threshold:[0,.15,.35]});
+  ["mission","operations","history"].forEach(function(id){var el=$(id);if(el)observer.observe(el);});
+})();
+
 /* ---- 材料の取得(失敗しても汎用で動く) ---- */
-try{var bootKey="sanbo_boot_"+today();if(sessionStorage.getItem(bootKey))$("boot").classList.add("quick");
-  else sessionStorage.setItem(bootKey,"1");}catch(e){}
 render();
 try{
   fetch("ichite.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(j){
