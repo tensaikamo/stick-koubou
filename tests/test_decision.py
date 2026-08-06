@@ -294,3 +294,19 @@ def test_fallback_titles_are_labelled_even_if_the_model_repeats_them():
     out = decision.safe_moves([canned], limit=3, report=rep)
     assert out[0]["t"] == decision.SAFE_FALLBACK_MOVES[0]["t"]
     assert out[0]["fallback"] is True, "既定案の復唱に印が付いていない"
+
+
+def test_maximum_loss_must_fit_in_remaining_budget():
+    """費用が残額内でも、失敗時の最大損失が残額を超えるなら払い切れない。
+    『最悪いくら消えるか』で見ないと、残額ちょうどの案が無傷に見える。
+    画面側(decision-engine.js)と同じ規則・同じ順序にして食い違わせない。"""
+    budget = {"total_yen": 1000, "spent_yen": 0, "per_action_yen": 1000,
+              "risk_limit_yen": 3000, "period_months": 6}
+    lossy = paid_move(cost_min=1000, cost_max=1000, loss_max=3000)
+    assert decision.budget_problem(lossy, budget) == "最大損失が残額を超える"
+    # 許容損失にも触れる案は、利用者が明示した上限の方を理由にする
+    both = paid_move(cost_min=0, cost_max=0, loss_max=5000)
+    assert decision.budget_problem(both, dict(budget, risk_limit_yen=1000)) == "許容損失を超える"
+    # 残額に収まる損失なら通る
+    assert decision.budget_problem(paid_move(cost_min=500, cost_max=500, loss_max=1000),
+                                   budget) is None

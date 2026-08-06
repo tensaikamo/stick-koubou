@@ -246,4 +246,43 @@ assert(!/最先端LLM|超予測者/.test(html), "測定条件の違うベンチ�
   assert(/x\.problem/.test(block), "落ちた理由を集計していない");
 }
 
+/* ---- 予算の境界値: 0 は「無制限」ではない ---- */
+{
+  const state = {stage:"build", bottleneck:"technical", outcome:"complete", minutes:30,
+                 risk:"balanced", configured:true};
+  // 1回上限0円は「上限なし」ではなく「有料案は選べない」。!perAction || のような短絡を書くと
+  // 0 が素通りし、利用者が最も強く締めた設定が最も緩く効くという逆転が起きる。
+  const paid = move("上限ゼロで有料", "buy", {cost_min:100, cost_max:100, loss_max:100});
+  assert.strictEqual(
+    E.simulate([paid], {days:1, trials:100, seed:43, state,
+      budget:{total_yen:1000, spent_yen:0, per_action_yen:0, risk_limit_yen:1000}}).spend.p90, 0,
+    "1回上限0円を無制限として扱っている");
+  // 許容損失0円も同じ。riskLimit && で短絡させない
+  assert.strictEqual(
+    E.simulate([paid], {days:1, trials:100, seed:44, state,
+      budget:{total_yen:1000, spent_yen:0, per_action_yen:1000, risk_limit_yen:0}}).spend.p90, 0,
+    "許容損失0円を無制限として扱っている");
+  // 0 でも無料案(cost 0 / loss 0)は通る。締めすぎて何もできなくなるわけではない
+  const free = move("無料の一手", "build", {cost_min:0, cost_max:0, loss_max:0});
+  assert(E.simulate([free], {days:5, trials:50, seed:45, state,
+    budget:{total_yen:1000, spent_yen:0, per_action_yen:0, risk_limit_yen:0}}).eligible === 1,
+    "0円上限で無料案まで弾いている");
+
+  // 最大損失が残額を超える案は、推薦と試算の両方から外す。
+  // 費用が残額内でも、失敗した時に払い切れない賭けは打てない。
+  const lossy = move("残額を超える最大損失", "buy",
+    {cost_min:1000, cost_max:1000, loss_max:3000, success_p:.05, success_p_min:.05, success_p_max:.05});
+  const budget = {total_yen:1000, spent_yen:0, per_action_yen:1000, risk_limit_yen:3000};
+  const ranked = E.rankMoves([lossy], {state, days:{}, fitOverrides:{}, goalValue:100000,
+                                       budget, remaining:1000});
+  assert(/残額/.test(ranked[0].problem), "推薦が最大損失を残額と突き合わせていない: " + ranked[0].problem);
+  assert(E.simulate([lossy], {days:1, trials:100, seed:46, state, budget}).spend.p90 <= 1000,
+    "試算が残額を超える損失を許している");
+
+  // 許容損失と残額の両方に触れる案は、利用者が明示した上限の方を理由として返す
+  assert.strictEqual(
+    E.budgetProblem(move("両方超過", "buy", {cost_max:0, loss_max:5000}),
+      {per_action_yen:1000, risk_limit_yen:1000}, 1000, state), "許容損失を超える");
+}
+
 console.log("decision engine tests passed");

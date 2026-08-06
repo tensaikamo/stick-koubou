@@ -235,6 +235,12 @@ def budget_problem(move, budget=None):
         return "1回の上限を超える"
     if m["loss_max"] > b["risk_limit_yen"]:
         return "許容損失を超える"
+    # 費用が残額内でも、失敗時の最大損失が残額を超えるなら払い切れない。
+    # 「最悪いくら消えるか」で見ないと、残額ちょうどの案が無傷に見える。
+    # 許容損失より後に置く: 両方に触れる案は、利用者が明示した上限の方を理由として返す。
+    # 画面側(decision-engine.js)と同じ順序にして、サーバの順位付けと食い違わせない。
+    if m["loss_max"] > remaining:
+        return "最大損失が残額を超える"
     if m["cost_max"] > 0 and not m["stop"]:
         return "有料案に撤退条件がない"
     if m["cost_max"] > 0 and not m["continue_if"]:

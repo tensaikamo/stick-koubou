@@ -132,6 +132,10 @@
     if (m.cost_max > Math.max(0, num(remaining, 0))) return "残額を超える";
     if (m.cost_max > Math.max(0, num(b.per_action_yen, 0))) return "1回の上限を超える";
     if (m.loss_max > Math.max(0, num(b.risk_limit_yen, 0))) return "許容損失を超える";
+    // 費用が残額内でも、失敗時の最大損失が残額を超えるなら払い切れない。
+    // 「最悪の場合いくら消えるか」で見ないと、残額ちょうどの案が無傷に見える。
+    // 許容損失より後に置く: 両方に触れる案は、利用者が明示した上限の方を理由として返す。
+    if (m.loss_max > Math.max(0, num(remaining, 0))) return "最大損失が残額を超える";
     if (m.cost_max > 0 && !m.stop) return "撤退条件がない";
     if (m.cost_max > 0 && !m.continue_if) return "続行条件がない";
     return "";
@@ -237,13 +241,18 @@
     // **そもそも実行できない**ので、最初から母集団に入れない。
     var riskLimit = Math.max(0, num(budget.risk_limit_yen, 0));
     var minutes = Math.max(1, num(state.minutes, 30));
+    var rest = Math.max(0, num(budget.total_yen, 0)) - Math.max(0, num(budget.spent_yen, 0));
     var given = (moves || []).map(normalizeMove).filter(function (m) { return !!m.t; });
     // そもそも材料が無い場合と、材料はあるが方針で全部落ちた場合は別物として扱う。
     // 前者は「試算する対象がない」= null。後者は「今日は1つも実行できない」という**結果**
     // なので、0円・0進捗として返し、画面が理由を言えるようにする。
     if (!given.length) return null;
     var pool = given.filter(function (m) {
-      if (riskLimit && m.loss_max > riskLimit) return false;   // 許容損失を超える賭けはしない
+      // 上限0は「無制限」ではなく「1円も出せない」。riskLimit && / !perAction || のような
+      // 短絡を書くと 0 が素通りし、**利用者が最も強く締めた設定が最も緩く効く**という
+      // 逆転が起きる。0 を素直に比較する。
+      if (m.loss_max > riskLimit) return false;                // 許容損失を超える賭けはしない
+      if (m.loss_max > Math.max(0, rest)) return false;        // 最大損失が残額を食い潰す
       if (m.time_minutes > minutes) return false;              // 今日の可処分時間で終わらない
       return true;
     });
@@ -261,8 +270,8 @@
       for (var d = 1; d <= days; d++) {
         // その日に払える手だけを候補にする(残額と1回上限の両方を守る)
         var afford = pool.filter(function (m) {
-          return m.cost_max <= Math.max(0, total - spent) &&
-                 (!perAction || m.cost_max <= perAction);
+          // 1回上限0円は「上限なし」ではなく「有料案は選べない」。無料案(cost_max 0)だけが通る。
+          return m.cost_max <= Math.max(0, total - spent) && m.cost_max <= perAction;
         });
         if (!afford.length) break;
         var m = afford[Math.floor(random() * afford.length) % afford.length];
