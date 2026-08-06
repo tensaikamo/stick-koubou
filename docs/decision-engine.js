@@ -240,6 +240,7 @@
     // 推薦では弾くのに試算では通す、という二枚舌をやめる。ここで落ちる候補は
     // **そもそも実行できない**ので、最初から母集団に入れない。
     var riskLimit = Math.max(0, num(budget.risk_limit_yen, 0));
+    var perAction = Math.max(0, num(budget.per_action_yen, 0));
     var minutes = Math.max(1, num(state.minutes, 30));
     var rest = Math.max(0, num(budget.total_yen, 0)) - Math.max(0, num(budget.spent_yen, 0));
     var given = (moves || []).map(normalizeMove).filter(function (m) { return !!m.t; });
@@ -253,6 +254,9 @@
       // 逆転が起きる。0 を素直に比較する。
       if (m.loss_max > riskLimit) return false;                // 許容損失を超える賭けはしない
       if (m.loss_max > Math.max(0, rest)) return false;        // 最大損失が残額を食い潰す
+      // 1回上限は日ごとに変わらない方針なので、母集団の時点で落とす。日ごとの絞り込みに
+      // だけ置くと「実行できないのに候補として数えられる」(eligible が水増しされる)。
+      if (m.cost_max > perAction) return false;                // 1回上限0円なら有料案は選べない
       if (m.time_minutes > minutes) return false;              // 今日の可処分時間で終わらない
       return true;
     });
@@ -268,10 +272,12 @@
     for (var t = 0; t < trials; t++) {
       var done = 0, spent = 0, used = {}, hitDay = 0;
       for (var d = 1; d <= days; d++) {
-        // その日に払える手だけを候補にする(残額と1回上限の両方を守る)
+        // 残額は日々減る。初日の残額で一度判定して終わりにすると、失敗が重なった後も
+        // 同じ賭けを打ち続け、**支出が残額を超える**(実測: 残額1000円に対し1100円)。
+        // 毎日「今いくら残っているか」で費用と最大損失の両方を見直す。
+        var left = Math.max(0, total - spent);
         var afford = pool.filter(function (m) {
-          // 1回上限0円は「上限なし」ではなく「有料案は選べない」。無料案(cost_max 0)だけが通る。
-          return m.cost_max <= Math.max(0, total - spent) && m.cost_max <= perAction;
+          return m.cost_max <= left && m.loss_max <= left;
         });
         if (!afford.length) break;
         var m = afford[Math.floor(random() * afford.length) % afford.length];

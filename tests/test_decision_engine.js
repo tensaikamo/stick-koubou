@@ -285,4 +285,42 @@ assert(!/最先端LLM|超予測者/.test(html), "測定条件の違うベンチ�
       {per_action_yen:1000, risk_limit_yen:1000}, 1000, state), "許容損失を超える");
 }
 
+/* ---- 複数日試算: 残額は日々減る ---- */
+{
+  const state = {stage:"build", bottleneck:"technical", outcome:"complete", minutes:30,
+                 risk:"balanced", configured:true};
+  // 1回上限は日ごとに変わらない方針なので母集団の時点で落とす。日ごとの絞り込みにだけ
+  // 置くと「実行できないのに候補として数えられる」= eligible が水増しされる。
+  const paid = move("上限ゼロで有料候補", "buy", {cost_min:100, cost_max:100, loss_max:0});
+  const r0 = E.simulate([paid], {days:1, trials:100, seed:47, state,
+    budget:{total_yen:1000, spent_yen:0, per_action_yen:0, risk_limit_yen:1000}});
+  assert.strictEqual(r0.eligible, 0, "1回上限0円の有料案が候補に数えられている");
+  assert.strictEqual(r0.excluded, 1, "除外件数を報告していない");
+  assert.strictEqual(r0.spend.p90, 0);
+
+  // 初日の残額で一度判定して終わりにすると、失敗が重なった後も同じ賭けを打ち続け、
+  // 支出が残額を超える(実測: 残額1000円に対し1100円)。毎日の残額で再判定すること。
+  const lossy = move("残額減少後は再実行できない案", "buy",
+    {cost_min:100, cost_max:100, loss_max:1000, success_p:.05, success_p_min:.05, success_p_max:.05});
+  const r1 = E.simulate([lossy], {days:10, trials:100, random:() => 0.99, state,
+    budget:{total_yen:1000, spent_yen:0, per_action_yen:1000, risk_limit_yen:1000}});
+  assert(r1.spend.p90 <= 1000, "残額減少後に最大損失を再確認していない: " + r1.spend.p90);
+
+  // 不変条件: どんな組み合わせでも支出は残額を超えない
+  let over = 0, checked = 0;
+  for (const cost of [0, 100, 500, 1000]) for (const loss of [0, 100, 1000, 3000])
+  for (const total of [500, 1000, 10000]) for (const per of [0, 1000, 5000])
+  for (const risk of [0, 1000, 5000]) for (const seed of [1, 7]) {
+    const m = move("網羅", "build", {cost_min:cost, cost_max:cost, loss_max:loss,
+      success_p:.3, success_p_min:.2, success_p_max:.4, time_minutes:20});
+    const r = E.simulate([m], {days:30, trials:60, seed, state,
+      budget:{total_yen:total, spent_yen:0, per_action_yen:per, risk_limit_yen:risk}});
+    if (!r) continue;
+    checked++;
+    if (r.spend.p90 > total) over++;
+  }
+  assert(checked > 500, "網羅が足りない: " + checked);
+  assert.strictEqual(over, 0, "残額を超える支出が出た組み合わせがある: " + over);
+}
+
 console.log("decision engine tests passed");
