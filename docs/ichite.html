@@ -1,7 +1,15 @@
 <!DOCTYPE html><html lang="ja" class="no-js"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<title>今日の一手 — 参謀</title>
+<meta name="theme-color" content="#07090b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="参謀">
+<meta name="description" content="予算・目標・証拠から、今日の一手を選ぶ個人参謀。">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="icon" href="assets/brand/app-icon.svg" type="image/svg+xml">
+<title>参謀 — 今日の指令</title>
 <style>
 :root{--bg:#0b0f14;--fg:#e6edf4;--teal:#5fd7c8;--gold:#e3b366;--line:#202b3a;--dim:#8698a9;--ok:#41b673}
 *{box-sizing:border-box}
@@ -93,35 +101,85 @@ color:var(--teal);opacity:0;transition:opacity .3s;max-width:90vw;text-align:cen
 color:var(--gold);font-size:18px;cursor:pointer}
 .mic.on{color:#04121a;background:linear-gradient(180deg,#ff9e7a,#e3654c);border-color:transparent}
 @media(max-width:430px){.budget-grid{grid-template-columns:1fr}}
-</style></head>
-<body><main>
-<header>
-  <h1>◇ 今日の一手</h1>
-  <div class="d" id="date">—</div>
-  <nav class="nav"><a href="index.html">← ブリーフィング</a><a href="records.html">記録</a>
-    <a href="hunches.html">勘</a><a href="threads.html">記憶の物語</a></nav>
+</style>
+<link rel="stylesheet" href="elite-ui.css">
+</head>
+<body>
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot-mark"><img src="assets/brand/creator-mark.svg" alt=""></div>
+  <div class="boot-label">参謀、起動</div>
+</div>
+<main>
+<header class="command-header">
+  <a class="brand" href="#mission" aria-label="今日の指令へ">
+    <img src="assets/brand/creator-mark.svg" alt="" width="42" height="42">
+    <span><strong>参謀</strong><small>PERSONAL STRATEGY AGENT</small></span>
+  </a>
+  <a class="brief-link" href="index.html"><span class="live-dot"></span>材料同期</a>
 </header>
 
-<section id="carry" hidden>
-  <h2>前回の一手</h2>
-  <p class="lead">やったか、やらなかったか。ここだけは正直に。</p>
-  <div class="locked"><div class="lb">前回決めた一手</div><div class="lt" id="carryT"></div>
+<section id="carry" class="carry-panel" hidden>
+  <div class="section-kicker">AFTER ACTION</div>
+  <h2>前回の着地</h2>
+  <p class="lead">事実だけを残す。参謀はこの結果から次を学びます。</p>
+  <div class="locked"><div class="lb">前回の指令</div><div class="lt" id="carryT"></div>
     <div class="budget-grid"><label>実際に使った金額（円）
       <input type="number" id="carryCost" min="0" step="100" inputmode="numeric" value="0"></label>
       <label>実際に生んだ価値（円・仮置き可）
       <input type="number" id="carryValue" min="0" step="100" inputmode="numeric" value="0"></label>
       <label>目標は前進したか<select id="carryAdvance"><option value="unknown">まだ不明</option>
         <option value="yes">前進した</option><option value="no">前進しなかった</option></select></label></div>
-    <div class="row"><button class="btn" id="did">やった</button>
+    <div class="row"><button class="btn" id="did">遂行した</button>
       <button class="btn ghost" id="blocked">詰まった</button>
-      <button class="btn ghost" id="didnt">やらなかった</button></div></div>
+      <button class="btn ghost" id="didnt">見送った</button></div></div>
 </section>
 
-<section>
-  <h2>今日の現在地</h2>
-  <p class="lead">ここを変えると、候補の成功率・目標寄与・順位が実際に変わります。</p>
-  <div class="budget">
-    <div class="budget-grid">
+<section class="decision-deck" id="mission">
+  <div class="mission-head">
+    <div><div class="section-kicker">TODAY / FIRST DIRECTIVE</div><h1>今日の指令</h1></div>
+    <div class="d" id="date">—</div>
+  </div>
+  <div class="context-strip">
+    <span class="pulse" aria-hidden="true"></span>
+    <span id="commandContext">判断条件を構築中</span>
+  </div>
+  <div id="recommended"></div>
+  <div class="command-actions">
+    <button class="btn command" id="lock"><span>この指令で進む</span><b>→</b></button>
+    <button class="btn ghost" id="defer">本日は保留</button>
+  </div>
+  <div class="locked" id="lockedBox" hidden><div class="lb">指令確定</div>
+    <div class="lt" id="lockedT"></div>
+    <div class="row"><button class="btn ghost" id="unlock">選び直す</button></div></div>
+  <div class="mission-meta" id="missionMeta">端末内の条件を読込中</div>
+  <details class="alts" id="alternatives"><summary>代替作戦と判断根拠 <span>開く</span></summary><div id="moves"></div></details>
+  <details class="alts own-plan"><summary>自分の一手を入力 <span>開く</span></summary>
+    <div class="own"><input id="ownT" placeholder="例：公開ページを1画面仕上げる" maxlength="60">
+      <button class="mic" id="mic" title="声で入力" aria-label="声で入力" hidden>●</button></div>
+    <div class="budget-grid" id="ownMeta" hidden>
+      <label>行動の種類<select id="ownCategory"><option value="build">作る</option><option value="publish">公開</option>
+        <option value="sell">販売</option><option value="buy">購入</option><option value="research">調査</option>
+        <option value="review">見直し</option><option value="apply">応募</option><option value="learn">学習</option><option value="other">その他</option></select></label>
+      <label>費用上限（円）<input type="number" id="ownCost" min="0" step="500" inputmode="numeric" value="0"></label>
+      <label>最大損失（円）<input type="number" id="ownLoss" min="0" step="500" inputmode="numeric" value="0"></label>
+      <label>所要時間（分）<input type="number" id="ownMinutes" min="1" max="60" step="1" inputmode="numeric" value="30"></label>
+      <label>回収目安（日）<input type="number" id="ownPayback" min="0" step="1" inputmode="numeric" value="0"></label>
+      <label>目標寄与・悲観（%）<input type="number" id="ownImpactMin" min="0" max="100" step="1" inputmode="decimal" value="0"></label>
+      <label>目標寄与・楽観（%）<input type="number" id="ownImpactMax" min="0" max="100" step="1" inputmode="decimal" value="0"></label>
+      <label>続行条件<input id="ownContinue" maxlength="100" placeholder="例：成果物が月2件増える"></label>
+      <label>撤退条件<input id="ownStop" maxlength="100" placeholder="例：30日で差がなければ解約"></label>
+    </div>
+  </details>
+</section>
+
+<section class="operations" id="operations">
+  <div class="section-kicker">OPERATING PARAMETERS</div>
+  <h2>作戦条件</h2>
+  <p class="lead">普段は閉じたまま。状況が変わった時だけ更新します。</p>
+
+  <details class="config-panel" open>
+    <summary><span><b>01</b> 今日の現在地</span><small id="stateSummary">読込中</small></summary>
+    <div class="config-body"><div class="budget-grid">
       <label>いまの段階<select id="stateStage"><option value="concept">構想を固める</option>
         <option value="build">実装する</option><option value="publish">公開する</option>
         <option value="acquire">利用者を集める</option><option value="revenue">収益化する</option></select></label>
@@ -136,94 +194,69 @@ color:var(--gold);font-size:18px;cursor:pointer}
         <option value="45">45分</option><option value="60">60分</option></select></label>
       <label>判断方針<select id="stateRisk"><option value="cautious">堅実（悲観値）</option>
         <option value="balanced">標準（中央値）</option><option value="aggressive">攻める（上振れ重視）</option></select></label>
+    </div><div class="row"><button class="btn" id="stateSave">順位へ反映</button></div></div>
+  </details>
+
+  <details class="config-panel">
+    <summary><span><b>02</b> 目標と価値</span><small id="goalSummary">未設定</small></summary>
+    <div class="config-body"><p class="lead">何に勝ちたいかと、勝った時の価値を固定します。正確な内容はこのiPhone内だけ。</p>
+      <div class="budget-grid">
+        <label>目標<input id="goalTitle" maxlength="100" placeholder="例：Stick工房を他人が使える状態にする"></label>
+        <label>成功の判定基準<input id="goalMetric" maxlength="120" placeholder="例：3人が使い、1人が再訪する"></label>
+        <label>達成した時の価値（円）<input type="number" id="goalValue" min="0" step="1000" inputmode="numeric"></label>
+        <label>期限<input type="date" id="goalDeadline"></label>
+      </div><div class="row"><button class="btn" id="goalSave">目標を保存</button></div>
+      <p class="private">設定後は成功確率幅 × 目標寄与幅 − 費用 − 失敗損失で、期待値を円のレンジ表示に切り替えます。</p>
     </div>
-    <div class="state-note" id="stateSummary"></div>
-    <div class="row"><button class="btn" id="stateSave">現在地を判断へ反映</button></div>
-  </div>
-</section>
+  </details>
 
-<section>
-  <h2>目標と価値</h2>
-  <p class="lead">何に勝ちたいかを固定しないと、期待値は計算できない。正確な内容と金額はiPhone内だけ。</p>
-  <div class="budget">
-    <div class="budget-grid">
-      <label>目標<input id="goalTitle" maxlength="100" placeholder="例：Stick工房を他人が使える状態にする"></label>
-      <label>成功の判定基準<input id="goalMetric" maxlength="120" placeholder="例：3人が使い、1人が再訪する"></label>
-      <label>達成した時の価値（円）<input type="number" id="goalValue" min="0" step="1000" inputmode="numeric"></label>
-      <label>期限<input type="date" id="goalDeadline"></label>
+  <details class="config-panel">
+    <summary><span><b>03</b> 投資ルール</span><small id="budgetSummary">読込中</small></summary>
+    <div class="config-body"><p class="lead">安さではなく、予算内の期待値で選びます。金額はこのiPhone内だけ。</p>
+      <div class="budget-grid">
+        <label>総予算（円）<input type="number" id="budgetTotal" min="0" step="1000" inputmode="numeric"></label>
+        <label>期間<select id="budgetMonths"><option value="1">1か月</option><option value="3">3か月</option>
+          <option value="6">6か月</option><option value="12">12か月</option></select></label>
+        <label>予算の開始日<input type="date" id="budgetStart"></label>
+        <label>1回の上限（円）<input type="number" id="budgetPer" min="0" step="500" inputmode="numeric"></label>
+        <label>許容損失（円）<input type="number" id="budgetRisk" min="0" step="500" inputmode="numeric"></label>
+      </div><div class="row"><button class="btn" id="budgetSave">予算を保存</button>
+        <button class="btn ghost" id="budgetSync">予算帯を参謀へ送る</button></div>
+      <div class="utility-row"><button class="btn ghost" id="backup">バックアップ</button>
+        <button class="btn ghost" id="restore">復元</button>
+        <input type="file" id="restoreFile" accept="application/json,.json" hidden></div>
+      <p class="private">公開Issueへ送るのは予算帯だけです。正確な金額・目標文は送りません。</p>
     </div>
-    <div class="budget-summary" id="goalSummary"></div>
-    <div class="row"><button class="btn" id="goalSave">目標を保存</button></div>
-    <p class="private">価値が未設定なら従来の成果・学習スコアで並べます。設定後は成功確率幅×目標寄与幅−費用−失敗損失で、期待値を円のレンジ表示に切り替えます。</p>
-  </div>
+  </details>
+
+  <details class="config-panel">
+    <summary><span><b>04</b> 補助質問とメモ</span><small>任意</small></summary>
+    <div class="config-body"><p class="lead" id="qlead">自由記述は記録用。順位を動かす入力は「今日の現在地」です。</p><div id="qs"></div></div>
+  </details>
 </section>
 
-<section>
-  <h2>投資ルール</h2>
-  <p class="lead">安さではなく、予算内の期待値で選ぶ。金額はこのiPhone内だけに保存。</p>
-  <div class="budget">
-    <div class="budget-grid">
-      <label>総予算（円）<input type="number" id="budgetTotal" min="0" step="1000" inputmode="numeric"></label>
-      <label>期間<select id="budgetMonths"><option value="1">1か月</option><option value="3">3か月</option>
-        <option value="6">6か月</option><option value="12">12か月</option></select></label>
-      <label>予算の開始日<input type="date" id="budgetStart"></label>
-      <label>1回の上限（円）<input type="number" id="budgetPer" min="0" step="500" inputmode="numeric"></label>
-      <label>許容損失（円）<input type="number" id="budgetRisk" min="0" step="500" inputmode="numeric"></label>
-    </div>
-    <div class="budget-summary" id="budgetSummary"></div>
-    <div class="row"><button class="btn" id="budgetSave">予算を保存</button>
-      <button class="btn ghost" id="budgetSync">予算帯・目標帯を参謀に送る</button>
-      <button class="btn ghost" id="backup">バックアップ</button>
-      <button class="btn ghost" id="restore">復元</button>
-      <input type="file" id="restoreFile" accept="application/json,.json" hidden></div>
-    <p class="private">正確な金額は送信しません。「小額・標準・拡張・積極」の予算帯だけを、確認できる公開GitHub Issueにします。</p>
-    <p class="private">Safariの保存データが消えても戻せるよう、設定後はバックアップを「ファイル」に保存してください。バックアップには正確な金額が入ります。</p>
-  </div>
-</section>
-
-<details class="alts"><summary>参謀からの補助質問・メモ</summary>
-  <p class="lead" id="qlead">自由記述は記録用。順位を動かす入力は「今日の現在地」です。</p>
-  <div id="qs"></div>
-</details>
-
-<section>
-  <h2>一手を決める</h2>
-  <p class="lead">現在地・予算・目標・過去の実績から、まず1件だけ推します。</p>
-  <div id="recommended"></div>
-  <details class="alts" id="alternatives"><summary>他の選択肢を見る</summary><div id="moves"></div></details>
-  <div class="own"><input id="ownT" placeholder="自分で書く（例：◯◯を試す）" maxlength="60">
-    <button class="mic" id="mic" title="声で入力" hidden>🎤</button></div>
-  <div class="budget-grid" id="ownMeta" hidden>
-    <label>行動の種類<select id="ownCategory"><option value="build">作る</option><option value="publish">公開</option>
-      <option value="sell">販売</option><option value="buy">購入</option><option value="research">調査</option>
-      <option value="review">見直し</option><option value="apply">応募</option><option value="learn">学習</option><option value="other">その他</option></select></label>
-    <label>自分案の費用上限（円）<input type="number" id="ownCost" min="0" step="500" inputmode="numeric" value="0"></label>
-    <label>最大損失（円）<input type="number" id="ownLoss" min="0" step="500" inputmode="numeric" value="0"></label>
-    <label>所要時間（分）<input type="number" id="ownMinutes" min="1" max="60" step="1" inputmode="numeric" value="30"></label>
-    <label>回収目安（日）<input type="number" id="ownPayback" min="0" step="1" inputmode="numeric" value="0"></label>
-    <label>目標寄与・悲観（%）<input type="number" id="ownImpactMin" min="0" max="100" step="1" inputmode="decimal" value="0"></label>
-    <label>目標寄与・楽観（%）<input type="number" id="ownImpactMax" min="0" max="100" step="1" inputmode="decimal" value="0"></label>
-    <label>続行条件<input id="ownContinue" maxlength="100" placeholder="例：成果物が月2件増える"></label>
-    <label>撤退条件<input id="ownStop" maxlength="100" placeholder="例：30日で差がなければ解約"></label>
-  </div>
-  <div class="row"><button class="btn" id="lock">この一手に決める</button>
-    <button class="btn ghost" id="defer">今日は決めない</button></div>
-  <div class="locked" id="lockedBox" hidden><div class="lb">今日の一手</div>
-    <div class="lt" id="lockedT"></div>
-    <div class="row"><button class="btn ghost" id="unlock">選び直す</button></div></div>
-</section>
-
-<section>
-  <h2>着地の記録</h2>
-  <p><span class="rate" id="rate">—</span> <span class="kv" id="rateSub">まだ記録がありません</span></p>
+<section class="history" id="history">
+  <div class="section-kicker">OPERATION LOG</div>
+  <h2>作戦履歴</h2>
+  <p class="rate-line"><span class="rate" id="rate">—</span> <span class="kv" id="rateSub">まだ記録がありません</span></p>
   <div id="past"></div>
   <div class="row"><button class="btn ghost" id="md">書き出し</button>
     <button class="btn ghost" id="sync">参謀に結果を送る</button>
-    <button class="btn ghost" id="clear">すべて消す</button></div>
-  <p class="kv">「結果を送る」は内容を確認できるGitHubの公開Issue作成画面を開きます。個人情報は書かないでください。</p>
+    <button class="btn ghost danger" id="clear">すべて消す</button></div>
 </section>
+
+<footer class="creator-seal">
+  <img src="assets/brand/creator-mark.svg" alt="制作者印" width="34" height="34">
+  <span>CRAFTED FOR DECISIVE ACTION</span>
+</footer>
 </main>
-<div class="toast" id="toast"></div>
+<nav class="dock" aria-label="主要メニュー">
+  <a href="#mission" class="active"><span>⌁</span>今日</a>
+  <a href="index.html"><span>◫</span>情報</a>
+  <a href="#history"><span>◌</span>記憶</a>
+  <a href="#operations"><span>⌘</span>設定</a>
+</nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="decision-engine.js"></script>
 <script>
@@ -316,6 +349,7 @@ var FALLBACK={questions:[
       outcome:"同じ作業の無料版との比較メモが1件残る",continue_if:"無料版より月2件以上多く成果物が完成する",stop:"30日で成果物が2件増えなければ解約する"}]};
 var DATA=FALLBACK, dataDate="";
 var CURRENT_RANKED=[];
+var CURRENT_REC=null;
 var STATE_LABELS={stage:{concept:"構想",build:"実装",publish:"公開",acquire:"利用者獲得",revenue:"収益化"},
   bottleneck:{technical:"技術",trust:"信用",customer:"顧客",time:"時間",cost:"費用"},
   outcome:{complete:"完成物",validate:"検証結果",publish:"公開物",sell:"販売・応募"},
@@ -346,7 +380,7 @@ function moveCard(x,D,isTop){var m=x.move,cost=m.cost_min===m.cost_max?money(m.c
     (m.stop?'<div class="stop"><b>撤退</b> '+esc(m.stop)+'</div>':'')+
     (x.problem?'<div class="stop"><b>選択不可</b> '+esc(x.problem)+'</div>':'')+'</div></div>';}
 
-function render(){
+function paint(){
   var t=today(), D=day(t);
   $("date").textContent=t+(dataDate&&dataDate!==t?"（材料は "+dataDate+" 版）":"")+" JST";
 
@@ -354,6 +388,8 @@ function render(){
   $("stateOutcome").value=S.state.outcome;$("stateMinutes").value=String(S.state.minutes);$("stateRisk").value=S.state.risk;
   $("stateSummary").textContent=(S.state.configured?"反映中：":"初期値：")+STATE_LABELS.stage[S.state.stage]+" · 詰まり「"+
     STATE_LABELS.bottleneck[S.state.bottleneck]+"」 · "+S.state.minutes+"分 · "+STATE_LABELS.risk[S.state.risk]+"判断";
+  $("commandContext").textContent=STATE_LABELS.stage[S.state.stage]+" / "+STATE_LABELS.bottleneck[S.state.bottleneck]+
+    "が最大の詰まり / "+S.state.minutes+"分 / "+STATE_LABELS.risk[S.state.risk];
 
   $("goalTitle").value=S.goal.title;$("goalMetric").value=S.goal.metric;
   $("goalValue").value=Math.max(0,+S.goal.value_yen||0);$("goalDeadline").value=S.goal.deadline;
@@ -369,6 +405,8 @@ function render(){
   $("budgetRisk").value=Math.max(0,+S.budget.risk_limit_yen||0);
   $("budgetSummary").innerHTML="残額 <b>"+money(remaining())+"</b> / 総予算 "+money(S.budget.total_yen)+
     "<br><span class='kv'>使用済み "+money(spent())+" · 予約中 "+money(committed())+" · "+S.budget.started_on+"〜"+cycleEnd()+" · 1回上限 "+money(S.budget.per_action_yen)+" · 許容損失 "+money(S.budget.risk_limit_yen)+"</span>";
+  $("missionMeta").textContent="残額 "+money(remaining())+" / 1回上限 "+money(S.budget.per_action_yen)+
+    " / "+S.state.minutes+"分 / データは端末内に保持";
 
   // 前回の一手(未判定のもの)
   var keys=Object.keys(S.days).filter(function(k){return k!==t&&S.days[k].move&&S.days[k].done===null&&!S.days[k].result;}).sort();
@@ -390,6 +428,7 @@ function render(){
     goalValue:S.goal.value_yen,budget:S.budget,remaining:remaining(today()),globalProblem:cycleProblem()});
   CURRENT_RANKED=ranked;
   var rec=StickDecision.recommendation(ranked,{state:S.state,goalValue:S.goal.value_yen,dataDate:dataDate,today:t});
+  CURRENT_REC=rec;
   if(rec.abstain){
     $("recommended").innerHTML='<div class="recommend abstain"><div class="rk">いまは決めない</div><div class="reason">'+esc(rec.reason)+
       '</div><div class="state-note">条件を直すか、下の代替案を確認してください。無理に一手を捏造しません。</div></div>';
@@ -427,6 +466,11 @@ function render(){
     var advance=d.goal_advanced==="yes"?" · 目標前進":d.goal_advanced==="no"?" · 前進なし":"";
     return '<div class="past"><div class="pd">'+esc(k)+' '+b+cost+value+advance+'</div><div class="pt">'+
       esc(d.move||(d.abstained&&d.abstained.reason)||"今日は決めない")+'</div></div>';}).join("");
+}
+
+function render(){
+  if(document.startViewTransition&&document.body.dataset.ready==="1")document.startViewTransition(paint);
+  else{paint();document.body.dataset.ready="1";}
 }
 
 /* ---- 操作 ---- */
@@ -477,6 +521,7 @@ $("lock").addEventListener("click",function(){
   if(day().move){toast("先に「選び直す」を押してください");return;}
   var own=$("ownT").value.trim();
   var sel=CURRENT_RANKED.filter(function(x){return x.move.t===day().selected;})[0];
+  if(!own&&!sel&&CURRENT_REC&&!CURRENT_REC.abstain)sel=CURRENT_REC.top;
   var v=own||(sel?sel.move.t:"");
   if(!v){toast("候補を選ぶか、自分で書いてください");return;}
   var ownCost=Math.max(0,Math.round(num($("ownCost").value,0))),ownLoss=Math.max(0,Math.round(num($("ownLoss").value,ownCost)));
@@ -564,6 +609,8 @@ $("clear").addEventListener("click",function(){if(!confirm("行動記録をす�
 })();
 
 /* ---- 材料の取得(失敗しても汎用で動く) ---- */
+try{var bootKey="sanbo_boot_"+today();if(sessionStorage.getItem(bootKey))$("boot").classList.add("quick");
+  else sessionStorage.setItem(bootKey,"1");}catch(e){}
 render();
 try{
   fetch("ichite.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(j){
