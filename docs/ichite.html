@@ -467,7 +467,16 @@ function paintIntel(){
   var box=$("intelBody"), head=$("intelDate");
   if(!BRIEF){head.textContent="今朝の材料をまだ取得できていません。参謀の実行後に反映されます。";
     box.innerHTML="";return;}
-  head.textContent=(BRIEF.updated_at||BRIEF.date||"")+" 時点の読み";
+  // 情報鮮度。古い材料を最新の顔で見せない(憲法3章)。何日前かを必ず言い、
+  // 一定以上古ければ「今日の判断材料としては使うな」と明示する。
+  var age=null;
+  try{
+    var d0=new Date(String(BRIEF.date||"").replace(/-/g,"/")+" 00:00:00");
+    if(!isNaN(d0))age=Math.floor((new Date(today().replace(/-/g,"/")+" 00:00:00")-d0)/86400000);
+  }catch(e){}
+  var ageText=age==null?"":age<=0?"（今日の材料）":age===1?"（1日前の材料）":"（"+age+"日前の材料）";
+  head.textContent=(BRIEF.updated_at||BRIEF.date||"")+" 時点の読み"+ageText;
+  head.className=(age!=null&&age>=StickDecision.STALE_DAYS)?"lead warn":"lead";
   var h="";
   if(BRIEF.diffs&&BRIEF.diffs.length)
     h+='<div class="intel-block"><b>静かな変化</b><ul class="tight">'+li(BRIEF.diffs.map(esc))+'</ul></div>';
@@ -506,10 +515,15 @@ function paintMemory(){
     var b=s.brier, base=(s.baseline||{});
     h='<div class="score-row"><span class="rate">'+(s.rate!=null?pct(s.rate)+"%":"—")+'</span>'+
       '<span class="kv">参謀の的中率（的中'+s.hit+' / 外し'+s.miss+'）</span></div>';
-    if(b!=null)h+='<p class="sub">Brier '+b.toFixed(3)+'（低いほど良い｜常時50%='+base.always50+
-      ' ／ 最先端LLM≒'+base.sota_llm+' ／ 超予測者≒'+base.superforecaster+'）'+
+    // 並べてよいのは「同じ問題セットで意味を持つ値」だけ。常時50%の 0.25 は採点式の
+    // 性質から問題セットに依らず一定なので直接比べられる。外部ベンチマーク(ForecastBench等)は
+    // 別の問題・別の期間で測った値なので、隣に置くと成立しない比較を読ませてしまう。
+    if(b!=null)h+='<p class="sub">Brier '+b.toFixed(3)+'（低いほど良い）'+
+      (base.always50!=null?'<br><span class="sub">比較の基準: 常に50%と答えた場合が '+base.always50+
+        '（問題セットに依らず一定なので直接比べられる）。他所のベンチマークは'+
+        '問題も期間も違うため、同じ物差しには並べません。</span>':'')+
       (s.brier_initial!=null&&Math.abs(s.brier_initial-b)>=0.001?
-        ' ／ 当初の確度なら '+s.brier_initial.toFixed(3):'')+'</p>';
+        '<br><span class="sub">当初の確度で採点すると '+s.brier_initial.toFixed(3)+'</span>':'')+'</p>';
   }else{
     h='<p class="sub">参謀の予測はまだ決着していません（判定待ち'+(s.pending||0)+'件）。</p>';
   }
@@ -552,12 +566,36 @@ function paintMemory(){
 function paintSim(){
   var box=$("sim");
   if(!DATA_READY){box.innerHTML="";return;}
-  var r=StickDecision.simulate(DATA.moves,{days:90,budget:S.budget,seed:20260806});
-  if(!r){box.innerHTML="";return;}
+  // 試算は「推薦で通る候補」だけを回す。推薦では残額・上限・許容損失・今日の時間で
+  // 弾いておきながら、試算では全候補を使って良い数字を出す——という二枚舌をやめる。
+  // 母集団は CURRENT_RANKED から problem の無いものだけ。残額も総予算ではなく実残額を使う。
+  var ranked=CURRENT_RANKED||[];
+  var eligible=ranked.filter(function(x){return !x.problem;}).map(function(x){return x.move;});
+  var rest=remaining(today());
+  var cond='残額'+rest.toLocaleString()+'円・1回上限'+(+S.budget.per_action_yen||0).toLocaleString()+
+    '円・許容損失'+(+S.budget.risk_limit_yen||0).toLocaleString()+'円・1日'+S.state.minutes+'分';
+  // 候補はあるが今日の条件で全部落ちた場合、黙って消えると「壊れている」と区別が付かない。
+  // 何件が何の理由で落ちたかを言う(推薦の見送り理由と同じ根拠を見せる)。
+  if(ranked.length&&!eligible.length){
+    var why={};
+    ranked.forEach(function(x){var k=x.problem||"不明";why[k]=(why[k]||0)+1;});
+    box.innerHTML='<div class="sim"><div class="section-kicker">SIMULATION</div>'+
+      '<p class="sub warn">今日の条件（'+cond+'）で実行できる候補が'+ranked.length+'件中0件です。'+
+      '試算する対象が無いので数字は出しません。</p><ul class="tight">'+
+      li(Object.keys(why).map(function(k){return esc(k)+' … '+why[k]+'件';}))+'</ul>'+
+      '<p class="sub">条件を見直すか、参謀の更新を待ってください。</p></div>';
+    return;
+  }
+  var budget={total_yen:rest,spent_yen:0,
+              per_action_yen:S.budget.per_action_yen,risk_limit_yen:S.budget.risk_limit_yen};
+  var r=StickDecision.simulate(eligible,{days:90,budget:budget,state:S.state,seed:20260806});
+  if(!r||!r.eligible){box.innerHTML="";return;}
   var goal=S.goal&&S.goal.value_yen?S.goal.value_yen:0;
   box.innerHTML='<div class="sim"><div class="section-kicker">SIMULATION</div>'+
-    '<p class="sub">今の一手の組み合わせを'+r.days+'日続けた場合を'+r.trials+'回試算しました。'+
-    '参謀が付けた成功確率・目標寄与・費用の幅をそのまま回しています。</p>'+
+    '<p class="sub">今日の条件で実行できる'+r.eligible+'件を'+r.days+'日続けた場合を'+r.trials+'回試算しました。'+
+    '残額'+rest.toLocaleString()+'円・1回上限'+(+S.budget.per_action_yen||0).toLocaleString()+
+    '円・許容損失'+(+S.budget.risk_limit_yen||0).toLocaleString()+'円・1日'+S.state.minutes+
+    '分をそのまま適用しています（推薦と同じ条件）。</p>'+
     '<div class="sim-bar" role="img" aria-label="目標到達の見込み 中央値'+pct(r.progress.p50)+'パーセント">'+
       '<span class="band" style="left:'+pct(r.progress.p10)+'%;width:'+
         Math.max(1,pct(r.progress.p90)-pct(r.progress.p10))+'%"></span>'+
@@ -571,12 +609,18 @@ function paintSim(){
     '</div>';
 }
 
-function render(){
-  if(document.startViewTransition&&document.body.dataset.ready==="1")document.startViewTransition(paint);
-  else{paint();document.body.dataset.ready="1";}
-  // 統合した節は毎回まとめて描き直す。1つ落ちても他が出るよう個別に握りつぶす
-  // (参謀の知識のうち取れた分だけでも必ず画面に出す)。
+// 統合した節は paint と**同じ順番の中**で描く。startViewTransition(paint) は非同期に
+// paint を実行するので、外に置くと paintSim が CURRENT_RANKED の更新前に走り、
+// 実行可能な候補が0件に見えて試算が消える(実際にそうなっていた)。
+// 1つ落ちても他は出るよう個別に握りつぶす。
+function paintAll(){
+  paint();
   [paintIntel,paintMemory,paintSim].forEach(function(f){try{f();}catch(e){}});
+}
+
+function render(){
+  if(document.startViewTransition&&document.body.dataset.ready==="1")document.startViewTransition(paintAll);
+  else{paintAll();document.body.dataset.ready="1";}
   document.body.dataset.appReady="1";$("appFault").hidden=true;
 }
 

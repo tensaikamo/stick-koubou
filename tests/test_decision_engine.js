@@ -190,4 +190,137 @@ for (const marker of ["intelBody", "sanboScore", "memoryBody", "paintIntel", "pa
 assert(html.includes("あなたの遂行率"), "利用者側の数字にラベルが無い");
 assert(html.includes("参謀の的中率"), "参謀側の数字にラベルが無い");
 
+/* ---- ラウンド1: 試算にも実際の方針を適用する(憲法2章) ---- */
+{
+  const budget = {total_yen:30000, per_action_yen:5000, risk_limit_yen:1000, spent_yen:0};
+  const state = {stage:"build", bottleneck:"technical", outcome:"complete", minutes:30,
+                 risk:"balanced", configured:true};
+  // 許容損失を超える賭けは試算でも選ばない(推薦では弾くのに試算では通す二枚舌を作らない)
+  const risky = move("損失超過", "buy", {cost_min:500, cost_max:500, loss_max:5000});
+  const r1 = E.simulate([risky], {days:10, trials:100, seed:41, state, budget});
+  assert.strictEqual(r1.spend.p50, 0, "許容損失を超える案に試算が支出している");
+  assert.strictEqual(r1.eligible, 0);
+  assert.strictEqual(r1.excluded, 1, "除外件数を報告していない");
+
+  // 今日の可処分時間で終わらない案も選ばない
+  const tooLong = move("180分必要", "build", {time_minutes:180, cost_min:1000, cost_max:1000});
+  assert.strictEqual(E.simulate([tooLong], {days:10, trials:100, seed:42, state, budget}).spend.p50, 0,
+    "今日の時間を超える案に試算が支出している");
+
+  // 「材料が無い」と「方針で全部落ちた」は別物。前者は null、後者は0の結果を返す
+  assert.strictEqual(E.simulate([], {state, budget}), null);
+  assert.notStrictEqual(E.simulate([risky], {days:10, state, budget}), null);
+
+  // 方針を満たす案は通常どおり回る
+  const ok = move("普通の一手", "build", {cost_min:0, cost_max:0, loss_max:0, time_minutes:25});
+  assert(E.simulate([ok], {days:30, trials:200, seed:9, state, budget}).eligible === 1);
+}
+// 鮮度のしきい値は推薦と画面で同じ定義を使う(二重定義でズレさせない)
+assert.strictEqual(typeof E.STALE_DAYS, "number");
+assert(html.includes("StickDecision.STALE_DAYS"), "画面が独自のしきい値を持っている");
+// 試算は残額と「今日実行できる候補」を使う(総予算と全候補で甘い数字を出さない)
+{
+  const block = html.match(/function paintSim\(\)\{[\s\S]*?\n\}/)[0];
+  assert(/remaining\(/.test(block), "試算が実残額を使っていない");
+  assert(/CURRENT_RANKED/.test(block), "試算が実行可能な候補に絞っていない");
+  assert(/S\.state/.test(block), "試算に今日の時間条件を渡していない");
+}
+// 比較できないベンチマークを同じ物差しに並べない(憲法3章)
+assert(!/最先端LLM|超予測者/.test(html), "測定条件の違うベンチマークを並べている");
+
+// 描画順: startViewTransition(paint) は非同期なので、統合した節を render の外に置くと
+// paintSim が CURRENT_RANKED の更新前に走り、実行可能な候補が0件に見えて試算が消える。
+// paint と同じ関数の中で順番に呼ぶこと。
+{
+  const paintAll = html.match(/function paintAll\(\)\{[\s\S]*?\n\}/);
+  assert(paintAll, "paintAll が無い");
+  assert(/paint\(\);/.test(paintAll[0]), "paintAll が paint を呼んでいない");
+  assert(/paintSim/.test(paintAll[0]), "paintAll が paintSim を呼んでいない");
+  assert(/startViewTransition\(paintAll\)/.test(html),
+    "view transition が paint 単体を呼んでおり、統合した節が古い状態で描かれる");
+}
+// 候補が全部落ちた時に黙って消えると「壊れている」と区別が付かない。理由を出すこと。
+{
+  const block = html.match(/function paintSim\(\)\{[\s\S]*?\n\}/)[0];
+  assert(/ranked\.length&&!eligible\.length/.test(block), "候補ゼロの場合を区別していない");
+  assert(/x\.problem/.test(block), "落ちた理由を集計していない");
+}
+
+/* ---- 予算の境界値: 0 は「無制限」ではない ---- */
+{
+  const state = {stage:"build", bottleneck:"technical", outcome:"complete", minutes:30,
+                 risk:"balanced", configured:true};
+  // 1回上限0円は「上限なし」ではなく「有料案は選べない」。!perAction || のような短絡を書くと
+  // 0 が素通りし、利用者が最も強く締めた設定が最も緩く効くという逆転が起きる。
+  const paid = move("上限ゼロで有料", "buy", {cost_min:100, cost_max:100, loss_max:100});
+  assert.strictEqual(
+    E.simulate([paid], {days:1, trials:100, seed:43, state,
+      budget:{total_yen:1000, spent_yen:0, per_action_yen:0, risk_limit_yen:1000}}).spend.p90, 0,
+    "1回上限0円を無制限として扱っている");
+  // 許容損失0円も同じ。riskLimit && で短絡させない
+  assert.strictEqual(
+    E.simulate([paid], {days:1, trials:100, seed:44, state,
+      budget:{total_yen:1000, spent_yen:0, per_action_yen:1000, risk_limit_yen:0}}).spend.p90, 0,
+    "許容損失0円を無制限として扱っている");
+  // 0 でも無料案(cost 0 / loss 0)は通る。締めすぎて何もできなくなるわけではない
+  const free = move("無料の一手", "build", {cost_min:0, cost_max:0, loss_max:0});
+  assert(E.simulate([free], {days:5, trials:50, seed:45, state,
+    budget:{total_yen:1000, spent_yen:0, per_action_yen:0, risk_limit_yen:0}}).eligible === 1,
+    "0円上限で無料案まで弾いている");
+
+  // 最大損失が残額を超える案は、推薦と試算の両方から外す。
+  // 費用が残額内でも、失敗した時に払い切れない賭けは打てない。
+  const lossy = move("残額を超える最大損失", "buy",
+    {cost_min:1000, cost_max:1000, loss_max:3000, success_p:.05, success_p_min:.05, success_p_max:.05});
+  const budget = {total_yen:1000, spent_yen:0, per_action_yen:1000, risk_limit_yen:3000};
+  const ranked = E.rankMoves([lossy], {state, days:{}, fitOverrides:{}, goalValue:100000,
+                                       budget, remaining:1000});
+  assert(/残額/.test(ranked[0].problem), "推薦が最大損失を残額と突き合わせていない: " + ranked[0].problem);
+  assert(E.simulate([lossy], {days:1, trials:100, seed:46, state, budget}).spend.p90 <= 1000,
+    "試算が残額を超える損失を許している");
+
+  // 許容損失と残額の両方に触れる案は、利用者が明示した上限の方を理由として返す
+  assert.strictEqual(
+    E.budgetProblem(move("両方超過", "buy", {cost_max:0, loss_max:5000}),
+      {per_action_yen:1000, risk_limit_yen:1000}, 1000, state), "許容損失を超える");
+}
+
+/* ---- 複数日試算: 残額は日々減る ---- */
+{
+  const state = {stage:"build", bottleneck:"technical", outcome:"complete", minutes:30,
+                 risk:"balanced", configured:true};
+  // 1回上限は日ごとに変わらない方針なので母集団の時点で落とす。日ごとの絞り込みにだけ
+  // 置くと「実行できないのに候補として数えられる」= eligible が水増しされる。
+  const paid = move("上限ゼロで有料候補", "buy", {cost_min:100, cost_max:100, loss_max:0});
+  const r0 = E.simulate([paid], {days:1, trials:100, seed:47, state,
+    budget:{total_yen:1000, spent_yen:0, per_action_yen:0, risk_limit_yen:1000}});
+  assert.strictEqual(r0.eligible, 0, "1回上限0円の有料案が候補に数えられている");
+  assert.strictEqual(r0.excluded, 1, "除外件数を報告していない");
+  assert.strictEqual(r0.spend.p90, 0);
+
+  // 初日の残額で一度判定して終わりにすると、失敗が重なった後も同じ賭けを打ち続け、
+  // 支出が残額を超える(実測: 残額1000円に対し1100円)。毎日の残額で再判定すること。
+  const lossy = move("残額減少後は再実行できない案", "buy",
+    {cost_min:100, cost_max:100, loss_max:1000, success_p:.05, success_p_min:.05, success_p_max:.05});
+  const r1 = E.simulate([lossy], {days:10, trials:100, random:() => 0.99, state,
+    budget:{total_yen:1000, spent_yen:0, per_action_yen:1000, risk_limit_yen:1000}});
+  assert(r1.spend.p90 <= 1000, "残額減少後に最大損失を再確認していない: " + r1.spend.p90);
+
+  // 不変条件: どんな組み合わせでも支出は残額を超えない
+  let over = 0, checked = 0;
+  for (const cost of [0, 100, 500, 1000]) for (const loss of [0, 100, 1000, 3000])
+  for (const total of [500, 1000, 10000]) for (const per of [0, 1000, 5000])
+  for (const risk of [0, 1000, 5000]) for (const seed of [1, 7]) {
+    const m = move("網羅", "build", {cost_min:cost, cost_max:cost, loss_max:loss,
+      success_p:.3, success_p_min:.2, success_p_max:.4, time_minutes:20});
+    const r = E.simulate([m], {days:30, trials:60, seed, state,
+      budget:{total_yen:total, spent_yen:0, per_action_yen:per, risk_limit_yen:risk}});
+    if (!r) continue;
+    checked++;
+    if (r.spend.p90 > total) over++;
+  }
+  assert(checked > 500, "網羅が足りない: " + checked);
+  assert.strictEqual(over, 0, "残額を超える支出が出た組み合わせがある: " + over);
+}
+
 console.log("decision engine tests passed");

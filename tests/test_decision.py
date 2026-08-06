@@ -283,3 +283,30 @@ def test_number_survives_nan_and_infinity():
         assert b["total_yen"] == 0 and isinstance(b["total_yen"], int)
     m = decision.normalize_move({"t": "x", "cost_min": float("inf"), "success_p": float("nan")})
     assert m["cost_min"] == 0 and m["success_p"] == 0.5
+
+
+def test_fallback_titles_are_labelled_even_if_the_model_repeats_them():
+    """既定案と同じ文面の案は、誰が出したものでも既定案として扱う。
+    LLMが既定案を復唱した時に『参謀が今日考えた案』の顔で並ぶ抜け道を塞ぐ。"""
+    canned = dict(decision.SAFE_FALLBACK_MOVES[0])   # 既定案そのままの文面
+    canned.pop("fallback", None)
+    rep = {}
+    out = decision.safe_moves([canned], limit=3, report=rep)
+    assert out[0]["t"] == decision.SAFE_FALLBACK_MOVES[0]["t"]
+    assert out[0]["fallback"] is True, "既定案の復唱に印が付いていない"
+
+
+def test_maximum_loss_must_fit_in_remaining_budget():
+    """費用が残額内でも、失敗時の最大損失が残額を超えるなら払い切れない。
+    『最悪いくら消えるか』で見ないと、残額ちょうどの案が無傷に見える。
+    画面側(decision-engine.js)と同じ規則・同じ順序にして食い違わせない。"""
+    budget = {"total_yen": 1000, "spent_yen": 0, "per_action_yen": 1000,
+              "risk_limit_yen": 3000, "period_months": 6}
+    lossy = paid_move(cost_min=1000, cost_max=1000, loss_max=3000)
+    assert decision.budget_problem(lossy, budget) == "最大損失が残額を超える"
+    # 許容損失にも触れる案は、利用者が明示した上限の方を理由にする
+    both = paid_move(cost_min=0, cost_max=0, loss_max=5000)
+    assert decision.budget_problem(both, dict(budget, risk_limit_yen=1000)) == "許容損失を超える"
+    # 残額に収まる損失なら通る
+    assert decision.budget_problem(paid_move(cost_min=500, cost_max=500, loss_max=1000),
+                                   budget) is None

@@ -132,6 +132,10 @@
     if (m.cost_max > Math.max(0, num(remaining, 0))) return "残額を超える";
     if (m.cost_max > Math.max(0, num(b.per_action_yen, 0))) return "1回の上限を超える";
     if (m.loss_max > Math.max(0, num(b.risk_limit_yen, 0))) return "許容損失を超える";
+    // 費用が残額内でも、失敗時の最大損失が残額を超えるなら払い切れない。
+    // 「最悪の場合いくら消えるか」で見ないと、残額ちょうどの案が無傷に見える。
+    // 許容損失より後に置く: 両方に触れる案は、利用者が明示した上限の方を理由として返す。
+    if (m.loss_max > Math.max(0, num(remaining, 0))) return "最大損失が残額を超える";
     if (m.cost_max > 0 && !m.stop) return "撤退条件がない";
     if (m.cost_max > 0 && !m.continue_if) return "続行条件がない";
     return "";
@@ -179,11 +183,15 @@
     return isFinite(x.getTime()) && isFinite(y.getTime()) ? Math.floor((y - x) / 86400000) : 0;
   }
 
+  // 材料がこの日数以上古ければ「今日の判断材料」として扱わない。推薦の見送り判定と
+  // 画面の鮮度表示が別々の値を持つとズレるので、ここを唯一の定義にする。
+  var STALE_DAYS = 4;
+
   function recommendation(ranked, opts) {
     opts = opts || {};
     var valid = (ranked || []).filter(function (x) { return !x.problem; });
-    if (opts.dataDate && opts.today && daysBetween(opts.dataDate, opts.today) > 3) {
-      return {abstain:true, reason:"材料が4日以上古い。参謀を更新してから決める", top:valid[0] || null};
+    if (opts.dataDate && opts.today && daysBetween(opts.dataDate, opts.today) >= STALE_DAYS) {
+      return {abstain:true, reason:"材料が" + STALE_DAYS + "日以上古い。参謀を更新してから決める", top:valid[0] || null};
     }
     if (!valid.length) return {abstain:true, reason:"今日の時間・予算・損失条件を満たす案がない", top:null};
     var top = valid[0], goal = Math.max(0, num(opts.goalValue, 0));
@@ -227,8 +235,36 @@
     var o = opts || {}, days = clamp(Math.round(num(o.days, 90)), 1, 365);
     var trials = clamp(Math.round(num(o.trials, 600)), 50, 5000);
     var budget = o.budget || {}, random = o.random || rng(num(o.seed, 20260806));
-    var pool = (moves || []).map(normalizeMove).filter(function (m) { return m.t; });
-    if (!pool.length) return null;
+    var state = normalizeState(o.state);
+    // 憲法2章「シミュレーションにも、実際の残額、1回上限、許容損失、今日の時間を適用する」。
+    // 推薦では弾くのに試算では通す、という二枚舌をやめる。ここで落ちる候補は
+    // **そもそも実行できない**ので、最初から母集団に入れない。
+    var riskLimit = Math.max(0, num(budget.risk_limit_yen, 0));
+    var perAction = Math.max(0, num(budget.per_action_yen, 0));
+    var minutes = Math.max(1, num(state.minutes, 30));
+    var rest = Math.max(0, num(budget.total_yen, 0)) - Math.max(0, num(budget.spent_yen, 0));
+    var given = (moves || []).map(normalizeMove).filter(function (m) { return !!m.t; });
+    // そもそも材料が無い場合と、材料はあるが方針で全部落ちた場合は別物として扱う。
+    // 前者は「試算する対象がない」= null。後者は「今日は1つも実行できない」という**結果**
+    // なので、0円・0進捗として返し、画面が理由を言えるようにする。
+    if (!given.length) return null;
+    var pool = given.filter(function (m) {
+      // 上限0は「無制限」ではなく「1円も出せない」。riskLimit && / !perAction || のような
+      // 短絡を書くと 0 が素通りし、**利用者が最も強く締めた設定が最も緩く効く**という
+      // 逆転が起きる。0 を素直に比較する。
+      if (m.loss_max > riskLimit) return false;                // 許容損失を超える賭けはしない
+      if (m.loss_max > Math.max(0, rest)) return false;        // 最大損失が残額を食い潰す
+      // 1回上限は日ごとに変わらない方針なので、母集団の時点で落とす。日ごとの絞り込みに
+      // だけ置くと「実行できないのに候補として数えられる」(eligible が水増しされる)。
+      if (m.cost_max > perAction) return false;                // 1回上限0円なら有料案は選べない
+      if (m.time_minutes > minutes) return false;              // 今日の可処分時間で終わらない
+      return true;
+    });
+    if (!pool.length) {
+      return {days: days, trials: trials, eligible: 0, excluded: given.length,
+              progress: {p10: 0, p50: 0, p90: 0}, spend: {p50: 0, p90: 0},
+              reach_p: 0, reach_day_p50: null};
+    }
     var total = Math.max(0, num(budget.total_yen, 0)) - Math.max(0, num(budget.spent_yen, 0));
     var perAction = Math.max(0, num(budget.per_action_yen, 0));
     var progress = [], spend = [], reachDay = [], reached = 0;
@@ -236,10 +272,12 @@
     for (var t = 0; t < trials; t++) {
       var done = 0, spent = 0, used = {}, hitDay = 0;
       for (var d = 1; d <= days; d++) {
-        // その日に払える手だけを候補にする(残額と1回上限の両方を守る)
+        // 残額は日々減る。初日の残額で一度判定して終わりにすると、失敗が重なった後も
+        // 同じ賭けを打ち続け、**支出が残額を超える**(実測: 残額1000円に対し1100円)。
+        // 毎日「今いくら残っているか」で費用と最大損失の両方を見直す。
+        var left = Math.max(0, total - spent);
         var afford = pool.filter(function (m) {
-          return m.cost_max <= Math.max(0, total - spent) &&
-                 (!perAction || m.cost_max <= perAction);
+          return m.cost_max <= left && m.loss_max <= left;
         });
         if (!afford.length) break;
         var m = afford[Math.floor(random() * afford.length) % afford.length];
@@ -263,7 +301,7 @@
     spend.sort(function (a, b) { return a - b; });
     reachDay.sort(function (a, b) { return a - b; });
     return {
-      days: days, trials: trials,
+      days: days, trials: trials, eligible: pool.length, excluded: given.length - pool.length,
       progress: {p10: quantile(progress, .1), p50: quantile(progress, .5), p90: quantile(progress, .9)},
       spend: {p50: Math.round(quantile(spend, .5)), p90: Math.round(quantile(spend, .9))},
       reach_p: reached / trials,
@@ -275,6 +313,6 @@
     normalizeState:normalizeState, normalizeMove:normalizeMove, stateAffinity:stateAffinity,
     localStats:localStats, adjustMove:adjustMove, expectedValue:expectedValue,
     budgetProblem:budgetProblem, rankMoves:rankMoves, recommendation:recommendation,
-    simulate:simulate, rng:rng
+    simulate:simulate, rng:rng, STALE_DAYS:STALE_DAYS
   };
 });
