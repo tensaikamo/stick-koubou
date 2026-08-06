@@ -204,6 +204,103 @@ const checks = {
     const html = fs.readFileSync(path.join(root, "docs", "ichite.html"), "utf8");
     const hardCoded = /"sota_llm"\s*:\s*0\.13/.test(recorder) || /最先端LLM≒/.test(html);
     check(!hardCoded, "cross-dataset Brier baselines are shown without methodology/source");
+  },
+  "all-fallback-primary-abstention": () => {
+    const fallbackMoves = [
+      move("既定案A", {fallback:true}),
+      move("既定案B", {fallback:true, learning_value:4})
+    ];
+    const ranked = Engine.rankMoves(fallbackMoves, options());
+    const rec = Engine.recommendation(ranked, {
+      state:options().state,
+      goalValue:0,
+      dataDate:"2026-08-06",
+      today:"2026-08-06"
+    });
+    check(rec.abstain === true && rec.top === null,
+      `全既定案を最重要指令に昇格した: ${JSON.stringify(rec)}`);
+    check(/既定|材料|推薦/.test(String(rec.reason || "")),
+      `見送り理由が材料不足を説明しない: ${JSON.stringify(rec)}`);
+  },
+  "daily-payload-exact-date-gate": () => {
+    check(typeof Engine.dataReadiness === "function",
+      "decision-engine.js に dataReadiness(payload, context) がない");
+    const status = Engine.dataReadiness({
+      date:"2026-08-05",
+      build_id:"build-a",
+      moves:[move("根拠付きの候補", {fallback:false, evidence_ids:["source-1"]})]
+    }, {today:"2026-08-06", buildId:"build-a"});
+    check(status && status.usable === false,
+      `前日版payloadを今日の推薦へ使用した: ${JSON.stringify(status)}`);
+    check(status.stale === true || /日付|当日|古/.test(String(status.reason || "")),
+      `日付不一致の理由が分からない: ${JSON.stringify(status)}`);
+  },
+  "small-sample-performance-hidden": () => {
+    check(typeof Engine.metricVisibility === "function",
+      "decision-engine.js に metricVisibility(score) がない");
+    const visibility = Engine.metricVisibility({
+      hit:0,
+      miss:2,
+      total:2,
+      rate:0,
+      brier:0.6425,
+      brier_n:2
+    });
+    check(visibility && visibility.showPerformance === false,
+      `決着2件で成績を通常表示した: ${JSON.stringify(visibility)}`);
+    check(/30|不足|収集/.test(String(visibility.reason || "")),
+      `非表示理由に成熟条件がない: ${JSON.stringify(visibility)}`);
+  },
+  "uncalibrated-simulation-hidden": () => {
+    check(typeof Engine.simulationReadiness === "function",
+      "decision-engine.js に simulationReadiness(moves, context) がない");
+    const readiness = Engine.simulationReadiness([
+      move("既定の試算候補", {
+        fallback:true,
+        evidence_ids:["user-goal"],
+        local_calibration:null
+      })
+    ], {
+      goalConfigured:false,
+      calibratedOutcomeCount:2,
+      minCalibratedOutcomes:30
+    });
+    check(readiness && readiness.ready === false,
+      `未校正の既定値から精密な試算を許可した: ${JSON.stringify(readiness)}`);
+    check(Array.isArray(readiness.missing) && readiness.missing.length > 0,
+      `足りない前提を説明していない: ${JSON.stringify(readiness)}`);
+  },
+  "missing-brief-section-hidden": () => {
+    const html = fs.readFileSync(path.join(root, "docs", "ichite.html"), "utf8");
+    const section = (html.match(/<section[^>]+id="intel"[^>]*>/) || [""])[0];
+    const paint = (html.match(/function paintIntel\(\)\{[\s\S]*?\n\}/) || [""])[0];
+    check(!/今朝の材料をまだ取得できていません/.test(html),
+      "brief欠落時の空カード用メッセージが通常画面に残っている");
+    check(!section || /\bhidden\b/.test(section),
+      `情報節がbrief取得前から表示される: ${section}`);
+    if (section) check(/\.hidden\s*=/.test(paint),
+      "paintIntelが有効なbrief取得時だけ情報節を表示する制御を持たない");
+  },
+  "payload-build-generation-gate": () => {
+    check(typeof Engine.dataReadiness === "function",
+      "decision-engine.js に dataReadiness(payload, context) がない");
+    const status = Engine.dataReadiness({
+      date:"2026-08-06",
+      build_id:"data-build",
+      moves:[move("当日候補", {fallback:false, evidence_ids:["source-1"]})]
+    }, {today:"2026-08-06", buildId:"app-build"});
+    check(status && status.usable === false,
+      `build_id不一致のpayloadを推薦へ使用した: ${JSON.stringify(status)}`);
+    check(status.buildMismatch === true || /build|世代|版/.test(String(status.reason || "")),
+      `世代不一致の理由が分からない: ${JSON.stringify(status)}`);
+  },
+  "manual-action-survives-abstention": () => {
+    const html = fs.readFileSync(path.join(root, "docs", "ichite.html"), "utf8");
+    const own = html.match(/<input[^>]+id="ownT"[^>]*>/);
+    const lock = (html.match(/\$\("lock"\)\.addEventListener\("click",function\(\)\{[\s\S]*?\n\}\);/) || [""])[0];
+    check(own && !/\bdisabled\b/.test(own[0]), "自分の一手入力が利用できない");
+    check(/var own=\$\("ownT"\)\.value\.trim\(\)/.test(lock),
+      "見送り時に自分の一手を確定する経路がない");
   }
 };
 
