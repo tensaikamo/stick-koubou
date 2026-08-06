@@ -156,3 +156,32 @@ h2::after{display:none}
 @media(max-width:430px){main{padding-inline:14px}.budget-grid{grid-template-columns:1fr}.command-actions{grid-template-columns:1fr}.command-actions .btn.ghost{min-height:41px}.decision-deck{margin-top:12px;padding:22px 14px 16px;border-radius:22px}.mission-head{align-items:flex-start}.d{max-width:122px;font-size:9px}.context-strip{margin-block:14px 12px;padding-inline:8px}.recommend .mv .t{font-size:clamp(20px,6.1vw,26px)}.recommend .mv .meta span{font-size:9.5px;padding:8px}.brand small{display:none}.brief-link{padding-inline:9px}.config-panel>summary{padding-inline:12px}.dock{width:calc(100% - 16px);bottom:calc(6px + var(--safe-bottom))}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.boot{display:none}.live-dot{animation:none}}
 @media(prefers-contrast:more){:root{--hair:rgba(237,231,220,.24);--muted:#b8bdbc;--faint:#92999a}.decision-deck,.carry-panel,.operations,.history{border-color:rgba(237,231,220,.3)}}
+
+/* ---- 統合した「参謀の知識」の節 -------------------------------------------
+   空気・勘・根拠・成績・記憶を、司令室と同じ画面・同じ体系で出す。
+   これまでは別デザインの別ページにしか無く、アプリから切り離されていた。 */
+.intel{margin-top:16px;padding:24px 20px;border:1px solid var(--hair);border-radius:22px;background:var(--panel)}
+.intel-block{margin-top:15px;padding-top:15px;border-top:1px solid var(--hair)}
+.intel-block:first-child{margin-top:6px;padding-top:0;border-top:0}
+.intel-block>b{display:block;color:var(--brass-hi);font:700 10px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.2em;margin-bottom:7px}
+.intel-block p{margin:0;color:var(--washi);font-size:15px;line-height:1.85;text-wrap:pretty}
+.intel-block.muted p{color:var(--muted);font-size:14px}
+.intel-block.kan p{font-size:17px;line-height:1.8}
+.intel-block .sub,.intel .sub,.history .sub{display:block;margin-top:6px;color:var(--muted);font-size:12.5px;line-height:1.7}
+.intel .chip{display:inline-block;margin-top:8px;padding:4px 10px;border:1px solid var(--hair);border-radius:9px;color:var(--signal);font:650 11px ui-monospace,monospace}
+ul.tight{margin:0;padding-left:1.15em}
+ul.tight li{margin:7px 0;color:var(--washi);font-size:14px;line-height:1.75}
+.intel a,.history a{color:var(--brass-hi)}
+.score-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.history details.alts{margin-top:11px}
+.history .intel-block{margin-top:12px;padding-top:12px}
+
+/* 実演算の帯: 悲観〜楽観の幅と中央値。数字だけより「どれくらい不確かか」が伝わる */
+.sim{margin-top:18px;padding-top:16px;border-top:1px solid var(--hair)}
+.sim-bar{position:relative;height:12px;margin:14px 0 10px;border:1px solid var(--hair);border-radius:7px;background:rgba(8,12,14,.9);overflow:hidden}
+.sim-bar .band{position:absolute;top:0;bottom:0;background:linear-gradient(90deg,rgba(103,216,208,.2),rgba(103,216,208,.5))}
+.sim-bar .mid{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--brass-hi);box-shadow:0 0 8px rgba(184,146,87,.7)}
+.sim .meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin-top:12px;border:1px solid var(--hair);border-radius:13px;overflow:hidden;background:var(--hair)}
+.sim .meta span{background:rgba(8,12,14,.96);color:#b8bfbe;font:650 10.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;padding:9px 10px}
+.sim .sub.warn{color:var(--brass-hi)}
+@media(max-width:430px){.intel{padding:20px 14px}.sim .meta{grid-template-columns:1fr}}

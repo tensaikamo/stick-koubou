@@ -186,11 +186,21 @@ html,body{margin:0;min-height:100%;background:#07090b;color:#ede7dc}
   </details>
 </section>
 
+<section class="intel" id="intel">
+  <div class="section-kicker">SITUATION</div>
+  <h2>今日の空気</h2>
+  <p class="lead" id="intelDate">材料を読み込み中</p>
+  <div id="intelBody"></div>
+</section>
+
 <section class="history" id="history">
   <div class="section-kicker">OPERATION LOG</div>
   <h2>作戦履歴</h2>
+  <div id="sanboScore"></div>
   <p class="rate-line"><span class="rate" id="rate">—</span> <span class="kv" id="rateSub">まだ記録がありません</span></p>
   <div id="past"></div>
+  <div id="sim"></div>
+  <div id="memoryBody"></div>
   <div class="row"><button class="btn ghost" id="md">書き出し</button>
     <button class="btn ghost" id="sync">参謀に結果を送る</button>
     <button class="btn ghost danger" id="clear">すべて消す</button></div>
@@ -204,7 +214,7 @@ html,body{margin:0;min-height:100%;background:#07090b;color:#ede7dc}
 <nav class="dock" aria-label="主要メニュー">
   <a href="#mission" class="active" data-section="mission" aria-current="page">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14M8 8l8 8M16 8l-8 8"></path><circle cx="12" cy="12" r="2.4"></circle></svg>今日</a>
-  <a href="index.html">
+  <a href="#intel" data-section="intel">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM9 4v16M9 9h10M9 15h10"></path></svg>情報</a>
   <a href="#history" data-section="history">
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg>記憶</a>
@@ -429,7 +439,9 @@ function paint(){
   all.forEach(function(k){var r=S.days[k].result;if(r==="done"||S.days[k].done===true){done++;judged++;}
     else if(r==="blocked"||r==="skipped"||S.days[k].done===false)judged++;});
   $("rate").textContent=judged?Math.round(done/judged*100)+"%":"—";
-  $("rateSub").textContent=judged?("やった "+done+" / 判定済 "+judged+"（全"+all.length+"手）"):"まだ判定済みの一手がありません";
+  // 参謀の「予測の的中率」と、あなたの「一手の遂行率」が同じ画面に並ぶ。どちらの数字かを必ず言う。
+  $("rateSub").textContent=judged?("あなたの遂行率: やった "+done+" / 判定済 "+judged+"（全"+all.length+"手）")
+    :"あなたの実行記録はまだありません。一手を選んで「遂行した／詰まった／見送った」を押すと貯まります。";
   $("past").innerHTML=all.slice(0,12).map(function(k){
     var d=S.days[k],r=d.result||(d.done===true?"done":d.done===false?"skipped":null),
       b=r==="done"?'<span class="badge b-done">やった</span>':
@@ -442,9 +454,129 @@ function paint(){
       esc(d.move||(d.abstained&&d.abstained.reason)||"今日は決めない")+'</div></div>';}).join("");
 }
 
+/* ---- 参謀の知識をこの画面に統合する ------------------------------------
+   ブリーフィング(空気・勘・根拠)と台帳(成績・判定待ち・記憶の物語)は、これまで
+   別デザインの別ページにしか無く、司令室から切り離されていた。同じ材料を JSON で
+   読み、同じ画面の節として出す。取得できなければ節ごと出さない(嘘の枠を作らない)。 */
+var BRIEF=null, LEDGER=null;
+
+function pct(x){return Math.round(Number(x)*100);}
+function li(items){return items.filter(Boolean).map(function(s){return "<li>"+s+"</li>";}).join("");}
+
+function paintIntel(){
+  var box=$("intelBody"), head=$("intelDate");
+  if(!BRIEF){head.textContent="今朝の材料をまだ取得できていません。参謀の実行後に反映されます。";
+    box.innerHTML="";return;}
+  head.textContent=(BRIEF.updated_at||BRIEF.date||"")+" 時点の読み";
+  var h="";
+  if(BRIEF.diffs&&BRIEF.diffs.length)
+    h+='<div class="intel-block"><b>静かな変化</b><ul class="tight">'+li(BRIEF.diffs.map(esc))+'</ul></div>';
+  if(BRIEF.omote)h+='<div class="intel-block"><b>表</b><p>'+esc(BRIEF.omote)+'</p></div>';
+  if(BRIEF.ura)h+='<div class="intel-block"><b>裏</b><p>'+esc(BRIEF.ura)+'</p></div>';
+  if(BRIEF.ura_taikou)h+='<div class="intel-block muted"><b>退けた説</b><p>'+esc(BRIEF.ura_taikou)+'</p></div>';
+  if(BRIEF.kan){
+    var conf=BRIEF.kan_conf!=null?'<span class="chip">確度 '+pct(BRIEF.kan_conf)+'%'+
+      (BRIEF.votes&&BRIEF.votes.length>1?'（独立見積り '+BRIEF.votes.map(pct).join('・')+'% の中央値）':'')+'</span>':'';
+    h+='<div class="intel-block kan"><b>参謀の勘</b><p>'+esc(BRIEF.kan)+'</p>'+conf+
+      (BRIEF.kan_konkyo?'<p class="sub"><b>根拠</b> '+esc(BRIEF.kan_konkyo)+'</p>':'')+
+      (BRIEF.kan_hantai?'<p class="sub"><b>外れるとすれば</b> '+esc(BRIEF.kan_hantai)+'</p>':'')+'</div>';
+  }
+  if(BRIEF.market&&BRIEF.market.q)
+    h+='<div class="intel-block"><b>市場との乖離</b><p>'+esc(BRIEF.market.q)+'</p><p class="sub">市場 '+
+      pct(BRIEF.market.p)+'% に対し参謀は '+(BRIEF.market.gap>0?'+':'')+BRIEF.market.gap+'pt。ここが賭けどころ。</p></div>';
+  if(BRIEF.evidence&&BRIEF.evidence.length)
+    h+='<div class="intel-block"><b>主張の根拠</b><ul class="tight">'+li(BRIEF.evidence.map(function(e){
+      return esc(e.claim)+'<span class="sub"> 確度'+pct(e.confidence)+'% ／ 崩れる条件: '+esc(e.disconfirm)+
+        (e.sources&&e.sources.length?' ／ '+e.sources.map(function(s){
+          return '<a href="'+esc(s.url)+'" target="_blank" rel="noopener">出典</a>';}).join(' '):'')+'</span>';
+    }))+'</ul></div>';
+  if(BRIEF.mijoriku&&BRIEF.mijoriku.length)
+    h+='<div class="intel-block"><b>まだ日本に来ていない</b><ul class="tight">'+li(BRIEF.mijoriku.map(function(m){
+      return "<b>"+esc(m.title)+"</b> "+esc(m.desc)+'<span class="sub"> '+esc(m.why)+"</span>";}))+'</ul></div>';
+  if(BRIEF.dousuru)h+='<div class="intel-block"><b>で、どうする</b><p>'+esc(BRIEF.dousuru)+'</p></div>';
+  h+='<p class="sub"><a href="index.html">全文と資料一覧を見る →</a></p>';
+  box.innerHTML=h;
+}
+
+function paintMemory(){
+  var score=$("sanboScore"), box=$("memoryBody");
+  if(!LEDGER){score.innerHTML="";box.innerHTML="";return;}
+  var s=LEDGER.score||{}, h="";
+  if(s.total){
+    var b=s.brier, base=(s.baseline||{});
+    h='<div class="score-row"><span class="rate">'+(s.rate!=null?pct(s.rate)+"%":"—")+'</span>'+
+      '<span class="kv">参謀の的中率（的中'+s.hit+' / 外し'+s.miss+'）</span></div>';
+    if(b!=null)h+='<p class="sub">Brier '+b.toFixed(3)+'（低いほど良い｜常時50%='+base.always50+
+      ' ／ 最先端LLM≒'+base.sota_llm+' ／ 超予測者≒'+base.superforecaster+'）'+
+      (s.brier_initial!=null&&Math.abs(s.brier_initial-b)>=0.001?
+        ' ／ 当初の確度なら '+s.brier_initial.toFixed(3):'')+'</p>';
+  }else{
+    h='<p class="sub">参謀の予測はまだ決着していません（判定待ち'+(s.pending||0)+'件）。</p>';
+  }
+  if(LEDGER.next_due)h+='<p class="sub">次の決着: '+esc(LEDGER.next_due.date)+'（あと'+LEDGER.next_due.days+'日）</p>';
+  score.innerHTML=h;
+
+  var m="";
+  if(LEDGER.pending&&LEDGER.pending.length)
+    m+='<details class="alts"><summary>追跡中の予測 <span>'+LEDGER.pending.length+'件</span></summary><ul class="tight">'+
+      li(LEDGER.pending.map(function(p){
+        return (p.alert?'<span class="rk fb">危険信号</span> ':'')+esc(p.claim)+
+          '<span class="sub"> 期限'+esc(p.deadline)+' ／ 確度'+pct(p.confidence)+'%'+
+          (p.counter?' ／ 外れるとすれば: '+esc(p.counter):'')+'</span>'+
+          (p.signals||[]).map(function(g){return '<span class="sub"> ▸ '+esc(g.date)+' '+esc(g.why)+'</span>';}).join("");
+      }))+'</ul></details>';
+  if(LEDGER.decided&&LEDGER.decided.length)
+    m+='<details class="alts"><summary>決着した予測 <span>'+LEDGER.decided.length+'件</span></summary><ul class="tight">'+
+      li(LEDGER.decided.map(function(p){
+        return (p.result==="hit"?"○ ":"× ")+esc(p.claim)+
+          '<span class="sub"> 確度'+pct(p.confidence)+'%'+(p.evidence?' ／ '+esc(p.evidence):'')+'</span>';
+      }))+'</ul></details>';
+  if(LEDGER.threads&&LEDGER.threads.length)
+    m+='<details class="alts"><summary>記憶の物語 <span>'+LEDGER.threads.length+'本</span></summary>'+
+      LEDGER.threads.map(function(t){
+        return '<div class="intel-block"><b>'+esc(t.subject)+'</b><ul class="tight">'+
+          li(t.events.map(function(e){return '<span class="sub">'+esc(e.date)+'</span> '+
+            (e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(e.headline)+'</a>':esc(e.headline));}))+
+          '</ul></div>';}).join("")+'</details>';
+  if(LEDGER.records&&LEDGER.records.length)
+    m+='<details class="alts"><summary>事実の台帳 <span>全'+LEDGER.record_count+'件</span></summary><ul class="tight">'+
+      li(LEDGER.records.map(function(r){
+        return '<span class="sub">'+esc(r.date)+'</span> '+
+          (r.url?'<a href="'+esc(r.url)+'" target="_blank" rel="noopener">'+esc(r.headline)+'</a>':esc(r.headline));
+      }))+'</ul></details>';
+  box.innerHTML=m;
+}
+
+/* 履歴が空でも「まだありません」で終わらせない。参謀が持っている数字を実際に回して、
+   この選び方を続けた場合の着地を出す(占いではなく、参謀自身の見積りの帰結)。 */
+function paintSim(){
+  var box=$("sim");
+  if(!DATA_READY){box.innerHTML="";return;}
+  var r=StickDecision.simulate(DATA.moves,{days:90,budget:S.budget,seed:20260806});
+  if(!r){box.innerHTML="";return;}
+  var goal=S.goal&&S.goal.value_yen?S.goal.value_yen:0;
+  box.innerHTML='<div class="sim"><div class="section-kicker">SIMULATION</div>'+
+    '<p class="sub">今の一手の組み合わせを'+r.days+'日続けた場合を'+r.trials+'回試算しました。'+
+    '参謀が付けた成功確率・目標寄与・費用の幅をそのまま回しています。</p>'+
+    '<div class="sim-bar" role="img" aria-label="目標到達の見込み 中央値'+pct(r.progress.p50)+'パーセント">'+
+      '<span class="band" style="left:'+pct(r.progress.p10)+'%;width:'+
+        Math.max(1,pct(r.progress.p90)-pct(r.progress.p10))+'%"></span>'+
+      '<span class="mid" style="left:'+pct(r.progress.p50)+'%"></span></div>'+
+    '<div class="meta"><span>目標到達 中央値 '+pct(r.progress.p50)+'%</span>'+
+      '<span>悲観 '+pct(r.progress.p10)+'% 〜 楽観 '+pct(r.progress.p90)+'%</span>'+
+      '<span>完全達成 '+(r.reach_p*100).toFixed(1)+'%'+(r.reach_day_p50?'（中央値'+r.reach_day_p50+'日）':'')+'</span>'+
+      '<span>想定支出 '+r.spend.p50.toLocaleString()+'円'+(goal?'（目標価値 '+goal.toLocaleString()+'円）':'')+'</span></div>'+
+    (r.progress.p90<1?'<p class="sub warn">この組み合わせでは'+r.days+'日続けても目標には届きません。'+
+      '同じ手の繰り返しは寄与が逓減します。より効く一手が必要です。</p>':'')+
+    '</div>';
+}
+
 function render(){
   if(document.startViewTransition&&document.body.dataset.ready==="1")document.startViewTransition(paint);
   else{paint();document.body.dataset.ready="1";}
+  // 統合した節は毎回まとめて描き直す。1つ落ちても他が出るよう個別に握りつぶす
+  // (参謀の知識のうち取れた分だけでも必ず画面に出す)。
+  [paintIntel,paintMemory,paintSim].forEach(function(f){try{f();}catch(e){}});
   document.body.dataset.appReady="1";$("appFault").hidden=true;
 }
 
@@ -595,7 +727,7 @@ $("clear").addEventListener("click",function(){if(!confirm("行動記録をす�
   var observer=new IntersectionObserver(function(entries){var visible=entries.filter(function(e){return e.isIntersecting;})
     .sort(function(a,b){return b.intersectionRatio-a.intersectionRatio;});if(visible[0])activate(visible[0].target.id);},
     {rootMargin:"-18% 0px -62% 0px",threshold:[0,.15,.35]});
-  ["mission","operations","history"].forEach(function(id){var el=$(id);if(el)observer.observe(el);});
+  ["mission","intel","operations","history"].forEach(function(id){var el=$(id);if(el)observer.observe(el);});
 })();
 
 /* ---- iPhoneのソフトウェアキーボード中は、下部メニューを入力欄に重ねない ---- */
@@ -630,5 +762,17 @@ try{
     settleData("fallback");
   }).catch(function(){fetchDone=true;settleData("fallback");});
 }catch(e){settleData("fallback");}
+
+// 参謀の知識(ブリーフィングと台帳)。一手の表示とは独立に読み、落ちても本体を止めない。
+// 取れなければその節を出さないだけ(嘘の空枠を作らない)。
+["brief","ledger"].forEach(function(name){
+  try{
+    fetch(name+".json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(j){
+      if(!j||typeof j!=="object")return;
+      if(name==="brief")BRIEF=j;else LEDGER=j;
+      try{if(name==="brief")paintIntel();else paintMemory();}catch(e){}
+    }).catch(function(){});
+  }catch(e){}
+});
 </script>
 </body></html>

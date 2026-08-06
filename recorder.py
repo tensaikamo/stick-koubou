@@ -872,6 +872,68 @@ def render_threads_page(records):
     return _page_shell("記憶の物語", sub, nav, body)
 
 
+def build_ledger(records, hunches, limit=12):
+    """参謀の記憶と成績を、アプリが1画面で読める形に畳む。
+
+    同じ知識が records.html / hunches.html / threads.html という**別デザインの別ページ**に
+    散っていて、司令室アプリからは切り離されていた。ページは残す(直リンク用)が、
+    アプリはこの JSON を読んで同じ画面に統合する。純関数なのでテストできる。
+    """
+    today = datetime.now(JST).date()
+    st = memory.hit_stats(hunches)
+    br = memory.brier(hunches)
+    br0 = memory.brier(hunches, key="initial_confidence")
+    nd = memory.next_due(hunches, today)
+
+    def _h(h):
+        return {"id": h.get("id", ""), "claim": str(h.get("claim") or "")[:120],
+                "subject": h.get("subject", ""), "deadline": h.get("deadline", ""),
+                "confidence": h.get("confidence"),
+                "initial_confidence": h.get("initial_confidence"),
+                "result": h.get("result"), "status": h.get("status", ""),
+                "alert": bool(h.get("alert")),
+                "counter": str(h.get("counter") or "")[:160],
+                "evidence": (h.get("evidence") or {}).get("summary", "") if isinstance(h.get("evidence"), dict) else "",
+                "signals": [{"date": s.get("date", ""), "dir": s.get("dir", ""),
+                             "why": str(s.get("why") or s.get("sign") or "")[:120]}
+                            for s in (h.get("signals") or [])[-2:]]}
+
+    decided = [_h(h) for h in reversed(hunches) if h.get("result") in ("hit", "miss")][:limit]
+    pending = [_h(h) for h in sorted(
+        [h for h in hunches if h.get("status") == "pending"],
+        key=lambda x: str(x.get("deadline", "9999-99-99")))][:limit]
+    uniq = memory.dedupe_by_url(records)     # 過去に溜まった重複で水増ししない
+    return {
+        "updated_at": datetime.now(JST).strftime("%Y-%m-%d %H:%M"),
+        "score": {"hit": st["hit"], "miss": st["miss"], "total": st["total"],
+                  "rate": st["rate"], "pending": st["pending"],
+                  "brier": br["score"], "brier_n": br["n"],
+                  "brier_initial": br0["score"],
+                  # 世界の物差し。自分の数字がどの位置かを読者が判断できるようにする
+                  "baseline": {"always50": 0.25, "sota_llm": 0.13, "superforecaster": 0.02}},
+        "next_due": ({"date": nd[0], "days": nd[1]} if nd else None),
+        "decided": decided, "pending": pending,
+        "threads": [{"subject": s, "events": [{"date": d, "headline": hl, "url": u}
+                                              for d, hl, u in evs[-4:]]}
+                    for s, evs in memory.all_threads(records)[:6]],
+        "records": [{"id": r.get("id", ""), "date": (r.get("created_at", "") or "")[:10],
+                     "headline": str(r.get("headline") or "")[:120],
+                     "certainty": r.get("certainty", ""),
+                     "url": (r.get("source") or {}).get("url", "")}
+                    for r in list(reversed(uniq))[:limit]],
+        "record_count": len(uniq),
+    }
+
+
+def write_ledger_json(records, hunches):
+    try:
+        os.makedirs("docs", exist_ok=True)
+        with open("docs/ledger.json", "w", encoding="utf-8") as f:
+            json.dump(build_ledger(records, hunches), f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print("ledger.json 生成失敗(据え置き):", repr(e)[:160])
+
+
 def render_pages():
     """現在の records.json / hunches.json から台帳ページを生成(冪等)。
     失敗しても記録・サイト本体を止めないよう握りつぶす。"""
@@ -884,6 +946,7 @@ def render_pages():
             f.write(render_hunches_page(load_json_array(HUNCHES_PATH)))
         with open("docs/threads.html", "w", encoding="utf-8") as f:
             f.write(render_threads_page(records))
+        write_ledger_json(records, load_json_array(HUNCHES_PATH))
         print("recorder: 台帳ページ(records.html / hunches.html / threads.html)を生成")
     except Exception as e:
         print("render_pages", repr(e)[:160])

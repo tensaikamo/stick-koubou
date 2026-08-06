@@ -713,6 +713,34 @@ os.makedirs("docs", exist_ok=True)
 # 「本日の生成に失敗」を公開してしまう事故を防ぐ(初回や既存なし時のみ劣化版を書く)。
 if generation_ok or not os.path.exists("docs/index.html"):
     open("docs/index.html", "w", encoding="utf-8").write(page)
+    # 同じ中身を **アプリが読める形** でも出す。参謀の知識が index.html という
+    # 別デザインの別ページにしか無いせいで、司令室アプリから切り離されていた。
+    # ページは残す(直リンク・検索用)が、アプリ側はこの JSON を読んで同じ画面に統合する。
+    try:
+        _brief = {
+            "date": jst.strftime("%Y-%m-%d"), "updated_at": jst.strftime("%Y-%m-%d %H:%M"),
+            "omote": final.get("omote", ""), "ura": final.get("ura", ""),
+            "ura_taikou": final.get("ura_taikou", ""), "dousuru": final.get("dousuru", ""),
+            "kan": final.get("kan", ""), "kan_konkyo": final.get("kan_konkyo", ""),
+            "kan_hantai": final.get("kan_hantai", ""), "kan_conf": final.get("kan_conf"),
+            "ippan": final.get("ippan", ""), "votes": ens_votes,
+            "mijoriku": final.get("mijoriku") or [],
+            "diffs": [d["title"] for d in (diffs or [])][:6],
+            "evidence": [{"claim": _ev.get("claim", ""), "confidence": _ev.get("confidence"),
+                          "disconfirm": _ev.get("disconfirm", ""),
+                          "sources": [{"title": picked[i]["title"], "url": picked[i]["url"]}
+                                      for i in _ev.get("source_indices", []) if 0 <= i < len(picked)]}
+                         for _ev in (final.get("evidence_map") or [])],
+        }
+        _m = globals().get("market_match")
+        if _m and final.get("kan_conf"):
+            _brief["market"] = {"q": _m.get("q", ""), "p": _m.get("p"), "url": _m.get("url", ""),
+                                "gap": round(float(final["kan_conf"]) * 100) - round(_m["p"] * 100)}
+        with open("docs/brief.json", "w", encoding="utf-8") as f:
+            json.dump(_brief, f, ensure_ascii=False, indent=2)
+        print("brief: docs/brief.json を更新")
+    except Exception as e:
+        print("brief.json 生成失敗(据え置き):", repr(e)[:160])
     print("done", len(picked), "api_calls", _client.calls, "generation_ok", generation_ok)
 else:
     # 既存ページは保持する(壊れた紙面を出さない)。ただし**黙って古いまま**にはしない:

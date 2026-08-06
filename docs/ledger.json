@@ -1,0 +1,421 @@
+{
+  "updated_at": "2026-08-06 12:27",
+  "score": {
+    "hit": 0,
+    "miss": 2,
+    "total": 2,
+    "rate": 0.0,
+    "pending": 31,
+    "brier": 0.6425,
+    "brier_n": 2,
+    "brier_initial": 0.6425,
+    "baseline": {
+      "always50": 0.25,
+      "sota_llm": 0.13,
+      "superforecaster": 0.02
+    }
+  },
+  "next_due": {
+    "date": "2026-08-07",
+    "days": 1
+  },
+  "decided": [
+    {
+      "id": "2026-07-22-h03",
+      "claim": "Fireworks.aiが自動モデルルーティング機能を一般向け新機能として正式提供開始する。",
+      "subject": "Fireworks.ai",
+      "deadline": "2026-08-05",
+      "confidence": 0.85,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "",
+      "evidence": "Fireworks.ai公式ブログの作成日から期限までの投稿において、モデル自動ルーティング機能の一般利用開始（GA）を告知する記事が確認できないため。",
+      "signals": []
+    },
+    {
+      "id": "2026-07-22-h01",
+      "claim": "Fireworks.aiがKimi K3のモデルルーティング再現用コードまたは関連設定ライブラリをGitHub公式リポジトリに公開する。",
+      "subject": "Fireworks.ai",
+      "deadline": "2026-08-05",
+      "confidence": 0.75,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "",
+      "evidence": "Fireworks.aiの公式GitHubリポジトリ一覧を確認したが、Kimi K3やモデルルーティングに関連するリポジトリやコミットは確認されず、期限内に条件を満たす公開が行われていないため。",
+      "signals": []
+    }
+  ],
+  "pending": [
+    {
+      "id": "2026-07-24-h02",
+      "claim": "GoogleはGoogle AI StudioにおいてGemini 3.5 Flash-Liteの一般提供APIを開始する。",
+      "subject": "Google",
+      "deadline": "2026-08-07",
+      "confidence": 0.85,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-07-26-h02",
+      "claim": "OpenAIは12日以内にモデルの評価・検証用サンドボックスのコードまたは仕様書を公式GitHubで公開する。",
+      "subject": "OpenAI",
+      "deadline": "2026-08-07",
+      "confidence": 0.6,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "攻撃手法の流出リスクを懸念する社内セキュリティチームの反対により、コードの一般公開を控え文書の報告にとどめる可能性がある。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-07-25-h01",
+      "claim": "OpenRouterの公開リーダーボードにおいて、オープンウェイトモデルの動的アンサンブル手法を組み込んだルーティングプロキシが週間利用量上位10位以内に入る。",
+      "subject": "OpenRouter",
+      "deadline": "2026-08-08",
+      "confidence": 0.7,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "商用APIの値下げ圧力や単一モデルでのコンテキスト処理の簡便さを理由に、ユーザーが複合ルーティング設定の煩雑さを敬遠する可能性がある。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-07-26-h01",
+      "claim": "Anthropicは14日以内にClaude Code利用時またはOpus 5のAPIトークン価格の引き下げ改定を公式に発表する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-09",
+      "confidence": 0.65,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "15億ドルの和解金支払いに伴う現金流出を補うため、短期的な単価切り下げを見送り現状の収益率を維持する可能性がある。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-07-27-h01",
+      "claim": "Anthropicは14日以内に、公式APIドキュメントにおいてClaude Opus 5のBatch API対応および50%以上の価格割引仕様を追加表記する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-10",
+      "confidence": 0.75,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "Opus 5の推論サーバーインフラ容量が不足しており、バッチ処理を受け付ける余裕がない場合は提供時期が見送られる。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-07-31-h03",
+      "claim": "Googleは10日以内に、Google AI Studioの公式価格表ページにおいてGemini 3.6 Flashの価格を確定させ、Gemini 3.5 Flashを「Legacy」扱いに移動する。",
+      "subject": "Google",
+      "deadline": "2026-08-10",
+      "confidence": 0.85,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "プレビュー期間が長引き、既存3.5 Flashの料金設定と非推奨化スケジュールが来月以降に先送りされる可能性がある。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-08-03-h02",
+      "claim": "Googleは7日以内に、Google AI Studioの公式価格一覧ドキュメントに「Gemini 3.5 Flash Cyber」の従量課金単価を追加する。",
+      "subject": "Google",
+      "deadline": "2026-08-10",
+      "confidence": 0.7,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "限定的な招待制プライベートプレビューとして運用され、一般公開価格の表示が延期される可能性がある。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-07-28-h01",
+      "claim": "Anthropicは14日以内に、Claude CodeにおけるデフォルトモデルをOpus 5へ自動昇格させるマイグレーションスケジュールを公式ドキュメントで公開する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-11",
+      "confidence": 0.85,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "Anthropicが安全検証の完了までOpus 4.8を旧環境互換用にデフォルト指定のまま残し、手動オプション変更のみで対応する可能性がある。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-07-30-h01",
+      "claim": "Anthropicは12日以内に、Claude APIの公式ドキュメントにおいてOpus 5向けのコード実行サンドボックス環境（Code Execution Tool）のパブリックベータ仕様を公開する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-11",
+      "confidence": 0.78,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "自社インフラでのコード実行リスクを避け、既存のMCP（Model Context Protocol）経由の外部環境接続を推奨し続ける設計を選択する可能性がある。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-08-01-h02",
+      "claim": "Anthropicは10日以内に、Claude API公式ドキュメントのモデル価格一覧ページにおいてClaude Opus 5のプロンプトキャッシュ価格単価を公開する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-11",
+      "confidence": 0.8,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "Opus 5の初期展開においてプロンプトキャッシュ機能の解放が遅れ、ドキュメント更新が保留される可能性がある。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-07-31-h02",
+      "claim": "OpenAIは12日以内に、GitHubの「openai/codex-security」リポジトリにGitHub Actions統合用ファイル（action.yml）を追加するか、またはPyPIへ公式Pythonパッケージを登録する。",
+      "subject": "OpenAI",
+      "deadline": "2026-08-12",
+      "confidence": 0.75,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "OpenAIがCLIとTypeScript SDKの初期メンテナスおよびバグ修正に注力し、CI統合機能の公式提供を後回しにする可能性がある。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-07-23-h02",
+      "claim": "AnthropicはClaude Codeの初期化トークン消費量を削減するアップデートを公開する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-13",
+      "confidence": 0.7,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "",
+      "evidence": "",
+      "signals": []
+    }
+  ],
+  "threads": [
+    {
+      "subject": "Anthropic",
+      "events": [
+        {
+          "date": "2026-07-25",
+          "headline": "Anthropicが新モデル「Claude Opus 5」を発表および提供開始",
+          "url": "https://www.anthropic.com/news/claude-opus-5"
+        },
+        {
+          "date": "2026-07-28",
+          "headline": "Moonshot LabsとAlibabaがオープンモデル「Kimi K3」「Qwen 3.8」を発表",
+          "url": "https://www.emergingtrajectories.com/lh/frontier-lab-economics/"
+        },
+        {
+          "date": "2026-07-29",
+          "headline": "Anthropic CEOがオープンウェイトモデルの規制禁止に反対を表明",
+          "url": "https://www.anthropic.com/news/position-open-weights-models"
+        },
+        {
+          "date": "2026-08-06",
+          "headline": "Anthropic、基板・ラック設計を担うカスタムハードウェア担当TPMの新規求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5380379008"
+        }
+      ]
+    },
+    {
+      "subject": "OpenAI",
+      "events": [
+        {
+          "date": "2026-07-23",
+          "headline": "Advertise in ChatGPT",
+          "url": "https://ads.openai.com/"
+        },
+        {
+          "date": "2026-07-24",
+          "headline": "OpenAIの評価用AIモデルがサンドボックスを脱出しHugging Faceを攻撃したインシデントの詳細が判明",
+          "url": "https://simonwillison.net/2026/Jul/22/openai-cyberattack/"
+        },
+        {
+          "date": "2026-07-30",
+          "headline": "OpenAIが脆弱性修復ツールCodex SecurityのCLIおよびSDKをOSS公開",
+          "url": "https://github.com/openai/codex-security"
+        },
+        {
+          "date": "2026-08-01",
+          "headline": "OpenAIがGPT-5.6の価格対性能の向上を発表",
+          "url": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/"
+        }
+      ]
+    },
+    {
+      "subject": "Hugging Face",
+      "events": [
+        {
+          "date": "2026-07-22",
+          "headline": "OpenAIとHugging Faceがモデル評価時のセキュリティインシデントに対処",
+          "url": "https://openai.com/index/hugging-face-model-evaluation-security-incident/"
+        },
+        {
+          "date": "2026-07-24",
+          "headline": "OpenAIの評価用AIモデルがサンドボックスを脱出しHugging Faceを攻撃したインシデントの詳細が判明",
+          "url": "https://simonwillison.net/2026/Jul/22/openai-cyberattack/"
+        }
+      ]
+    },
+    {
+      "subject": "Moonshot",
+      "events": [
+        {
+          "date": "2026-07-22",
+          "headline": "Fireworks.aiがKimi K3とFableのモデルルーティングによる50倍のコスト削減を発表",
+          "url": "https://fireworks.ai/blog/kimik3-fable"
+        },
+        {
+          "date": "2026-07-28",
+          "headline": "Moonshot LabsとAlibabaがオープンモデル「Kimi K3」「Qwen 3.8」を発表",
+          "url": "https://www.emergingtrajectories.com/lh/frontier-lab-economics/"
+        }
+      ]
+    },
+    {
+      "subject": "Google",
+      "events": [
+        {
+          "date": "2026-07-22",
+          "headline": "GoogleがGemini 3.6 Flash、3.5 Flash-Lite、および3.5 Flash Cyberを発表",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/"
+        },
+        {
+          "date": "2026-07-24",
+          "headline": "GoogleがNotebookLMをGemini Notebookへ改名",
+          "url": "https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/"
+        }
+      ]
+    },
+    {
+      "subject": "xAI",
+      "events": [
+        {
+          "date": "2026-08-06",
+          "headline": "xAI、XのデータおよびAIエージェント接続を統合する開発者プラットフォームエンジニアを募集",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5204788007"
+        },
+        {
+          "date": "2026-08-06",
+          "headline": "xAI、超高密度データセンターおよび発電施設向け運用技術エンジニアの求人を開始",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5204393007"
+        }
+      ]
+    }
+  ],
+  "records": [
+    {
+      "id": "2026-08-06-r03",
+      "date": "2026-08-06",
+      "headline": "xAI、超高密度データセンターおよび発電施設向け運用技術エンジニアの求人を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5204393007"
+    },
+    {
+      "id": "2026-08-06-r02",
+      "date": "2026-08-06",
+      "headline": "xAI、XのデータおよびAIエージェント接続を統合する開発者プラットフォームエンジニアを募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5204788007"
+    },
+    {
+      "id": "2026-08-06-r01",
+      "date": "2026-08-06",
+      "headline": "Anthropic、基板・ラック設計を担うカスタムハードウェア担当TPMの新規求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5380379008"
+    },
+    {
+      "id": "2026-08-04-r01",
+      "date": "2026-08-04",
+      "headline": "JFrogがSQLiteに対する大量の偽CVE報告（LLM Slop）の存在とNVDの評価過誤を指摘",
+      "certainty": "reported",
+      "url": "https://research.jfrog.com/post/sqlite-critical-cves-or-llm-slops/"
+    },
+    {
+      "id": "2026-08-01-r02",
+      "date": "2026-08-01",
+      "headline": "Artificial AnalysisがDeepSeek V4 Flash 0731のベンチマーク結果を公開",
+      "certainty": "reported",
+      "url": "https://artificialanalysis.ai/models/deepseek-v4-flash"
+    },
+    {
+      "id": "2026-08-01-r01",
+      "date": "2026-08-01",
+      "headline": "OpenAIがGPT-5.6の価格対性能の向上を発表",
+      "certainty": "confirmed",
+      "url": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/"
+    },
+    {
+      "id": "2026-07-31-r01",
+      "date": "2026-07-31",
+      "headline": "AI新興企業による研究論文の発表頻度が低下",
+      "certainty": "reported",
+      "url": "https://www.science.org/content/article/ai-s-top-startups-are-barely-publishing-their-research"
+    },
+    {
+      "id": "2026-07-30-r01",
+      "date": "2026-07-30",
+      "headline": "OpenAIが脆弱性修復ツールCodex SecurityのCLIおよびSDKをOSS公開",
+      "certainty": "confirmed",
+      "url": "https://github.com/openai/codex-security"
+    },
+    {
+      "id": "2026-07-29-r01",
+      "date": "2026-07-29",
+      "headline": "Anthropic CEOがオープンウェイトモデルの規制禁止に反対を表明",
+      "certainty": "confirmed",
+      "url": "https://www.anthropic.com/news/position-open-weights-models"
+    },
+    {
+      "id": "2026-07-28-r04",
+      "date": "2026-07-28",
+      "headline": "Moonshot LabsとAlibabaがオープンモデル「Kimi K3」「Qwen 3.8」を発表",
+      "certainty": "reported",
+      "url": "https://www.emergingtrajectories.com/lh/frontier-lab-economics/"
+    },
+    {
+      "id": "2026-07-25-r07",
+      "date": "2026-07-25",
+      "headline": "Nvidia、Microsoft、MetaがオープンウェイトAIモデルへの過度な規制に懸念を表明",
+      "certainty": "reported",
+      "url": "https://www.cnbc.com/2026/07/24/nvidia-microsoft-meta-open-weight-ai-models.html"
+    },
+    {
+      "id": "2026-07-25-r06",
+      "date": "2026-07-25",
+      "headline": "オープンウェイトモデル統合フレームワーク「Echo」が公開",
+      "certainty": "confirmed",
+      "url": "https://news.ycombinator.com/item?id=49026810"
+    }
+  ],
+  "record_count": 22
+}

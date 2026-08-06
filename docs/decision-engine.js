@@ -196,9 +196,85 @@
     return {abstain:false, reason:"", top:top};
   }
 
+  /* ---- 実演算: この選び方を続けたらどこへ着地するか ----------------------
+     作戦履歴が空の間、画面は「まだ記録がありません」しか言えなかった。だが参謀は
+     既に数字を持っている(成功確率の幅・目標寄与の幅・費用・最大損失・残額・目標価値)。
+     それを実際に回して着地の分布を出す。占いではなく、参謀自身の見積りの帰結。
+     見積りが甘ければ結果も甘く出る——それも含めて「参謀の読みの姿」を見せる。 */
+
+  // 決定的な擬似乱数(mulberry32)。テストで再現でき、同じ入力なら毎回同じ絵になる。
+  function rng(seed) {
+    var a = (seed >>> 0) || 1;
+    return function () {
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+
+  function quantile(sorted, q) {
+    if (!sorted.length) return 0;
+    var i = (sorted.length - 1) * q, lo = Math.floor(i), hi = Math.ceil(i);
+    return lo === hi ? sorted[lo] : sorted[lo] + (sorted[hi] - sorted[lo]) * (i - lo);
+  }
+
+  // 同じ手を繰り返すほど1回あたりの寄与は落ちる(2回目以降の逓減)。
+  // これが無いと「同じ一手を90日続ければ必ず目標達成」という嘘の絵になる。
+  var REPEAT_DECAY = 0.62;
+
+  function simulate(moves, opts) {
+    var o = opts || {}, days = clamp(Math.round(num(o.days, 90)), 1, 365);
+    var trials = clamp(Math.round(num(o.trials, 600)), 50, 5000);
+    var budget = o.budget || {}, random = o.random || rng(num(o.seed, 20260806));
+    var pool = (moves || []).map(normalizeMove).filter(function (m) { return m.t; });
+    if (!pool.length) return null;
+    var total = Math.max(0, num(budget.total_yen, 0)) - Math.max(0, num(budget.spent_yen, 0));
+    var perAction = Math.max(0, num(budget.per_action_yen, 0));
+    var progress = [], spend = [], reachDay = [], reached = 0;
+
+    for (var t = 0; t < trials; t++) {
+      var done = 0, spent = 0, used = {}, hitDay = 0;
+      for (var d = 1; d <= days; d++) {
+        // その日に払える手だけを候補にする(残額と1回上限の両方を守る)
+        var afford = pool.filter(function (m) {
+          return m.cost_max <= Math.max(0, total - spent) &&
+                 (!perAction || m.cost_max <= perAction);
+        });
+        if (!afford.length) break;
+        var m = afford[Math.floor(random() * afford.length) % afford.length];
+        var cost = m.cost_min + random() * Math.max(0, m.cost_max - m.cost_min);
+        spent += cost;
+        var p = m.success_p_min + random() * Math.max(0, m.success_p_max - m.success_p_min);
+        if (random() < p) {
+          var impact = m.impact_min + random() * Math.max(0, m.impact_max - m.impact_min);
+          done += impact * Math.pow(REPEAT_DECAY, used[m.t] || 0);
+          used[m.t] = (used[m.t] || 0) + 1;
+        } else if (m.loss_max > m.cost_max) {
+          spent += (m.loss_max - m.cost_max) * 0.5;   // 失敗時の追加損失(期待値ぶん)
+        }
+        if (done >= 1 && !hitDay) { hitDay = d; break; }
+      }
+      progress.push(Math.min(1, done));
+      spend.push(Math.round(spent));
+      if (hitDay) { reached++; reachDay.push(hitDay); }
+    }
+    progress.sort(function (a, b) { return a - b; });
+    spend.sort(function (a, b) { return a - b; });
+    reachDay.sort(function (a, b) { return a - b; });
+    return {
+      days: days, trials: trials,
+      progress: {p10: quantile(progress, .1), p50: quantile(progress, .5), p90: quantile(progress, .9)},
+      spend: {p50: Math.round(quantile(spend, .5)), p90: Math.round(quantile(spend, .9))},
+      reach_p: reached / trials,
+      reach_day_p50: reachDay.length ? Math.round(quantile(reachDay, .5)) : null
+    };
+  }
+
   return {
     normalizeState:normalizeState, normalizeMove:normalizeMove, stateAffinity:stateAffinity,
     localStats:localStats, adjustMove:adjustMove, expectedValue:expectedValue,
-    budgetProblem:budgetProblem, rankMoves:rankMoves, recommendation:recommendation
+    budgetProblem:budgetProblem, rankMoves:rankMoves, recommendation:recommendation,
+    simulate:simulate, rng:rng
   };
 });

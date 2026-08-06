@@ -136,4 +136,58 @@ assert(!/dataTimer=setTimeout\(function\(\)\{if\(dataController\)dataController\
     "復帰タイマーが起動画面の early return より後ろにあり、2回目以降で仕掛からない");
 }
 
+/* ---- 実演算(モンテカルロ) ---- */
+{
+  const strong = move("強い一手", "build", {impact_min:.2, impact_max:.3, success_p:.9,
+    success_p_min:.85, success_p_max:.95, cost_min:0, cost_max:0});
+  const weak = move("弱い一手", "research", {impact_min:0, impact_max:.01, success_p:.5,
+    success_p_min:.4, success_p_max:.6, cost_min:0, cost_max:0});
+  const budget = {total_yen:30000, per_action_yen:5000, spent_yen:0};
+
+  // 同じ種でいつでも同じ絵になる(占いではなく再現可能な演算であること)
+  const a = E.simulate([strong], {days:90, budget, seed:7});
+  const b2 = E.simulate([strong], {days:90, budget, seed:7});
+  assert.deepStrictEqual(a, b2, "同じ種で結果が揺れる");
+  assert.notDeepStrictEqual(a, E.simulate([strong], {days:90, budget, seed:8}));
+
+  // 強い一手のほうが遠くまで進む
+  assert(E.simulate([strong], {days:90, budget, seed:1}).progress.p50 >
+         E.simulate([weak], {days:90, budget, seed:1}).progress.p50, "強弱が結果に出ない");
+
+  // 繰り返しの逓減が効く: 同じ一手だけを続けても必ず達成にはならない
+  const only = E.simulate([weak], {days:365, budget, seed:3});
+  assert(only.progress.p90 < 1, "同じ一手を続けるだけで目標達成になっている(逓減が効いていない)");
+
+  // 分位は順序を保ち、確率は0..1に収まる
+  const r = E.simulate([strong, weak], {days:90, budget, seed:5});
+  assert(r.progress.p10 <= r.progress.p50 && r.progress.p50 <= r.progress.p90);
+  assert(r.reach_p >= 0 && r.reach_p <= 1);
+  assert(r.spend.p50 <= r.spend.p90);
+
+  // 予算を超える有料案は選ばれない(残額を守る)
+  const pricey = move("高い一手", "buy", {cost_min:99000, cost_max:99000, impact_min:.5, impact_max:.9});
+  assert.strictEqual(E.simulate([pricey], {days:30, budget, seed:2}).spend.p50, 0,
+    "残額を超える一手に支出している");
+
+  // 材料が無ければ何も出さない(空の絵を作らない)
+  assert.strictEqual(E.simulate([], {days:30, budget}), null);
+  assert.strictEqual(E.simulate(null, {}), null);
+}
+
+// 統合: 参謀の知識(空気・勘・成績・記憶)が別ページではなく同じ画面の節として出ること
+for (const marker of ["intelBody", "sanboScore", "memoryBody", "paintIntel", "paintMemory", "paintSim",
+                      '["brief","ledger"]', "今日の空気"]) {
+  assert(html.includes(marker), "統合された知識の部品が無い: " + marker);
+}
+// ドックは全部が面内遷移(別デザインの別ページへ飛ばさない)
+{
+  const dock = html.match(/<nav class="dock"[\s\S]*?<\/nav>/)[0];
+  const hrefs = [...dock.matchAll(/href="([^"]+)"/g)].map(m => m[1]);
+  assert(hrefs.length >= 4, "ドックの項目が足りない");
+  hrefs.forEach(h => assert(h.startsWith("#"), "ドックが別ページへ飛ぶ: " + h));
+}
+// 参謀の的中率とあなたの遂行率が同じ画面に並ぶので、どちらの数字か必ず言うこと
+assert(html.includes("あなたの遂行率"), "利用者側の数字にラベルが無い");
+assert(html.includes("参謀の的中率"), "参謀側の数字にラベルが無い");
+
 console.log("decision engine tests passed");
