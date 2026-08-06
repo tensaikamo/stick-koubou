@@ -110,4 +110,30 @@ assert(html.includes("既定案"), "既定案バッジが画面に出ない");
 assert(!/dataTimer=setTimeout\(function\(\)\{if\(dataController\)dataController\.abort\(\)/.test(html),
   "第一描画のタイマーが取得を中断している");
 
+// 起動画面の退場: 擬似要素(::before/::after)のアニメーション終了は originating element を
+// target として発火するため、e.target===boot だけで見ると十字線 cross-a(0.57s)で起動画面を
+// 消してしまい、boot-exit(0.92s)のフェードが始まる前に全開のまま消える(実測460ms)。
+{
+  const src = html.match(/boot\.addEventListener\("animationend",function\(e\)\{[\s\S]*?\}\);/);
+  assert(src, "起動画面の animationend ハンドラを取り出せない");
+  let cb = null, finished = 0;
+  // ハンドラが閉じ込む boot と、イベントの target を同一オブジェクトにする
+  const boot = {addEventListener:(n, f) => { cb = f; }};
+  new Function("boot", "finish", src[0])(boot, () => { finished++; });
+  assert(cb, "リスナーが登録されない");
+  cb({target: boot, pseudoElement: "::before", animationName: "cross-a"});
+  assert.strictEqual(finished, 0, "十字線の擬似要素アニメで起動画面を消している");
+  cb({target: boot, pseudoElement: "", animationName: "mark-in"});
+  assert.strictEqual(finished, 0, "退場以外のアニメで起動画面を消している");
+  cb({target: boot, pseudoElement: "", animationName: "boot-exit"});
+  assert.strictEqual(finished, 1, "退場アニメ終了で起動画面が消えない");
+}
+// 復帰導線は起動画面の有無と無関係。セッション2回目(起動画面を出さない経路)でも仕掛かること。
+{
+  const boot = html.indexOf('var boot=document.getElementById("boot")');
+  const fault = html.indexOf('appReady!=="1"');
+  assert(fault > -1 && boot > -1 && fault < boot,
+    "復帰タイマーが起動画面の early return より後ろにあり、2回目以降で仕掛からない");
+}
+
 console.log("decision engine tests passed");

@@ -5,6 +5,7 @@ on:
       - 'docs/ichite.html'
       - 'docs/ichite.json'
       - 'docs/decision-engine.js'
+      - 'docs/elite-ui.css'
       - 'tests/test_decision_engine.js'
       - '.github/workflows/frontend-ci.yml'
   pull_request:
@@ -12,6 +13,7 @@ on:
       - 'docs/ichite.html'
       - 'docs/ichite.json'
       - 'docs/decision-engine.js'
+      - 'docs/elite-ui.css'
       - 'tests/test_decision_engine.js'
       - '.github/workflows/frontend-ci.yml'
 permissions:
