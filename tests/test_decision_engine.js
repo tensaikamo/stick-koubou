@@ -111,8 +111,16 @@ assert(html.includes("既定案"), "既定案バッジが画面に出ない");
   const payload = JSON.parse(fs.readFileSync(path.join(root, "docs", "ichite.json"), "utf8"));
   const appBuild = (html.match(/<meta name="app-build-id" content="([^"]+)"/) || [])[1];
   assert(appBuild && payload.build_id === appBuild, "画面と候補JSONのbuild_idが一致しない");
+  const decisionPy = fs.readFileSync(path.join(root, "decision.py"), "utf8");
+  const serverBuild = (decisionPy.match(/^BUILD_ID = "([^"]+)"/m) || [])[1];
+  assert.strictEqual(serverBuild, appBuild, "生成側と画面のbuild_idが一致しない");
+  assert(html.includes('var APP_BUILD_ID="'+appBuild+'"'), "画面の実行時build_idがmetaと一致しない");
   const generator = fs.readFileSync(path.join(root, "sanbo.py"), "utf8");
   assert(generator.includes('"build_id": decision.BUILD_ID'), "次回生成でbuild_idが消える");
+  assert(/brief\.setAttribute\("href",material\.state==="ready"\?"#intel":"#mission"\)/.test(html),
+    "当日材料が無い時に古い別ページへ誘導している");
+  assert(/gridTemplateColumns=valid\?"repeat\(4,1fr\)":"repeat\(3,1fr\)"/.test(html),
+    "情報タブを隠した後もドックが4列の空枠を残す");
 }
 
 // 2200msの第一描画のあとに本物の材料が届いた場合、既定案のまま固定してはいけない
