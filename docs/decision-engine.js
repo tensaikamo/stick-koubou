@@ -183,18 +183,87 @@
     return isFinite(x.getTime()) && isFinite(y.getTime()) ? Math.floor((y - x) / 86400000) : 0;
   }
 
-  // 材料がこの日数以上古ければ「今日の判断材料」として扱わない。推薦の見送り判定と
-  // 画面の鮮度表示が別々の値を持つとズレるので、ここを唯一の定義にする。
-  var STALE_DAYS = 4;
+  // 今日の指令は当日の材料だけで作る。1は「前日版から使用不可」という意味。
+  // 画面と推薦が別々の鮮度しきい値を持たないよう、ここを唯一の定義にする。
+  var STALE_DAYS = 1;
+
+  function dataReadiness(payload, context) {
+    var p = payload && typeof payload === "object" ? payload : {};
+    var c = context && typeof context === "object" ? context : {};
+    var date = String(p.date || ""), today = String(c.today || "");
+    var build = String(p.build_id || ""), expectedBuild = String(c.buildId || "");
+    var validDate = /^\d{4}-\d{2}-\d{2}$/.test(date);
+    var stale = !validDate || !today || date !== today;
+    var buildMismatch = !build || !expectedBuild || build !== expectedBuild;
+    var hasMoves = Array.isArray(p.moves) && p.moves.some(function (m) {
+      return m && typeof m === "object" && String(m.t || "").trim();
+    });
+    var reasons = [];
+    if (stale) reasons.push(validDate && today && daysBetween(date, today) > 0 ?
+      "材料の日付が古く、当日版ではありません" : "材料の日付が当日と一致しません");
+    if (buildMismatch) reasons.push("画面と材料のbuild世代が一致しません");
+    if (!hasMoves) reasons.push("推薦に使える候補がありません");
+    return {
+      usable:!stale && !buildMismatch && hasMoves,
+      stale:stale,
+      buildMismatch:buildMismatch,
+      allFallback:hasMoves && p.moves.filter(function (m) { return m && String(m.t || "").trim(); })
+        .every(function (m) { return !!m.fallback; }),
+      reason:reasons.join("。")
+    };
+  }
+
+  // nが小さい的中率は、数字として正しくても判断材料としては不安定。的中率とBrierを
+  // 同じ成熟条件で解禁し、都合の良い方だけを先に見せない。
+  function metricVisibility(score) {
+    var s = score && typeof score === "object" ? score : {};
+    var total = Math.max(0, Math.floor(num(s.total, 0)));
+    var brierN = Math.max(0, Math.floor(num(s.brier_n, 0)));
+    var minimum = 30;
+    var observed = Math.min(total, brierN);
+    return {
+      showPerformance:total >= minimum && brierN >= minimum,
+      minimum:minimum,
+      observed:observed,
+      reason:observed < minimum ? "決着30件まで成績を収集中（現在" + observed + "件）" : ""
+    };
+  }
+
+  // 行動の成功率を、ニュース予測のBrierで校正したことにはしない。同じ種類・段階の
+  // 行動結果が端末内に貯まり、目標自体も定義された時だけ精密な着地試算を許可する。
+  function simulationReadiness(moves, context) {
+    var list = (moves || []).filter(function (m) { return m && String(m.t || "").trim(); });
+    var c = context && typeof context === "object" ? context : {};
+    var minimum = Math.max(1, Math.floor(num(c.minCalibratedOutcomes, 30)));
+    var outcomes = Math.max(0, Math.floor(num(c.calibratedOutcomeCount, 0)));
+    var candidates = list.filter(function (m) { return !m.fallback; });
+    var calibrated = candidates.filter(function (m) {
+      return m.local_calibration && num(m.local_calibration.n, 0) >= minimum;
+    });
+    var missing = [];
+    if (!c.goalConfigured) missing.push("目標名・判定基準・達成価値");
+    if (outcomes < minimum) missing.push("判定済みの行動結果" + minimum + "件（現在" + outcomes + "件）");
+    if (!candidates.length) missing.push("当日の根拠から作られた候補");
+    if (candidates.length && !calibrated.length) missing.push("同種・同段階の行動結果" + minimum + "件");
+    return {ready:missing.length === 0, missing:missing, minimum:minimum, moves:calibrated};
+  }
 
   function recommendation(ranked, opts) {
     opts = opts || {};
     var valid = (ranked || []).filter(function (x) { return !x.problem; });
-    if (opts.dataDate && opts.today && daysBetween(opts.dataDate, opts.today) >= STALE_DAYS) {
-      return {abstain:true, reason:"材料が" + STALE_DAYS + "日以上古い。参謀を更新してから決める", top:valid[0] || null};
+    if (opts.dataDate && opts.today && opts.dataDate !== opts.today) {
+      var old = daysBetween(opts.dataDate, opts.today) > 0;
+      return {abstain:true, reason:old ? "材料が古い。当日版へ更新してから決める" :
+        "材料の日付が当日と一致しない。更新してから決める", top:null};
     }
     if (!valid.length) return {abstain:true, reason:"今日の時間・予算・損失条件を満たす案がない", top:null};
-    var top = valid[0], goal = Math.max(0, num(opts.goalValue, 0));
+    var genuine = valid.filter(function (x) { return x.move && !x.move.fallback; });
+    if (!genuine.length) {
+      return {abstain:true, reason:String(opts.dataReason || "") ||
+        "当日の根拠から作られた推薦材料がありません。既定案は自動推薦しません", top:null};
+    }
+    // 既定案が数値上は上位でも、当日の根拠を持つ候補より前へ昇格させない。
+    var top = genuine[0], goal = Math.max(0, num(opts.goalValue, 0));
     if (goal > 0 && top.ev.max <= 0) {
       return {abstain:true, reason:"最良案でも期待値の上限が0円以下。今日は投資しない", top:top};
     }
@@ -313,6 +382,8 @@
     normalizeState:normalizeState, normalizeMove:normalizeMove, stateAffinity:stateAffinity,
     localStats:localStats, adjustMove:adjustMove, expectedValue:expectedValue,
     budgetProblem:budgetProblem, rankMoves:rankMoves, recommendation:recommendation,
+    dataReadiness:dataReadiness, metricVisibility:metricVisibility,
+    simulationReadiness:simulationReadiness,
     simulate:simulate, rng:rng, STALE_DAYS:STALE_DAYS
   };
 });
