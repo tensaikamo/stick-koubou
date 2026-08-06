@@ -364,6 +364,9 @@ function paint(){
   var t=today(), D=day(t);
   var material=materialStatus(),brief=$("briefStatus");brief.dataset.state=material.state;
   $("briefStatusText").textContent=material.text;
+  // 当日材料が無い時に、ヘッダーから古い index.html へ誘導しない。
+  brief.setAttribute("href",material.state==="ready"?"#intel":"#mission");
+  brief.setAttribute("aria-disabled",material.state==="ready"?"false":"true");
   $("date").textContent=t+(material.state==="fallback"?"（推薦材料なし）":"")+" JST";
 
   $("stateStage").value=S.state.stage;$("stateBottleneck").value=S.state.bottleneck;
@@ -474,7 +477,8 @@ function li(items){return items.filter(Boolean).map(function(s){return "<li>"+s+
 function paintIntel(){
   var section=$("intel"), nav=$("intelNav"), box=$("intelBody"), head=$("intelDate");
   var valid=!!BRIEF&&BRIEF.date===today()&&BRIEF.build_id===APP_BUILD_ID;
-  section.hidden=!valid;if(nav)nav.hidden=!valid;
+  section.hidden=!valid;if(nav){nav.hidden=!valid;
+    nav.parentElement.style.gridTemplateColumns=valid?"repeat(4,1fr)":"repeat(3,1fr)";}
   if(!valid){head.textContent="";box.innerHTML="";return;}
   head.textContent=(BRIEF.updated_at||BRIEF.date||"")+" 時点の読み（今日の材料）";
   head.className="lead";
