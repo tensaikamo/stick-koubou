@@ -56,9 +56,14 @@ def _load(path):
     try:
         with open(path, encoding="utf-8") as f:
             v = json.load(f)
-        return v if isinstance(v, list) else []
     except Exception:
         return []
+    # 外側がリストかだけ見て中身を見ていなかった。台帳に null や文字列が1つ混じると
+    # hit_stats / brier / threads / next_due / build_digest / panels が軒並み
+    # AttributeError で落ち、**ブリーフィングごと止まる**。台帳は CI が
+    # git pull --rebase して書き戻すファイルなので、壊れた要素が入る経路は現実にある。
+    # 壊れた要素は捨てて、読める分で動き続ける。
+    return [x for x in v if isinstance(x, dict)] if isinstance(v, list) else []
 
 
 def load_ledger():
@@ -66,7 +71,7 @@ def load_ledger():
 
 
 def entities_of(text):
-    tl = (text or "").lower()
+    tl = str(text or "").lower()
     return {canon for canon, pats in _ENTITY_PATTERNS if any(p.search(tl) for p in pats)}
 
 
@@ -82,18 +87,26 @@ def hit_stats(hunches):
             "rate": (hit / total) if total else None, "pending": pending, "review": review}
 
 
-def brier(hunches):
+def brier(hunches, key="confidence"):
     """Brier スコア = Σ(確度 − 実現)² / n。予測の世界の標準指標。
     的中率は「当たったか」しか見ないが、Brier は**確度の正しさ**まで測る(低いほど良い)。
     常に50%と答えるだけのベースラインは 0.25。これを下回れば「情報がある」証拠になる。
+
+    key="initial_confidence" を渡すと**作成日に言った確度**で採点する。指標の点灯で確度を
+    更新する仕組みが入った以上、通常の Brier は「途中で現実を見て直した後」の成績になる。
+    それ自体は正当な逐次更新だが、当初の読みの良し悪しとは別物なので、両方を出せるようにする。
+    その key を持たない予測は confidence へ落とす(更新が一度も無ければ同じ値)。
     戻り: {"score": float, "n": int} / 確定分が無ければ {"score": None, "n": 0}。"""
     s, n = 0.0, 0
     for h in hunches:
         r = h.get("result")
         if r not in ("hit", "miss"):
             continue
+        raw = h.get(key)
+        if raw is None:
+            raw = h.get("confidence")
         try:
-            c = float(h.get("confidence"))
+            c = float(raw)
         except Exception:
             continue
         c = max(0.0, min(1.0, c))
@@ -181,6 +194,19 @@ def update_confidence(conf, direction, step=LOGIT_STEP):
     return round(min(max(c2, CONF_FLOOR), CONF_CEIL), 3)
 
 
+# 確度の帯。**0.5未満まで下げて持つ**: 基準率から入る書き方になって確度の下限が
+# 0.50 でなくなったのに、帯の判定が 0.5 で打ち止めだったため、確度0.2の予測まで
+# まとめて「0.5-0.6」に放り込まれていた。較正表が歪み、その歪んだ値が digest 経由で
+# 翌朝のプロンプトへ「確度0.5-0.6の帯は実際◯%」として戻る二次被害があった。
+CONF_BANDS = ["0.9+", "0.8-0.9", "0.7-0.8", "0.6-0.7", "0.5-0.6", "0.4-0.5", "0.4未満"]
+
+
+def _band(c):
+    return ("0.9+" if c >= 0.9 else "0.8-0.9" if c >= 0.8 else "0.7-0.8" if c >= 0.7
+            else "0.6-0.7" if c >= 0.6 else "0.5-0.6" if c >= 0.5
+            else "0.4-0.5" if c >= 0.4 else "0.4未満")
+
+
 def _calibration(hunches):
     bands = {}  # band -> [hit, total]
     for h in hunches:
@@ -190,8 +216,7 @@ def _calibration(hunches):
             c = float(h.get("confidence"))
         except Exception:
             continue
-        b = ("0.9+" if c >= 0.9 else "0.8-0.9" if c >= 0.8 else "0.7-0.8" if c >= 0.7
-             else "0.6-0.7" if c >= 0.6 else "0.5-0.6")
+        b = _band(c)
         bands.setdefault(b, [0, 0])
         bands[b][1] += 1
         if h.get("result") == "hit":
@@ -373,7 +398,7 @@ def build_digest(records, hunches, compact=False):
         cal = "通算 的中%d/外し%d(的中率%d%%)。" % (st["hit"], st["miss"], round(st["rate"] * 100))
         parts = []
         bands = _calibration(hunches)          # ループ外で1回だけ計算する
-        for b in ["0.9+", "0.8-0.9", "0.7-0.8", "0.6-0.7", "0.5-0.6"]:
+        for b in CONF_BANDS:
             bd = bands.get(b)
             if bd and bd[1] > 0:
                 parts.append("確度%s→実際%d%%(n=%d)" % (b, round(bd[0] / bd[1] * 100), bd[1]))

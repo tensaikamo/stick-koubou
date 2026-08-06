@@ -77,4 +77,13 @@ for (const marker of ["stateStage", "stateBottleneck", "recommended", "move_fit"
   assert(html.includes(marker), "missing UI marker: " + marker);
 }
 
+// 既定案の印は normalizeMove のホワイトリストに載っていないと黙って落ち、
+// 「5件とも既定案」でも画面上は普通の一手として並んでしまう。
+assert.strictEqual(E.normalizeMove(move("既定案", "build", {fallback:true})).fallback, true);
+assert.strictEqual(E.normalizeMove(move("通常案", "build")).fallback, false);
+assert.strictEqual(
+  E.adjustMove(move("既定案", "build", {fallback:true}), {}, {}, null).fallback, true,
+  "adjustMove を通すと印が消える");
+assert(html.includes("既定案"), "既定案バッジが画面に出ない");
+
 console.log("decision engine tests passed");

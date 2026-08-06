@@ -70,10 +70,17 @@ def load_json_array(path):
     try:
         with open(path, encoding="utf-8") as f:
             v = json.load(f)
-        return v if isinstance(v, list) else []
     except Exception as e:
         print("load_json_array", path, e)
         return []
+    if not isinstance(v, list):
+        return []
+    # 壊れた要素(null・文字列など)は捨てる。1つ混じるだけで台帳を読む全処理が
+    # AttributeError で落ち、ブリーフィングごと止まるため(memory._load と同じ方針)。
+    out = [x for x in v if isinstance(x, dict)]
+    if len(out) != len(v):
+        print("load_json_array", path, "壊れた要素 %d件を除外" % (len(v) - len(out)))
+    return out
 
 
 def dump_json(path, obj):
@@ -587,6 +594,17 @@ def process(articles, gen, created_dt, date_str, existing_records, existing_hunc
         if dup_id:
             print("hunch 重複のためスキップ: %s と類似 %.2f" % (dup_id, dup_sim))
             continue
+        # 同じ主体に同じ日で複数賭けない。文面が違えば類似度では捕まらないが、
+        # 中身は一つの賭けであることがある: 実際に初決着した2件は
+        # 「Fireworksがルーティング用コードを公開する」「Fireworksがルーティング機能をGAする」で、
+        # 類似度0.19(閾値0.58)をすり抜けて2件計上され、**一度の読み違いが打率とBrierに
+        # 二重に効いた**(2件とも外れ / Brier 0.64)。独立でない賭けを独立として数えない。
+        _subj = str(obj.get("subject") or "").strip().lower()
+        if status == "pending" and _subj and any(
+                str(h.get("subject") or "").strip().lower() == _subj
+                and h.get("status") == "pending" for h in new_hunches):
+            print("hunch 同一主体のためスキップ(相関した賭けを2件にしない): %s" % obj.get("subject"))
+            continue
         if status == "pending" and sum(1 for h in new_hunches if h.get("status") == "pending") >= 2:
             print("hunch 上限のためスキップ: 採点対象は1日最大2件")
             continue
@@ -786,17 +804,27 @@ def render_hunches_page(hunches):
                     + '(あと' + str(_rem) + '日)</p>')
     if st["total"]:
         _br = memory.brier(hunches)
+        # 指標の点灯で確度を更新するようになったので、通常の Brier は「途中で現実を見て
+        # 直した後」の成績になる。当初の読みの成績と並べないと、後知恵込みの数字を
+        # 予測成績として出すことになる。差が無い(更新が無かった)日は何も足さない。
+        _br0 = memory.brier(hunches, key="initial_confidence")
+        _br0_html = ""
+        if (_br0["score"] is not None and _br["score"] is not None
+                and abs(_br0["score"] - _br["score"]) >= 0.001):
+            _br0_html = ('<p class="kv"><b>当初の確度でのBrier</b> ' + ("%.3f" % _br0["score"])
+                         + '（途中の更新を入れない、作成日の読みだけの成績）</p>')
         if st["total"] < 20:
             rate = ('<p class="kv"><b>暫定成績</b> 的中' + str(st["hit"]) + ' / 外し' + str(st["miss"])
                     + '（n=' + str(st["total"]) + '。20件までは能力値として扱わない）</p>'
                     + (('<p class="kv"><b>参考Brier</b> ' + ("%.3f" % _br["score"])
-                        + '（標本不足）</p>') if _br["score"] is not None else ""))
+                        + '（標本不足）</p>') if _br["score"] is not None else "") + _br0_html)
         else:
             rate = ('<p><span class="hitrate">的中率 ' + str(round(st["rate"] * 100)) + '%</span> '
                     '<span class="kv">(的中' + str(st["hit"]) + ' / 外し' + str(st["miss"])
                     + ' / 判定不能除く)</span></p>'
                     + (('<p class="kv"><b>Brier</b> ' + ("%.3f" % _br["score"]) + '（n=' + str(_br["n"])
-                        + '・低いほど良い。常に50%と答えるだけなら 0.250）</p>') if _br["score"] is not None else ""))
+                        + '・低いほど良い。常に50%と答えるだけなら 0.250）</p>') if _br["score"] is not None else "")
+                    + _br0_html)
     else:
         rate = '<p class="kv">まだ答え合わせ前。的中率は期日到来分の決着後に出る。</p>'
     if not hunches:

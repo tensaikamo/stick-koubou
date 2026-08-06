@@ -204,3 +204,56 @@ def test_next_due_none_when_all_past_or_empty():
     h = _h("a", "x", status="pending")
     h["deadline"] = (datetime.now(JST) - timedelta(days=3)).strftime("%Y-%m-%d")  # 過去
     assert memory.next_due([h], today) is None
+
+
+def test_calibration_bands_do_not_dump_low_confidence_into_0_5():
+    """確度が基準率から入る書き方になり0.5未満が出るようになったのに、帯の判定が
+    0.5打ち止めで、確度0.2の予測まで『0.5-0.6』に放り込まれていた。
+    歪んだ較正表は digest 経由で翌朝のプロンプトへ戻るので二次被害が出る。"""
+    low = [_h("a", "x", "hit", 0.2, "resolved"), _h("b", "y", "miss", 0.45, "resolved")]
+    bands = memory._calibration(low)
+    assert "0.5-0.6" not in bands
+    assert bands["0.4未満"] == [1, 1] and bands["0.4-0.5"] == [0, 1]
+    # digest にも低い帯が出る(高い帯だけの表にならない)
+    d = memory.build_digest([], low)
+    assert "0.4未満" in d
+
+
+def test_band_boundaries():
+    assert memory._band(0.9) == "0.9+" and memory._band(0.5) == "0.5-0.6"
+    assert memory._band(0.4) == "0.4-0.5" and memory._band(0.0) == "0.4未満"
+
+
+def test_broken_ledger_element_does_not_take_down_the_briefing(tmp_path, monkeypatch):
+    """台帳に null が1つ混じるだけで hit_stats/brier/threads/build_digest が軒並み
+    AttributeError で落ち、ブリーフィングごと止まっていた。台帳は CI が
+    git pull --rebase して書き戻すので、壊れた要素が入る経路は現実にある。"""
+    import json as _json
+    p = tmp_path / "hunches.json"
+    good = _h("a", "x", "hit", 0.8, "resolved")
+    p.write_text(_json.dumps([None, good, "こわれた", 42], ensure_ascii=False), encoding="utf-8")
+    monkeypatch.setattr(memory, "HUNCHES_PATH", str(p))
+    monkeypatch.setattr(memory, "RECORDS_PATH", str(tmp_path / "nope.json"))
+    recs, huns = memory.load_ledger()
+    assert huns == [good] and recs == []
+    # 読める分で通常どおり動く
+    assert memory.hit_stats(huns)["hit"] == 1
+    assert memory.brier(huns)["n"] == 1
+    assert isinstance(memory.build_digest(recs, huns), str)
+
+
+def test_entities_of_accepts_non_string():
+    assert memory.entities_of(None) == set() and memory.entities_of(123) == set()
+
+
+def test_brier_can_score_the_confidence_actually_committed_to():
+    """指標の点灯で確度を更新するようになったので、通常の Brier は『途中で現実を見て
+    直した後』の成績になる。更新は現実の兆候に基づくぶんスコアを良い方へ動かすので、
+    当初の読みだけの成績も別に出せないと、後知恵込みの数字を予測成績として出すことになる。"""
+    h = _h("a", "x", "hit", 0.9, "resolved")     # 更新後は0.9まで上がっている
+    h["initial_confidence"] = 0.55               # 作成日はここまでしか言っていない
+    assert abs(memory.brier([h])["score"] - 0.01) < 1e-9
+    assert abs(memory.brier([h], key="initial_confidence")["score"] - 0.2025) < 1e-9
+    # 一度も更新されていない予測は同じ値になる(後方互換)
+    plain = _h("b", "y", "miss", 0.8, "resolved")
+    assert memory.brier([plain]) == memory.brier([plain], key="initial_confidence")

@@ -16,18 +16,25 @@ BACKOFFS = [0, 15, 50]
 MAX_RETRY_WAIT = 75          # サーバ推奨待機(RetryInfo)を尊重する際の上限秒
 
 
-def _retry_after(err):
-    """429応答に入っているサーバ推奨待機秒(RetryInfo.retryDelay 例 "27s")を返す。
-    取れなければ None。あくまで best-effort で、失敗しても通常のバックオフに任せる。"""
+def _quota_info(err):
+    """429応答から (推奨待機秒, quotaId) を取り出す。取れなければ (None, "")。
+
+    quotaId は「分あたり(...PerMinute)」か「日あたり(...PerDay)」かを名乗るので、
+    待てば直るのか今日はもう無理なのかが**ログを見れば分かる**ようになる。
+    応答ボディは一度しか読めないため、待機秒と一緒に1回で読み切る。
+    best-effort で、失敗しても通常のバックオフに任せる。"""
+    wait, qid = None, ""
     try:
         d = json.loads(err.read().decode())
         for det in ((d.get("error") or {}).get("details") or []):
             v = str(det.get("retryDelay") or "")
-            if v.endswith("s"):
-                return min(float(v[:-1]), MAX_RETRY_WAIT)
+            if wait is None and v.endswith("s"):
+                wait = min(float(v[:-1]), MAX_RETRY_WAIT)
+            for vi in (det.get("violations") or []):
+                qid = qid or str(vi.get("quotaId") or "")
     except Exception:
         pass
-    return None
+    return wait, qid
 
 
 def http(url, data=None, headers=None, timeout=90):
@@ -494,6 +501,17 @@ class GeminiClient:
         self._grounding_disabled = False  # 全形式400=grounding未対応と判明したら以後スキップ
         self.last_grounding_urls = []
         self.last_model_version = None  # 直近レスポンスの実モデルID(APIレスポンス由来)
+        self.quota_ids = []             # 観測した429のquotaId(RPM切れかRPD切れかの判別用)
+
+    def _model_order(self):
+        """試すモデルの順序。**一度成功したモデルを優先しつつ、残りを必ず後ろに残す**。
+
+        以前は成功モデルを1件に固定していたため(_model_ok=[flash])、そのモデルが無料枠の
+        429で潰れると候補が尽きて即失敗し、別枠を持つ flash-lite へ落ちられなかった。
+        実際 8/5 の本番実行では本文生成が flash だけで6回429を食って諦め、その日の
+        ブリーフィングが丸ごと落ちている(flash-lite は一度も試されていない)。"""
+        rest = [m for m in MODELS if m not in self._model_ok]
+        return (self._model_ok + rest) if self._model_ok else list(MODELS)
 
     def _request(self, payload, model=None):
         """モデルフォールバック+過負荷バックオフでリクエストし、生の応答dictを返す。
@@ -502,7 +520,7 @@ class GeminiClient:
         成功しても _model_ok を書き換えないので通常経路に影響しない)。"""
         body = json.dumps(payload).encode()
         last = None
-        for m in ([model] if model else (self._model_ok or MODELS)):
+        for m in ([model] if model else self._model_order()):
             url = "https://generativelanguage.googleapis.com/v1beta/models/" + m + ":generateContent"
             # 429/503(一時的な過負荷)は指数バックオフ+ジッタで同モデルを複数回試す。
             server_wait = None      # 直前の429がサーバ推奨待機を返していれば、それを優先する
@@ -526,9 +544,21 @@ class GeminiClient:
                 except urllib.error.HTTPError as e:
                     last = e
                     if e.code in (429, 503):
-                        server_wait = _retry_after(e) if e.code == 429 else None
+                        qid = ""
+                        if e.code == 429:
+                            server_wait, qid = _quota_info(e)
+                            if qid and qid not in self.quota_ids:
+                                self.quota_ids.append(qid)
+                        else:
+                            server_wait = None
                         print("model", m, "-> HTTP", e.code, "(過負荷) retry", i + 1, "/", len(BACKOFFS),
-                              ("推奨待機 %.0f秒" % server_wait) if server_wait else "")
+                              ("推奨待機 %.0f秒" % server_wait) if server_wait else "",
+                              ("quota=" + qid) if qid else "")
+                        if "PerDay" in qid:
+                            # 日あたりの枠切れは待っても今日は開かない。同モデルで粘らず、
+                            # 別枠を持つ次のモデルへ即座に移る(無駄な数分の待機を作らない)。
+                            print("model", m, "-> 日次枠切れ。待たずに次のモデルへ")
+                            break
                         continue
                     if e.code != 404:
                         raise

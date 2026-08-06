@@ -117,3 +117,52 @@ def test_grounding_disabled_after_all_formats_400(monkeypatch):
     with pytest.raises(Exception):
         c.generate_grounded("p")  # 2回目は http を一切叩かない
     assert len(stub.bodies) == n
+
+
+def _err429(retry_delay="5s", quota_id=""):
+    """RetryInfo と QuotaFailure を持つ 429。err.read() で本文を読ませる。"""
+    import io
+    details = [{"retryDelay": retry_delay}]
+    if quota_id:
+        details.append({"violations": [{"quotaId": quota_id}]})
+    body = json.dumps({"error": {"code": 429, "details": details}}).encode()
+    return urllib.error.HTTPError("https://x", 429, "err", None, io.BytesIO(body))
+
+
+def test_quota_exhausted_model_falls_through_to_the_other_model(monkeypatch):
+    """本番8/5の事故の再発防止: 一度成功したモデルに固定され、そのモデルが429で
+    潰れると候補が尽きて即失敗し、別枠を持つ flash-lite へ落ちられなかった。
+    その日のブリーフィングが丸ごと落ちている。"""
+    c = common.GeminiClient("k", call_limit=30)
+    # 1回目の成功で _model_ok が flash に固定される
+    monkeypatch.setattr(common, "http", Seq([_resp()]))
+    c.generate("x")
+    assert c._model_ok == ["gemini-flash-latest"]
+    # 2回目: flash は全バックオフ429 → flash-lite で成功しなければならない
+    seq = Seq([_err429()] * len(common.BACKOFFS) + [_resp(ver="gemini-flash-lite-latest-9")])
+    monkeypatch.setattr(common, "http", seq)
+    assert c.generate("y") == "OK"
+    assert c.last_model_version == "gemini-flash-lite-latest-9"
+    assert not seq.items, "flash-lite まで試し切っていない"
+
+
+def test_daily_quota_skips_waiting_and_records_id(monkeypatch):
+    """日次枠切れ(PerDay)は待っても開かない。同モデルで粘らず次のモデルへ即移る。"""
+    c = common.GeminiClient("k", call_limit=30)
+    seq = Seq([_err429(quota_id="GenerateRequestsPerDayPerProjectPerModel-FreeTier"),
+               _resp(ver="gemini-flash-lite-latest-9")])
+    monkeypatch.setattr(common, "http", seq)
+    assert c.generate("y") == "OK"
+    # flash では1回だけ試して(=バックオフを消費せず)次モデルへ移っている
+    assert c.calls == 2
+    assert any("PerDay" in q for q in c.quota_ids)
+
+
+def test_minute_quota_still_retries_same_model(monkeypatch):
+    """分あたりの枠は待てば開く。従来どおり同モデルでバックオフし直す。"""
+    c = common.GeminiClient("k", call_limit=30)
+    seq = Seq([_err429(quota_id="GenerateRequestsPerMinutePerProjectPerModel-FreeTier"),
+               _resp()])
+    monkeypatch.setattr(common, "http", seq)
+    assert c.generate("y") == "OK"
+    assert c.last_model_version == "gemini-flash-latest-001"  # 同じモデルで回復
