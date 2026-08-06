@@ -8,6 +8,11 @@ import re
 import urllib.request
 
 
+# 画面と毎朝のJSONが同じ判定仕様で生成されたことを確認する世代ID。
+# 片方だけがSafari/GitHub Pagesのキャッシュに残っても、古い数値を推薦へ混ぜない。
+BUILD_ID = "truthful-ui-v1"
+
+
 PROFILE = {
     "devices": ["iPhone"],
     "daily_minutes": 30,
