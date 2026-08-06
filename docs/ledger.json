@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-06 12:27",
+  "updated_at": "2026-08-06 18:16",
   "score": {
     "hit": 0,
     "miss": 2,
@@ -11,8 +11,7 @@
     "brier_initial": 0.6425,
     "baseline": {
       "always50": 0.25,
-      "sota_llm": 0.13,
-      "superforecaster": 0.02
+      "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {

@@ -26,11 +26,17 @@
       "impact_min": 0.01,
       "impact_max": 0.04,
       "impact_why": "次の実装を固定して停滞を減らす",
-      "evidence_ids": ["user-goal", "action-history"],
-      "assumptions": ["Issueが次の実装に使われる"],
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "Issueが次の実装に使われる"
+      ],
       "disconfirm": "7日以内に実装へ進まない",
       "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了"
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
     },
     {
       "t": "今日の一次情報を1本選び要点を3行残す",
@@ -52,11 +58,17 @@
       "impact_min": 0.0,
       "impact_max": 0.02,
       "impact_why": "意思決定へ使えた時だけ価値になる",
-      "evidence_ids": ["user-goal", "action-history"],
-      "assumptions": ["情報が現在の目標に関係する"],
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "情報が現在の目標に関係する"
+      ],
       "disconfirm": "次の行動を一つも変えない",
       "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了"
+      "stop": "3行書いたら終了",
+      "fallback": true
     },
     {
       "t": "予測を1件確認し確度メモを1行更新する",
@@ -78,11 +90,16 @@
       "impact_min": 0.0,
       "impact_max": 0.02,
       "impact_why": "誤った前提で投資する損失を減らす",
-      "evidence_ids": ["action-history"],
-      "assumptions": ["予測が投資判断に関係する"],
+      "evidence_ids": [
+        "action-history"
+      ],
+      "assumptions": [
+        "予測が投資判断に関係する"
+      ],
       "disconfirm": "行動や支出を変えない",
       "continue_if": "確度を動かす一次根拠が見つかった",
-      "stop": "根拠URLを1本確認したら終了"
+      "stop": "根拠URLを1本確認したら終了",
+      "fallback": true
     },
     {
       "t": "独自ドメイン候補を決め購入画面まで進める",
@@ -104,11 +121,17 @@
       "impact_min": 0.02,
       "impact_max": 0.08,
       "impact_why": "公開と共有の摩擦を下げるが単独では成果にならない",
-      "evidence_ids": ["user-goal", "action-history"],
-      "assumptions": ["90日以内に公開する"],
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "90日以内に公開する"
+      ],
       "disconfirm": "公開日や見せる相手が決まっていない",
       "continue_if": "公開予定日と最初に見せる相手が決まっている",
-      "stop": "年間4000円を超えたら購入しない"
+      "stop": "年間4000円を超えたら購入しない",
+      "fallback": true
     },
     {
       "t": "有料AI機能を1か月だけ比較検証する",
@@ -130,11 +153,17 @@
       "impact_min": 0.02,
       "impact_max": 0.12,
       "impact_why": "実装速度を上げる可能性はあるが成果増加は未確認",
-      "evidence_ids": ["user-goal", "action-history"],
-      "assumptions": ["週2回以上使う"],
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "週2回以上使う"
+      ],
       "disconfirm": "無料版と完成件数が変わらない",
       "continue_if": "無料版より月2件以上多く成果物が完成する",
-      "stop": "30日で成果物が2件増えなければ解約する"
+      "stop": "30日で成果物が2件増えなければ解約する",
+      "fallback": true
     }
   ],
   "kan": "Anthropicは3週間以内に、自社のカスタムシリコンに関するパートナーシップまたは専用アクセラレータの開発方針について公式ブログや求人背景の補足で何らかの言及を行う。"

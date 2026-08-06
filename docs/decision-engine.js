@@ -179,11 +179,15 @@
     return isFinite(x.getTime()) && isFinite(y.getTime()) ? Math.floor((y - x) / 86400000) : 0;
   }
 
+  // 材料がこの日数以上古ければ「今日の判断材料」として扱わない。推薦の見送り判定と
+  // 画面の鮮度表示が別々の値を持つとズレるので、ここを唯一の定義にする。
+  var STALE_DAYS = 4;
+
   function recommendation(ranked, opts) {
     opts = opts || {};
     var valid = (ranked || []).filter(function (x) { return !x.problem; });
-    if (opts.dataDate && opts.today && daysBetween(opts.dataDate, opts.today) > 3) {
-      return {abstain:true, reason:"材料が4日以上古い。参謀を更新してから決める", top:valid[0] || null};
+    if (opts.dataDate && opts.today && daysBetween(opts.dataDate, opts.today) >= STALE_DAYS) {
+      return {abstain:true, reason:"材料が" + STALE_DAYS + "日以上古い。参謀を更新してから決める", top:valid[0] || null};
     }
     if (!valid.length) return {abstain:true, reason:"今日の時間・予算・損失条件を満たす案がない", top:null};
     var top = valid[0], goal = Math.max(0, num(opts.goalValue, 0));
@@ -227,8 +231,27 @@
     var o = opts || {}, days = clamp(Math.round(num(o.days, 90)), 1, 365);
     var trials = clamp(Math.round(num(o.trials, 600)), 50, 5000);
     var budget = o.budget || {}, random = o.random || rng(num(o.seed, 20260806));
-    var pool = (moves || []).map(normalizeMove).filter(function (m) { return m.t; });
-    if (!pool.length) return null;
+    var state = normalizeState(o.state);
+    // 憲法2章「シミュレーションにも、実際の残額、1回上限、許容損失、今日の時間を適用する」。
+    // 推薦では弾くのに試算では通す、という二枚舌をやめる。ここで落ちる候補は
+    // **そもそも実行できない**ので、最初から母集団に入れない。
+    var riskLimit = Math.max(0, num(budget.risk_limit_yen, 0));
+    var minutes = Math.max(1, num(state.minutes, 30));
+    var given = (moves || []).map(normalizeMove).filter(function (m) { return !!m.t; });
+    // そもそも材料が無い場合と、材料はあるが方針で全部落ちた場合は別物として扱う。
+    // 前者は「試算する対象がない」= null。後者は「今日は1つも実行できない」という**結果**
+    // なので、0円・0進捗として返し、画面が理由を言えるようにする。
+    if (!given.length) return null;
+    var pool = given.filter(function (m) {
+      if (riskLimit && m.loss_max > riskLimit) return false;   // 許容損失を超える賭けはしない
+      if (m.time_minutes > minutes) return false;              // 今日の可処分時間で終わらない
+      return true;
+    });
+    if (!pool.length) {
+      return {days: days, trials: trials, eligible: 0, excluded: given.length,
+              progress: {p10: 0, p50: 0, p90: 0}, spend: {p50: 0, p90: 0},
+              reach_p: 0, reach_day_p50: null};
+    }
     var total = Math.max(0, num(budget.total_yen, 0)) - Math.max(0, num(budget.spent_yen, 0));
     var perAction = Math.max(0, num(budget.per_action_yen, 0));
     var progress = [], spend = [], reachDay = [], reached = 0;
@@ -263,7 +286,7 @@
     spend.sort(function (a, b) { return a - b; });
     reachDay.sort(function (a, b) { return a - b; });
     return {
-      days: days, trials: trials,
+      days: days, trials: trials, eligible: pool.length, excluded: given.length - pool.length,
       progress: {p10: quantile(progress, .1), p50: quantile(progress, .5), p90: quantile(progress, .9)},
       spend: {p50: Math.round(quantile(spend, .5)), p90: Math.round(quantile(spend, .9))},
       reach_p: reached / trials,
@@ -275,6 +298,6 @@
     normalizeState:normalizeState, normalizeMove:normalizeMove, stateAffinity:stateAffinity,
     localStats:localStats, adjustMove:adjustMove, expectedValue:expectedValue,
     budgetProblem:budgetProblem, rankMoves:rankMoves, recommendation:recommendation,
-    simulate:simulate, rng:rng
+    simulate:simulate, rng:rng, STALE_DAYS:STALE_DAYS
   };
 });

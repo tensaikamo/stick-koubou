@@ -910,7 +910,15 @@ def build_ledger(records, hunches, limit=12):
                   "brier": br["score"], "brier_n": br["n"],
                   "brier_initial": br0["score"],
                   # 世界の物差し。自分の数字がどの位置かを読者が判断できるようにする
-                  "baseline": {"always50": 0.25, "sota_llm": 0.13, "superforecaster": 0.02}},
+                  # 比較できる基準だけを置く。常に50%と答える予測者の Brier は
+                  # **問題セットに関係なく** 0.25 になる(採点式の性質)ので、うちの数字と
+                  # 直接比べられる。一方 ForecastBench の 0.13 や超予測者の 0.02 は
+                  # 別の問題セット・別の期間で測った値で、同じ物差しに並べると
+                  # 「参謀は超予測者より下手」と読めてしまうが、その比較は成立しない。
+                  # 憲法3章「出典や測定条件が異なるベンチマーク数値を、同じ物差しの
+                  # ように並べない」に従って外部ベンチマークは載せない。
+                  "baseline": {"always50": 0.25,
+                               "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"}},
         "next_due": ({"date": nd[0], "days": nd[1]} if nd else None),
         "decided": decided, "pending": pending,
         "threads": [{"subject": s, "events": [{"date": d, "headline": hl, "url": u}

@@ -320,6 +320,12 @@ def safe_moves(moves, limit=3, valid_evidence_ids=None, trusted_evidence_ids=Non
         out.append(item)
         if len(out) >= limit:
             break
+    # 既定案と同じ文面の案は、誰が出したものでも既定案として扱う。LLMが既定案を
+    # そのまま復唱した場合に「参謀が今日考えた案」の顔で並ぶ抜け道を塞ぐ。
+    _fb_titles = {m["t"] for m in SAFE_FALLBACK_MOVES}
+    for item in out:
+        if item["t"] in _fb_titles:
+            item["fallback"] = True
     kept = len(out)
     for move in SAFE_FALLBACK_MOVES:
         if len(out) >= limit:

@@ -283,3 +283,14 @@ def test_number_survives_nan_and_infinity():
         assert b["total_yen"] == 0 and isinstance(b["total_yen"], int)
     m = decision.normalize_move({"t": "x", "cost_min": float("inf"), "success_p": float("nan")})
     assert m["cost_min"] == 0 and m["success_p"] == 0.5
+
+
+def test_fallback_titles_are_labelled_even_if_the_model_repeats_them():
+    """既定案と同じ文面の案は、誰が出したものでも既定案として扱う。
+    LLMが既定案を復唱した時に『参謀が今日考えた案』の顔で並ぶ抜け道を塞ぐ。"""
+    canned = dict(decision.SAFE_FALLBACK_MOVES[0])   # 既定案そのままの文面
+    canned.pop("fallback", None)
+    rep = {}
+    out = decision.safe_moves([canned], limit=3, report=rep)
+    assert out[0]["t"] == decision.SAFE_FALLBACK_MOVES[0]["t"]
+    assert out[0]["fallback"] is True, "既定案の復唱に印が付いていない"

@@ -288,3 +288,14 @@ def test_ledger_json_is_safe_on_empty_ledger(workdir):
     led = R.build_ledger([], [])
     assert led["score"]["total"] == 0 and led["next_due"] is None
     assert led["pending"] == [] and led["records"] == [] and led["record_count"] == 0
+
+
+def test_ledger_does_not_mix_incomparable_benchmarks(workdir, monkeypatch):
+    """憲法3章: 出典や測定条件が異なるベンチマーク数値を同じ物差しのように並べない。
+    常時50%の0.25 は採点式の性質から問題セットに依らず一定なので比較できるが、
+    ForecastBench の値や超予測者の値は別の問題・別の期間で測ったもので比較できない。"""
+    _run(workdir, monkeypatch)
+    led = json.loads((workdir / "docs/ledger.json").read_text(encoding="utf-8"))
+    base = led["score"]["baseline"]
+    assert base["always50"] == 0.25 and base.get("always50_note")
+    assert "sota_llm" not in base and "superforecaster" not in base

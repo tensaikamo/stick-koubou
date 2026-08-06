@@ -190,4 +190,60 @@ for (const marker of ["intelBody", "sanboScore", "memoryBody", "paintIntel", "pa
 assert(html.includes("あなたの遂行率"), "利用者側の数字にラベルが無い");
 assert(html.includes("参謀の的中率"), "参謀側の数字にラベルが無い");
 
+/* ---- ラウンド1: 試算にも実際の方針を適用する(憲法2章) ---- */
+{
+  const budget = {total_yen:30000, per_action_yen:5000, risk_limit_yen:1000, spent_yen:0};
+  const state = {stage:"build", bottleneck:"technical", outcome:"complete", minutes:30,
+                 risk:"balanced", configured:true};
+  // 許容損失を超える賭けは試算でも選ばない(推薦では弾くのに試算では通す二枚舌を作らない)
+  const risky = move("損失超過", "buy", {cost_min:500, cost_max:500, loss_max:5000});
+  const r1 = E.simulate([risky], {days:10, trials:100, seed:41, state, budget});
+  assert.strictEqual(r1.spend.p50, 0, "許容損失を超える案に試算が支出している");
+  assert.strictEqual(r1.eligible, 0);
+  assert.strictEqual(r1.excluded, 1, "除外件数を報告していない");
+
+  // 今日の可処分時間で終わらない案も選ばない
+  const tooLong = move("180分必要", "build", {time_minutes:180, cost_min:1000, cost_max:1000});
+  assert.strictEqual(E.simulate([tooLong], {days:10, trials:100, seed:42, state, budget}).spend.p50, 0,
+    "今日の時間を超える案に試算が支出している");
+
+  // 「材料が無い」と「方針で全部落ちた」は別物。前者は null、後者は0の結果を返す
+  assert.strictEqual(E.simulate([], {state, budget}), null);
+  assert.notStrictEqual(E.simulate([risky], {days:10, state, budget}), null);
+
+  // 方針を満たす案は通常どおり回る
+  const ok = move("普通の一手", "build", {cost_min:0, cost_max:0, loss_max:0, time_minutes:25});
+  assert(E.simulate([ok], {days:30, trials:200, seed:9, state, budget}).eligible === 1);
+}
+// 鮮度のしきい値は推薦と画面で同じ定義を使う(二重定義でズレさせない)
+assert.strictEqual(typeof E.STALE_DAYS, "number");
+assert(html.includes("StickDecision.STALE_DAYS"), "画面が独自のしきい値を持っている");
+// 試算は残額と「今日実行できる候補」を使う(総予算と全候補で甘い数字を出さない)
+{
+  const block = html.match(/function paintSim\(\)\{[\s\S]*?\n\}/)[0];
+  assert(/remaining\(/.test(block), "試算が実残額を使っていない");
+  assert(/CURRENT_RANKED/.test(block), "試算が実行可能な候補に絞っていない");
+  assert(/S\.state/.test(block), "試算に今日の時間条件を渡していない");
+}
+// 比較できないベンチマークを同じ物差しに並べない(憲法3章)
+assert(!/最先端LLM|超予測者/.test(html), "測定条件の違うベンチマークを並べている");
+
+// 描画順: startViewTransition(paint) は非同期なので、統合した節を render の外に置くと
+// paintSim が CURRENT_RANKED の更新前に走り、実行可能な候補が0件に見えて試算が消える。
+// paint と同じ関数の中で順番に呼ぶこと。
+{
+  const paintAll = html.match(/function paintAll\(\)\{[\s\S]*?\n\}/);
+  assert(paintAll, "paintAll が無い");
+  assert(/paint\(\);/.test(paintAll[0]), "paintAll が paint を呼んでいない");
+  assert(/paintSim/.test(paintAll[0]), "paintAll が paintSim を呼んでいない");
+  assert(/startViewTransition\(paintAll\)/.test(html),
+    "view transition が paint 単体を呼んでおり、統合した節が古い状態で描かれる");
+}
+// 候補が全部落ちた時に黙って消えると「壊れている」と区別が付かない。理由を出すこと。
+{
+  const block = html.match(/function paintSim\(\)\{[\s\S]*?\n\}/)[0];
+  assert(/ranked\.length&&!eligible\.length/.test(block), "候補ゼロの場合を区別していない");
+  assert(/x\.problem/.test(block), "落ちた理由を集計していない");
+}
+
 console.log("decision engine tests passed");
