@@ -56,6 +56,13 @@
     "description": "1回上限0円を無制限として扱わず、有料案を試算しない"
   },
   {
+    "id": "simulation-zero-per-action-excludes-paid",
+    "suite": "capability",
+    "severity": "high",
+    "dimension": "correctness",
+    "description": "1回上限0円の有料案を実行可能候補として数えない"
+  },
+  {
     "id": "simulation-zero-risk-limit",
     "suite": "capability",
     "severity": "critical",
@@ -68,6 +75,13 @@
     "severity": "critical",
     "dimension": "safety",
     "description": "最大損失が残額を超える案を推薦・試算しない"
+  },
+  {
+    "id": "simulation-rechecks-loss-after-spending",
+    "suite": "capability",
+    "severity": "critical",
+    "dimension": "safety",
+    "description": "複数日試算で支出後の残額に最大損失を毎回突き合わせる"
   },
   {
     "id": "simulation-time-limit",

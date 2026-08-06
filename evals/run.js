@@ -113,6 +113,18 @@ const checks = {
     });
     check(r && r.spend.p90 === 0, `0円上限なのに spend.p90=${r && r.spend.p90}`);
   },
+  "simulation-zero-per-action-excludes-paid": () => {
+    const paid = move("上限ゼロで有料候補", {cost_min: 100, cost_max: 100, loss_max: 0});
+    const r = Engine.simulate([paid], {
+      days: 1,
+      trials: 100,
+      seed: 47,
+      state: options().state,
+      budget: {total_yen: 1000, spent_yen: 0, per_action_yen: 0, risk_limit_yen: 1000}
+    });
+    check(r && r.eligible === 0 && r.excluded === 1 && r.spend.p90 === 0,
+      `0円上限の有料案が eligible=${r && r.eligible}, excluded=${r && r.excluded}`);
+  },
   "simulation-zero-risk-limit": () => {
     const risky = move("損失許容ゼロ", {cost_min: 100, cost_max: 100, loss_max: 100});
     const r = Engine.simulate([risky], {
@@ -144,6 +156,25 @@ const checks = {
       budget
     });
     check(r && r.spend.p90 <= 1000, `残額1000円なのに spend.p90=${r && r.spend.p90}`);
+  },
+  "simulation-rechecks-loss-after-spending": () => {
+    const lossy = move("残額減少後は再実行できない案", {
+      cost_min: 100,
+      cost_max: 100,
+      loss_max: 1000,
+      success_p: 0.05,
+      success_p_min: 0.05,
+      success_p_max: 0.05
+    });
+    const r = Engine.simulate([lossy], {
+      days: 10,
+      trials: 100,
+      random: () => 0.99,
+      state: options().state,
+      budget: {total_yen: 1000, spent_yen: 0, per_action_yen: 1000, risk_limit_yen: 1000}
+    });
+    check(r && r.spend.p90 <= 1000,
+      `残額減少後も最大損失を再確認せず spend.p90=${r && r.spend.p90}`);
   },
   "simulation-time-limit": () => {
     const tooLong = move("180分必要", {time_minutes: 180, cost_min: 1000, cost_max: 1000});
