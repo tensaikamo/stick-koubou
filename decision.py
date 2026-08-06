@@ -42,6 +42,13 @@ _OUTCOME_WORDS = ("書く", "残す", "作る", "送る", "測る", "Issue", "�
 
 ACTION_CATEGORIES = ("build", "publish", "sell", "buy", "research", "review", "apply", "learn", "other")
 SPECIAL_EVIDENCE_IDS = {"user-goal", "action-history"}
+STATE_ALLOWED = {
+    "goal_stage": ("concept", "build", "publish", "acquire", "revenue"),
+    "bottleneck": ("technical", "trust", "customer", "time", "cost"),
+    "desired_outcome": ("complete", "validate", "publish", "sell"),
+    "risk_mode": ("cautious", "balanced", "aggressive"),
+    "minutes_band": ("under-15", "under-30", "over-30"),
+}
 
 SAFE_FALLBACK_MOVES = [
     {"t": "GitHubの改善候補を1件Issueに書く",
@@ -414,13 +421,13 @@ def parse_feedback_issue(issue):
     body = str(issue.get("body") or "")
     vals = {}
     for line in body.splitlines():
-        m = re.match(r"^(date|action|result|note|category|goal_advanced|budget_band|planned_cost_band|actual_cost_band|actual_value_band):\s*(.*)$",
+        m = re.match(r"^(date|action|result|note|category|goal_advanced|budget_band|planned_cost_band|actual_cost_band|actual_value_band|goal_stage|bottleneck|desired_outcome|risk_mode|minutes_band):\s*(.*)$",
                      line.strip())
         if m:
             vals[m.group(1)] = m.group(2).strip()[:300]
     if vals.get("result") not in ("done", "blocked", "skipped") or not vals.get("action"):
         return None
-    return {"kind": "action", "id": issue.get("number"), "date": vals.get("date", ""),
+    out = {"kind": "action", "id": issue.get("number"), "date": vals.get("date", ""),
             "action": vals["action"], "result": vals["result"],
             "category": vals.get("category", "other") if vals.get("category") in ACTION_CATEGORIES else "other",
             "goal_advanced": vals.get("goal_advanced", "unknown")
@@ -430,6 +437,10 @@ def parse_feedback_issue(issue):
             "actual_cost_band": vals.get("actual_cost_band", ""),
             "actual_value_band": vals.get("actual_value_band", ""),
             "url": issue.get("html_url", "")}
+    state = {k: vals.get(k, "") for k, allowed in STATE_ALLOWED.items() if vals.get(k) in allowed}
+    if state:
+        out["state"] = state
+    return out
 
 
 def parse_budget_issue(issue):
@@ -438,17 +449,20 @@ def parse_budget_issue(issue):
         return None
     vals = {}
     for line in str(issue.get("body") or "").splitlines():
-        m = re.match(r"^(date|budget_band|period_months|per_action_band|risk_band|goal_value_band|goal_deadline_band):\s*(.*)$", line.strip())
+        m = re.match(r"^(date|budget_band|period_months|per_action_band|risk_band|goal_value_band|goal_deadline_band|goal_stage|bottleneck|desired_outcome|risk_mode|minutes_band):\s*(.*)$", line.strip())
         if m:
             vals[m.group(1)] = m.group(2).strip()[:100]
     allowed = ("small", "standard", "expanded", "active")
     if vals.get("budget_band") not in allowed:
         return None
+    state = {k: vals.get(k, "") if vals.get(k) in allowed_values else ""
+             for k, allowed_values in STATE_ALLOWED.items()}
     return {"kind": "budget", "id": issue.get("number"), "date": vals.get("date", ""),
             "budget_band": vals["budget_band"], "period_months": vals.get("period_months", ""),
             "per_action_band": vals.get("per_action_band", ""),
             "risk_band": vals.get("risk_band", ""), "goal_value_band": vals.get("goal_value_band", ""),
-            "goal_deadline_band": vals.get("goal_deadline_band", ""), "url": issue.get("html_url", "")}
+            "goal_deadline_band": vals.get("goal_deadline_band", ""), **state,
+            "url": issue.get("html_url", "")}
 
 
 def fetch_action_feedback(repository, token=""):
@@ -496,14 +510,22 @@ def feedback_digest(events):
         if b.get("goal_value_band"):
             lines.append("【目標価値帯】%s / 期限%s。正確な金額と目標文は端末内のみ。"
                          % (b.get("goal_value_band", ""), b.get("goal_deadline_band", "")))
+        if b.get("goal_stage"):
+            lines.append("【現在地】段階%s / 詰まり%s / 欲しい成果%s / 判断%s / 時間%s。"
+                         % (b.get("goal_stage", ""), b.get("bottleneck", ""),
+                            b.get("desired_outcome", ""), b.get("risk_mode", ""),
+                            b.get("minutes_band", "")))
     stats = action_category_stats(actions)
     for cat, g in sorted(stats.items(), key=lambda x: x[1]["n"], reverse=True)[:4]:
         lines.append("行動型%s: 目標前進の事後推定%d%%(n=%d%s)。n<5は参考値。"
                      % (cat, round(g["posterior_p"] * 100), g["n"],
                         " / blocked %d" % g["blocked"] if g["blocked"] else ""))
     for e in actions[-6:]:
-        lines.append("- %s [%s] %s%s" % (e.get("date", ""), e.get("result", ""),
-                                         e.get("action", ""),
-                                         (" / " + e["note"]) if e.get("note") else ""))
+        st = e.get("state") if isinstance(e.get("state"), dict) else {}
+        state_note = (" / stage=%s bottleneck=%s" % (st.get("goal_stage", ""), st.get("bottleneck", ""))) \
+            if st.get("goal_stage") else ""
+        lines.append("- %s [%s] %s%s%s" % (e.get("date", ""), e.get("result", ""),
+                                           e.get("action", ""), state_note,
+                                           (" / " + e["note"]) if e.get("note") else ""))
     lines.append("blocked/skipped と同じ種類の提案を、理由を解消せずに繰り返すな。")
     return "\n".join(lines)
