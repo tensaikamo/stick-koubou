@@ -49,6 +49,27 @@
     "description": "シミュレーションも許容損失を超える候補を使わない"
   },
   {
+    "id": "simulation-zero-per-action-limit",
+    "suite": "capability",
+    "severity": "critical",
+    "dimension": "cost",
+    "description": "1回上限0円を無制限として扱わず、有料案を試算しない"
+  },
+  {
+    "id": "simulation-zero-risk-limit",
+    "suite": "capability",
+    "severity": "critical",
+    "dimension": "safety",
+    "description": "許容損失0円を無制限として扱わず、損失のある案を試算しない"
+  },
+  {
+    "id": "maximum-loss-respects-remaining",
+    "suite": "capability",
+    "severity": "critical",
+    "dimension": "safety",
+    "description": "最大損失が残額を超える案を推薦・試算しない"
+  },
+  {
     "id": "simulation-time-limit",
     "suite": "capability",
     "severity": "critical",
@@ -77,4 +98,3 @@
     "description": "比較不能なBrier基準値を出典・条件なしで表示しない"
   }
 ]
-
