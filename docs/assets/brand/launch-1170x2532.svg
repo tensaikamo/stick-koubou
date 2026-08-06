@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 2532">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="44%" r="62%">
+      <stop offset="0" stop-color="#11191d"/>
+      <stop offset=".46" stop-color="#07090b"/>
+      <stop offset="1" stop-color="#050607"/>
+    </radialGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#e6ca91"/>
+      <stop offset=".5" stop-color="#b89257"/>
+      <stop offset="1" stop-color="#765429"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="13" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1170" height="2532" fill="url(#bg)"/>
+  <g transform="translate(585 1110)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-210-210 210 210M210-210-210 210" stroke="#b89257" stroke-width="10" opacity=".28"/>
+    <circle r="122" fill="#07090b" stroke="#67d8d0" stroke-width="5" opacity=".98" filter="url(#glow)"/>
+    <circle r="92" fill="#090d10" stroke="url(#brass)" stroke-width="18"/>
+    <circle r="19" fill="#d8c08e" stroke="none"/>
+    <circle r="7" fill="#67d8d0" stroke="none"/>
+  </g>
+  <text x="585" y="1415" text-anchor="middle" fill="#ede7dc" font-family="Arial,sans-serif" font-size="62" font-weight="650" letter-spacing="18">SANBO</text>
+  <text x="585" y="1475" text-anchor="middle" fill="#788184" font-family="SFMono-Regular,Menlo,monospace" font-size="18" font-weight="600" letter-spacing="7">PERSONAL STRATEGY AGENT</text>
+</svg>

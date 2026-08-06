@@ -8,114 +8,55 @@
 <meta name="description" content="予算・目標・証拠から、今日の一手を選ぶ個人参謀。">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="apple-touch-startup-image" href="assets/brand/launch-1170x2532.png" media="(device-width:390px) and (device-height:844px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait)">
 <link rel="icon" href="assets/brand/app-icon.svg" type="image/svg+xml">
 <title>参謀 — 今日の指令</title>
 <style>
-:root{--bg:#0b0f14;--fg:#e6edf4;--teal:#5fd7c8;--gold:#e3b366;--line:#202b3a;--dim:#8698a9;--ok:#41b673}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{background:radial-gradient(1200px 600px at 50% -10%,#0f1720 0%,var(--bg) 60%) no-repeat,var(--bg);
-color:var(--fg);font-family:system-ui,'Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif;
-margin:0;padding:28px 20px 80px;line-height:1.95;font-size:clamp(16px,3.9vw,18px);-webkit-font-smoothing:antialiased}
-main{max-width:min(680px,94vw);margin:0 auto}
-h1{font-size:clamp(18px,4.6vw,22px);letter-spacing:.14em;color:var(--teal);font-weight:600;margin:0;
-text-shadow:0 0 18px rgba(95,215,200,.35)}
-.d{color:var(--dim);font-size:13px;letter-spacing:.1em;margin-top:10px}
-.nav{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
-.nav a{color:var(--gold);border:1px solid var(--line);border-radius:22px;padding:7px 16px;font-size:14px;text-decoration:none}
-.nav a:hover{color:var(--teal);border-color:#2b4a58}
-h2{font-size:clamp(19px,4.8vw,23px);letter-spacing:.02em;color:var(--gold);border-bottom:1px solid var(--line);
-padding-bottom:12px;margin:0 0 6px;font-weight:700;position:relative}
-h2::after{content:"";position:absolute;left:0;bottom:-1px;width:56px;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
-section{margin-top:44px}
-p.lead{color:var(--dim);font-size:14px;margin:10px 0 0;text-wrap:pretty}
-.q{border:1px solid var(--line);border-radius:14px;padding:16px 17px;margin:16px 0;
-background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,0))}
-.q .qt{font-size:16px;font-weight:600;color:#eef4fa;line-height:1.6;text-wrap:pretty}
-.q textarea{width:100%;margin-top:10px;font:inherit;font-size:15.5px;color:var(--fg);background:rgba(255,255,255,.05);
-border:1px solid var(--line);border-radius:12px;padding:10px 12px;outline:none;resize:vertical;min-height:62px}
-.q textarea:focus{border-color:#2b4a58}
-.budget{border:1px solid #315b59;border-radius:16px;padding:18px 17px;margin-top:16px;
-background:linear-gradient(145deg,rgba(95,215,200,.08),rgba(227,179,102,.025))}
-.budget-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-.budget-grid label{font-size:12.5px;color:var(--dim);line-height:1.5}
-.budget-grid input,.budget-grid select,.budget-grid textarea{display:block;width:100%;margin-top:5px;font:inherit;font-size:16px;
-color:var(--fg);background:#111923;border:1px solid var(--line);border-radius:10px;padding:9px 10px;outline:none}
-.budget-grid input:focus,.budget-grid select:focus,.budget-grid textarea:focus{border-color:var(--teal)}
-.budget-summary{font-size:15px;line-height:1.7;color:#dbe6f0;margin-top:13px}
-.budget-summary b{color:var(--teal);font-size:21px}
-.private{font-size:12.5px;color:var(--dim);line-height:1.65;margin-top:10px}
-.mv{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;padding:14px 15px;
-margin:12px 0;background:rgba(255,255,255,.02);cursor:pointer;transition:border-color .15s,background .15s}
-.mv:hover{border-color:#2b4a58}
-.mv.sel{border-color:var(--teal);background:rgba(95,215,200,.08)}
-.mv.over{opacity:.56;cursor:not-allowed;border-style:dashed}
-.mv .rd{flex:0 0 auto;width:18px;height:18px;border-radius:50%;border:2px solid #3a4658;margin-top:5px}
-.mv.sel .rd{border-color:var(--teal);background:radial-gradient(circle,var(--teal) 45%,transparent 47%)}
-.mv .t{font-size:16px;font-weight:600;color:#eef4fa;line-height:1.55}
-/* 既定案=参謀が今日考えた案ではない。同じ顔で並ぶと「全部既定案」に気づけない */
-.mv .rk.fb{font-size:11px;letter-spacing:.14em;color:var(--gold);font-weight:700;
-  border:1px solid var(--gold);border-radius:5px;padding:1px 5px;vertical-align:2px}
-.mv .w{font-size:13px;color:var(--dim);margin-top:4px;line-height:1.7;text-wrap:pretty}
-.mv .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
-.mv .meta span{font-size:11.5px;border:1px solid var(--line);border-radius:14px;padding:2px 8px;color:#aab7c3}
-.mv .outcome{font-size:12.5px;color:#bcd0df;margin-top:8px;line-height:1.65}
-.mv .stop{font-size:12px;color:#d4aa77;margin-top:5px;line-height:1.6}
-.recommend{border:1px solid var(--teal);border-radius:18px;padding:17px;margin-top:16px;
-background:linear-gradient(145deg,rgba(95,215,200,.11),rgba(227,179,102,.035));box-shadow:0 8px 28px rgba(0,0,0,.2)}
-.recommend.abstain{border-color:var(--gold);background:linear-gradient(145deg,rgba(227,179,102,.10),rgba(255,255,255,.02))}
-.recommend .rk{font-size:11px;letter-spacing:.18em;color:var(--teal);font-weight:700}
-.recommend.abstain .rk{color:var(--gold)}
-.recommend .reason{font-size:14px;color:#d9e4ed;line-height:1.7;margin:7px 0 0}
-.alts{border:1px solid var(--line);border-radius:14px;padding:0 14px;margin-top:15px}
-.alts summary{cursor:pointer;color:var(--gold);padding:12px 2px;font-size:14px;font-weight:700}
-.fitrow{display:flex;align-items:center;gap:8px;margin-top:9px;font-size:12px;color:var(--dim)}
-.fitrow select{font:inherit;color:var(--fg);background:#111923;border:1px solid var(--line);border-radius:9px;padding:5px 8px}
-.state-note{font-size:12px;color:var(--teal);margin-top:8px;line-height:1.55}
-.own{display:flex;gap:8px;margin-top:12px}
-.own input{flex:1;min-width:0;font:inherit;font-size:15.5px;color:var(--fg);background:rgba(255,255,255,.05);
-border:1px solid var(--line);border-radius:12px;padding:11px 13px;outline:none}
-.own input:focus{border-color:#2b4a58}
-.btn{font:inherit;font-size:15px;font-weight:700;border:0;border-radius:22px;padding:11px 20px;cursor:pointer;
-color:#04121a;background:linear-gradient(180deg,#7fe6d8,#41b6a7);box-shadow:0 3px 14px rgba(95,215,200,.28)}
-.btn:hover{filter:brightness(1.08)}.btn:active{transform:translateY(1px)}
-.btn.ghost{color:var(--gold);background:none;border:1px solid var(--line);box-shadow:none;font-weight:600;font-size:13.5px;padding:8px 15px}
-.btn.ghost:hover{color:var(--teal);border-color:#2b4a58}
-.locked{border:1px solid #295a4e;border-radius:16px;padding:20px;background:linear-gradient(180deg,rgba(95,215,200,.10),rgba(95,215,200,.02));margin-top:16px}
-.locked .lb{color:var(--teal);font-size:11px;letter-spacing:.2em}
-.locked .lt{font-size:clamp(18px,4.8vw,22px);font-weight:700;color:#f1f6fb;margin-top:8px;line-height:1.55;text-wrap:balance}
-.row{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px;align-items:center}
-.past{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0;background:rgba(255,255,255,.02)}
-.past .pd{font-size:12.5px;color:var(--dim)}
-.past .pt{font-size:15px;color:#dbe6f0;margin-top:3px;line-height:1.55}
-.badge{font-size:12.5px;border-radius:20px;padding:3px 11px;border:1px solid var(--line);color:#aab7c3;white-space:nowrap}
-.b-done{color:#0a1410;background:linear-gradient(180deg,#7fe6a8,#41b673);border-color:transparent;font-weight:700}
-.b-skip{color:#f0b3b3;border-color:#5a2b2b;background:rgba(120,40,40,.18)}
-.rate{color:var(--teal);font-size:29px;font-weight:700;text-shadow:0 0 16px rgba(95,215,200,.35)}
-.kv{font-size:13.5px;color:var(--dim)}
-.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9;pointer-events:none;
-background:rgba(11,15,20,.94);border:1px solid var(--line);border-radius:12px;padding:9px 15px;font-size:14px;
-color:var(--teal);opacity:0;transition:opacity .3s;max-width:90vw;text-align:center}
-.toast.show{opacity:1}
-.mic{flex:0 0 auto;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);
-color:var(--gold);font-size:18px;cursor:pointer}
-.mic.on{color:#04121a;background:linear-gradient(180deg,#ff9e7a,#e3654c);border-color:transparent}
-@media(max-width:430px){.budget-grid{grid-template-columns:1fr}}
+html,body{margin:0;min-height:100%;background:#07090b;color:#ede7dc}
+[hidden]{display:none!important}
+.boot{position:fixed;inset:0;z-index:100;display:grid;place-content:center;justify-items:center;background:radial-gradient(circle at 50% 44%,#11191d 0,#07090b 44%,#050607 100%);pointer-events:none}
+.boot-mark{width:76px;height:76px;display:grid;place-items:center;border:1px solid rgba(184,146,87,.4);border-radius:50%;background:#090c0e}
+.boot-mark svg{width:48px;height:48px}.boot-label{margin-top:18px;color:#969d9d;font:650 9px ui-monospace,monospace;letter-spacing:.3em}
+.app-fault,.no-js-warning{max-width:680px;margin:16px auto;padding:14px 16px;border:1px solid rgba(214,106,85,.45);border-radius:14px;background:#141012;color:#ede7dc;font:14px/1.7 system-ui,sans-serif}
+.app-fault button{min-height:44px;margin-top:10px;padding:8px 14px;border:1px solid rgba(237,231,220,.22);border-radius:10px;background:#b89257;color:#071010;font:700 14px system-ui,sans-serif}
 </style>
 <link rel="stylesheet" href="elite-ui.css">
 </head>
 <body>
 <div class="boot" id="boot" aria-hidden="true">
-  <div class="boot-mark"><img src="assets/brand/creator-mark.svg" alt=""></div>
+  <div class="boot-mark">
+    <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="#b89257" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 12 52 52M52 12 12 52" stroke-width="4" opacity=".92"></path>
+        <circle cx="32" cy="32" r="9" stroke-width="4" fill="#07090b"></circle>
+        <circle cx="32" cy="32" r="2.5" stroke="none" fill="#67d8d0"></circle>
+      </g>
+    </svg>
+  </div>
   <div class="boot-label">参謀、起動</div>
 </div>
+<script>
+(function(){
+  var boot=document.getElementById("boot"),key="sanbo_boot_v2";
+  if(!boot)return;
+  try{if(sessionStorage.getItem(key)){boot.remove();return;}sessionStorage.setItem(key,"1");}catch(e){}
+  var done=false,finish=function(){if(done)return;done=true;boot.remove();};
+  boot.addEventListener("animationend",function(e){if(e.target===boot)finish();});
+  setTimeout(finish,1100);
+  setTimeout(function(){var fault=document.getElementById("appFault");
+    if(fault&&document.body.dataset.appReady!=="1")fault.hidden=false;},3000);
+})();
+</script>
+<noscript><div class="no-js-warning" role="alert"><b>参謀を起動できません。</b><br>SafariのJavaScriptを有効にして、このページを再読み込みしてください。</div></noscript>
+<div class="app-fault" id="appFault" role="alert" hidden><b>起動を完了できませんでした。</b><br>通信が戻ってから再読み込みしてください。端末内の記録は消えません。<br><button type="button" onclick="location.reload()">再読み込み</button></div>
 <main>
 <header class="command-header">
   <a class="brand" href="#mission" aria-label="今日の指令へ">
     <img src="assets/brand/creator-mark.svg" alt="" width="42" height="42">
     <span><strong>参謀</strong><small>PERSONAL STRATEGY AGENT</small></span>
   </a>
-  <a class="brief-link" href="index.html"><span class="live-dot"></span>材料同期</a>
+  <a class="brief-link" id="briefStatus" href="index.html" data-state="loading"><span class="live-dot" aria-hidden="true"></span><span id="briefStatusText">材料確認中</span></a>
 </header>
 
 <section id="carry" class="carry-panel" hidden>
@@ -143,8 +84,8 @@ color:var(--gold);font-size:18px;cursor:pointer}
     <span class="pulse" aria-hidden="true"></span>
     <span id="commandContext">判断条件を構築中</span>
   </div>
-  <div id="recommended"></div>
-  <div class="command-actions">
+  <div id="recommended" aria-live="polite" aria-busy="true"></div>
+  <div class="command-actions" id="commandActions">
     <button class="btn command" id="lock"><span>この指令で進む</span><b>→</b></button>
     <button class="btn ghost" id="defer">本日は保留</button>
   </div>
@@ -251,16 +192,21 @@ color:var(--gold);font-size:18px;cursor:pointer}
 </footer>
 </main>
 <nav class="dock" aria-label="主要メニュー">
-  <a href="#mission" class="active"><span>⌁</span>今日</a>
-  <a href="index.html"><span>◫</span>情報</a>
-  <a href="#history"><span>◌</span>記憶</a>
-  <a href="#operations"><span>⌘</span>設定</a>
+  <a href="#mission" class="active" data-section="mission" aria-current="page">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14M8 8l8 8M16 8l-8 8"></path><circle cx="12" cy="12" r="2.4"></circle></svg>今日</a>
+  <a href="index.html">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM9 4v16M9 9h10M9 15h10"></path></svg>情報</a>
+  <a href="#history" data-section="history">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg>記憶</a>
+  <a href="#operations" data-section="operations">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"></path></svg>設定</a>
 </nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="decision-engine.js"></script>
 <script>
 "use strict";
+document.documentElement.classList.remove("no-js");
 var $=function(id){return document.getElementById(id);};
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){
   return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -347,13 +293,20 @@ var FALLBACK={questions:[
       success_p_min:.35,success_p_max:.7,category:"buy",impact_min:.02,impact_max:.12,impact_why:"実装速度を上げる可能性はあるが成果増加は未確認",
       evidence_ids:["user-goal","action-history"],assumptions:["週2回以上使う"],disconfirm:"無料版と完成件数が変わらない",
       outcome:"同じ作業の無料版との比較メモが1件残る",continue_if:"無料版より月2件以上多く成果物が完成する",stop:"30日で成果物が2件増えなければ解約する"}]};
-var DATA=FALLBACK, dataDate="";
+var DATA=FALLBACK, dataDate="", DATA_STATE="loading", DATA_READY=false;
 var CURRENT_RANKED=[];
 var CURRENT_REC=null;
 var STATE_LABELS={stage:{concept:"構想",build:"実装",publish:"公開",acquire:"利用者獲得",revenue:"収益化"},
   bottleneck:{technical:"技術",trust:"信用",customer:"顧客",time:"時間",cost:"費用"},
   outcome:{complete:"完成物",validate:"検証結果",publish:"公開物",sell:"販売・応募"},
   risk:{cautious:"堅実",balanced:"標準",aggressive:"攻める"}};
+function materialStatus(){
+  if(DATA_STATE==="loading")return {state:"loading",text:"材料確認中"};
+  if(DATA_STATE==="fallback")return {state:"fallback",text:"既定案で稼働"};
+  var age=/^\d{4}-\d{2}-\d{2}$/.test(dataDate)?Math.floor((Date.parse(today()+"T00:00:00Z")-Date.parse(dataDate+"T00:00:00Z"))/86400000):999;
+  if(age>3)return {state:"stale",text:"材料要更新"};
+  return {state:"ready",text:age>0?("材料 "+dataDate.slice(5).replace("-","/")):"材料同期済"};
+}
 function fitOptions(v){return [["none","合わない"],["low","低い"],["normal","普通"],["high","高い"]].map(function(x){
   return '<option value="'+x[0]+'"'+(v===x[0]?' selected':'')+'>'+x[1]+'</option>';}).join("");}
 function moveCard(x,D,isTop){var m=x.move,cost=m.cost_min===m.cost_max?money(m.cost_max):(money(m.cost_min)+"〜"+money(m.cost_max));
@@ -369,7 +322,7 @@ function moveCard(x,D,isTop){var m=x.move,cost=m.cost_min===m.cost_max?money(m.c
     (S.goal.value_yen?signedMoney(x.score):x.score.toFixed(1))+'</span></div>'+
     (S.goal.value_yen?'<div class="outcome"><b>期待値レンジ（仮説）</b> '+signedMoney(x.ev.min)+' 〜 '+signedMoney(x.ev.max)+
       '（目標寄与 '+Math.round(m.impact_min*100)+'〜'+Math.round(m.impact_max*100)+'%）</div>':'')+
-    '<div class="fitrow">この目標への寄与を補正<select class="fit" data-title="'+esc(m.t)+'">'+fitOptions(x.fit)+'</select></div>'+
+    '<label class="fitrow">この目標への寄与を補正<select class="fit" data-title="'+esc(m.t)+'">'+fitOptions(x.fit)+'</select></label>'+
     '<div class="outcome"><b>見込みの根拠</b> '+esc(m.success_why)+'</div>'+
     (m.impact_why?'<div class="outcome"><b>寄与の根拠</b> '+esc(m.impact_why)+'</div>':'')+
     (m.evidence_ids.length?'<div class="outcome"><b>証拠</b> '+esc(m.evidence_ids.join(' · '))+'</div>':'')+
@@ -382,7 +335,9 @@ function moveCard(x,D,isTop){var m=x.move,cost=m.cost_min===m.cost_max?money(m.c
 
 function paint(){
   var t=today(), D=day(t);
-  $("date").textContent=t+(dataDate&&dataDate!==t?"（材料は "+dataDate+" 版）":"")+" JST";
+  var material=materialStatus(),brief=$("briefStatus");brief.dataset.state=material.state;
+  $("briefStatusText").textContent=material.text;
+  $("date").textContent=t+(DATA_STATE==="fallback"?"（既定材料）":dataDate&&dataDate!==t?"（材料は "+dataDate+" 版）":"")+" JST";
 
   $("stateStage").value=S.state.stage;$("stateBottleneck").value=S.state.bottleneck;
   $("stateOutcome").value=S.state.outcome;$("stateMinutes").value=String(S.state.minutes);$("stateRisk").value=S.state.risk;
@@ -423,29 +378,38 @@ function paint(){
   Array.prototype.forEach.call($("qs").querySelectorAll("textarea"),function(ta){
     ta.addEventListener("input",function(){day().answers[+ta.dataset.i]=ta.value;save();});});
 
-  // 一手候補。現在地・端末内の実績・目標への利用者補正が、実際に順位を変える。
-  var ranked=StickDecision.rankMoves(DATA.moves,{state:S.state,days:S.days,fitOverrides:S.move_fit,
-    goalValue:S.goal.value_yen,budget:S.budget,remaining:remaining(today()),globalProblem:cycleProblem()});
-  CURRENT_RANKED=ranked;
-  var rec=StickDecision.recommendation(ranked,{state:S.state,goalValue:S.goal.value_yen,dataDate:dataDate,today:t});
-  CURRENT_REC=rec;
-  if(rec.abstain){
-    $("recommended").innerHTML='<div class="recommend abstain"><div class="rk">いまは決めない</div><div class="reason">'+esc(rec.reason)+
-      '</div><div class="state-note">条件を直すか、下の代替案を確認してください。無理に一手を捏造しません。</div></div>';
+  // 一手候補。材料の取得中は仮データを確定させず、取得失敗が確定してから既定案へ切り替える。
+  $("recommended").setAttribute("aria-busy",DATA_READY?"false":"true");
+  $("lock").disabled=!DATA_READY;$("defer").disabled=!DATA_READY;
+  if(!DATA_READY){
+    CURRENT_RANKED=[];CURRENT_REC=null;$("alternatives").hidden=true;$("moves").innerHTML="";
+    $("recommended").innerHTML='<div class="recommend loading" role="status"><div class="rk">材料照合</div><div class="reason">今日の材料を確認しています</div><div class="loading-line" aria-hidden="true"></div></div>';
   }else{
-    $("recommended").innerHTML='<div class="recommend"><div class="rk">参謀の推奨</div>'+moveCard(rec.top,D,true)+'</div>';
+    $("alternatives").hidden=false;
+    var ranked=StickDecision.rankMoves(DATA.moves,{state:S.state,days:S.days,fitOverrides:S.move_fit,
+      goalValue:S.goal.value_yen,budget:S.budget,remaining:remaining(today()),globalProblem:cycleProblem()});
+    CURRENT_RANKED=ranked;
+    var rec=StickDecision.recommendation(ranked,{state:S.state,goalValue:S.goal.value_yen,dataDate:dataDate,today:t});
+    CURRENT_REC=rec;
+    if(rec.abstain){
+      $("recommended").innerHTML='<div class="recommend abstain"><div class="rk">いまは決めない</div><div class="reason">'+esc(rec.reason)+
+        '</div><div class="state-note">条件を直すか、下の代替案を確認してください。無理に一手を捏造しません。</div></div>';
+    }else{
+      $("recommended").innerHTML='<div class="recommend"><div class="rk">参謀の推奨</div>'+moveCard(rec.top,D,true)+'</div>';
+    }
+    $("moves").innerHTML=ranked.filter(function(x){return !rec.top||x.index!==rec.top.index;}).map(function(x){return moveCard(x,D,false);}).join("");
+    Array.prototype.forEach.call(document.querySelectorAll(".mv"),function(el){
+      el.addEventListener("click",function(){
+        if(el.classList.contains("over")){toast("今日の条件では選べません");return;}
+        D.selected=el.dataset.t;save();$("ownT").value="";$("ownMeta").hidden=true;render();});});
+    Array.prototype.forEach.call(document.querySelectorAll(".fit"),function(sel){
+      sel.addEventListener("click",function(e){e.stopPropagation();});
+      sel.addEventListener("change",function(e){e.stopPropagation();S.move_fit[sel.dataset.title]=sel.value;D.selected="";save();render();
+        toast("目標への寄与を補正しました");});});
   }
-  $("moves").innerHTML=ranked.filter(function(x){return !rec.top||x.index!==rec.top.index;}).map(function(x){return moveCard(x,D,false);}).join("");
-  Array.prototype.forEach.call(document.querySelectorAll(".mv"),function(el){
-    el.addEventListener("click",function(){
-      if(el.classList.contains("over")){toast("今日の条件では選べません");return;}
-      D.selected=el.dataset.t;save();$("ownT").value="";$("ownMeta").hidden=true;render();});});
-  Array.prototype.forEach.call(document.querySelectorAll(".fit"),function(sel){
-    sel.addEventListener("click",function(e){e.stopPropagation();});
-    sel.addEventListener("change",function(e){e.stopPropagation();S.move_fit[sel.dataset.title]=sel.value;D.selected="";save();render();
-      toast("目標への寄与を補正しました");});});
 
   // 確定表示
+  $("commandActions").hidden=!!D.move;
   if(D.move){$("lockedBox").hidden=false;$("lockedT").textContent=D.move;}
   else $("lockedBox").hidden=true;
 
@@ -471,6 +435,7 @@ function paint(){
 function render(){
   if(document.startViewTransition&&document.body.dataset.ready==="1")document.startViewTransition(paint);
   else{paint();document.body.dataset.ready="1";}
+  document.body.dataset.appReady="1";$("appFault").hidden=true;
 }
 
 /* ---- 操作 ---- */
@@ -518,6 +483,7 @@ $("restoreFile").addEventListener("change",function(){var f=this.files&&this.fil
   }).catch(function(){toast("このバックアップは読み込めません");});});
 $("ownT").addEventListener("input",function(){if(this.value.trim()){day().selected="";save();}$("ownMeta").hidden=!this.value.trim();});
 $("lock").addEventListener("click",function(){
+  if(!DATA_READY){toast("今日の材料を確認中です");return;}
   if(day().move){toast("先に「選び直す」を押してください");return;}
   var own=$("ownT").value.trim();
   var sel=CURRENT_RANKED.filter(function(x){return x.move.t===day().selected;})[0];
@@ -544,7 +510,7 @@ $("lock").addEventListener("click",function(){
 });
 $("unlock").addEventListener("click",function(){day().move="";day().selected="";day().move_meta=null;day().actual_cost_yen=null;day().actual_value_yen=null;
   day().goal_advanced="unknown";day().done=null;day().result=null;save();render();});
-$("defer").addEventListener("click",function(){if(day().move){toast("先に「選び直す」を押してください");return;}
+$("defer").addEventListener("click",function(){if(!DATA_READY){toast("今日の材料を確認中です");return;}if(day().move){toast("先に「選び直す」を押してください");return;}
   var rec=StickDecision.recommendation(CURRENT_RANKED,
   {state:S.state,goalValue:S.goal.value_yen,dataDate:dataDate,today:today()});
   day().selected="";day().abstained={reason:rec.abstain?rec.reason:"利用者が今日は保留した",state_snapshot:Object.assign({},S.state)};
@@ -602,23 +568,46 @@ $("clear").addEventListener("click",function(){if(!confirm("行動記録をす�
     if(on){try{rec.stop();}catch(e){}return;}
     try{rec=new SR();}catch(e){toast("音声を開始できません");return;}
     rec.lang="ja-JP";rec.interimResults=true;rec.continuous=false;
-    rec.onresult=function(ev){var s="";for(var i=0;i<ev.results.length;i++)s+=ev.results[i][0].transcript;$("ownT").value=s;};
+    rec.onresult=function(ev){var s="";for(var i=0;i<ev.results.length;i++)s+=ev.results[i][0].transcript;
+      $("ownT").value=s;$("ownT").dispatchEvent(new Event("input",{bubbles:true}));};
     rec.onerror=function(){on=false;mic.classList.remove("on");};
     rec.onend=function(){on=false;mic.classList.remove("on");};
     try{rec.start();on=true;mic.classList.add("on");}catch(e){toast("音声を開始できません");}});
 })();
 
+/* ---- 下部ナビ(見ている区画と同期) ---- */
+(function(){var links=Array.prototype.slice.call(document.querySelectorAll(".dock [data-section]"));
+  function activate(id){links.forEach(function(a){var on=a.dataset.section===id;a.classList.toggle("active",on);
+    if(on)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});}
+  links.forEach(function(a){a.addEventListener("click",function(){activate(a.dataset.section);});});
+  var initial=location.hash.slice(1);if(initial)activate(initial);
+  if(!("IntersectionObserver" in window))return;
+  var observer=new IntersectionObserver(function(entries){var visible=entries.filter(function(e){return e.isIntersecting;})
+    .sort(function(a,b){return b.intersectionRatio-a.intersectionRatio;});if(visible[0])activate(visible[0].target.id);},
+    {rootMargin:"-18% 0px -62% 0px",threshold:[0,.15,.35]});
+  ["mission","operations","history"].forEach(function(id){var el=$(id);if(el)observer.observe(el);});
+})();
+
+/* ---- iPhoneのソフトウェアキーボード中は、下部メニューを入力欄に重ねない ---- */
+(function(){var viewport=window.visualViewport;if(!viewport)return;
+  function update(){document.body.classList.toggle("keyboard-open",window.innerHeight-viewport.height>140);}
+  viewport.addEventListener("resize",update);viewport.addEventListener("scroll",update);update();
+})();
+
 /* ---- 材料の取得(失敗しても汎用で動く) ---- */
-try{var bootKey="sanbo_boot_"+today();if(sessionStorage.getItem(bootKey))$("boot").classList.add("quick");
-  else sessionStorage.setItem(bootKey,"1");}catch(e){}
 render();
+var dataSettled=false,dataTimer=null;
+function settleData(state){if(dataSettled)return;dataSettled=true;clearTimeout(dataTimer);DATA_STATE=state;DATA_READY=true;render();}
 try{
-  fetch("ichite.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(j){
+  var dataController="AbortController" in window?new AbortController():null;
+  dataTimer=setTimeout(function(){if(dataController)dataController.abort();settleData("fallback");},2200);
+  fetch("ichite.json",{cache:"no-store",signal:dataController?dataController.signal:undefined}).then(function(r){return r.ok?r.json():null;}).then(function(j){
     if(j&&Array.isArray(j.questions)&&j.questions.length&&Array.isArray(j.moves)&&j.moves.length){
       DATA={questions:j.questions.slice(0,3),moves:j.moves.slice(0,5)};dataDate=j.date||"";
       if(j.kan)$("qlead").textContent="今朝の勘：「"+j.kan+"」— 気づきを残す補助メモ。順位は現在地入力で変わります。";
-      render();}
-  }).catch(function(){});
-}catch(e){}
+      settleData("daily");return;}
+    settleData("fallback");
+  }).catch(function(){settleData("fallback");});
+}catch(e){settleData("fallback");}
 </script>
 </body></html>
