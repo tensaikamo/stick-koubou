@@ -1,0 +1,19 @@
+{
+  "id": "./ichite.html",
+  "name": "参謀 — Personal Strategy Agent",
+  "short_name": "参謀",
+  "description": "予算・目標・証拠から、今日の一手を選ぶ個人参謀。",
+  "lang": "ja",
+  "start_url": "./ichite.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#07090b",
+  "theme_color": "#07090b",
+  "icons": [
+    {"src":"assets/brand/app-icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"assets/brand/app-icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"},
+    {"src":"assets/brand/app-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"},
+    {"src":"assets/brand/app-icon-monochrome.svg","sizes":"any","type":"image/svg+xml","purpose":"monochrome"}
+  ]
+}
