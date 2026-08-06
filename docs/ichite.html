@@ -5,8 +5,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="参謀">
+<meta name="app-build-id" content="truthful-ui-v1">
 <meta name="description" content="予算・目標・証拠から、今日の一手を選ぶ個人参謀。">
-<link rel="manifest" href="manifest.webmanifest">
+<link rel="manifest" href="manifest.webmanifest?v=truthful-ui-v1">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <link rel="apple-touch-startup-image" href="assets/brand/launch-1170x2532.png" media="(device-width:390px) and (device-height:844px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait)">
 <link rel="icon" href="assets/brand/app-icon.svg" type="image/svg+xml">
@@ -23,7 +24,7 @@ html,body{margin:0;min-height:100%;background:#07090b;color:#ede7dc}
 .app-fault,.no-js-warning{max-width:680px;margin:16px auto;padding:14px 16px;border:1px solid rgba(214,106,85,.45);border-radius:14px;background:#141012;color:#ede7dc;font:14px/1.7 system-ui,sans-serif}
 .app-fault button{min-height:44px;margin-top:10px;padding:8px 14px;border:1px solid rgba(237,231,220,.22);border-radius:10px;background:#b89257;color:#071010;font:700 14px system-ui,sans-serif}
 </style>
-<link rel="stylesheet" href="elite-ui.css">
+<link rel="stylesheet" href="elite-ui.css?v=truthful-ui-v1">
 </head>
 <body>
 <div class="boot" id="boot" aria-hidden="true">
@@ -186,7 +187,7 @@ html,body{margin:0;min-height:100%;background:#07090b;color:#ede7dc}
   </details>
 </section>
 
-<section class="intel" id="intel">
+<section class="intel" id="intel" hidden>
   <div class="section-kicker">SITUATION</div>
   <h2>今日の空気</h2>
   <p class="lead" id="intelDate">材料を読み込み中</p>
@@ -214,7 +215,7 @@ html,body{margin:0;min-height:100%;background:#07090b;color:#ede7dc}
 <nav class="dock" aria-label="主要メニュー">
   <a href="#mission" class="active" data-section="mission" aria-current="page">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14M8 8l8 8M16 8l-8 8"></path><circle cx="12" cy="12" r="2.4"></circle></svg>今日</a>
-  <a href="#intel" data-section="intel">
+  <a href="#intel" id="intelNav" data-section="intel" hidden>
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM9 4v16M9 9h10M9 15h10"></path></svg>情報</a>
   <a href="#history" data-section="history">
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg>記憶</a>
@@ -223,9 +224,10 @@ html,body{margin:0;min-height:100%;background:#07090b;color:#ede7dc}
 </nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="decision-engine.js"></script>
+<script src="decision-engine.js?v=truthful-ui-v1"></script>
 <script>
 "use strict";
+var APP_BUILD_ID="truthful-ui-v1";
 document.documentElement.classList.remove("no-js");
 var $=function(id){return document.getElementById(id);};
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){
@@ -313,7 +315,9 @@ var FALLBACK={questions:[
       success_p_min:.35,success_p_max:.7,category:"buy",impact_min:.02,impact_max:.12,impact_why:"実装速度を上げる可能性はあるが成果増加は未確認",
       evidence_ids:["user-goal","action-history"],assumptions:["週2回以上使う"],disconfirm:"無料版と完成件数が変わらない",
       outcome:"同じ作業の無料版との比較メモが1件残る",continue_if:"無料版より月2件以上多く成果物が完成する",stop:"30日で成果物が2件増えなければ解約する"}]};
-var DATA=FALLBACK, dataDate="", DATA_STATE="loading", DATA_READY=false;
+// 据え置き案は手動の代替候補としてだけ残す。今日の材料から作られた案と混同させない。
+FALLBACK.moves.forEach(function(m){m.fallback=true;});
+var DATA=FALLBACK, dataDate="", dataReason="当日の推薦材料を確認できていません", DATA_STATE="loading", DATA_READY=false;
 var CURRENT_RANKED=[];
 var CURRENT_REC=null;
 var STATE_LABELS={stage:{concept:"構想",build:"実装",publish:"公開",acquire:"利用者獲得",revenue:"収益化"},
@@ -322,10 +326,11 @@ var STATE_LABELS={stage:{concept:"構想",build:"実装",publish:"公開",acquir
   risk:{cautious:"堅実",balanced:"標準",aggressive:"攻める"}};
 function materialStatus(){
   if(DATA_STATE==="loading")return {state:"loading",text:"材料確認中"};
-  if(DATA_STATE==="fallback")return {state:"fallback",text:"既定案で稼働"};
+  var allFallback=DATA.moves.length&&DATA.moves.every(function(m){return !!m.fallback;});
+  if(DATA_STATE==="fallback"||allFallback)return {state:"fallback",text:"推薦材料なし"};
   var age=/^\d{4}-\d{2}-\d{2}$/.test(dataDate)?Math.floor((Date.parse(today()+"T00:00:00Z")-Date.parse(dataDate+"T00:00:00Z"))/86400000):999;
-  if(age>3)return {state:"stale",text:"材料要更新"};
-  return {state:"ready",text:age>0?("材料 "+dataDate.slice(5).replace("-","/")):"材料同期済"};
+  if(age>=StickDecision.STALE_DAYS)return {state:"stale",text:"材料要更新"};
+  return {state:"ready",text:"材料同期済"};
 }
 function fitOptions(v){return [["none","合わない"],["low","低い"],["normal","普通"],["high","高い"]].map(function(x){
   return '<option value="'+x[0]+'"'+(v===x[0]?' selected':'')+'>'+x[1]+'</option>';}).join("");}
@@ -333,14 +338,16 @@ function moveCard(x,D,isTop){var m=x.move,cost=m.cost_min===m.cost_max?money(m.c
   var sel=(D.selected===m.t||D.move===m.t)?" sel":"",over=x.problem?" over":"";
   var scoreLabel=S.goal.value_yen?(S.state.risk==="cautious"?"悲観値 ":S.state.risk==="aggressive"?"攻め値 ":"期待中央値 "):"判断 ";
   var cal=m.local_calibration&&m.local_calibration.n?(" · 端末実績n="+m.local_calibration.n):"";
+  var estimate=m.fallback?'<span>成功見込み 未評価</span><span>目標寄与 未評価</span>':
+    '<span>成功 '+Math.round(m.success_p_min*100)+'〜'+Math.round(m.success_p_max*100)+'%'+cal+'</span>'+
+    '<span>現在地適合 '+m.state_affinity.toFixed(2)+'倍</span><span>回収 '+(m.payback_days?m.payback_days+'日':'即時')+'</span><span>'+scoreLabel+
+    (S.goal.value_yen?signedMoney(x.score):x.score.toFixed(1))+'</span>';
   return '<div class="mv'+sel+over+'" data-i="'+x.index+'" data-t="'+esc(m.t)+'"><div class="rd"></div><div><div class="t">'+
     (isTop?'<span class="rk">推奨</span> ':'')+(m.fallback?'<span class="rk fb">既定案</span> ':'')+esc(m.t)+'</div>'+
     (m.fallback?'<div class="w">※ 参謀が今日考えた案ではなく、案が作れなかった時の据え置き案です。</div>':'')+
     (m.why?'<div class="w">'+esc(m.why)+'</div>':'')+
-    '<div class="meta"><span>'+cost+'</span><span>'+m.time_minutes+'分</span><span>成功 '+Math.round(m.success_p_min*100)+'〜'+Math.round(m.success_p_max*100)+'%'+cal+'</span>'+
-    '<span>現在地適合 '+m.state_affinity.toFixed(2)+'倍</span><span>回収 '+(m.payback_days?m.payback_days+'日':'即時')+'</span><span>'+scoreLabel+
-    (S.goal.value_yen?signedMoney(x.score):x.score.toFixed(1))+'</span></div>'+
-    (S.goal.value_yen?'<div class="outcome"><b>期待値レンジ（仮説）</b> '+signedMoney(x.ev.min)+' 〜 '+signedMoney(x.ev.max)+
+    '<div class="meta"><span>'+cost+'</span><span>'+m.time_minutes+'分</span>'+estimate+'</div>'+
+    (S.goal.value_yen&&!m.fallback?'<div class="outcome"><b>期待値レンジ（仮説）</b> '+signedMoney(x.ev.min)+' 〜 '+signedMoney(x.ev.max)+
       '（目標寄与 '+Math.round(m.impact_min*100)+'〜'+Math.round(m.impact_max*100)+'%）</div>':'')+
     '<label class="fitrow">この目標への寄与を補正<select class="fit" data-title="'+esc(m.t)+'">'+fitOptions(x.fit)+'</select></label>'+
     '<div class="outcome"><b>見込みの根拠</b> '+esc(m.success_why)+'</div>'+
@@ -357,7 +364,10 @@ function paint(){
   var t=today(), D=day(t);
   var material=materialStatus(),brief=$("briefStatus");brief.dataset.state=material.state;
   $("briefStatusText").textContent=material.text;
-  $("date").textContent=t+(DATA_STATE==="fallback"?"（既定材料）":dataDate&&dataDate!==t?"（材料は "+dataDate+" 版）":"")+" JST";
+  // 当日材料が無い時に、ヘッダーから古い index.html へ誘導しない。
+  brief.setAttribute("href",material.state==="ready"?"#intel":"#mission");
+  brief.setAttribute("aria-disabled",material.state==="ready"?"false":"true");
+  $("date").textContent=t+(material.state==="fallback"?"（推薦材料なし）":"")+" JST";
 
   $("stateStage").value=S.state.stage;$("stateBottleneck").value=S.state.bottleneck;
   $("stateOutcome").value=S.state.outcome;$("stateMinutes").value=String(S.state.minutes);$("stateRisk").value=S.state.risk;
@@ -409,7 +419,8 @@ function paint(){
     var ranked=StickDecision.rankMoves(DATA.moves,{state:S.state,days:S.days,fitOverrides:S.move_fit,
       goalValue:S.goal.value_yen,budget:S.budget,remaining:remaining(today()),globalProblem:cycleProblem()});
     CURRENT_RANKED=ranked;
-    var rec=StickDecision.recommendation(ranked,{state:S.state,goalValue:S.goal.value_yen,dataDate:dataDate,today:t});
+    var rec=StickDecision.recommendation(ranked,{state:S.state,goalValue:S.goal.value_yen,
+      dataDate:dataDate,today:t,dataReason:dataReason});
     CURRENT_REC=rec;
     if(rec.abstain){
       $("recommended").innerHTML='<div class="recommend abstain"><div class="rk">いまは決めない</div><div class="reason">'+esc(rec.reason)+
@@ -464,19 +475,13 @@ function pct(x){return Math.round(Number(x)*100);}
 function li(items){return items.filter(Boolean).map(function(s){return "<li>"+s+"</li>";}).join("");}
 
 function paintIntel(){
-  var box=$("intelBody"), head=$("intelDate");
-  if(!BRIEF){head.textContent="今朝の材料をまだ取得できていません。参謀の実行後に反映されます。";
-    box.innerHTML="";return;}
-  // 情報鮮度。古い材料を最新の顔で見せない(憲法3章)。何日前かを必ず言い、
-  // 一定以上古ければ「今日の判断材料としては使うな」と明示する。
-  var age=null;
-  try{
-    var d0=new Date(String(BRIEF.date||"").replace(/-/g,"/")+" 00:00:00");
-    if(!isNaN(d0))age=Math.floor((new Date(today().replace(/-/g,"/")+" 00:00:00")-d0)/86400000);
-  }catch(e){}
-  var ageText=age==null?"":age<=0?"（今日の材料）":age===1?"（1日前の材料）":"（"+age+"日前の材料）";
-  head.textContent=(BRIEF.updated_at||BRIEF.date||"")+" 時点の読み"+ageText;
-  head.className=(age!=null&&age>=StickDecision.STALE_DAYS)?"lead warn":"lead";
+  var section=$("intel"), nav=$("intelNav"), box=$("intelBody"), head=$("intelDate");
+  var valid=!!BRIEF&&BRIEF.date===today()&&BRIEF.build_id===APP_BUILD_ID;
+  section.hidden=!valid;if(nav){nav.hidden=!valid;
+    nav.parentElement.style.gridTemplateColumns=valid?"repeat(4,1fr)":"repeat(3,1fr)";}
+  if(!valid){head.textContent="";box.innerHTML="";return;}
+  head.textContent=(BRIEF.updated_at||BRIEF.date||"")+" 時点の読み（今日の材料）";
+  head.className="lead";
   var h="";
   if(BRIEF.diffs&&BRIEF.diffs.length)
     h+='<div class="intel-block"><b>静かな変化</b><ul class="tight">'+li(BRIEF.diffs.map(esc))+'</ul></div>';
@@ -511,7 +516,8 @@ function paintMemory(){
   var score=$("sanboScore"), box=$("memoryBody");
   if(!LEDGER){score.innerHTML="";box.innerHTML="";return;}
   var s=LEDGER.score||{}, h="";
-  if(s.total){
+  var visibility=StickDecision.metricVisibility(s);
+  if(visibility.showPerformance){
     var b=s.brier, base=(s.baseline||{});
     h='<div class="score-row"><span class="rate">'+(s.rate!=null?pct(s.rate)+"%":"—")+'</span>'+
       '<span class="kv">参謀の的中率（的中'+s.hit+' / 外し'+s.miss+'）</span></div>';
@@ -525,7 +531,7 @@ function paintMemory(){
       (s.brier_initial!=null&&Math.abs(s.brier_initial-b)>=0.001?
         '<br><span class="sub">当初の確度で採点すると '+s.brier_initial.toFixed(3)+'</span>':'')+'</p>';
   }else{
-    h='<p class="sub">参謀の予測はまだ決着していません（判定待ち'+(s.pending||0)+'件）。</p>';
+    h='<p class="sub">'+esc(visibility.reason)+'。的中率とBrierは条件を満たすまで表示しません。</p>';
   }
   if(LEDGER.next_due)h+='<p class="sub">次の決着: '+esc(LEDGER.next_due.date)+'（あと'+LEDGER.next_due.days+'日）</p>';
   score.innerHTML=h;
@@ -561,8 +567,8 @@ function paintMemory(){
   box.innerHTML=m;
 }
 
-/* 履歴が空でも「まだありません」で終わらせない。参謀が持っている数字を実際に回して、
-   この選び方を続けた場合の着地を出す(占いではなく、参謀自身の見積りの帰結)。 */
+/* 精密な試算は、目標と同種の行動結果が揃った時だけ出す。初期値を大量に回しても
+   証拠は増えないので、未校正の間は不足している前提だけを伝える。 */
 function paintSim(){
   var box=$("sim");
   if(!DATA_READY){box.innerHTML="";return;}
@@ -586,9 +592,22 @@ function paintSim(){
       '<p class="sub">条件を見直すか、参謀の更新を待ってください。</p></div>';
     return;
   }
+  var actionOutcomes=Object.keys(S.days||{}).filter(function(k){var d=S.days[k]||{};
+    return !!d.move&&(d.goal_advanced==="yes"||d.goal_advanced==="no")&&
+      (d.result==="done"||d.result==="blocked"||d.result==="skipped"||d.done===true||d.done===false);}).length;
+  var readiness=StickDecision.simulationReadiness(eligible,{
+    goalConfigured:!!(S.goal&&S.goal.title&&S.goal.metric&&+S.goal.value_yen>0),
+    calibratedOutcomeCount:actionOutcomes,minCalibratedOutcomes:30});
+  if(!readiness.ready){
+    box.innerHTML='<div class="sim"><div class="section-kicker">SIMULATION</div>'+
+      '<p class="sub">精密な90日試算はまだ表示しません。初期値を600回回しても、根拠が増えたことにはならないためです。</p>'+
+      '<p class="sub warn"><b>不足している前提</b></p><ul class="tight">'+
+      li(readiness.missing.map(esc))+'</ul></div>';
+    return;
+  }
   var budget={total_yen:rest,spent_yen:0,
               per_action_yen:S.budget.per_action_yen,risk_limit_yen:S.budget.risk_limit_yen};
-  var r=StickDecision.simulate(eligible,{days:90,budget:budget,state:S.state,seed:20260806});
+  var r=StickDecision.simulate(readiness.moves,{days:90,budget:budget,state:S.state,seed:20260806});
   if(!r||!r.eligible){box.innerHTML="";return;}
   var goal=S.goal&&S.goal.value_yen?S.goal.value_yen:0;
   box.innerHTML='<div class="sim"><div class="section-kicker">SIMULATION</div>'+
@@ -698,7 +717,7 @@ $("unlock").addEventListener("click",function(){day().move="";day().selected="";
   day().goal_advanced="unknown";day().done=null;day().result=null;save();render();});
 $("defer").addEventListener("click",function(){if(!DATA_READY){toast("今日の材料を確認中です");return;}if(day().move){toast("先に「選び直す」を押してください");return;}
   var rec=StickDecision.recommendation(CURRENT_RANKED,
-  {state:S.state,goalValue:S.goal.value_yen,dataDate:dataDate,today:today()});
+  {state:S.state,goalValue:S.goal.value_yen,dataDate:dataDate,today:today(),dataReason:dataReason});
   day().selected="";day().abstained={reason:rec.abstain?rec.reason:"利用者が今日は保留した",state_snapshot:Object.assign({},S.state)};
   save();render();toast("見送った判断も記録しました");});
 function judgeCarry(result){var k=$("carry")._d;if(!k)return;var d=S.days[k],actual=Math.max(0,Math.round(num($("carryCost").value,0)));
@@ -797,10 +816,14 @@ try{
   // 判定は「描画したか(dataSettled)」ではなく「取得が終わったか(fetchDone)」で行う
   // (dataSettled は2.2秒で立つので、それを見ると打ち切りが永久に発火しない)。
   setTimeout(function(){if(dataController&&!fetchDone)dataController.abort();},15000);
-  fetch("ichite.json",{cache:"no-store",signal:dataController?dataController.signal:undefined}).then(function(r){return r.ok?r.json():null;}).then(function(j){
+  fetch("ichite.json?v="+APP_BUILD_ID,{cache:"no-store",signal:dataController?dataController.signal:undefined}).then(function(r){return r.ok?r.json():null;}).then(function(j){
     fetchDone=true;
-    if(j&&Array.isArray(j.questions)&&j.questions.length&&Array.isArray(j.moves)&&j.moves.length){
-      DATA={questions:j.questions.slice(0,3),moves:j.moves.slice(0,5)};dataDate=j.date||"";
+    var readiness=StickDecision.dataReadiness(j,{today:today(),buildId:APP_BUILD_ID});
+    dataDate=j&&j.date?String(j.date):"";
+    dataReason=readiness.allFallback?"当日の候補がすべて品質基準で落ちました。既定案は自動推薦しません":
+      (readiness.reason||"");
+    if(readiness.usable){
+      DATA={questions:Array.isArray(j.questions)?j.questions.slice(0,3):[],moves:j.moves.slice(0,5)};
       if(j.kan)$("qlead").textContent="今朝の勘：「"+j.kan+"」— 気づきを残す補助メモ。順位は現在地入力で変わります。";
       settleData("daily");return;}
     settleData("fallback");
@@ -811,7 +834,7 @@ try{
 // 取れなければその節を出さないだけ(嘘の空枠を作らない)。
 ["brief","ledger"].forEach(function(name){
   try{
-    fetch(name+".json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(j){
+    fetch(name+".json?v="+APP_BUILD_ID,{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(j){
       if(!j||typeof j!=="object")return;
       if(name==="brief")BRIEF=j;else LEDGER=j;
       try{if(name==="brief")paintIntel();else paintMemory();}catch(e){}

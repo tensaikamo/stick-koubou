@@ -535,6 +535,7 @@ if generation_ok:
             os.makedirs("docs", exist_ok=True)
             with open("docs/ichite.json", "w", encoding="utf-8") as f:
                 json.dump({"date": datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d"),
+                           "build_id": decision.BUILD_ID,
                            "questions": _qs, "moves": _mv,
                            "kan": final.get("kan", "")}, f, ensure_ascii=False, indent=2)
             print("ichite: docs/ichite.json を更新 (問い%d・一手%d)" % (len(_qs), len(_mv)))
@@ -719,6 +720,7 @@ if generation_ok or not os.path.exists("docs/index.html"):
     try:
         _brief = {
             "date": jst.strftime("%Y-%m-%d"), "updated_at": jst.strftime("%Y-%m-%d %H:%M"),
+            "build_id": decision.BUILD_ID,
             "omote": final.get("omote", ""), "ura": final.get("ura", ""),
             "ura_taikou": final.get("ura_taikou", ""), "dousuru": final.get("dousuru", ""),
             "kan": final.get("kan", ""), "kan_konkyo": final.get("kan_konkyo", ""),
