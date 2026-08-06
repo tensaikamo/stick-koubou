@@ -110,5 +110,54 @@
     "severity": "high",
     "dimension": "evidence",
     "description": "比較不能なBrier基準値を出典・条件なしで表示しない"
+  },
+  {
+    "id": "all-fallback-primary-abstention",
+    "suite": "capability",
+    "severity": "critical",
+    "dimension": "trust",
+    "description": "全候補が既定案なら最重要指令へ自動昇格せず見送る"
+  },
+  {
+    "id": "daily-payload-exact-date-gate",
+    "suite": "capability",
+    "severity": "critical",
+    "dimension": "evidence",
+    "description": "当日版でない候補データを今日の推薦材料として採用しない"
+  },
+  {
+    "id": "small-sample-performance-hidden",
+    "suite": "capability",
+    "severity": "high",
+    "dimension": "trust",
+    "description": "決着30件未満では的中率とBrierを通常画面へ表示しない"
+  },
+  {
+    "id": "uncalibrated-simulation-hidden",
+    "suite": "capability",
+    "severity": "high",
+    "dimension": "evidence",
+    "description": "既定値だけの成功確率・寄与率から精密な90日予測を表示しない"
+  },
+  {
+    "id": "missing-brief-section-hidden",
+    "suite": "capability",
+    "severity": "high",
+    "dimension": "quality",
+    "description": "briefが欠落した時は空の今日の空気カードを節ごと隠す"
+  },
+  {
+    "id": "payload-build-generation-gate",
+    "suite": "capability",
+    "severity": "critical",
+    "dimension": "correctness",
+    "description": "画面と候補データのbuild_idが違う場合は推薦へ使わない"
+  },
+  {
+    "id": "manual-action-survives-abstention",
+    "suite": "regression",
+    "severity": "critical",
+    "dimension": "quality",
+    "description": "材料不足で見送っても利用者は自分の一手を入力・確定できる"
   }
 ]
