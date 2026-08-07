@@ -1,64 +1,58 @@
 {
-  "date": "2026-08-06",
-  "updated_at": "2026-08-06 22:41",
+  "date": "2026-08-07",
+  "updated_at": "2026-08-07 10:07",
   "build_id": "truthful-ui-v1",
-  "omote": "Anthropicが独自基板やラック構成を手がけるハードウェア担当に続き、未発表データ漏洩を防ぐ内部リスク調査員の採用を開始した。OpenRouterではClaude Opus 5の<t data-d='時間差で大量データをまとめて安く処理するAPI形式'>バッチ枠</t>が追加された一方、Qwen3 VLの大型思考モデルは145%値上げされた。",
-  "ura": "巨大資本がハードウェア内製と軍事級セキュリティで自社基盤を固める中、リアルタイムAPIの高額化が進んでいる。資本力のない個人が勝つ隙は、高額な即時応答に固執せず、値下げモデルや非同期バッチを使い、夜間に<t data-d='実行エラーを自力で検知しコードを自己修正する仕組み'>自己進化エージェント</t>を放置稼働させる自動化の側に存在する。",
-  "ura_taikou": "Anthropicの採用強化は単なる政府案件用の形式的コンプライアンスだという説も検討したが、ハードウェアアセンブリの求人と同時進行しているため退けた。",
-  "dousuru": "iPhoneのSafariでGitHubを開き、夜間バッチで一括処理させるプロンプトテンプレートをGistに1件作成して保存しろ。即時応答のAPIに依存する構造を捨て、裏で安く動く非同期処理用のデータ形式へロジックを組み替えろ。朝と夜の隙間時間だけで回る放置型ワークフローの仕込みを終わらせておけ。",
-  "kan": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社設計ハードウェアまたは独自カスタムチップに関する公式発表を行わない。",
-  "kan_konkyo": "基準率（0.98）はきわめて高いが、クラウド事業者との共同提携やプロトタイプ発表が電撃的に行われる可能性をわずかに考慮し、自信過剰回避のため0.91へ下方較正した。",
-  "kan_hantai": "求人公開にあわせてクラウドパートナー（AWS等）との提携による共同設計チップの概念発表が電撃的に行われる可能性がある。",
-  "kan_conf": 0.91,
-  "ippan": "AIの利用料金は、すぐ返事が欲しい時と「後でまとめて処理する」時で価格差が大きく開き始めている。急ぎでない文章要約やデータ整理は、一括処理の設定や格安モデルを選ぶことでコストを半減できる。高額な最新AIを都度使うのではなく、用途に応じて処理形式やモデルを使い分ける設定を確認しておこう。",
-  "votes": [],
+  "omote": "Anthropicが<t data-d='AI処理に特化した独自半導体'>AIチップ</t>設計の統括求人を開始し、AMDはモデルの重みを直接シリコンに刻むTaalasを買収した。一方でMicrosoftのAI売上の大半がOpenAIへのインフラ提供に依存している実態も判明した。",
+  "ura": "以前観測したAnthropicのカスタムラック設計の動き通り、大手は汎用GPU依存による原価高騰から逃れるためハード内製化と<t data-d='モデル構造を回路化し計算コストを削る手法'>モデル焼き付け</t>へ本格着手した。アプリ直接売上が低迷する中、推論原価を100分の1に削る価格破壊戦の準備が進んでいる。",
+  "ura_taikou": "単なるインフラコスト削減目的の内製化という仮説も検討したが、AMDによるTaalas買収（資料5）と連動するモデル焼き付けによる推論単価の破壊戦を見落とすため退けた。",
+  "dousuru": "iPhoneのSafariでChatGPTやClaudeのWeb画面を開き、単発質問ではなくエラー時に自律修正して完遂するプロンプト構造の設計図をメモアプリに書き上げろ。長時間推論エージェント<t data-d='長時間タスクの自律修正を行う実行構造'>Argus</t>のように、ループ試行を前提としたタスク処理手順を完成させておけ。将来の推論API暴落を見越し、個人で放置自動化できるタスクの仕込みを朝のうちに終わらせろ。",
+  "kan": "過去1年間にAnthropicがシリコン関連求人を公開してから自社ハードの設計完了を発表した頻度はゼロであり、半導体開発の標準サイクルは18〜24ヶ月である。これらを基準率とし今日の求人開始（資料1）を加えて調整すると、14日以内にAnthropicが自社AIチップの<t data-d='設計データを出荷・製造へ回す最終段階'>テープアウト</t>や製造パートナーシップを正式発表する確率は、5分に満たないが15%の目があると見る。",
+  "kan_konkyo": "求人公開（資料1）は開発の初期段階を示すものであり、18〜24ヶ月という半導体開発の基準率を大きく前倒しできる根拠が乏しいためだ。",
+  "kan_hantai": "Anthropicが実は1年以上前から極秘裏にプロジェクトを進めており、製造委託契約を完了させている場合は予測が外れる。",
+  "kan_conf": 0.15,
+  "ippan": "AIの無料枠が拡大したというニュースがあっても、仕事や個人データで使う有料プランを簡単に解約してはならない。無料枠はユーザーのデータを収集してモデル改善に利用する側面が強く、データ非学習の設定や最新モデルの優先処理権は有料版に集中しているからだ。セキュリティを担保しながら得をしたいなら、月額20ドルの有料環境を使い続けるべきだ。",
+  "votes": [
+    0.15,
+    0.15,
+    0.05
+  ],
   "mijoriku": [
     {
-      "title": "Self-Evolving Coding Agents",
-      "desc": "実行ログとエラーからAIがロジックやツール使用を自前で自己修正・更新する枠組み。",
-      "why": "高価格なリアルタイム指示に頼らず、安いAPIで自己修復ループを放置実行させる個人のシステム構築に直結するため。"
+      "title": "Taalasの買収とシリコンへのモデル焼き付け（Etching）",
+      "desc": "AMDがモデルの重みを直接シリコンに刻印するチップ技術を持つTaalasを買収した。",
+      "why": "特定モデルの推論API価格が100分の1に暴落する未来を意味し、個人がiPhoneから大量の非同期エージェントを格安で回す土台になるから。"
+    },
+    {
+      "title": "長時間推論ランタイム Argus",
+      "desc": "途中エラーや制約変化に自発対応して長時間の思考・実行を継続するエージェント用構造。",
+      "why": "単発回答ではなく一晩放置してタスクを完遂させる個人エージェントの設計思想として日本で先回りできるから。"
     }
   ],
-  "diffs": [
-    "[差分] 価格が動いた: Z.ai: GLM 5.2 値下げ 26%",
-    "[差分] 価格が動いた: Qwen: Qwen3.6 27B 値上げ 108%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値下げ 37%",
-    "[差分] 価格が動いた: MoonshotAI: Kimi K2.6 値下げ 3%",
-    "[差分] 価格が動いた: Qwen: Qwen3 VL 235B A22B Thinking 値上げ 145%",
-    "[差分] 新モデルが登場: Claude Opus 5 (batch) (anthropic/claude-opus-5:batch)"
-  ],
+  "diffs": [],
   "evidence": [
     {
-      "claim": "Anthropicはハードウェアの自社設計と内部漏洩防止の防衛体制を同時に強化している",
+      "claim": "大手AI企業は汎用GPU依存を脱し、自社チップやモデルのシリコン焼き付けによる推論原価の削減へ動いている。",
       "confidence": 0.85,
-      "disconfirm": "ハードウェア関連求人が取り下げられ既存クラウド依存の継続が発表されること",
+      "disconfirm": "AMDやAnthropicの独自チップ技術が実用化に至らず、既存GPUの効率利用に留まること。",
       "sources": [
         {
-          "title": "[新規求人] anthropic: Insider Risk Investigator  (Boston, MA; New York City, NY; Washington, DC)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5380744008"
+          "title": "[新規求人] anthropic: Technical Program Manager, Silicon (San Francisco, CA | New York City, NY)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5380377008"
         },
         {
-          "title": "[新規求人] anthropic: Technical Program Manager, Hardware Systems (San Francisco, CA | New York City, NY)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5380379008"
+          "title": "AMD acquires Taalas to boost inference performance by etching models in silicon",
+          "url": "https://www.theregister.com/systems/2026/08/06/amd-acquires-ai-chip-startup-taalas-to-boost-inference-performance-by-etching-models-into-silicon/5284344"
         }
       ]
     },
     {
-      "claim": "API市場で即時思考モデルの値上げと非同期バッチ処理の安価提供という分極化が進んでいる",
+      "claim": "MicrosoftのAI関連売上の大部分は自社サービス需要ではなくOpenAIへのインフラ提供依存であり、直接実需は未だ乏しい。",
       "confidence": 0.9,
-      "disconfirm": "すべてのモデルの即時API単価が一律で定額化・標準化されること",
+      "disconfirm": "Microsoftの次期決算でCopilot等自社プロダクトの直接売上がインフラ売上を大きく上回ること。",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値下げ 37%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "[差分] 価格が動いた: Qwen: Qwen3 VL 235B A22B Thinking 値上げ 145%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "[差分] 新モデルが登場: Claude Opus 5 (batch) (anthropic/claude-opus-5:batch)",
-          "url": "https://openrouter.ai/models"
+          "title": "Microsoft's AI Sales Mostly Come from OpenAI, Disclosures Show",
+          "url": "https://www.bloomberg.com/news/articles/2026-08-05/microsoft-s-ai-sales-mostly-come-from-openai-disclosures-show"
         }
       ]
     }
