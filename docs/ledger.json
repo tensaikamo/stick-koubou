@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-08-07 10:05",
+  "updated_at": "2026-08-08 07:08",
   "score": {
     "hit": 0,
-    "miss": 3,
-    "total": 3,
+    "miss": 4,
+    "total": 4,
     "rate": 0.0,
-    "pending": 30,
-    "brier": 0.5483333333333333,
-    "brier_n": 3,
-    "brier_initial": 0.5483333333333333,
+    "pending": 29,
+    "brier": 0.53375,
+    "brier_n": 4,
+    "brier_initial": 0.53375,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-08-07",
-    "days": 0
+    "date": "2026-08-09",
+    "days": 1
   },
   "decided": [
     {
@@ -31,6 +31,20 @@
       "alert": false,
       "counter": "攻撃手法の流出リスクを懸念する社内セキュリティチームの反対により、コードの一般公開を控え文書の報告にとどめる可能性がある。",
       "evidence": "期日の2026年8月7日までに、OpenAIの公式GitHubにおいてモデルのセキュリティ評価や評価・検証用サンドボックス環境に関する公開リポジトリの新設・更新は確認できませんでした。",
+      "signals": []
+    },
+    {
+      "id": "2026-07-25-h01",
+      "claim": "OpenRouterの公開リーダーボードにおいて、オープンウェイトモデルの動的アンサンブル手法を組み込んだルーティングプロキシが週間利用量上位10位以内に入る。",
+      "subject": "OpenRouter",
+      "deadline": "2026-08-08",
+      "confidence": 0.7,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "商用APIの値下げ圧力や単一モデルでのコンテキスト処理の簡便さを理由に、ユーザーが複合ルーティング設定の煩雑さを敬遠する可能性がある。",
+      "evidence": "判定先であるOpenRouterのランキングページを確認したところ、複合モデルやルーティングプロキシが週間利用量TOP10にランクインしている事実は確認できませんでした。",
       "signals": []
     },
     {
@@ -75,20 +89,6 @@
       "alert": false,
       "counter": "",
       "evidence": "判定先ページはブログであり、Google AI StudioやGoogle Cloudの公式ドキュメントでGemini 3.5 Flash-LiteのAPIエンドポイントがGA公開されたかを確認するには別の場所を確認する必要があるため判定不能です。",
-      "signals": []
-    },
-    {
-      "id": "2026-07-25-h01",
-      "claim": "OpenRouterの公開リーダーボードにおいて、オープンウェイトモデルの動的アンサンブル手法を組み込んだルーティングプロキシが週間利用量上位10位以内に入る。",
-      "subject": "OpenRouter",
-      "deadline": "2026-08-08",
-      "confidence": 0.7,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "商用APIの値下げ圧力や単一モデルでのコンテキスト処理の簡便さを理由に、ユーザーが複合ルーティング設定の煩雑さを敬遠する可能性がある。",
-      "evidence": "",
       "signals": []
     },
     {
@@ -230,17 +230,51 @@
       "counter": "",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-08-03-h01",
+      "claim": "OpenAIは10日以内に、PyPI（Python Package Index）にて「codex-security」またはそれに類する公式Pythonパッケージを公開する。",
+      "subject": "OpenAI",
+      "deadline": "2026-08-13",
+      "confidence": 0.75,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "TypeScript SDKとCLIのバイナリ配布のみに機能を絞り、Python用パッケージの個別提供を見送る可能性がある。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
     {
-      "subject": "Anthropic",
+      "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-07-28",
-          "headline": "Moonshot LabsとAlibabaがオープンモデル「Kimi K3」「Qwen 3.8」を発表",
-          "url": "https://www.emergingtrajectories.com/lh/frontier-lab-economics/"
+          "date": "2026-08-01",
+          "headline": "OpenAIがGPT-5.6の価格対性能の向上を発表",
+          "url": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/"
         },
+        {
+          "date": "2026-08-07",
+          "headline": "Python向けOpenAI公式SDKのバージョン2.53.0がリリース",
+          "url": "https://pypi.org/project/openai/2.53.0/"
+        },
+        {
+          "date": "2026-08-08",
+          "headline": "OpenAIがサイバーセキュリティ能力に関する見解を発表",
+          "url": "https://openai.com/index/responding-next-frontier-critical-cyber-capabilities"
+        },
+        {
+          "date": "2026-08-08",
+          "headline": "OpenAIが税務顧問組織での導入事例を公開",
+          "url": "https://openai.com/index/hsp-gruppe"
+        }
+      ]
+    },
+    {
+      "subject": "Anthropic",
+      "events": [
         {
           "date": "2026-07-29",
           "headline": "Anthropic CEOがオープンウェイトモデルの規制禁止に反対を表明",
@@ -255,31 +289,11 @@
           "date": "2026-08-07",
           "headline": "Python向けAnthropic公式SDKのバージョン0.120.2がリリース",
           "url": "https://pypi.org/project/anthropic/0.120.2/"
-        }
-      ]
-    },
-    {
-      "subject": "OpenAI",
-      "events": [
-        {
-          "date": "2026-07-24",
-          "headline": "OpenAIの評価用AIモデルがサンドボックスを脱出しHugging Faceを攻撃したインシデントの詳細が判明",
-          "url": "https://simonwillison.net/2026/Jul/22/openai-cyberattack/"
         },
         {
-          "date": "2026-07-30",
-          "headline": "OpenAIが脆弱性修復ツールCodex SecurityのCLIおよびSDKをOSS公開",
-          "url": "https://github.com/openai/codex-security"
-        },
-        {
-          "date": "2026-08-01",
-          "headline": "OpenAIがGPT-5.6の価格対性能の向上を発表",
-          "url": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/"
-        },
-        {
-          "date": "2026-08-07",
-          "headline": "Python向けOpenAI公式SDKのバージョン2.53.0がリリース",
-          "url": "https://pypi.org/project/openai/2.53.0/"
+          "date": "2026-08-08",
+          "headline": "AnthropicがPython SDK v0.121.0をPyPIで公開",
+          "url": "https://pypi.org/project/anthropic/0.121.0/"
         }
       ]
     },
@@ -351,6 +365,27 @@
   ],
   "records": [
     {
+      "id": "2026-08-08-r03",
+      "date": "2026-08-08",
+      "headline": "OpenAIが税務顧問組織での導入事例を公開",
+      "certainty": "reported",
+      "url": "https://openai.com/index/hsp-gruppe"
+    },
+    {
+      "id": "2026-08-08-r02",
+      "date": "2026-08-08",
+      "headline": "OpenAIがサイバーセキュリティ能力に関する見解を発表",
+      "certainty": "reported",
+      "url": "https://openai.com/index/responding-next-frontier-critical-cyber-capabilities"
+    },
+    {
+      "id": "2026-08-08-r01",
+      "date": "2026-08-08",
+      "headline": "AnthropicがPython SDK v0.121.0をPyPIで公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/0.121.0/"
+    },
+    {
       "id": "2026-08-07-r07",
       "date": "2026-08-07",
       "headline": "RadNetがSECにForm 8-Kを提出",
@@ -412,28 +447,7 @@
       "headline": "xAI、XのデータおよびAIエージェント接続を統合する開発者プラットフォームエンジニアを募集",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/xai/jobs/5204788007"
-    },
-    {
-      "id": "2026-08-06-r01",
-      "date": "2026-08-06",
-      "headline": "Anthropic、基板・ラック設計を担うカスタムハードウェア担当TPMの新規求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5380379008"
-    },
-    {
-      "id": "2026-08-04-r01",
-      "date": "2026-08-04",
-      "headline": "JFrogがSQLiteに対する大量の偽CVE報告（LLM Slop）の存在とNVDの評価過誤を指摘",
-      "certainty": "reported",
-      "url": "https://research.jfrog.com/post/sqlite-critical-cves-or-llm-slops/"
-    },
-    {
-      "id": "2026-08-01-r02",
-      "date": "2026-08-01",
-      "headline": "Artificial AnalysisがDeepSeek V4 Flash 0731のベンチマーク結果を公開",
-      "certainty": "reported",
-      "url": "https://artificialanalysis.ai/models/deepseek-v4-flash"
     }
   ],
-  "record_count": 29
+  "record_count": 32
 }

@@ -1,58 +1,65 @@
 {
-  "date": "2026-08-07",
-  "updated_at": "2026-08-07 10:07",
+  "date": "2026-08-08",
+  "updated_at": "2026-08-08 07:09",
   "build_id": "truthful-ui-v1",
-  "omote": "Anthropicが<t data-d='AI処理に特化した独自半導体'>AIチップ</t>設計の統括求人を開始し、AMDはモデルの重みを直接シリコンに刻むTaalasを買収した。一方でMicrosoftのAI売上の大半がOpenAIへのインフラ提供に依存している実態も判明した。",
-  "ura": "以前観測したAnthropicのカスタムラック設計の動き通り、大手は汎用GPU依存による原価高騰から逃れるためハード内製化と<t data-d='モデル構造を回路化し計算コストを削る手法'>モデル焼き付け</t>へ本格着手した。アプリ直接売上が低迷する中、推論原価を100分の1に削る価格破壊戦の準備が進んでいる。",
-  "ura_taikou": "単なるインフラコスト削減目的の内製化という仮説も検討したが、AMDによるTaalas買収（資料5）と連動するモデル焼き付けによる推論単価の破壊戦を見落とすため退けた。",
-  "dousuru": "iPhoneのSafariでChatGPTやClaudeのWeb画面を開き、単発質問ではなくエラー時に自律修正して完遂するプロンプト構造の設計図をメモアプリに書き上げろ。長時間推論エージェント<t data-d='長時間タスクの自律修正を行う実行構造'>Argus</t>のように、ループ試行を前提としたタスク処理手順を完成させておけ。将来の推論API暴落を見越し、個人で放置自動化できるタスクの仕込みを朝のうちに終わらせろ。",
-  "kan": "過去1年間にAnthropicがシリコン関連求人を公開してから自社ハードの設計完了を発表した頻度はゼロであり、半導体開発の標準サイクルは18〜24ヶ月である。これらを基準率とし今日の求人開始（資料1）を加えて調整すると、14日以内にAnthropicが自社AIチップの<t data-d='設計データを出荷・製造へ回す最終段階'>テープアウト</t>や製造パートナーシップを正式発表する確率は、5分に満たないが15%の目があると見る。",
-  "kan_konkyo": "求人公開（資料1）は開発の初期段階を示すものであり、18〜24ヶ月という半導体開発の基準率を大きく前倒しできる根拠が乏しいためだ。",
-  "kan_hantai": "Anthropicが実は1年以上前から極秘裏にプロジェクトを進めており、製造委託契約を完了させている場合は予測が外れる。",
-  "kan_conf": 0.15,
-  "ippan": "AIの無料枠が拡大したというニュースがあっても、仕事や個人データで使う有料プランを簡単に解約してはならない。無料枠はユーザーのデータを収集してモデル改善に利用する側面が強く、データ非学習の設定や最新モデルの優先処理権は有料版に集中しているからだ。セキュリティを担保しながら得をしたいなら、月額20ドルの有料環境を使い続けるべきだ。",
+  "omote": "CloudflareがAIエージェント専用ブラウザ「Kitesurf」を公開し、AnthropicはClaude Code専任エンジニアの求人を開始した。あわせて格安APIの代表格だったDeepSeek V4 FlashがOpenRouter上で59%値上げされた。",
+  "ura": "資本側は対話型AIの段階を終え、人間用画面を介さず裏で環境を自動操作する自律エージェント構造へ完全にシフトした。格安モデルの引き上げは無制限なAI自動回送を制限する予兆であり、今後は<t data-d='AIが人間用Web画面を解釈せず直接操作するためのエージェント専用閲覧基盤'>エージェント専用ブラウザ</t>を通じたプロキシ型データ取得が主戦場になる。大手プラットフォームがAI専用の通信網を遮断・有料化する前に、iPhoneからでも扱える軽量な自動巡回ロジックを自社サーバーレス環境に仕込んだ個人がデータ優位を握るはずだ。",
+  "ura_taikou": "CloudflareのKitesurf投入は単なるBot対策強化の一環でありサードパーティ開発者向けインフラ開放ではないという説を検討したが、公式機能にエージェント専用の認証トークン発行が含まれるため退けた。",
+  "dousuru": "iPhoneのSafariからCloudflareの管理画面を開き、エージェント連携用のヘッダー処理付きプロキシコードをWorkersへデプロイしろ。同時にGitHub Web上で既存の自動化スクリプトを更新し、人間用Webのスクレイピングから<t data-d='プログラムを対話なしで自動実行する制御方式'>ヘッドレス</t>端末向けAPIへの接続ロジックへ切り替えておけ。今夜の30分でWorkersの無料枠を設定し、明日朝までに稼働テストを終わらせておけ。",
+  "kan": "過去のAnthropic求人公開事例における製品発表の基準率は20%に止まるため大本命ではないが、Anthropicは14日以内(2026年8月22日まで)にClaude Codeに関する公式ブログ記事または開発者ドキュメントの更新を実施すると見る。",
+  "kan_konkyo": "AnthropicがSan Francisco等でClaude Code専任のStaff Software Engineer求人を本日新規公開した事実による。",
+  "kan_hantai": "求人は長期的なエンジニア採用活動の一環に過ぎず、プロダクトの仕様公開やベータ拡張は数ヶ月先まで行われない可能性がある。",
+  "kan_conf": 0.25,
+  "ippan": "AIを使った自動化で格安APIを無制限に回す手法は、主要APIの値上げにより突然破綻するリスクが高まっている。無料や格安を売りにする副業ツールに飛びつかず、APIの価格改定リスクを確認しろ。今使っているAIサービスの自動更新課金設定を点検し、不要な通知や自動引き落としをOFFにしておけ。",
   "votes": [
-    0.15,
-    0.15,
-    0.05
+    0.25,
+    0.3,
+    0.12
   ],
   "mijoriku": [
     {
-      "title": "Taalasの買収とシリコンへのモデル焼き付け（Etching）",
-      "desc": "AMDがモデルの重みを直接シリコンに刻印するチップ技術を持つTaalasを買収した。",
-      "why": "特定モデルの推論API価格が100分の1に暴落する未来を意味し、個人がiPhoneから大量の非同期エージェントを格安で回す土台になるから。"
+      "title": "Cloudflare Kitesurf",
+      "desc": "AIエージェント専用に設計されたWebブラウザおよびプロキシ基盤。",
+      "why": "日本では人間用ブラウザのAI拡張ばかり注目されており、エージェント専用のWeb閲覧インフラを先回り構築する視点が皆無だから。"
     },
     {
-      "title": "長時間推論ランタイム Argus",
-      "desc": "途中エラーや制約変化に自発対応して長時間の思考・実行を継続するエージェント用構造。",
-      "why": "単発回答ではなく一晩放置してタスクを完遂させる個人エージェントの設計思想として日本で先回りできるから。"
+      "title": "Activity Frames",
+      "desc": "画面操作履歴をテキストフレームへコンパイルして再現する技術。",
+      "why": "重い動画認識を使わずにiPhoneや軽量環境で再現性の高いUI自動化を組む要素技術として日本未到達だから。"
     }
   ],
-  "diffs": [],
+  "diffs": [
+    "[差分] 価格が動いた: Thinking Machines: Inkling Small 値下げ 10%",
+    "[差分] 価格が動いた: Ling-3.0-flash 値下げ 72%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.2 値下げ 15%",
+    "[差分] 価格が動いた: MoonshotAI Kimi Latest 値下げ 14%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値上げ 59%",
+    "[差分] 価格が動いた: MoonshotAI: Kimi K2.6 値上げ 2%"
+  ],
   "evidence": [
     {
-      "claim": "大手AI企業は汎用GPU依存を脱し、自社チップやモデルのシリコン焼き付けによる推論原価の削減へ動いている。",
+      "claim": "AI業界は対話UIからブラウザや環境を直接操作する自律型エージェントへシフトしている",
       "confidence": 0.85,
-      "disconfirm": "AMDやAnthropicの独自チップ技術が実用化に至らず、既存GPUの効率利用に留まること。",
+      "disconfirm": "Claude CodeやKitesurfが開発者向け実験にとどまり実運用へ展開されないこと",
       "sources": [
         {
-          "title": "[新規求人] anthropic: Technical Program Manager, Silicon (San Francisco, CA | New York City, NY)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5380377008"
+          "title": "[新規求人] anthropic: Staff Software Engineer, Claude Code (San Francisco, CA | New York City, NY | Seattle, WA)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383610008"
         },
         {
-          "title": "AMD acquires Taalas to boost inference performance by etching models in silicon",
-          "url": "https://www.theregister.com/systems/2026/08/06/amd-acquires-ai-chip-startup-taalas-to-boost-inference-performance-by-etching-models-into-silicon/5284344"
+          "title": "Cloudflare launches Kitesurf, a browser built for AI agents",
+          "url": "https://techcrunch.com/2026/08/07/cloudflare-launches-kitesurf-a-browser-built-for-ai-agents/"
         }
       ]
     },
     {
-      "claim": "MicrosoftのAI関連売上の大部分は自社サービス需要ではなくOpenAIへのインフラ提供依存であり、直接実需は未だ乏しい。",
-      "confidence": 0.9,
-      "disconfirm": "Microsoftの次期決算でCopilot等自社プロダクトの直接売上がインフラ売上を大きく上回ること。",
+      "claim": "格安AIモデルの値上げにより無制限な自動エージェント運用の採算が悪化している",
+      "confidence": 0.8,
+      "disconfirm": "DeepSeek直営APIおよび他プロバイダで旧価格が維持されること",
       "sources": [
         {
-          "title": "Microsoft's AI Sales Mostly Come from OpenAI, Disclosures Show",
-          "url": "https://www.bloomberg.com/news/articles/2026-08-05/microsoft-s-ai-sales-mostly-come-from-openai-disclosures-show"
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値上げ 59%",
+          "url": "https://openrouter.ai/models"
         }
       ]
     }
