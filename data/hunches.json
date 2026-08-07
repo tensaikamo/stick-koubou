@@ -271,21 +271,25 @@
     "claim": "OpenRouterの公開リーダーボードにおいて、オープンウェイトモデルの動的アンサンブル手法を組み込んだルーティングプロキシが週間利用量上位10位以内に入る。",
     "subject": "OpenRouter",
     "resolution": {
-      "source": "OpenRouter Official Activity/Rankings",
+      "source": "https://openrouter.ai/rankings",
       "check_query": "OpenRouter model rankings",
       "decider": "OpenRouterの利用ランキングページにて、複合モデル・ルーティングプロキシ（またはオープンモデル集合体エンドポイント）がTOP10にランクインすること"
     },
     "deadline": "2026-08-08",
     "confidence": 0.7,
     "counter": "商用APIの値下げ圧力や単一モデルでのコンテキスト処理の簡便さを理由に、ユーザーが複合ルーティング設定の煩雑さを敬遠する可能性がある。",
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-08T07:08:00.739519+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "判定先であるOpenRouterのランキングページを確認したところ、複合モデルやルーティングプロキシが週間利用量TOP10にランクインしている事実は確認できませんでした。",
+      "url": "https://openrouter.ai/rankings"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-07-25-h02",

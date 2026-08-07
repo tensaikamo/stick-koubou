@@ -1145,5 +1145,86 @@
     "body_fetched": false,
     "model": "gemini-3.6-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-08-08-r01",
+    "created_at": "2026-08-08T07:07:32.148088+09:00",
+    "headline": "AnthropicがPython SDK v0.121.0をPyPIで公開",
+    "what_happened": "AnthropicはClaude API用Python SDKのバージョン0.121.0をPyPIにリリースした。ドキュメントおよび仕様に従い、Claude APIへのリクエストを構築・送信する機能を提供する。",
+    "background": "Anthropicの公式Python SDKはClaudeモデル群へのアクセス手段として提供されており、インターフェース変更や新モデル対応に合わせて更新が行われる。",
+    "changed": "PyPIにおけるAnthropic公式Python SDKの最新バージョンが0.121.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/0.121.0/",
+      "title": "anthropic Python SDK v0.121.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-07-r05",
+      "2026-08-06-r01",
+      "2026-07-29-r01",
+      "2026-07-28-r04",
+      "2026-07-25-r01",
+      "2026-07-22-r05"
+    ]
+  },
+  {
+    "id": "2026-08-08-r02",
+    "created_at": "2026-08-08T07:07:32.148088+09:00",
+    "headline": "OpenAIがサイバーセキュリティ能力に関する見解を発表",
+    "what_happened": "OpenAIは公式ブログにおいて、高度なサイバー機能とAI技術の進展に関する公式見解記事を公開した。なお、本記事は本文取得フラグがfalseのためタイトル情報に基づく。",
+    "background": "主要AI開発企業はフロンティアモデルの安全審査およびサイバー攻撃への悪用防止策に関する報告を定期的に行っている。",
+    "changed": "OpenAIの公式ブログにサイバーセキュリティ領域に関する新たな見解記事が掲載された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://openai.com/index/responding-next-frontier-critical-cyber-capabilities",
+      "title": "Responding to the next frontier of critical cyber capabilities",
+      "hn_score": 0,
+      "name": "OpenAI公式",
+      "tier": 1
+    },
+    "body_fetched": false,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-07-r04",
+      "2026-08-01-r01",
+      "2026-07-30-r01",
+      "2026-07-24-r01",
+      "2026-07-23-r02",
+      "2026-07-22-r01"
+    ]
+  },
+  {
+    "id": "2026-08-08-r03",
+    "created_at": "2026-08-08T07:07:32.148088+09:00",
+    "headline": "OpenAIが税務顧問組織での導入事例を公開",
+    "what_happened": "OpenAIはHSP GRUPPEによる税務支援向けAI導入事例の紹介記事を公開した。なお、本記事は本文取得フラグがfalseのためタイトル情報に基づく。",
+    "background": "OpenAIは企業向けAPIおよびEnterpriseプランの普及を目的として、特定業界の顧客事例を公式Webサイトで定期的に紹介している。",
+    "changed": "OpenAIの公式コンテンツとして税務顧問分野での利用ケーススタディが新たに追加された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://openai.com/index/hsp-gruppe",
+      "title": "How HSP GRUPPE builds AI capabilities for tax advisory",
+      "hn_score": 0,
+      "name": "OpenAI公式",
+      "tier": 1
+    },
+    "body_fetched": false,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-07-r04",
+      "2026-08-01-r01",
+      "2026-07-30-r01",
+      "2026-07-24-r01",
+      "2026-07-23-r02",
+      "2026-07-22-r01"
+    ]
   }
 ]
