@@ -241,7 +241,7 @@
     "claim": "GoogleはGoogle AI StudioにおいてGemini 3.5 Flash-Liteの一般提供APIを開始する。",
     "subject": "Google",
     "resolution": {
-      "source": "Google Developers Blog or Google AI Studio documentation",
+      "source": "https://developers.googleblog.com/",
       "check_query": "Gemini Flash-Lite API",
       "decider": "Google AI StudioまたはGoogle Cloudの公式ドキュメントにてGemini 3.5 Flash-LiteのAPIエンドポイントが一般利用可能(GA)として公開されること。"
     },
@@ -250,11 +250,15 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "判定先ページはブログであり、Google AI StudioやGoogle Cloudの公式ドキュメントでGemini 3.5 Flash-LiteのAPIエンドポイントがGA公開されたかを確認するには別の場所を確認する必要があるため判定不能です。",
+      "url": "https://developers.googleblog.com/"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": true
   },
   {
     "id": "2026-07-25-h01",
@@ -347,21 +351,25 @@
     "claim": "OpenAIは12日以内にモデルの評価・検証用サンドボックスのコードまたは仕様書を公式GitHubで公開する。",
     "subject": "OpenAI",
     "resolution": {
-      "source": "OpenAI公式GitHubアカウント（github.com/openai）または公式ブログ",
+      "source": "https://github.com/openai",
       "check_query": "OpenAI evaluation sandbox repository",
       "decider": "2026年8月7日までにOpenAIの公式GitHub組織において、モデルのセキュリティ評価またはサンドボックス環境に関する公開リポジトリが新設・更新された場合に的中と判定する。"
     },
     "deadline": "2026-08-07",
     "confidence": 0.6,
     "counter": "攻撃手法の流出リスクを懸念する社内セキュリティチームの反対により、コードの一般公開を控え文書の報告にとどめる可能性がある。",
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-07T10:04:32.159249+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "期日の2026年8月7日までに、OpenAIの公式GitHubにおいてモデルのセキュリティ評価や評価・検証用サンドボックス環境に関する公開リポジトリの新設・更新は確認できませんでした。",
+      "url": "https://github.com/openai"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-07-27-h01",

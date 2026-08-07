@@ -969,5 +969,181 @@
     "body_fetched": true,
     "model": "gemini-3.6-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-08-07-r01",
+    "created_at": "2026-08-07T10:04:07.766217+09:00",
+    "headline": "手続き型データ生成ライブラリReasoning Coreに関する論文が公開",
+    "what_happened": "arXivに論文「Reasoning Core: Designing Broad Procedural Data for Completion-Supervised Reasoning Training」が提出された。著者は数学、論理、計画、ゲームなど50種類の生成器を含むProceduralデータ生成ライブラリ「Reasoning Core」を発表した。3Bパラメータモデルを用いた実験において、DROPやLogiQAなどの評価セットで従来の合成データ手法を上回る精度を記録したと報告している。",
+    "background": "LLMの推論能力向上において、検証可能なルールに基づき自動生成されたデータを用いたファインチューニング手法が注目を集めている。",
+    "changed": "推論モデルの学習に必要な合成データを広範な領域で体系的に生成・評価するためのオープンなツールとベンチマークが提示された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2608.05148v1",
+      "title": "Reasoning Core: Designing Broad Procedural Data for Completion-Supervised Reasoning Training",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
+  },
+  {
+    "id": "2026-08-07-r02",
+    "created_at": "2026-08-07T10:04:07.766217+09:00",
+    "headline": "長期推論を実行するマルチエージェント基盤Argusに関する論文が公開",
+    "what_happened": "arXivに論文「Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning」が提出された。著者はManager、Planner、Engineer、Reviewerの4つの役割にタスクを分割して永続的に状態を保持するエージェント実行環境「Argus」を発表した。ユーザーの意図と運用目標を分離し、検証を通過した記憶や手順のみを更新しながら長期的なタスクを完遂する構造を備えている。",
+    "background": "自律型AIエージェントの長期間にわたる実行では、途中の失敗や制約の変更に対して柔軟に軌道修正を行う仕組みが不可欠とされている。",
+    "changed": "単一プロンプトや単純なループ処理に頼らず、役割ごとのレビュー構造を持たせた持続的なエージェント実行アーキテクチャが提示された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2608.05144v1",
+      "title": "Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
+  },
+  {
+    "id": "2026-08-07-r03",
+    "created_at": "2026-08-07T10:04:07.766217+09:00",
+    "headline": "複数リポジトリの依存関係を利用した長文文脈作成手法OctoLongが発表",
+    "what_happened": "arXivに論文「OctoLong: Mid-Training On Cross-Repository Code Contexts Enhances Long-Context Modeling」が提出された。ASTパーサーやパッケージマネージャーを利用して関連リポジトリのコードを再帰的に取得し、数百万トークン規模の長文文脈を生成するパイプライン「OctoLong」を構築した。600Mから14Bのモデル群に対して中間学習を行うことで、長文文脈理解の性能向上を確認したと報告している。",
+    "background": "LLMのコンテキストウィンドウの拡大が進む一方、長距離依存関係を含む高品質な学習用コンテキストの確保が課題となっている。",
+    "changed": "単一ファイルや単一リポジトリにとどまらない、依存関係を辿ったコード文脈による効果的な長文文脈学習の手法が示された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2608.05141v1",
+      "title": "OctoLong: Mid-Training On Cross-Repository Code Contexts Enhances Long-Context Modeling",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
+  },
+  {
+    "id": "2026-08-07-r04",
+    "created_at": "2026-08-07T10:04:07.766217+09:00",
+    "headline": "Python向けOpenAI公式SDKのバージョン2.53.0がリリース",
+    "what_happened": "PyPIにてOpenAIのPython向け公式ライブラリのバージョン2.53.0が公開された。本ライブラリはOpenAI APIへのアクセスを提供し、httpxを利用した同期・非同期通信に対応している。",
+    "background": "OpenAIはAPI機能の更新やバグ修正に伴い、Python SDKのバージョン更新を定期的に実施している。",
+    "changed": "Python開発環境における公式クライアントの最新パッチバージョンが提供された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/2.53.0/",
+      "title": "openai Python SDK v2.53.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-01-r01",
+      "2026-07-30-r01",
+      "2026-07-24-r01",
+      "2026-07-23-r02",
+      "2026-07-22-r01"
+    ]
+  },
+  {
+    "id": "2026-08-07-r05",
+    "created_at": "2026-08-07T10:04:07.766217+09:00",
+    "headline": "Python向けAnthropic公式SDKのバージョン0.120.2がリリース",
+    "what_happened": "PyPIにてAnthropicのClaude API向けPython公式SDKのバージョン0.120.2が公開された。このパッケージはClaude APIへのアクセスおよび関連する型定義を提供する。",
+    "background": "AnthropicはAPIの改修やメンテナンスに合わせて公式SDKの更新を行っている。",
+    "changed": "Python環境におけるClaude APIクライアントの最新版が利用可能となった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/0.120.2/",
+      "title": "anthropic Python SDK v0.120.2 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-06-r01",
+      "2026-07-29-r01",
+      "2026-07-28-r04",
+      "2026-07-25-r01",
+      "2026-07-22-r05",
+      "2026-07-22-r04"
+    ]
+  },
+  {
+    "id": "2026-08-07-r06",
+    "created_at": "2026-08-07T10:04:07.766217+09:00",
+    "headline": "Google Gen AI Python SDK v2.17.0がリリースされ自動関数呼び出しの非推奨仕様が公表",
+    "what_happened": "PyPIにてGoogle Gen AI Python SDKのバージョン2.17.0が公開された。今後のメジャーバージョンにおいて、Models.generate_content等から直接呼び出される自動関数呼び出し（AFC）の動作を変更し、Chatsモジュール経由での呼び出しに一元化することが警告されている。",
+    "background": "Google Gen AI SDKはGemini Developer APIおよびEnterprise Agent Platformの双方に対応する標準ライブラリである。",
+    "changed": "将来のバージョン更新に向け、自動関数呼び出しを利用する開発者が実装を変更すべき方向性が明示された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/2.17.0/",
+      "title": "google-genai Python SDK v2.17.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-07-24-r05",
+      "2026-07-22-r03"
+    ]
+  },
+  {
+    "id": "2026-08-07-r07",
+    "created_at": "2026-08-07T10:04:07.766217+09:00",
+    "headline": "RadNetがSECにForm 8-Kを提出",
+    "what_happened": "RadNet, Inc.が米証券取引委員会（SEC）にForm 8-K（臨時報告書）を提出した。body_fetched=falseのためタイトルのみに基づく。",
+    "background": "米国の公募企業は、株主にとって重大な事象が発生した際にSECへForm 8-Kを提出する義務を負う。",
+    "changed": "RadNetに関する開示事項がSECの公的記録に追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://www.sec.gov/edgar/search/#/q=artificial%20intelligence",
+      "title": "[SEC 8-K] RadNet, Inc.  (RDNT)  (CIK 0000790526)",
+      "hn_score": 0,
+      "name": "SEC",
+      "tier": 1
+    },
+    "body_fetched": false,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
+  },
+  {
+    "id": "2026-08-07-r08",
+    "created_at": "2026-08-07T10:04:07.766217+09:00",
+    "headline": "Artificial Intelligence Technology SolutionsがSECにForm 8-Kを提出",
+    "what_happened": "Artificial Intelligence Technology Solutions Inc.が米証券取引委員会（SEC）にForm 8-Kを提出した。body_fetched=falseのためタイトルのみに基づく。",
+    "background": "Form 8-Kは企業の組織変更、財務上の事象、その他の重要決定事項を迅速に開示するために用いられる。",
+    "changed": "同社における重大事象がSECの公式データベースに登録された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://www.sec.gov/edgar/search/#/q=artificial%20intelligence",
+      "title": "[SEC 8-K] Artificial Intelligence Technology Solutions Inc.  (AITX, AITXD)  (CIK 0001498148)",
+      "hn_score": 0,
+      "name": "SEC",
+      "tier": 1
+    },
+    "body_fetched": false,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
   }
 ]
