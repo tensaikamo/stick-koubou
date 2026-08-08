@@ -1,65 +1,75 @@
 {
-  "date": "2026-08-08",
-  "updated_at": "2026-08-08 07:09",
+  "date": "2026-08-09",
+  "updated_at": "2026-08-09 06:59",
   "build_id": "truthful-ui-v1",
-  "omote": "CloudflareがAIエージェント専用ブラウザ「Kitesurf」を公開し、AnthropicはClaude Code専任エンジニアの求人を開始した。あわせて格安APIの代表格だったDeepSeek V4 FlashがOpenRouter上で59%値上げされた。",
-  "ura": "資本側は対話型AIの段階を終え、人間用画面を介さず裏で環境を自動操作する自律エージェント構造へ完全にシフトした。格安モデルの引き上げは無制限なAI自動回送を制限する予兆であり、今後は<t data-d='AIが人間用Web画面を解釈せず直接操作するためのエージェント専用閲覧基盤'>エージェント専用ブラウザ</t>を通じたプロキシ型データ取得が主戦場になる。大手プラットフォームがAI専用の通信網を遮断・有料化する前に、iPhoneからでも扱える軽量な自動巡回ロジックを自社サーバーレス環境に仕込んだ個人がデータ優位を握るはずだ。",
-  "ura_taikou": "CloudflareのKitesurf投入は単なるBot対策強化の一環でありサードパーティ開発者向けインフラ開放ではないという説を検討したが、公式機能にエージェント専用の認証トークン発行が含まれるため退けた。",
-  "dousuru": "iPhoneのSafariからCloudflareの管理画面を開き、エージェント連携用のヘッダー処理付きプロキシコードをWorkersへデプロイしろ。同時にGitHub Web上で既存の自動化スクリプトを更新し、人間用Webのスクレイピングから<t data-d='プログラムを対話なしで自動実行する制御方式'>ヘッドレス</t>端末向けAPIへの接続ロジックへ切り替えておけ。今夜の30分でWorkersの無料枠を設定し、明日朝までに稼働テストを終わらせておけ。",
-  "kan": "過去のAnthropic求人公開事例における製品発表の基準率は20%に止まるため大本命ではないが、Anthropicは14日以内(2026年8月22日まで)にClaude Codeに関する公式ブログ記事または開発者ドキュメントの更新を実施すると見る。",
-  "kan_konkyo": "AnthropicがSan Francisco等でClaude Code専任のStaff Software Engineer求人を本日新規公開した事実による。",
-  "kan_hantai": "求人は長期的なエンジニア採用活動の一環に過ぎず、プロダクトの仕様公開やベータ拡張は数ヶ月先まで行われない可能性がある。",
-  "kan_conf": 0.25,
-  "ippan": "AIを使った自動化で格安APIを無制限に回す手法は、主要APIの値上げにより突然破綻するリスクが高まっている。無料や格安を売りにする副業ツールに飛びつかず、APIの価格改定リスクを確認しろ。今使っているAIサービスの自動更新課金設定を点検し、不要な通知や自動引き落としをOFFにしておけ。",
+  "omote": "OpenRouterにおいてZ.aiの「GLM 5.2」利用価格が62%値下げされた。また、従来型のJSONによる関数呼び出しよりもPythonコード生成経由のツール呼び出し(PTC)が精度・効率ともに優るとする研究論文が公開された。",
+  "ura": "62%の単価削減とPTC構造の普及は、トークン消費量を水増しして稼ぐ中間ミドルウェアやプロキシ事業者の収益基盤を無力化する動きだ。大量のJSONスキーマ定義に依存する既存サービスが固定費高騰で身動きを取れない隙に、直接スタブコードを生成させる軽量なプロンプト構成へいち早く切り替えた個人が、API原価を極小化して市場シェアを横取りできる構造と見る。",
+  "ura_taikou": "「Z.aiの値下げは全社的な技術革新による恒久的なコストダウンである」との仮説を検討したが、他の中華系プロバイダーの価格帯が連動して動いていないため、単一プロバイダーによる一時的な余剰リソースの投げ売りと判断し退けた。",
+  "dousuru": "LangChainなどに依存した従来のJSON型ツール定義を捨て、Pythonスタブを生成させるPTC構造へ手元のプロンプト設計を書き換えろ。62%値下げされたGLM 5.2のAPIキーをiPhoneのWeb画面から設定し、自作Webアプリの応答速度とトークン消費削減幅を今夜の30分で検証し終えろ。",
+  "kan": "14日以内に、QwenまたはDeepSeekの主要モデルにおけるOpenRouter上の公式API価格が値下げされることはないと見る。",
+  "kan_konkyo": "特定プロバイダーによる60%超の大幅改定直後に、他の中華系モデルが即座に連鎖値下げを行った基準率(過去1年の実績)は20%未満と低いからだ。",
+  "kan_hantai": "競合の中華系APIプロバイダーが市場シェア維持のために原価割れの即時対抗値下げを断行した場合は外れる。",
+  "kan_conf": 0.82,
+  "ippan": "AIの値下げ競走や規約変更のニュースが相次いでいるが、個人で普段使いする分には慌てて有料プランを解約・変更する必要はない。今使っているAIアプリの動作が重くなった際、設定画面で安価なモデルに切り替えられるかを確認するだけで十分だ。「激安AI使い放題」を謳う非公式サイトにカード情報を入力するな。",
   "votes": [
-    0.25,
-    0.3,
-    0.12
+    0.82,
+    0.82,
+    0.15
   ],
   "mijoriku": [
     {
-      "title": "Cloudflare Kitesurf",
-      "desc": "AIエージェント専用に設計されたWebブラウザおよびプロキシ基盤。",
-      "why": "日本では人間用ブラウザのAI拡張ばかり注目されており、エージェント専用のWeb閲覧インフラを先回り構築する視点が皆無だから。"
+      "title": "The Bitter Lesson of Tool Calling",
+      "desc": "JSON形式ではなくPythonコード生成によるツール呼び出しが精度とトークン効率で圧倒する検証結果。",
+      "why": "国内開発者が未だにLangChain等のJSON定義に固執している中、コード生成型ツール呼び出しへいち早く移行すればAPI原価を大幅に削れるため。"
     },
     {
-      "title": "Activity Frames",
-      "desc": "画面操作履歴をテキストフレームへコンパイルして再現する技術。",
-      "why": "重い動画認識を使わずにiPhoneや軽量環境で再現性の高いUI自動化を組む要素技術として日本未到達だから。"
+      "title": "Qwen3Guard: トークンストリームのリアルタイム安全検知",
+      "desc": "生成中のトークン列に対してリアルタイムで検疫を行い、不正応答の生成コストを未然に遮断するガードレール。",
+      "why": "モデル性能の比較だけに目を奪われている日本市場で、無駄な推論コストを削るインフラ設計の知識に先回りできるため。"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: Thinking Machines: Inkling Small 値下げ 10%",
-    "[差分] 価格が動いた: Ling-3.0-flash 値下げ 72%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.2 値下げ 15%",
-    "[差分] 価格が動いた: MoonshotAI Kimi Latest 値下げ 14%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値上げ 59%",
-    "[差分] 価格が動いた: MoonshotAI: Kimi K2.6 値上げ 2%"
+    "[差分] 価格が動いた: Thinking Machines: Inkling 値下げ 5%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.2 値下げ 62%",
+    "[差分] 価格が動いた: MoonshotAI Kimi Latest 値上げ 12%",
+    "[差分] 価格が動いた: Qwen: Qwen3.6 35B A3B 値上げ 7%",
+    "[差分] 価格が動いた: MiniMax: MiniMax M2.7 値上げ 11%"
   ],
   "evidence": [
     {
-      "claim": "AI業界は対話UIからブラウザや環境を直接操作する自律型エージェントへシフトしている",
-      "confidence": 0.85,
-      "disconfirm": "Claude CodeやKitesurfが開発者向け実験にとどまり実運用へ展開されないこと",
+      "claim": "Pythonスタブを用いたプログラム的ツール呼び出し(PTC)は従来のJSON形式より精度とトークン効率で勝る",
+      "confidence": 0.75,
+      "disconfirm": "大規模な実務環境でプログラム実行用サンドボックスの構築コストが勝りJSON形式が標準であり続けること",
       "sources": [
         {
-          "title": "[新規求人] anthropic: Staff Software Engineer, Claude Code (San Francisco, CA | New York City, NY | Seattle, WA)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383610008"
-        },
-        {
-          "title": "Cloudflare launches Kitesurf, a browser built for AI agents",
-          "url": "https://techcrunch.com/2026/08/07/cloudflare-launches-kitesurf-a-browser-built-for-ai-agents/"
+          "title": "The Bitter Lesson of Tool Calling",
+          "url": "https://arxiv.org/abs/2608.06370v1"
         }
       ]
     },
     {
-      "claim": "格安AIモデルの値上げにより無制限な自動エージェント運用の採算が悪化している",
-      "confidence": 0.8,
-      "disconfirm": "DeepSeek直営APIおよび他プロバイダで旧価格が維持されること",
+      "claim": "OpenRouter上でGLM 5.2のAPI利用価格が62%引き下げられた",
+      "confidence": 0.9,
+      "disconfirm": "OpenRouter上の価格表示が誤りであり元の価格にロールバックされること",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値上げ 59%",
+          "title": "[差分] 価格が動いた: Z.ai: GLM 5.2 値下げ 62%",
           "url": "https://openrouter.ai/models"
+        }
+      ]
+    },
+    {
+      "claim": "PTC移行と価格低下の組み合わせは中間ミドルウェア依存サービスのコスト構造を崩壊させる",
+      "confidence": 0.7,
+      "disconfirm": "既存のミドルウェアが自動でPTC最適化に対応し構造的コスト差が生じなくなること",
+      "sources": [
+        {
+          "title": "[差分] 価格が動いた: Z.ai: GLM 5.2 値下げ 62%",
+          "url": "https://openrouter.ai/models"
+        },
+        {
+          "title": "The Bitter Lesson of Tool Calling",
+          "url": "https://arxiv.org/abs/2608.06370v1"
         }
       ]
     }

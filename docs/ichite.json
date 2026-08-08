@@ -1,163 +1,171 @@
 {
-  "date": "2026-08-08",
+  "date": "2026-08-09",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "Kitesurf公開を踏まえWorkersへエージェント用制御コードを今夜追加デプロイするか？",
-    "DeepSeek値上げに対し自作プロキシのフォールバックAPIをどのモデルに変更するか？",
-    "Anthropic SDK更新に追従するためGitHub Web上でコードを即時更新するか？"
+    "JSON定義を捨てPythonスタブ型PTCへ今夜移行するか？",
+    "GLM5.2の62%廉価枠を自作アプリの基本APIに設定するか？",
+    "原価削減で得た余力を応答速度向上と機能拡張のどちらに割くか？"
   ],
   "moves": [
     {
-      "t": "Cloudflare Workersにヘッダー処理コードをデプロイする",
-      "why": "エージェント専用ブラウザKitesurfの登場により裏でのプロキシ自動巡回ロジック配置が最優先になるためだ。",
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.85,
+      "success_p": 0.8,
       "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "iPhone SafariからCloudflareダッシュボード上のエディタを直接操作してコード保存できるためである。",
-      "value_score": 5,
-      "learning_value": 4,
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "value_score": 3,
+      "learning_value": 2,
       "time_minutes": 15,
-      "payback_days": 1,
-      "outcome": "Workers上にエージェント用プロキシエンドポイントが稼働状態になる",
+      "payback_days": 0,
+      "outcome": "次に直す内容がIssueとして1件残る",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "データ自動収集基盤の核となり個人優位の前提を作るためである。",
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
       "evidence_ids": [
-        "2026-08-08-r01"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "Cloudflareアカウントが作成済みでありスマホからアクセス可能であること"
+        "Issueが次の実装に使われる"
       ],
-      "disconfirm": "Cloudflare Workersのレスポンスヘッダー変更がエラーで拒否されること",
-      "continue_if": "テストリクエストに対して正常なJSONレスポンスが返却される場合",
-      "stop": "Workersのデプロイで原因不明のエラーが3回連続で発生した場合"
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
     },
     {
-      "t": "Cloudflare Paidプランを契約しプロキシ処理速度を向上させる",
-      "why": "無料枠の制限を回避しミリ秒単位のデータ取得で他者に先回りする通信基盤を確保するためだ。",
-      "cost_min": 800,
-      "cost_max": 800,
-      "loss_max": 800,
-      "success_p": 0.9,
-      "success_p_min": 0.8,
-      "success_p_max": 0.95,
-      "success_why": "クレジットカード決済のみでiPhoneから即時有効化可能なためである。",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 10,
-      "payback_days": 14,
-      "outcome": "Workers有料プランが有効化されCPU実行時間制限が拡大される",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "実行制限によるデータ自動取得の途切れを防止できるためである。",
-      "evidence_ids": [
-        "2026-08-08-r01"
-      ],
-      "assumptions": [
-        "月額費用を支払うクレジット枠が確保されていること"
-      ],
-      "disconfirm": "有料化してもリクエスト応答速度に変化が見られないこと",
-      "continue_if": "1日あたりの処理リクエスト数が無料枠の上限を恒常的に超える場合",
-      "stop": "収集データの二次利用による回収見込みが立たなくなった場合"
-    },
-    {
-      "t": "Anthropic APIに従量課金を設定し高速モデル接続枠を確保する",
-      "why": "SDKの頻繁な更新に合わせて最速のClaudeモデルを自作プロキシ経由で即座に叩くためだ。",
-      "cost_min": 1500,
-      "cost_max": 3000,
-      "loss_max": 3000,
+      "t": "今日の一次情報を1本選び要点を3行残す",
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
       "success_p": 0.75,
       "success_p_min": 0.6,
       "success_p_max": 0.85,
-      "success_why": "Anthropicコンソールでのデポジット追加で即座に使用可能となるためである。",
-      "value_score": 5,
-      "learning_value": 5,
-      "time_minutes": 10,
-      "payback_days": 7,
-      "outcome": "Anthropic APIのクレジッド残高がチャージされAPIキーが発効される",
-      "category": "apply",
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "value_score": 2,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "一次情報の要点メモが3行残る",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "最新モデルの応答能力を自前の自動処理網へ組み込めるためである。",
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "意思決定へ使えた時だけ価値になる",
       "evidence_ids": [
-        "2026-08-08-r01",
-        "2026-07-25-r01"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "Anthropic開発者アカウントが開設済みであること"
+        "読む情報が現在の目標に関係する"
       ],
-      "disconfirm": "APIのレスポンスタイムが期待値を下回り処理が滞ること",
-      "continue_if": "自動解析ロジックからの応答成果が有益な洞察を生んでいる場合",
-      "stop": "デポジット消化速度に対して有効な成果物が得られない場合"
+      "disconfirm": "要点が次の行動を一つも変えない",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了",
+      "fallback": true
     },
     {
-      "t": "自作エージェントプロキシのコードと解説文をGitHubで公開する",
-      "why": "格安API値上げで逃げ場を失う個人開発者へ先回りした仕組みを提供し先導権を奪うためだ。",
+      "t": "予測を1件確認し確度メモを1行更新する",
+      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.7,
-      "success_p_min": 0.5,
+      "success_p_min": 0.55,
       "success_p_max": 0.8,
-      "success_why": "GitHub Webの新規リポジトリ作成機能でiPhoneのみで完結するためである。",
-      "value_score": 4,
+      "success_why": "既存予測の更新なので新規企画より着地しやすい",
+      "value_score": 2,
       "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 30,
-      "outcome": "公開リポジトリとREADME記述が完成しURLが発行される",
-      "category": "publish",
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "追跡中予測の確度メモが更新される",
+      "category": "review",
       "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.2,
-      "impact_why": "技術的プレゼンスを高めてフォロワーやデータ提供者を獲得するためである。",
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "誤った前提で投資する損失を減らす",
       "evidence_ids": [
-        "2026-08-01-r02"
+        "action-history"
       ],
       "assumptions": [
-        "自作コードの著作権および秘匿情報が含まれていないこと"
+        "予測が現在の投資判断に関係する"
       ],
-      "disconfirm": "閲覧数やStar数が1週間増加しないこと",
-      "continue_if": "外部からのStar獲得やIssueの起票が発生する場合",
-      "stop": "リポジトリへの反応が全くなく需要が存在しないと判断された場合"
+      "disconfirm": "確度更新が次の行動や支出を変えない",
+      "continue_if": "確度を動かす一次根拠が見つかった",
+      "stop": "根拠URLを1本確認したら終了",
+      "fallback": true
     },
     {
-      "t": "OpenAIとAnthropicの最新SDK差分を比較しWorkersへ反映する",
-      "why": "両社の最新SDK動向を比較分析しマルチモデル対応の自動回送プロキシを完成させるためだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
+      "t": "独自ドメイン候補を決め購入画面まで進める",
+      "why": "公開先を固定し、他人へ渡せる形へ近づけるため。",
+      "cost_min": 1000,
+      "cost_max": 4000,
+      "loss_max": 4000,
       "success_p": 0.65,
-      "success_p_min": 0.5,
+      "success_p_min": 0.45,
       "success_p_max": 0.75,
-      "success_why": "比較ロジックの記述にiPhone画面での長文編集が必要でやや時間を要するためである。",
+      "success_why": "価格と空きを確認できるが、名前の決定で迷う余地がある",
+      "value_score": 4,
+      "learning_value": 2,
+      "time_minutes": 30,
+      "payback_days": 180,
+      "outcome": "候補ドメインと年間費用が確定する",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.02,
+      "impact_max": 0.08,
+      "impact_why": "公開と共有の摩擦を下げるが、ドメインだけでは成果にならない",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "90日以内に公開する"
+      ],
+      "disconfirm": "公開日や見せる相手が決まっていない",
+      "continue_if": "公開予定日と最初に見せる相手が決まっている",
+      "stop": "年間4000円を超えたら購入しない",
+      "fallback": true
+    },
+    {
+      "t": "有料AI機能を1か月だけ比較検証する",
+      "why": "無料制約で実装速度を落とさず、支払う価値を測るため。",
+      "cost_min": 3000,
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.55,
+      "success_p_min": 0.35,
+      "success_p_max": 0.7,
+      "success_why": "短縮効果はあり得るが、成果との相関は未計測",
       "value_score": 4,
       "learning_value": 5,
       "time_minutes": 30,
-      "payback_days": 3,
-      "outcome": "両社SDKの互換ヘッダー変換ロジックがWorkersへ反映される",
-      "category": "build",
+      "payback_days": 30,
+      "outcome": "無料版との比較メモが1件残る",
+      "category": "buy",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "モデルのダウンタイム時にも自動で切替可能な冗長性を確保できるためである。",
+      "impact_min": 0.02,
+      "impact_max": 0.12,
+      "impact_why": "実装速度を上げる可能性はあるが成果増加は未確認",
       "evidence_ids": [
-        "2026-08-08-r01"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "両社APIのレスポンス構造に関する知識があること"
+        "週2回以上使う"
       ],
-      "disconfirm": "API仕様の乖離が大きすぎて単一のプロキシで吸収できないこと",
-      "continue_if": "両社APIへの相互自動転送がエラーなく完了する場合",
-      "stop": "仕様差異の吸収処理によりレイテンシが許容範囲を超えて増大した場合"
+      "disconfirm": "無料版と完成件数が変わらない",
+      "continue_if": "無料版より月2件以上多く成果物が完成する",
+      "stop": "30日で成果物が2件増えなければ解約する",
+      "fallback": true
     }
   ],
-  "kan": "過去のAnthropic求人公開事例における製品発表の基準率は20%に止まるため大本命ではないが、Anthropicは14日以内(2026年8月22日まで)にClaude Codeに関する公式ブログ記事または開発者ドキュメントの更新を実施すると見る。"
+  "kan": "14日以内に、QwenまたはDeepSeekの主要モデルにおけるOpenRouter上の公式API価格が値下げされることはないと見る。"
 }

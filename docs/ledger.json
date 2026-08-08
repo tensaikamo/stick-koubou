@@ -1,21 +1,21 @@
 {
-  "updated_at": "2026-08-08 07:08",
+  "updated_at": "2026-08-09 06:57",
   "score": {
     "hit": 0,
-    "miss": 4,
-    "total": 4,
+    "miss": 5,
+    "total": 5,
     "rate": 0.0,
-    "pending": 29,
-    "brier": 0.53375,
-    "brier_n": 4,
-    "brier_initial": 0.53375,
+    "pending": 28,
+    "brier": 0.5115,
+    "brier_n": 5,
+    "brier_initial": 0.5115,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-08-09",
+    "date": "2026-08-10",
     "days": 1
   },
   "decided": [
@@ -31,6 +31,20 @@
       "alert": false,
       "counter": "攻撃手法の流出リスクを懸念する社内セキュリティチームの反対により、コードの一般公開を控え文書の報告にとどめる可能性がある。",
       "evidence": "期日の2026年8月7日までに、OpenAIの公式GitHubにおいてモデルのセキュリティ評価や評価・検証用サンドボックス環境に関する公開リポジトリの新設・更新は確認できませんでした。",
+      "signals": []
+    },
+    {
+      "id": "2026-07-26-h01",
+      "claim": "Anthropicは14日以内にClaude Code利用時またはOpus 5のAPIトークン価格の引き下げ改定を公式に発表する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-09",
+      "confidence": 0.65,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "15億ドルの和解金支払いに伴う現金流出を補うため、短期的な単価切り下げを見送り現状の収益率を維持する可能性がある。",
+      "evidence": "2026年7月26日から8月9日までのAnthropicの公式ニュース一覧において、Claude CodeまたはOpus 5のAPIトークン単価値下げに関する発表は掲載されていません。",
       "signals": []
     },
     {
@@ -89,20 +103,6 @@
       "alert": false,
       "counter": "",
       "evidence": "判定先ページはブログであり、Google AI StudioやGoogle Cloudの公式ドキュメントでGemini 3.5 Flash-LiteのAPIエンドポイントがGA公開されたかを確認するには別の場所を確認する必要があるため判定不能です。",
-      "signals": []
-    },
-    {
-      "id": "2026-07-26-h01",
-      "claim": "Anthropicは14日以内にClaude Code利用時またはOpus 5のAPIトークン価格の引き下げ改定を公式に発表する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-09",
-      "confidence": 0.65,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "15億ドルの和解金支払いに伴う現金流出を補うため、短期的な単価切り下げを見送り現状の収益率を維持する可能性がある。",
-      "evidence": "",
       "signals": []
     },
     {
@@ -244,9 +244,48 @@
       "counter": "TypeScript SDKとCLIのバイナリ配布のみに機能を絞り、Python用パッケージの個別提供を見送る可能性がある。",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-07-25-h02",
+      "claim": "Google CloudはGemini 3.5 Flash Cyberの公開ドキュメントにおいて、セキュリティ検証エージェント用の専用隔離サンドボックス実行環境ガイドラインを一般公開する。",
+      "subject": "Google Cloud",
+      "deadline": "2026-08-14",
+      "confidence": 0.75,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "Google Cloudが個別製品ごとのガイドライン追加ではなく、既存のVertex AI全般のセキュリティガイドラインの改訂のみで対応を済ませる可能性がある。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
+    {
+      "subject": "Anthropic",
+      "events": [
+        {
+          "date": "2026-08-06",
+          "headline": "Anthropic、基板・ラック設計を担うカスタムハードウェア担当TPMの新規求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5380379008"
+        },
+        {
+          "date": "2026-08-07",
+          "headline": "Python向けAnthropic公式SDKのバージョン0.120.2がリリース",
+          "url": "https://pypi.org/project/anthropic/0.120.2/"
+        },
+        {
+          "date": "2026-08-08",
+          "headline": "AnthropicがPython SDK v0.121.0をPyPIで公開",
+          "url": "https://pypi.org/project/anthropic/0.121.0/"
+        },
+        {
+          "date": "2026-08-09",
+          "headline": "Anthropicがモデル非依存のAI教育プログラム「AI Fluency」の専門リード職を募集",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383242008"
+        }
+      ]
+    },
     {
       "subject": "OpenAI",
       "events": [
@@ -273,31 +312,6 @@
       ]
     },
     {
-      "subject": "Anthropic",
-      "events": [
-        {
-          "date": "2026-07-29",
-          "headline": "Anthropic CEOがオープンウェイトモデルの規制禁止に反対を表明",
-          "url": "https://www.anthropic.com/news/position-open-weights-models"
-        },
-        {
-          "date": "2026-08-06",
-          "headline": "Anthropic、基板・ラック設計を担うカスタムハードウェア担当TPMの新規求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5380379008"
-        },
-        {
-          "date": "2026-08-07",
-          "headline": "Python向けAnthropic公式SDKのバージョン0.120.2がリリース",
-          "url": "https://pypi.org/project/anthropic/0.120.2/"
-        },
-        {
-          "date": "2026-08-08",
-          "headline": "AnthropicがPython SDK v0.121.0をPyPIで公開",
-          "url": "https://pypi.org/project/anthropic/0.121.0/"
-        }
-      ]
-    },
-    {
       "subject": "Google",
       "events": [
         {
@@ -314,6 +328,26 @@
           "date": "2026-08-07",
           "headline": "Google Gen AI Python SDK v2.17.0がリリースされ自動関数呼び出しの非推奨仕様が公表",
           "url": "https://pypi.org/project/google-genai/2.17.0/"
+        }
+      ]
+    },
+    {
+      "subject": "xAI",
+      "events": [
+        {
+          "date": "2026-08-06",
+          "headline": "xAI、XのデータおよびAIエージェント接続を統合する開発者プラットフォームエンジニアを募集",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5204788007"
+        },
+        {
+          "date": "2026-08-06",
+          "headline": "xAI、超高密度データセンターおよび発電施設向け運用技術エンジニアの求人を開始",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5204393007"
+        },
+        {
+          "date": "2026-08-09",
+          "headline": "xAIがスロバキア語・ルーマニア語など多言語音声機能向けのAIチューター求人を同時公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5207599007"
         }
       ]
     },
@@ -346,24 +380,23 @@
           "url": "https://www.emergingtrajectories.com/lh/frontier-lab-economics/"
         }
       ]
-    },
-    {
-      "subject": "xAI",
-      "events": [
-        {
-          "date": "2026-08-06",
-          "headline": "xAI、XのデータおよびAIエージェント接続を統合する開発者プラットフォームエンジニアを募集",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5204788007"
-        },
-        {
-          "date": "2026-08-06",
-          "headline": "xAI、超高密度データセンターおよび発電施設向け運用技術エンジニアの求人を開始",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5204393007"
-        }
-      ]
     }
   ],
   "records": [
+    {
+      "id": "2026-08-09-r02",
+      "date": "2026-08-09",
+      "headline": "xAIがスロバキア語・ルーマニア語など多言語音声機能向けのAIチューター求人を同時公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5207599007"
+    },
+    {
+      "id": "2026-08-09-r01",
+      "date": "2026-08-09",
+      "headline": "Anthropicがモデル非依存のAI教育プログラム「AI Fluency」の専門リード職を募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383242008"
+    },
     {
       "id": "2026-08-08-r03",
       "date": "2026-08-08",
@@ -433,21 +466,7 @@
       "headline": "手続き型データ生成ライブラリReasoning Coreに関する論文が公開",
       "certainty": "reported",
       "url": "https://arxiv.org/abs/2608.05148v1"
-    },
-    {
-      "id": "2026-08-06-r03",
-      "date": "2026-08-06",
-      "headline": "xAI、超高密度データセンターおよび発電施設向け運用技術エンジニアの求人を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5204393007"
-    },
-    {
-      "id": "2026-08-06-r02",
-      "date": "2026-08-06",
-      "headline": "xAI、XのデータおよびAIエージェント接続を統合する開発者プラットフォームエンジニアを募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5204788007"
     }
   ],
-  "record_count": 32
+  "record_count": 34
 }
