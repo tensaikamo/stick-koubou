@@ -329,21 +329,25 @@
     "claim": "Anthropicは14日以内にClaude Code利用時またはOpus 5のAPIトークン価格の引き下げ改定を公式に発表する。",
     "subject": "Anthropic",
     "resolution": {
-      "source": "Anthropic公式ニュースルーム（anthropic.com/news）または公式ドキュメント",
+      "source": "https://www.anthropic.com/news",
       "check_query": "Anthropic API pricing update",
       "decider": "2026年8月9日までにAnthropicの公式発表または公式ドキュメントにおいて、Opus 5またはClaude Codeに関するAPIトークン単価の引き下げ（値下げ）が正式に記載された場合に的中と判定する。"
     },
     "deadline": "2026-08-09",
     "confidence": 0.65,
     "counter": "15億ドルの和解金支払いに伴う現金流出を補うため、短期的な単価切り下げを見送り現状の収益率を維持する可能性がある。",
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-09T06:57:18.870795+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "2026年7月26日から8月9日までのAnthropicの公式ニュース一覧において、Claude CodeまたはOpus 5のAPIトークン単価値下げに関する発表は掲載されていません。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-07-26-h02",

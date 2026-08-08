@@ -1226,5 +1226,55 @@
       "2026-07-23-r02",
       "2026-07-22-r01"
     ]
+  },
+  {
+    "id": "2026-08-09-r01",
+    "created_at": "2026-08-09T06:56:49.053808+09:00",
+    "headline": "Anthropicがモデル非依存のAI教育プログラム「AI Fluency」の専門リード職を募集",
+    "what_happened": "Anthropicは「AI Fluency Education Lead」の求人を出した。本役職は単なる自社製品のトレーニングにとどまらず、モデル非依存で持続的なAI理解と実践的スキルを教えるコースやコンテンツの作成・出版を担う。多くのユーザーがSNSや同僚からの断片的な情報に頼っている現状を改善することを目的としている。",
+    "background": "生成AIの利用が急増する一方、体系的な教育を受けずノウハウを表面模倣するユーザーが多く、実用的なスキルの定着が課題となっている。",
+    "changed": "AnthropicがClaude製品のプロモーションを超えて、一般的なAIリテラシー向上を目的とした教育コンテンツ事業に着手した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383242008",
+      "title": "[新規求人] anthropic: AI Fluency Education Lead (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-08-r01",
+      "2026-08-07-r05",
+      "2026-08-06-r01",
+      "2026-07-29-r01",
+      "2026-07-28-r04",
+      "2026-07-25-r01"
+    ]
+  },
+  {
+    "id": "2026-08-09-r02",
+    "created_at": "2026-08-09T06:56:49.053808+09:00",
+    "headline": "xAIがスロバキア語・ルーマニア語など多言語音声機能向けのAIチューター求人を同時公開",
+    "what_happened": "xAIはGrokの音声対話および音声認識機能を強化するため、スロバキア語、ルーマニア語、ソラニ・クルド語などの「AI Tutor」求人を公開した。採用者は独自ツールを用いて高品質な音声データの生成・アノテーションを行い、多様な言語やアクセントにおける音声処理性能の向上を担当する。",
+    "background": "Grokの音声対話インターフェースをグローバルに展開するため、英語以外のマイナー言語や地域言語の高品質データ収集が必要となっている。",
+    "changed": "xAIにおけるGrokの多言語音声対話機能の開発範囲が東欧および中東のマイナー言語へ拡大した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5207599007",
+      "title": "[新規求人] xai: AI Tutor - Slovak (Remote United States)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-06-r03",
+      "2026-08-06-r02"
+    ]
   }
 ]
