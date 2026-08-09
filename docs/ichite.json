@@ -1,171 +1,162 @@
 {
-  "date": "2026-08-09",
+  "date": "2026-08-10",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "JSON定義を捨てPythonスタブ型PTCへ今夜移行するか？",
-    "GLM5.2の62%廉価枠を自作アプリの基本APIに設定するか？",
-    "原価削減で得た余力を応答速度向上と機能拡張のどちらに割くか？"
+    "プロキシ層での文体再構成パッチを今夜GitHub上で書き換えるか？",
+    "特定著者名の除去ロジックをプロンプト変換処理に組み込むか？",
+    "Qwen3Guard等の軽量検閲モデルの動作検証をプロキシに反映するか？"
   ],
   "moves": [
     {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "t": "GitHubでプロキシパッチのコードを更新する",
+      "why": "検閲強化に対しプロキシ層でFew-shot再構成を行う処理を追加し情報優位を維持するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 15,
+      "success_p": 0.45,
+      "success_p_min": 0.2,
+      "success_p_max": 0.7,
+      "success_why": "過去の標準モデル改定頻度およびOpenAIの検閲強化傾向に基づく。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
+      "outcome": "GitHubリポジトリに著者名自動削り落とし機能のコミットが残る",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.05,
+      "impact_max": 0.2,
+      "impact_why": "検閲迂回パイプラインの核心機能を一歩前進させるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-08-07-r04"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "GitHubのWebUI上で直接ファイル編集が可能であること"
       ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "API実行時に著者名を削除しても出力傾向が変わらない場合",
+      "continue_if": "エラー率が低下し意図通りの生成速度が維持される場合",
+      "stop": "APIプロバイダ側でプロキシ経由のアクセス自体が全面拒否された場合"
     },
     {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "t": "ChatGPT広告枠の影響調査メモを作成する",
+      "why": "広告枠追加によるオーガニック露出減の影響をiPhoneのメモに残すため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "value_score": 2,
+      "success_p": 0.5,
+      "success_p_min": 0.3,
+      "success_p_max": 0.7,
+      "success_why": "公式のAdvertise in ChatGPT発表により仕様変更が明確なため。",
+      "value_score": 3,
       "learning_value": 3,
-      "time_minutes": 20,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "一次情報の要点メモが3行残る",
+      "outcome": "広告導入による代替導線と個人が狙える隙に関する整理メモ",
       "category": "research",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "impact_min": 0.02,
+      "impact_max": 0.1,
+      "impact_why": "直接の開発ではなく戦略整理の位置づけであるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-07-23-r02"
       ],
       "assumptions": [
-        "読む情報が現在の目標に関係する"
+        "公式広告プラットフォームの仕様が順次公開されていること"
       ],
-      "disconfirm": "要点が次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
+      "disconfirm": "広告導入後もオーガニックな推奨ロジックに変化が無い場合",
+      "continue_if": "流出トラフィックの受け皿となる外部プラットフォームが見つかった場合",
+      "stop": "大手が広告枠を独占し個人が介在する余地が完全に消滅した場合"
     },
     {
-      "t": "予測を1件確認し確度メモを1行更新する",
-      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
+      "t": "OpenAI SDK更新差分をWebで確認する",
+      "why": "バージョン2.53.0でのAPI挙動変化を把握しプロキシに反映するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
+      "success_p": 0.6,
+      "success_p_min": 0.4,
       "success_p_max": 0.8,
-      "success_why": "既存予測の更新なので新規企画より着地しやすい",
-      "value_score": 2,
+      "success_why": "PyPI上のリリースノートで更新差分が公開されているため。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 10,
+      "payback_days": 0,
+      "outcome": "SDK更新点と自作プロキシの互換性チェックリスト",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.01,
+      "impact_max": 0.05,
+      "impact_why": "既存コードの破綻を防ぐための保守点検作業であるため。",
+      "evidence_ids": [
+        "2026-08-07-r04"
+      ],
+      "assumptions": [
+        "PyPIおよびGitHub上で最新SDKの差分が閲覧可能であること"
+      ],
+      "disconfirm": "更新内容が軽微なバグ修正のみでプロンプト処理に影響しない場合",
+      "continue_if": "新機能がプロキシ層の処理簡略化に寄与する場合",
+      "stop": "プロキシで使用しているAPIエンドポイントが非推奨化された場合"
+    },
+    {
+      "t": "Codex Securityのツール構成を検証する",
+      "why": "OSS公開されたセキュリティツールの仕組みをプロキシ安全枠に応用するため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.4,
+      "success_p_min": 0.2,
+      "success_p_max": 0.6,
+      "success_why": "OpenAIによるCodex SecurityのOSS公開が確認されているため。",
+      "value_score": 4,
       "learning_value": 4,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "追跡中予測の確度メモが更新される",
-      "category": "review",
+      "outcome": "プロキシに組み込めるセキュリティ判定ロジックの抽出メモ",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "誤った前提で投資する損失を減らす",
+      "impact_min": 0.03,
+      "impact_max": 0.15,
+      "impact_why": "検閲検知とセキュリティチェックの精度向上に役立つため。",
       "evidence_ids": [
-        "action-history"
+        "2026-07-30-r01"
       ],
       "assumptions": [
-        "予測が現在の投資判断に関係する"
+        "GitHub上でリポジトリのコード解説がWebから読めること"
       ],
-      "disconfirm": "確度更新が次の行動や支出を変えない",
-      "continue_if": "確度を動かす一次根拠が見つかった",
-      "stop": "根拠URLを1本確認したら終了",
-      "fallback": true
+      "disconfirm": "CLI専用設計でWebプロキシ構造に流用できない場合",
+      "continue_if": "プロキシ側でコード検証ロジックを軽量に模倣できる場合",
+      "stop": "処理負荷が大きくiPhoneのSafari環境で仕様追従が困難な場合"
     },
     {
-      "t": "独自ドメイン候補を決め購入画面まで進める",
-      "why": "公開先を固定し、他人へ渡せる形へ近づけるため。",
-      "cost_min": 1000,
-      "cost_max": 4000,
-      "loss_max": 4000,
-      "success_p": 0.65,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "価格と空きを確認できるが、名前の決定で迷う余地がある",
-      "value_score": 4,
-      "learning_value": 2,
-      "time_minutes": 30,
-      "payback_days": 180,
-      "outcome": "候補ドメインと年間費用が確定する",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.08,
-      "impact_why": "公開と共有の摩擦を下げるが、ドメインだけでは成果にならない",
-      "evidence_ids": [
-        "user-goal",
-        "action-history"
-      ],
-      "assumptions": [
-        "90日以内に公開する"
-      ],
-      "disconfirm": "公開日や見せる相手が決まっていない",
-      "continue_if": "公開予定日と最初に見せる相手が決まっている",
-      "stop": "年間4000円を超えたら購入しない",
-      "fallback": true
-    },
-    {
-      "t": "有料AI機能を1か月だけ比較検証する",
-      "why": "無料制約で実装速度を落とさず、支払う価値を測るため。",
-      "cost_min": 3000,
-      "cost_max": 5000,
-      "loss_max": 5000,
+      "t": "有料APIクレジットを小額チャージする",
+      "why": "プロキシ迂回ロジックの実リクエストテストを数回実行するため。",
+      "cost_min": 500,
+      "cost_max": 1000,
+      "loss_max": 1000,
       "success_p": 0.55,
-      "success_p_min": 0.35,
-      "success_p_max": 0.7,
-      "success_why": "短縮効果はあり得るが、成果との相関は未計測",
+      "success_p_min": 0.3,
+      "success_p_max": 0.75,
+      "success_why": "APIでの従量課金設定により短時間の検証が可能なため。",
       "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 30,
-      "outcome": "無料版との比較メモが1件残る",
+      "learning_value": 3,
+      "time_minutes": 5,
+      "payback_days": 7,
+      "outcome": "テスト実行用アカウントの残高更新と疎通テスト実行権限",
       "category": "buy",
       "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.12,
-      "impact_why": "実装速度を上げる可能性はあるが成果増加は未確認",
+      "impact_min": 0.05,
+      "impact_max": 0.2,
+      "impact_why": "実際のAPI応答ログを得てパッチの有効性を検証できるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-08-01-r01"
       ],
       "assumptions": [
-        "週2回以上使う"
+        "クレジットカード決済がiPhone Safari上で完了すること"
       ],
-      "disconfirm": "無料版と完成件数が変わらない",
-      "continue_if": "無料版より月2件以上多く成果物が完成する",
-      "stop": "30日で成果物が2件増えなければ解約する",
-      "fallback": true
+      "disconfirm": "チャージ後も特定プロンプトがアカウントレベルでブロックされる場合",
+      "continue_if": "迂回プロンプトでのレスポンス成功率が70%を超える場合",
+      "stop": "10回連続でエラーが返りアカウント停止のリスクが生じた場合"
     }
   ],
-  "kan": "14日以内に、QwenまたはDeepSeekの主要モデルにおけるOpenRouter上の公式API価格が値下げされることはないと見る。"
+  "kan": "過去の改定頻度（年1〜2回・約15%）から見て本命視はしないが、OpenAIは14日以内（2026-08-20まで）に、APIドキュメントの利用規約において「特定著名人の文体・スタイルの高精度な模倣を目的とした利用」に関する制限条項を追加定義する目がある。"
 }
