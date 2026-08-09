@@ -390,7 +390,7 @@
     "claim": "Anthropicは14日以内に、公式APIドキュメントにおいてClaude Opus 5のBatch API対応および50%以上の価格割引仕様を追加表記する。",
     "subject": "Anthropic",
     "resolution": {
-      "source": "Anthropic API Documentation (docs.anthropic.com)",
+      "source": "https://docs.anthropic.com/en/docs/about-claude/models",
       "check_query": "Opus 5 Batch",
       "decider": "Anthropic公式ドキュメント（docs.anthropic.com）のモデル一覧またはPricingページにおいて、Claude Opus 5がMessage Batches APIで利用可能であり割引率が明記されていること"
     },
@@ -408,14 +408,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-10T07:00:23.715322+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "指定された公式ドキュメントページを確認したところ、Claude Opus 5のMessage Batches API対応および50%以上の割引に関する記載が存在しないため。",
+      "url": "https://docs.anthropic.com/en/docs/about-claude/models"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-07-27-h02",
@@ -762,7 +766,7 @@
     "claim": "Googleは10日以内に、Google AI Studioの公式価格表ページにおいてGemini 3.6 Flashの価格を確定させ、Gemini 3.5 Flashを「Legacy」扱いに移動する。",
     "subject": "Google",
     "resolution": {
-      "source": "Google AI Studio Pricing ページ",
+      "source": "https://ai.google.dev/pricing",
       "check_query": "Google AI Studio pricing Gemini 3.6 Flash",
       "decider": "Google AI Studioの価格表においてGemini 3.6 Flashのトークン単価が明記され、Gemini 3.5 FlashにLegacyまたは非推奨の注記が付与されること"
     },
@@ -780,14 +784,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-10T07:00:23.715322+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "Google AI Studioの価格表ページにおいてGemini 3.6 Flashの価格記載およびGemini 3.5 Flashに対するLegacyや非推奨の注記が確認できないため。",
+      "url": "https://ai.google.dev/pricing"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-08-01-h01",
@@ -1047,7 +1055,7 @@
     "claim": "Googleは7日以内に、Google AI Studioの公式価格一覧ドキュメントに「Gemini 3.5 Flash Cyber」の従量課金単価を追加する。",
     "subject": "Google",
     "resolution": {
-      "source": "Google AI Studio Pricing Documentation",
+      "source": "https://ai.google.dev/pricing",
       "check_query": "gemini 3.5 flash cyber pricing",
       "decider": "Google AI StudioまたはVertex AIの公式価格表ページに「Gemini 3.5 Flash Cyber」のモデル名および入力/出力トークン単価が明記されること。"
     },
@@ -1065,14 +1073,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-10T07:00:23.715322+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "2026年8月10日時点のGoogle AI Studio公式価格ページにおいて「Gemini 3.5 Flash Cyber」の掲載が確認できないため。",
+      "url": "https://ai.google.dev/pricing"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-08-04-h01",

@@ -1276,5 +1276,59 @@
       "2026-08-06-r03",
       "2026-08-06-r02"
     ]
+  },
+  {
+    "id": "2026-08-10-r01",
+    "created_at": "2026-08-10T06:59:55.665648+09:00",
+    "headline": "AnthropicがGlobal Security Operations Centerのポリシー策定スペシャリストの求人を公開",
+    "what_happened": "Anthropicは「GSOC Response & Policy Program Specialist」の求人を公表した。同職種はグローバルセキュリティ運用センター（GSOC）におけるインシデント検知・対応・復旧プロトコルの策定や重要度マトリクスの作成を担う。法務、人事、広報との調整を経て経営陣の承認を得る役割も含まれている。",
+    "background": "AI企業の規模拡大に伴い、物理拠点および人的リスクへの対応体制とグローバルなインシデント管理基盤の構築が急務となっている。",
+    "changed": "Anthropic内部のセキュリティインシデント運用計画および緊急連絡体制の構築に向けた採用手続きが開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5382033008",
+      "title": "[新規求人] anthropic: GSOC Response & Policy Program Specialist (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-09-r01",
+      "2026-08-08-r01",
+      "2026-08-07-r05",
+      "2026-08-06-r01",
+      "2026-07-29-r01",
+      "2026-07-28-r04"
+    ]
+  },
+  {
+    "id": "2026-08-10-r02",
+    "created_at": "2026-08-10T06:59:55.665648+09:00",
+    "headline": "Anthropicがエンタープライズ技術部門のApplied AI Architectの募集を開始",
+    "what_happened": "Anthropicは「Applied AI Architect, Enterprise Tech」の求人を掲載した。大企業顧客に対してClaudeの技術的価値を提示し、顧客の技術スタックへの組み込みアーキテクチャや評価基準（evals）の設計を支援するプレセールス主体の技術顧問を担当する。",
+    "background": "大企業におけるLLM導入では、事前検証（PoC）やエンタープライズ水準の安全性を担保したアーキテクチャ設計の専門支援が求められている。",
+    "changed": "エンタープライズ市場におけるClaude導入を強力に推進するための現場技術支援体制が整備されている。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383335008",
+      "title": "[新規求人] anthropic: Applied AI Architect, Enterprise Tech (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-09-r01",
+      "2026-08-08-r01",
+      "2026-08-07-r05",
+      "2026-08-06-r01",
+      "2026-07-29-r01",
+      "2026-07-28-r04"
+    ]
   }
 ]
