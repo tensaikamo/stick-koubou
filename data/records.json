@@ -1330,5 +1330,59 @@
       "2026-07-29-r01",
       "2026-07-28-r04"
     ]
+  },
+  {
+    "id": "2026-08-11-r01",
+    "created_at": "2026-08-11T07:08:40.747155+09:00",
+    "headline": "Anthropicがプロダクトインテリジェンス担当の財務・戦略ポジションの求人を公開",
+    "what_happened": "Anthropicはサンフランシスコ本社において「Finance & Strategy, Product Intelligence」職の採用募集を開始した。本ポジションはプロダクト財務および戦略チーム内に位置し、AI市場動向や競争環境のデータを収集・分析して社内の意思決定者に提供する役割を担う。分析力に加え、AIプロダクトや技術への理解が求められている。",
+    "background": "競合が急速に変化するAI市場において、自社プロダクトの価値や市場ポジショニングを財務視点から定量評価する専門組織の強化が進められている。",
+    "changed": "Anthropicの財務組織内に市場およびプロダクト分析に特化した新しい職責の採用枠が新設された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358092008",
+      "title": "[新規求人] anthropic: Finance & Strategy, Product Intelligence (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-10-r02",
+      "2026-08-10-r01",
+      "2026-08-09-r01",
+      "2026-08-08-r01",
+      "2026-08-07-r05",
+      "2026-08-06-r01"
+    ]
+  },
+  {
+    "id": "2026-08-11-r02",
+    "created_at": "2026-08-11T07:08:40.747155+09:00",
+    "headline": "AnthropicがClaude CodeおよびClaude Tagを対象に含むDeveloper Relationsの求人を公開",
+    "what_happened": "AnthropicはDeveloper Relations職の求人募集を公開した。職務内容として、開発者が「Claude Code」や「Claude Tag」、および将来の提携開発者向け製品を採用・活用するための技術的支援やフィードバック収集を行うことが示されている。サンフランシスコおよびニューヨークを拠点とするポジションである。",
+    "background": "Anthropicは開発者エコシステムの拡大に注力しており、開発者向けツールの普及や現場のニーズをプロダクトチームへ還元する役割を担うDevRelを増員している。",
+    "changed": "Anthropicの開発者向けツール群の対象として「Claude Code」に加え「Claude Tag」の名称が採用情報上で明記された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383596008",
+      "title": "[新規求人] anthropic: Developer Relations (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-10-r02",
+      "2026-08-10-r01",
+      "2026-08-09-r01",
+      "2026-08-08-r01",
+      "2026-08-07-r05",
+      "2026-08-06-r01"
+    ]
   }
 ]
