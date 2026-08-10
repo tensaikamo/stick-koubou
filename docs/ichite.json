@@ -1,162 +1,162 @@
 {
-  "date": "2026-08-10",
+  "date": "2026-08-11",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "プロキシ層での文体再構成パッチを今夜GitHub上で書き換えるか？",
-    "特定著者名の除去ロジックをプロンプト変換処理に組み込むか？",
-    "Qwen3Guard等の軽量検閲モデルの動作検証をプロキシに反映するか？"
+    "37%安くなった格安APIを使い自分のアプリの処理単価を何円削るか？",
+    "大手格安モデルの価格破壊に乗じて個人事業主の何の泥臭い業務を先回りするか？",
+    "今夜の30分でGitHub上のどのコードを更新し格安モデルへ切り替えるか？"
   ],
   "moves": [
     {
-      "t": "GitHubでプロキシパッチのコードを更新する",
-      "why": "検閲強化に対しプロキシ層でFew-shot再構成を行う処理を追加し情報優位を維持するため。",
+      "t": "OpenRouterで格安モデルの応答速度とコストをSafariで測定する",
+      "why": "DeepSeek V4 Flashの37%値下げを自作アプリの原価破壊に直結させるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.2,
-      "success_p_max": 0.7,
-      "success_why": "過去の標準モデル改定頻度およびOpenAIの検閲強化傾向に基づく。",
-      "value_score": 4,
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "iPhoneのSafariからOpenRouterダッシュボードへアクセスし数分でベンチマーク可能だから。",
+      "value_score": 3,
       "learning_value": 4,
-      "time_minutes": 25,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "GitHubリポジトリに著者名自動削り落とし機能のコミットが残る",
-      "category": "build",
+      "outcome": "格安モデルの応答速度と11,000トークンあたりの実測コストの比較メモ",
+      "category": "research",
       "terminal": false,
       "impact_min": 0.05,
-      "impact_max": 0.2,
-      "impact_why": "検閲迂回パイプラインの核心機能を一歩前進させるため。",
+      "impact_max": 0.15,
+      "impact_why": "API原価率の直接的な改善幅を確定できるため。",
       "evidence_ids": [
-        "2026-08-07-r04"
+        "2026-08-11-r01"
       ],
       "assumptions": [
-        "GitHubのWebUI上で直接ファイル編集が可能であること"
+        "OpenRouterのダッシュボードにiPhoneからログイン可能であること"
       ],
-      "disconfirm": "API実行時に著者名を削除しても出力傾向が変わらない場合",
-      "continue_if": "エラー率が低下し意図通りの生成速度が維持される場合",
-      "stop": "APIプロバイダ側でプロキシ経由のアクセス自体が全面拒否された場合"
+      "disconfirm": "従来モデルと比較して処理速度が50%以上低下する場合",
+      "continue_if": "従来と同等以上の応答速度でコストが30%以上削減できる場合",
+      "stop": "応答エラーが頻発し実用に耐えない場合"
     },
     {
-      "t": "ChatGPT広告枠の影響調査メモを作成する",
-      "why": "広告枠追加によるオーガニック露出減の影響をiPhoneのメモに残すため。",
+      "t": "OpenRouterの小額クレジットを購入し格安APIキーを発行する",
+      "why": "iPhone1台で動作する格安Webアプリのバックエンド通信基盤を確保するため。",
+      "cost_min": 500,
+      "cost_max": 1500,
+      "loss_max": 1500,
+      "success_p": 0.85,
+      "success_p_min": 0.75,
+      "success_p_max": 0.9,
+      "success_why": "クレジットカード決済のみでiPhoneから1分でチャージ完了するため。",
+      "value_score": 4,
+      "learning_value": 2,
+      "time_minutes": 10,
+      "payback_days": 7,
+      "outcome": "自作アプリに設定可能な有効なOpenRouter APIキー",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.25,
+      "impact_why": "有料モデルを実環境で稼働させる必須準備のため。",
+      "evidence_ids": [
+        "2026-08-11-r01"
+      ],
+      "assumptions": [
+        "小額の海外通信決済が利用可能であること"
+      ],
+      "disconfirm": "APIキーの発行手順に外部のCLI操作が要求される場合",
+      "continue_if": "1000円以下のテストデポジットで即座にモデル呼び出しができる場合",
+      "stop": "最低チャージ金額が予算上限を超過する場合"
+    },
+    {
+      "t": "GitHubのWeb画面でアプリのモデル呼び出し処理を格安版へ更新する",
+      "why": "既存Webアプリのモデル参照をDeepSeek V4 Flashへ差し替えるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.3,
-      "success_p_max": 0.7,
-      "success_why": "公式のAdvertise in ChatGPT発表により仕様変更が明確なため。",
-      "value_score": 3,
+      "success_p": 0.7,
+      "success_p_min": 0.6,
+      "success_p_max": 0.8,
+      "success_why": "GitHubのブラウザエディタで1ファイルの定数書き換えとコミットで完了するため。",
+      "value_score": 4,
       "learning_value": 3,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "広告導入による代替導線と個人が狙える隙に関する整理メモ",
-      "category": "research",
+      "outcome": "更新されたコードがメインブランチにマージされた状態",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.1,
-      "impact_why": "直接の開発ではなく戦略整理の位置づけであるため。",
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "本番環境の原価削減を即座に反映させる変更であるため。",
       "evidence_ids": [
-        "2026-07-23-r02"
+        "action-history"
       ],
       "assumptions": [
-        "公式広告プラットフォームの仕様が順次公開されていること"
+        "GitHubのWebエディタでコード編集とコミット権限があること"
       ],
-      "disconfirm": "広告導入後もオーガニックな推奨ロジックに変化が無い場合",
-      "continue_if": "流出トラフィックの受け皿となる外部プラットフォームが見つかった場合",
-      "stop": "大手が広告枠を独占し個人が介在する余地が完全に消滅した場合"
+      "disconfirm": "モデル変更に伴い既存のパラメータ引数でAPIエラーが発生する場合",
+      "continue_if": "コミット後、Vercel等の自動デプロイが成功する場合",
+      "stop": "ビルドエラーが発生し原因特定に30分以上かかる場合"
     },
     {
-      "t": "OpenAI SDK更新差分をWebで確認する",
-      "why": "バージョン2.53.0でのAPI挙動変化を把握しプロキシに反映するため。",
+      "t": "テスト負荷用に小額API枠を追加投入し連続リクエスト耐性を測る",
+      "why": "格安APIが混雑時に安定して動作するかを連続呼び出しで事前に確かめるため。",
+      "cost_min": 1000,
+      "cost_max": 3000,
+      "loss_max": 3000,
+      "success_p": 0.65,
+      "success_p_min": 0.5,
+      "success_p_max": 0.75,
+      "success_why": "Safari上で簡易的なループ実行を行いAPIレスポンスの安定性を数値化できるため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 14,
+      "outcome": "50回連続リクエスト時の成功率と平均レイテンシデータ",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "実運用時のダウンタイムリスクを事前に排除できるため。",
+      "evidence_ids": [
+        "2026-08-11-r01"
+      ],
+      "assumptions": [
+        "API側で短時間の連続アクセス制限がかからないこと"
+      ],
+      "disconfirm": "連続テスト時に500系サーバーエラーが20%以上発生する場合",
+      "continue_if": "成功率が95%以上を維持し追加枠が無駄にならない場合",
+      "stop": "エラー率が高く商用レベルに耐えないと判明した場合"
+    },
+    {
+      "t": "格安化した見積整理機能を個人事業主向けSNSコミュニティに投稿する",
+      "why": "完成した超低コストツールをターゲット層に直接届けて先回りユーザーを獲得するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.6,
-      "success_p_min": 0.4,
-      "success_p_max": 0.8,
-      "success_why": "PyPI上のリリースノートで更新差分が公開されているため。",
-      "value_score": 3,
+      "success_p_min": 0.45,
+      "success_p_max": 0.7,
+      "success_why": "iPhoneからXや掲示板へアプリURLと機能説明を書き込むだけで完了するため。",
+      "value_score": 5,
       "learning_value": 3,
-      "time_minutes": 10,
-      "payback_days": 0,
-      "outcome": "SDK更新点と自作プロキシの互換性チェックリスト",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.05,
-      "impact_why": "既存コードの破綻を防ぐための保守点検作業であるため。",
+      "time_minutes": 15,
+      "payback_days": 3,
+      "outcome": "投稿された宣伝テキストと計測用UTMリンク付きWebアプリURL",
+      "category": "publish",
+      "terminal": true,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "プロダクトを実際の市場に晒しユーザーの反応を得る最終行動だから。",
       "evidence_ids": [
-        "2026-08-07-r04"
+        "user-goal"
       ],
       "assumptions": [
-        "PyPIおよびGitHub上で最新SDKの差分が閲覧可能であること"
+        "投稿先コミュニティの利用規約に違反しないこと"
       ],
-      "disconfirm": "更新内容が軽微なバグ修正のみでプロンプト処理に影響しない場合",
-      "continue_if": "新機能がプロキシ層の処理簡略化に寄与する場合",
-      "stop": "プロキシで使用しているAPIエンドポイントが非推奨化された場合"
-    },
-    {
-      "t": "Codex Securityのツール構成を検証する",
-      "why": "OSS公開されたセキュリティツールの仕組みをプロキシ安全枠に応用するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.2,
-      "success_p_max": 0.6,
-      "success_why": "OpenAIによるCodex SecurityのOSS公開が確認されているため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "プロキシに組み込めるセキュリティ判定ロジックの抽出メモ",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.03,
-      "impact_max": 0.15,
-      "impact_why": "検閲検知とセキュリティチェックの精度向上に役立つため。",
-      "evidence_ids": [
-        "2026-07-30-r01"
-      ],
-      "assumptions": [
-        "GitHub上でリポジトリのコード解説がWebから読めること"
-      ],
-      "disconfirm": "CLI専用設計でWebプロキシ構造に流用できない場合",
-      "continue_if": "プロキシ側でコード検証ロジックを軽量に模倣できる場合",
-      "stop": "処理負荷が大きくiPhoneのSafari環境で仕様追従が困難な場合"
-    },
-    {
-      "t": "有料APIクレジットを小額チャージする",
-      "why": "プロキシ迂回ロジックの実リクエストテストを数回実行するため。",
-      "cost_min": 500,
-      "cost_max": 1000,
-      "loss_max": 1000,
-      "success_p": 0.55,
-      "success_p_min": 0.3,
-      "success_p_max": 0.75,
-      "success_why": "APIでの従量課金設定により短時間の検証が可能なため。",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 5,
-      "payback_days": 7,
-      "outcome": "テスト実行用アカウントの残高更新と疎通テスト実行権限",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.2,
-      "impact_why": "実際のAPI応答ログを得てパッチの有効性を検証できるため。",
-      "evidence_ids": [
-        "2026-08-01-r01"
-      ],
-      "assumptions": [
-        "クレジットカード決済がiPhone Safari上で完了すること"
-      ],
-      "disconfirm": "チャージ後も特定プロンプトがアカウントレベルでブロックされる場合",
-      "continue_if": "迂回プロンプトでのレスポンス成功率が70%を超える場合",
-      "stop": "10回連続でエラーが返りアカウント停止のリスクが生じた場合"
+      "disconfirm": "投稿がスパム判定されて削除される場合",
+      "continue_if": "アクセス数が10PV以上獲得できクリックが確認できる場合",
+      "stop": "ネガティブなフィードバックが大半を占める場合"
     }
   ],
-  "kan": "過去の改定頻度（年1〜2回・約15%）から見て本命視はしないが、OpenAIは14日以内（2026-08-20まで）に、APIドキュメントの利用規約において「特定著名人の文体・スタイルの高精度な模倣を目的とした利用」に関する制限条項を追加定義する目がある。"
+  "kan": "Anthropicは14日以内に、公式APIドキュメント（platform.claude.com）において「Claude Tag」に関する独立したドキュメントページを公開しない。"
 }

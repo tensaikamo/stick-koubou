@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-08-10 07:01",
+  "updated_at": "2026-08-11 07:09",
   "score": {
     "hit": 0,
-    "miss": 8,
-    "total": 8,
+    "miss": 10,
+    "total": 10,
     "rate": 0.0,
-    "pending": 25,
-    "brier": 0.5415625,
-    "brier_n": 8,
-    "brier_initial": 0.5415625,
+    "pending": 24,
+    "brier": 0.5695,
+    "brier_n": 10,
+    "brier_initial": 0.5695,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-08-11",
-    "days": 1
+    "days": 0
   },
   "decided": [
     {
@@ -34,6 +34,20 @@
       "signals": []
     },
     {
+      "id": "2026-08-01-h02",
+      "claim": "Anthropicは10日以内に、Claude API公式ドキュメントのモデル価格一覧ページにおいてClaude Opus 5のプロンプトキャッシュ価格単価を公開する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-11",
+      "confidence": 0.8,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "Opus 5の初期展開においてプロンプトキャッシュ機能の解放が遅れ、ドキュメント更新が保留される可能性がある。",
+      "evidence": "公式ドキュメントのモデル一覧ページにClaude Opus 5のプロンプトキャッシュ単価が記載されていないため。",
+      "signals": []
+    },
+    {
       "id": "2026-07-31-h03",
       "claim": "Googleは10日以内に、Google AI Studioの公式価格表ページにおいてGemini 3.6 Flashの価格を確定させ、Gemini 3.5 Flashを「Legacy」扱いに移動する。",
       "subject": "Google",
@@ -45,6 +59,20 @@
       "alert": false,
       "counter": "プレビュー期間が長引き、既存3.5 Flashの料金設定と非推奨化スケジュールが来月以降に先送りされる可能性がある。",
       "evidence": "Google AI Studioの価格表ページにおいてGemini 3.6 Flashの価格記載およびGemini 3.5 Flashに対するLegacyや非推奨の注記が確認できないため。",
+      "signals": []
+    },
+    {
+      "id": "2026-07-28-h01",
+      "claim": "Anthropicは14日以内に、Claude CodeにおけるデフォルトモデルをOpus 5へ自動昇格させるマイグレーションスケジュールを公式ドキュメントで公開する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-11",
+      "confidence": 0.85,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "Anthropicが安全検証の完了までOpus 4.8を旧環境互換用にデフォルト指定のまま残し、手動オプション変更のみで対応する可能性がある。",
+      "evidence": "公式ドキュメント(docs.anthropic.com)において、Claude CodeのデフォルトモデルをOpus 5に変更するスケジュールやOpus 4.8の非推奨化日程の記載が確認できないため。",
       "signals": []
     },
     {
@@ -148,20 +176,6 @@
       "signals": []
     },
     {
-      "id": "2026-07-28-h01",
-      "claim": "Anthropicは14日以内に、Claude CodeにおけるデフォルトモデルをOpus 5へ自動昇格させるマイグレーションスケジュールを公式ドキュメントで公開する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-11",
-      "confidence": 0.85,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "Anthropicが安全検証の完了までOpus 4.8を旧環境互換用にデフォルト指定のまま残し、手動オプション変更のみで対応する可能性がある。",
-      "evidence": "",
-      "signals": []
-    },
-    {
       "id": "2026-07-30-h01",
       "claim": "Anthropicは12日以内に、Claude APIの公式ドキュメントにおいてOpus 5向けのコード実行サンドボックス環境（Code Execution Tool）のパブリックベータ仕様を公開する。",
       "subject": "Anthropic",
@@ -172,21 +186,7 @@
       "status": "pending",
       "alert": false,
       "counter": "自社インフラでのコード実行リスクを避け、既存のMCP（Model Context Protocol）経由の外部環境接続を推奨し続ける設計を選択する可能性がある。",
-      "evidence": "",
-      "signals": []
-    },
-    {
-      "id": "2026-08-01-h02",
-      "claim": "Anthropicは10日以内に、Claude API公式ドキュメントのモデル価格一覧ページにおいてClaude Opus 5のプロンプトキャッシュ価格単価を公開する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-11",
-      "confidence": 0.8,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "Opus 5の初期展開においてプロンプトキャッシュ機能の解放が遅れ、ドキュメント更新が保留される可能性がある。",
-      "evidence": "",
+      "evidence": "docs.anthropic.comのトップページにCode executionの項目は確認できますが、具体的なパラメータ説明や仕様詳細は個別ガイドページを確認しないと判明しないため判定不能です。",
       "signals": []
     },
     {
@@ -300,22 +300,40 @@
       "counter": "和解手続きの完了処理に時間を要し、法務チームの判断で利用規約の文言変更が次四半期まで見送られる可能性がある。",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-08-04-h01",
+      "claim": "Anthropicは10日以内に、Anthropic APIの公式ドキュメント（料金ページ）において「Claude Opus 5」のBatch API料金体系を公表する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-14",
+      "confidence": 0.85,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "AnthropicがOpus 5の初期トラフィックをリアルタイムAPIリクエストの安定化に集中させ、Batch API対応の公開を次月中旬以降に延期する可能性がある。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-07-28-h02",
+      "claim": "Hugging Faceは18日以内に、外部AIモデルによる自動評価アクセスに関するネットワーク接続制限とアクセス制御方針を公式セキュリティドキュメントに追加する。",
+      "subject": "Hugging Face",
+      "deadline": "2026-08-15",
+      "confidence": 0.8,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "Hugging Faceがプラットフォームのオープン性を重視し、ネットワーク遮断を行わず評価アカウントの身元確認強化のみにとどめる可能性がある。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-08-08",
-          "headline": "AnthropicがPython SDK v0.121.0をPyPIで公開",
-          "url": "https://pypi.org/project/anthropic/0.121.0/"
-        },
-        {
-          "date": "2026-08-09",
-          "headline": "Anthropicがモデル非依存のAI教育プログラム「AI Fluency」の専門リード職を募集",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383242008"
-        },
         {
           "date": "2026-08-10",
           "headline": "AnthropicがGlobal Security Operations Centerのポリシー策定スペシャリストの求人を公開",
@@ -325,6 +343,16 @@
           "date": "2026-08-10",
           "headline": "Anthropicがエンタープライズ技術部門のApplied AI Architectの募集を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383335008"
+        },
+        {
+          "date": "2026-08-11",
+          "headline": "AnthropicがClaude CodeおよびClaude Tagを対象に含むDeveloper Relationsの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383596008"
+        },
+        {
+          "date": "2026-08-11",
+          "headline": "Anthropicがプロダクトインテリジェンス担当の財務・戦略ポジションの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358092008"
         }
       ]
     },
@@ -426,6 +454,20 @@
   ],
   "records": [
     {
+      "id": "2026-08-11-r02",
+      "date": "2026-08-11",
+      "headline": "AnthropicがClaude CodeおよびClaude Tagを対象に含むDeveloper Relationsの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383596008"
+    },
+    {
+      "id": "2026-08-11-r01",
+      "date": "2026-08-11",
+      "headline": "Anthropicがプロダクトインテリジェンス担当の財務・戦略ポジションの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358092008"
+    },
+    {
       "id": "2026-08-10-r02",
       "date": "2026-08-10",
       "headline": "Anthropicがエンタープライズ技術部門のApplied AI Architectの募集を開始",
@@ -494,21 +536,7 @@
       "headline": "Python向けAnthropic公式SDKのバージョン0.120.2がリリース",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/anthropic/0.120.2/"
-    },
-    {
-      "id": "2026-08-07-r04",
-      "date": "2026-08-07",
-      "headline": "Python向けOpenAI公式SDKのバージョン2.53.0がリリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/2.53.0/"
-    },
-    {
-      "id": "2026-08-07-r03",
-      "date": "2026-08-07",
-      "headline": "複数リポジトリの依存関係を利用した長文文脈作成手法OctoLongが発表",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2608.05141v1"
     }
   ],
-  "record_count": 36
+  "record_count": 38
 }
