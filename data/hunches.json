@@ -737,7 +737,7 @@
     "claim": "OpenAIは12日以内に、GitHubの「openai/codex-security」リポジトリにGitHub Actions統合用ファイル（action.yml）を追加するか、またはPyPIへ公式Pythonパッケージを登録する。",
     "subject": "OpenAI",
     "resolution": {
-      "source": "GitHubリポジトリ openai/codex-security および PyPI",
+      "source": "https://github.com/openai/codex-security",
       "check_query": "openai codex-security action.yml",
       "decider": "openai/codex-security リポジトリに action.yml が追加されるか、PyPIに codex-security パッケージが公開されること"
     },
@@ -755,14 +755,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-12T07:20:21.937603+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "openai/codex-securityリポジトリの確認結果、action.ymlの追加やPyPIへの公開に関する記載はなく、TypeScript SDKおよびnpmパッケージとして運用されています。",
+      "url": "https://github.com/openai/codex-security"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-07-31-h03",
@@ -1383,6 +1387,47 @@
       },
       {
         "sign": "PyPIのanthropic SDKリリースノートにClaude Tag関連の更新情報が記載されない状態が続く",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-12-h01",
+    "created_at": "2026-08-12T07:19:57.707872+09:00",
+    "based_on": [
+      "2026-08-12-r01",
+      "2026-08-12-r02"
+    ],
+    "prose": "Anthropicはエンタープライズ商談のCPQ承認加速を目指す職種に加え、500億ドル規模の米国インフラ投資に伴う自社所有GPU・データセンター資産を管理するCapex会計マネージャーの採用を開始した。大規模な設備投資に向けた財務管理基盤の整備に着手した事実は確認できるものの、求人を出したばかりの初期組織構築フェーズであるため、14日という短期間内に自社データセンターの開設や詳細計画に関する単体の公式発表が行われる見込みは薄い。",
+    "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社データセンターの開設または500億ドル規模インフラ投資に関する独立したプレスリリースを公開しない。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "data center",
+      "decider": "2026年8月26日時点で、Anthropic公式ニュースルーム（https://www.anthropic.com/news）に自社データセンター開設または500億ドルインフラ投資に関する単体プレスリリース記事が掲載されていないこと。"
+    },
+    "deadline": "2026-08-26",
+    "confidence": 0.88,
+    "base_rate": 0.85,
+    "base_rate_class": "大手AI企業が特定管理職の求人を公開してから14日以内に当該テーマに関する単体プレスリリースを出さない頻度",
+    "confidence_why": "基準率85%に対し、求人内容が実務体制の構築段階を示しており短期間での広報発表の準備が整っていないと考えられるため、非発生の確信度を88%へと引き上げた。",
+    "counter": "政府機関やハイパースケーラーとの提携交渉が既に完了しており、採用公開と連動してプレスリリースが近日中に前倒し発信される可能性がある。",
+    "indicators": [
+      {
+        "sign": "Anthropic公式ニュースルームにインフラストラクチャ関連の新規記事が投稿される",
+        "dir": "kill"
+      },
+      {
+        "sign": "Greenhouse上のManager, Infrastructure Capex Accounting求人が継続して掲載されている",
         "dir": "confirm"
       }
     ],

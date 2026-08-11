@@ -1384,5 +1384,106 @@
       "2026-08-07-r05",
       "2026-08-06-r01"
     ]
+  },
+  {
+    "id": "2026-08-12-r01",
+    "created_at": "2026-08-12T07:19:57.707872+09:00",
+    "headline": "Anthropicがエンタープライズ商談承認を加速するDeal Velocity担当者の募集を開始",
+    "what_happened": "Anthropicは、CPQ（見積作成・価格設定）や契約承認プロセスを統括し、大口法人商談の執行スピードを高める「Finance & Strategy, Deal Velocity」職の求人を公開した。営業、法務、コンプライアンスチームと連携し、複雑な契約構造の標準化やSalesforce等へのシステム落とし込みを担当する。大口エンタープライズ取引の増加に伴う商談進行のボトルネック解消を目的としている。",
+    "background": "大手AI企業では法人向け大規模契約の需要が急増しており、見積もりや法務チェックなどの社内承認プロセスの遅延が売上計上の課題となりやすい。",
+    "changed": "Anthropicの法人営業体制において、個別の特約交渉を迅速に処理・標準化する専用のファイナンスオペレーション枠が新設された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5386793008",
+      "title": "[新規求人] anthropic: Finance & Strategy, Deal Velocity (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-11-r02",
+      "2026-08-11-r01",
+      "2026-08-10-r02",
+      "2026-08-10-r01",
+      "2026-08-09-r01",
+      "2026-08-08-r01"
+    ]
+  },
+  {
+    "id": "2026-08-12-r02",
+    "created_at": "2026-08-12T07:19:57.707872+09:00",
+    "headline": "Anthropicが500億ドル規模のインフラ資産会計を担当するCapexマネージャーの求人を公開",
+    "what_happened": "Anthropicは、自社所有のGPU、ネットワーク機器、データセンター構築事業に関する固定資産会計を統括する「Manager, Infrastructure Capex Accounting」の求人を開始した。募集要項の中では、最近発表された500億ドル規模のアメリカ国内計算インフラ投資を支える自社所有資産（owned infrastructure assets）の計上および財務正確性の確保が任務として明記されている。",
+    "background": "AIモデルのトレーニングおよび推論需要の増大に伴い、AI企業はクラウド事業者からの借り受けだけでなく、自社でインフラ資産を直接所有・管理する動きを強めている。",
+    "changed": "500億ドル規模のインフラ投資に伴う固定資産およびGPU等の自社所有設備に関する会計管理組織の構築が始まっていることが判明した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357961008",
+      "title": "[新規求人] anthropic: Manager, Infrastructure Capex Accounting (San Francisco, CA | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-11-r02",
+      "2026-08-11-r01",
+      "2026-08-10-r02",
+      "2026-08-10-r01",
+      "2026-08-09-r01",
+      "2026-08-08-r01"
+    ]
+  },
+  {
+    "id": "2026-08-12-r03",
+    "created_at": "2026-08-12T07:19:57.707872+09:00",
+    "headline": "OpenAIがPython SDKのバージョン2.54.0をリリース",
+    "what_happened": "OpenAIは公式Pythonライブラリの最新版「openai 2.54.0」をPyPIにて公開した。Python 3.10以上に対応し、OpenAPI仕様からの自動生成による型定義およびhttpxベースの同期・非同期クライアント機能を提供する。",
+    "background": "OpenAIはAPIクライアントライブラリの更新を頻繁に行っており、新機能追加やレスポンス型の修正を定期的にリリースしている。",
+    "changed": "PyPIにおけるOpenAI公式Python SDKの最新安定版が2.54.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/2.54.0/",
+      "title": "openai Python SDK v2.54.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-08-r03",
+      "2026-08-08-r02",
+      "2026-08-07-r04",
+      "2026-08-01-r01",
+      "2026-07-30-r01",
+      "2026-07-24-r01"
+    ]
+  },
+  {
+    "id": "2026-08-12-r04",
+    "created_at": "2026-08-12T07:19:57.707872+09:00",
+    "headline": "マルチモーダルモデルの内部特徴量を分離・制御する新手法MMDiffが発表",
+    "what_happened": "研究チームは、マルチモーダル大規模言語モデル（MLLM）の内部表現を解釈・制御するためのフレームワーク「MMDiff」に関する論文を公開した。ベース言語モデルとマルチモーダル適用後モデルの疎性オートエンコーダ（SAE）の差分を取ることで、視覚学習によって変化した特徴量を分離し、モデル挙動の特定的な制御を可能にする。",
+    "background": "MLLMの視覚理解能力は高いものの、どの内部特徴量がどのような挙動を引き起こしているかを特定して制御することは従来困難であった。",
+    "changed": "マルチモーダル学習によって改変された特徴量を直接特定し、ターゲットを絞ったモデル制御を行うための手法が提示された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2608.09928v1",
+      "title": "Multimodal Model Diffing for Feature Discovery and Control",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
   }
 ]
