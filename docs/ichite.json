@@ -1,162 +1,163 @@
 {
-  "date": "2026-08-11",
+  "date": "2026-08-12",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "37%安くなった格安APIを使い自分のアプリの処理単価を何円削るか？",
-    "大手格安モデルの価格破壊に乗じて個人事業主の何の泥臭い業務を先回りするか？",
-    "今夜の30分でGitHub上のどのコードを更新し格安モデルへ切り替えるか？"
+    "ChatGPT広告化で消える検索流入の代わりに、今日どのコミュニティへアプリを置くか？",
+    "DeepSeek値上げに対応するため、自作Webアプリの課金単価を今夜いくらに変えるか？",
+    "Anthropicのエンタープライズ化の隙を突き、個人向けに提供できる独自の価値は何か？"
   ],
   "moves": [
     {
-      "t": "OpenRouterで格安モデルの応答速度とコストをSafariで測定する",
-      "why": "DeepSeek V4 Flashの37%値下げを自作アプリの原価破壊に直結させるため。",
+      "t": "自作Webアプリの有料課金ロジックをGitHubで修正する",
+      "why": "DeepSeek値上げで無料推論依存のモデルが崩壊するため、APIコスト転嫁の単価修正を急ぐ必要があるからだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
       "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "iPhoneのSafariからOpenRouterダッシュボードへアクセスし数分でベンチマーク可能だから。",
-      "value_score": 3,
+      "success_why": "GitHub Webエディタ操作のみでiPhoneから5分でコミット完了できるため。",
+      "value_score": 5,
       "learning_value": 4,
       "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "格安モデルの応答速度と11,000トークンあたりの実測コストの比較メモ",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "API原価率の直接的な改善幅を確定できるため。",
-      "evidence_ids": [
-        "2026-08-11-r01"
-      ],
-      "assumptions": [
-        "OpenRouterのダッシュボードにiPhoneからログイン可能であること"
-      ],
-      "disconfirm": "従来モデルと比較して処理速度が50%以上低下する場合",
-      "continue_if": "従来と同等以上の応答速度でコストが30%以上削減できる場合",
-      "stop": "応答エラーが頻発し実用に耐えない場合"
-    },
-    {
-      "t": "OpenRouterの小額クレジットを購入し格安APIキーを発行する",
-      "why": "iPhone1台で動作する格安Webアプリのバックエンド通信基盤を確保するため。",
-      "cost_min": 500,
-      "cost_max": 1500,
-      "loss_max": 1500,
-      "success_p": 0.85,
-      "success_p_min": 0.75,
-      "success_p_max": 0.9,
-      "success_why": "クレジットカード決済のみでiPhoneから1分でチャージ完了するため。",
-      "value_score": 4,
-      "learning_value": 2,
-      "time_minutes": 10,
-      "payback_days": 7,
-      "outcome": "自作アプリに設定可能な有効なOpenRouter APIキー",
-      "category": "buy",
+      "payback_days": 1,
+      "outcome": "課金API制限ロジックが更新されたプルリクエストの作成",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.25,
-      "impact_why": "有料モデルを実環境で稼働させる必須準備のため。",
+      "impact_why": "赤字推論の垂れ流しを止め、有料化モデルへの転換を即座に完了できるため。",
       "evidence_ids": [
-        "2026-08-11-r01"
+        "2026-08-12-r03"
       ],
       "assumptions": [
-        "小額の海外通信決済が利用可能であること"
+        "自作WebアプリのリポジトリがGitHub上にあること"
       ],
-      "disconfirm": "APIキーの発行手順に外部のCLI操作が要求される場合",
-      "continue_if": "1000円以下のテストデポジットで即座にモデル呼び出しができる場合",
-      "stop": "最低チャージ金額が予算上限を超過する場合"
+      "disconfirm": "既存ユーザーの解約率が100%に達しアクセスがゼロになること",
+      "continue_if": "課金変更後も日次アクティブユーザーが維持されること",
+      "stop": "APIアクセス拒否エラーが多発しサービスが停止すること"
     },
     {
-      "t": "GitHubのWeb画面でアプリのモデル呼び出し処理を格安版へ更新する",
-      "why": "既存Webアプリのモデル参照をDeepSeek V4 Flashへ差し替えるため。",
+      "t": "WebアプリにDiscord直結のコミュニティボタンを設置する",
+      "why": "ChatGPTの広告枠導入により検索からのオーガニック流入が減少するため、固定客を囲い込む必要があるからだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.85,
+      "success_p_min": 0.75,
+      "success_p_max": 0.9,
+      "success_why": "Safari上でHTMLタグを追加修正しGitHubにプッシュするだけで反映可能なため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 10,
+      "payback_days": 0,
+      "outcome": "トップページ上にDiscord参加リンクボタンが配置された状態",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.2,
+      "impact_why": "検索プラットフォームの集客アルゴリズム変更から脱却できるため。",
+      "evidence_ids": [
+        "2026-08-11-r02"
+      ],
+      "assumptions": [
+        "Discordサーバーの作成が完了していること"
+      ],
+      "disconfirm": "1週間ボタンがクリックされないこと",
+      "continue_if": "週間で5人以上の新規参加者が入ること",
+      "stop": "スパムアカウントの流入のみでコミュニティが荒れること"
+    },
+    {
+      "t": "Stripe決済リンクを作成しアプリの有料プランに組み込む",
+      "why": "推論コストの上昇に対し、自力で収益を回収する仕組みを今すぐ稼働させるべきだからだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "StripeダッシュボードからiPhone Safari操作のみで決済URLを発行できるため。",
+      "value_score": 5,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 7,
+      "outcome": "アプリ内に動作するStripe有料決済ボタンが埋め込まれた状態",
+      "category": "sell",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.3,
+      "impact_why": "有料顧客の売上によりインフラコスト増額分を直接相殺できるため。",
+      "evidence_ids": [
+        "2026-08-12-r01"
+      ],
+      "assumptions": [
+        "Stripeのアカウントが開設済みであること"
+      ],
+      "disconfirm": "決済リンクのテスト決済がエラーで失敗すること",
+      "continue_if": "月間有料会員のCVRが1%以上を維持すること",
+      "stop": "決済プロセッサ側のアカウント凍結または審査落ちが発生すること"
+    },
+    {
+      "t": "小額SNS広告を出稿し有料アプリの初期需要をテストする",
+      "why": "大手が囲い込みと高価格化を進める中、個人向け高速ツールの需要を最速で実証するためだ。",
+      "cost_min": 1000,
+      "cost_max": 3000,
+      "loss_max": 3000,
+      "success_p": 0.5,
+      "success_p_min": 0.3,
+      "success_p_max": 0.7,
+      "success_why": "広告審査の通過率とCVRの変動幅が大きいため中程度の確率に留まる。",
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 25,
+      "payback_days": 14,
+      "outcome": "広告キャンペーンの配信開始とクリック率データの取得開始",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "ターゲット層へのダイレクトアプローチによる最初の有料ユーザー獲得に繋がるため。",
+      "evidence_ids": [
+        "2026-08-12-r01"
+      ],
+      "assumptions": [
+        "SNS広告アカウントにクレジット決済が登録されていること"
+      ],
+      "disconfirm": "CTRが0.5%未満でリンク遷移が獲得できないこと",
+      "continue_if": "CPAが想定顧客単価を下回ること",
+      "stop": "広告費3000円消化時点でコンバージョンが0件であること"
+    },
+    {
+      "t": "エンタープライズの隙を突く個人向け軽量プロンプト集を公開する",
+      "why": "Anthropicが大企業向け商談に注力し始めたため、溢れた中小個人層に軽量代替手段を示すべきだからだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.7,
-      "success_p_min": 0.6,
+      "success_p_min": 0.55,
       "success_p_max": 0.8,
-      "success_why": "GitHubのブラウザエディタで1ファイルの定数書き換えとコミットで完了するため。",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "更新されたコードがメインブランチにマージされた状態",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "本番環境の原価削減を即座に反映させる変更であるため。",
-      "evidence_ids": [
-        "action-history"
-      ],
-      "assumptions": [
-        "GitHubのWebエディタでコード編集とコミット権限があること"
-      ],
-      "disconfirm": "モデル変更に伴い既存のパラメータ引数でAPIエラーが発生する場合",
-      "continue_if": "コミット後、Vercel等の自動デプロイが成功する場合",
-      "stop": "ビルドエラーが発生し原因特定に30分以上かかる場合"
-    },
-    {
-      "t": "テスト負荷用に小額API枠を追加投入し連続リクエスト耐性を測る",
-      "why": "格安APIが混雑時に安定して動作するかを連続呼び出しで事前に確かめるため。",
-      "cost_min": 1000,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.65,
-      "success_p_min": 0.5,
-      "success_p_max": 0.75,
-      "success_why": "Safari上で簡易的なループ実行を行いAPIレスポンスの安定性を数値化できるため。",
-      "value_score": 4,
+      "success_why": "ChatGPTで作成したプロンプト構文をGitHub Gistに保存して公開するだけで完了するため。",
+      "value_score": 3,
       "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 14,
-      "outcome": "50回連続リクエスト時の成功率と平均レイテンシデータ",
-      "category": "buy",
+      "time_minutes": 20,
+      "payback_days": 3,
+      "outcome": "公開URLが発行されたプロンプト集のGistページ",
+      "category": "publish",
       "terminal": false,
       "impact_min": 0.05,
       "impact_max": 0.15,
-      "impact_why": "実運用時のダウンタイムリスクを事前に排除できるため。",
+      "impact_why": "個人開発者の注目を集め自作アプリへの誘導口になるため。",
       "evidence_ids": [
-        "2026-08-11-r01"
+        "2026-08-12-r01",
+        "2026-08-10-r02"
       ],
       "assumptions": [
-        "API側で短時間の連続アクセス制限がかからないこと"
+        "実用に耐える軽量化プロンプトが作成可能であること"
       ],
-      "disconfirm": "連続テスト時に500系サーバーエラーが20%以上発生する場合",
-      "continue_if": "成功率が95%以上を維持し追加枠が無駄にならない場合",
-      "stop": "エラー率が高く商用レベルに耐えないと判明した場合"
-    },
-    {
-      "t": "格安化した見積整理機能を個人事業主向けSNSコミュニティに投稿する",
-      "why": "完成した超低コストツールをターゲット層に直接届けて先回りユーザーを獲得するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.45,
-      "success_p_max": 0.7,
-      "success_why": "iPhoneからXや掲示板へアプリURLと機能説明を書き込むだけで完了するため。",
-      "value_score": 5,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 3,
-      "outcome": "投稿された宣伝テキストと計測用UTMリンク付きWebアプリURL",
-      "category": "publish",
-      "terminal": true,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "プロダクトを実際の市場に晒しユーザーの反応を得る最終行動だから。",
-      "evidence_ids": [
-        "user-goal"
-      ],
-      "assumptions": [
-        "投稿先コミュニティの利用規約に違反しないこと"
-      ],
-      "disconfirm": "投稿がスパム判定されて削除される場合",
-      "continue_if": "アクセス数が10PV以上獲得できクリックが確認できる場合",
-      "stop": "ネガティブなフィードバックが大半を占める場合"
+      "disconfirm": "SNS等でのシェア数がゼロかつアクセス数が集まらないこと",
+      "continue_if": "閲覧者からのスター付与やポジティブな言及があること",
+      "stop": "内容に対する信頼性の低い否定的なフィードバックが多発すること"
     }
   ],
-  "kan": "Anthropicは14日以内に、公式APIドキュメント（platform.claude.com）において「Claude Tag」に関する独立したドキュメントページを公開しない。"
+  "kan": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社データセンターの開設または500億ドル規模インフラ投資に関する独立したプレスリリースを公開しない。"
 }

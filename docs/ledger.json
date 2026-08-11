@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-08-11 07:09",
+  "updated_at": "2026-08-12 07:20",
   "score": {
     "hit": 0,
-    "miss": 10,
-    "total": 10,
+    "miss": 11,
+    "total": 11,
     "rate": 0.0,
     "pending": 24,
-    "brier": 0.5695,
-    "brier_n": 10,
-    "brier_initial": 0.5695,
+    "brier": 0.5688636363636363,
+    "brier_n": 11,
+    "brier_initial": 0.5688636363636363,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-08-11",
-    "days": 0
+    "date": "2026-08-13",
+    "days": 1
   },
   "decided": [
     {
@@ -59,6 +59,20 @@
       "alert": false,
       "counter": "プレビュー期間が長引き、既存3.5 Flashの料金設定と非推奨化スケジュールが来月以降に先送りされる可能性がある。",
       "evidence": "Google AI Studioの価格表ページにおいてGemini 3.6 Flashの価格記載およびGemini 3.5 Flashに対するLegacyや非推奨の注記が確認できないため。",
+      "signals": []
+    },
+    {
+      "id": "2026-07-31-h02",
+      "claim": "OpenAIは12日以内に、GitHubの「openai/codex-security」リポジトリにGitHub Actions統合用ファイル（action.yml）を追加するか、またはPyPIへ公式Pythonパッケージを登録する。",
+      "subject": "OpenAI",
+      "deadline": "2026-08-12",
+      "confidence": 0.75,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "OpenAIがCLIとTypeScript SDKの初期メンテナスおよびバグ修正に注力し、CI統合機能の公式提供を後回しにする可能性がある。",
+      "evidence": "openai/codex-securityリポジトリの確認結果、action.ymlの追加やPyPIへの公開に関する記載はなく、TypeScript SDKおよびnpmパッケージとして運用されています。",
       "signals": []
     },
     {
@@ -190,20 +204,6 @@
       "signals": []
     },
     {
-      "id": "2026-07-31-h02",
-      "claim": "OpenAIは12日以内に、GitHubの「openai/codex-security」リポジトリにGitHub Actions統合用ファイル（action.yml）を追加するか、またはPyPIへ公式Pythonパッケージを登録する。",
-      "subject": "OpenAI",
-      "deadline": "2026-08-12",
-      "confidence": 0.75,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "OpenAIがCLIとTypeScript SDKの初期メンテナスおよびバグ修正に注力し、CI統合機能の公式提供を後回しにする可能性がある。",
-      "evidence": "",
-      "signals": []
-    },
-    {
       "id": "2026-07-23-h02",
       "claim": "AnthropicはClaude Codeの初期化トークン消費量を削減するアップデートを公開する。",
       "subject": "Anthropic",
@@ -328,22 +328,26 @@
       "counter": "Hugging Faceがプラットフォームのオープン性を重視し、ネットワーク遮断を行わず評価アカウントの身元確認強化のみにとどめる可能性がある。",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-08-01-h01",
+      "claim": "Artificial Analysisの公式LLMリーダーボードにDeepSeek V4 Flash 0731が独立したモデルとして正式掲載される。",
+      "subject": "Artificial Analysis",
+      "deadline": "2026-08-15",
+      "confidence": 0.85,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "テストデータの不備や追加検証の必要性により、リーダーボードへの一般公開更新が延期される可能性がある。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-08-10",
-          "headline": "AnthropicがGlobal Security Operations Centerのポリシー策定スペシャリストの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5382033008"
-        },
-        {
-          "date": "2026-08-10",
-          "headline": "Anthropicがエンタープライズ技術部門のApplied AI Architectの募集を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383335008"
-        },
         {
           "date": "2026-08-11",
           "headline": "AnthropicがClaude CodeおよびClaude Tagを対象に含むDeveloper Relationsの求人を公開",
@@ -353,17 +357,22 @@
           "date": "2026-08-11",
           "headline": "Anthropicがプロダクトインテリジェンス担当の財務・戦略ポジションの求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358092008"
+        },
+        {
+          "date": "2026-08-12",
+          "headline": "Anthropicが500億ドル規模のインフラ資産会計を担当するCapexマネージャーの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357961008"
+        },
+        {
+          "date": "2026-08-12",
+          "headline": "Anthropicがエンタープライズ商談承認を加速するDeal Velocity担当者の募集を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5386793008"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-08-01",
-          "headline": "OpenAIがGPT-5.6の価格対性能の向上を発表",
-          "url": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/"
-        },
         {
           "date": "2026-08-07",
           "headline": "Python向けOpenAI公式SDKのバージョン2.53.0がリリース",
@@ -378,6 +387,11 @@
           "date": "2026-08-08",
           "headline": "OpenAIが税務顧問組織での導入事例を公開",
           "url": "https://openai.com/index/hsp-gruppe"
+        },
+        {
+          "date": "2026-08-12",
+          "headline": "OpenAIがPython SDKのバージョン2.54.0をリリース",
+          "url": "https://pypi.org/project/openai/2.54.0/"
         }
       ]
     },
@@ -454,6 +468,34 @@
   ],
   "records": [
     {
+      "id": "2026-08-12-r04",
+      "date": "2026-08-12",
+      "headline": "マルチモーダルモデルの内部特徴量を分離・制御する新手法MMDiffが発表",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2608.09928v1"
+    },
+    {
+      "id": "2026-08-12-r03",
+      "date": "2026-08-12",
+      "headline": "OpenAIがPython SDKのバージョン2.54.0をリリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/2.54.0/"
+    },
+    {
+      "id": "2026-08-12-r02",
+      "date": "2026-08-12",
+      "headline": "Anthropicが500億ドル規模のインフラ資産会計を担当するCapexマネージャーの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357961008"
+    },
+    {
+      "id": "2026-08-12-r01",
+      "date": "2026-08-12",
+      "headline": "Anthropicがエンタープライズ商談承認を加速するDeal Velocity担当者の募集を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5386793008"
+    },
+    {
       "id": "2026-08-11-r02",
       "date": "2026-08-11",
       "headline": "AnthropicがClaude CodeおよびClaude Tagを対象に含むDeveloper Relationsの求人を公開",
@@ -508,35 +550,7 @@
       "headline": "OpenAIがサイバーセキュリティ能力に関する見解を発表",
       "certainty": "reported",
       "url": "https://openai.com/index/responding-next-frontier-critical-cyber-capabilities"
-    },
-    {
-      "id": "2026-08-08-r01",
-      "date": "2026-08-08",
-      "headline": "AnthropicがPython SDK v0.121.0をPyPIで公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/0.121.0/"
-    },
-    {
-      "id": "2026-08-07-r07",
-      "date": "2026-08-07",
-      "headline": "RadNetがSECにForm 8-Kを提出",
-      "certainty": "confirmed",
-      "url": "https://www.sec.gov/edgar/search/#/q=artificial%20intelligence"
-    },
-    {
-      "id": "2026-08-07-r06",
-      "date": "2026-08-07",
-      "headline": "Google Gen AI Python SDK v2.17.0がリリースされ自動関数呼び出しの非推奨仕様が公表",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/2.17.0/"
-    },
-    {
-      "id": "2026-08-07-r05",
-      "date": "2026-08-07",
-      "headline": "Python向けAnthropic公式SDKのバージョン0.120.2がリリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/0.120.2/"
     }
   ],
-  "record_count": 38
+  "record_count": 42
 }
