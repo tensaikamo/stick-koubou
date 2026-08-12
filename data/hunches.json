@@ -191,7 +191,7 @@
     "claim": "AnthropicはClaude Codeの初期化トークン消費量を削減するアップデートを公開する。",
     "subject": "Anthropic",
     "resolution": {
-      "source": "Anthropic Changelog or GitHub releases",
+      "source": "https://docs.anthropic.com/en/release-notes/overview",
       "check_query": "Claude Code token overhead update release",
       "decider": "Anthropicの公式リリースノートにおいて初期化トークン量の削減やプロンプト効率化に関する言及がなされること。"
     },
@@ -200,11 +200,15 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "Claude Codeの更新情報はGitHubリポジトリのCHANGELOG.mdを参照するよう案内されており、提供されたリリースノートページからは確認できません。",
+      "url": "https://docs.anthropic.com/en/release-notes/overview"
+    },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": true
   },
   {
     "id": "2026-07-24-h01",
@@ -216,20 +220,24 @@
     "claim": "AnthropicはClaude CodeのCLIアップデートにおいてシステムプロンプトおよび環境スキャンのトークン消費量を削減するキャッシュ最適化または初期化見直しをリリースする。",
     "subject": "Anthropic",
     "resolution": {
-      "source": "GitHub Anthropic Claude Code release notes",
+      "source": "https://github.com/anthropics/claude-code/releases",
       "check_query": "Claude Code release",
       "decider": "Anthropicが公式リポジトリまたはチェンジログにて、Claude Codeの初期トークン消費量削減またはプロンプトキャッシュ効率化に関する修正を公開すること。"
     },
     "deadline": "2026-08-13",
     "confidence": 0.8,
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-13T07:20:10.530901+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "期限である2026年8月13日までに公式リポジトリのリリースメモにおいて、Claude Codeの初期トークン消費量削減やプロンプトキャッシュ効率化に関する修正の公開が確認できないため。",
+      "url": "https://github.com/anthropics/claude-code/releases"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-07-24-h02",
@@ -1034,7 +1042,7 @@
     "claim": "OpenAIは10日以内に、PyPI（Python Package Index）にて「codex-security」またはそれに類する公式Pythonパッケージを公開する。",
     "subject": "OpenAI",
     "resolution": {
-      "source": "PyPI (pypi.org)",
+      "source": "https://pypi.org/",
       "check_query": "codex security openai pypi",
       "decider": "PyPIにOpenAI公式のCodex Security用Pythonパッケージが登録・公開されること。"
     },
@@ -1055,11 +1063,15 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "提供されたPyPIトップページの内容だけでは「codex-security」等のOpenAI公式パッケージが公開されているか確認できないため判定不能。",
+      "url": "https://pypi.org/"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": true
   },
   {
     "id": "2026-08-03-h02",

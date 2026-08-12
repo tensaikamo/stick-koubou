@@ -1485,5 +1485,106 @@
     "body_fetched": true,
     "model": "gemini-3.6-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-08-13-r01",
+    "created_at": "2026-08-13T07:19:45.642836+09:00",
+    "headline": "OpenAIがPython SDK v3.0.0をPyPIに公開",
+    "what_happened": "OpenAIは公式Pythonクライアントライブラリのメジャーバージョンとなる「openai 3.0.0」をPyPIにリリースした。Python 3.10以降の環境を対象とし、StainlessによってOpenAPI仕様から自動生成されている。HTTPXを基礎とした同期および非同期クライアントをサポートする。",
+    "background": "OpenAIの公式PythonライブラリはAPI仕様の改定に合わせて定期的にメジャーアップデートが行われ、仕様変更や依存関係の更新が組み込まれる。",
+    "changed": "Python環境におけるOpenAI公式SDKの最新メジャーバージョンが3.0.0へと更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.0.0/",
+      "title": "openai Python SDK v3.0.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-12-r03",
+      "2026-08-08-r03",
+      "2026-08-08-r02",
+      "2026-08-07-r04",
+      "2026-08-01-r01",
+      "2026-07-30-r01"
+    ]
+  },
+  {
+    "id": "2026-08-13-r02",
+    "created_at": "2026-08-13T07:19:45.642836+09:00",
+    "headline": "AnthropicがForward Deployed Engineerの採用募集を開始",
+    "what_happened": "Anthropicは主要拠点でForward Deployed Engineer（FDE）の求人を開始した。エンタープライズ顧客の現場に直接埋め込まれ、商用モデルを活用した高度なAIアプリケーションの構築と導入を指揮する創立期メンバーの募集である。",
+    "background": "FDE（現場展開型エンジニア）はPalantir等で知られる導入支援スタイルであり、大企業の複雑な既存システムや運用に合わせて直販・構築を加速させる役割を持つ。",
+    "changed": "Anthropicがエンタープライズ顧客獲得に向けて顧客伴走型の技術組織を直接構築し始めた。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5302966008",
+      "title": "[新規求人] anthropic: Forward Deployed Engineer (New York City, NY; San Francisco, CA; Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-12-r02",
+      "2026-08-12-r01",
+      "2026-08-11-r02",
+      "2026-08-11-r01",
+      "2026-08-10-r02",
+      "2026-08-10-r01"
+    ]
+  },
+  {
+    "id": "2026-08-13-r03",
+    "created_at": "2026-08-13T07:19:45.642836+09:00",
+    "headline": "Anthropicが幹部保護を担当するセキュリティマネージャーの求人を公開",
+    "what_happened": "AnthropicはGlobal Safety, Intelligence & Security (GSIS) 部門において、Executive Services Program Managerの募集を開始した。経営幹部や重要人物の保護（Protective Services）および個人セキュリティ施策の計画・執行を管轄する。",
+    "background": "フロンティアAI開発企業における脅威アセスメントの高まりに伴い、物理セキュリティや幹部警護の専任組織の強化が進んでいる。",
+    "changed": "Anthropicの社内セキュリティ体制に経営陣警護を専門に管理する役職が新設された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5385626008",
+      "title": "[新規求人] anthropic: Executive Services Program Manager (Boston, MA; Remote-Friendly (Travel-Required) | San Francisco, CA | Seattle, WA | New York City, NY; Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": [
+      "2026-08-12-r02",
+      "2026-08-12-r01",
+      "2026-08-11-r02",
+      "2026-08-11-r01",
+      "2026-08-10-r02",
+      "2026-08-10-r01"
+    ]
+  },
+  {
+    "id": "2026-08-13-r04",
+    "created_at": "2026-08-13T07:19:45.642836+09:00",
+    "headline": "Sparse Autoencodersの概念表現に関する評価論文が公開",
+    "what_happened": "Sparse Autoencoders（SAE）の活性化潜在集合が人間の概念境界や典型性をどの程度捉えているかを検証した研究がarXivに掲載された。SAEの潜在集合による類似度は、人間の概念構造を直接反映するわけではなく、モデル内部の類似構造をトレースしていると指摘した。",
+    "background": "SAEはLLMの内部表現を人間が解釈可能な要素へ分解する技術として注目を集めている。",
+    "changed": "SAEによるモデル内部表現の解釈性に対する理論的限界と課題が提示された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2608.11197v1",
+      "title": "Beyond a Bag of Features: Set-Level Instability in Sparse Autoencoders",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.6-flash",
+    "related_ids": []
   }
 ]
