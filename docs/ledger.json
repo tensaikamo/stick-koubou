@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-08-12 07:20",
+  "updated_at": "2026-08-13 07:20",
   "score": {
     "hit": 0,
-    "miss": 11,
-    "total": 11,
+    "miss": 12,
+    "total": 12,
     "rate": 0.0,
-    "pending": 24,
-    "brier": 0.5688636363636363,
-    "brier_n": 11,
-    "brier_initial": 0.5688636363636363,
+    "pending": 23,
+    "brier": 0.5747916666666667,
+    "brier_n": 12,
+    "brier_initial": 0.5747916666666667,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-08-13",
-    "days": 1
+    "days": 0
   },
   "decided": [
     {
@@ -146,6 +146,20 @@
       "signals": []
     },
     {
+      "id": "2026-07-24-h01",
+      "claim": "AnthropicはClaude CodeのCLIアップデートにおいてシステムプロンプトおよび環境スキャンのトークン消費量を削減するキャッシュ最適化または初期化見直しをリリースする。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-13",
+      "confidence": 0.8,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "",
+      "evidence": "期限である2026年8月13日までに公式リポジトリのリリースメモにおいて、Claude Codeの初期トークン消費量削減やプロンプトキャッシュ効率化に関する修正の公開が確認できないため。",
+      "signals": []
+    },
+    {
       "id": "2026-07-22-h03",
       "claim": "Fireworks.aiが自動モデルルーティング機能を一般向け新機能として正式提供開始する。",
       "subject": "Fireworks.ai",
@@ -214,21 +228,7 @@
       "status": "pending",
       "alert": false,
       "counter": "",
-      "evidence": "",
-      "signals": []
-    },
-    {
-      "id": "2026-07-24-h01",
-      "claim": "AnthropicはClaude CodeのCLIアップデートにおいてシステムプロンプトおよび環境スキャンのトークン消費量を削減するキャッシュ最適化または初期化見直しをリリースする。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-13",
-      "confidence": 0.8,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "",
-      "evidence": "",
+      "evidence": "Claude Codeの更新情報はGitHubリポジトリのCHANGELOG.mdを参照するよう案内されており、提供されたリリースノートページからは確認できません。",
       "signals": []
     },
     {
@@ -242,7 +242,7 @@
       "status": "pending",
       "alert": false,
       "counter": "TypeScript SDKとCLIのバイナリ配布のみに機能を絞り、Python用パッケージの個別提供を見送る可能性がある。",
-      "evidence": "",
+      "evidence": "提供されたPyPIトップページの内容だけでは「codex-security」等のOpenAI公式パッケージが公開されているか確認できないため判定不能。",
       "signals": []
     },
     {
@@ -342,22 +342,26 @@
       "counter": "テストデータの不備や追加検証の必要性により、リーダーボードへの一般公開更新が延期される可能性がある。",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-08-05-h01",
+      "claim": "Anthropicは10日以内に、Anthropic APIの公式価格ドキュメントにおいて「Claude Opus 5」の入力・出力トークン単価を正式掲載する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-15",
+      "confidence": 0.85,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "Opus 5のAPIインフラプロビジョニングの負荷調整を理由に、パブリックAPIの価格掲載が数週間延期される可能性がある。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-08-11",
-          "headline": "AnthropicがClaude CodeおよびClaude Tagを対象に含むDeveloper Relationsの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383596008"
-        },
-        {
-          "date": "2026-08-11",
-          "headline": "Anthropicがプロダクトインテリジェンス担当の財務・戦略ポジションの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358092008"
-        },
         {
           "date": "2026-08-12",
           "headline": "Anthropicが500億ドル規模のインフラ資産会計を担当するCapexマネージャーの求人を公開",
@@ -367,17 +371,22 @@
           "date": "2026-08-12",
           "headline": "Anthropicがエンタープライズ商談承認を加速するDeal Velocity担当者の募集を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5386793008"
+        },
+        {
+          "date": "2026-08-13",
+          "headline": "AnthropicがForward Deployed Engineerの採用募集を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5302966008"
+        },
+        {
+          "date": "2026-08-13",
+          "headline": "Anthropicが幹部保護を担当するセキュリティマネージャーの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5385626008"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-08-07",
-          "headline": "Python向けOpenAI公式SDKのバージョン2.53.0がリリース",
-          "url": "https://pypi.org/project/openai/2.53.0/"
-        },
         {
           "date": "2026-08-08",
           "headline": "OpenAIがサイバーセキュリティ能力に関する見解を発表",
@@ -392,6 +401,11 @@
           "date": "2026-08-12",
           "headline": "OpenAIがPython SDKのバージョン2.54.0をリリース",
           "url": "https://pypi.org/project/openai/2.54.0/"
+        },
+        {
+          "date": "2026-08-13",
+          "headline": "OpenAIがPython SDK v3.0.0をPyPIに公開",
+          "url": "https://pypi.org/project/openai/3.0.0/"
         }
       ]
     },
@@ -468,6 +482,34 @@
   ],
   "records": [
     {
+      "id": "2026-08-13-r04",
+      "date": "2026-08-13",
+      "headline": "Sparse Autoencodersの概念表現に関する評価論文が公開",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2608.11197v1"
+    },
+    {
+      "id": "2026-08-13-r03",
+      "date": "2026-08-13",
+      "headline": "Anthropicが幹部保護を担当するセキュリティマネージャーの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5385626008"
+    },
+    {
+      "id": "2026-08-13-r02",
+      "date": "2026-08-13",
+      "headline": "AnthropicがForward Deployed Engineerの採用募集を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5302966008"
+    },
+    {
+      "id": "2026-08-13-r01",
+      "date": "2026-08-13",
+      "headline": "OpenAIがPython SDK v3.0.0をPyPIに公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.0.0/"
+    },
+    {
       "id": "2026-08-12-r04",
       "date": "2026-08-12",
       "headline": "マルチモーダルモデルの内部特徴量を分離・制御する新手法MMDiffが発表",
@@ -522,35 +564,7 @@
       "headline": "AnthropicがGlobal Security Operations Centerのポリシー策定スペシャリストの求人を公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5382033008"
-    },
-    {
-      "id": "2026-08-09-r02",
-      "date": "2026-08-09",
-      "headline": "xAIがスロバキア語・ルーマニア語など多言語音声機能向けのAIチューター求人を同時公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5207599007"
-    },
-    {
-      "id": "2026-08-09-r01",
-      "date": "2026-08-09",
-      "headline": "Anthropicがモデル非依存のAI教育プログラム「AI Fluency」の専門リード職を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383242008"
-    },
-    {
-      "id": "2026-08-08-r03",
-      "date": "2026-08-08",
-      "headline": "OpenAIが税務顧問組織での導入事例を公開",
-      "certainty": "reported",
-      "url": "https://openai.com/index/hsp-gruppe"
-    },
-    {
-      "id": "2026-08-08-r02",
-      "date": "2026-08-08",
-      "headline": "OpenAIがサイバーセキュリティ能力に関する見解を発表",
-      "certainty": "reported",
-      "url": "https://openai.com/index/responding-next-frontier-critical-cyber-capabilities"
     }
   ],
-  "record_count": 42
+  "record_count": 46
 }

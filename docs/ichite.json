@@ -1,163 +1,162 @@
 {
-  "date": "2026-08-12",
+  "date": "2026-08-13",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "ChatGPT広告化で消える検索流入の代わりに、今日どのコミュニティへアプリを置くか？",
-    "DeepSeek値上げに対応するため、自作Webアプリの課金単価を今夜いくらに変えるか？",
-    "Anthropicのエンタープライズ化の隙を突き、個人向けに提供できる独自の価値は何か？"
+    "OpenAI v3移行で既存コードのどこが壊れるかChatGPTに判定させたか？",
+    "OpenRouterのサージ回避のため直結APIキーへ今朝切り替えるか？",
+    "自作WebアプリのSDKバージョン不整合を今日中に修正完了するか？"
   ],
   "moves": [
     {
-      "t": "自作Webアプリの有料課金ロジックをGitHubで修正する",
-      "why": "DeepSeek値上げで無料推論依存のモデルが崩壊するため、APIコスト転嫁の単価修正を急ぐ必要があるからだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "GitHub Webエディタ操作のみでiPhoneから5分でコミット完了できるため。",
-      "value_score": 5,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 1,
-      "outcome": "課金API制限ロジックが更新されたプルリクエストの作成",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "赤字推論の垂れ流しを止め、有料化モデルへの転換を即座に完了できるため。",
-      "evidence_ids": [
-        "2026-08-12-r03"
-      ],
-      "assumptions": [
-        "自作WebアプリのリポジトリがGitHub上にあること"
-      ],
-      "disconfirm": "既存ユーザーの解約率が100%に達しアクセスがゼロになること",
-      "continue_if": "課金変更後も日次アクティブユーザーが維持されること",
-      "stop": "APIアクセス拒否エラーが多発しサービスが停止すること"
-    },
-    {
-      "t": "WebアプリにDiscord直結のコミュニティボタンを設置する",
-      "why": "ChatGPTの広告枠導入により検索からのオーガニック流入が減少するため、固定客を囲い込む必要があるからだ。",
+      "t": "GitHubでOpenAI v3の互換修正コードをWeb編集し修正する",
+      "why": "OpenAIがSDK v3.0.0を公開し、破壊的変更によるアプリ停止を防ぐため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.85,
-      "success_p_min": 0.75,
-      "success_p_max": 0.9,
-      "success_why": "Safari上でHTMLタグを追加修正しGitHubにプッシュするだけで反映可能なため。",
+      "success_p_min": 0.7,
+      "success_p_max": 0.95,
+      "success_why": "PyPIでv3.0.0の変更仕様が全公開されているため。",
       "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "GitHub上のコードがOpenAI v3仕様に書き換わった状態",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.25,
+      "impact_why": "稼働中アプリのダウンタイム回避に直結するため。",
+      "evidence_ids": [
+        "2026-08-13-r01"
+      ],
+      "assumptions": [
+        "GitHubのWeb編集権限を所有している"
+      ],
+      "disconfirm": "v3.0.0に旧API呼び出しの互換性が残っていると判明した場合",
+      "continue_if": "ビルドテストが正常完了しエラーが出ない場合",
+      "stop": "外部依存ライブラリ側で根本的破損が発生した場合"
+    },
+    {
+      "t": "Safari上のChatGPTでコードの互換性破壊箇所を抽出させる",
+      "why": "iPhone1台の環境で朝の15分以内に影響箇所を特定する必要があるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_p_min": 0.65,
+      "success_p_max": 0.9,
+      "success_why": "ChatGPTのコード解析機能により差異検出が容易なため。",
+      "value_score": 3,
       "learning_value": 3,
       "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "トップページ上にDiscord参加リンクボタンが配置された状態",
-      "category": "build",
+      "outcome": "Safariのテキストエディタに残る差分修正指示プロンプト文面",
+      "category": "review",
       "terminal": false,
       "impact_min": 0.05,
-      "impact_max": 0.2,
-      "impact_why": "検索プラットフォームの集客アルゴリズム変更から脱却できるため。",
+      "impact_max": 0.15,
+      "impact_why": "修正作業の事前検証として必須手順であるため。",
       "evidence_ids": [
-        "2026-08-11-r02"
+        "2026-08-13-r01"
       ],
       "assumptions": [
-        "Discordサーバーの作成が完了していること"
+        "現行Webアプリのソースコードテキストをコピー可能である"
       ],
-      "disconfirm": "1週間ボタンがクリックされないこと",
-      "continue_if": "週間で5人以上の新規参加者が入ること",
-      "stop": "スパムアカウントの流入のみでコミュニティが荒れること"
+      "disconfirm": "ChatGPTがv3.0.0のリリース内容を解釈できない場合",
+      "continue_if": "修正候補コードが具体的かつエラーなく出力された場合",
+      "stop": "ChatGPTからの修正コード出力が構文エラーを起こす場合"
     },
     {
-      "t": "Stripe決済リンクを作成しアプリの有料プランに組み込む",
-      "why": "推論コストの上昇に対し、自力で収益を回収する仕組みを今すぐ稼働させるべきだからだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
+      "t": "DeepSeek直結APIキーを発行し環境変数を差し替える",
+      "why": "OpenRouter経由の値上げサージを回避し直結キーでコスト低下を狙うため。",
+      "cost_min": 500,
+      "cost_max": 2000,
+      "loss_max": 2000,
       "success_p": 0.75,
       "success_p_min": 0.6,
       "success_p_max": 0.85,
-      "success_why": "StripeダッシュボードからiPhone Safari操作のみで決済URLを発行できるため。",
-      "value_score": 5,
-      "learning_value": 4,
-      "time_minutes": 20,
+      "success_why": "直結API側は中継手数料や一時サージの影響を受けにくいため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 15,
       "payback_days": 7,
-      "outcome": "アプリ内に動作するStripe有料決済ボタンが埋め込まれた状態",
-      "category": "sell",
+      "outcome": "Webアプリの環境変数がDeepSeek直結APIキーに更新された状態",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.1,
-      "impact_max": 0.3,
-      "impact_why": "有料顧客の売上によりインフラコスト増額分を直接相殺できるため。",
+      "impact_max": 0.2,
+      "impact_why": "API利用コストを直接削減できるため。",
       "evidence_ids": [
-        "2026-08-12-r01"
+        "2026-08-13-r01"
       ],
       "assumptions": [
-        "Stripeのアカウントが開設済みであること"
+        "DeepSeek直結のデポジット決済がiPhoneから完了可能である"
       ],
-      "disconfirm": "決済リンクのテスト決済がエラーで失敗すること",
-      "continue_if": "月間有料会員のCVRが1%以上を維持すること",
-      "stop": "決済プロセッサ側のアカウント凍結または審査落ちが発生すること"
+      "disconfirm": "直結APIでも同等の価格引き上げが実施された場合",
+      "continue_if": "APIレスポンス速度とコスト削減率が期待通りである場合",
+      "stop": "直結APIの障害率が極端に高くリクエストが失敗し続ける場合"
     },
     {
-      "t": "小額SNS広告を出稿し有料アプリの初期需要をテストする",
-      "why": "大手が囲い込みと高価格化を進める中、個人向け高速ツールの需要を最速で実証するためだ。",
+      "t": "OpenAI API残高をチャージしv3直結テストを実施する",
+      "why": "v3.0.0への完全切り替えに伴う動作確認を実リクエストで行うため。",
       "cost_min": 1000,
       "cost_max": 3000,
       "loss_max": 3000,
-      "success_p": 0.5,
-      "success_p_min": 0.3,
-      "success_p_max": 0.7,
-      "success_why": "広告審査の通過率とCVRの変動幅が大きいため中程度の確率に留まる。",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 25,
-      "payback_days": 14,
-      "outcome": "広告キャンペーンの配信開始とクリック率データの取得開始",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "ターゲット層へのダイレクトアプローチによる最初の有料ユーザー獲得に繋がるため。",
-      "evidence_ids": [
-        "2026-08-12-r01"
-      ],
-      "assumptions": [
-        "SNS広告アカウントにクレジット決済が登録されていること"
-      ],
-      "disconfirm": "CTRが0.5%未満でリンク遷移が獲得できないこと",
-      "continue_if": "CPAが想定顧客単価を下回ること",
-      "stop": "広告費3000円消化時点でコンバージョンが0件であること"
-    },
-    {
-      "t": "エンタープライズの隙を突く個人向け軽量プロンプト集を公開する",
-      "why": "Anthropicが大企業向け商談に注力し始めたため、溢れた中小個人層に軽量代替手段を示すべきだからだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
       "success_p": 0.7,
-      "success_p_min": 0.55,
+      "success_p_min": 0.5,
       "success_p_max": 0.8,
-      "success_why": "ChatGPTで作成したプロンプト構文をGitHub Gistに保存して公開するだけで完了するため。",
+      "success_why": "少額クレジットを投入することで本番環境でのエラーを即時検知できるため。",
       "value_score": 3,
       "learning_value": 4,
       "time_minutes": 20,
-      "payback_days": 3,
-      "outcome": "公開URLが発行されたプロンプト集のGistページ",
-      "category": "publish",
+      "payback_days": 14,
+      "outcome": "OpenAI v3直結呼び出しの成功ログおよび決済履歴",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.2,
+      "impact_why": "サービスダウンを防ぎ継続運用を保証するため。",
+      "evidence_ids": [
+        "2026-08-13-r01"
+      ],
+      "assumptions": [
+        "OpenAIアカウントにクレジットカード情報が登録可能である"
+      ],
+      "disconfirm": "v3呼び出しで認証エラーやスキーマエラーが継続する場合",
+      "continue_if": "テストリクエストが正常に200 OKを返す場合",
+      "stop": "チャージしたクレジットが意図しない無限ループ等で急減した場合"
+    },
+    {
+      "t": "Anthropic SDKの変更点をGitHubで確認しプロンプトを作る",
+      "why": "Anthropic公式SDK v0.120.2の変更点も先回りして把握し統合準備をするため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_p_min": 0.6,
+      "success_p_max": 0.9,
+      "success_why": "PyPIに公開済みのバージョン変更ログから仕様を追えるため。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "Anthropic SDK最新版対応のための互換チェック用プロンプト",
+      "category": "research",
       "terminal": false,
       "impact_min": 0.05,
       "impact_max": 0.15,
-      "impact_why": "個人開発者の注目を集め自作アプリへの誘導口になるため。",
+      "impact_why": "将来のアップデート時の改修工数を事前削減できるため。",
       "evidence_ids": [
-        "2026-08-12-r01",
-        "2026-08-10-r02"
+        "2026-08-07-r05"
       ],
       "assumptions": [
-        "実用に耐える軽量化プロンプトが作成可能であること"
+        "Anthropic API側の破壊的変更がPyPIログに記載されている"
       ],
-      "disconfirm": "SNS等でのシェア数がゼロかつアクセス数が集まらないこと",
-      "continue_if": "閲覧者からのスター付与やポジティブな言及があること",
-      "stop": "内容に対する信頼性の低い否定的なフィードバックが多発すること"
+      "disconfirm": "SDK v0.120.2にマイナーバグ修正以外の変更が含まれない場合",
+      "continue_if": "主要インターフェースに変更が確認された場合",
+      "stop": "変更内容が既存コードに影響を与えない軽微なものである場合"
     }
   ],
-  "kan": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社データセンターの開設または500億ドル規模インフラ投資に関する独立したプレスリリースを公開しない。"
+  "kan": "Anthropicは向こう14日以内に、公式APIにおけるプロンプトキャッシュ価格の値上げを実施しないと見る。"
 }
