@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """selftest.py -- 監査で要求された自動テスト。実験前に必ず通すこと。"""
-import subprocess, sys, json, pathlib, hashlib
+import subprocess, sys, json, pathlib, hashlib, tempfile
 
 HERE = pathlib.Path(__file__).parent
 sys.path.insert(0, str(HERE))
@@ -43,6 +43,12 @@ bad2 = json.loads(json.dumps(cases[4]))   # NR-01
 bad2["ground_truth"]["trap_conclusion"] = "何か"
 e3, _ = validate_dataset([bad2], None)
 check("no_refutation に trap があると検出", any("trap がある" in x for x in e3))
+
+bad_specs = json.loads(json.dumps(specs))
+next(s for s in bad_specs if s["id"] == "AB-01")["refutation_match"] = "ANY"
+e4, _ = validate_dataset(cases, bad_specs)
+check("specs と dataset の refutation_match 不一致を検出",
+      any("refutation_match が不一致" in x for x in e4))
 
 print("\n=== 3-4. pilot prompt 生成 ===")
 r = subprocess.run([sys.executable, str(HERE / "run.py"),
@@ -256,6 +262,30 @@ aggn = {"B": dict(refutation_discovery=0.2, accuracy=0.5, correct_destruction=0.
                   avg_tokens=1200, refutation_scored_n=14)}
 v_, r_ = S.verdict_full(aggn, n_trials=1)
 check("分母不一致で INCOMPLETE_RESULTS", v_ == "INCOMPLETE_RESULTS", v_)
+
+e0, nt0 = S.validate_results([], cases)
+check("結果0件を reject", bool(e0) and nt0 == 0, str(e0))
+
+# pilot CLI も、judge API を呼ぶ前に欠損結果を拒否すること
+with tempfile.TemporaryDirectory() as td:
+    raw = pathlib.Path(td) / "raw.jsonl"
+    raw.write_text(json.dumps(dict(case_id="AB-01", condition="C", trial=0,
+                                   raw_answer="{}", usage={"calls": 2}),
+                              ensure_ascii=False) + "\n", encoding="utf-8")
+    p = subprocess.run([sys.executable, str(HERE / "score.py"), "--mode", "pilot",
+                        "--raw", str(raw)], capture_output=True, text=True)
+    check("pilot CLI も欠損結果を採点前に reject",
+          p.returncode != 0 and "[INCOMPLETE_RESULTS]" in p.stdout,
+          f"exit={p.returncode}")
+
+# ALL ケースの工程診断は、必要文書がすべて揃うまで検索到達にしない
+diag_base = dict(case_id="AB-01", condition="C", refutation_found=False,
+                 verdict="other")
+d_one = S.diagnose_c([dict(diag_base, retrieved=["d2"])], cases)[0]
+d_all = S.diagnose_c([dict(diag_base, retrieved=["d2", "d3"])], cases)[0]
+check("AB-01 は d2 のみでは検索未到達",
+      d_one["reached"] is False and d_one["stage"].startswith("検索"))
+check("AB-01 は d2+d3 で検索到達", d_all["reached"] is True)
 
 print("\n=== 14. no_refutation 専用 judge（修正4）===")
 nrp = P.build_judge_nr("工期遅延の主因は長雨である", "長雨が原因です")

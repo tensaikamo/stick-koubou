@@ -58,11 +58,13 @@ def parse_json(text):
 
 # ---------------------------------------------------------------- 結果の完全性
 def validate_results(rows, cases):
-    """full判定前に raw.jsonl の完全性を強制する。
+    """採点前に raw.jsonl の完全性を強制する。
     欠損した条件だけを比較すると、難しいケースが落ちた側が有利になる。
     戻り値: (errors, n_trials)
     """
     errors = []
+    if not rows:
+        errors.append("結果が0件")
     seen = set()
     for r in rows:
         key = (r.get("case_id"), r.get("condition"), r.get("trial", 0))
@@ -125,6 +127,17 @@ def match_conclusion(answer, gt, judge_fn, case_id):
 
 
 # ---------------------------------------------------------------- discovery
+def required_docs_found(doc_ids, gt):
+    """ground truth の ANY/ALL 条件で必要文書への到達を判定する。"""
+    refs = set(gt.get("refutation_document_ids") or [])
+    found = set(doc_ids or [])
+    if not refs:
+        return False
+    if gt.get("refutation_match") == "ALL":
+        return refs <= found
+    return bool(refs & found)
+
+
 def refutation_found(cited, gt, condition, malformed):
     """B/C 共通の counterevidence_documents で判定する。
 
@@ -142,10 +155,7 @@ def refutation_found(cited, gt, condition, malformed):
         return None
     if malformed or cited is None or not isinstance(cited, list):
         return False
-    cited = set(cited)
-    if gt.get("refutation_match") == "ALL":
-        return set(refs) <= cited
-    return bool(set(refs) & cited)
+    return required_docs_found(cited, gt)
 
 
 # ---------------------------------------------------------------- scoring
@@ -351,7 +361,7 @@ def diagnose_c(recs, cases):
         refs = gt.get("refutation_document_ids") or []
         if not refs:
             continue
-        reached = bool(set(refs) & set(r.get("retrieved") or []))
+        reached = required_docs_found(r.get("retrieved"), gt)
         cited = r["refutation_found"]
         if not reached:
             stage = "検索（falsifier または query が的外れ）"
@@ -387,17 +397,15 @@ def main():
 
     rows = load_jsonl(a.raw)
 
-    n_trials = None
-    if a.mode == "full":
-        rerr, n_trials = validate_results(rows, cases)
-        if rerr:
-            print("[INCOMPLETE_RESULTS] 正式判定を行いません。")
-            for e in rerr[:20]:
-                print("  - " + e)
-            if len(rerr) > 20:
-                print(f"  ... 他 {len(rerr)-20} 件")
-            sys.exit(1)
-        print(f"[results ok] {len(rows)} rows / {n_trials} trials per condition")
+    rerr, n_trials = validate_results(rows, cases)
+    if rerr:
+        print("[INCOMPLETE_RESULTS] 採点を行いません。")
+        for e in rerr[:20]:
+            print("  - " + e)
+        if len(rerr) > 20:
+            print(f"  ... 他 {len(rerr)-20} 件")
+        sys.exit(1)
+    print(f"[results ok] {len(rows)} rows / {n_trials} trials per condition")
 
     judge_fn = judge_api
     recs = score(rows, cases, judge_fn)

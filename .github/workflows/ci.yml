@@ -26,3 +26,5 @@ jobs:
         run: python -m py_compile common.py memory.py recorder.py resolver.py sanbo.py brief.py panels.py preview.py decision.py
       - name: Tests (offline, no API)
         run: pytest -q tests/
+      - name: Counterevidence selftest (offline, no API)
+        run: python experiments/counterevidence/selftest.py

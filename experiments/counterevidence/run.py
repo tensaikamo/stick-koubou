@@ -105,6 +105,8 @@ def validate_dataset(cases, specs=None, require_full=False):
             dt = (c["ground_truth"].get("trap_conclusion") or "").strip()
             if st != dt:
                 errors.append(f"{c['id']}: specs と dataset で trap_conclusion が不一致")
+            if s.get("refutation_match") != c["ground_truth"].get("refutation_match"):
+                errors.append(f"{c['id']}: specs と dataset で refutation_match が不一致")
     return errors, warnings
 
 
