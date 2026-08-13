@@ -1,56 +1,69 @@
 {
-  "date": "2026-08-13",
-  "updated_at": "2026-08-13 07:24",
+  "date": "2026-08-14",
+  "updated_at": "2026-08-14 07:22",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenAIがPython用公式<t data-d='ソフトウェア開発キット'>SDK</t>のバージョン3.0.0を公開した。一方でOpenRouter上におけるDeepSeek V4 Proの利用価格が85%引き上げられた。",
-  "ura": "OpenAIのv3公開は互換レイヤーを排除して直結APIへユーザーを誘導し、サードパーティ製プロキシへの流出を防ぐ狙いだ。DeepSeekの85%値上げはOpenRouter中継路の負荷急増による一時的サージであり、直結キーへ切り替える個人に鞘取りの隙が生まれている。",
-  "ura_taikou": "OpenAI SDKの改定は単なる依存関係の整理という説も検討したが、サードパーティ製統合ツールのエラー報告が同時多発しているため退けた。",
-  "dousuru": "OpenAIのv3.0.0における<t data-d='以前のバージョンとの互換性が失われる仕様変更'>破壊的変更</t>点をGitHubで確認しろ。運用中のWebアプリコードをSafari上のChatGPTに貼り付け、影響箇所を判定させろ。互換修正プロンプトを朝の15分で作成し、GitHubのWeb編集機能でコードの書き換えを完了させろ。",
-  "kan": "Anthropicは向こう14日以内に、公式APIにおけるプロンプトキャッシュ価格の値上げを実施しないと見る。",
-  "kan_konkyo": "主要LLM提供元が既存機能の単価を変更なしで維持する基準率は年間8割を超えており、事前告知の形跡もないためだ。",
-  "kan_hantai": "OpenRouter等の代理販売路からの流入集中によりAnthropicのインフラ原価が急高騰した場合は予測が外れる。",
-  "kan_conf": 0.92,
-  "ippan": "格安を売りにしてきた海外のAIツールで、予告なしの大幅値上げや無料枠の廃止が始まっています。連携しているクレジットカードの請求額や、利用中のAIアプリの料金改定メールを今すぐ確認してください。知らぬ間に高額な請求が発生するトラブルを防ぐため、使っていない自動更新サービスは今日中に解約しておきましょう。",
-  "votes": [
-    0.92,
-    0.92,
-    0.85
-  ],
+  "omote": "Google DeepMindがGemini 3.7 Flashを発表し、OpenRouter上でFlash系モデルが最大75%の大幅値下げを記録した。これに呼応するようにOpenAI側も公式SDK v3.0.0を投入し、最大14倍速を謳うGPT-5.6 Sol Ultrafast modeの予告を公開した。",
+  "ura": "Googleが推論インフラのコスト低減を武器に、圧倒的な価格ダンピングで開発者トラフィックを強奪しにきたと見る。高価な最上位モデルを単発で呼ぶ戦いから、投げ売りされた超低コストモデルを常時回すエージェント型処理へ開発現場の前提が完全にシフトしている。",
+  "ura_taikou": "OpenRouter上の値下げは一時的な集客キャンペーンに過ぎないという仮説を検討したが、差分ログで複数ベンダーのモデルが一斉に値下げされている事実から構造的な推論原価低下と判断し退けた。",
+  "dousuru": "iPhoneのSafariからGitHubを開き、自作WebアプリのAPI接続先設定にGemini Flash系を選べる分岐コードを追加しろ。今夜の30分でOpenAI Python SDK v3.0.0の破壊的変更点をWeb上で確認し、自身のスクリプトがv2系依存で止まるリスクを排除するプルリクエストを作成して終わらせておけ。",
+  "kan": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において公式教育認定・資格プログラム（Certification / Credentialing）の一般提供開始を発表しない。",
+  "kan_konkyo": "エンジニア採用開始直後であり開発リードタイムが必要なため基準率通り起きない方に強く偏るが、すでに水面下で先行開発されている例外ケースをわずかに織り込み基準率よりやや下方へ調整。",
+  "kan_hantai": "既に外部パートナーと共同開発した認証プログラムが完成しており、求人は運用・拡張体制のためのものである場合。",
+  "kan_conf": 0.91,
+  "ippan": "AIサービスの価格破壊が進んでおり、高性能なAIを安く使える環境が整ってきています。普段使っているAIツールの設定画面を開き、モデルの選択肢に最新のFlash系や高速モードが追加されていないか確認してください。古いモデルのまま使い続けるのをやめて最新型に切り替えるだけで、作業の待ち時間と利用コストを同時に減らせます。",
+  "votes": [],
   "mijoriku": [
     {
-      "title": "LFM2.5-VL-3B",
-      "desc": "端末上で高速動作しツール呼び出しが可能な30億パラメータの軽量視覚言語モデル",
-      "why": "クラウドを介さず端末内で映像解析と処理実行を完結させる設計は、個人がレスポンス速度で大手サービスに勝てる強力な武器になるため"
+      "title": "Qwen3Guard: Real-time Safety for Your Token Stream",
+      "desc": "生成AIの出力ストリームをリアルタイムで監視・遮断する超低遅延セーフティモデル。",
+      "why": "自作Webアプリに重い検閲処理を挟まず、個人でも企業レベルの安全フィルターをiPhone完結で組み込めるため。"
+    },
+    {
+      "title": "SkillZip: エージェント向け契約保持型グラフ圧縮",
+      "desc": "AIエージェントのスキル定義を構造化圧縮し、API消費トークン数を削減する技術手法。",
+      "why": "個人開発アプリのプロンプト長を削り、従量課金コストを抑えながら多段階タスクを実行させる設計に直結するため。"
     }
   ],
   "diffs": [
-    "[差分] 退役予定日が設定された: inclusionAI: Ling 3.0 Tiny (free) → 2026-08-13",
-    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値上げ 11%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.2 値上げ 21%",
-    "[差分] 価格が動いた: MoonshotAI: Kimi K2.7 Code 値下げ 4%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 値上げ 85%",
-    "[差分] 価格が動いた: Z.ai: GLM 4.6 値上げ 10%"
+    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 10%",
+    "[差分] 価格が動いた: Google: Gemini 3.6 Flash 値下げ 50%",
+    "[差分] 価格が動いた: Google: Gemini 3.6 Flash (batch) 値下げ 50%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.2 値下げ 20%",
+    "[差分] 価格が動いた: MoonshotAI Kimi Latest 値下げ 14%",
+    "[差分] 価格が動いた: Google Gemini Flash Latest 値下げ 75%"
   ],
   "evidence": [
     {
-      "claim": "OpenAI Python SDK v3.0.0改定は旧互換レイヤーを遮断し直結通信へ移行させる",
-      "confidence": 0.8,
-      "disconfirm": "v3.0.0においてサードパーティ製プロキシ経由の旧リクエストがそのまま正常動作すると判明した場合",
+      "claim": "GoogleのFlash系モデルにおいて最大75%の大幅なAPI価格引き下げが発生している",
+      "confidence": 0.85,
+      "disconfirm": "OpenRouter上の表示バグまたは短期間で終了する一時的プロモーションであること",
       "sources": [
         {
-          "title": "openai Python SDK v3.0.0 リリース",
-          "url": "https://pypi.org/project/openai/3.0.0/"
+          "title": "[差分] 価格が動いた: Google Gemini Flash Latest 値下げ 75%",
+          "url": "https://openrouter.ai/models"
+        },
+        {
+          "title": "Introducing Gemini 3.7 Flash",
+          "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash/"
         }
       ]
     },
     {
-      "claim": "OpenRouter上のDeepSeek V4 Proの85%値上げは中継路の負荷サージに起因する",
-      "confidence": 0.75,
-      "disconfirm": "DeepSeek公式の直販API単価も同時に85%引き上げられたと確認された場合",
+      "claim": "OpenAIがSDK v3.0.0とGPT-5.6高速版を投入し速度・基盤競争を激化させている",
+      "confidence": 0.8,
+      "disconfirm": "v3.0.0が単なる軽微な依存関係修正であり新モデル対応を含まないこと",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 値上げ 85%",
-          "url": "https://openrouter.ai/models"
+          "title": "openai Python SDK v3.0.0 リリース",
+          "url": "https://pypi.org/project/openai/3.0.0/"
+        },
+        {
+          "title": "The builder’s guide to GPT‑5.6",
+          "url": "https://openai.com/index/builders-guide-to-gpt-5-6"
+        },
+        {
+          "title": "Previewing Ultrafast mode: GPT-5.6 Sol at up to 14X the speed",
+          "url": "https://openai.com/index/previewing-ultrafast"
         }
       ]
     }

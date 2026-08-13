@@ -1,24 +1,38 @@
 {
-  "updated_at": "2026-08-13 07:20",
+  "updated_at": "2026-08-14 07:22",
   "score": {
     "hit": 0,
-    "miss": 12,
-    "total": 12,
+    "miss": 16,
+    "total": 16,
     "rate": 0.0,
-    "pending": 23,
-    "brier": 0.5747916666666667,
-    "brier_n": 12,
-    "brier_initial": 0.5747916666666667,
+    "pending": 20,
+    "brier": 0.5792750000000001,
+    "brier_n": 16,
+    "brier_initial": 0.5792750000000001,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-08-13",
+    "date": "2026-08-14",
     "days": 0
   },
   "decided": [
+    {
+      "id": "2026-08-04-h01",
+      "claim": "Anthropicは10日以内に、Anthropic APIの公式ドキュメント（料金ページ）において「Claude Opus 5」のBatch API料金体系を公表する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-14",
+      "confidence": 0.85,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "AnthropicがOpus 5の初期トラフィックをリアルタイムAPIリクエストの安定化に集中させ、Batch API対応の公開を次月中旬以降に延期する可能性がある。",
+      "evidence": "期日（2026-08-14）時点のAnthropic公式ドキュメント（docs.anthropic.com）のモデルおよび料金ページを確認したところ、「Claude Opus 5」のBatch API料金体系や割引に関する記載は掲載されていない。",
+      "signals": []
+    },
     {
       "id": "2026-08-03-h02",
       "claim": "Googleは7日以内に、Google AI Studioの公式価格一覧ドキュメントに「Gemini 3.5 Flash Cyber」の従量課金単価を追加する。",
@@ -76,6 +90,34 @@
       "signals": []
     },
     {
+      "id": "2026-07-31-h01",
+      "claim": "Anthropicは14日以内に公式利用規約（API Terms of Service）を更新し、商用API顧客に対する著作権侵害補償範囲を規定した新条項を追加する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-14",
+      "confidence": 0.8,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "和解手続きの完了処理に時間を要し、法務チームの判断で利用規約の文言変更が次四半期まで見送られる可能性がある。",
+      "evidence": "指定の商用利用規約ページを確認したところ、発効日は2025年6月17日のままであり、期間内に著作権侵害補償条項を含む更新は行われていない。",
+      "signals": []
+    },
+    {
+      "id": "2026-07-30-h02",
+      "claim": "OpenAIは15日以内に、GitHubのopenai/codex-securityリポジトリに修復コードの隔離検証用Dockerコンテナ構成ファイルをコミットする。",
+      "subject": "OpenAI",
+      "deadline": "2026-08-14",
+      "confidence": 0.72,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "CLIツールの個別環境依存を解決できず、Docker構成の公式提供を延期してユーザー側でのビルドに任せる方針をとる可能性がある。",
+      "evidence": "openai/codex-securityリポジトリの期日までのコミットおよびリリース履歴において、Dockerfileや.devcontainerフォルダの追加は確認されないため。",
+      "signals": []
+    },
+    {
       "id": "2026-07-28-h01",
       "claim": "Anthropicは14日以内に、Claude CodeにおけるデフォルトモデルをOpus 5へ自動昇格させるマイグレーションスケジュールを公式ドキュメントで公開する。",
       "subject": "Anthropic",
@@ -87,6 +129,20 @@
       "alert": false,
       "counter": "Anthropicが安全検証の完了までOpus 4.8を旧環境互換用にデフォルト指定のまま残し、手動オプション変更のみで対応する可能性がある。",
       "evidence": "公式ドキュメント(docs.anthropic.com)において、Claude CodeのデフォルトモデルをOpus 5に変更するスケジュールやOpus 4.8の非推奨化日程の記載が確認できないため。",
+      "signals": []
+    },
+    {
+      "id": "2026-07-27-h02",
+      "claim": "Hugging Faceは18日以内に、モデル評価用Agentによるアクセス制限と識別を目的とした専用APIトークン（Agent Token）の発行仕様を公式ブログで公表する。",
+      "subject": "Hugging Face",
+      "deadline": "2026-08-14",
+      "confidence": 0.7,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "Hugging Faceが個別API更新ではなくネットワークIPブロック等の既存インフラ層での対応のみで済ませた場合、新API仕様は発表されない。",
+      "evidence": "Hugging Face公式ブログの掲載記事を確認したところ、指定期間内にAgent向け専用APIトークンや新たなアクセス制限・専用認証機能に関する発表記事は掲載されていない。",
       "signals": []
     },
     {
@@ -129,62 +185,6 @@
       "alert": false,
       "counter": "15億ドルの和解金支払いに伴う現金流出を補うため、短期的な単価切り下げを見送り現状の収益率を維持する可能性がある。",
       "evidence": "2026年7月26日から8月9日までのAnthropicの公式ニュース一覧において、Claude CodeまたはOpus 5のAPIトークン単価値下げに関する発表は掲載されていません。",
-      "signals": []
-    },
-    {
-      "id": "2026-07-25-h01",
-      "claim": "OpenRouterの公開リーダーボードにおいて、オープンウェイトモデルの動的アンサンブル手法を組み込んだルーティングプロキシが週間利用量上位10位以内に入る。",
-      "subject": "OpenRouter",
-      "deadline": "2026-08-08",
-      "confidence": 0.7,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "商用APIの値下げ圧力や単一モデルでのコンテキスト処理の簡便さを理由に、ユーザーが複合ルーティング設定の煩雑さを敬遠する可能性がある。",
-      "evidence": "判定先であるOpenRouterのランキングページを確認したところ、複合モデルやルーティングプロキシが週間利用量TOP10にランクインしている事実は確認できませんでした。",
-      "signals": []
-    },
-    {
-      "id": "2026-07-24-h01",
-      "claim": "AnthropicはClaude CodeのCLIアップデートにおいてシステムプロンプトおよび環境スキャンのトークン消費量を削減するキャッシュ最適化または初期化見直しをリリースする。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-13",
-      "confidence": 0.8,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "",
-      "evidence": "期限である2026年8月13日までに公式リポジトリのリリースメモにおいて、Claude Codeの初期トークン消費量削減やプロンプトキャッシュ効率化に関する修正の公開が確認できないため。",
-      "signals": []
-    },
-    {
-      "id": "2026-07-22-h03",
-      "claim": "Fireworks.aiが自動モデルルーティング機能を一般向け新機能として正式提供開始する。",
-      "subject": "Fireworks.ai",
-      "deadline": "2026-08-05",
-      "confidence": 0.85,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "",
-      "evidence": "Fireworks.ai公式ブログの作成日から期限までの投稿において、モデル自動ルーティング機能の一般利用開始（GA）を告知する記事が確認できないため。",
-      "signals": []
-    },
-    {
-      "id": "2026-07-22-h01",
-      "claim": "Fireworks.aiがKimi K3のモデルルーティング再現用コードまたは関連設定ライブラリをGitHub公式リポジトリに公開する。",
-      "subject": "Fireworks.ai",
-      "deadline": "2026-08-05",
-      "confidence": 0.75,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "",
-      "evidence": "Fireworks.aiの公式GitHubリポジトリ一覧を確認したが、Kimi K3やモデルルーティングに関連するリポジトリやコミットは確認されず、期限内に条件を満たす公開が行われていないため。",
       "signals": []
     }
   ],
@@ -256,63 +256,7 @@
       "status": "pending",
       "alert": false,
       "counter": "Google Cloudが個別製品ごとのガイドライン追加ではなく、既存のVertex AI全般のセキュリティガイドラインの改訂のみで対応を済ませる可能性がある。",
-      "evidence": "",
-      "signals": []
-    },
-    {
-      "id": "2026-07-27-h02",
-      "claim": "Hugging Faceは18日以内に、モデル評価用Agentによるアクセス制限と識別を目的とした専用APIトークン（Agent Token）の発行仕様を公式ブログで公表する。",
-      "subject": "Hugging Face",
-      "deadline": "2026-08-14",
-      "confidence": 0.7,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "Hugging Faceが個別API更新ではなくネットワークIPブロック等の既存インフラ層での対応のみで済ませた場合、新API仕様は発表されない。",
-      "evidence": "",
-      "signals": []
-    },
-    {
-      "id": "2026-07-30-h02",
-      "claim": "OpenAIは15日以内に、GitHubのopenai/codex-securityリポジトリに修復コードの隔離検証用Dockerコンテナ構成ファイルをコミットする。",
-      "subject": "OpenAI",
-      "deadline": "2026-08-14",
-      "confidence": 0.72,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "CLIツールの個別環境依存を解決できず、Docker構成の公式提供を延期してユーザー側でのビルドに任せる方針をとる可能性がある。",
-      "evidence": "",
-      "signals": []
-    },
-    {
-      "id": "2026-07-31-h01",
-      "claim": "Anthropicは14日以内に公式利用規約（API Terms of Service）を更新し、商用API顧客に対する著作権侵害補償範囲を規定した新条項を追加する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-14",
-      "confidence": 0.8,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "和解手続きの完了処理に時間を要し、法務チームの判断で利用規約の文言変更が次四半期まで見送られる可能性がある。",
-      "evidence": "",
-      "signals": []
-    },
-    {
-      "id": "2026-08-04-h01",
-      "claim": "Anthropicは10日以内に、Anthropic APIの公式ドキュメント（料金ページ）において「Claude Opus 5」のBatch API料金体系を公表する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-14",
-      "confidence": 0.85,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "AnthropicがOpus 5の初期トラフィックをリアルタイムAPIリクエストの安定化に集中させ、Batch API対応の公開を次月中旬以降に延期する可能性がある。",
-      "evidence": "",
+      "evidence": "提供されたGoogle Cloudドキュメントのトップページの内容だけでは、Gemini 3.5 Flash Cyberに関する専用隔離サンドボックスガイドラインが公開されているか確認できないため。",
       "signals": []
     },
     {
@@ -356,6 +300,62 @@
       "counter": "Opus 5のAPIインフラプロビジョニングの負荷調整を理由に、パブリックAPIの価格掲載が数週間延期される可能性がある。",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-08-02-h01",
+      "claim": "NVIDIAが発表する四半期決算において、データセンター部門の売上高が前四半期比10%以上増加する。",
+      "subject": "NVIDIA",
+      "deadline": "2026-08-16",
+      "confidence": 0.75,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "主要顧客による設備投資時期の先送りや先端パッケージング工程での歩留まり低下が出荷量に影響を及ぼす可能性がある。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-08-02-h02",
+      "claim": "Bitcoinの取引価格が100,000米ドルを上回る",
+      "subject": "Bitcoin",
+      "deadline": "2026-08-16",
+      "confidence": 0.75,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "主要国の金融規制強化やマクロ経済指標の悪化に伴い、リスクオフの売り圧力が強まるリスクが存在する。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-08-05-h02",
+      "claim": "Googleは12日以内に、Google AI Studioの利用可能モデル一覧および公式ドキュメントに「Gemini 3.5 Flash Cyber」を追加する。",
+      "subject": "Google",
+      "deadline": "2026-08-17",
+      "confidence": 0.8,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "サイバーセキュリティ特化モデルの性質上、誤用リスクを防ぐためにVertex AI限定の審査制提供に留まり、パブリックなAI Studioには展開されないリスクが存在する。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-07-29-h02",
+      "claim": "Hugging Faceは20日以内に、評価用AIエージェントのアクセス制限と隔離を行うサンドボックス仕様または専用リポジトリを公式GitHubに公開する。",
+      "subject": "Hugging Face",
+      "deadline": "2026-08-18",
+      "confidence": 0.75,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "新リポジトリの分離公開を行わず、既存のHubセキュリティ機能のマイナーアップデートのみで処置を済ませる可能性がある。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
@@ -363,24 +363,24 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-08-12",
-          "headline": "Anthropicが500億ドル規模のインフラ資産会計を担当するCapexマネージャーの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357961008"
-        },
-        {
-          "date": "2026-08-12",
-          "headline": "Anthropicがエンタープライズ商談承認を加速するDeal Velocity担当者の募集を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5386793008"
-        },
-        {
-          "date": "2026-08-13",
-          "headline": "AnthropicがForward Deployed Engineerの採用募集を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5302966008"
-        },
-        {
           "date": "2026-08-13",
           "headline": "Anthropicが幹部保護を担当するセキュリティマネージャーの求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5385626008"
+        },
+        {
+          "date": "2026-08-14",
+          "headline": "AnthropicがPython SDK v0.122.0をPyPIにリリース",
+          "url": "https://pypi.org/project/anthropic/0.122.0/"
+        },
+        {
+          "date": "2026-08-14",
+          "headline": "Anthropicがライフサイエンス専門の専任法務担当者の求人募集を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5286008008"
+        },
+        {
+          "date": "2026-08-14",
+          "headline": "Anthropicが教育および認証基盤を担うスタッフエンジニアの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5389305008"
         }
       ]
     },
@@ -482,6 +482,34 @@
   ],
   "records": [
     {
+      "id": "2026-08-14-r04",
+      "date": "2026-08-14",
+      "headline": "Salesforce等の研究チームが推論時ハーネスによる能力転移フレームワークを発表",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2608.12307v1"
+    },
+    {
+      "id": "2026-08-14-r03",
+      "date": "2026-08-14",
+      "headline": "Anthropicが教育および認証基盤を担うスタッフエンジニアの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5389305008"
+    },
+    {
+      "id": "2026-08-14-r02",
+      "date": "2026-08-14",
+      "headline": "Anthropicがライフサイエンス専門の専任法務担当者の求人募集を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5286008008"
+    },
+    {
+      "id": "2026-08-14-r01",
+      "date": "2026-08-14",
+      "headline": "AnthropicがPython SDK v0.122.0をPyPIにリリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/0.122.0/"
+    },
+    {
       "id": "2026-08-13-r04",
       "date": "2026-08-13",
       "headline": "Sparse Autoencodersの概念表現に関する評価論文が公開",
@@ -536,35 +564,7 @@
       "headline": "Anthropicがエンタープライズ商談承認を加速するDeal Velocity担当者の募集を開始",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5386793008"
-    },
-    {
-      "id": "2026-08-11-r02",
-      "date": "2026-08-11",
-      "headline": "AnthropicがClaude CodeおよびClaude Tagを対象に含むDeveloper Relationsの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383596008"
-    },
-    {
-      "id": "2026-08-11-r01",
-      "date": "2026-08-11",
-      "headline": "Anthropicがプロダクトインテリジェンス担当の財務・戦略ポジションの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358092008"
-    },
-    {
-      "id": "2026-08-10-r02",
-      "date": "2026-08-10",
-      "headline": "Anthropicがエンタープライズ技術部門のApplied AI Architectの募集を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5383335008"
-    },
-    {
-      "id": "2026-08-10-r01",
-      "date": "2026-08-10",
-      "headline": "AnthropicがGlobal Security Operations Centerのポリシー策定スペシャリストの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5382033008"
     }
   ],
-  "record_count": 46
+  "record_count": 50
 }
