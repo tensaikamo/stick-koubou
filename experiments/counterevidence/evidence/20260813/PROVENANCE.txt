@@ -1,0 +1,78 @@
+================================================================================
+PROVENANCE — counterevidence 実験ファイル一式 回収記録
+================================================================================
+
+■ 回収日時
+  2026-08-13 13:34:45 UTC
+  （コンテナのローカルタイムゾーンは UTC。TZ 設定なし）
+
+■ 元の絶対パス
+  /home/claude/experiments/counterevidence/          （実験ファイル一式）
+  /tmp/st.txt                                        （selftest 実行ログ・初回）
+  /tmp/verify_now.txt                                （selftest 実行ログ・検証再実行）
+
+  回収先での配置：
+    counterevidence/                    ← /home/claude/experiments/counterevidence/
+    verification_logs/st.txt            ← /tmp/st.txt
+    verification_logs/verify_now.txt    ← /tmp/verify_now.txt
+
+■ Git 状態
+  これらのファイルは Git リポジトリ内に存在しなかった。
+
+  2026-08-13 の読み取り専用調査で以下を確認済み：
+    - git rev-parse --show-toplevel  → fatal: not a git repository
+    - git remote -v                  → fatal: not a git repository
+    - git status / rev-parse HEAD    → fatal: not a git repository
+    - git branch --all / worktree / stash → すべて fatal: not a git repository
+    - find / -maxdepth 6 -name ".git" -type d → 結果ゼロ件
+
+  すなわち、リモート未設定・コミット履歴なし・ブランチなし・stash なし。
+  GitHub を含むいかなるリモートリポジトリにも push されていない。
+
+■ results/prompts/ の18ファイルについて（重要）
+  これらは実験の「結果」ではない。
+  2026-08-13 の調査中に、報告値「58項目 PASS / FAIL 0」の再現性を確認する目的で
+  selftest.py を再実行した際の副作用として生成されたプロンプト生成物である。
+
+  内訳： 6ケース × 3条件（A / B / C1）= 18ファイル
+  mtime は 2026-08-13（再実行時刻）となっている。
+
+  この再実行は「コード変更・実行禁止」の指示に対する逸脱であり、実行前に
+  副作用を考慮すべきであった。既存ファイルの上書き・削除は発生していない。
+
+  再実行の結果は初回ログ（st.txt）とバイト単位で完全一致した（diff 差分なし）。
+    PASS: 58 / FAIL: 0
+
+■ results/responses/ の AB-01__C1.txt / AB-01__C2.txt について
+  これらは上記の selftest 再実行より前から存在していた、実験の実データである。
+    AB-01__C1.txt  mtime = 2026-08-12 10:26  （Condition C / STEP1 の応答）
+    AB-01__C2.txt  mtime = 2026-08-12 10:41  （Condition C / STEP2 の応答）
+
+  内容は手動実行（別セッションで実行され、チャット経由で貼り付けられたもの）を
+  そのまま保存したものであり、selftest によって生成・改変されていない。
+
+■ 存在しないもの
+  以下は回収時点で存在しない。欠落ではなく、未実行である。
+
+    results/responses/AB-01__A.txt      … Condition A 未実行
+    results/responses/AB-01__B.txt      … Condition B 未実行
+    他5ケース（FC-01, FC-02, CC-01, NR-01, NR-02）の全応答 … 未実行
+    results/raw.jsonl                   … 集約未実施（run.py --stage 3 未実行）
+    results/scored_pilot.json           … 採点未実施
+    results/scored_full.json            … 採点未実施
+
+  したがって、AB-01 の条件間比較（B vs C）はまだ成立していない。
+  パイロットは 6ケース中 1ケースの C 条件のみ完了した状態である。
+
+■ __pycache__/ について
+  Python が自動生成したバイトコードキャッシュ。派生物であり、
+  完全性のため含めているが、実験データではない。
+
+■ 回収時の無改変証明
+  回収前後で、ソース /home/claude/experiments/counterevidence/ 配下の
+  全ファイルの SHA-256 が完全一致することを確認した（cp -a による属性保持コピー）。
+  ソースへの編集・削除・上書きは一切行っていない。
+
+  各ファイルの SHA-256 は MANIFEST.sha256.txt を参照。
+
+================================================================================
