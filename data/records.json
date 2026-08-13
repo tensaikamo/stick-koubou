@@ -1586,5 +1586,106 @@
     "body_fetched": true,
     "model": "gemini-3.6-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-08-14-r01",
+    "created_at": "2026-08-14T07:20:03.323172+09:00",
+    "headline": "AnthropicがPython SDK v0.122.0をPyPIにリリース",
+    "what_happened": "AnthropicはClaude API向け公式クライアントライブラリ「anthropic」のバージョン0.122.0をPyPIにて公開した。ドキュメントおよびコード例ではClaudeモデルの呼び出しインターフェースが提示されている。",
+    "background": "AnthropicはAPIの機能追加やモデル更新に合わせて公式Python SDKのマイナー/パッチアップデートを頻繁に実施している。",
+    "changed": "最新のAnthropic APIクライアントライブラリとしてv0.122.0が利用可能となった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/0.122.0/",
+      "title": "anthropic Python SDK v0.122.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-13-r03",
+      "2026-08-13-r02",
+      "2026-08-12-r02",
+      "2026-08-12-r01",
+      "2026-08-11-r02",
+      "2026-08-11-r01"
+    ]
+  },
+  {
+    "id": "2026-08-14-r02",
+    "created_at": "2026-08-14T07:20:03.323172+09:00",
+    "headline": "Anthropicがライフサイエンス専門の専任法務担当者の求人募集を開始",
+    "what_happened": "Anthropicはニューヨーク拠点において「Life Sciences Counsel」の募集を開始した。バイオ医薬品企業やトップ研究機関との商談・共同研究契約の締結を法務面から支援し、規制環境下でのモデル適用を統括する役割を担う。",
+    "background": "フロンティアAIモデルのバイオ・医療分野への応用は安全保障・規制上の要件が厳格であり、個別業界特化の法務体制構築が進められている。",
+    "changed": "Anthropic内部においてバイオファーマおよびライフサイエンス領域に特化したディール締結体制の強化が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5286008008",
+      "title": "[新規求人] anthropic: Life Sciences Counsel (New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-13-r03",
+      "2026-08-13-r02",
+      "2026-08-12-r02",
+      "2026-08-12-r01",
+      "2026-08-11-r02",
+      "2026-08-11-r01"
+    ]
+  },
+  {
+    "id": "2026-08-14-r03",
+    "created_at": "2026-08-14T07:20:03.323172+09:00",
+    "headline": "Anthropicが教育および認証基盤を担うスタッフエンジニアの求人を公開",
+    "what_happened": "Anthropicはサンフランシスコおよびニューヨーク拠点にて「Staff Software Engineer, Education」の求人を公開した。Claudeを活用した学習者向けリアルタイム適応型コンテンツ配信、能力検証を行う資格認定システム（credentialing systems）、およびエンタープライズ教育プラットフォームの開発を目的としている。",
+    "background": "エンタープライズAI導入に伴い、単なるドキュメント提供を超えた公式な人材教育や資格認証の需要が高まっている。",
+    "changed": "Anthropicが公式な教育プラットフォームおよびスキル認証インフラの構築に着手した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5389305008",
+      "title": "[新規求人] anthropic: Staff Software Engineer, Education (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-13-r03",
+      "2026-08-13-r02",
+      "2026-08-12-r02",
+      "2026-08-12-r01",
+      "2026-08-11-r02",
+      "2026-08-11-r01"
+    ]
+  },
+  {
+    "id": "2026-08-14-r04",
+    "created_at": "2026-08-14T07:20:03.323172+09:00",
+    "headline": "Salesforce等の研究チームが推論時ハーネスによる能力転移フレームワークを発表",
+    "what_happened": "Salesforceおよび複数大学の研究者らが、モデルのパラメータ更新を行わずに推論時ハーネスを用いて強力なモデルから軽量モデルへ能力を転移する手法「AI4AI at Test-Time」の論文をarXivで公開した。Theory-of-Mindベンチマークにおいて少数データによるハーネス改善で高い性能向上を実証した。",
+    "background": "従来の蒸留手法は学習時（事前学習・ファインチューニング）のパラメータ更新を必要とし、計算コストと運用負荷が高かった。",
+    "changed": "軽量モデルの推論能力を学習なしで向上させるスキャフォールディング手法の有効性が示された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2608.12307v1",
+      "title": "AI4AI at Test-Time: Strong-to-Weak Capability Transfer via Harnesses",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": []
   }
 ]

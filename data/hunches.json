@@ -310,7 +310,7 @@
     "claim": "Google CloudはGemini 3.5 Flash Cyberの公開ドキュメントにおいて、セキュリティ検証エージェント用の専用隔離サンドボックス実行環境ガイドラインを一般公開する。",
     "subject": "Google Cloud",
     "resolution": {
-      "source": "Google Cloud Official Documentation",
+      "source": "https://cloud.google.com/docs",
       "check_query": "Gemini Cyber sandbox guidance",
       "decider": "Google Cloudの公式ドキュメント内に「Gemini 3.5 Flash Cyber」を用いた自律エージェントの安全な隔離実行・サンドボックス構築に関する公式ガイドが追加公開されること"
     },
@@ -320,11 +320,15 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "提供されたGoogle Cloudドキュメントのトップページの内容だけでは、Gemini 3.5 Flash Cyberに関する専用隔離サンドボックスガイドラインが公開されているか確認できないため。",
+      "url": "https://cloud.google.com/docs"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": true
   },
   {
     "id": "2026-07-26-h01",
@@ -440,7 +444,7 @@
     "claim": "Hugging Faceは18日以内に、モデル評価用Agentによるアクセス制限と識別を目的とした専用APIトークン（Agent Token）の発行仕様を公式ブログで公表する。",
     "subject": "Hugging Face",
     "resolution": {
-      "source": "Hugging Face Blog (huggingface.co/blog)",
+      "source": "https://huggingface.co/blog",
       "check_query": "Agent Security API",
       "decider": "Hugging Face公式ブログに、自動化エージェントやモデル評価実行環境向けの新たなAPIアクセス制限または専用認証機能のリリース記事が掲載された場合"
     },
@@ -458,14 +462,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-14T07:20:16.270785+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "Hugging Face公式ブログの掲載記事を確認したところ、指定期間内にAgent向け専用APIトークンや新たなアクセス制限・専用認証機能に関する発表記事は掲載されていない。",
+      "url": "https://huggingface.co/blog"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-07-28-h01",
@@ -671,7 +679,7 @@
     "claim": "OpenAIは15日以内に、GitHubのopenai/codex-securityリポジトリに修復コードの隔離検証用Dockerコンテナ構成ファイルをコミットする。",
     "subject": "OpenAI",
     "resolution": {
-      "source": "GitHubリポジトリ (github.com/openai/codex-security)",
+      "source": "https://github.com/openai/codex-security",
       "check_query": "openai/codex-security Dockerfile devcontainer",
       "decider": "github.com/openai/codex-security のメインブランチに Dockerfile または .devcontainer フォルダが追加・マージされること。"
     },
@@ -689,14 +697,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-14T07:20:16.270785+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "openai/codex-securityリポジトリの期日までのコミットおよびリリース履歴において、Dockerfileや.devcontainerフォルダの追加は確認されないため。",
+      "url": "https://github.com/openai/codex-security"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-07-31-h01",
@@ -708,7 +720,7 @@
     "claim": "Anthropicは14日以内に公式利用規約（API Terms of Service）を更新し、商用API顧客に対する著作権侵害補償範囲を規定した新条項を追加する。",
     "subject": "Anthropic",
     "resolution": {
-      "source": "Anthropic Commercial Terms of Service ページ",
+      "source": "https://www.anthropic.com/legal/commercial-terms",
       "check_query": "Anthropic terms copyright indemnity",
       "decider": "Anthropicの公式商用規約ページに「Copyright Indemnification」またはそれと同等の補償条項が追加更新されること"
     },
@@ -726,14 +738,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-14T07:20:16.270785+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "指定の商用利用規約ページを確認したところ、発効日は2025年6月17日のままであり、期間内に著作権侵害補償条項を含む更新は行われていない。",
+      "url": "https://www.anthropic.com/legal/commercial-terms"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-07-31-h02",
@@ -1124,7 +1140,7 @@
     "claim": "Anthropicは10日以内に、Anthropic APIの公式ドキュメント（料金ページ）において「Claude Opus 5」のBatch API料金体系を公表する。",
     "subject": "Anthropic",
     "resolution": {
-      "source": "Anthropic API Pricing Documentation",
+      "source": "https://docs.anthropic.com/en/docs/about-claude/models",
       "check_query": "Claude Opus 5 pricing",
       "decider": "Anthropic公式ドキュメント（docs.anthropic.com）の料金一覧ページに「Claude Opus 5」のBatch API価格（または50%割引等の適用）が明記されること。"
     },
@@ -1142,14 +1158,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-14T07:20:16.270785+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "期日（2026-08-14）時点のAnthropic公式ドキュメント（docs.anthropic.com）のモデルおよび料金ページを確認したところ、「Claude Opus 5」のBatch API料金体系や割引に関する記載は掲載されていない。",
+      "url": "https://docs.anthropic.com/en/docs/about-claude/models"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-08-04-h02",
@@ -1450,6 +1470,46 @@
     "evidence": null,
     "rejected": [],
     "model": "gemini-3.6-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-14-h01",
+    "created_at": "2026-08-14T07:20:03.323172+09:00",
+    "based_on": [
+      "2026-08-14-r03"
+    ],
+    "prose": "Anthropicは教育・資格認証システム（Staff Software Engineer, Education）のエンジニア採用を開始したばかりの段階にある。プラットフォーム基盤および認証エンジンの設計・構築段階にあるプロジェクトが、求人公開から2週間以内に一般公開される可能性は極めて低い。短期では公式な認定制度ローンチは行われない公算が大きい。",
+    "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において公式教育認定・資格プログラム（Certification / Credentialing）の一般提供開始を発表しない。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Certification Credential Program",
+      "decider": "期日時点でAnthropic公式ニュースルームの記事タイトルまたは本文中に、一般ユーザー・エンタープライズ向け公式資格認証プログラム（CertificationまたはCredentialing）のローンチ発表が存在しなければ的中。"
+    },
+    "deadline": "2026-08-28",
+    "confidence": 0.91,
+    "base_rate": 0.94,
+    "base_rate_class": "AI企業が特定領域の主幹エンジニア求人を開始してから14日以内に該当サービスをGA発表しない頻度",
+    "confidence_why": "エンジニア採用開始直後であり開発リードタイムが必要なため基準率通り起きない方に強く偏るが、すでに水面下で先行開発されている例外ケースをわずかに織り込み基準率よりやや下方へ調整。",
+    "counter": "既に外部パートナーと共同開発した認証プログラムが完成しており、求人は運用・拡張体制のためのものである場合。",
+    "indicators": [
+      {
+        "sign": "https://job-boards.greenhouse.io/anthropic/jobs/5389305008 の求人が掲載継続中である",
+        "dir": "confirm"
+      },
+      {
+        "sign": "Anthropicの公式Xアカウント（@AnthropicAI）が教育・認定ポータルのティザーを投稿する",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.7-flash",
     "schema_version": "1",
     "generator_ver": "v1"
   }
