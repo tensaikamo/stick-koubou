@@ -1,0 +1,86 @@
+=== 1. py_compile ===
+  [PASS] prompts/run/score compile
+
+=== 2. dataset validator ===
+  [PASS] pilot dataset valid
+  [PASS] 6件は full 要件を満たさない（意図通り）  5 errors
+  [PASS] 存在しない refutation doc を検出
+  [PASS] no_refutation に trap があると検出
+
+=== 3-4. pilot prompt 生成 ===
+  [PASS] prompt 生成
+  [PASS] 生成件数 = 6 cases x 3 = 18  actual=18
+
+=== 5. pilot モードで KEEP/DROP が絶対に出ない ===
+  [PASS] print_pilot に KEEP/DROP 出力なし
+  [PASS] pilot 分岐で verdict_full を呼ばない
+  [PASS] pilot の verdict は NOT_APPLICABLE
+
+=== 6. token 欠損が 0 扱いされない ===
+  [PASS] total_tokens が None
+  [PASS] avg_tokens が None
+  [PASS] token欠損時に KEEP が出ない  verdict=CONDITIONAL KEEP
+  [PASS] COST_COMPARISON_UNAVAILABLE を明示
+  [PASS] token有りかつ条件充足で KEEP
+  [PASS] C-B < 0.20 は DROP
+
+=== 7. judge 順序がプロセスを跨いで同一 ===
+  [PASS] PYTHONHASHSEED を変えても同一  {'[True, False, False, False, True, True]'}
+  [PASS] builtin hash() の呼び出しがない（AST検査）
+
+=== 8. C_STEP2 の誤った一文が消えているか ===
+  [PASS] 誤った一文が削除されている
+  [PASS] 置換文が入っている
+
+=== 9. B と C の counterevidence 定義が同一 ===
+  [PASS] B に定義文がある
+  [PASS] C に同一定義文がある
+  [PASS] A に定義文がない
+
+=== 10. retrieval の弁別性 ===
+  [PASS] 良質 falsifier で反証到達 4/4  4/4
+  [PASS] 劣質 falsifier では到達しない 0/4  0/4
+
+=== 11. Refutation Discovery の分母が縮まないこと（修正1）===
+  [PASS] B: field欠損 -> False（Noneでない）
+  [PASS] C: field欠損 -> False
+  [PASS] B: malformed -> False
+  [PASS] C: malformed -> False
+  [PASS] B: 非list -> False
+  [PASS] A: 常に None（採点対象外）
+  [PASS] no_refutation: 常に None
+  [PASS] B の分母が 2 のまま  2
+  [PASS] C の分母が 2 のまま（欠損で縮まない）  2
+  [PASS] B/C の discovery が同値 0.5
+
+=== 12. ground truth の ANY/ALL 単独成立性（修正2）===
+  [PASS] AB-01 は d2+d3 の ALL  ['d2', 'd3'] / ALL
+  [PASS] FC-02 は d4 のみ  ['d4']
+  [PASS] CC-01 は d4 のみ（d5は単独で反証にならない）  ['d4']
+  [PASS] FC-01 は d4 のみ ANY（d6は原材料説を直接否定しない）  ['d4'] / ANY
+  [PASS] AB-01 d2のみ引用 -> False
+  [PASS] AB-01 d3のみ引用 -> False
+  [PASS] AB-01 d2+d3 引用 -> True
+  [PASS] AB-01 d2+d3+無関係 引用 -> True
+  [PASS] FC-01 d6のみ引用 -> False
+  [PASS] FC-01 d4 引用 -> True
+  [PASS] FC-01 d4+d6 引用 -> True
+  [PASS] FC-02 で d3 のみ引用 -> False
+  [PASS] CC-01 で d5 のみ引用 -> False
+
+=== 13. raw result completeness（修正3）===
+  [PASS] 完全な結果は通る
+  [PASS] trial数を検出  2
+  [PASS] 1行削ると reject  2 errors
+  [PASS] (case,condition,trial) 重複を reject
+  [PASS] 条件間で trial数が揃わないと reject
+  [PASS] 分母不一致で INCOMPLETE_RESULTS  INCOMPLETE_RESULTS
+
+=== 14. no_refutation 専用 judge（修正4）===
+  [PASS] matches_reference 形式
+  [PASS] 二択候補方式を使っていない
+  [PASS] メタ候補文が消えている
+  [PASS] NR判定で build_judge_nr を使う
+
+============================================================
+ALL PASS

@@ -1,0 +1,41 @@
+# MANIFEST — counterevidence 回収ファイル一覧
+# 生成日時: 2026-08-13 13:34:45 UTC
+# 基準ディレクトリ: counterevidence_recovery_20260813/
+# 形式: SHA256(64桁)  SIZE(bytes)  MTIME(UTC)  RELATIVE_PATH
+#
+82dea90ea1ae9f4a9d98c0e7a08e9fcd7420446930412be92737f08d3365b531      4360  2026-08-13 13:35:12  PROVENANCE.txt
+ad608b333401cad14d669cf4e6d9e4c8d6a8e7cfefdd1f4b0601dd7ba855ffb3     10963  2026-08-12 10:00:29  counterevidence/README.md
+e6fa5c883eae62c2287892663bd237a38c8a422b821ef3346bdb3ea6c9bfc3e4      8724  2026-08-13 13:31:44  counterevidence/__pycache__/prompts.cpython-312.pyc
+f52b68086091e741053d219b3d58c9e54563eab946f4ab2d8877d85778d19f5f     18500  2026-08-13 13:31:44  counterevidence/__pycache__/run.cpython-312.pyc
+7576d40d27b1563dbf0f8914046665a3dfae84db8dd0c7dc5affd3dabbe86e58     25520  2026-08-13 13:31:44  counterevidence/__pycache__/score.cpython-312.pyc
+2174bf26fc7f847492617f2c45bd55fba0aa34bbac7f9a2b839902e73228109a     12877  2026-08-12 09:59:45  counterevidence/dataset.jsonl
+e95617283f9632dbd1260bc7ecf334a3e3f63a60a59001349da9c0306c5948b8      7803  2026-08-12 09:50:04  counterevidence/prompts.py
+7bcc6b4402ee692390858fe121fcdd365f368a095e3c9aa5c4a45d79d078c2cf      1460  2026-08-13 13:31:44  counterevidence/results/prompts/AB-01__A.txt
+7cb696230e66889b5d3808ad98a94f1854681fc37478718378eb0965294a7d5b      2204  2026-08-13 13:31:44  counterevidence/results/prompts/AB-01__B.txt
+1f85610841e51fac76850ab5f59e2f3da4282226d208e75c8c4679ae01cabc8a      2098  2026-08-13 13:31:44  counterevidence/results/prompts/AB-01__C1.txt
+4d65d3764463df35ca4f7fb30e6de92b378d54817140a47dcef3eb42723eb6ee      1542  2026-08-13 13:31:44  counterevidence/results/prompts/CC-01__A.txt
+3175de503be29916714899f70b5bae1dfeb999185c91cf12ef64001348941221      2286  2026-08-13 13:31:44  counterevidence/results/prompts/CC-01__B.txt
+22c22f6157d4f16034c0742bcc41469a8d775f0369a7dcfc26dba566399c2916      2180  2026-08-13 13:31:44  counterevidence/results/prompts/CC-01__C1.txt
+54c4e65a062972b7b206ac8c14bb1128f71ee8778dd6d638298cc53087badffc      1922  2026-08-13 13:31:44  counterevidence/results/prompts/FC-01__A.txt
+5d2956793f5d8d61334974ff33bafc5f51713380086b3797b3efd1ab1bbe5dab      2666  2026-08-13 13:31:44  counterevidence/results/prompts/FC-01__B.txt
+2ae48cb768548d019dbb48e9f637d2b45654e23edf3cca50f7f0ca5b15300759      2560  2026-08-13 13:31:44  counterevidence/results/prompts/FC-01__C1.txt
+252c3f752f499d3794f55d077213b866f37ef44e72da83431896eed95d3bf22d      1816  2026-08-13 13:31:44  counterevidence/results/prompts/FC-02__A.txt
+17b5113c4a2517e2893efff20d649ca017706709582c2a66deeb99395d4fb60e      2560  2026-08-13 13:31:44  counterevidence/results/prompts/FC-02__B.txt
+de95123cab9cedba33868c342366d90e54a62af6a4e6c85505aaf55ad8c66d1a      2454  2026-08-13 13:31:44  counterevidence/results/prompts/FC-02__C1.txt
+5654cc17594ca8ef67915b1634e5af4d34cc55d732c2b683e53d9e922d73f2e5      1255  2026-08-13 13:31:44  counterevidence/results/prompts/NR-01__A.txt
+e2ab1c18228410b0bc02f0214aef594dab50dbb3a4685cb7ad202d52ac5c14b7      1999  2026-08-13 13:31:44  counterevidence/results/prompts/NR-01__B.txt
+1a2b3c7ef6ce36f9cd6a149952f8bc71e6f7058c95be8dc902823bb391ac0004      1893  2026-08-13 13:31:44  counterevidence/results/prompts/NR-01__C1.txt
+b062866b384ecf5224b0c4f658dbb517a1426d57d9f0e9820d15f3cd8eadda7e      1200  2026-08-13 13:31:44  counterevidence/results/prompts/NR-02__A.txt
+528bef4f2240ee33f32671725563f4c86b5c599d8e3b21d7bf066a885f0fbf3f      1944  2026-08-13 13:31:44  counterevidence/results/prompts/NR-02__B.txt
+453b6477e5267c93c62d9a147827584e887b5f315f4b41d479e641e9457b7993      1838  2026-08-13 13:31:44  counterevidence/results/prompts/NR-02__C1.txt
+08bdf45374b2335e863b62f5a3c289b16faab7311c998910310159fe6871c16d      2091  2026-08-12 10:26:48  counterevidence/results/responses/AB-01__C1.txt
+d403d926a6c736ae6b1ff24e1135bf0120066c9c6d862106fd74a7546bc37a9f       981  2026-08-12 10:41:18  counterevidence/results/responses/AB-01__C2.txt
+d530a1ac89ebb6cf54da25892c852ea76d563a5d1a48bd6b5f28ce1c85220d99     11626  2026-08-12 09:41:06  counterevidence/run.py
+1b93e7843ffeab4f60b5fc315d4db127967660ca479aa8421e3be8b4e21f0380     17957  2026-08-12 09:50:51  counterevidence/score.py
+c3bbc1607b5a5ff6c618aeb38399a735e7730f4ee50fe4cfa183d665e3fb73ce     14345  2026-08-12 10:00:09  counterevidence/selftest.py
+4c4340f0f6b09d8c188aac8123bfec6008e848fdc1e63054688c67702e0dfe3b      9074  2026-08-12 09:59:45  counterevidence/specs.jsonl
+32f4f1141d888b01aba81f070b3e9935244edbf7be51f27f599181a9b6f74c31      3363  2026-08-12 10:00:33  verification_logs/st.txt
+32f4f1141d888b01aba81f070b3e9935244edbf7be51f27f599181a9b6f74c31      3363  2026-08-13 13:31:45  verification_logs/verify_now.txt
+#
+# 合計ファイル数: 33
+# 合計サイズ: 187424 bytes
