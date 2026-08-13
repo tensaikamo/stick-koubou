@@ -1,3 +1,5 @@
 __pycache__/
+experiments/counterevidence/results/active_run.txt
+experiments/counterevidence/results/runs/
 *.py[cod]
 .pytest_cache/

@@ -20,7 +20,8 @@ r = subprocess.run([sys.executable, "-m", "py_compile",
 check("prompts/run/score compile", r.returncode == 0, r.stderr.decode()[:200])
 
 import prompts as P
-from run import load_jsonl, validate_dataset, retrieve
+from run import (RAW_SCHEMA_VERSION, load_jsonl, retrieve, sha256_text,
+                 validate_dataset)
 import score as S
 
 cases = load_jsonl(HERE / "dataset.jsonl")
@@ -51,12 +52,30 @@ check("specs と dataset の refutation_match 不一致を検出",
       any("refutation_match が不一致" in x for x in e4))
 
 print("\n=== 3-4. pilot prompt 生成 ===")
-r = subprocess.run([sys.executable, str(HERE / "run.py"),
-                    "--backend", "manual", "--stage", "1"],
-                   capture_output=True, text=True)
-n_files = len(list((HERE / "results" / "prompts").glob("*.txt")))
-check("prompt 生成", r.returncode == 0)
-check(f"生成件数 = 6 cases x 3 = 18", n_files == 18, f"actual={n_files}")
+with tempfile.TemporaryDirectory() as td:
+    results_root = pathlib.Path(td) / "results"
+    missing_meta = subprocess.run(
+        [sys.executable, str(HERE / "run.py"), "--backend", "manual",
+         "--stage", "1", "--results", str(results_root)],
+        capture_output=True, text=True)
+    check("manual stage1 は provider/model 欠損を拒否",
+          missing_meta.returncode != 0 and "--provider と --model が必須" in missing_meta.stdout)
+    r = subprocess.run(
+        [sys.executable, str(HERE / "run.py"), "--backend", "manual",
+         "--stage", "1", "--provider", "test-provider", "--model", "test-model",
+         "--run-id", "selftest-run", "--results", str(results_root)],
+        capture_output=True, text=True)
+    run_dir = results_root / "runs" / "selftest-run"
+    n_files = len(list((run_dir / "prompts").glob("*.txt")))
+    check("prompt 生成", r.returncode == 0, r.stdout[-200:])
+    check("生成件数 = 6 cases x 3 = 18", n_files == 18, f"actual={n_files}")
+    manifest = json.loads((run_dir / "run_manifest.json").read_text(encoding="utf-8"))
+    check("manifest に provider/model/settings/時刻を保存",
+          manifest["provider"] == "test-provider" and manifest["model"] == "test-model"
+          and "settings" in manifest and bool(manifest.get("started_at_utc")))
+    check("18 prompt の SHA-256 を保存",
+          len(manifest["prompts"]) == 18
+          and all(len(x["sha256"]) == 64 for x in manifest["prompts"].values()))
 
 print("\n=== 5. pilot モードで KEEP/DROP が絶対に出ない ===")
 src = (HERE / "score.py").read_text(encoding="utf-8")
@@ -126,12 +145,24 @@ check("誤った一文が削除されている",
 check("置換文が入っている",
       "支持する証拠ではありません" in t)
 
-print("\n=== 9. B と C の counterevidence 定義が同一 ===")
+print("\n=== 9. B と C の initial/counterevidence 定義が同一 ===")
 b = P.build_b(cases[0]); c = P.build_c2(cases[0], "x", ["y"], [])
 defline = P._COUNTEREVIDENCE_DEF
+initialline = P._INITIAL_CONCLUSION_DEF
 check("B に定義文がある", defline in b)
 check("C に同一定義文がある", defline in c)
 check("A に定義文がない", defline not in P.build_a(cases[0]))
+check("B/C に同じ initial_conclusion 定義がある",
+      initialline in b and initialline in c)
+check("counterevidence は initial_conclusion に意味固定",
+      "上の initial_conclusion" in defline)
+check("C2 は C1暫定結論の逐語コピーを要求",
+      "一字一句変更せず" in P.COND_C_STEP2)
+check("C anchor 一致", S.anchor_consistent("最初の説明", "最初の説明", "C", False) is True)
+check("C anchor 不一致", S.anchor_consistent("後付け", "最初の説明", "C", False) is False)
+check("anchor 不一致なら引用しても未発見",
+      S.refutation_found(["d4"], cases[0]["ground_truth"], "C", False,
+                         anchor_ok=False) is False)
 
 print("\n=== 10. retrieval の弁別性 ===")
 good = {'FC-01': ['原材料 単価 横ばい', '仕入 単価 前年同月', '材料費 変動なし', '仕入台帳', '原価 構成比'],
@@ -240,7 +271,28 @@ check("CC-01 で d5 のみ引用 -> False",
       S.refutation_found(["d5"], gt_cc01, "C", False) is False)
 
 print("\n=== 13. raw result completeness（修正3）===")
-full_rows = [dict(case_id=c["id"], condition=cond, trial=t)
+def _raw_row(case_id, cond, trial):
+    raw_answer = "{}"
+    calls = 2 if cond == "C" else 1
+    responses = [{"name": f"r{i}", "sha256": sha256_text("step1"),
+                  "captured_at_utc": "2026-08-14T00:00:00Z"}
+                 for i in range(calls)]
+    responses[-1]["sha256"] = sha256_text(raw_answer)
+    prompts = [{"name": f"p{i}", "sha256": "a" * 64,
+                "generated_at_utc": "2026-08-14T00:00:00Z"}
+               for i in range(calls)]
+    provenance = dict(
+        schema_version=RAW_SCHEMA_VERSION, run_id="selftest", backend="manual",
+        provider="test", model="test", settings={"temperature": None},
+        dataset_sha256="b" * 64, specs_sha256="c" * 64,
+        prompts=prompts, responses=responses,
+        assembled_at_utc="2026-08-14T00:00:00Z")
+    return dict(case_id=case_id, condition=cond, trial=trial,
+                raw_answer=raw_answer, usage={"calls": calls},
+                provenance=provenance)
+
+
+full_rows = [_raw_row(c["id"], cond, t)
              for c in cases for cond in ("A", "B", "C") for t in (0, 1)]
 e, nt = S.validate_results(full_rows, cases)
 check("完全な結果は通る", not e, "; ".join(e[:2]))
@@ -265,6 +317,19 @@ check("分母不一致で INCOMPLETE_RESULTS", v_ == "INCOMPLETE_RESULTS", v_)
 
 e0, nt0 = S.validate_results([], cases)
 check("結果0件を reject", bool(e0) and nt0 == 0, str(e0))
+
+no_prov = dict(full_rows[0]); no_prov.pop("provenance")
+ep, _ = S.validate_results([no_prov] + full_rows[1:], cases)
+check("provenance 欠損を reject", any("provenance 欠損" in x for x in ep))
+tampered = json.loads(json.dumps(full_rows))
+tampered[0]["raw_answer"] = '{"tampered":true}'
+et, _ = S.validate_results(tampered, cases)
+check("raw本文と response SHA 不一致を reject",
+      any("raw_answer と response SHA-256 が不一致" in x for x in et))
+mixed = json.loads(json.dumps(full_rows))
+mixed[0]["provenance"]["model"] = "other-model"
+em, _ = S.validate_results(mixed, cases)
+check("異なるmodelの混在を reject", any("異なる実行条件" in x for x in em))
 
 # pilot CLI も、judge API を呼ぶ前に欠損結果を拒否すること
 with tempfile.TemporaryDirectory() as td:
@@ -296,6 +361,72 @@ check("メタ候補文が消えている",
       "上記とは異なる原因を主因として挙げている" not in (HERE / "score.py").read_text(encoding="utf-8"))
 check("NR判定で build_judge_nr を使う",
       "build_judge_nr" in (HERE / "score.py").read_text(encoding="utf-8"))
+
+print("\n=== 15. manual run 証跡の end-to-end ===")
+with tempfile.TemporaryDirectory() as td:
+    results_root = pathlib.Path(td) / "results"
+    common = [sys.executable, str(HERE / "run.py"), "--backend", "manual",
+              "--results", str(results_root), "--run-id", "protocol-run"]
+    p1 = subprocess.run(
+        common + ["--stage", "1", "--provider", "test-provider",
+                  "--model", "test-model"], capture_output=True, text=True)
+    run_dir = results_root / "runs" / "protocol-run"
+    response_dir = run_dir / "responses"
+    check("stage1 成功", p1.returncode == 0, p1.stdout[-200:])
+
+    for case in cases:
+        c1 = {"provisional_conclusion": f"初期説明 {case['id']}",
+              "falsifiers": ["反対事実1", "反対事実2", "反対事実3"],
+              "queries": ["該当なし1", "該当なし2", "該当なし3", "該当なし4", "該当なし5"]}
+        (response_dir / f"{case['id']}__C1.txt").write_text(
+            json.dumps(c1, ensure_ascii=False), encoding="utf-8")
+    p2 = subprocess.run(common + ["--stage", "2"], capture_output=True, text=True)
+    manifest = json.loads((run_dir / "run_manifest.json").read_text(encoding="utf-8"))
+    check("stage2 が6件のC2を生成", p2.returncode == 0
+          and len(manifest["c2_derivations"]) == 6, p2.stdout[-200:])
+    check("C2 derivation にC1 response SHAと検索結果を保存",
+          all(len(x["c1_response"]["sha256"]) == 64
+              and isinstance(x["retrieved_docs"], list)
+              for x in manifest["c2_derivations"].values()))
+
+    incomplete = subprocess.run(common + ["--stage", "3"],
+                                capture_output=True, text=True)
+    check("stage3 は一部応答だけでは raw を作らない",
+          incomplete.returncode != 0 and not (run_dir / "raw.jsonl").exists()
+          and "応答不足" in incomplete.stdout)
+
+    for case in cases:
+        a = {"conclusion": "テスト結論", "key_documents": [], "confidence": "保留"}
+        b = {"initial_conclusion": f"初期説明 {case['id']}",
+             "conclusion": "テスト結論", "key_documents": [],
+             "counterevidence_documents": [], "confidence": "保留"}
+        c2 = dict(b)
+        (response_dir / f"{case['id']}__A.txt").write_text(
+            json.dumps(a, ensure_ascii=False), encoding="utf-8")
+        (response_dir / f"{case['id']}__B.txt").write_text(
+            json.dumps(b, ensure_ascii=False), encoding="utf-8")
+        (response_dir / f"{case['id']}__C2.txt").write_text(
+            json.dumps(c2, ensure_ascii=False), encoding="utf-8")
+
+    p3 = subprocess.run(common + ["--stage", "3"], capture_output=True, text=True)
+    raw_rows = load_jsonl(run_dir / "raw.jsonl") if (run_dir / "raw.jsonl").exists() else []
+    raw_errors, raw_trials = S.validate_results(raw_rows, cases)
+    check("stage3 が完全な18行だけを生成", p3.returncode == 0
+          and len(raw_rows) == 18 and raw_trials == 1, p3.stdout[-200:])
+    check("生成rawのprovenanceが採点hard gateを通る",
+          not raw_errors, "; ".join(raw_errors[:3]))
+    final_manifest = json.loads(
+        (run_dir / "run_manifest.json").read_text(encoding="utf-8"))
+    check("manifest は complete / raw SHA・行数を保存",
+          final_manifest["status"] == "complete"
+          and final_manifest["raw"]["rows"] == 18
+          and len(final_manifest["raw"]["sha256"]) == 64)
+    raw_sha_before = final_manifest["raw"]["sha256"]
+    rerun = subprocess.run(common + ["--stage", "3"], capture_output=True, text=True)
+    check("完了runの上書きを拒否",
+          rerun.returncode != 0 and "完了済みで不変" in rerun.stdout
+          and sha256_text((run_dir / "raw.jsonl").read_text(encoding="utf-8"))
+          == raw_sha_before)
 
 print("\n" + "=" * 60)
 if FAIL:

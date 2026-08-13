@@ -13,7 +13,8 @@ HERE = pathlib.Path(__file__).parent
 RESULTS = HERE / "results"
 sys.path.insert(0, str(HERE))
 import prompts as P
-from run import load_jsonl, validate_dataset
+from run import (RAW_SCHEMA_VERSION, RESULTS, active_run_id, load_jsonl,
+                 run_path, validate_dataset)
 
 
 # ================================================================
@@ -24,6 +25,9 @@ from run import load_jsonl, validate_dataset
 # ================================================================
 PRE_REGISTRATION = {
     "primary": "Refutation Discovery Rate (C - B)",
+    "initial_anchor_rule": (
+        "B/Cのcounterevidence_documentsは同じ出力のinitial_conclusionを対象とする。"
+        "CはC1 provisionalとの不一致を未発見として分母に残す"),
     "refutable_case_count": 14,
     "no_refutation_case_count": 6,
     "keep": {
@@ -66,11 +70,61 @@ def validate_results(rows, cases):
     if not rows:
         errors.append("結果が0件")
     seen = set()
+    run_contracts = set()
     for r in rows:
         key = (r.get("case_id"), r.get("condition"), r.get("trial", 0))
         if key in seen:
             errors.append(f"重複行: {key}")
         seen.add(key)
+        provenance = r.get("provenance")
+        if not isinstance(provenance, dict):
+            errors.append(f"{key}: provenance 欠損")
+            continue
+        if provenance.get("schema_version") != RAW_SCHEMA_VERSION:
+            errors.append(f"{key}: provenance schema 不正")
+        required = ("run_id", "backend", "provider", "model", "settings",
+                    "dataset_sha256", "specs_sha256")
+        missing = [name for name in required if provenance.get(name) is None]
+        if missing:
+            errors.append(f"{key}: provenance 必須項目欠損 {missing}")
+        contract = tuple(json.dumps(provenance.get(name), sort_keys=True,
+                                    ensure_ascii=False) for name in required)
+        run_contracts.add(contract)
+        calls = (r.get("usage") or {}).get("calls")
+        records = (provenance.get("calls") if provenance.get("backend") == "api"
+                   else provenance.get("responses"))
+        if not isinstance(records, list) or len(records) != calls:
+            errors.append(f"{key}: call証跡件数 {0 if not isinstance(records,list) else len(records)}"
+                          f" != usage.calls {calls}")
+        else:
+            for record in records:
+                digest = record.get("response_sha256") or record.get("sha256")
+                if not isinstance(digest, str) or len(digest) != 64:
+                    errors.append(f"{key}: response SHA-256 不正")
+                    break
+                timestamp = (record.get("completed_at_utc") or
+                             record.get("captured_at_utc"))
+                if not timestamp:
+                    errors.append(f"{key}: response 時刻証跡欠損")
+                    break
+            final_digest = records[-1].get("response_sha256") or records[-1].get("sha256")
+            actual_digest = hashlib.sha256(
+                str(r.get("raw_answer", "")).encode("utf-8")).hexdigest()
+            if final_digest != actual_digest:
+                errors.append(f"{key}: raw_answer と response SHA-256 が不一致")
+        prompts = (provenance.get("calls") if provenance.get("backend") == "api"
+                   else provenance.get("prompts"))
+        if not isinstance(prompts, list) or len(prompts) != calls:
+            errors.append(f"{key}: prompt証跡件数が usage.calls と不一致")
+        else:
+            for record in prompts:
+                digest = record.get("prompt_sha256") or record.get("sha256")
+                if not isinstance(digest, str) or len(digest) != 64:
+                    errors.append(f"{key}: prompt SHA-256 不正")
+                    break
+
+    if len(run_contracts) > 1:
+        errors.append("複数runまたは異なる実行条件の結果が混在")
 
     trials = sorted({r.get("trial", 0) for r in rows})
     n_trials = len(trials)
@@ -138,7 +192,27 @@ def required_docs_found(doc_ids, gt):
     return bool(refs & found)
 
 
-def refutation_found(cited, gt, condition, malformed):
+def normalize_anchor(value):
+    """意味比較ではなく、C1からC2へのコピー契約だけを空白正規化して確認する。"""
+    return " ".join(value.split()) if isinstance(value, str) else ""
+
+
+def anchor_consistent(initial, provisional, condition, malformed):
+    """B/C が同じ意味対象を引用しているか確認する。
+
+    B は出力された初期説明が非空であること、C はそれに加えて C1 の暫定結論を
+    C2 が変更せず引き継いだことを要求する。A は比較対象外。
+    """
+    if condition == "A":
+        return None
+    if malformed or not normalize_anchor(initial):
+        return False
+    if condition == "C":
+        return normalize_anchor(initial) == normalize_anchor(provisional)
+    return True
+
+
+def refutation_found(cited, gt, condition, malformed, anchor_ok=True):
     """B/C 共通の counterevidence_documents で判定する。
 
     None を返す（採点対象外）のは次の2つだけ:
@@ -153,7 +227,7 @@ def refutation_found(cited, gt, condition, malformed):
         return None
     if condition == "A":
         return None
-    if malformed or cited is None or not isinstance(cited, list):
+    if malformed or anchor_ok is False or cited is None or not isinstance(cited, list):
         return False
     return required_docs_found(cited, gt)
 
@@ -168,12 +242,16 @@ def score(rows, cases, judge_fn):
         malformed = False
         try:
             parsed = parse_json(r["raw_answer"])
+            initial = parsed.get("initial_conclusion")
             concl = parsed.get("conclusion", "")
             cited = parsed.get("counterevidence_documents")
             conf = parsed.get("confidence")
         except Exception:
             malformed = True
-            concl, cited, conf = r["raw_answer"], None, None
+            initial, concl, cited, conf = None, r["raw_answer"], None, None
+
+        anchor_ok = anchor_consistent(
+            initial, r.get("provisional_answer"), r["condition"], malformed)
 
         verdict, _ = match_conclusion(concl, gt, judge_fn, r["case_id"])
         uns = judge_fn(P.build_unsupported(
@@ -184,7 +262,9 @@ def score(rows, cases, judge_fn):
             case_id=r["case_id"], type=case["type"], condition=r["condition"],
             trial=r.get("trial", 0), malformed=malformed,
             verdict=verdict,
-            refutation_found=refutation_found(cited, gt, r["condition"], malformed),
+            initial_conclusion=initial, anchor_consistent=anchor_ok,
+            refutation_found=refutation_found(
+                cited, gt, r["condition"], malformed, anchor_ok),
             cited_counterevidence=cited,
             unsupported=bool(uns.get("has_unsupported")),
             confidence=conf,
@@ -229,6 +309,8 @@ def aggregate(recs):
             correct_destruction=mean(r["verdict"] != "correct" for r in nr),
             unsupported=mean(r["unsupported"] for r in rs),
             malformed=mean(r["malformed"] for r in rs),
+            anchor_mismatch=mean(r.get("anchor_consistent") is False for r in rs
+                                 if r.get("anchor_consistent") is not None),
             avg_calls=mean(r["calls"] for r in rs),
             avg_tokens=(None if any(t is None for t in toks) else mean(toks)),
         )
@@ -307,6 +389,7 @@ def print_pilot(agg, recs):
     rows = [("Accuracy", "accuracy", 2),
             ("Refutation Discovery", "refutation_discovery", 2),
             ("Correct Destruction", "correct_destruction", 2),
+            ("Initial-anchor mismatch", "anchor_mismatch", 2),
             ("malformed JSON rate", "malformed", 2)]
     print(f"{'':26}{'A':>10}{'B':>10}{'C':>10}")
     print("-" * 56)
@@ -379,7 +462,9 @@ def diagnose_c(recs, cases):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--raw", default=str(RESULTS / "raw.jsonl"))
+    ap.add_argument("--raw")
+    ap.add_argument("--results", default=str(RESULTS))
+    ap.add_argument("--run-id")
     ap.add_argument("--dataset", default=str(HERE / "dataset.jsonl"))
     ap.add_argument("--specs", default=str(HERE / "specs.jsonl"))
     ap.add_argument("--mode", choices=["pilot", "full"], required=True)
@@ -395,7 +480,12 @@ def main():
             print("  - " + e)
         sys.exit(1)
 
-    rows = load_jsonl(a.raw)
+    if a.raw:
+        raw_path = pathlib.Path(a.raw)
+    else:
+        run_id = a.run_id or active_run_id(a.results)
+        raw_path = run_path(a.results, run_id) / "raw.jsonl"
+    rows = load_jsonl(raw_path)
 
     rerr, n_trials = validate_results(rows, cases)
     if rerr:
@@ -427,13 +517,17 @@ def main():
         print(f"  {d['case_id']:8} 到達={d['reached']!s:5} 引用={d['cited']!s:5} "
               f"正答={d['correct']!s:5} 失敗工程={d['stage']}")
 
-    RESULTS.mkdir(exist_ok=True)
-    (RESULTS / f"scored_{a.mode}.json").write_text(
+    output_dir = raw_path.parent
+    output_dir.mkdir(parents=True, exist_ok=True)
+    (output_dir / f"scored_{a.mode}.json").write_text(
         json.dumps(dict(mode=a.mode, records=recs, aggregate=agg,
                         verdict=v, reason=reason,
+                        source_raw={"path": str(raw_path),
+                                    "sha256": hashlib.sha256(raw_path.read_bytes()).hexdigest(),
+                                    "run_id": rows[0]["provenance"]["run_id"]},
                         pre_registration=PRE_REGISTRATION),
                    ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"\n-> {RESULTS/f'scored_{a.mode}.json'}")
+    print(f"\n-> {output_dir/f'scored_{a.mode}.json'}")
 
 
 if __name__ == "__main__":
