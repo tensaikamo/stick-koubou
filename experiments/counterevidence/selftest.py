@@ -330,6 +330,23 @@ mixed = json.loads(json.dumps(full_rows))
 mixed[0]["provenance"]["model"] = "other-model"
 em, _ = S.validate_results(mixed, cases)
 check("異なるmodelの混在を reject", any("異なる実行条件" in x for x in em))
+empty_calls = json.loads(json.dumps(full_rows))
+empty_calls[0]["usage"]["calls"] = 0
+empty_calls[0]["provenance"]["prompts"] = []
+empty_calls[0]["provenance"]["responses"] = []
+ec, _ = S.validate_results(empty_calls, cases)
+check("空のcall証跡を例外にせず reject",
+      any("call証跡件数" in x for x in ec)
+      and any("usage.calls" in x for x in ec))
+bad_trial = json.loads(json.dumps(full_rows))
+bad_trial[0]["trial"] = "0"
+ebt, _ = S.validate_results(bad_trial, cases)
+check("非整数trialを例外にせず reject",
+      any("trial は0以上の整数" in x for x in ebt))
+bad_digest = json.loads(json.dumps(full_rows))
+bad_digest[0]["provenance"]["responses"][0]["sha256"] = "z" * 64
+ebd, _ = S.validate_results(bad_digest, cases)
+check("非hex SHA-256を reject", any("response SHA-256 不正" in x for x in ebd))
 
 # pilot CLI も、judge API を呼ぶ前に欠損結果を拒否すること
 with tempfile.TemporaryDirectory() as td:

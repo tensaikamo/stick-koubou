@@ -71,11 +71,24 @@ def validate_results(rows, cases):
         errors.append("結果が0件")
     seen = set()
     run_contracts = set()
+    valid_trials = []
+
+    def valid_sha256(value):
+        return (isinstance(value, str) and len(value) == 64
+                and all(ch in "0123456789abcdef" for ch in value.lower()))
+
     for r in rows:
-        key = (r.get("case_id"), r.get("condition"), r.get("trial", 0))
+        trial = r.get("trial", 0)
+        key = (r.get("case_id"), r.get("condition"), trial)
         if key in seen:
             errors.append(f"重複行: {key}")
         seen.add(key)
+        if type(trial) is not int or trial < 0:
+            errors.append(f"{key}: trial は0以上の整数が必要")
+        else:
+            valid_trials.append(trial)
+        if not isinstance(r.get("raw_answer"), str):
+            errors.append(f"{key}: raw_answer は文字列が必要")
         provenance = r.get("provenance")
         if not isinstance(provenance, dict):
             errors.append(f"{key}: provenance 欠損")
@@ -87,19 +100,30 @@ def validate_results(rows, cases):
         missing = [name for name in required if provenance.get(name) is None]
         if missing:
             errors.append(f"{key}: provenance 必須項目欠損 {missing}")
+        if provenance.get("backend") not in ("manual", "api"):
+            errors.append(f"{key}: provenance backend 不正")
+        if not isinstance(provenance.get("settings"), dict):
+            errors.append(f"{key}: provenance settings はobjectが必要")
         contract = tuple(json.dumps(provenance.get(name), sort_keys=True,
                                     ensure_ascii=False) for name in required)
         run_contracts.add(contract)
-        calls = (r.get("usage") or {}).get("calls")
+        usage = r.get("usage")
+        calls = usage.get("calls") if isinstance(usage, dict) else None
+        expected_calls = 2 if r.get("condition") == "C" else 1
+        if type(calls) is not int or calls != expected_calls:
+            errors.append(f"{key}: usage.calls は {expected_calls} が必要（現在 {calls!r}）")
         records = (provenance.get("calls") if provenance.get("backend") == "api"
                    else provenance.get("responses"))
-        if not isinstance(records, list) or len(records) != calls:
+        records_ok = (isinstance(records, list) and bool(records)
+                      and type(calls) is int and len(records) == calls
+                      and all(isinstance(record, dict) for record in records))
+        if not records_ok:
             errors.append(f"{key}: call証跡件数 {0 if not isinstance(records,list) else len(records)}"
                           f" != usage.calls {calls}")
         else:
             for record in records:
                 digest = record.get("response_sha256") or record.get("sha256")
-                if not isinstance(digest, str) or len(digest) != 64:
+                if not valid_sha256(digest):
                     errors.append(f"{key}: response SHA-256 不正")
                     break
                 timestamp = (record.get("completed_at_utc") or
@@ -114,19 +138,22 @@ def validate_results(rows, cases):
                 errors.append(f"{key}: raw_answer と response SHA-256 が不一致")
         prompts = (provenance.get("calls") if provenance.get("backend") == "api"
                    else provenance.get("prompts"))
-        if not isinstance(prompts, list) or len(prompts) != calls:
+        prompts_ok = (isinstance(prompts, list) and bool(prompts)
+                      and type(calls) is int and len(prompts) == calls
+                      and all(isinstance(record, dict) for record in prompts))
+        if not prompts_ok:
             errors.append(f"{key}: prompt証跡件数が usage.calls と不一致")
         else:
             for record in prompts:
                 digest = record.get("prompt_sha256") or record.get("sha256")
-                if not isinstance(digest, str) or len(digest) != 64:
+                if not valid_sha256(digest):
                     errors.append(f"{key}: prompt SHA-256 不正")
                     break
 
     if len(run_contracts) > 1:
         errors.append("複数runまたは異なる実行条件の結果が混在")
 
-    trials = sorted({r.get("trial", 0) for r in rows})
+    trials = sorted(set(valid_trials))
     n_trials = len(trials)
     if trials != list(range(n_trials)):
         errors.append(f"trial ID が 0..n-1 の連番でない: {trials}")
@@ -135,7 +162,9 @@ def validate_results(rows, cases):
     for cid in case_ids:
         for cond in ("A", "B", "C"):
             got = sorted(r.get("trial", 0) for r in rows
-                         if r.get("case_id") == cid and r.get("condition") == cond)
+                         if r.get("case_id") == cid and r.get("condition") == cond
+                         and type(r.get("trial", 0)) is int
+                         and r.get("trial", 0) >= 0)
             if got != trials:
                 errors.append(f"{cid}/{cond}: trial {trials} が必要（現在 {got}）")
 
