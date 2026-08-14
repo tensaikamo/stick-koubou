@@ -773,6 +773,8 @@ def load_manual_judge(raw_path, dataset_path, specs_path):
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     if manifest.get("schema_version") != MANUAL_JUDGE_SCHEMA_VERSION:
         raise ValueError("manual judge schema_versionが不正")
+    if manifest.get("status") not in ("awaiting_responses", "complete"):
+        raise ValueError("manual judge statusが不正")
     if manifest.get("source") != _manual_judge_source(raw_path, dataset_path, specs_path):
         raise ValueError("manual judge packetのraw/code/input SHAが現在値と不一致")
     judge = manifest.get("judge")
@@ -818,12 +820,51 @@ def load_manual_judge(raw_path, dataset_path, specs_path):
         response_records.append({
             "request_id": request_id, "response_sha256": R.sha256_text(raw_response),
             "observed_at_utc": R.utc_now()})
+    if manifest["status"] == "complete":
+        stored = manifest.get("responses")
+        if not isinstance(stored, list) or len(stored) != len(response_records):
+            raise ValueError("complete manual judgeのresponse証跡が不完全")
+        stored_by_id = {record.get("request_id"): record for record in stored
+                        if isinstance(record, dict)}
+        if len(stored_by_id) != len(stored):
+            raise ValueError("complete manual judgeのresponse証跡IDが不正")
+        for current in response_records:
+            recorded = stored_by_id.get(current["request_id"])
+            if (not recorded
+                    or recorded.get("response_sha256") != current["response_sha256"]
+                    or not recorded.get("observed_at_utc")):
+                raise ValueError(
+                    f"{current['request_id']}: 完了後のjudge応答SHAが不一致")
+        response_records = stored
+    elif manifest.get("responses") is not None:
+        raise ValueError("awaiting_responses に完了済みresponse証跡が混入")
     expected_calls = manifest.get("call_count")
     if type(expected_calls) is not int or expected_calls < len(records):
         raise ValueError("manual judge call_countが不正")
-    provenance = dict(judge, prompt_manifest_sha256=R.sha256_file(manifest_path),
-                      response_records=response_records)
+    provenance = dict(judge, response_records=response_records)
     return ManualJudgeResponses(responses, expected_calls), provenance
+
+
+def finalize_manual_judge(raw_path, provenance):
+    """採点経路が全promptを消費した後だけresponse SHAをmanifestへ固定する。"""
+    judge_dir = pathlib.Path(raw_path).parent / "manual_judge"
+    manifest_path = judge_dir / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if manifest.get("status") == "awaiting_responses":
+        manifest["status"] = "complete"
+        manifest["completed_at_utc"] = R.utc_now()
+        manifest["responses"] = provenance["response_records"]
+        R.write_json(manifest_path, manifest)
+        for record in manifest["prompts"]:
+            (judge_dir / record["prompt_file"]).chmod(0o444)
+            (judge_dir / record["response_file"]).chmod(0o444)
+        manifest_path.chmod(0o444)
+    elif manifest.get("status") != "complete":
+        raise ValueError("manual judgeをcompleteにできないstatus")
+    finalized = dict(provenance)
+    finalized["status"] = "complete"
+    finalized["manifest_sha256"] = R.sha256_file(manifest_path)
+    return finalized
 
 
 def main():
@@ -922,6 +963,7 @@ def main():
                     f"{judge_fn.expected_calls}")
             if judge_fn.seen != set(judge_fn.responses):
                 raise ValueError("manual judge packetに未使用または不足promptがある")
+            judge_provenance = finalize_manual_judge(raw_path, judge_provenance)
     except (ValueError, OSError, json.JSONDecodeError) as error:
         print("[INCOMPLETE_JUDGMENTS] 採点を行いません。")
         print(f"  - {error}")
