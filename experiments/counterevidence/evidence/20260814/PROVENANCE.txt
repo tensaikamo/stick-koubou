@@ -1,0 +1,28 @@
+AB-01 smoke provenance
+======================
+
+Date: 2026-08-14 (Asia/Tokyo)
+Purpose: prompt/schema smoke test only; not a formal experimental row
+Tree under test: 124dca10cabba452827efb09c79081ab57bd7db8
+Execution route: Claude subscription OAuth via the Claude Code Agent tool
+Generation/API billing: ANTHROPIC_API_KEY was unset; Console/API credits, PAYG,
+  extra usage, claude -p, Agent SDK, and direct API calls were not used
+Conditions: A, B, C1, and C2 were run in separate fresh subagents; each received
+  only the corresponding prompt text; tool_uses=0 for all four responses
+Model identity: operator-reported "Claude Sonnet 5"; provider-reported model was
+  not available, so this observation is unverifiable_manual
+Scoring: no judge API and no formal KEEP/DROP decision
+
+Observed checks:
+- Four responses were parseable JSON with no missing or extra fields.
+- C2.initial_conclusion exactly matched C1.provisional_conclusion.
+- C retrieval returned d3 and d2, satisfying AB-01's ALL retrieval fixture.
+- A key_documents contained d2, d3, d6.
+- B and C2 both cited d1 in the then-present counterevidence_documents field.
+- B and C final conclusions were both on the correct side, so no B-C outcome
+  effect was observed.
+
+The response files and SMOKE_REPORT.txt are intentionally not duplicated in this
+repository. Their SHA-256 values and the archive SHA-256 are recorded in
+SMOKE_MANIFEST.sha256.txt so a holder of the disclosed smoke bundle can verify
+the exact artifacts. These smoke responses are prohibited from formal reuse.
