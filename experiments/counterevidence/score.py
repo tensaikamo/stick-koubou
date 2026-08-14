@@ -13,6 +13,7 @@ HERE = pathlib.Path(__file__).parent
 RESULTS = HERE / "results"
 sys.path.insert(0, str(HERE))
 import prompts as P
+import run as R
 from run import (RAW_SCHEMA_VERSION, RESULTS, active_run_id, load_jsonl,
                  run_path, validate_dataset)
 
@@ -27,7 +28,8 @@ PRE_REGISTRATION = {
     "primary": "Refutation Discovery Rate (C - B)",
     "initial_anchor_rule": (
         "B/Cのcounterevidence_documentsは同じ出力のinitial_conclusionを対象とする。"
-        "CはC1 provisionalとの不一致を未発見として分母に残す"),
+        "CはC1 provisionalとの不一致を記録し、1件でもあれば正式判定を無効とする"),
+    "anchor_mismatch_max": 0.0,
     "refutable_case_count": 14,
     "no_refutation_case_count": 6,
     "keep": {
@@ -61,7 +63,7 @@ def parse_json(text):
 
 
 # ---------------------------------------------------------------- 結果の完全性
-def validate_results(rows, cases):
+def validate_results(rows, cases, expected_context=None):
     """採点前に raw.jsonl の完全性を強制する。
     欠損した条件だけを比較すると、難しいケースが落ちた側が有利になる。
     戻り値: (errors, n_trials)
@@ -104,6 +106,15 @@ def validate_results(rows, cases):
             errors.append(f"{key}: provenance backend 不正")
         if not isinstance(provenance.get("settings"), dict):
             errors.append(f"{key}: provenance settings はobjectが必要")
+        else:
+            expected_verification = ("provider_reported" if provenance.get("backend") == "api"
+                                     else "unverifiable_manual")
+            if provenance["settings"].get("model_verification") != expected_verification:
+                errors.append(f"{key}: model_verification が不正")
+        if expected_context:
+            for name, expected_value in expected_context.items():
+                if provenance.get(name) != expected_value:
+                    errors.append(f"{key}: provenance {name} がmanifest/実ファイルと不一致")
         contract = tuple(json.dumps(provenance.get(name), sort_keys=True,
                                     ensure_ascii=False) for name in required)
         run_contracts.add(contract)
@@ -127,10 +138,18 @@ def validate_results(rows, cases):
                     errors.append(f"{key}: response SHA-256 不正")
                     break
                 timestamp = (record.get("completed_at_utc") or
-                             record.get("captured_at_utc"))
+                             record.get("collected_at_utc"))
                 if not timestamp:
                     errors.append(f"{key}: response 時刻証跡欠損")
                     break
+                if provenance.get("backend") == "api":
+                    if record.get("requested_model") != provenance.get("model"):
+                        errors.append(f"{key}: requested_model がrun modelと不一致")
+                    if record.get("reported_model") != record.get("requested_model"):
+                        errors.append(f"{key}: provider reported_model が要求modelと不一致")
+                    if record.get("stop_reason") != "end_turn":
+                        errors.append(f"{key}: API応答が正常完了していない "
+                                      f"(stop_reason={record.get('stop_reason')!r})")
             final_digest = records[-1].get("response_sha256") or records[-1].get("sha256")
             actual_digest = hashlib.sha256(
                 str(r.get("raw_answer", "")).encode("utf-8")).hexdigest()
@@ -173,6 +192,58 @@ def validate_results(rows, cases):
         errors.append(f"行数 {len(rows)} != 期待 {expected} "
                       f"({len(case_ids)} cases x 3 conditions x {n_trials} trials)")
     return errors, n_trials
+
+
+def validate_run_bundle(raw_path, results_root, dataset_path, specs_path):
+    """raw・manifest・実入力・追跡対象attestationを一つのrunとして束縛する。"""
+    errors = []
+    raw_path, results_root = pathlib.Path(raw_path), pathlib.Path(results_root)
+    if not raw_path.is_file():
+        return [f"raw.jsonl が存在しない: {raw_path}"], None
+    if raw_path.name != "raw.jsonl":
+        errors.append("採点対象ファイル名は raw.jsonl 固定")
+    run_dir = raw_path.parent
+    try:
+        expected_runs = (results_root / "runs").resolve()
+        if run_dir.parent.resolve() != expected_runs:
+            errors.append(f"raw は {expected_runs}/<run_id>/raw.jsonl 配下に必要")
+    except OSError as error:
+        errors.append(f"run path を解決できない: {error}")
+
+    manifest_path = run_dir / "run_manifest.json"
+    if not manifest_path.is_file():
+        return errors + [f"run_manifest.json が存在しない: {manifest_path}"], None
+    manifest = R.load_manifest(run_dir)
+    run_id = manifest.get("run_id")
+    if run_id != run_dir.name:
+        errors.append(f"manifest run_id {run_id!r} とdirectory名が不一致")
+    if manifest.get("status") != "complete":
+        errors.append(f"run が未完了: status={manifest.get('status')!r}")
+    raw_meta = manifest.get("raw") if isinstance(manifest.get("raw"), dict) else {}
+    actual_raw_sha = R.sha256_file(raw_path)
+    if raw_meta.get("sha256") != actual_raw_sha:
+        errors.append("raw.jsonl SHA-256 がmanifestと不一致")
+
+    errors.extend(R.validate_manifest_context(
+        manifest, dataset_path, specs_path, run_dir))
+
+    ledger = R.load_attestations(results_root)
+    entries = [entry for entry in ledger["entries"] if entry.get("run_id") == run_id]
+    if len(entries) != 1:
+        errors.append(f"attestation はrunごとに1件必要（現在 {len(entries)}）")
+    else:
+        entry = entries[0]
+        expected = {
+            "raw_sha256": actual_raw_sha,
+            "manifest_sha256": R.sha256_file(manifest_path),
+            "dataset_sha256": R.sha256_file(dataset_path),
+            "specs_sha256": R.sha256_file(specs_path),
+            "backend": manifest.get("backend"), "provider": manifest.get("provider"),
+            "model": manifest.get("model")}
+        for name, value in expected.items():
+            if entry.get(name) != value:
+                errors.append(f"attestation {name} が実体と不一致")
+    return errors, manifest
 
 
 # ---------------------------------------------------------------- judge
@@ -353,6 +424,13 @@ def verdict_full(agg, n_trials=None):
     B, C = agg["B"], agg["C"]
     k = PRE_REGISTRATION["keep"]
 
+    for name, values in (("B", B), ("C", C)):
+        mismatch = values.get("anchor_mismatch")
+        if mismatch is None or mismatch > PRE_REGISTRATION["anchor_mismatch_max"]:
+            return "INVALID_ANCHOR", (
+                f"{name} の initial-anchor mismatch={mismatch!r}。"
+                "Refutation Discovery と文字列コピー失敗を分離できないため正式判定を出さない")
+
     if n_trials is not None:
         expected = PRE_REGISTRATION["refutable_case_count"] * n_trials
         for name, a in (("B", B), ("C", C)):
@@ -452,6 +530,7 @@ def print_full(agg):
             ("refutation_discovery", "Refutation Discovery", 2),
             ("correct_destruction", "Correct Destruction", 2),
             ("unsupported", "Unsupported Claims", 2),
+            ("anchor_mismatch", "Initial-anchor mismatch", 2),
             ("malformed", "malformed JSON", 2),
             ("avg_calls", "Avg Calls", 2), ("avg_tokens", "Avg Tokens", 0)]
     print(f"{'':26}{'A':>10}{'B':>10}{'C':>10}{'C-B':>10}")
@@ -500,23 +579,41 @@ def main():
     ap.add_argument("--judge", choices=["api"], default="api")
     a = ap.parse_args()
 
-    cases = load_jsonl(a.dataset)
-    specs = load_jsonl(a.specs) if pathlib.Path(a.specs).exists() else None
-    errors, _ = validate_dataset(cases, specs, require_full=(a.mode == "full"))
-    if errors:
-        print("[VALIDATION FAILED] 採点を実行しません。")
-        for e in errors:
-            print("  - " + e)
+    try:
+        dataset_path, specs_path = pathlib.Path(a.dataset), pathlib.Path(a.specs)
+        cases = load_jsonl(dataset_path)
+        specs = load_jsonl(specs_path)
+        errors, _ = validate_dataset(cases, specs, require_full=(a.mode == "full"))
+        if errors:
+            print("[VALIDATION FAILED] 採点を実行しません。")
+            for error in errors:
+                print("  - " + error)
+            sys.exit(1)
+
+        if a.raw:
+            raw_path = pathlib.Path(a.raw)
+        else:
+            run_id = a.run_id or active_run_id(a.results)
+            raw_path = run_path(a.results, run_id) / "raw.jsonl"
+        bundle_errors, manifest = validate_run_bundle(
+            raw_path, a.results, dataset_path, specs_path)
+        if bundle_errors:
+            raise ValueError("\n  - ".join(bundle_errors))
+        rows = load_jsonl(raw_path)
+        expected_context = {
+            "run_id": manifest["run_id"], "backend": manifest["backend"],
+            "provider": manifest["provider"], "model": manifest["model"],
+            "settings": manifest["settings"],
+            "dataset_sha256": R.sha256_file(dataset_path),
+            "specs_sha256": R.sha256_file(specs_path)}
+        rerr, n_trials = validate_results(rows, cases, expected_context)
+        if manifest.get("raw", {}).get("rows") != len(rows):
+            rerr.append("raw行数がmanifestと不一致")
+    except (ValueError, OSError, json.JSONDecodeError) as error:
+        print("[INCOMPLETE_RESULTS] 採点を行いません。")
+        print(f"  - {error}")
         sys.exit(1)
 
-    if a.raw:
-        raw_path = pathlib.Path(a.raw)
-    else:
-        run_id = a.run_id or active_run_id(a.results)
-        raw_path = run_path(a.results, run_id) / "raw.jsonl"
-    rows = load_jsonl(raw_path)
-
-    rerr, n_trials = validate_results(rows, cases)
     if rerr:
         print("[INCOMPLETE_RESULTS] 採点を行いません。")
         for e in rerr[:20]:
@@ -525,6 +622,8 @@ def main():
             print(f"  ... 他 {len(rerr)-20} 件")
         sys.exit(1)
     print(f"[results ok] {len(rows)} rows / {n_trials} trials per condition")
+    if manifest["settings"].get("model_verification") == "unverifiable_manual":
+        print("[provenance warning] manual model identity is operator-declared and unverifiable")
 
     judge_fn = judge_api
     recs = score(rows, cases, judge_fn)
@@ -553,7 +652,9 @@ def main():
                         verdict=v, reason=reason,
                         source_raw={"path": str(raw_path),
                                     "sha256": hashlib.sha256(raw_path.read_bytes()).hexdigest(),
-                                    "run_id": rows[0]["provenance"]["run_id"]},
+                                    "run_id": rows[0]["provenance"]["run_id"],
+                                    "model_verification": manifest["settings"].get(
+                                        "model_verification")},
                         pre_registration=PRE_REGISTRATION),
                    ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"\n-> {output_dir/f'scored_{a.mode}.json'}")

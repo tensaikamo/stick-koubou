@@ -24,6 +24,7 @@ RESULTS = HERE / "results"
 DEFAULT_API_MODEL = "claude-haiku-4-5-20251001"
 SCHEMA_VERSION = "counterevidence.run.v2"
 RAW_SCHEMA_VERSION = "counterevidence.raw.v2"
+ATTESTATION_SCHEMA_VERSION = "counterevidence.attestations.v1"
 MAX_TOKENS = {"A": 1200, "B": 2000, "C1": 1200, "C2": 1200}
 RUN_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 sys.path.insert(0, str(HERE))
@@ -142,7 +143,8 @@ def file_record(path):
     path = pathlib.Path(path)
     mtime = dt.datetime.fromtimestamp(path.stat().st_mtime, dt.timezone.utc)
     return {"sha256": sha256_file(path),
-            "captured_at_utc": mtime.isoformat().replace("+00:00", "Z")}
+            "file_mtime_utc": mtime.isoformat().replace("+00:00", "Z"),
+            "collected_at_utc": utc_now()}
 
 
 def write_json(path, value):
@@ -153,7 +155,8 @@ def write_json(path, value):
 def source_fingerprints(dataset_path, specs_path):
     paths = {"dataset": pathlib.Path(dataset_path),
              "specs": pathlib.Path(specs_path),
-             "prompts.py": HERE / "prompts.py", "run.py": HERE / "run.py"}
+             "prompts.py": HERE / "prompts.py", "run.py": HERE / "run.py",
+             "score.py": HERE / "score.py"}
     return {name: {"path": str(path), "sha256": sha256_file(path)}
             for name, path in paths.items()}
 
@@ -225,6 +228,8 @@ def create_run(results_root, backend, provider, model, temperature,
         "settings": {
             "temperature": temperature,
             "temperature_status": "declared" if temperature is not None else "unknown",
+            "model_verification": ("provider_reported" if backend == "api"
+                                   else "unverifiable_manual"),
             "max_output_tokens": MAX_TOKENS if backend == "api" else None,
             "trials": trials},
         "started_at_utc": utc_now(),
@@ -258,6 +263,50 @@ def prompt_record(manifest, name):
     record = dict(manifest["prompts"][name])
     record["name"] = name
     return record
+
+
+def invalidate_response(run_dir, name):
+    """古いpromptに対する応答を削除せず退避し、新promptへの流用を防ぐ。"""
+    path = pathlib.Path(run_dir) / "responses" / f"{name}.txt"
+    if not path.exists():
+        return None
+    archive = pathlib.Path(run_dir) / "responses" / "invalidated"
+    archive.mkdir(exist_ok=True)
+    digest = sha256_file(path)[:12]
+    stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    destination = archive / f"{name}__{stamp}__{digest}.txt"
+    path.replace(destination)
+    return destination
+
+
+def load_attestations(results_root):
+    path = pathlib.Path(results_root) / "run_attestations.json"
+    if not path.exists():
+        return {"schema_version": ATTESTATION_SCHEMA_VERSION, "entries": []}
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if value.get("schema_version") != ATTESTATION_SCHEMA_VERSION \
+            or not isinstance(value.get("entries"), list):
+        raise ValueError(f"attestation ledger が不正です: {path}")
+    return value
+
+
+def append_attestation(results_root, run_dir, manifest, raw_path):
+    """小さいdigest台帳をruns/の外へ残し、Git差分で改変を検知可能にする。"""
+    ledger = load_attestations(results_root)
+    run_id = manifest["run_id"]
+    if any(entry.get("run_id") == run_id for entry in ledger["entries"]):
+        raise ValueError(f"attestation は既に存在します: {run_id}")
+    manifest_path = pathlib.Path(run_dir) / "run_manifest.json"
+    ledger["entries"].append({
+        "run_id": run_id,
+        "completed_at_utc": manifest["completed_at_utc"],
+        "raw_sha256": sha256_file(raw_path),
+        "manifest_sha256": sha256_file(manifest_path),
+        "dataset_sha256": manifest["inputs"]["dataset"]["sha256"],
+        "specs_sha256": manifest["inputs"]["specs"]["sha256"],
+        "backend": manifest["backend"], "provider": manifest["provider"],
+        "model": manifest["model"]})
+    write_json(pathlib.Path(results_root) / "run_attestations.json", ledger)
 
 
 def provenance_base(manifest):
@@ -394,14 +443,23 @@ def manual_stage2(cases, manifest, run_dir):
         c2name = f"{case['id']}__C2"
         prompt = P.build_c2(case, step1.get("provisional_conclusion", ""),
                             step1.get("falsifiers", []), docs)
+        c1_record = response_record(run_dir, c1name)
+        old = manifest["c2_derivations"].get(case["id"])
+        if (old and old.get("c1_response", {}).get("sha256") == c1_record["sha256"]
+                and old.get("c2_prompt", {}).get("sha256") == sha256_text(prompt)):
+            print(f"  unchanged {case['id']}: C2 prompt/response を維持")
+            continue
+        invalidated = invalidate_response(run_dir, c2name)
+        if invalidated:
+            print(f"  invalidated {case['id']}: 古いC2応答を {invalidated.name} へ退避")
         write_prompt(run_dir, manifest, c2name, prompt)
         manifest["c2_derivations"][case["id"]] = {
-            "c1_response": response_record(run_dir, c1name),
+            "c1_response": c1_record,
             "provisional_answer": step1.get("provisional_conclusion"),
             "falsifiers": step1.get("falsifiers"), "queries": step1.get("queries"),
             "retrieved_docs": [doc["doc_id"] for doc in docs],
             "c2_prompt": prompt_record(manifest, c2name),
-            "generated_at_utc": utc_now()}
+            "c2_response": None, "generated_at_utc": utc_now()}
         made += 1
     manifest["status"] = "awaiting_stage2_responses"
     write_json(run_dir / "run_manifest.json", manifest)
@@ -441,6 +499,14 @@ def manual_stage3(cases, manifest, run_dir):
         if prompt_record(manifest, c2name)["sha256"] != \
                 derivation.get("c2_prompt", {}).get("sha256"):
             raise ValueError(f"{case['id']}: C2 prompt SHA-256 drift")
+        c2record = response_record(run_dir, c2name)
+        generated = derivation.get("c2_prompt", {}).get("generated_at_utc")
+        if not generated or c2record["file_mtime_utc"] <= generated:
+            raise ValueError(f"{case['id']}: C2応答がC2 prompt生成後に収集されたと確認できません")
+        bound = derivation.get("c2_response")
+        if bound and bound.get("sha256") != c2record["sha256"]:
+            raise ValueError(f"{case['id']}: C2 response SHA-256 drift")
+        derivation["c2_response"] = c2record
         rows.append(dict(
             case_id=case["id"], condition="C", trial=0,
             provisional_answer=derivation.get("provisional_answer"),
@@ -450,7 +516,7 @@ def manual_stage3(cases, manifest, run_dir):
             provenance={**base,
                         "prompts": [prompt_record(manifest, c1name),
                                     prompt_record(manifest, c2name)],
-                        "responses": [c1record, response_record(run_dir, c2name)],
+                        "responses": [c1record, c2record],
                         "assembled_at_utc": utc_now()}))
     return rows
 
@@ -516,6 +582,10 @@ def main():
             manifest = load_manifest(run_dir)
             if manifest.get("backend") != "manual":
                 raise ValueError(f"run {run_id} は manual backend ではありません")
+            raw_path = run_dir / "raw.jsonl"
+            if raw_path.exists():
+                raise ValueError(f"run {run_id} は raw.jsonl が存在するため不変です。"
+                                 "新しいrunを開始してください")
             if manifest.get("status") == "complete":
                 raise ValueError(f"run {run_id} は完了済みで不変です。新しいrunを開始してください")
             drift = validate_manifest_context(
@@ -528,6 +598,8 @@ def main():
             rows = manual_stage3(cases, manifest, run_dir)
 
         raw_path = run_dir / "raw.jsonl"
+        if raw_path.exists():
+            raise ValueError(f"raw.jsonl は既に存在します: {raw_path}")
         with open(raw_path, "w", encoding="utf-8") as stream:
             for row in rows:
                 stream.write(json.dumps(row, ensure_ascii=False) + "\n")
@@ -535,6 +607,9 @@ def main():
         manifest["completed_at_utc"] = utc_now()
         manifest["raw"] = {"sha256": sha256_file(raw_path), "rows": len(rows)}
         write_json(run_dir / "run_manifest.json", manifest)
+        append_attestation(args.results, run_dir, manifest, raw_path)
+        raw_path.chmod(0o444)
+        (run_dir / "run_manifest.json").chmod(0o444)
         print(f"run_id: {manifest['run_id']}")
         print(f"{len(rows)} rows -> {raw_path}")
     except (ValueError, json.JSONDecodeError) as error:
