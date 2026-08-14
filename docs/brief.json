@@ -1,69 +1,41 @@
 {
-  "date": "2026-08-14",
-  "updated_at": "2026-08-14 07:22",
+  "date": "2026-08-15",
+  "updated_at": "2026-08-15 06:58",
   "build_id": "truthful-ui-v1",
-  "omote": "Google DeepMindがGemini 3.7 Flashを発表し、OpenRouter上でFlash系モデルが最大75%の大幅値下げを記録した。これに呼応するようにOpenAI側も公式SDK v3.0.0を投入し、最大14倍速を謳うGPT-5.6 Sol Ultrafast modeの予告を公開した。",
-  "ura": "Googleが推論インフラのコスト低減を武器に、圧倒的な価格ダンピングで開発者トラフィックを強奪しにきたと見る。高価な最上位モデルを単発で呼ぶ戦いから、投げ売りされた超低コストモデルを常時回すエージェント型処理へ開発現場の前提が完全にシフトしている。",
-  "ura_taikou": "OpenRouter上の値下げは一時的な集客キャンペーンに過ぎないという仮説を検討したが、差分ログで複数ベンダーのモデルが一斉に値下げされている事実から構造的な推論原価低下と判断し退けた。",
-  "dousuru": "iPhoneのSafariからGitHubを開き、自作WebアプリのAPI接続先設定にGemini Flash系を選べる分岐コードを追加しろ。今夜の30分でOpenAI Python SDK v3.0.0の破壊的変更点をWeb上で確認し、自身のスクリプトがv2系依存で止まるリスクを排除するプルリクエストを作成して終わらせておけ。",
-  "kan": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において公式教育認定・資格プログラム（Certification / Credentialing）の一般提供開始を発表しない。",
-  "kan_konkyo": "エンジニア採用開始直後であり開発リードタイムが必要なため基準率通り起きない方に強く偏るが、すでに水面下で先行開発されている例外ケースをわずかに織り込み基準率よりやや下方へ調整。",
-  "kan_hantai": "既に外部パートナーと共同開発した認証プログラムが完成しており、求人は運用・拡張体制のためのものである場合。",
-  "kan_conf": 0.91,
-  "ippan": "AIサービスの価格破壊が進んでおり、高性能なAIを安く使える環境が整ってきています。普段使っているAIツールの設定画面を開き、モデルの選択肢に最新のFlash系や高速モードが追加されていないか確認してください。古いモデルのまま使い続けるのをやめて最新型に切り替えるだけで、作業の待ち時間と利用コストを同時に減らせます。",
+  "omote": "OpenRouter上でZ.ai提供のGLM 5.2の利用価格が204%引き上げられたほか、DeepSeek関連モデルの価格改定も相次いで表面化した。",
+  "ura": "推論コストの赤字補填期間が終わり、APIアグリゲーター経由のダンピング供給から実質採算ラインへの価格調整に入ったと見る。格安モデルに依存して粗利を設計していたインディー開発者のパイプラインが直撃を受ける。",
+  "ura_taikou": "一時的なトラフィック集中による負荷対策の一時的なサーチャージであるという仮説は、価格改定が複数モデルで同時に観測されている点に矛盾するため退けた。",
+  "dousuru": "今すぐOpenRouter上のコスト設定画面を開き、利用している安価なAPIモデルの単価変動を確認して月額の予算上限にハードリミットをかけろ。iPhoneのブラウザからAPIキー管理画面にアクセスし、異常なコスト高騰が発生した場合の即時停止スイッチを確認して、新規モデルの自動フォールバック機能をOFFに固定せよ。",
+  "kan": "Googleは14日以内に、PyPIにおけるgoogle-genaiのメジャーバージョン（v3.0.0以上）を公開せず、最新版をv2系に維持する。",
+  "kan_konkyo": "v2.18.1で移行ガイドへの案内を開始したばかりであり、開発者移行期間を考慮すると14日以内のv3.0.0昇格は見送られる蓋然性が高いため基準率からわずかに上方修正した。",
+  "kan_hantai": "Geminiの新規モデル発表やAPI側の仕様更新に合わせてSDKの大型刷新を前倒しで強行リリースした場合は外れる。",
+  "kan_conf": 0.927,
+  "ippan": "AIサービスの利用料金やAPI価格が裏で急に値上がりすることがあるため、無料だと思って使っていたチャットツールや拡張機能が突然有料化・制限されるリスクに注意してください。毎月の利用明細やプラン内容をこまめに確認し、予期せぬ課金を防ぎましょう。",
   "votes": [],
   "mijoriku": [
     {
-      "title": "Qwen3Guard: Real-time Safety for Your Token Stream",
-      "desc": "生成AIの出力ストリームをリアルタイムで監視・遮断する超低遅延セーフティモデル。",
-      "why": "自作Webアプリに重い検閲処理を挟まず、個人でも企業レベルの安全フィルターをiPhone完結で組み込めるため。"
-    },
-    {
-      "title": "SkillZip: エージェント向け契約保持型グラフ圧縮",
-      "desc": "AIエージェントのスキル定義を構造化圧縮し、API消費トークン数を削減する技術手法。",
-      "why": "個人開発アプリのプロンプト長を削り、従量課金コストを抑えながら多段階タスクを実行させる設計に直結するため。"
+      "title": "Request for Information (RFI) on Modernizing the National Vulnerability Database",
+      "desc": "米政府によるNVD近代化のRFI公示",
+      "why": "AI生成コードの急増に伴う脆弱性データベースの仕様変更が、自動セキュリティ監査ツールの基準を書き換える最前線だから"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 10%",
-    "[差分] 価格が動いた: Google: Gemini 3.6 Flash 値下げ 50%",
-    "[差分] 価格が動いた: Google: Gemini 3.6 Flash (batch) 値下げ 50%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.2 値下げ 20%",
-    "[差分] 価格が動いた: MoonshotAI Kimi Latest 値下げ 14%",
-    "[差分] 価格が動いた: Google Gemini Flash Latest 値下げ 75%"
+    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値上げ 11%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値上げ 75%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.2 値上げ 204%",
+    "[差分] 価格が動いた: MoonshotAI: Kimi K2.7 Code 値上げ 6%",
+    "[差分] 価格が動いた: MoonshotAI Kimi Latest 値上げ 17%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.1 値上げ 47%"
   ],
   "evidence": [
     {
-      "claim": "GoogleのFlash系モデルにおいて最大75%の大幅なAPI価格引き下げが発生している",
-      "confidence": 0.85,
-      "disconfirm": "OpenRouter上の表示バグまたは短期間で終了する一時的プロモーションであること",
+      "claim": "OpenRouter上のGLM 5.2の204%値上げは、アグリゲーター経由の格安ダンピング供給の終了と実質採算ラインへの移行を意味する。",
+      "confidence": 0.65,
+      "disconfirm": "他社アグリゲーターが同等価格での提供を継続し、値上げしたプロバイダがトラフィックを急減させて旧価格に戻す場合。",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: Google Gemini Flash Latest 値下げ 75%",
+          "title": "[差分] 価格が動いた: Z.ai: GLM 5.2 値上げ 204%",
           "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "Introducing Gemini 3.7 Flash",
-          "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash/"
-        }
-      ]
-    },
-    {
-      "claim": "OpenAIがSDK v3.0.0とGPT-5.6高速版を投入し速度・基盤競争を激化させている",
-      "confidence": 0.8,
-      "disconfirm": "v3.0.0が単なる軽微な依存関係修正であり新モデル対応を含まないこと",
-      "sources": [
-        {
-          "title": "openai Python SDK v3.0.0 リリース",
-          "url": "https://pypi.org/project/openai/3.0.0/"
-        },
-        {
-          "title": "The builder’s guide to GPT‑5.6",
-          "url": "https://openai.com/index/builders-guide-to-gpt-5-6"
-        },
-        {
-          "title": "Previewing Ultrafast mode: GPT-5.6 Sol at up to 14X the speed",
-          "url": "https://openai.com/index/previewing-ultrafast"
         }
       ]
     }

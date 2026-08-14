@@ -1,24 +1,38 @@
 {
-  "updated_at": "2026-08-14 07:22",
+  "updated_at": "2026-08-15 06:55",
   "score": {
     "hit": 0,
-    "miss": 16,
-    "total": 16,
+    "miss": 18,
+    "total": 18,
     "rate": 0.0,
-    "pending": 20,
-    "brier": 0.5792750000000001,
-    "brier_n": 16,
-    "brier_initial": 0.5792750000000001,
+    "pending": 19,
+    "brier": 0.595188888888889,
+    "brier_n": 18,
+    "brier_initial": 0.595188888888889,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-08-14",
+    "date": "2026-08-15",
     "days": 0
   },
   "decided": [
+    {
+      "id": "2026-08-05-h01",
+      "claim": "Anthropicは10日以内に、Anthropic APIの公式価格ドキュメントにおいて「Claude Opus 5」の入力・出力トークン単価を正式掲載する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-15",
+      "confidence": 0.85,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "Opus 5のAPIインフラプロビジョニングの負荷調整を理由に、パブリックAPIの価格掲載が数週間延期される可能性がある。",
+      "evidence": "公式価格ページ（https://www.anthropic.com/pricing）を確認したところ、「Claude Opus 5」の名称およびトークン単価の記載は確認できなかったため。",
+      "signals": []
+    },
     {
       "id": "2026-08-04-h01",
       "claim": "Anthropicは10日以内に、Anthropic APIの公式ドキュメント（料金ページ）において「Claude Opus 5」のBatch API料金体系を公表する。",
@@ -59,6 +73,20 @@
       "alert": false,
       "counter": "Opus 5の初期展開においてプロンプトキャッシュ機能の解放が遅れ、ドキュメント更新が保留される可能性がある。",
       "evidence": "公式ドキュメントのモデル一覧ページにClaude Opus 5のプロンプトキャッシュ単価が記載されていないため。",
+      "signals": []
+    },
+    {
+      "id": "2026-08-01-h01",
+      "claim": "Artificial Analysisの公式LLMリーダーボードにDeepSeek V4 Flash 0731が独立したモデルとして正式掲載される。",
+      "subject": "Artificial Analysis",
+      "deadline": "2026-08-15",
+      "confidence": 0.85,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "テストデータの不備や追加検証の必要性により、リーダーボードへの一般公開更新が延期される可能性がある。",
+      "evidence": "Artificial AnalysisのLLMリーダーボード掲載内容を確認したところ、期限の2026年8月15日時点で「DeepSeek V4 Flash 0731」の掲載は確認できないため。",
       "signals": []
     },
     {
@@ -158,34 +186,6 @@
       "counter": "Opus 5の推論サーバーインフラ容量が不足しており、バッチ処理を受け付ける余裕がない場合は提供時期が見送られる。",
       "evidence": "指定された公式ドキュメントページを確認したところ、Claude Opus 5のMessage Batches API対応および50%以上の割引に関する記載が存在しないため。",
       "signals": []
-    },
-    {
-      "id": "2026-07-26-h02",
-      "claim": "OpenAIは12日以内にモデルの評価・検証用サンドボックスのコードまたは仕様書を公式GitHubで公開する。",
-      "subject": "OpenAI",
-      "deadline": "2026-08-07",
-      "confidence": 0.6,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "攻撃手法の流出リスクを懸念する社内セキュリティチームの反対により、コードの一般公開を控え文書の報告にとどめる可能性がある。",
-      "evidence": "期日の2026年8月7日までに、OpenAIの公式GitHubにおいてモデルのセキュリティ評価や評価・検証用サンドボックス環境に関する公開リポジトリの新設・更新は確認できませんでした。",
-      "signals": []
-    },
-    {
-      "id": "2026-07-26-h01",
-      "claim": "Anthropicは14日以内にClaude Code利用時またはOpus 5のAPIトークン価格の引き下げ改定を公式に発表する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-09",
-      "confidence": 0.65,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "15億ドルの和解金支払いに伴う現金流出を補うため、短期的な単価切り下げを見送り現状の収益率を維持する可能性がある。",
-      "evidence": "2026年7月26日から8月9日までのAnthropicの公式ニュース一覧において、Claude CodeまたはOpus 5のAPIトークン単価値下げに関する発表は掲載されていません。",
-      "signals": []
     }
   ],
   "pending": [
@@ -270,35 +270,7 @@
       "status": "pending",
       "alert": false,
       "counter": "Hugging Faceがプラットフォームのオープン性を重視し、ネットワーク遮断を行わず評価アカウントの身元確認強化のみにとどめる可能性がある。",
-      "evidence": "",
-      "signals": []
-    },
-    {
-      "id": "2026-08-01-h01",
-      "claim": "Artificial Analysisの公式LLMリーダーボードにDeepSeek V4 Flash 0731が独立したモデルとして正式掲載される。",
-      "subject": "Artificial Analysis",
-      "deadline": "2026-08-15",
-      "confidence": 0.85,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "テストデータの不備や追加検証の必要性により、リーダーボードへの一般公開更新が延期される可能性がある。",
-      "evidence": "",
-      "signals": []
-    },
-    {
-      "id": "2026-08-05-h01",
-      "claim": "Anthropicは10日以内に、Anthropic APIの公式価格ドキュメントにおいて「Claude Opus 5」の入力・出力トークン単価を正式掲載する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-15",
-      "confidence": 0.85,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "Opus 5のAPIインフラプロビジョニングの負荷調整を理由に、パブリックAPIの価格掲載が数週間延期される可能性がある。",
-      "evidence": "",
+      "evidence": "Hugging Face公式ブログには該当する発表が確認できないが、的中条件に含まれる公式セキュリティポリシーページやセキュリティドキュメントの改定状況が確認できないため判定不能。",
       "signals": []
     },
     {
@@ -356,22 +328,40 @@
       "counter": "新リポジトリの分離公開を行わず、既存のHubセキュリティ機能のマイナーアップデートのみで処置を済ませる可能性がある。",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-08-04-h02",
+      "claim": "Googleは14日以内に、Google Cloud Vertex AIの公式モデルドキュメントに「Gemini 3.6 Flash」のエンドポイント仕様と価格案内を追加する。",
+      "subject": "Google",
+      "deadline": "2026-08-18",
+      "confidence": 0.8,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "Gemini 3.6 Flashの初期提供がGoogle AI Studio（プロトタイプ環境）限定に留まり、Vertex AI側へのロールアウトが遅延する可能性がある。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-07-29-h01",
+      "claim": "Anthropicは21日以内に公式利用規約を改定し、商用API顧客に対する著作権保護補償（Indemnification）の適用範囲を拡張する文言を追加する。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-19",
+      "confidence": 0.8,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "和解金支払いの最終手続きの完了まで法務上の理由から規約改定を延期する可能性がある。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-08-13",
-          "headline": "Anthropicが幹部保護を担当するセキュリティマネージャーの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5385626008"
-        },
-        {
-          "date": "2026-08-14",
-          "headline": "AnthropicがPython SDK v0.122.0をPyPIにリリース",
-          "url": "https://pypi.org/project/anthropic/0.122.0/"
-        },
         {
           "date": "2026-08-14",
           "headline": "Anthropicがライフサイエンス専門の専任法務担当者の求人募集を開始",
@@ -381,6 +371,16 @@
           "date": "2026-08-14",
           "headline": "Anthropicが教育および認証基盤を担うスタッフエンジニアの求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5389305008"
+        },
+        {
+          "date": "2026-08-15",
+          "headline": "Anthropicが特定業界向けエンタープライズ営業の統括ポジションを募集",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5379806008"
+        },
+        {
+          "date": "2026-08-15",
+          "headline": "Anthropicが財務計画・データ統合を担うFinance Systems Engineerの求人を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390728008"
         }
       ]
     },
@@ -426,6 +426,11 @@
           "date": "2026-08-07",
           "headline": "Google Gen AI Python SDK v2.17.0がリリースされ自動関数呼び出しの非推奨仕様が公表",
           "url": "https://pypi.org/project/google-genai/2.17.0/"
+        },
+        {
+          "date": "2026-08-15",
+          "headline": "GoogleがGenAI Python SDK v2.18.1を公開し次期メジャーでの自動関数呼び出し仕様変更を予告",
+          "url": "https://pypi.org/project/google-genai/2.18.1/"
         }
       ]
     },
@@ -481,6 +486,27 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-08-15-r03",
+      "date": "2026-08-15",
+      "headline": "Anthropicが特定業界向けエンタープライズ営業の統括ポジションを募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5379806008"
+    },
+    {
+      "id": "2026-08-15-r02",
+      "date": "2026-08-15",
+      "headline": "Anthropicが財務計画・データ統合を担うFinance Systems Engineerの求人を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390728008"
+    },
+    {
+      "id": "2026-08-15-r01",
+      "date": "2026-08-15",
+      "headline": "GoogleがGenAI Python SDK v2.18.1を公開し次期メジャーでの自動関数呼び出し仕様変更を予告",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/2.18.1/"
+    },
     {
       "id": "2026-08-14-r04",
       "date": "2026-08-14",
@@ -543,28 +569,7 @@
       "headline": "マルチモーダルモデルの内部特徴量を分離・制御する新手法MMDiffが発表",
       "certainty": "reported",
       "url": "https://arxiv.org/abs/2608.09928v1"
-    },
-    {
-      "id": "2026-08-12-r03",
-      "date": "2026-08-12",
-      "headline": "OpenAIがPython SDKのバージョン2.54.0をリリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/2.54.0/"
-    },
-    {
-      "id": "2026-08-12-r02",
-      "date": "2026-08-12",
-      "headline": "Anthropicが500億ドル規模のインフラ資産会計を担当するCapexマネージャーの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357961008"
-    },
-    {
-      "id": "2026-08-12-r01",
-      "date": "2026-08-12",
-      "headline": "Anthropicがエンタープライズ商談承認を加速するDeal Velocity担当者の募集を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5386793008"
     }
   ],
-  "record_count": 50
+  "record_count": 53
 }

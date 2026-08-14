@@ -1540,7 +1540,7 @@
       "decider": "判定期限時点のPyPI上のgoogle-genai最新リリースバージョンが3.0.0未満（2.x.x）であること。"
     },
     "deadline": "2026-08-29",
-    "confidence": 0.89,
+    "confidence": 0.927,
     "base_rate": 0.88,
     "base_rate_class": "大手クラウド企業が公式SDKで非推奨警告を出してから14日以内にメジャーバージョン（破壊的変更）を本番リリースしない頻度",
     "confidence_why": "v2.18.1で移行ガイドへの案内を開始したばかりであり、開発者移行期間を考慮すると14日以内のv3.0.0昇格は見送られる蓋然性が高いため基準率からわずかに上方修正した。",
@@ -1555,7 +1555,16 @@
         "dir": "kill"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-08-15",
+        "sign": "PyPIにgoogle-genaiのv2.19.0などv2系のマイナー/パッチ更新が追加される",
+        "dir": "confirm",
+        "why": "google-genai Python SDKのv2系パッチ更新であるv2.18.1がリリースされたため。",
+        "conf_before": 0.89,
+        "conf_after": 0.927
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -1563,6 +1572,7 @@
     "rejected": [],
     "model": "gemini-3.7-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.89
   }
 ]

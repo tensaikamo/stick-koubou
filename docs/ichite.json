@@ -1,164 +1,163 @@
 {
-  "date": "2026-08-14",
+  "date": "2026-08-15",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenAI SDK v3移行で既存コードが壊れる箇所を今日特定するか？",
-    "Gemini Flash値下げを受け、自作アプリにモデル切替分岐を入れるか？",
-    "高価な単発呼出から低コストモデルの常時ループへ処理を切り替えるか？"
+    "OpenRouterの価格引き上げに対し、API呼び出しの自動フォールバックを停止して単価上昇を直ちにブロックするか？",
+    "GoogleのGenAI SDK v2系維持を見据え、既存パイプラインのメジャー更新追従を今週見送るか？",
+    "API利用上限のハードリミットをiPhoneから設定し、コスト暴走の最大損失額を自ら固定するか？"
   ],
   "moves": [
     {
-      "t": "SDK依存コードの差分をGitHubで修正する",
-      "why": "OpenAI Python SDK v3.0.0が公開されメジャーバージョン変更に伴う破壊的変更リスクが生じたため。",
+      "t": "OpenRouterのAPIキー管理画面を開き予算上限のハードリミットを設定する",
+      "why": "GLM 5.2等の値上げによる想定外のコスト流出を防ぐため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.85,
-      "success_p_min": 0.7,
-      "success_p_max": 0.95,
-      "success_why": "PyPIのリリースノートとGitHubのWebエディタだけで差分確認と修正PR作成が完結するため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "OpenAI SDK v3対応のプルリクエスト1件作成完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "稼働中WebアプリのAPI呼び出し停止事故を確実に回避できるため。",
-      "evidence_ids": [
-        "2026-08-13-r01",
-        "2026-08-12-r03"
-      ],
-      "assumptions": [
-        "GitHubリポジトリにiPhoneのSafariからアクセスして直接Web編集できる環境があること"
-      ],
-      "disconfirm": "SDK v3.0.0で自作アプリが利用しているエンドポイントの構文変更が一切ない場合",
-      "continue_if": "変更点検証で自作コードへの影響箇所が見つかり修正が機能した場合",
-      "stop": "破壊的変更がなく現在のコードベースのままで完全互換と判明した場合"
-    },
-    {
-      "t": "Gemini Flash接続用の分岐コードを追加する",
-      "why": "推論コスト低減によりFlash系モデルへの切替余地が拡大しAPI原価を圧縮できるため。",
-      "cost_min": 0,
-      "cost_max": 500,
-      "loss_max": 500,
-      "success_p": 0.8,
-      "success_p_min": 0.65,
+      "success_p_min": 0.8,
       "success_p_max": 0.9,
-      "success_why": "既存のOpenAI互換ラッパーまたはモデルパラメータ書き換えでiPhone上から即時修正可能なため。",
+      "success_why": "ブラウザからの設定変更で即座に超過支出を防げるため",
       "value_score": 4,
       "learning_value": 3,
-      "time_minutes": 30,
-      "payback_days": 7,
-      "outcome": "Gemini Flash系APIへフォールバック可能な設定コードをコミット",
-      "category": "build",
+      "time_minutes": 10,
+      "payback_days": 0,
+      "outcome": "月額予算のハードリミット適用完了",
+      "category": "review",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "アプリ運用のトークンコストを半減させ試行回数を増やせるため。",
+      "impact_why": "予期せぬ赤字を直接防ぐため",
       "evidence_ids": [
-        "2026-08-13-r01"
+        "2026-08-15-r01"
       ],
       "assumptions": [
-        "OpenRouterまたはGoogle AI StudioのAPIキーをiPhone上で発行・設定できること"
+        "iPhoneのブラウザからOpenRouterにログイン可能であること"
       ],
-      "disconfirm": "既存プロンプトがGemini Flash上で出力精度基準を大きく下回る場合",
-      "continue_if": "Flashモデルでの応答速度とコストが従来の半分以下に収まる場合",
-      "stop": "精度劣化が著しくプロンプト調整に30分以上要すると判明した場合"
+      "disconfirm": "設定画面に予算上限の項目が存在しない場合",
+      "continue_if": "リミット設定が正常に保存された場合",
+      "stop": "API提供元がサービスを停止した場合"
     },
     {
-      "t": "Anthropic新SDKの更新ログを確認する",
-      "why": "Anthropic Python SDK v0.122.0がリリースされAPI仕様変更への追従が必要なため。",
+      "t": "自動フォールバック機能をOFFに固定し安価モデル依存を断つ",
+      "why": "高額モデルへの自動切替による意図しないコスト膨張を根本から断つため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.9,
-      "success_p_min": 0.8,
-      "success_p_max": 0.95,
-      "success_why": "PyPIのリリースログ閲覧とメモ作成はiPhoneのSafariのみで数分で完了するため。",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "新SDKの主要変更点と自作アプリへの影響をまとめたIssueを1件起票",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "Claude系モデル利用時の予期せぬエラーを未然に防ぐ基礎情報が揃うため。",
-      "evidence_ids": [
-        "2026-08-14-r01"
-      ],
-      "assumptions": [
-        "自作アプリでClaude API呼び出しを併用しているか今後追加予定であること"
-      ],
-      "disconfirm": "v0.122.0が単なるドキュメント更新や内部バグ修正のみで機能変更がない場合",
-      "continue_if": "自作アプリで活用可能な新パラメータやストリーミング改善が含まれている場合",
-      "stop": "変更内容が利用範囲外のマイナーパッチに留まる場合"
-    },
-    {
-      "t": "OpenRouterで従量課金クレジットを補充する",
-      "why": "低コストモデルの常時並列呼び出しテストを即座に走らせる実験枠を確保するため。",
-      "cost_min": 1500,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
+      "success_p": 0.8,
+      "success_p_min": 0.75,
       "success_p_max": 0.85,
-      "success_why": "iPhoneのSafariから決済し即時APIキー経由でテストリクエストを発行できるため。",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 10,
-      "payback_days": 14,
-      "outcome": "OpenRouterアカウントへの残高チャージ完了と疎通確認レスポンスログ1件取得",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.2,
-      "impact_why": "複数モデルのリアルタイム比較検証を滞りなく進められる状態になるため。",
-      "evidence_ids": [
-        "2026-08-13-r01"
-      ],
-      "assumptions": [
-        "クレジットカード等のオンライン決済手段をSafari上で即時利用できること"
-      ],
-      "disconfirm": "単一プロバイダの直契約のみで十分であり複数モデル比較の必要性がない場合",
-      "continue_if": "テスト呼び出しでレスポンス遅延やコスト削減効果が期待値通りに出た場合",
-      "stop": "API課金後の疎通テストでエラーが多発しサービス品質が不安定な場合"
-    },
-    {
-      "t": "自作アプリの単発呼出を連続呼出に書き換える",
-      "why": "低価格モデルの普及により複数回ループさせる検証エージェント処理が現実解になったため。",
-      "cost_min": 0,
-      "cost_max": 1000,
-      "loss_max": 1000,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "プロンプト生成と評価の2段階直列呼び出しロジックならiPhoneのGitHub編集で完結するため。",
+      "success_why": "スイッチ一つで予備モデルへの接続が遮断されるため",
       "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 10,
-      "outcome": "2段階自己検証ループを組み込んだバックエンドスクリプトの更新コミット",
+      "learning_value": 3,
+      "time_minutes": 5,
+      "payback_days": 0,
+      "outcome": "フォールバック無効化の反映確認",
       "category": "build",
       "terminal": false,
       "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "安価モデルの精度不足を回数で補い単発上位モデル同等の出力を低コストで実現できるため。",
+      "impact_max": 0.2,
+      "impact_why": "意図せぬ高単価モデルの実行を防ぐため",
       "evidence_ids": [
-        "2026-08-13-r01",
-        "2026-08-14-r01"
+        "2026-08-15-r01"
       ],
       "assumptions": [
-        "GitHub Actionsまたはホスティング環境で外部APIの連続呼び出しが制限なく通ること"
+        "管理コンソールでフォールバックの個別制御ができること"
       ],
-      "disconfirm": "2回呼び出しによるレイテンシ増加が許容時間を超え実用に耐えない場合",
-      "continue_if": "2段階実行時の総合精度が単発実行より明確に向上した場合",
-      "stop": "累積コストが上位モデル単発呼び出しのコストを上回る場合"
+      "disconfirm": "フォールバック設定が一括管理され個別オフにできない場合",
+      "continue_if": "設定が反映され安価モデルのみ動作することを確認できた場合",
+      "stop": "仕様変更によりスイッチ自体が削除された場合"
+    },
+    {
+      "t": "Google GenAI SDKのバージョン固定をコードリポジトリで実施する",
+      "why": "v2系からv3系への移行時の自動関数呼び出し仕様変更による手戻りを避けるため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.7,
+      "success_p_max": 0.8,
+      "success_why": "依存関係のバージョンを明示的に指定することで意図しない自動アプデを防げるため",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "requirements.txt等でのバージョンピン留め完了",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "予期せぬ破壊的変更によるアプリ停止を防ぐため",
+      "evidence_ids": [
+        "2026-08-15-r01",
+        "2026-08-07-r06"
+      ],
+      "assumptions": [
+        "GitHubのWebエディタからファイルを直接編集できること"
+      ],
+      "disconfirm": "依存パッケージの自動解決によりピン留めが無視される場合",
+      "continue_if": "指定バージョンでの動作が安定している場合",
+      "stop": "v2系サポートが完全に打ち切られた場合"
+    },
+    {
+      "t": "有料プランのAPIクレジットを追加購入して検証用リソースを確保する",
+      "why": "値上げ後の環境下で実測ベンチマークを継続するため少額の資金を投入する",
+      "cost_min": 1500,
+      "cost_max": 3000,
+      "loss_max": 3000,
+      "success_p": 0.6,
+      "success_p_min": 0.5,
+      "success_p_max": 0.7,
+      "success_why": "価格改定後もクレジット追加で即座に検証を継続できるため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 10,
+      "payback_days": 30,
+      "outcome": "APIクレジット残高の追加と実測検証の継続",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "値上げ後の正確なコスト感を把握するため",
+      "evidence_ids": [
+        "2026-08-15-r01"
+      ],
+      "assumptions": [
+        "iPhoneのブラウザで決済が問題なく完了すること"
+      ],
+      "disconfirm": "購入直後にさらなる大幅値上げがアナウンスされた場合",
+      "continue_if": "投入コスト対比で十分な検証データが得られている場合",
+      "stop": "単価がさらに2倍以上高騰した場合の赤字拡大時"
+    },
+    {
+      "t": "月額APIコストの損益分岐点を計算しプロジェクト継続基準を更新する",
+      "why": "値上げ環境下で個人開発を安全に継続するための防衛ラインを明確にするため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "過去の利用実績データから正確な月間消費量を算出できるため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "更新された損益分岐点と撤退ルールのドキュメント",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "無駄な投資を防ぎ撤退判断を誤らないため",
+      "evidence_ids": [
+        "2026-08-15-r01"
+      ],
+      "assumptions": [
+        "直近のAPI利用ログが手元で参照できること"
+      ],
+      "disconfirm": "コスト予測が実際の請求額と大きく乖離し続ける場合",
+      "continue_if": "算出された防衛ライン内で運用が収まっている場合",
+      "stop": "売上が発生せずコストが許容上限を超えた場合"
     }
   ],
-  "kan": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において公式教育認定・資格プログラム（Certification / Credentialing）の一般提供開始を発表しない。"
+  "kan": "Googleは14日以内に、PyPIにおけるgoogle-genaiのメジャーバージョン（v3.0.0以上）を公開せず、最新版をv2系に維持する。"
 }
