@@ -13,7 +13,9 @@ HERE = pathlib.Path(__file__).parent
 RESULTS = HERE / "results"
 sys.path.insert(0, str(HERE))
 import prompts as P
-from run import load_jsonl, validate_dataset
+import run as R
+from run import (RAW_SCHEMA_VERSION, RESULTS, active_run_id, load_jsonl,
+                 run_path, validate_dataset)
 
 
 # ================================================================
@@ -24,6 +26,10 @@ from run import load_jsonl, validate_dataset
 # ================================================================
 PRE_REGISTRATION = {
     "primary": "Refutation Discovery Rate (C - B)",
+    "initial_anchor_rule": (
+        "B/Cのcounterevidence_documentsは同じ出力のinitial_conclusionを対象とする。"
+        "CはC1 provisionalとの不一致を記録し、1件でもあれば正式判定を無効とする"),
+    "anchor_mismatch_max": 0.0,
     "refutable_case_count": 14,
     "no_refutation_case_count": 6,
     "keep": {
@@ -57,7 +63,7 @@ def parse_json(text):
 
 
 # ---------------------------------------------------------------- 結果の完全性
-def validate_results(rows, cases):
+def validate_results(rows, cases, expected_context=None):
     """採点前に raw.jsonl の完全性を強制する。
     欠損した条件だけを比較すると、難しいケースが落ちた側が有利になる。
     戻り値: (errors, n_trials)
@@ -66,13 +72,107 @@ def validate_results(rows, cases):
     if not rows:
         errors.append("結果が0件")
     seen = set()
+    run_contracts = set()
+    valid_trials = []
+
+    def valid_sha256(value):
+        return (isinstance(value, str) and len(value) == 64
+                and all(ch in "0123456789abcdef" for ch in value.lower()))
+
     for r in rows:
-        key = (r.get("case_id"), r.get("condition"), r.get("trial", 0))
+        trial = r.get("trial", 0)
+        key = (r.get("case_id"), r.get("condition"), trial)
         if key in seen:
             errors.append(f"重複行: {key}")
         seen.add(key)
+        if type(trial) is not int or trial < 0:
+            errors.append(f"{key}: trial は0以上の整数が必要")
+        else:
+            valid_trials.append(trial)
+        if not isinstance(r.get("raw_answer"), str):
+            errors.append(f"{key}: raw_answer は文字列が必要")
+        provenance = r.get("provenance")
+        if not isinstance(provenance, dict):
+            errors.append(f"{key}: provenance 欠損")
+            continue
+        if provenance.get("schema_version") != RAW_SCHEMA_VERSION:
+            errors.append(f"{key}: provenance schema 不正")
+        required = ("run_id", "backend", "provider", "model", "settings",
+                    "dataset_sha256", "specs_sha256")
+        missing = [name for name in required if provenance.get(name) is None]
+        if missing:
+            errors.append(f"{key}: provenance 必須項目欠損 {missing}")
+        if provenance.get("backend") not in ("manual", "api"):
+            errors.append(f"{key}: provenance backend 不正")
+        if not isinstance(provenance.get("settings"), dict):
+            errors.append(f"{key}: provenance settings はobjectが必要")
+        else:
+            expected_verification = ("provider_reported" if provenance.get("backend") == "api"
+                                     else "unverifiable_manual")
+            if provenance["settings"].get("model_verification") != expected_verification:
+                errors.append(f"{key}: model_verification が不正")
+        if expected_context:
+            for name, expected_value in expected_context.items():
+                if provenance.get(name) != expected_value:
+                    errors.append(f"{key}: provenance {name} がmanifest/実ファイルと不一致")
+        contract = tuple(json.dumps(provenance.get(name), sort_keys=True,
+                                    ensure_ascii=False) for name in required)
+        run_contracts.add(contract)
+        usage = r.get("usage")
+        calls = usage.get("calls") if isinstance(usage, dict) else None
+        expected_calls = 2 if r.get("condition") == "C" else 1
+        if type(calls) is not int or calls != expected_calls:
+            errors.append(f"{key}: usage.calls は {expected_calls} が必要（現在 {calls!r}）")
+        records = (provenance.get("calls") if provenance.get("backend") == "api"
+                   else provenance.get("responses"))
+        records_ok = (isinstance(records, list) and bool(records)
+                      and type(calls) is int and len(records) == calls
+                      and all(isinstance(record, dict) for record in records))
+        if not records_ok:
+            errors.append(f"{key}: call証跡件数 {0 if not isinstance(records,list) else len(records)}"
+                          f" != usage.calls {calls}")
+        else:
+            for record in records:
+                digest = record.get("response_sha256") or record.get("sha256")
+                if not valid_sha256(digest):
+                    errors.append(f"{key}: response SHA-256 不正")
+                    break
+                timestamp = (record.get("completed_at_utc") or
+                             record.get("collected_at_utc"))
+                if not timestamp:
+                    errors.append(f"{key}: response 時刻証跡欠損")
+                    break
+                if provenance.get("backend") == "api":
+                    if record.get("requested_model") != provenance.get("model"):
+                        errors.append(f"{key}: requested_model がrun modelと不一致")
+                    if record.get("reported_model") != record.get("requested_model"):
+                        errors.append(f"{key}: provider reported_model が要求modelと不一致")
+                    if record.get("stop_reason") != "end_turn":
+                        errors.append(f"{key}: API応答が正常完了していない "
+                                      f"(stop_reason={record.get('stop_reason')!r})")
+            final_digest = records[-1].get("response_sha256") or records[-1].get("sha256")
+            actual_digest = hashlib.sha256(
+                str(r.get("raw_answer", "")).encode("utf-8")).hexdigest()
+            if final_digest != actual_digest:
+                errors.append(f"{key}: raw_answer と response SHA-256 が不一致")
+        prompts = (provenance.get("calls") if provenance.get("backend") == "api"
+                   else provenance.get("prompts"))
+        prompts_ok = (isinstance(prompts, list) and bool(prompts)
+                      and type(calls) is int and len(prompts) == calls
+                      and all(isinstance(record, dict) for record in prompts))
+        if not prompts_ok:
+            errors.append(f"{key}: prompt証跡件数が usage.calls と不一致")
+        else:
+            for record in prompts:
+                digest = record.get("prompt_sha256") or record.get("sha256")
+                if not valid_sha256(digest):
+                    errors.append(f"{key}: prompt SHA-256 不正")
+                    break
 
-    trials = sorted({r.get("trial", 0) for r in rows})
+    if len(run_contracts) > 1:
+        errors.append("複数runまたは異なる実行条件の結果が混在")
+
+    trials = sorted(set(valid_trials))
     n_trials = len(trials)
     if trials != list(range(n_trials)):
         errors.append(f"trial ID が 0..n-1 の連番でない: {trials}")
@@ -81,7 +181,9 @@ def validate_results(rows, cases):
     for cid in case_ids:
         for cond in ("A", "B", "C"):
             got = sorted(r.get("trial", 0) for r in rows
-                         if r.get("case_id") == cid and r.get("condition") == cond)
+                         if r.get("case_id") == cid and r.get("condition") == cond
+                         and type(r.get("trial", 0)) is int
+                         and r.get("trial", 0) >= 0)
             if got != trials:
                 errors.append(f"{cid}/{cond}: trial {trials} が必要（現在 {got}）")
 
@@ -90,6 +192,58 @@ def validate_results(rows, cases):
         errors.append(f"行数 {len(rows)} != 期待 {expected} "
                       f"({len(case_ids)} cases x 3 conditions x {n_trials} trials)")
     return errors, n_trials
+
+
+def validate_run_bundle(raw_path, results_root, dataset_path, specs_path):
+    """raw・manifest・実入力・追跡対象attestationを一つのrunとして束縛する。"""
+    errors = []
+    raw_path, results_root = pathlib.Path(raw_path), pathlib.Path(results_root)
+    if not raw_path.is_file():
+        return [f"raw.jsonl が存在しない: {raw_path}"], None
+    if raw_path.name != "raw.jsonl":
+        errors.append("採点対象ファイル名は raw.jsonl 固定")
+    run_dir = raw_path.parent
+    try:
+        expected_runs = (results_root / "runs").resolve()
+        if run_dir.parent.resolve() != expected_runs:
+            errors.append(f"raw は {expected_runs}/<run_id>/raw.jsonl 配下に必要")
+    except OSError as error:
+        errors.append(f"run path を解決できない: {error}")
+
+    manifest_path = run_dir / "run_manifest.json"
+    if not manifest_path.is_file():
+        return errors + [f"run_manifest.json が存在しない: {manifest_path}"], None
+    manifest = R.load_manifest(run_dir)
+    run_id = manifest.get("run_id")
+    if run_id != run_dir.name:
+        errors.append(f"manifest run_id {run_id!r} とdirectory名が不一致")
+    if manifest.get("status") != "complete":
+        errors.append(f"run が未完了: status={manifest.get('status')!r}")
+    raw_meta = manifest.get("raw") if isinstance(manifest.get("raw"), dict) else {}
+    actual_raw_sha = R.sha256_file(raw_path)
+    if raw_meta.get("sha256") != actual_raw_sha:
+        errors.append("raw.jsonl SHA-256 がmanifestと不一致")
+
+    errors.extend(R.validate_manifest_context(
+        manifest, dataset_path, specs_path, run_dir))
+
+    ledger = R.load_attestations(results_root)
+    entries = [entry for entry in ledger["entries"] if entry.get("run_id") == run_id]
+    if len(entries) != 1:
+        errors.append(f"attestation はrunごとに1件必要（現在 {len(entries)}）")
+    else:
+        entry = entries[0]
+        expected = {
+            "raw_sha256": actual_raw_sha,
+            "manifest_sha256": R.sha256_file(manifest_path),
+            "dataset_sha256": R.sha256_file(dataset_path),
+            "specs_sha256": R.sha256_file(specs_path),
+            "backend": manifest.get("backend"), "provider": manifest.get("provider"),
+            "model": manifest.get("model")}
+        for name, value in expected.items():
+            if entry.get(name) != value:
+                errors.append(f"attestation {name} が実体と不一致")
+    return errors, manifest
 
 
 # ---------------------------------------------------------------- judge
@@ -138,7 +292,27 @@ def required_docs_found(doc_ids, gt):
     return bool(refs & found)
 
 
-def refutation_found(cited, gt, condition, malformed):
+def normalize_anchor(value):
+    """意味比較ではなく、C1からC2へのコピー契約だけを空白正規化して確認する。"""
+    return " ".join(value.split()) if isinstance(value, str) else ""
+
+
+def anchor_consistent(initial, provisional, condition, malformed):
+    """B/C が同じ意味対象を引用しているか確認する。
+
+    B は出力された初期説明が非空であること、C はそれに加えて C1 の暫定結論を
+    C2 が変更せず引き継いだことを要求する。A は比較対象外。
+    """
+    if condition == "A":
+        return None
+    if malformed or not normalize_anchor(initial):
+        return False
+    if condition == "C":
+        return normalize_anchor(initial) == normalize_anchor(provisional)
+    return True
+
+
+def refutation_found(cited, gt, condition, malformed, anchor_ok=True):
     """B/C 共通の counterevidence_documents で判定する。
 
     None を返す（採点対象外）のは次の2つだけ:
@@ -153,7 +327,7 @@ def refutation_found(cited, gt, condition, malformed):
         return None
     if condition == "A":
         return None
-    if malformed or cited is None or not isinstance(cited, list):
+    if malformed or anchor_ok is False or cited is None or not isinstance(cited, list):
         return False
     return required_docs_found(cited, gt)
 
@@ -168,12 +342,16 @@ def score(rows, cases, judge_fn):
         malformed = False
         try:
             parsed = parse_json(r["raw_answer"])
+            initial = parsed.get("initial_conclusion")
             concl = parsed.get("conclusion", "")
             cited = parsed.get("counterevidence_documents")
             conf = parsed.get("confidence")
         except Exception:
             malformed = True
-            concl, cited, conf = r["raw_answer"], None, None
+            initial, concl, cited, conf = None, r["raw_answer"], None, None
+
+        anchor_ok = anchor_consistent(
+            initial, r.get("provisional_answer"), r["condition"], malformed)
 
         verdict, _ = match_conclusion(concl, gt, judge_fn, r["case_id"])
         uns = judge_fn(P.build_unsupported(
@@ -184,7 +362,9 @@ def score(rows, cases, judge_fn):
             case_id=r["case_id"], type=case["type"], condition=r["condition"],
             trial=r.get("trial", 0), malformed=malformed,
             verdict=verdict,
-            refutation_found=refutation_found(cited, gt, r["condition"], malformed),
+            initial_conclusion=initial, anchor_consistent=anchor_ok,
+            refutation_found=refutation_found(
+                cited, gt, r["condition"], malformed, anchor_ok),
             cited_counterevidence=cited,
             unsupported=bool(uns.get("has_unsupported")),
             confidence=conf,
@@ -229,6 +409,8 @@ def aggregate(recs):
             correct_destruction=mean(r["verdict"] != "correct" for r in nr),
             unsupported=mean(r["unsupported"] for r in rs),
             malformed=mean(r["malformed"] for r in rs),
+            anchor_mismatch=mean(r.get("anchor_consistent") is False for r in rs
+                                 if r.get("anchor_consistent") is not None),
             avg_calls=mean(r["calls"] for r in rs),
             avg_tokens=(None if any(t is None for t in toks) else mean(toks)),
         )
@@ -241,6 +423,13 @@ def verdict_full(agg, n_trials=None):
         return "INCOMPLETE", "B または C の結果が不足"
     B, C = agg["B"], agg["C"]
     k = PRE_REGISTRATION["keep"]
+
+    for name, values in (("B", B), ("C", C)):
+        mismatch = values.get("anchor_mismatch")
+        if mismatch is None or mismatch > PRE_REGISTRATION["anchor_mismatch_max"]:
+            return "INVALID_ANCHOR", (
+                f"{name} の initial-anchor mismatch={mismatch!r}。"
+                "Refutation Discovery と文字列コピー失敗を分離できないため正式判定を出さない")
 
     if n_trials is not None:
         expected = PRE_REGISTRATION["refutable_case_count"] * n_trials
@@ -307,6 +496,7 @@ def print_pilot(agg, recs):
     rows = [("Accuracy", "accuracy", 2),
             ("Refutation Discovery", "refutation_discovery", 2),
             ("Correct Destruction", "correct_destruction", 2),
+            ("Initial-anchor mismatch", "anchor_mismatch", 2),
             ("malformed JSON rate", "malformed", 2)]
     print(f"{'':26}{'A':>10}{'B':>10}{'C':>10}")
     print("-" * 56)
@@ -340,6 +530,7 @@ def print_full(agg):
             ("refutation_discovery", "Refutation Discovery", 2),
             ("correct_destruction", "Correct Destruction", 2),
             ("unsupported", "Unsupported Claims", 2),
+            ("anchor_mismatch", "Initial-anchor mismatch", 2),
             ("malformed", "malformed JSON", 2),
             ("avg_calls", "Avg Calls", 2), ("avg_tokens", "Avg Tokens", 0)]
     print(f"{'':26}{'A':>10}{'B':>10}{'C':>10}{'C-B':>10}")
@@ -379,25 +570,50 @@ def diagnose_c(recs, cases):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--raw", default=str(RESULTS / "raw.jsonl"))
+    ap.add_argument("--raw")
+    ap.add_argument("--results", default=str(RESULTS))
+    ap.add_argument("--run-id")
     ap.add_argument("--dataset", default=str(HERE / "dataset.jsonl"))
     ap.add_argument("--specs", default=str(HERE / "specs.jsonl"))
     ap.add_argument("--mode", choices=["pilot", "full"], required=True)
     ap.add_argument("--judge", choices=["api"], default="api")
     a = ap.parse_args()
 
-    cases = load_jsonl(a.dataset)
-    specs = load_jsonl(a.specs) if pathlib.Path(a.specs).exists() else None
-    errors, _ = validate_dataset(cases, specs, require_full=(a.mode == "full"))
-    if errors:
-        print("[VALIDATION FAILED] 採点を実行しません。")
-        for e in errors:
-            print("  - " + e)
+    try:
+        dataset_path, specs_path = pathlib.Path(a.dataset), pathlib.Path(a.specs)
+        cases = load_jsonl(dataset_path)
+        specs = load_jsonl(specs_path)
+        errors, _ = validate_dataset(cases, specs, require_full=(a.mode == "full"))
+        if errors:
+            print("[VALIDATION FAILED] 採点を実行しません。")
+            for error in errors:
+                print("  - " + error)
+            sys.exit(1)
+
+        if a.raw:
+            raw_path = pathlib.Path(a.raw)
+        else:
+            run_id = a.run_id or active_run_id(a.results)
+            raw_path = run_path(a.results, run_id) / "raw.jsonl"
+        bundle_errors, manifest = validate_run_bundle(
+            raw_path, a.results, dataset_path, specs_path)
+        if bundle_errors:
+            raise ValueError("\n  - ".join(bundle_errors))
+        rows = load_jsonl(raw_path)
+        expected_context = {
+            "run_id": manifest["run_id"], "backend": manifest["backend"],
+            "provider": manifest["provider"], "model": manifest["model"],
+            "settings": manifest["settings"],
+            "dataset_sha256": R.sha256_file(dataset_path),
+            "specs_sha256": R.sha256_file(specs_path)}
+        rerr, n_trials = validate_results(rows, cases, expected_context)
+        if manifest.get("raw", {}).get("rows") != len(rows):
+            rerr.append("raw行数がmanifestと不一致")
+    except (ValueError, OSError, json.JSONDecodeError) as error:
+        print("[INCOMPLETE_RESULTS] 採点を行いません。")
+        print(f"  - {error}")
         sys.exit(1)
 
-    rows = load_jsonl(a.raw)
-
-    rerr, n_trials = validate_results(rows, cases)
     if rerr:
         print("[INCOMPLETE_RESULTS] 採点を行いません。")
         for e in rerr[:20]:
@@ -406,6 +622,8 @@ def main():
             print(f"  ... 他 {len(rerr)-20} 件")
         sys.exit(1)
     print(f"[results ok] {len(rows)} rows / {n_trials} trials per condition")
+    if manifest["settings"].get("model_verification") == "unverifiable_manual":
+        print("[provenance warning] manual model identity is operator-declared and unverifiable")
 
     judge_fn = judge_api
     recs = score(rows, cases, judge_fn)
@@ -427,13 +645,19 @@ def main():
         print(f"  {d['case_id']:8} 到達={d['reached']!s:5} 引用={d['cited']!s:5} "
               f"正答={d['correct']!s:5} 失敗工程={d['stage']}")
 
-    RESULTS.mkdir(exist_ok=True)
-    (RESULTS / f"scored_{a.mode}.json").write_text(
+    output_dir = raw_path.parent
+    output_dir.mkdir(parents=True, exist_ok=True)
+    (output_dir / f"scored_{a.mode}.json").write_text(
         json.dumps(dict(mode=a.mode, records=recs, aggregate=agg,
                         verdict=v, reason=reason,
+                        source_raw={"path": str(raw_path),
+                                    "sha256": hashlib.sha256(raw_path.read_bytes()).hexdigest(),
+                                    "run_id": rows[0]["provenance"]["run_id"],
+                                    "model_verification": manifest["settings"].get(
+                                        "model_verification")},
                         pre_registration=PRE_REGISTRATION),
                    ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"\n-> {RESULTS/f'scored_{a.mode}.json'}")
+    print(f"\n-> {output_dir/f'scored_{a.mode}.json'}")
 
 
 if __name__ == "__main__":
