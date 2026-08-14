@@ -682,6 +682,9 @@ with tempfile.TemporaryDirectory() as td:
           scored_manual.stdout[-240:] + scored_manual.stderr[-120:])
     completed_judge_manifest = json.loads(
         judge_manifest_path.read_text(encoding="utf-8"))
+    completed_ledger = json.loads(
+        (results_root / "run_attestations.json").read_text(encoding="utf-8"))
+    manual_attestation = completed_ledger["entries"][0].get("manual_judge", {})
     check("採点成功後だけmanifestをcompleteにして全response SHAを固定",
           completed_judge_manifest.get("status") == "complete"
           and bool(completed_judge_manifest.get("completed_at_utc"))
@@ -690,6 +693,13 @@ with tempfile.TemporaryDirectory() as td:
           and scored_value.get("judge_provenance", {}).get("status") == "complete"
           and len(scored_value.get("judge_provenance", {}).get(
               "manifest_sha256", "")) == 64)
+    check("manual judge manifest SHAをGit追跡対象run台帳へ外部アンカー化",
+          manual_attestation.get("manifest_sha256")
+          == R.sha256_file(judge_manifest_path)
+          == scored_value.get("judge_provenance", {}).get("manifest_sha256")
+          and manual_attestation.get("response_count")
+          == completed_judge_manifest.get("unique_prompt_count")
+          and scored_value.get("judge_provenance", {}).get("ledger_attested") is True)
 
     first_response = response_dir_manual / f"{first['request_id']}.txt"
     original_response = first_response.read_text(encoding="utf-8")
@@ -702,6 +712,22 @@ with tempfile.TemporaryDirectory() as td:
           and "完了後のjudge応答SHAが不一致" in tampered_response.stdout)
     first_response.write_text(original_response, encoding="utf-8")
     first_response.chmod(0o444)
+
+    original_manifest_text = judge_manifest_path.read_text(encoding="utf-8")
+    changed_manifest = json.loads(original_manifest_text)
+    changed_manifest["completed_at_utc"] = "2099-01-01T00:00:00Z"
+    judge_manifest_path.chmod(0o644)
+    judge_manifest_path.write_text(
+        json.dumps(changed_manifest, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8")
+    tampered_manifest = subprocess.run(
+        manual_score_cmd, capture_output=True, text=True, env=manual_env)
+    check("manifestと応答を自己整合させても追跡対象台帳SHA不一致で拒否",
+          tampered_manifest.returncode != 0
+          and "台帳のmanual judge attestationが実体と不一致"
+          in tampered_manifest.stdout)
+    judge_manifest_path.write_text(original_manifest_text, encoding="utf-8")
+    judge_manifest_path.chmod(0o444)
 
     first_prompt = judge_dir / first["prompt_file"]
     original_prompt = first_prompt.read_text(encoding="utf-8")
