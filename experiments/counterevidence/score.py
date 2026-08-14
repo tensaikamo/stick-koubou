@@ -845,8 +845,8 @@ def load_manual_judge(raw_path, dataset_path, specs_path):
     return ManualJudgeResponses(responses, expected_calls), provenance
 
 
-def finalize_manual_judge(raw_path, provenance):
-    """採点経路が全promptを消費した後だけresponse SHAをmanifestへ固定する。"""
+def finalize_manual_judge(raw_path, results_root, provenance):
+    """全prompt消費後だけresponse SHAを固定し、追跡対象台帳へ外部アンカーを置く。"""
     judge_dir = pathlib.Path(raw_path).parent / "manual_judge"
     manifest_path = judge_dir / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -861,9 +861,31 @@ def finalize_manual_judge(raw_path, provenance):
         manifest_path.chmod(0o444)
     elif manifest.get("status") != "complete":
         raise ValueError("manual judgeをcompleteにできないstatus")
+    manifest_sha = R.sha256_file(manifest_path)
+    ledger_path = pathlib.Path(results_root) / "run_attestations.json"
+    ledger = R.load_attestations(results_root)
+    run_id = pathlib.Path(raw_path).parent.name
+    entries = [entry for entry in ledger["entries"] if entry.get("run_id") == run_id]
+    if len(entries) != 1:
+        raise ValueError("manual judge attestation対象のrun台帳entryが一意でない")
+    attestation = {
+        "manifest_sha256": manifest_sha,
+        "provider": manifest["judge"]["provider"],
+        "model": manifest["judge"]["model"],
+        "model_verification": "unverifiable_manual",
+        "response_count": len(manifest["responses"]),
+        "completed_at_utc": manifest["completed_at_utc"],
+    }
+    existing = entries[0].get("manual_judge")
+    if existing is not None and existing != attestation:
+        raise ValueError("追跡対象台帳のmanual judge attestationが実体と不一致")
+    if existing is None:
+        entries[0]["manual_judge"] = attestation
+        R.write_json(ledger_path, ledger)
     finalized = dict(provenance)
     finalized["status"] = "complete"
-    finalized["manifest_sha256"] = R.sha256_file(manifest_path)
+    finalized["manifest_sha256"] = manifest_sha
+    finalized["ledger_attested"] = True
     return finalized
 
 
@@ -963,7 +985,8 @@ def main():
                     f"{judge_fn.expected_calls}")
             if judge_fn.seen != set(judge_fn.responses):
                 raise ValueError("manual judge packetに未使用または不足promptがある")
-            judge_provenance = finalize_manual_judge(raw_path, judge_provenance)
+            judge_provenance = finalize_manual_judge(
+                raw_path, a.results, judge_provenance)
     except (ValueError, OSError, json.JSONDecodeError) as error:
         print("[INCOMPLETE_JUDGMENTS] 採点を行いません。")
         print(f"  - {error}")
