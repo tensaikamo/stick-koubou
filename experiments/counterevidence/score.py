@@ -18,6 +18,10 @@ from run import (RAW_SCHEMA_VERSION, RESULTS, active_run_id, load_jsonl,
                  run_path, validate_dataset)
 
 
+JUDGE_API_MODEL = "claude-haiku-4-5-20251001"
+MANUAL_JUDGE_SCHEMA_VERSION = 1
+
+
 # ================================================================
 # 事前登録された判定基準。結果を見てから変更禁止。
 # 反証可能ケースは 14件（false_coherence 6 + absence 4 + common_cause 4）。
@@ -279,7 +283,7 @@ def validate_run_bundle(raw_path, results_root, dataset_path, specs_path):
 
 
 # ---------------------------------------------------------------- judge
-def judge_api(prompt, model="claude-haiku-4-5-20251001"):
+def judge_api(prompt, model=JUDGE_API_MODEL):
     import anthropic
     c = anthropic.Anthropic()
     r = c.messages.create(model=model, max_tokens=300,
@@ -623,6 +627,205 @@ def diagnose_c(recs, cases):
     return rows
 
 
+# ---------------------------------------------------------------- APIを使わない手動judge
+def manual_judge_kind(prompt):
+    """judge prompt の出力schemaを、テンプレートに依存する固定3種へ分類する。"""
+    if '"has_unsupported"' in prompt:
+        return "unsupported"
+    if '"matches_reference"' in prompt:
+        return "reference"
+    if '"match"' in prompt:
+        return "match"
+    raise ValueError("未知のjudge prompt形式")
+
+
+def validate_manual_judge_response(value, kind):
+    """手動UIから回収したjudge JSONをfail-closedで検証する。"""
+    if not isinstance(value, dict):
+        raise ValueError("judge応答はJSON objectが必要")
+    if not isinstance(value.get("reason"), str) or not value["reason"].strip():
+        raise ValueError("judge応答の reason は非空文字列が必要")
+    if kind == "match":
+        if value.get("match") not in ("1", "2", "neither", "unclear"):
+            raise ValueError("match は 1|2|neither|unclear が必要")
+    elif kind == "reference":
+        if type(value.get("matches_reference")) is not bool:
+            raise ValueError("matches_reference はbooleanが必要")
+    elif kind == "unsupported":
+        if type(value.get("has_unsupported")) is not bool:
+            raise ValueError("has_unsupported はbooleanが必要")
+        items = value.get("items")
+        if not isinstance(items, list) or not all(isinstance(x, str) for x in items):
+            raise ValueError("unsupported応答の items は文字列配列が必要")
+    else:
+        raise ValueError(f"未知のjudge kind: {kind!r}")
+
+
+class ManualJudgeCollector:
+    """score() と同じ経路を通して、必要なjudge promptだけを収集する。"""
+    def __init__(self):
+        self.prompts = {}
+        self.call_count = 0
+
+    def __call__(self, prompt):
+        self.call_count += 1
+        digest = R.sha256_text(prompt)
+        self.prompts.setdefault(digest, {
+            "sha256": digest, "kind": manual_judge_kind(prompt), "text": prompt})
+        kind = self.prompts[digest]["kind"]
+        if kind == "match":
+            return {"match": "unclear", "reason": "export placeholder"}
+        if kind == "reference":
+            return {"matches_reference": False, "reason": "export placeholder"}
+        return {"has_unsupported": False, "items": [],
+                "reason": "export placeholder"}
+
+
+class ManualJudgeResponses:
+    """prompt SHAに束縛された手動応答だけを score() へ返す。"""
+    def __init__(self, responses, expected_calls):
+        self.responses = responses
+        self.expected_calls = expected_calls
+        self.call_count = 0
+        self.seen = set()
+
+    def __call__(self, prompt):
+        digest = R.sha256_text(prompt)
+        if digest not in self.responses:
+            raise ValueError(f"未登録のjudge prompt: {digest}")
+        self.call_count += 1
+        self.seen.add(digest)
+        return self.responses[digest]
+
+
+def _manual_judge_source(raw_path, dataset_path, specs_path):
+    return {
+        "raw_sha256": R.sha256_file(raw_path),
+        "dataset_sha256": R.sha256_file(dataset_path),
+        "specs_sha256": R.sha256_file(specs_path),
+        "prompts_py_sha256": R.sha256_file(HERE / "prompts.py"),
+        "run_py_sha256": R.sha256_file(HERE / "run.py"),
+        "score_py_sha256": R.sha256_file(HERE / "score.py"),
+    }
+
+
+def export_manual_judge(rows, cases, raw_path, dataset_path, specs_path,
+                        provider, model):
+    """APIを呼ばず、サブスクUIへ貼るjudge prompt packetを一度だけ作る。"""
+    if not provider or not model:
+        raise ValueError("manual judge export は --judge-provider と --judge-model が必須")
+    raw_path = pathlib.Path(raw_path)
+    judge_dir = raw_path.parent / "manual_judge"
+    manifest_path = judge_dir / "manifest.json"
+    if judge_dir.exists():
+        if not manifest_path.is_file():
+            raise ValueError(f"不完全なmanual_judge directoryが存在する: {judge_dir}")
+        existing = json.loads(manifest_path.read_text(encoding="utf-8"))
+        expected = _manual_judge_source(raw_path, dataset_path, specs_path)
+        if (existing.get("source") != expected
+                or existing.get("judge", {}).get("provider") != provider
+                or existing.get("judge", {}).get("model") != model):
+            raise ValueError("既存manual judge packetのraw/code/provider/modelが現在値と不一致")
+        return judge_dir, existing, False
+
+    collector = ManualJudgeCollector()
+    score(rows, cases, collector)
+    judge_dir.mkdir(parents=False)
+    prompt_dir, response_dir = judge_dir / "prompts", judge_dir / "responses"
+    prompt_dir.mkdir(); response_dir.mkdir()
+    records = []
+    for index, item in enumerate(collector.prompts.values(), 1):
+        request_id = f"J{index:03d}"
+        prompt_rel = f"prompts/{request_id}.txt"
+        response_rel = f"responses/{request_id}.txt"
+        (judge_dir / prompt_rel).write_text(item["text"], encoding="utf-8")
+        records.append({
+            "request_id": request_id, "kind": item["kind"],
+            "prompt_file": prompt_rel, "prompt_sha256": item["sha256"],
+            "response_file": response_rel})
+    manifest = {
+        "schema_version": MANUAL_JUDGE_SCHEMA_VERSION,
+        "status": "awaiting_responses", "created_at_utc": R.utc_now(),
+        "source": _manual_judge_source(raw_path, dataset_path, specs_path),
+        "judge": {"route": "subscription_ui", "api_used": False,
+                  "provider": provider, "model": model,
+                  "model_verification": "unverifiable_manual"},
+        "call_count": collector.call_count,
+        "unique_prompt_count": len(records), "prompts": records}
+    R.write_json(manifest_path, manifest)
+    instructions = (
+        "API課金なし manual judge\n\n"
+        "1. prompts/Jxxx.txt を1件ずつ別の新規チャットへ貼る。\n"
+        "2. 返ったJSONだけを同番号の responses/Jxxx.txt へ保存する。\n"
+        "3. export時と同じ score.py コマンドで --manual-stage score を実行する。\n"
+        "注意: 全件で同じprovider/modelを使い、途中変更しない。\n")
+    (judge_dir / "HOW_TO.txt").write_text(instructions, encoding="utf-8")
+    return judge_dir, manifest, True
+
+
+def load_manual_judge(raw_path, dataset_path, specs_path):
+    """manual judge packetと全応答を検証し、SHA束縛済みcallableを返す。"""
+    raw_path = pathlib.Path(raw_path)
+    judge_dir = raw_path.parent / "manual_judge"
+    manifest_path = judge_dir / "manifest.json"
+    if not manifest_path.is_file():
+        raise ValueError("manual judge manifestがない。先に --manual-stage export が必要")
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if manifest.get("schema_version") != MANUAL_JUDGE_SCHEMA_VERSION:
+        raise ValueError("manual judge schema_versionが不正")
+    if manifest.get("source") != _manual_judge_source(raw_path, dataset_path, specs_path):
+        raise ValueError("manual judge packetのraw/code/input SHAが現在値と不一致")
+    judge = manifest.get("judge")
+    if not (isinstance(judge, dict) and judge.get("route") == "subscription_ui"
+            and judge.get("api_used") is False
+            and judge.get("model_verification") == "unverifiable_manual"
+            and isinstance(judge.get("provider"), str) and judge["provider"].strip()
+            and isinstance(judge.get("model"), str) and judge["model"].strip()):
+        raise ValueError("manual judge provenanceが不正")
+    records = manifest.get("prompts")
+    if (not isinstance(records, list) or not records
+            or manifest.get("unique_prompt_count") != len(records)):
+        raise ValueError("manual judge prompt manifestが不完全")
+
+    responses, response_records = {}, []
+    for record in records:
+        request_id = record.get("request_id") if isinstance(record, dict) else None
+        if not (isinstance(request_id, str) and len(request_id) == 4
+                and request_id.startswith("J") and request_id[1:].isdigit()):
+            raise ValueError("manual judge request_idが不正")
+        prompt_path = judge_dir / "prompts" / f"{request_id}.txt"
+        response_path = judge_dir / "responses" / f"{request_id}.txt"
+        if record.get("prompt_file") != f"prompts/{request_id}.txt" \
+                or record.get("response_file") != f"responses/{request_id}.txt":
+            raise ValueError(f"{request_id}: manual judge pathが不正")
+        if not prompt_path.is_file():
+            raise ValueError(f"{request_id}: judge promptがない")
+        prompt = prompt_path.read_text(encoding="utf-8")
+        digest = R.sha256_text(prompt)
+        if digest != record.get("prompt_sha256"):
+            raise ValueError(f"{request_id}: judge prompt SHA-256が不一致")
+        if manual_judge_kind(prompt) != record.get("kind"):
+            raise ValueError(f"{request_id}: judge prompt kindが不一致")
+        if not response_path.is_file():
+            raise ValueError(f"{request_id}: judge応答が未回収")
+        raw_response = response_path.read_text(encoding="utf-8")
+        try:
+            value = parse_json(raw_response)
+            validate_manual_judge_response(value, record["kind"])
+        except (ValueError, json.JSONDecodeError) as error:
+            raise ValueError(f"{request_id}: judge応答不正: {error}") from error
+        responses[digest] = value
+        response_records.append({
+            "request_id": request_id, "response_sha256": R.sha256_text(raw_response),
+            "observed_at_utc": R.utc_now()})
+    expected_calls = manifest.get("call_count")
+    if type(expected_calls) is not int or expected_calls < len(records):
+        raise ValueError("manual judge call_countが不正")
+    provenance = dict(judge, prompt_manifest_sha256=R.sha256_file(manifest_path),
+                      response_records=response_records)
+    return ManualJudgeResponses(responses, expected_calls), provenance
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--raw")
@@ -631,7 +834,10 @@ def main():
     ap.add_argument("--dataset", default=str(HERE / "dataset.jsonl"))
     ap.add_argument("--specs", default=str(HERE / "specs.jsonl"))
     ap.add_argument("--mode", choices=["pilot", "full"], required=True)
-    ap.add_argument("--judge", choices=["api"], default="api")
+    ap.add_argument("--judge", choices=["api", "manual"], default="api")
+    ap.add_argument("--manual-stage", choices=["export", "score"])
+    ap.add_argument("--judge-provider")
+    ap.add_argument("--judge-model")
     a = ap.parse_args()
 
     try:
@@ -680,8 +886,46 @@ def main():
     if manifest["settings"].get("model_verification") == "unverifiable_manual":
         print("[provenance warning] manual model identity is operator-declared and unverifiable")
 
-    judge_fn = judge_api
-    recs = score(rows, cases, judge_fn)
+    judge_provenance = None
+    try:
+        if a.judge == "manual":
+            if not a.manual_stage:
+                raise ValueError("--judge manual は --manual-stage export|score が必須")
+            if a.manual_stage == "export":
+                judge_dir, judge_manifest, created = export_manual_judge(
+                    rows, cases, raw_path, dataset_path, specs_path,
+                    a.judge_provider, a.judge_model)
+                action = "created" if created else "already exists"
+                print(f"[manual judge packet {action}] {judge_dir}")
+                print(f"  {judge_manifest['unique_prompt_count']} unique prompts / "
+                      f"{judge_manifest['call_count']} scoring calls")
+                print(f"  1) {judge_dir/'HOW_TO.txt'} を開く")
+                print("  2) 全response保存後、同じコマンドの --manual-stage を score にする")
+                return
+            judge_fn, judge_provenance = load_manual_judge(
+                raw_path, dataset_path, specs_path)
+            print("[judge provenance warning] subscription UI model identity is "
+                  "operator-declared and unverifiable")
+        else:
+            if a.manual_stage or a.judge_provider or a.judge_model:
+                raise ValueError("manual judge用引数は --judge manual の場合だけ指定できる")
+            judge_fn = judge_api
+            judge_provenance = {
+                "route": "anthropic_api", "api_used": True,
+                "provider": "anthropic", "model": JUDGE_API_MODEL,
+                "model_verification": "provider_response_not_recorded"}
+        recs = score(rows, cases, judge_fn)
+        if isinstance(judge_fn, ManualJudgeResponses):
+            if judge_fn.call_count != judge_fn.expected_calls:
+                raise ValueError(
+                    f"manual judge call数 {judge_fn.call_count} != packet "
+                    f"{judge_fn.expected_calls}")
+            if judge_fn.seen != set(judge_fn.responses):
+                raise ValueError("manual judge packetに未使用または不足promptがある")
+    except (ValueError, OSError, json.JSONDecodeError) as error:
+        print("[INCOMPLETE_JUDGMENTS] 採点を行いません。")
+        print(f"  - {error}")
+        sys.exit(1)
     agg = aggregate(recs)
 
     if a.mode == "pilot":
@@ -705,6 +949,7 @@ def main():
     (output_dir / f"scored_{a.mode}.json").write_text(
         json.dumps(dict(mode=a.mode, records=recs, aggregate=agg,
                         verdict=v, reason=reason,
+                        judge_provenance=judge_provenance,
                         source_raw={"path": str(raw_path),
                                     "sha256": hashlib.sha256(raw_path.read_bytes()).hexdigest(),
                                     "run_id": rows[0]["provenance"]["run_id"],
