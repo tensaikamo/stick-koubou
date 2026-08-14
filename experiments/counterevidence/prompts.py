@@ -4,10 +4,10 @@ A/B/C 3条件のプロンプト定義。
 設計上の固定事項:
 - 全条件が全文書を見る。Cに情報上の優位を与えない。
 - Bは対抗仮説・反証・再検討まで明示要求する強いcontrol。
-- B と C は同一形式のJSONを返す。initial_conclusion と
-  counterevidence_documents の定義文は B/C で完全に同一でなければならない。
-- counterevidence_documents は、出力内の initial_conclusion を弱めた文書に
-  意味を固定する（Refutation Discovery の公平性）。
+- B と C は同一形式のJSONを返す。initial_conclusion の定義文は
+  B/C で完全に同一でなければならない。
+- 出力依存の対象を作らないため、counterevidence_documents は要求しない。
+  決定的反証文書の引用は全条件共通の key_documents だけから記述的に集計する。
 """
 
 _DOC_FMT = "[{doc_id}] {title}\n{text}"
@@ -18,7 +18,6 @@ def format_docs(documents):
 
 
 # ---------------------------------------------------------------- 出力形式
-# A は主要比較対象ではないため counterevidence_documents を要求しない。
 _TAIL_A = """
 出力は次のJSONのみ。前置き・後置き・コードフェンス禁止。
 
@@ -29,17 +28,11 @@ _TAIL_A = """
 }
 """
 
-# ↓この2つの定義文は B と C で完全に同一。片方だけ変更してはならない。
+# ↓この定義文は B と C で完全に同一。片方だけ変更してはならない。
 _INITIAL_CONCLUSION_DEF = (
     '  "initial_conclusion": '
     '"反証を検討する前に最初にもっともらしいと判断した説明。'
     '後から書き換えず1〜2文",'
-)
-
-_COUNTEREVIDENCE_DEF = (
-    '  "counterevidence_documents": '
-    '["上の initial_conclusion を最も強く弱める文書のID。'
-    '該当がなければ空配列"],'
 )
 
 _TAIL_BC = """
@@ -49,10 +42,9 @@ _TAIL_BC = """
 %s
   "conclusion": "結論を1〜2文で。原因を特定する形で書く",
   "key_documents": ["結論の根拠にした doc_id"],
-%s
   "confidence": "強く支持|暫定|保留"
 }
-""" % (_INITIAL_CONCLUSION_DEF, _COUNTEREVIDENCE_DEF)
+""" % _INITIAL_CONCLUSION_DEF
 
 
 # ---------------------------------------------------------------- A: Normal

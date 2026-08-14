@@ -25,28 +25,60 @@ from run import (RAW_SCHEMA_VERSION, RESULTS, active_run_id, load_jsonl,
 # no_refutation は 6件。破壊率 0.25 は 6件中 1.5件 に相当する。
 # ================================================================
 PRE_REGISTRATION = {
-    "primary": "Refutation Discovery Rate (C - B)",
+    "version": 3,
+    "frozen_on": "2026-08-15",
+    "primary": "Refutable Accuracy gain (C - B)",
+    "primary_formula": "refutable_accuracy_C - refutable_accuracy_B",
+    "amendment_reason": (
+        "v1のcounterevidence定義とground truthの対象が不一致だった。v2のTrap Rateは、"
+        "trapからother/unclear/malformedへの移行を正答化と同額で評価し、さらに工程指標の"
+        "分母をモデル出力に依存させていた。formal row 0件のまま第三者静的監査を受け、"
+        "結論の正答化を直接測る出力非依存の指標へ修正したため"),
+    "known_observations_before_freeze": {
+        "formal_rows": 0,
+        "AB-01_smoke": (
+            "A key_documents=d2,d3,d6; B/Cはinitial=correct側、"
+            "counterevidence_documents=d1。B-Cの正答率差は未観測"),
+        "AB-01_legacy_C2": "PR #18以前のpromptでcounterevidence_documents=d2,d3",
+        "v2_static_probes": (
+            "trapからotherへの移行だけで正答増加0でもKEEP、Cの反証可能14行が"
+            "malformedでもKEEPになり得ることを第三者監査がオフライン再現"),
+    },
     "initial_anchor_rule": (
-        "B/Cのcounterevidence_documentsは同じ出力のinitial_conclusionを対象とする。"
-        "CはC1 provisionalとの不一致を記録し、1件でもあれば正式判定を無効とする"),
+        "B/Cはinitial_conclusionを記録する。CはC1 provisionalとの不一致を記録し、"
+        "1件でもあれば正式判定を無効とする"),
     "anchor_mismatch_max": 0.0,
     "refutable_case_count": 14,
     "no_refutation_case_count": 6,
     "keep": {
-        "refutation_discovery_delta_min": 0.20,   # 14件中 約3件
+        "refutable_accuracy_gain_min": 0.20,      # 14件中 約3件
+        "malformed_max": 0.0,
         "correct_destruction_max": 0.25,          # 6件中 1.5件
         "max_token_ratio": 2.0,
         "note": "token情報が欠損している場合、KEEP は出せない"
     },
     "conditional_keep": {
-        "note": "C-B >= +0.20 だが、破壊率超過 / token比>=2.0 / token情報欠損"
+        "note": "Refutable Accuracy (C-B) >= +0.20 だが、破壊率超過 / token比>=2.0 / token情報欠損"
     },
     "drop": {
-        "note": "C-B < +0.20、または総合正答率で B を下回る"
+        "note": "Refutable Accuracy (C-B) < +0.20、Trap Rate悪化、または総合正答率でCがBを下回る"
     },
+    "process_metrics": (
+        "Decisive Refutation Citationは全条件のkey_documents、Fixed-refutation Retrieval Hitは"
+        "Cのretrieved_docsで集計する。どちらも全反証可能行を分母としprimary判定には使わない"),
     "power_caveat": "N=20 は screening。+0.20 未満は検出力不足であり判定不能。"
                     "判定不能は DROP として扱う（不確かな部品を残さない）",
-    "pilot_rule": "6件パイロットの結果で KEEP/DROP を判断してはならない"
+    "pilot_rule": "6件パイロットの結果で KEEP/DROP を判断してはならない",
+    "invalidation_conditions": (
+        "formal row生成後のPRE_REGISTRATION変更",
+        "20件×全trial完了前の中間解析または逐次打ち切り",
+        "run途中の生成モデル・判定モデル・設定変更",
+        "anchor_mismatch > 0",
+        "B/Cいずれかのprimary分母 != 14 × trials",
+        "B/Cいずれかにmalformed JSONが1件以上",
+        "2026-08-14 smoke応答のformal流用",
+        "pilotでのKEEP/DROP判断",
+    )
 }
 
 
@@ -284,7 +316,8 @@ def match_conclusion(answer, gt, judge_fn, case_id):
 def required_docs_found(doc_ids, gt):
     """ground truth の ANY/ALL 条件で必要文書への到達を判定する。"""
     refs = set(gt.get("refutation_document_ids") or [])
-    found = set(doc_ids or [])
+    found = (set(doc_ids) if isinstance(doc_ids, list)
+             and all(isinstance(doc_id, str) for doc_id in doc_ids) else set())
     if not refs:
         return False
     if gt.get("refutation_match") == "ALL":
@@ -312,26 +345,6 @@ def anchor_consistent(initial, provisional, condition, malformed):
     return True
 
 
-def refutation_found(cited, gt, condition, malformed, anchor_ok=True):
-    """B/C 共通の counterevidence_documents で判定する。
-
-    None を返す（採点対象外）のは次の2つだけ:
-      - no_refutation ケース（反証が存在しない）
-      - condition A（当該フィールドを要求していない）
-
-    B/C の反証可能ケースでは、malformed・フィールド省略・欠損はすべて
-    False として分母に残す。除外すると分母が縮み、primary metric が水増しされる。
-    """
-    refs = gt.get("refutation_document_ids") or []
-    if not refs:
-        return None
-    if condition == "A":
-        return None
-    if malformed or anchor_ok is False or cited is None or not isinstance(cited, list):
-        return False
-    return required_docs_found(cited, gt)
-
-
 # ---------------------------------------------------------------- scoring
 def score(rows, cases, judge_fn):
     by_id = {c["id"]: c for c in cases}
@@ -344,11 +357,12 @@ def score(rows, cases, judge_fn):
             parsed = parse_json(r["raw_answer"])
             initial = parsed.get("initial_conclusion")
             concl = parsed.get("conclusion", "")
-            cited = parsed.get("counterevidence_documents")
+            key_documents = parsed.get("key_documents")
             conf = parsed.get("confidence")
         except Exception:
             malformed = True
-            initial, concl, cited, conf = None, r["raw_answer"], None, None
+            initial, concl, key_documents, conf = (
+                None, r["raw_answer"], None, None)
 
         anchor_ok = anchor_consistent(
             initial, r.get("provisional_answer"), r["condition"], malformed)
@@ -362,10 +376,16 @@ def score(rows, cases, judge_fn):
             case_id=r["case_id"], type=case["type"], condition=r["condition"],
             trial=r.get("trial", 0), malformed=malformed,
             verdict=verdict,
-            initial_conclusion=initial, anchor_consistent=anchor_ok,
-            refutation_found=refutation_found(
-                cited, gt, r["condition"], malformed, anchor_ok),
-            cited_counterevidence=cited,
+            initial_conclusion=initial,
+            anchor_consistent=anchor_ok,
+            key_documents=key_documents,
+            decisive_refutation_citation=(
+                required_docs_found(key_documents, gt)
+                if case["type"] != "no_refutation" else None),
+            fixed_refutation_retrieval_hit=(
+                required_docs_found(r.get("retrieved_docs"), gt)
+                if r["condition"] == "C" and case["type"] != "no_refutation"
+                else None),
             unsupported=bool(uns.get("has_unsupported")),
             confidence=conf,
             calls=u.get("calls"),
@@ -400,12 +420,17 @@ def aggregate(recs):
         out[c] = dict(
             n=len(rs),
             accuracy=mean(r["verdict"] == "correct" for r in rs),
+            refutable_accuracy=mean(r["verdict"] == "correct" for r in refutable),
+            refutable_accuracy_n=len(refutable),
             trap_rate=mean(r["verdict"] == "trap" for r in refutable),
-            refutation_discovery=mean(
-                r["refutation_found"] for r in refutable
-                if r["refutation_found"] is not None),
-            refutation_scored_n=sum(
-                1 for r in refutable if r["refutation_found"] is not None),
+            trap_rate_scored_n=len(refutable),
+            decisive_refutation_citation=mean(
+                r.get("decisive_refutation_citation") is True for r in refutable),
+            decisive_refutation_citation_n=len(refutable),
+            fixed_refutation_retrieval_hit=(
+                mean(r.get("fixed_refutation_retrieval_hit") is True for r in refutable)
+                if c == "C" else None),
+            fixed_refutation_retrieval_hit_n=(len(refutable) if c == "C" else 0),
             correct_destruction=mean(r["verdict"] != "correct" for r in nr),
             unsupported=mean(r["unsupported"] for r in rs),
             malformed=mean(r["malformed"] for r in rs),
@@ -418,6 +443,15 @@ def aggregate(recs):
 
 
 # ---------------------------------------------------------------- verdict
+def primary_effect(agg):
+    """事前登録v3のprimary: 反証可能ケースの正答率差 (C-B)。"""
+    if "B" not in agg or "C" not in agg:
+        return None
+    b = agg["B"].get("refutable_accuracy")
+    c = agg["C"].get("refutable_accuracy")
+    return None if b is None or c is None else c - b
+
+
 def verdict_full(agg, n_trials=None):
     if "B" not in agg or "C" not in agg:
         return "INCOMPLETE", "B または C の結果が不足"
@@ -425,42 +459,54 @@ def verdict_full(agg, n_trials=None):
     k = PRE_REGISTRATION["keep"]
 
     for name, values in (("B", B), ("C", C)):
+        malformed = values.get("malformed")
+        if malformed is None or malformed > k["malformed_max"]:
+            return "INVALID_OUTPUT", (
+                f"{name} の malformed JSON rate={malformed!r}。"
+                "正式判定はB/Cとも0件であることを要求する")
+
+    for name, values in (("B", B), ("C", C)):
         mismatch = values.get("anchor_mismatch")
         if mismatch is None or mismatch > PRE_REGISTRATION["anchor_mismatch_max"]:
             return "INVALID_ANCHOR", (
                 f"{name} の initial-anchor mismatch={mismatch!r}。"
-                "Refutation Discovery と文字列コピー失敗を分離できないため正式判定を出さない")
+                "C1→C2の結論固定を確認できないため正式判定を出さない")
 
     if n_trials is not None:
         expected = PRE_REGISTRATION["refutable_case_count"] * n_trials
         for name, a in (("B", B), ("C", C)):
-            if a.get("refutation_scored_n") != expected:
+            if a.get("refutable_accuracy_n") != expected:
                 return "INCOMPLETE_RESULTS", (
-                    f"{name} の Refutation Discovery 採点件数が "
-                    f"{a.get('refutation_scored_n')} で、期待値 {expected} と一致しない。"
+                    f"{name} の Refutable Accuracy 採点件数が "
+                    f"{a.get('refutable_accuracy_n')} で、期待値 {expected} と一致しない。"
                     f"分母が縮んでいる状態では primary metric を比較できない")
 
-    if B["refutation_discovery"] is None or C["refutation_discovery"] is None:
-        return "INCOMPLETE", ("counterevidence_documents が取得できていない。"
-                             "B/C の Refutation Discovery を計算できない")
+    if B.get("refutable_accuracy") is None or C.get("refutable_accuracy") is None:
+        return "INCOMPLETE", "B/C の Refutable Accuracy を計算できない"
 
-    d_ref = C["refutation_discovery"] - B["refutation_discovery"]
+    d_accuracy = primary_effect(agg)
 
-    if d_ref < k["refutation_discovery_delta_min"]:
+    if d_accuracy < k["refutable_accuracy_gain_min"]:
         return "DROP", (
-            f"Refutation Discovery の C-B = {d_ref:+.2f}。"
-            f"事前登録の閾値 +{k['refutation_discovery_delta_min']:.2f} 未満。"
+            f"Refutable Accuracy gain の C-B = {d_accuracy:+.2f}。"
+            f"事前登録の閾値 +{k['refutable_accuracy_gain_min']:.2f} 未満。"
             f"N={PRE_REGISTRATION['refutable_case_count']} では検出力不足のため判定不能であり、"
             f"事前登録の規定により DROP とする")
 
+    if C.get("trap_rate") is None or B.get("trap_rate") is None:
+        return "INCOMPLETE", "B/C の Trap Rate を計算できない"
+    if C["trap_rate"] > B["trap_rate"]:
+        return "DROP", (f"Refutable Accuracyは改善したがTrap Rateが悪化した "
+                        f"(C={C['trap_rate']:.2f} > B={B['trap_rate']:.2f})")
+
     if C["accuracy"] < B["accuracy"]:
-        return "DROP", (f"反証発見は改善したが総合正答率で B を下回る "
+        return "DROP", (f"反証可能ケースは改善したが総合正答率で C が B を下回る "
                         f"(C={C['accuracy']:.2f} < B={B['accuracy']:.2f})")
 
     destr = C["correct_destruction"]
     if destr is not None and destr > k["correct_destruction_max"]:
         return "CONDITIONAL KEEP", (
-            f"反証発見 +{d_ref:.2f} で改善。ただし Correct Destruction = {destr:.2f} が"
+            f"Refutable Accuracy C-B = +{d_accuracy:.2f}。ただし Correct Destruction = {destr:.2f} が"
             f"閾値 {k['correct_destruction_max']:.2f} を超過。"
             f"矛盾または期待不成立が検出された場合のみ起動する条件付きで残す")
 
@@ -468,16 +514,18 @@ def verdict_full(agg, n_trials=None):
         return "CONDITIONAL KEEP", (
             "COST_COMPARISON_UNAVAILABLE: token情報が欠損しているため、"
             "改善が計算量差で説明されないことを確認できない。"
-            f"反証発見は +{d_ref:.2f} で改善しているが、事前登録により KEEP は出せない。"
+            f"Refutable Accuracyは C-B = +{d_accuracy:.2f} で改善しているが、"
+            "事前登録により KEEP は出せない。"
             "API backend での追試が必要")
 
     ratio = C["avg_tokens"] / B["avg_tokens"] if B["avg_tokens"] else float("inf")
     if ratio >= k["max_token_ratio"]:
         return "CONDITIONAL KEEP", (
-            f"反証発見 +{d_ref:.2f}、破壊率も許容内。ただし token比 {ratio:.2f}倍。"
+            f"Refutable Accuracy C-B = +{d_accuracy:.2f}、破壊率も許容内。"
+            f"ただし token比 {ratio:.2f}倍。"
             f"改善が計算量差で説明される可能性を排除できない。同予算比較の追試が必要")
 
-    return "KEEP", (f"Refutation Discovery C-B = {d_ref:+.2f}、"
+    return "KEEP", (f"Refutable Accuracy gain C-B = {d_accuracy:+.2f}、"
                     f"Correct Destruction = {destr:.2f}、token比 {ratio:.2f}倍。"
                     f"事前登録の3条件すべて充足")
 
@@ -494,28 +542,31 @@ def print_pilot(agg, recs):
     print("PILOT MODE — 記述統計のみ。KEEP/DROP 判定は出しません。")
     print("=" * 70)
     rows = [("Accuracy", "accuracy", 2),
-            ("Refutation Discovery", "refutation_discovery", 2),
+            ("Refutable Accuracy*", "refutable_accuracy", 2),
+            ("Trap Rate", "trap_rate", 2),
+            ("Decisive Refutation Citation", "decisive_refutation_citation", 2),
+            ("Fixed-refutation Retrieval Hit", "fixed_refutation_retrieval_hit", 2),
             ("Correct Destruction", "correct_destruction", 2),
             ("Initial-anchor mismatch", "anchor_mismatch", 2),
             ("malformed JSON rate", "malformed", 2)]
-    print(f"{'':26}{'A':>10}{'B':>10}{'C':>10}")
-    print("-" * 56)
+    print(f"{'':31}{'A':>10}{'B':>10}{'C':>10}")
+    print("-" * 61)
     for label, key, d in rows:
-        line = f"{label:26}"
+        line = f"{label:31}"
         for c in ("A", "B", "C"):
             line += f"{fmt(agg.get(c, {}).get(key), d):>10}"
         print(line)
     print()
     n_ref = sum(1 for r in recs if r["condition"] == "A"
                 and r["type"] != "no_refutation")
-    print(f"Refutation Discovery の採点対象件数（反証可能ケース = {n_ref}）:")
+    print(f"反証可能ケースの分母（1条件あたり = {n_ref}）:")
     for c in ("A", "B", "C"):
-        n = agg.get(c, {}).get("refutation_scored_n")
-        if c == "A":
-            print(f"  A: 採点対象外（counterevidence_documents を要求していない）")
-        else:
-            ok = "OK" if n == n_ref else "分母が縮んでいる"
-            print(f"  {c}: {n} / {n_ref}  [{ok}]")
+        values = agg.get(c, {})
+        print(f"  {c}: Refutable Accuracy n={values.get('refutable_accuracy_n')}, "
+              f"Trap Rate n={values.get('trap_rate_scored_n')}, "
+              f"Citation n={values.get('decisive_refutation_citation_n')}, "
+              f"Retrieval n={values.get('fixed_refutation_retrieval_hit_n')}")
+    print("  * primary は Refutable Accuracy の C-B。出力依存の分母は使わない。")
     print()
     print("パイロットの目的:")
     print("  1) プロンプトが機能するか  2) JSONが安定するか")
@@ -526,23 +577,37 @@ def print_pilot(agg, recs):
 
 
 def print_full(agg):
-    keys = [("accuracy", "Accuracy", 2), ("trap_rate", "Trap Rate", 2),
-            ("refutation_discovery", "Refutation Discovery", 2),
+    keys = [("accuracy", "Accuracy", 2),
+            ("refutable_accuracy", "Refutable Accuracy", 2),
+            ("trap_rate", "Trap Rate", 2),
+            ("decisive_refutation_citation", "Decisive Refutation Citation", 2),
+            ("fixed_refutation_retrieval_hit", "Fixed-refutation Retrieval Hit", 2),
             ("correct_destruction", "Correct Destruction", 2),
             ("unsupported", "Unsupported Claims", 2),
             ("anchor_mismatch", "Initial-anchor mismatch", 2),
             ("malformed", "malformed JSON", 2),
             ("avg_calls", "Avg Calls", 2), ("avg_tokens", "Avg Tokens", 0)]
-    print(f"{'':26}{'A':>10}{'B':>10}{'C':>10}{'C-B':>10}")
-    print("-" * 66)
+    print(f"{'':31}{'A':>10}{'B':>10}{'C':>10}{'Δ':>10}")
+    print("-" * 71)
     for k, label, d in keys:
         a = agg.get("A", {}).get(k); b = agg.get("B", {}).get(k)
         c = agg.get("C", {}).get(k)
-        delta = None if (b is None or c is None) else c - b
-        print(f"{label:26}{fmt(a,d):>10}{fmt(b,d):>10}{fmt(c,d):>10}{fmt(delta,d):>10}")
+        # Trap Rateだけは「低いほど良い」ので B-C。他は C-B。
+        delta = None if (b is None or c is None) else (b - c if k == "trap_rate" else c - b)
+        print(f"{label:31}{fmt(a,d):>10}{fmt(b,d):>10}{fmt(c,d):>10}{fmt(delta,d):>10}")
+    print("Δ: primaryのRefutable Accuracyは C-B。Trap Rateのみ B-C、その他は C-B")
+    print("\n分母:")
+    for condition in ("A", "B", "C"):
+        values = agg.get(condition, {})
+        print(f"  {condition}: Refutable Accuracy n={values.get('refutable_accuracy_n')}, "
+              f"Trap Rate n={values.get('trap_rate_scored_n')}, "
+              f"Citation n={values.get('decisive_refutation_citation_n')}, "
+              f"Retrieval n={values.get('fixed_refutation_retrieval_hit_n')}")
+    print("  * すべての分母はケース種別だけで決まり、モデル出力では変化しない。")
 
 
 def diagnose_c(recs, cases):
+    """Cの検索ヒットと最終正答を記述する。失敗工程の因果推定は行わない。"""
     by_id = {c["id"]: c for c in cases}
     rows = []
     for r in recs:
@@ -553,18 +618,8 @@ def diagnose_c(recs, cases):
         if not refs:
             continue
         reached = required_docs_found(r.get("retrieved"), gt)
-        cited = r["refutation_found"]
-        if not reached:
-            stage = "検索（falsifier または query が的外れ）"
-        elif not cited:
-            stage = "認識（反証を提示されたが counterevidence に挙げていない）"
-        elif r["verdict"] != "correct":
-            stage = "更新（反証を認識したが結論を変えていない）"
-        else:
-            stage = "-"
         rows.append(dict(case_id=r["case_id"], reached=reached,
-                         cited=cited, correct=(r["verdict"] == "correct"),
-                         stage=stage))
+                         correct=(r["verdict"] == "correct")))
     return rows
 
 
@@ -640,10 +695,10 @@ def main():
         print(f"理由: {reason}")
         print("=" * 66)
 
-    print("\n[C の工程別診断]")
+    print("\n[C の記述的検索監査]")
     for d in diagnose_c(recs, cases):
-        print(f"  {d['case_id']:8} 到達={d['reached']!s:5} 引用={d['cited']!s:5} "
-              f"正答={d['correct']!s:5} 失敗工程={d['stage']}")
+        print(f"  {d['case_id']:8} 固定反証文書の検索ヒット={d['reached']!s:5} "
+              f"最終正答={d['correct']!s:5}")
 
     output_dir = raw_path.parent
     output_dir.mkdir(parents=True, exist_ok=True)
