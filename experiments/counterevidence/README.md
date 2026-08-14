@@ -3,7 +3,7 @@
 ## 検証する仮説（修正後）
 
 > **明示的な falsifier を使って反証候補を再走査し、その後に再評価する counterevidence pipeline は、
-> 一体型の long-think control B より反証回収を改善するか。**
+> 一体型の long-think control B より誤った trap 結論を減らすか。**
 
 **「falsifier を先に書くこと単独の効果」ではない。** Condition C は以下の一連の工程からなる。
 
@@ -30,11 +30,12 @@
 
 | | 内容 | これが真なら見えるもの |
 |---|---|---|
-| H1 | pipeline は誤った整合への固定を減らす | C の Refutation Discovery が B より明確に高い |
+| H1 | pipeline は誤った整合への固定を減らす | 反証可能ケースの Trap Rate が C で B より明確に低い |
 | H2 | 効果に見えるものは推論量の効果 | C と B に差がない、または token 比で説明できる |
 | H3 | 疑いすぎて正解も壊す | C の Correct Destruction が B より高い |
 
-**A vs C の比較は行わない。B vs C が本比較。**
+**B vs C がprimary比較。** Aは通常回答の記述的baselineとして、Accuracy / Trap Rate /
+Evidence Reach を同じ表に残す。
 
 ---
 
@@ -50,10 +51,18 @@
 
 **B と C は同一形式の JSON を返す。** `initial_conclusion` と
 `counterevidence_documents` の定義文は `prompts.py` の共有定数を両者が使う。
-`counterevidence_documents` は、同じ出力内の `initial_conclusion` を弱めた文書に
-意味を固定する。C は C1 の暫定結論を C2 の `initial_conclusion` へそのままコピーし、
-一致しない場合は未発見として分母に残す。これにより、B/C が別の「最初の説明」を
-暗黙に想定したまま同じ名前のフィールドを比較することを防ぐ。
+`counterevidence_documents` は、モデル自身の初期説明ではなく、文書群で最初に
+もっともらしく見える説明を弱める文書を尋ねる。固定ground truthが否定する対象と、
+出力フィールドが否定する対象を一致させるためである。
+
+C は C1 の暫定結論を C2 の `initial_conclusion` へそのままコピーする。
+一致しない場合は `INVALID_ANCHOR` とし、効果判定を出さない。
+Refutation Discovery と Trap Recovery は、ground truthの反証が実際に初期説明を弱める
+`initial=trap` 行だけの工程指標であり、分母を必ず併記する。initial が correct 側なら
+`0` ではなく採点対象外とし、`n=0` は `N/A`（未測定）とする。
+
+全条件の `key_documents` から Evidence Reach も集計する。これはAが決定的文書へ
+到達していたかを含む記述的指標で、primary判定には使わない。
 
 B は1呼び出しなので、本当に反証検討前に考えた説明かを外部から完全には検証できない。
 これは残る限界であり、完全に統制するにはBも二段階化する別実験が必要になる。
@@ -195,18 +204,24 @@ response SHAの不一致を `INCOMPLETE_RESULTS` として拒否する。壊れ�
 
 ---
 
-## 事前登録した判定基準
+## 事前登録v2の判定基準（2026-08-14凍結）
 
 `score.py` の `PRE_REGISTRATION` に固定。**結果を見てから変更した場合、その実験は無効。**
+
+v1のRefutation Discovery Rateは、promptが「モデル自身のinitial」を弱める文書を求める一方、
+採点器が「固定trap」を弱める文書を数えており、同じ構成概念を測っていなかった。
+正解側のinitialではground truth文書がinitialを支持するため、良い回答ほど未発見になる。
+formal rowはまだ0件で、観測済みAB-01 smokeでもB/Cは同じFalseだったため、C−Bの効果量は
+未観測である。この設計監査結果を全開示したうえで、結果生成前に一度だけv2へ改訂した。
 
 反証可能ケースは **14件**（false_coherence 6 + absence 4 + common_cause 4）。
 no_refutation は **6件**。
 
 | 判定 | 条件 |
 |---|---|
-| **KEEP** | C−B ≥ **+0.20** かつ Correct Destruction ≤ 0.25 かつ token比 < 2.0 |
-| **CONDITIONAL KEEP** | C−B ≥ +0.20 だが、破壊率超過 / token比 ≥ 2.0 / **token情報欠損** |
-| **DROP** | C−B < +0.20、または総合正答率で B を下回る |
+| **KEEP** | 反証可能ケースの Trap Rate reduction (B−C) ≥ **+0.20**、Accuracy(C) ≥ Accuracy(B)、Correct Destruction(C) ≤ 0.25、token比 < 2.0 |
+| **CONDITIONAL KEEP** | Trap Rate (B−C) ≥ +0.20 かつAccuracy非劣性を満たすが、破壊率超過 / token比 ≥ 2.0 / **token情報欠損** |
+| **DROP** | Trap Rate (B−C) < +0.20、または総合正答率で C が B を下回る |
 | **INVALID_ANCHOR** | BまたはCで `initial_conclusion` のanchor不一致が1件以上。効果判定を出さない |
 
 - **+0.20** は反証可能14件中およそ **2.8件 ≒ 3件** に相当
@@ -215,16 +230,40 @@ no_refutation は **6件**。
   manual 実行だけで KEEP に到達することは構造的に不可能
 - full の表にも `Initial-anchor mismatch` を表示する。Cの逐語コピー失敗を「反証未発見」と
   混同したまま KEEP/DROP を出さない
+- primaryの分母はB/Cそれぞれ `14 × trials` 行。trialはcase内反復であり、独立Nではない
+- Refutation Discovery / Trap Recovery は `initial=trap` 行だけの工程指標。分母0は0.0ではなく
+  `N/A` と表示し、primary判定には使わない
+- Evidence ReachはA/B/Cすべての `key_documents` を使う記述的指標
 
 **+0.20 未満は検出力不足であり「判定不能」だが、事前登録の規定により DROP として扱う**
 （不確かな部品を残さない）。
 
+### v2凍結前に判明していた観測（全開示）
+
+- AB-01 A: `key_documents=["d2","d3","d6"]`
+- AB-01 B/C: initialはcorrect側、`counterevidence_documents=["d1"]`、旧RDRは両方False
+- retrievalはd2+d3へ到達、JSON 4/4、C anchor完全一致
+- PR #18以前のAB-01 C2: `counterevidence_documents=["d2","d3"]`
+- formal runの行は未生成。BとCが同値だったため効果量の符号も未観測
+
+### runの無効化条件
+
+1. 最初のformal row生成後に `PRE_REGISTRATION` を変更
+2. 20件×全trialの完了前に中間解析または逐次打ち切り
+3. run途中で生成モデル・判定モデル・設定を変更
+4. `anchor_mismatch > 0`
+5. 反証可能行数がB/Cそれぞれ `14 × trials` と不一致
+6. Trap Recoveryの分母0を `0.0` と記録（正しくは `N/A`）
+7. 2026-08-14 smoke応答をformal runへ流用
+8. 6件pilotでKEEP/DROPを判断
+
 ---
 
-## C が負けた場合の工程分離
+## C の工程分離（initial=trap の行のみ）
 
 | 症状 | 失敗工程 |
 |---|---|
+| initialがtrapでない | 回復対象外。失敗0として数えず、分母から外す |
 | 反証文書に到達しない | 検索（falsifier または query が的外れ） |
 | 到達したが counterevidence に挙げない | 認識 |
 | 挙げたが結論を変えない | **更新** |
@@ -243,7 +282,7 @@ no_refutation は **6件**。
 | 4 | **B の強さは主観的**。より強い B を書けば C の優位が消えるかもしれない | 生き残る |
 | 5 | **judge も LLM**。判定自体が偏りうる | 部分的に対処（候補順を case ごとに固定、sha256で再現可能） |
 | 6 | **C の効果はパイプライン全体の効果**。どの部品が効いたかは分離できない | 生き残る。設計上の限界として明記 |
-| 7 | `counterevidence_documents` は自己申告。**反証を理解したが申告しない**場合を取りこぼす | 生き残る。初期説明の意味は `initial_conclusion` に固定したが、Bの思考順は外部検証不能 |
+| 7 | `counterevidence_documents` は自己申告。**反証を理解したが申告しない**場合を取りこぼす | 生き残る。工程指標に限定しprimaryからは除外。Bの思考順は外部検証不能 |
 | 8 | 反証ありケースが14に対し反証なしが6。**「疑う」戦略がやや有利** | 部分的に対処（4→6件へ増）。完全な対称ではない |
 | 9 | **manual応答の実モデル名は外部検証不能**。操作者が途中で切替えても本文だけでは判定できない | 生き残る。`unverifiable_manual` を証跡・採点警告へ明示し、正式KEEPにはAPI追試が必要 |
 

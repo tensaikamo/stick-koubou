@@ -6,8 +6,8 @@ A/B/C 3条件のプロンプト定義。
 - Bは対抗仮説・反証・再検討まで明示要求する強いcontrol。
 - B と C は同一形式のJSONを返す。initial_conclusion と
   counterevidence_documents の定義文は B/C で完全に同一でなければならない。
-- counterevidence_documents は、出力内の initial_conclusion を弱めた文書に
-  意味を固定する（Refutation Discovery の公平性）。
+- counterevidence_documents の対象はモデル自身の initial_conclusion ではなく、
+  文書群で最初にもっともらしく見える説明に固定する。
 """
 
 _DOC_FMT = "[{doc_id}] {title}\n{text}"
@@ -38,7 +38,7 @@ _INITIAL_CONCLUSION_DEF = (
 
 _COUNTEREVIDENCE_DEF = (
     '  "counterevidence_documents": '
-    '["上の initial_conclusion を最も強く弱める文書のID。'
+    '["最初にもっともらしく見える説明を最も強く弱める文書のID。'
     '該当がなければ空配列"],'
 )
 

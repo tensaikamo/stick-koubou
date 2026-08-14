@@ -81,9 +81,12 @@ with tempfile.TemporaryDirectory() as td:
 print("\n=== 5. pilot モードで KEEP/DROP が絶対に出ない ===")
 src = (HERE / "score.py").read_text(encoding="utf-8")
 # 表示関数を実際に呼び、正式判定の行が出ないことを behavior で確認する。
-pilot_agg = {c: {"accuracy": 0.5, "refutation_discovery": 0.5,
+pilot_agg = {c: {"accuracy": 0.5, "trap_rate": 0.5,
+                 "evidence_reach": 0.5, "initial_trap_rate": 0.5,
+                 "refutation_discovery": 0.5, "trap_recovery": 0.5,
                  "correct_destruction": 0.0, "anchor_mismatch": 0.0,
-                 "malformed": 0.0, "refutation_scored_n": 1}
+                 "malformed": 0.0, "trap_rate_scored_n": 1,
+                 "evidence_reach_n": 1, "trap_recovery_n": 1}
              for c in ("A", "B", "C")}
 pilot_recs = [dict(condition="A", type="false_coherence")]
 pilot_stdout = io.StringIO()
@@ -94,6 +97,12 @@ check("print_pilot は正式判定を表示しない（behavior検査）",
       not any(line.startswith("判定:") for line in pilot_lines)
       and not any(line in {"KEEP", "DROP", "CONDITIONAL KEEP"}
                   for line in pilot_lines))
+full_stdout = io.StringIO()
+with contextlib.redirect_stdout(full_stdout):
+    S.print_full(pilot_agg)
+check("full表にAとEvidence Reachが現れる",
+      "A" in full_stdout.getvalue().splitlines()[0]
+      and "Evidence Reach" in full_stdout.getvalue())
 # main が pilot 時に verdict_full を呼ばないこと
 mainseg = src.split("def main()")[1]
 pilot_branch = mainseg.split('if a.mode == "pilot":')[1].split("else:")[0]
@@ -103,31 +112,53 @@ check("pilot の verdict は NOT_APPLICABLE", "NOT_APPLICABLE" in pilot_branch)
 print("\n=== 6. token 欠損が 0 扱いされない ===")
 manual_rec = dict(condition="B", type="false_coherence", verdict="correct",
                   refutation_found=True, unsupported=False, malformed=False,
+                  initial_verdict=None, refutation_interpretable=False,
+                  trap_recovered=None, evidence_reach=True,
                   calls=1, in_tok=None, out_tok=None, trial=0, case_id="X")
 check("total_tokens が None", S.total_tokens(manual_rec) is None)
-agg = S.aggregate([manual_rec, dict(manual_rec, condition="C", calls=2)])
+agg = S.aggregate([manual_rec, dict(manual_rec, condition="C", calls=2),
+                   dict(manual_rec, condition="A")])
 check("avg_tokens が None", agg["B"]["avg_tokens"] is None
       and agg["C"]["avg_tokens"] is None)
-# discovery 差を十分大きくして、token欠損だけで KEEP が出ないことを見る
-aggx = {"B": dict(refutation_discovery=0.20, accuracy=0.5,
+check("AもaggregateされEvidence Reachを保持", agg["A"]["evidence_reach"] == 1.0
+      and agg["A"]["evidence_reach_n"] == 1)
+# Trap Rate reduction を十分大きくして、token欠損だけで KEEP が出ないことを見る
+aggx = {"B": dict(trap_rate=0.50, accuracy=0.5,
                   correct_destruction=0.0, avg_tokens=None, anchor_mismatch=0.0),
-        "C": dict(refutation_discovery=0.80, accuracy=0.9,
+        "C": dict(trap_rate=0.20, accuracy=0.9,
                   correct_destruction=0.0, avg_tokens=None, anchor_mismatch=0.0)}
 v, reason = S.verdict_full(aggx)
 check("token欠損時に KEEP が出ない", v != "KEEP", f"verdict={v}")
 check("COST_COMPARISON_UNAVAILABLE を明示", "COST_COMPARISON_UNAVAILABLE" in reason)
 # token があれば KEEP が出ることも確認（判定ロジックが死んでいないこと）
-aggy = {"B": dict(refutation_discovery=0.20, accuracy=0.5,
+aggy = {"B": dict(trap_rate=0.50, accuracy=0.5,
                   correct_destruction=0.0, avg_tokens=1000, anchor_mismatch=0.0),
-        "C": dict(refutation_discovery=0.80, accuracy=0.9,
+        "C": dict(trap_rate=0.20, accuracy=0.9,
                   correct_destruction=0.0, avg_tokens=1500, anchor_mismatch=0.0)}
 check("token有りかつ条件充足で KEEP", S.verdict_full(aggy)[0] == "KEEP")
+check("primary label と計算が Trap Rate B-C で一致",
+      S.PRE_REGISTRATION["primary"] ==
+      "Trap Rate reduction (B - C) on refutable cases"
+      and abs(S.primary_effect(aggy) - 0.30) < 1e-12)
+check("事前登録v2の無効化条件8件を固定",
+      S.PRE_REGISTRATION["version"] == 2
+      and len(S.PRE_REGISTRATION["invalidation_conditions"]) == 8)
+accuracy_bad = json.loads(json.dumps(aggy)); accuracy_bad["C"]["accuracy"] = 0.4
+check("Trap Rate改善でも Accuracy(C)<Accuracy(B) は DROP",
+      S.verdict_full(accuracy_bad)[0] == "DROP")
+destruction_bad = json.loads(json.dumps(aggy))
+destruction_bad["C"]["correct_destruction"] = 0.26
+check("Correct Destruction閾値超過は CONDITIONAL KEEP",
+      S.verdict_full(destruction_bad)[0] == "CONDITIONAL KEEP")
+tokens_bad = json.loads(json.dumps(aggy)); tokens_bad["C"]["avg_tokens"] = 2000
+check("token比2.0以上は CONDITIONAL KEEP",
+      S.verdict_full(tokens_bad)[0] == "CONDITIONAL KEEP")
 # 閾値未満は DROP
-aggz = {"B": dict(refutation_discovery=0.50, accuracy=0.5,
+aggz = {"B": dict(trap_rate=0.50, accuracy=0.5,
                   correct_destruction=0.0, avg_tokens=1000, anchor_mismatch=0.0),
-        "C": dict(refutation_discovery=0.60, accuracy=0.6,
+        "C": dict(trap_rate=0.40, accuracy=0.6,
                   correct_destruction=0.0, avg_tokens=1200, anchor_mismatch=0.0)}
-check("C-B < 0.20 は DROP", S.verdict_full(aggz)[0] == "DROP")
+check("Trap Rate B-C < 0.20 は DROP", S.verdict_full(aggz)[0] == "DROP")
 anchor_bad = json.loads(json.dumps(aggy)); anchor_bad["C"]["anchor_mismatch"] = 0.01
 check("anchor不一致時は DROP でなく INVALID_ANCHOR",
       S.verdict_full(anchor_bad)[0] == "INVALID_ANCHOR")
@@ -167,8 +198,15 @@ check("C に同一定義文がある", defline in c)
 check("A に定義文がない", defline not in P.build_a(cases[0]))
 check("B/C に同じ initial_conclusion 定義がある",
       initialline in b and initialline in c)
-check("counterevidence は initial_conclusion に意味固定",
-      "上の initial_conclusion" in defline)
+check("counterevidence の対象はモデル自身のinitialではない（退行防止）",
+      "initial_conclusion" not in defline)
+forbidden_counterevidence_terms = (
+    "trap", "ground_truth", "正解", "原材料", "賃金", "定期発注", "残業",
+    "FC-", "AB-", "CC-", "NR-")
+check("counterevidence 定義にtrap・正解・ケース固有語がない",
+      not any(term in defline for term in forbidden_counterevidence_terms), defline)
+check("counterevidence はモデル非依存の旧対象へ復旧",
+      "最初にもっともらしく見える説明" in defline)
 check("C2 は C1暫定結論の逐語コピーを要求",
       "一字一句変更せず" in P.COND_C_STEP2)
 check("C anchor 一致", S.anchor_consistent("最初の説明", "最初の説明", "C", False) is True)
@@ -230,6 +268,8 @@ mk = lambda cond, cited, mal, typ, cid: dict(
     verdict="correct", cited_counterevidence=cited,
     refutation_found=S.refutation_found(cited, gt_fc02 if typ != "no_refutation" else gt_nr01,
                                         cond, mal),
+    initial_verdict="trap", refutation_interpretable=True, trap_recovered=True,
+    evidence_reach=True,
     unsupported=False, confidence=None, calls=1, in_tok=None, out_tok=None)
 rows_t = [mk("B", ["d4"], False, "false_coherence", "x1"),
           mk("B", None,   False, "false_coherence", "x2"),
@@ -242,6 +282,45 @@ check("C の分母が 2 のまま（欠損で縮まない）",
       agg_t["C"]["refutation_scored_n"] == 2, str(agg_t["C"]["refutation_scored_n"]))
 check("B/C の discovery が同値 0.5", agg_t["B"]["refutation_discovery"] == 0.5
       and agg_t["C"]["refutation_discovery"] == 0.5)
+
+# 2026-08-14 smokeの構造: initial=correct / cited=d1。これは回復失敗0ではない。
+smoke_like = dict(
+    case_id="AB-01", type="absence", condition="C", trial=0, malformed=False,
+    verdict="correct", initial_verdict="correct", refutation_interpretable=False,
+    trap_recovered=None, refutation_found=False, cited_counterevidence=["d1"],
+    evidence_reach=True, unsupported=False, confidence="暫定", calls=2,
+    in_tok=None, out_tok=None)
+smoke_agg = S.aggregate([smoke_like])["C"]
+check("initial=correct/cited=d1 をDiscovery失敗0へ黙って算入しない",
+      smoke_agg["refutation_discovery"] is None
+      and smoke_agg["refutation_scored_n"] == 0)
+check("Trap Recovery 0/0 は0.0でなくN/A",
+      smoke_agg["trap_recovery"] is None and smoke_agg["trap_recovery_n"] == 0)
+check("initialがcorrectでもprimary Trap Rateの分母には残る",
+      smoke_agg["trap_rate"] == 0.0 and smoke_agg["trap_rate_scored_n"] == 1)
+
+ab_case = next(c for c in cases if c["id"] == "AB-01")
+smoke_answer = json.dumps({
+    "initial_conclusion": ab_case["ground_truth"]["correct_conclusion"],
+    "conclusion": ab_case["ground_truth"]["correct_conclusion"],
+    "key_documents": ["d2", "d3", "d6"],
+    "counterevidence_documents": ["d1"], "confidence": "暫定"},
+    ensure_ascii=False)
+def smoke_judge(prompt):
+    if "has_unsupported" in prompt:
+        return {"has_unsupported": False}
+    # AB-01 は stable_flip=False なので候補1がcorrect。
+    return {"match": "1"}
+scored_smoke = S.score([
+    {"case_id": "AB-01", "condition": "C", "trial": 0,
+     "raw_answer": smoke_answer,
+     "provisional_answer": ab_case["ground_truth"]["correct_conclusion"],
+     "retrieved_docs": ["d2", "d3"], "falsifier": [], "usage": {"calls": 2}}
+], [ab_case], smoke_judge)[0]
+check("実score経路でもAB-01 smoke構造を回復失敗にしない",
+      scored_smoke["initial_verdict"] == "correct"
+      and scored_smoke["refutation_interpretable"] is False
+      and scored_smoke["trap_recovered"] is None)
 
 print("\n=== 12. ground truth の ANY/ALL 単独成立性（修正2）===")
 gt_fc01 = [c for c in cases if c["id"] == "FC-01"][0]["ground_truth"]
@@ -259,6 +338,21 @@ check("FC-01 は d4 のみ ANY（d6は原材料説を直接否定しない）",
       gt_fc01["refutation_document_ids"] == ["d4"]
       and gt_fc01["refutation_match"] == "ANY",
       f"{gt_fc01['refutation_document_ids']} / {gt_fc01['refutation_match']}")
+
+# why_decisive に基づく意味固定。refs はcorrect側の支持文書ではなくtrap否定文書。
+semantic_fixtures = {
+    "FC-01": (["d4"], "直接否定"),
+    "FC-02": (["d4"], "単独"),
+    "AB-01": (["d2", "d3"], "2文書が揃って初めて反証"),
+    "CC-01": (["d4"], "介入"),
+}
+for case_id, (expected_refs, why_fragment) in semantic_fixtures.items():
+    dataset_case = next(c for c in cases if c["id"] == case_id)
+    spec_case = next(s for s in specs if s["id"] == case_id)
+    check(f"{case_id} 意味fixture: trap否定refs/why_decisive一致",
+          dataset_case["ground_truth"]["refutation_document_ids"] == expected_refs
+          and why_fragment in dataset_case["ground_truth"]["why_decisive"]
+          and why_fragment in spec_case["why_decisive"])
 
 # --- AB-01: ALL 判定 ---
 check("AB-01 d2のみ引用 -> False",
@@ -322,12 +416,15 @@ uneven = [r for r in full_rows if not (r["case_id"] == cases[0]["id"]
 e4, _ = S.validate_results(uneven, cases)
 check("条件間で trial数が揃わないと reject", bool(e4))
 # 分母不足時に verdict が INCOMPLETE_RESULTS
-aggn = {"B": dict(refutation_discovery=0.2, accuracy=0.5, correct_destruction=0.0,
-                  avg_tokens=1000, refutation_scored_n=10, anchor_mismatch=0.0),
-        "C": dict(refutation_discovery=0.9, accuracy=0.9, correct_destruction=0.0,
-                  avg_tokens=1200, refutation_scored_n=14, anchor_mismatch=0.0)}
+aggn = {"B": dict(trap_rate=0.5, accuracy=0.5, correct_destruction=0.0,
+                  avg_tokens=1000, trap_rate_scored_n=10, anchor_mismatch=0.0),
+        "C": dict(trap_rate=0.2, accuracy=0.9, correct_destruction=0.0,
+                  avg_tokens=1200, trap_rate_scored_n=14, anchor_mismatch=0.0)}
 v_, r_ = S.verdict_full(aggn, n_trials=1)
 check("分母不一致で INCOMPLETE_RESULTS", v_ == "INCOMPLETE_RESULTS", v_)
+aggn["B"]["trap_rate_scored_n"] = 14
+check("primary分母14×trialsが揃えば完全性gateを通る",
+      S.verdict_full(aggn, n_trials=1)[0] == "KEEP")
 
 e0, nt0 = S.validate_results([], cases)
 check("結果0件を reject", bool(e0) and nt0 == 0, str(e0))
@@ -419,12 +516,17 @@ with tempfile.TemporaryDirectory() as td:
 
 # ALL ケースの工程診断は、必要文書がすべて揃うまで検索到達にしない
 diag_base = dict(case_id="AB-01", condition="C", refutation_found=False,
-                 verdict="other")
+                 verdict="other", initial_verdict="trap")
 d_one = S.diagnose_c([dict(diag_base, retrieved=["d2"])], cases)[0]
 d_all = S.diagnose_c([dict(diag_base, retrieved=["d2", "d3"])], cases)[0]
 check("AB-01 は d2 のみでは検索未到達",
       d_one["reached"] is False and d_one["stage"].startswith("検索"))
 check("AB-01 は d2+d3 で検索到達", d_all["reached"] is True)
+not_trapped = S.diagnose_c(
+    [dict(diag_base, initial_verdict="correct", retrieved=["d1"])], cases)[0]
+check("initialがcorrectなら回復工程の失敗に数えない",
+      not_trapped["initial_trap"] is False
+      and not_trapped["stage"].startswith("初期trapなし"))
 
 print("\n=== 14. no_refutation 専用 judge（修正4）===")
 nrp = P.build_judge_nr("工期遅延の主因は長雨である", "長雨が原因です")
