@@ -680,9 +680,32 @@ with tempfile.TemporaryDirectory() as td:
           and scored_value.get("verdict") == "NOT_APPLICABLE"
           and scored_value.get("judge_provenance", {}).get("api_used") is False,
           scored_manual.stdout[-240:] + scored_manual.stderr[-120:])
+    completed_judge_manifest = json.loads(
+        judge_manifest_path.read_text(encoding="utf-8"))
+    check("採点成功後だけmanifestをcompleteにして全response SHAを固定",
+          completed_judge_manifest.get("status") == "complete"
+          and bool(completed_judge_manifest.get("completed_at_utc"))
+          and len(completed_judge_manifest.get("responses", []))
+          == completed_judge_manifest.get("unique_prompt_count")
+          and scored_value.get("judge_provenance", {}).get("status") == "complete"
+          and len(scored_value.get("judge_provenance", {}).get(
+              "manifest_sha256", "")) == 64)
+
+    first_response = response_dir_manual / f"{first['request_id']}.txt"
+    original_response = first_response.read_text(encoding="utf-8")
+    first_response.chmod(0o644)
+    first_response.write_text(original_response + " ", encoding="utf-8")
+    tampered_response = subprocess.run(
+        manual_score_cmd, capture_output=True, text=True, env=manual_env)
+    check("採点完了後のjudge応答改ざんを保存済みSHAで拒否",
+          tampered_response.returncode != 0
+          and "完了後のjudge応答SHAが不一致" in tampered_response.stdout)
+    first_response.write_text(original_response, encoding="utf-8")
+    first_response.chmod(0o444)
 
     first_prompt = judge_dir / first["prompt_file"]
     original_prompt = first_prompt.read_text(encoding="utf-8")
+    first_prompt.chmod(0o644)
     first_prompt.write_text(original_prompt + "\ntampered", encoding="utf-8")
     tampered_judge = subprocess.run(
         manual_score_cmd, capture_output=True, text=True, env=manual_env)
@@ -690,6 +713,7 @@ with tempfile.TemporaryDirectory() as td:
           tampered_judge.returncode != 0
           and "prompt SHA-256が不一致" in tampered_judge.stdout)
     first_prompt.write_text(original_prompt, encoding="utf-8")
+    first_prompt.chmod(0o444)
 
     def refresh_test_bundle(root):
         """改変検知より先のエラー経路を試すため、テスト用bundleだけ再署名する。"""
