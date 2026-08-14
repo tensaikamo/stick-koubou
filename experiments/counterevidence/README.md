@@ -151,7 +151,9 @@ judge promptを `manual_judge/prompts/` へ書き出し、`score` は同番号�
 `manual_judge/responses/` に保存されたJSONだけを取り込む。raw・dataset・specs・実コード・
 各prompt・各responseをSHA-256で束縛し、欠損、形式不正、prompt改変、コード変更は
 `INCOMPLETE_JUDGMENTS` としてfail-closedにする。同一promptは1件にまとめるが、採点時の
-論理call数はmanifestに別記する。
+論理call数はmanifestに別記する。全promptが採点経路で消費された後だけmanifestを
+`complete` にし、全response SHAを固定してprompt・response・manifestをread-onlyにする。
+完了後に応答本文が変わった場合は再採点を拒否する。
 
 各promptは別の新規チャットへ貼り、全件で同じprovider/modelを使う。途中で利用上限に
 達したら、回復後に同じモデルで続ける。別モデルへ切り替えた応答を同じpacketへ混ぜない。
