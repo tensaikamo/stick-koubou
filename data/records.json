@@ -1687,5 +1687,83 @@
     "body_fetched": true,
     "model": "gemini-3.7-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-08-15-r01",
+    "created_at": "2026-08-15T06:51:06.717826+09:00",
+    "headline": "GoogleがGenAI Python SDK v2.18.1を公開し次期メジャーでの自動関数呼び出し仕様変更を予告",
+    "what_happened": "Googleは「google-genai」Python SDKのバージョン2.18.1をリリースした。リリースノート内で今後のメジャーバージョンにおけるAutomatic Function Calling（AFC）の仕様変更を予告し、Models.generate_contentからの直接呼び出しを廃止してChatsモジュール経由に限定する移行計画を明記した。",
+    "background": "Google Gen AI SDKはGemini Developer APIおよびVertex AIを統合する公式クライアントであり、エージェント開発機能の再編が進められている。",
+    "changed": "Modelsモジュール経由での自動関数呼び出しが将来的に廃止予定となり、開発者に対してChatsモジュールへのコード移行準備が促された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/2.18.1/",
+      "title": "google-genai Python SDK v2.18.1 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-07-r06",
+      "2026-07-24-r05",
+      "2026-07-22-r03"
+    ]
+  },
+  {
+    "id": "2026-08-15-r02",
+    "created_at": "2026-08-15T06:51:06.717826+09:00",
+    "headline": "Anthropicが財務計画・データ統合を担うFinance Systems Engineerの求人を開始",
+    "what_happened": "Anthropicはサンフランシスコ本社において、FP&Aおよび財務システム基盤を担当するFinance Systems Engineerの募集を開始した。AnaplanやPigmentなどのEPMツール、BigQueryとERP・データウェアハウスの統合パイプライン構築およびClaudeを用いた財務予測の自動化を担う。",
+    "background": "急速な事業拡大に伴い、AIスタートアップでは精緻な財務モデリングとエンタープライズERP統合の需要が急増している。",
+    "changed": "Anthropic内部の財務・予測インフラのエンジニアリング体制が強化される。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390728008",
+      "title": "[新規求人] anthropic: Finance Systems Engineer, Finance and Strategy (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-14-r03",
+      "2026-08-14-r02",
+      "2026-08-14-r01",
+      "2026-08-13-r03",
+      "2026-08-13-r02",
+      "2026-08-12-r02"
+    ]
+  },
+  {
+    "id": "2026-08-15-r03",
+    "created_at": "2026-08-15T06:51:06.717826+09:00",
+    "headline": "Anthropicが特定業界向けエンタープライズ営業の統括ポジションを募集",
+    "what_happened": "Anthropicはサンフランシスコおよびニューヨーク拠点向けに「Strategic Account Executive, Industries」の新規採用を開始した。主要な産業バーティカル向けに特化した戦略的アカウント開拓とエンタープライズ向けClaude導入の推進を担当する。",
+    "background": "汎用API販売から産業別ソリューション（金融・法務・ヘルスケア等）への展開を加速させる動きの一環。",
+    "changed": "業界特化型の直販・エンタープライズ営業体制の拡充に着手した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5379806008",
+      "title": "[新規求人] anthropic: Strategic Account Executive, Industries (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-14-r03",
+      "2026-08-14-r02",
+      "2026-08-14-r01",
+      "2026-08-13-r03",
+      "2026-08-13-r02",
+      "2026-08-12-r02"
+    ]
   }
 ]

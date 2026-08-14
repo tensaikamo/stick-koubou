@@ -527,7 +527,7 @@
     "claim": "Hugging Faceは18日以内に、外部AIモデルによる自動評価アクセスに関するネットワーク接続制限とアクセス制御方針を公式セキュリティドキュメントに追加する。",
     "subject": "Hugging Face",
     "resolution": {
-      "source": "Hugging Face Blog / Security Documentation",
+      "source": "https://huggingface.co/blog",
       "check_query": "Hugging Face model evaluation security",
       "decider": "Hugging Face公式ブログまたはセキュリティポリシーページにおいて、モデル/Agent評価タスク用のネットワークアクセス制限や隔離基準が改定・掲載されること"
     },
@@ -548,11 +548,15 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "Hugging Face公式ブログには該当する発表が確認できないが、的中条件に含まれる公式セキュリティポリシーページやセキュリティドキュメントの改定状況が確認できないため判定不能。",
+      "url": "https://huggingface.co/blog"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": true
   },
   {
     "id": "2026-07-29-h01",
@@ -843,7 +847,7 @@
     "claim": "Artificial Analysisの公式LLMリーダーボードにDeepSeek V4 Flash 0731が独立したモデルとして正式掲載される。",
     "subject": "Artificial Analysis",
     "resolution": {
-      "source": "Artificial Analysis Official Leaderboard",
+      "source": "https://artificialanalysis.ai/leaderboards/models",
       "check_query": "DeepSeek V4 Flash",
       "decider": "Artificial AnalysisのWebサイト上のLLM Leaderboardに「DeepSeek V4 Flash 0731」のモデル名とスコアが一覧表に追加されること。"
     },
@@ -852,10 +856,13 @@
     "counter": "テストデータの不備や追加検証の必要性により、リーダーボードへの一般公開更新が延期される可能性がある。",
     "indicators": [],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-15T06:51:47.671786+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "Artificial AnalysisのLLMリーダーボード掲載内容を確認したところ、期限の2026年8月15日時点で「DeepSeek V4 Flash 0731」の掲載は確認できないため。",
+      "url": "https://artificialanalysis.ai/leaderboards/models"
+    },
     "rejected": [
       {
         "draft": {
@@ -889,7 +896,8 @@
     ],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-08-01-h02",
@@ -1218,7 +1226,7 @@
     "claim": "Anthropicは10日以内に、Anthropic APIの公式価格ドキュメントにおいて「Claude Opus 5」の入力・出力トークン単価を正式掲載する。",
     "subject": "Anthropic",
     "resolution": {
-      "source": "Anthropic API Official Pricing Page",
+      "source": "https://www.anthropic.com/pricing",
       "check_query": "Claude Opus 5 pricing",
       "decider": "Anthropicの公式API価格ページ（docs.anthropic.comまたはanthropic.com/pricing）において「Claude Opus 5」の名称とトークン単位の利用料金が記載されること。"
     },
@@ -1240,14 +1248,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-15T06:51:47.671786+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "公式価格ページ（https://www.anthropic.com/pricing）を確認したところ、「Claude Opus 5」の名称およびトークン単価の記載は確認できなかったため。",
+      "url": "https://www.anthropic.com/pricing"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-08-05-h02",
@@ -1500,6 +1512,46 @@
       },
       {
         "sign": "Anthropicの公式Xアカウント（@AnthropicAI）が教育・認定ポータルのティザーを投稿する",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.7-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-08-15-h01",
+    "created_at": "2026-08-15T06:51:06.717826+09:00",
+    "based_on": [
+      "2026-08-15-r01"
+    ],
+    "prose": "GoogleはGenAI SDK v2.18.1で自動関数呼び出し（AFC）の破壊的変更を予告した。しかしメジャーバージョンアップ（v3.0.0）を14日以内に即座に投入することはなく、2週間以内はv2系のマイナー修正にとどまる。非推奨の事前周知期間を置かずに破壊的変更を適用すれば既存コードベースの破損を招くためである。",
+    "claim": "Googleは14日以内に、PyPIにおけるgoogle-genaiのメジャーバージョン（v3.0.0以上）を公開せず、最新版をv2系に維持する。",
+    "subject": "Google",
+    "resolution": {
+      "source": "https://pypi.org/project/google-genai/#history",
+      "check_query": "google-genai 2.",
+      "decider": "判定期限時点のPyPI上のgoogle-genai最新リリースバージョンが3.0.0未満（2.x.x）であること。"
+    },
+    "deadline": "2026-08-29",
+    "confidence": 0.89,
+    "base_rate": 0.88,
+    "base_rate_class": "大手クラウド企業が公式SDKで非推奨警告を出してから14日以内にメジャーバージョン（破壊的変更）を本番リリースしない頻度",
+    "confidence_why": "v2.18.1で移行ガイドへの案内を開始したばかりであり、開発者移行期間を考慮すると14日以内のv3.0.0昇格は見送られる蓋然性が高いため基準率からわずかに上方修正した。",
+    "counter": "Geminiの新規モデル発表やAPI側の仕様更新に合わせてSDKの大型刷新を前倒しで強行リリースした場合は外れる。",
+    "indicators": [
+      {
+        "sign": "PyPIにgoogle-genaiのv2.19.0などv2系のマイナー/パッチ更新が追加される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "PyPIにgoogle-genai 3.0.0a1などのプレリリース版や正式版が登録される",
         "dir": "kill"
       }
     ],
