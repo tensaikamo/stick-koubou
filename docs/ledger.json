@@ -1,21 +1,21 @@
 {
-  "updated_at": "2026-08-15 06:55",
+  "updated_at": "2026-08-16 06:51",
   "score": {
     "hit": 0,
-    "miss": 18,
-    "total": 18,
+    "miss": 19,
+    "total": 19,
     "rate": 0.0,
-    "pending": 19,
-    "brier": 0.595188888888889,
-    "brier_n": 18,
-    "brier_initial": 0.595188888888889,
+    "pending": 18,
+    "brier": 0.5934684210526316,
+    "brier_n": 19,
+    "brier_initial": 0.5934684210526316,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-08-15",
+    "date": "2026-08-16",
     "days": 0
   },
   "decided": [
@@ -59,6 +59,20 @@
       "alert": false,
       "counter": "限定的な招待制プライベートプレビューとして運用され、一般公開価格の表示が延期される可能性がある。",
       "evidence": "2026年8月10日時点のGoogle AI Studio公式価格ページにおいて「Gemini 3.5 Flash Cyber」の掲載が確認できないため。",
+      "signals": []
+    },
+    {
+      "id": "2026-08-02-h02",
+      "claim": "Bitcoinの取引価格が100,000米ドルを上回る",
+      "subject": "Bitcoin",
+      "deadline": "2026-08-16",
+      "confidence": 0.75,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "主要国の金融規制強化やマクロ経済指標の悪化に伴い、リスクオフの売り圧力が強まるリスクが存在する。",
+      "evidence": "CoinMarketCapのページにおいて、Bitcoinの現在価格は約63,089ドルであり、作成日から期限までの期間に100,000米ドル以上に達した記録は確認できない。",
       "signals": []
     },
     {
@@ -172,20 +186,6 @@
       "counter": "Hugging Faceが個別API更新ではなくネットワークIPブロック等の既存インフラ層での対応のみで済ませた場合、新API仕様は発表されない。",
       "evidence": "Hugging Face公式ブログの掲載記事を確認したところ、指定期間内にAgent向け専用APIトークンや新たなアクセス制限・専用認証機能に関する発表記事は掲載されていない。",
       "signals": []
-    },
-    {
-      "id": "2026-07-27-h01",
-      "claim": "Anthropicは14日以内に、公式APIドキュメントにおいてClaude Opus 5のBatch API対応および50%以上の価格割引仕様を追加表記する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-10",
-      "confidence": 0.75,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "Opus 5の推論サーバーインフラ容量が不足しており、バッチ処理を受け付ける余裕がない場合は提供時期が見送られる。",
-      "evidence": "指定された公式ドキュメントページを確認したところ、Claude Opus 5のMessage Batches API対応および50%以上の割引に関する記載が存在しないため。",
-      "signals": []
     }
   ],
   "pending": [
@@ -284,21 +284,7 @@
       "status": "pending",
       "alert": false,
       "counter": "主要顧客による設備投資時期の先送りや先端パッケージング工程での歩留まり低下が出荷量に影響を及ぼす可能性がある。",
-      "evidence": "",
-      "signals": []
-    },
-    {
-      "id": "2026-08-02-h02",
-      "claim": "Bitcoinの取引価格が100,000米ドルを上回る",
-      "subject": "Bitcoin",
-      "deadline": "2026-08-16",
-      "confidence": 0.75,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "主要国の金融規制強化やマクロ経済指標の悪化に伴い、リスクオフの売り圧力が強まるリスクが存在する。",
-      "evidence": "",
+      "evidence": "公開情報から四半期決算報告書およびデータセンター部門売上高に関する証拠が取得できないため判定できません。",
       "signals": []
     },
     {
@@ -356,22 +342,26 @@
       "counter": "和解金支払いの最終手続きの完了まで法務上の理由から規約改定を延期する可能性がある。",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-08-06-h01",
+      "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社設計ハードウェアまたは独自カスタムチップに関する公式発表を行わない。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-20",
+      "confidence": 0.91,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "求人公開にあわせてクラウドパートナー（AWS等）との提携による共同設計チップの概念発表が電撃的に行われる可能性がある。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-08-14",
-          "headline": "Anthropicがライフサイエンス専門の専任法務担当者の求人募集を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5286008008"
-        },
-        {
-          "date": "2026-08-14",
-          "headline": "Anthropicが教育および認証基盤を担うスタッフエンジニアの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5389305008"
-        },
         {
           "date": "2026-08-15",
           "headline": "Anthropicが特定業界向けエンタープライズ営業の統括ポジションを募集",
@@ -381,17 +371,22 @@
           "date": "2026-08-15",
           "headline": "Anthropicが財務計画・データ統合を担うFinance Systems Engineerの求人を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390728008"
+        },
+        {
+          "date": "2026-08-16",
+          "headline": "Anthropicが商用レール構築を担うプラットフォームエコシステム組織の創設エンジニアを募集",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5392335008"
+        },
+        {
+          "date": "2026-08-16",
+          "headline": "Anthropicが特定業界向け顧客マーケティング担当マネージャーの採用を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390155008"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-08-08",
-          "headline": "OpenAIがサイバーセキュリティ能力に関する見解を発表",
-          "url": "https://openai.com/index/responding-next-frontier-critical-cyber-capabilities"
-        },
         {
           "date": "2026-08-08",
           "headline": "OpenAIが税務顧問組織での導入事例を公開",
@@ -406,6 +401,11 @@
           "date": "2026-08-13",
           "headline": "OpenAIがPython SDK v3.0.0をPyPIに公開",
           "url": "https://pypi.org/project/openai/3.0.0/"
+        },
+        {
+          "date": "2026-08-16",
+          "headline": "OpenAIがPython SDK v3.1.0を公開、Responses APIのサポートを継続強化",
+          "url": "https://pypi.org/project/openai/3.1.0/"
         }
       ]
     },
@@ -487,6 +487,27 @@
   ],
   "records": [
     {
+      "id": "2026-08-16-r03",
+      "date": "2026-08-16",
+      "headline": "OpenAIがPython SDK v3.1.0を公開、Responses APIのサポートを継続強化",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.1.0/"
+    },
+    {
+      "id": "2026-08-16-r02",
+      "date": "2026-08-16",
+      "headline": "Anthropicが商用レール構築を担うプラットフォームエコシステム組織の創設エンジニアを募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5392335008"
+    },
+    {
+      "id": "2026-08-16-r01",
+      "date": "2026-08-16",
+      "headline": "Anthropicが特定業界向け顧客マーケティング担当マネージャーの採用を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390155008"
+    },
+    {
       "id": "2026-08-15-r03",
       "date": "2026-08-15",
       "headline": "Anthropicが特定業界向けエンタープライズ営業の統括ポジションを募集",
@@ -548,28 +569,7 @@
       "headline": "Anthropicが幹部保護を担当するセキュリティマネージャーの求人を公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5385626008"
-    },
-    {
-      "id": "2026-08-13-r02",
-      "date": "2026-08-13",
-      "headline": "AnthropicがForward Deployed Engineerの採用募集を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5302966008"
-    },
-    {
-      "id": "2026-08-13-r01",
-      "date": "2026-08-13",
-      "headline": "OpenAIがPython SDK v3.0.0をPyPIに公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.0.0/"
-    },
-    {
-      "id": "2026-08-12-r04",
-      "date": "2026-08-12",
-      "headline": "マルチモーダルモデルの内部特徴量を分離・制御する新手法MMDiffが発表",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2608.09928v1"
     }
   ],
-  "record_count": 53
+  "record_count": 56
 }
