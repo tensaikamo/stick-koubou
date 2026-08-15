@@ -1,0 +1,38 @@
+[results ok] 18 rows / 1 trials per condition
+[provenance warning] manual model identity is operator-declared and unverifiable
+[judge provenance warning] subscription UI model identity is operator-declared and unverifiable
+======================================================================
+PILOT MODE — 記述統計のみ。KEEP/DROP 判定は出しません。
+======================================================================
+                                        A         B         C
+-------------------------------------------------------------
+Accuracy                             1.00      1.00      0.83
+Refutable Accuracy*                  1.00      1.00      1.00
+Trap Rate                            0.00      0.00      0.00
+Decisive Refutation Citation         1.00      1.00      1.00
+Fixed-refutation Retrieval Hit        N/A       N/A      0.75
+Correct Destruction                  0.00      0.00      0.50
+Initial-anchor mismatch               N/A      0.00      0.00
+malformed JSON rate                  0.00      0.00      0.00
+
+反証可能ケースの分母（1条件あたり = 4）:
+  A: Refutable Accuracy n=4, Trap Rate n=4, Citation n=4, Retrieval n=0
+  B: Refutable Accuracy n=4, Trap Rate n=4, Citation n=4, Retrieval n=0
+  C: Refutable Accuracy n=4, Trap Rate n=4, Citation n=4, Retrieval n=4
+  * primary は Refutable Accuracy の C-B。出力依存の分母は使わない。
+
+パイロットの目的:
+  1) プロンプトが機能するか  2) JSONが安定するか
+  3) retrieval が壊れていないか  4) floor/ceiling effect がないか
+
+※ この結果で部品を KEEP / DROP してはならない。
+※ 正式判定は 20件 (6/4/4/6) の --mode full でのみ行う。
+
+[C の記述的検索監査]
+  FC-01    固定反証文書の検索ヒット=False 最終正答=True
+  FC-02    固定反証文書の検索ヒット=True  最終正答=True
+  AB-01    固定反証文書の検索ヒット=True  最終正答=True
+  CC-01    固定反証文書の検索ヒット=True  最終正答=True
+
+verdict: NOT_APPLICABLE
+reason: pilot モードでは正式判定を行わない

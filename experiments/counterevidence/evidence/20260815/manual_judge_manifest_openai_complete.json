@@ -1,0 +1,459 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "created_at_utc": "2026-08-15T11:44:10.142219Z",
+  "source": {
+    "raw_sha256": "33754ccabd713fd22503842120b6b38bd534ed9a3f0528d8e80f915c1219adcd",
+    "dataset_sha256": "2174bf26fc7f847492617f2c45bd55fba0aa34bbac7f9a2b839902e73228109a",
+    "specs_sha256": "4c4340f0f6b09d8c188aac8123bfec6008e848fdc1e63054688c67702e0dfe3b",
+    "prompts_py_sha256": "b41cd49fb4d566722bde4a7512460618691052e343940e059f429b96680768c9",
+    "run_py_sha256": "e8c44e1000a6e73f71c96ff7d328815e5a7157ca5f25ee62a3589c8157a5e188",
+    "score_py_sha256": "03fad7b51d4ebdab2bfd48f66aa550866ec55b240f73def738b6c49f48ea76cc"
+  },
+  "judge": {
+    "route": "subscription_ui",
+    "api_used": false,
+    "provider": "openai",
+    "model": "gpt-5.6-sol",
+    "model_verification": "unverifiable_manual"
+  },
+  "call_count": 36,
+  "unique_prompt_count": 36,
+  "prompts": [
+    {
+      "request_id": "J001",
+      "kind": "match",
+      "prompt_file": "prompts/J001.txt",
+      "prompt_sha256": "0d815a7d2d7dcbd67e60f351a6e46c90a41363a0f5fedbe77f1da6d076d81538",
+      "response_file": "responses/J001.txt"
+    },
+    {
+      "request_id": "J002",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J002.txt",
+      "prompt_sha256": "386e1cbf5ca5390c94b46ddcb83824dce96a85875ca349cbefa2f1612cf6b7f9",
+      "response_file": "responses/J002.txt"
+    },
+    {
+      "request_id": "J003",
+      "kind": "match",
+      "prompt_file": "prompts/J003.txt",
+      "prompt_sha256": "f317fbda0f8e094400e8c13d51380c03b2bff9d5dcbc127c615ced07ddea7e45",
+      "response_file": "responses/J003.txt"
+    },
+    {
+      "request_id": "J004",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J004.txt",
+      "prompt_sha256": "c9fb3aa36b7c0d79909d0ae16e3b4c17e743d393b2b75466375fa465faa4bcad",
+      "response_file": "responses/J004.txt"
+    },
+    {
+      "request_id": "J005",
+      "kind": "match",
+      "prompt_file": "prompts/J005.txt",
+      "prompt_sha256": "66aac6d00243eefd314930ac7892913e7cc956c8bd40b57eb0c431c9d0789c79",
+      "response_file": "responses/J005.txt"
+    },
+    {
+      "request_id": "J006",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J006.txt",
+      "prompt_sha256": "2928ae07a972643785457e45d40e6cd0115c3bd04fb7ffd61da0ea7dfa126294",
+      "response_file": "responses/J006.txt"
+    },
+    {
+      "request_id": "J007",
+      "kind": "match",
+      "prompt_file": "prompts/J007.txt",
+      "prompt_sha256": "d916f9273b72af2f5b1a24c56ce5d65c14e7a7bdb50a9c2290c5f0c8832fa913",
+      "response_file": "responses/J007.txt"
+    },
+    {
+      "request_id": "J008",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J008.txt",
+      "prompt_sha256": "c6d40c9222c52d25ab2186abda21084bfa94bab4b004d7cbd8a78e09828a32a1",
+      "response_file": "responses/J008.txt"
+    },
+    {
+      "request_id": "J009",
+      "kind": "match",
+      "prompt_file": "prompts/J009.txt",
+      "prompt_sha256": "23d2731baf44cca5ff298136d822dd0e86cdb58ae46acad63519b90b4acd72bd",
+      "response_file": "responses/J009.txt"
+    },
+    {
+      "request_id": "J010",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J010.txt",
+      "prompt_sha256": "2f37a2f4b833f815ec153f423b5f98fb0b88d1480376dc5fc1cf55d7fa94bd58",
+      "response_file": "responses/J010.txt"
+    },
+    {
+      "request_id": "J011",
+      "kind": "match",
+      "prompt_file": "prompts/J011.txt",
+      "prompt_sha256": "bcadcaed9e1d578c1f8091917f62f1ae420a2b9ccce9a839c3f990cd2bccb022",
+      "response_file": "responses/J011.txt"
+    },
+    {
+      "request_id": "J012",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J012.txt",
+      "prompt_sha256": "2ff654d490cc9a115c2e968e1a247f6bfa43594ab91509176f4ef8b891ada664",
+      "response_file": "responses/J012.txt"
+    },
+    {
+      "request_id": "J013",
+      "kind": "match",
+      "prompt_file": "prompts/J013.txt",
+      "prompt_sha256": "c9c15c6a35a5322436e822bbf2c7c969e49e184b9390ec49d408e2ef7d15c935",
+      "response_file": "responses/J013.txt"
+    },
+    {
+      "request_id": "J014",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J014.txt",
+      "prompt_sha256": "039647a8b6b584ba5c67619be494b475c29f3ada736bfda57dd95bba3360be99",
+      "response_file": "responses/J014.txt"
+    },
+    {
+      "request_id": "J015",
+      "kind": "match",
+      "prompt_file": "prompts/J015.txt",
+      "prompt_sha256": "80402090998ad9c4236bf80f65cbd11cd96e89ce2262961151a9fa650dde18dd",
+      "response_file": "responses/J015.txt"
+    },
+    {
+      "request_id": "J016",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J016.txt",
+      "prompt_sha256": "d671a83a9738ca76831af189c7e5cde1f003f3dbe650479062c7dbb2adf3ba9e",
+      "response_file": "responses/J016.txt"
+    },
+    {
+      "request_id": "J017",
+      "kind": "match",
+      "prompt_file": "prompts/J017.txt",
+      "prompt_sha256": "dd61175d10cfe53feba328f935cdbf347a3e6c3236a0e2199d012c30a0f9a5bd",
+      "response_file": "responses/J017.txt"
+    },
+    {
+      "request_id": "J018",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J018.txt",
+      "prompt_sha256": "ae88bcae53e0e552c83ce99e4c8cfc6d494bf14b252b394abc71c8841e35b15d",
+      "response_file": "responses/J018.txt"
+    },
+    {
+      "request_id": "J019",
+      "kind": "match",
+      "prompt_file": "prompts/J019.txt",
+      "prompt_sha256": "95eb743f5eeff7052d7b1193d0472a8a43d01659822822dde1165e998e3fc846",
+      "response_file": "responses/J019.txt"
+    },
+    {
+      "request_id": "J020",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J020.txt",
+      "prompt_sha256": "e762d4eed400e1a8a38d50eb1910d9bf3a998dfd804de7e90d581e29823bfcdf",
+      "response_file": "responses/J020.txt"
+    },
+    {
+      "request_id": "J021",
+      "kind": "match",
+      "prompt_file": "prompts/J021.txt",
+      "prompt_sha256": "3692c5fea761d813784bed5e692a831e4b158b5e36f480a41db5da5f7cbba7cc",
+      "response_file": "responses/J021.txt"
+    },
+    {
+      "request_id": "J022",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J022.txt",
+      "prompt_sha256": "3948e4b85aed5c7fa6c01fc5bd3529246095f7b765fb3f27935f998b48cd6295",
+      "response_file": "responses/J022.txt"
+    },
+    {
+      "request_id": "J023",
+      "kind": "match",
+      "prompt_file": "prompts/J023.txt",
+      "prompt_sha256": "e059088c795e0e4625d8db5e6338bbd8f5651e742c2a8366b8a625da796e4f09",
+      "response_file": "responses/J023.txt"
+    },
+    {
+      "request_id": "J024",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J024.txt",
+      "prompt_sha256": "e6aa9f602cb3dea2ab0cc996e4a534166523c6da9544fc84147f1b4084bf75af",
+      "response_file": "responses/J024.txt"
+    },
+    {
+      "request_id": "J025",
+      "kind": "reference",
+      "prompt_file": "prompts/J025.txt",
+      "prompt_sha256": "412556230ebb7b8b00d231928a8d31359ff0ddfdadc5d4bb8ad7eff5237c05fe",
+      "response_file": "responses/J025.txt"
+    },
+    {
+      "request_id": "J026",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J026.txt",
+      "prompt_sha256": "ae882c07f5e7576afbf9facb0c0321f2d63fac25ff5c470d60b199cb6b6e1eb1",
+      "response_file": "responses/J026.txt"
+    },
+    {
+      "request_id": "J027",
+      "kind": "reference",
+      "prompt_file": "prompts/J027.txt",
+      "prompt_sha256": "92393e22f432e2b9dde80896d7d7fc78125f85e43fa85309e77564b055e5cd16",
+      "response_file": "responses/J027.txt"
+    },
+    {
+      "request_id": "J028",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J028.txt",
+      "prompt_sha256": "8fa30d7b4dac3786611f1d83624ac84526e1f40b6857f156006810c48bdbf6d7",
+      "response_file": "responses/J028.txt"
+    },
+    {
+      "request_id": "J029",
+      "kind": "reference",
+      "prompt_file": "prompts/J029.txt",
+      "prompt_sha256": "359123bf689dc680ecdf7f8f76fc02a10a79d4ddbf58aa4033415f80e7c17083",
+      "response_file": "responses/J029.txt"
+    },
+    {
+      "request_id": "J030",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J030.txt",
+      "prompt_sha256": "ca1296d8dcbd1563c2ab66181374d8addc2acfae2e82318b25c45e221b19a2ca",
+      "response_file": "responses/J030.txt"
+    },
+    {
+      "request_id": "J031",
+      "kind": "reference",
+      "prompt_file": "prompts/J031.txt",
+      "prompt_sha256": "67c03e5d29ddec43b9026911d5d8579f2587d2c7237406986014dc9d15a5b33f",
+      "response_file": "responses/J031.txt"
+    },
+    {
+      "request_id": "J032",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J032.txt",
+      "prompt_sha256": "6734b9112de051107678b142df87e6a47dd399190347b3b9cd3739f5379c580e",
+      "response_file": "responses/J032.txt"
+    },
+    {
+      "request_id": "J033",
+      "kind": "reference",
+      "prompt_file": "prompts/J033.txt",
+      "prompt_sha256": "d21a5c762b3660a7f7abfeca0dbb286da1ce7f94e89d97f5d9c02a0c5d046a7a",
+      "response_file": "responses/J033.txt"
+    },
+    {
+      "request_id": "J034",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J034.txt",
+      "prompt_sha256": "9dd243ff3d9b7ddecfd72b8a5e2f2794a433a732a8b264bf88eb28d958d97bae",
+      "response_file": "responses/J034.txt"
+    },
+    {
+      "request_id": "J035",
+      "kind": "reference",
+      "prompt_file": "prompts/J035.txt",
+      "prompt_sha256": "ed8ab1e3db4d925c3da159af4869f6d5926cceef829541eba6cd26ffd5126ec1",
+      "response_file": "responses/J035.txt"
+    },
+    {
+      "request_id": "J036",
+      "kind": "unsupported",
+      "prompt_file": "prompts/J036.txt",
+      "prompt_sha256": "98efc56cd296f04d0254093a46f8f76d26a54b75125c57a616d17bc12441ed9a",
+      "response_file": "responses/J036.txt"
+    }
+  ],
+  "completed_at_utc": "2026-08-15T11:56:26.851606Z",
+  "responses": [
+    {
+      "request_id": "J001",
+      "response_sha256": "22735f8d8e382e3ca8f27607af3e4da0bc32487f910a5796a5b3676d46d219bf",
+      "observed_at_utc": "2026-08-15T11:56:26.846296Z"
+    },
+    {
+      "request_id": "J002",
+      "response_sha256": "dd978577861d70ce3f2ccdad6509795c7f9eb51a77d277673dfb6cfc06e45a3a",
+      "observed_at_utc": "2026-08-15T11:56:26.846516Z"
+    },
+    {
+      "request_id": "J003",
+      "response_sha256": "22735f8d8e382e3ca8f27607af3e4da0bc32487f910a5796a5b3676d46d219bf",
+      "observed_at_utc": "2026-08-15T11:56:26.846638Z"
+    },
+    {
+      "request_id": "J004",
+      "response_sha256": "f592f25369b08c8923d9e463ad37bb65a65724d8543a6c6d0f8d10227daf50cb",
+      "observed_at_utc": "2026-08-15T11:56:26.846713Z"
+    },
+    {
+      "request_id": "J005",
+      "response_sha256": "1eb16fb5b68e9b94e97f2aaa449ec446cbbba053d6cc6fca1f6c37e1f8296e9d",
+      "observed_at_utc": "2026-08-15T11:56:26.846845Z"
+    },
+    {
+      "request_id": "J006",
+      "response_sha256": "5763ac78cda9e332d0669ebf8bab9d77416d83d66e6d643437b8d0f8c7bc2639",
+      "observed_at_utc": "2026-08-15T11:56:26.846993Z"
+    },
+    {
+      "request_id": "J007",
+      "response_sha256": "c1cfde20aae17d84b1cb56f9c250189074f114dd3e086ae6165c280cee2b44a8",
+      "observed_at_utc": "2026-08-15T11:56:26.847103Z"
+    },
+    {
+      "request_id": "J008",
+      "response_sha256": "f9bbaf1c51e09d8c0fc86c13810793e7746f8be36e46f60ffe10670c50c7ccd3",
+      "observed_at_utc": "2026-08-15T11:56:26.847228Z"
+    },
+    {
+      "request_id": "J009",
+      "response_sha256": "f6f681b3159a5a296db0c6b75ddde3221a6b74bf0119c92ba0388f8c3f80ea44",
+      "observed_at_utc": "2026-08-15T11:56:26.847347Z"
+    },
+    {
+      "request_id": "J010",
+      "response_sha256": "455f8df701f8795aee78ad988b2d486ef59261e74b4fbfa6ddaaaa00f5d6b1e0",
+      "observed_at_utc": "2026-08-15T11:56:26.847428Z"
+    },
+    {
+      "request_id": "J011",
+      "response_sha256": "131413e590f110dd3f0c7738c7ef277f0fcacdf9ee42c8fbde69c5cdcf5839a5",
+      "observed_at_utc": "2026-08-15T11:56:26.847524Z"
+    },
+    {
+      "request_id": "J012",
+      "response_sha256": "93d2e8374b1ec187cc9dd25c335241e01924aef660574c335cee87d23b0facd2",
+      "observed_at_utc": "2026-08-15T11:56:26.847643Z"
+    },
+    {
+      "request_id": "J013",
+      "response_sha256": "029f48477756b374f98a0f9ba2698015aaaa5b594aee1c2f81d6564df03c3680",
+      "observed_at_utc": "2026-08-15T11:56:26.847823Z"
+    },
+    {
+      "request_id": "J014",
+      "response_sha256": "183a60761acb45d484ff70b1f047b582e4b828a0fa9d3f118764e036fe861870",
+      "observed_at_utc": "2026-08-15T11:56:26.847937Z"
+    },
+    {
+      "request_id": "J015",
+      "response_sha256": "852764a76f157db0e4f23a10cc26967bae392f9ffac55049f2242ec3ecc997b8",
+      "observed_at_utc": "2026-08-15T11:56:26.848042Z"
+    },
+    {
+      "request_id": "J016",
+      "response_sha256": "9bb76334e7e905f898fef9c85ea4bf25dff53c071303173ca337d138b263535a",
+      "observed_at_utc": "2026-08-15T11:56:26.848208Z"
+    },
+    {
+      "request_id": "J017",
+      "response_sha256": "317a57ad556163cdba5fc7d2074317c389e7f978cb22361e7a261be7e2367fc5",
+      "observed_at_utc": "2026-08-15T11:56:26.848365Z"
+    },
+    {
+      "request_id": "J018",
+      "response_sha256": "8198baf27197466746807ca4abcd2578e0bca02a003bbf4b55c5d0bd35c0cf1b",
+      "observed_at_utc": "2026-08-15T11:56:26.848511Z"
+    },
+    {
+      "request_id": "J019",
+      "response_sha256": "2de4cec82e1529b1ff895f836e27a16b506e41e40a7491718ee20b69a8bf0701",
+      "observed_at_utc": "2026-08-15T11:56:26.848637Z"
+    },
+    {
+      "request_id": "J020",
+      "response_sha256": "dcac46e467632e2a22c9449af3e2d591af062fcc8320a563cfcc5e8bd9c1f72d",
+      "observed_at_utc": "2026-08-15T11:56:26.848762Z"
+    },
+    {
+      "request_id": "J021",
+      "response_sha256": "750d6e22601bd4fa9c8d95d5f01a795edaee17d50357617d4a5d4317401e5cba",
+      "observed_at_utc": "2026-08-15T11:56:26.848882Z"
+    },
+    {
+      "request_id": "J022",
+      "response_sha256": "80504d82509ca757715b42f5ac8a717debf223282f276f834f41db745461c59a",
+      "observed_at_utc": "2026-08-15T11:56:26.848991Z"
+    },
+    {
+      "request_id": "J023",
+      "response_sha256": "582ae3951f0c2f4a08432cd0af392d5f0617d877f56597e32459be8638568615",
+      "observed_at_utc": "2026-08-15T11:56:26.849099Z"
+    },
+    {
+      "request_id": "J024",
+      "response_sha256": "fe69182ed9777b17ee6080d8d39fed77834ad09656d8727134cbb95cc97c01bf",
+      "observed_at_utc": "2026-08-15T11:56:26.849222Z"
+    },
+    {
+      "request_id": "J025",
+      "response_sha256": "d363ddac63121a76ae1649e6552da953efe9a4b45e26b7f49ec5bb90d7e9f338",
+      "observed_at_utc": "2026-08-15T11:56:26.849326Z"
+    },
+    {
+      "request_id": "J026",
+      "response_sha256": "fab97e224e5fa1f8ddd9d8a716e80ee5cfaec737f8045d58dd2efee01bc42614",
+      "observed_at_utc": "2026-08-15T11:56:26.849412Z"
+    },
+    {
+      "request_id": "J027",
+      "response_sha256": "fb0dc88a852be80a33d12b90d6c6562ea27a5f3edc4709c8489c990b8bda1087",
+      "observed_at_utc": "2026-08-15T11:56:26.849518Z"
+    },
+    {
+      "request_id": "J028",
+      "response_sha256": "477c8d5bc004dc3469b9ae36abc5009a19c2aeccf83cf3020da248f7f76c6e83",
+      "observed_at_utc": "2026-08-15T11:56:26.849581Z"
+    },
+    {
+      "request_id": "J029",
+      "response_sha256": "8be8db4e58617c33a4ba060028fd5afd0e7267aa67e425b1113bc5404282857c",
+      "observed_at_utc": "2026-08-15T11:56:26.849663Z"
+    },
+    {
+      "request_id": "J030",
+      "response_sha256": "238ffd7589f612e1eae6d3436b8cf9127a135e6efadcaf88d4f3b3f23d0bf512",
+      "observed_at_utc": "2026-08-15T11:56:26.849757Z"
+    },
+    {
+      "request_id": "J031",
+      "response_sha256": "b461180c39e4340d89f3a12527170c71387fa03a0541bf37833edb2ca26e05d2",
+      "observed_at_utc": "2026-08-15T11:56:26.849832Z"
+    },
+    {
+      "request_id": "J032",
+      "response_sha256": "9103ac1071602806b7e92cc4982ef1bd273ed23d873ed3d99c3739b436fb0c60",
+      "observed_at_utc": "2026-08-15T11:56:26.849917Z"
+    },
+    {
+      "request_id": "J033",
+      "response_sha256": "3457aa15bf18c3a555e3bc66c341b5058f9762e190a73343fe6e3bdbfaff4bbf",
+      "observed_at_utc": "2026-08-15T11:56:26.850015Z"
+    },
+    {
+      "request_id": "J034",
+      "response_sha256": "22c84d776191ef51e02b2d097cbf46cad83c8aa56933ad10b976659c2bcb70d8",
+      "observed_at_utc": "2026-08-15T11:56:26.850135Z"
+    },
+    {
+      "request_id": "J035",
+      "response_sha256": "11524e602beacd245eed410e207b58e3b8581e8659a403e60353e6a48d579574",
+      "observed_at_utc": "2026-08-15T11:56:26.850235Z"
+    },
+    {
+      "request_id": "J036",
+      "response_sha256": "0619c36b8fff8e180df95dc92d42dbf62e1e0eab66f7de0a3381c0de2932c7f8",
+      "observed_at_utc": "2026-08-15T11:56:26.850435Z"
+    }
+  ]
+}
