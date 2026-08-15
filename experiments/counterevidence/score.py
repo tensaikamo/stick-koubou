@@ -2,8 +2,9 @@
 """
 score.py -- raw.jsonl を採点する。
 
-  --mode pilot : 記述統計のみ。KEEP/CONDITIONAL KEEP/DROP を絶対に出さない。
-  --mode full  : 20件 6/4/4/6 を強制。正式判定はこのモードのみ。
+  --mode pilot       : 旧6件の記述統計のみ。正式判定を絶対に出さない。
+  --mode calibration : 20件の難易度gate。Cの採否には使わない。
+  --mode full        : 未観測20件 6/4/4/6 を強制。正式判定はこのモードのみ。
 
 判定基準は PRE_REGISTRATION に固定。結果を見てから編集した場合、その実験は無効。
 """
@@ -23,21 +24,22 @@ MANUAL_JUDGE_SCHEMA_VERSION = 1
 
 
 # ================================================================
-# 事前登録された判定基準。結果を見てから変更禁止。
+# 事前登録された判定基準。v4以後の結果を見てから変更禁止。
 # 反証可能ケースは 14件（false_coherence 6 + absence 4 + common_cause 4）。
 # +0.20 は 14件中およそ 2.8件 ≒ 3件 に相当する。
 # no_refutation は 6件。破壊率 0.25 は 6件中 1.5件 に相当する。
 # ================================================================
 PRE_REGISTRATION = {
-    "version": 3,
+    "version": 4,
     "frozen_on": "2026-08-15",
     "primary": "Refutable Accuracy gain (C - B)",
     "primary_formula": "refutable_accuracy_C - refutable_accuracy_B",
     "amendment_reason": (
-        "v1のcounterevidence定義とground truthの対象が不一致だった。v2のTrap Rateは、"
-        "trapからother/unclear/malformedへの移行を正答化と同額で評価し、さらに工程指標の"
-        "分母をモデル出力に依存させていた。formal row 0件のまま第三者静的監査を受け、"
-        "結論の正答化を直接測る出力非依存の指標へ修正したため"),
+        "v3 pilotは反証可能4件でA/B/Cがすべて正答する天井効果と、Cがno_refutation"
+        "2件中1件を壊す挙動を観測した。formal rowは0件のまま、観測済み6件をformalから"
+        "除外し、未観測cohortを事前分割する。API課金を必須にせず実運用判断を完結するため、"
+        "manual UIでは実prompt/responseのUTF-8 byte数をtokenの代替ではなく"
+        "subscription workload proxyとして事前登録する。性能・安全閾値はv3から変更しない"),
     "known_observations_before_freeze": {
         "formal_rows": 0,
         "AB-01_smoke": (
@@ -47,6 +49,10 @@ PRE_REGISTRATION = {
         "v2_static_probes": (
             "trapからotherへの移行だけで正答増加0でもKEEP、Cの反証可能14行が"
             "malformedでもKEEPになり得ることを第三者監査がオフライン再現"),
+        "pilot_20260815": (
+            "run 20260815T080049Z-635fb9e1。A/B/CのRefutable Accuracyは全て1.00、"
+            "C Correct Destruction=0.50、C Retrieval Hit=0.75。verdictはNOT_APPLICABLE。"
+            "PR #21で生成・judge証跡をSHA固定し、第三者監査PASS後にmerge済み"),
     },
     "initial_anchor_rule": (
         "B/Cはinitial_conclusionを記録する。CはC1 provisionalとの不一致を記録し、"
@@ -58,11 +64,15 @@ PRE_REGISTRATION = {
         "refutable_accuracy_gain_min": 0.20,      # 14件中 約3件
         "malformed_max": 0.0,
         "correct_destruction_max": 0.25,          # 6件中 1.5件
-        "max_token_ratio": 2.0,
-        "note": "token情報が欠損している場合、KEEP は出せない"
+        "max_workload_ratio": 2.0,
+        "note": (
+            "APIはtotal token、subscription UIは実ファイルのUTF-8 byteを使う。"
+            "manualの合格はSUBSCRIPTION_KEEPであり、特定モデルのAPI再現を主張しない")
     },
     "conditional_keep": {
-        "note": "Refutable Accuracy (C-B) >= +0.20 だが、破壊率超過 / token比>=2.0 / token情報欠損"
+        "note": (
+            "Refutable Accuracy (C-B) >= +0.20 だが、破壊率超過 / workload比>=2.0 / "
+            "workload証跡欠損")
     },
     "drop": {
         "note": "Refutable Accuracy (C-B) < +0.20、Trap Rate悪化、または総合正答率でCがBを下回る"
@@ -73,6 +83,22 @@ PRE_REGISTRATION = {
     "power_caveat": "N=20 は screening。+0.20 未満は検出力不足であり判定不能。"
                     "判定不能は DROP として扱う（不確かな部品を残さない）",
     "pilot_rule": "6件パイロットの結果で KEEP/DROP を判断してはならない",
+    "subscription_claim_scope": (
+        "SUBSCRIPTION_KEEPは、記録されたsubscription UI経路でCを採用する運用判断。"
+        "provider-reported model identity、token同値、学術的なモデル一般化は主張しない"),
+    "cohort_rule": (
+        "60件を回答生成前にcalibration/formal/reserveへ20件ずつ決定的に分割する。"
+        "2026-08-15までの6件pilotはどのsplitにも再利用しない"),
+    "calibration": {
+        "difficulty_uses_condition": "B only",
+        "integrity_uses_conditions": "B and C",
+        "refutable_accuracy_min": 5 / 14,
+        "refutable_accuracy_max": 10 / 14,
+        "correct_destruction_max": 0.25,
+        "note": (
+            "難易度受理はBだけで決め、Cの成績を見てcohortを選ばない。"
+            "拒否時は個別ケースを差し替えずcohort全体を破棄する")
+    },
     "invalidation_conditions": (
         "formal row生成後のPRE_REGISTRATION変更",
         "20件×全trial完了前の中間解析または逐次打ち切り",
@@ -82,6 +108,8 @@ PRE_REGISTRATION = {
         "B/Cいずれかにmalformed JSONが1件以上",
         "2026-08-14 smoke応答のformal流用",
         "pilotでのKEEP/DROP判断",
+        "2026-08-15 pilot 6件のcalibration/formal/reserveへの再利用",
+        "manual full runでUTF-8 workload証跡が欠損または実ファイルと不一致",
     )
 }
 
@@ -159,6 +187,12 @@ def validate_results(rows, cases, expected_context=None):
         expected_calls = 2 if r.get("condition") == "C" else 1
         if type(calls) is not int or calls != expected_calls:
             errors.append(f"{key}: usage.calls は {expected_calls} が必要（現在 {calls!r}）")
+        input_bytes = usage.get("input_utf8_bytes") if isinstance(usage, dict) else None
+        output_bytes = usage.get("output_utf8_bytes") if isinstance(usage, dict) else None
+        if type(input_bytes) is not int or input_bytes <= 0:
+            errors.append(f"{key}: usage.input_utf8_bytes は正整数が必要")
+        if type(output_bytes) is not int or output_bytes <= 0:
+            errors.append(f"{key}: usage.output_utf8_bytes は正整数が必要")
         records = (provenance.get("calls") if provenance.get("backend") == "api"
                    else provenance.get("responses"))
         records_ok = (isinstance(records, list) and bool(records)
@@ -168,11 +202,19 @@ def validate_results(rows, cases, expected_context=None):
             errors.append(f"{key}: call証跡件数 {0 if not isinstance(records,list) else len(records)}"
                           f" != usage.calls {calls}")
         else:
+            response_bytes = []
             for record in records:
                 digest = record.get("response_sha256") or record.get("sha256")
                 if not valid_sha256(digest):
                     errors.append(f"{key}: response SHA-256 不正")
                     break
+                size = (record.get("response_utf8_bytes")
+                        if provenance.get("backend") == "api"
+                        else record.get("utf8_bytes"))
+                if type(size) is not int or size <= 0:
+                    errors.append(f"{key}: response UTF-8 byte証跡が不正")
+                    break
+                response_bytes.append(size)
                 timestamp = (record.get("completed_at_utc") or
                              record.get("collected_at_utc"))
                 if not timestamp:
@@ -191,6 +233,9 @@ def validate_results(rows, cases, expected_context=None):
                 str(r.get("raw_answer", "")).encode("utf-8")).hexdigest()
             if final_digest != actual_digest:
                 errors.append(f"{key}: raw_answer と response SHA-256 が不一致")
+            if (type(output_bytes) is int and response_bytes
+                    and sum(response_bytes) != output_bytes):
+                errors.append(f"{key}: response UTF-8 byte合計がusageと不一致")
         prompts = (provenance.get("calls") if provenance.get("backend") == "api"
                    else provenance.get("prompts"))
         prompts_ok = (isinstance(prompts, list) and bool(prompts)
@@ -199,11 +244,22 @@ def validate_results(rows, cases, expected_context=None):
         if not prompts_ok:
             errors.append(f"{key}: prompt証跡件数が usage.calls と不一致")
         else:
+            prompt_bytes = []
             for record in prompts:
                 digest = record.get("prompt_sha256") or record.get("sha256")
                 if not valid_sha256(digest):
                     errors.append(f"{key}: prompt SHA-256 不正")
                     break
+                size = (record.get("prompt_utf8_bytes")
+                        if provenance.get("backend") == "api"
+                        else record.get("utf8_bytes"))
+                if type(size) is not int or size <= 0:
+                    errors.append(f"{key}: prompt UTF-8 byte証跡が不正")
+                    break
+                prompt_bytes.append(size)
+            if (type(input_bytes) is int and prompt_bytes
+                    and sum(prompt_bytes) != input_bytes):
+                errors.append(f"{key}: prompt UTF-8 byte合計がusageと不一致")
 
     if len(run_contracts) > 1:
         errors.append("複数runまたは異なる実行条件の結果が混在")
@@ -395,6 +451,9 @@ def score(rows, cases, judge_fn):
             calls=u.get("calls"),
             in_tok=u.get("input_tokens"),      # 欠損なら None のまま
             out_tok=u.get("output_tokens"),
+            input_utf8_bytes=u.get("input_utf8_bytes"),
+            output_utf8_bytes=u.get("output_utf8_bytes"),
+            backend=r.get("provenance", {}).get("backend"),
             retrieved=r.get("retrieved_docs"),
             falsifier=r.get("falsifier"),
             provisional=r.get("provisional_answer")))
@@ -412,6 +471,12 @@ def total_tokens(r):
     return r["in_tok"] + r["out_tok"]
 
 
+def total_utf8_bytes(r):
+    if r.get("input_utf8_bytes") is None or r.get("output_utf8_bytes") is None:
+        return None
+    return r["input_utf8_bytes"] + r["output_utf8_bytes"]
+
+
 def aggregate(recs):
     out = {}
     for c in ("A", "B", "C"):
@@ -421,6 +486,8 @@ def aggregate(recs):
         refutable = [r for r in rs if r["type"] != "no_refutation"]
         nr = [r for r in rs if r["type"] == "no_refutation"]
         toks = [total_tokens(r) for r in rs]
+        byte_counts = [total_utf8_bytes(r) for r in rs]
+        backends = {r.get("backend") for r in rs}
         out[c] = dict(
             n=len(rs),
             accuracy=mean(r["verdict"] == "correct" for r in rs),
@@ -442,18 +509,69 @@ def aggregate(recs):
                                  if r.get("anchor_consistent") is not None),
             avg_calls=mean(r["calls"] for r in rs),
             avg_tokens=(None if any(t is None for t in toks) else mean(toks)),
+            avg_utf8_bytes=(None if any(n is None for n in byte_counts)
+                            else mean(byte_counts)),
+            backend=(next(iter(backends)) if len(backends) == 1 else None),
         )
     return out
 
 
 # ---------------------------------------------------------------- verdict
 def primary_effect(agg):
-    """事前登録v3のprimary: 反証可能ケースの正答率差 (C-B)。"""
+    """事前登録v4のprimary: 反証可能ケースの正答率差 (C-B)。"""
     if "B" not in agg or "C" not in agg:
         return None
     b = agg["B"].get("refutable_accuracy")
     c = agg["C"].get("refutable_accuracy")
     return None if b is None or c is None else c - b
+
+
+def workload_ratio(agg):
+    """(metric, C/B ratio) を返す。APIはtoken、manualは監査可能なUTF-8 byte。"""
+    if "B" not in agg or "C" not in agg:
+        return None, None
+    B, C = agg["B"], agg["C"]
+    if B.get("avg_tokens") is not None and C.get("avg_tokens") is not None:
+        base = B["avg_tokens"]
+        return "tokens", (C["avg_tokens"] / base if base else float("inf"))
+    if (B.get("backend") == C.get("backend") == "manual"
+            and B.get("avg_utf8_bytes") is not None
+            and C.get("avg_utf8_bytes") is not None):
+        base = B["avg_utf8_bytes"]
+        return "utf8_bytes", (C["avg_utf8_bytes"] / base if base else float("inf"))
+    return None, None
+
+
+def calibration_verdict(agg, n_trials=None):
+    """cohort難易度だけをBで判定する。Cの採否・効果量には使わない。"""
+    B, C = agg.get("B"), agg.get("C")
+    if not B or not C:
+        return "CALIBRATION_INVALID", "BまたはCの結果がない"
+    if n_trials is not None:
+        expected = PRE_REGISTRATION["refutable_case_count"] * n_trials
+        if B.get("refutable_accuracy_n") != expected:
+            return "CALIBRATION_INVALID", (
+                f"Bの反証可能分母 {B.get('refutable_accuracy_n')} != {expected}")
+    for name, values in (("B", B), ("C", C)):
+        if values.get("malformed") != 0.0 or values.get("anchor_mismatch") != 0.0:
+            return "CALIBRATION_INVALID", (
+                f"{name}にmalformedまたはanchor不一致がある")
+    accuracy = B.get("refutable_accuracy")
+    destruction = B.get("correct_destruction")
+    rule = PRE_REGISTRATION["calibration"]
+    if accuracy is None or destruction is None:
+        return "CALIBRATION_INVALID", "Bの難易度指標を計算できない"
+    if not rule["refutable_accuracy_min"] <= accuracy <= rule["refutable_accuracy_max"]:
+        return "COHORT_REJECT", (
+            f"B Refutable Accuracy={accuracy:.2f} が事前範囲 "
+            f"[{rule['refutable_accuracy_min']:.2f}, {rule['refutable_accuracy_max']:.2f}] 外")
+    if destruction > rule["correct_destruction_max"]:
+        return "COHORT_REJECT", (
+            f"B Correct Destruction={destruction:.2f} が "
+            f"{rule['correct_destruction_max']:.2f} を超過")
+    return "COHORT_ACCEPT", (
+        f"B Refutable Accuracy={accuracy:.2f}、"
+        f"Correct Destruction={destruction:.2f}。難易度gateを充足")
 
 
 def verdict_full(agg, n_trials=None):
@@ -514,20 +632,28 @@ def verdict_full(agg, n_trials=None):
             f"閾値 {k['correct_destruction_max']:.2f} を超過。"
             f"矛盾または期待不成立が検出された場合のみ起動する条件付きで残す")
 
-    if B["avg_tokens"] is None or C["avg_tokens"] is None:
+    metric, ratio = workload_ratio(agg)
+    if metric is None:
         return "CONDITIONAL KEEP", (
-            "COST_COMPARISON_UNAVAILABLE: token情報が欠損しているため、"
+            "COST_COMPARISON_UNAVAILABLE: tokenまたは検証済みUTF-8 byteの"
+            "workload証跡が欠損しているため、"
             "改善が計算量差で説明されないことを確認できない。"
             f"Refutable Accuracyは C-B = +{d_accuracy:.2f} で改善しているが、"
-            "事前登録により KEEP は出せない。"
-            "API backend での追試が必要")
+            "事前登録により採用判定は出せない")
 
-    ratio = C["avg_tokens"] / B["avg_tokens"] if B["avg_tokens"] else float("inf")
-    if ratio >= k["max_token_ratio"]:
+    if ratio >= k["max_workload_ratio"]:
         return "CONDITIONAL KEEP", (
             f"Refutable Accuracy C-B = +{d_accuracy:.2f}、破壊率も許容内。"
-            f"ただし token比 {ratio:.2f}倍。"
-            f"改善が計算量差で説明される可能性を排除できない。同予算比較の追試が必要")
+            f"ただし {metric} workload比 {ratio:.2f}倍。"
+            "改善が計算量差で説明される可能性を排除できないため、"
+            "高重要度時だけ起動する条件付き候補とする")
+
+    if metric == "utf8_bytes":
+        return "SUBSCRIPTION_KEEP", (
+            f"Refutable Accuracy gain C-B = {d_accuracy:+.2f}、"
+            f"Correct Destruction = {destr:.2f}、UTF-8 workload比 {ratio:.2f}倍。"
+            "subscription UI向けの事前登録条件を充足。実モデル名は"
+            "unverifiable_manualのため、特定APIモデルへの一般化は主張しない")
 
     return "KEEP", (f"Refutable Accuracy gain C-B = {d_accuracy:+.2f}、"
                     f"Correct Destruction = {destr:.2f}、token比 {ratio:.2f}倍。"
@@ -590,7 +716,8 @@ def print_full(agg):
             ("unsupported", "Unsupported Claims", 2),
             ("anchor_mismatch", "Initial-anchor mismatch", 2),
             ("malformed", "malformed JSON", 2),
-            ("avg_calls", "Avg Calls", 2), ("avg_tokens", "Avg Tokens", 0)]
+            ("avg_calls", "Avg Calls", 2), ("avg_tokens", "Avg Tokens", 0),
+            ("avg_utf8_bytes", "Avg UTF-8 Bytes", 0)]
     print(f"{'':31}{'A':>10}{'B':>10}{'C':>10}{'Δ':>10}")
     print("-" * 71)
     for k, label, d in keys:
@@ -706,6 +833,7 @@ def _manual_judge_source(raw_path, dataset_path, specs_path):
         "prompts_py_sha256": R.sha256_file(HERE / "prompts.py"),
         "run_py_sha256": R.sha256_file(HERE / "run.py"),
         "score_py_sha256": R.sha256_file(HERE / "score.py"),
+        "cohort_py_sha256": R.sha256_file(HERE / "cohort.py"),
     }
 
 
@@ -896,8 +1024,8 @@ def main():
     ap.add_argument("--run-id")
     ap.add_argument("--dataset", default=str(HERE / "dataset.jsonl"))
     ap.add_argument("--specs", default=str(HERE / "specs.jsonl"))
-    ap.add_argument("--mode", choices=["pilot", "full"], required=True)
-    ap.add_argument("--judge", choices=["api", "manual"], default="api")
+    ap.add_argument("--mode", choices=["pilot", "calibration", "full"], required=True)
+    ap.add_argument("--judge", choices=["api", "manual"], default="manual")
     ap.add_argument("--manual-stage", choices=["export", "score"])
     ap.add_argument("--judge-provider")
     ap.add_argument("--judge-model")
@@ -907,7 +1035,8 @@ def main():
         dataset_path, specs_path = pathlib.Path(a.dataset), pathlib.Path(a.specs)
         cases = load_jsonl(dataset_path)
         specs = load_jsonl(specs_path)
-        errors, _ = validate_dataset(cases, specs, require_full=(a.mode == "full"))
+        errors, _ = validate_dataset(
+            cases, specs, require_full=(a.mode in ("calibration", "full")))
         if errors:
             print("[VALIDATION FAILED] 採点を実行しません。")
             for error in errors:
@@ -996,6 +1125,14 @@ def main():
     if a.mode == "pilot":
         print_pilot(agg, recs)
         v, reason = "NOT_APPLICABLE", "pilot モードでは正式判定を行わない"
+    elif a.mode == "calibration":
+        print_full(agg)
+        v, reason = calibration_verdict(agg, n_trials)
+        print("\n" + "=" * 66)
+        print(f"難易度判定: {v}")
+        print(f"理由: {reason}")
+        print("※ Cの成績はcohort受理にもCの採否にも使用しない。")
+        print("=" * 66)
     else:
         print_full(agg)
         v, reason = verdict_full(agg, n_trials)

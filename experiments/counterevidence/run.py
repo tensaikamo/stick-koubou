@@ -3,7 +3,8 @@
 run.py -- A/B/C 条件を実行し、生の結果と実行証跡を保存する。採点はしない。
 
 manual は run ごとの prompts/ に書き出し、responses/ に貼り付けた応答を読む。
-provider/model は stage 1 で必須。token 数は推測せず記録しない。
+provider/model は stage 1 で必須。token 数は推測せず、代わりに実ファイルから
+監査可能な UTF-8 byte 数を記録する。
 api は Anthropic API を使う（ANTHROPIC_API_KEY が必要）。
 
 各 run は results/runs/<run_id>/ に分離する。stage 2/3 は manifest と
@@ -22,8 +23,8 @@ from collections import Counter
 HERE = pathlib.Path(__file__).parent
 RESULTS = HERE / "results"
 DEFAULT_API_MODEL = "claude-haiku-4-5-20251001"
-SCHEMA_VERSION = "counterevidence.run.v2"
-RAW_SCHEMA_VERSION = "counterevidence.raw.v2"
+SCHEMA_VERSION = "counterevidence.run.v3"
+RAW_SCHEMA_VERSION = "counterevidence.raw.v3"
 ATTESTATION_SCHEMA_VERSION = "counterevidence.attestations.v1"
 MAX_TOKENS = {"A": 1200, "B": 2000, "C1": 1200, "C2": 1200}
 RUN_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
@@ -135,6 +136,10 @@ def sha256_text(text):
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+def utf8_bytes(text):
+    return len(text.encode("utf-8"))
+
+
 def sha256_file(path):
     return hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
 
@@ -143,6 +148,7 @@ def file_record(path):
     path = pathlib.Path(path)
     mtime = dt.datetime.fromtimestamp(path.stat().st_mtime, dt.timezone.utc)
     return {"sha256": sha256_file(path),
+            "utf8_bytes": len(path.read_bytes()),
             "file_mtime_utc": mtime.isoformat().replace("+00:00", "Z"),
             "collected_at_utc": utc_now()}
 
@@ -156,7 +162,7 @@ def source_fingerprints(dataset_path, specs_path):
     paths = {"dataset": pathlib.Path(dataset_path),
              "specs": pathlib.Path(specs_path),
              "prompts.py": HERE / "prompts.py", "run.py": HERE / "run.py",
-             "score.py": HERE / "score.py"}
+             "score.py": HERE / "score.py", "cohort.py": HERE / "cohort.py"}
     return {name: {"path": str(path), "sha256": sha256_file(path)}
             for name, path in paths.items()}
 
@@ -208,6 +214,8 @@ def validate_manifest_context(manifest, dataset_path, specs_path, run_dir):
             errors.append(f"prompt 欠落: {name}")
         elif sha256_file(path) != record.get("sha256"):
             errors.append(f"prompt SHA-256 drift: {name}")
+        elif len(path.read_bytes()) != record.get("utf8_bytes"):
+            errors.append(f"prompt UTF-8 byte drift: {name}")
     return errors
 
 
@@ -243,7 +251,8 @@ def write_prompt(run_dir, manifest, name, prompt):
     path = pathlib.Path(run_dir) / "prompts" / f"{name}.txt"
     path.write_text(prompt, encoding="utf-8")
     manifest["prompts"][name] = {
-        "sha256": sha256_text(prompt), "generated_at_utc": utc_now()}
+        "sha256": sha256_text(prompt), "utf8_bytes": utf8_bytes(prompt),
+        "generated_at_utc": utc_now()}
     return prompt
 
 
@@ -342,9 +351,13 @@ def call_api(prompt, model, max_tokens=1200, temperature=None):
     completed = utc_now()
     text = "".join(block.text for block in response.content if block.type == "text")
     usage = {"input_tokens": response.usage.input_tokens,
-             "output_tokens": response.usage.output_tokens, "calls": 1}
+             "output_tokens": response.usage.output_tokens,
+             "input_utf8_bytes": utf8_bytes(prompt),
+             "output_utf8_bytes": utf8_bytes(text), "calls": 1}
     call = {"prompt_sha256": sha256_text(prompt),
             "response_sha256": sha256_text(text),
+            "prompt_utf8_bytes": utf8_bytes(prompt),
+            "response_utf8_bytes": utf8_bytes(text),
             "started_at_utc": started, "completed_at_utc": completed,
             "requested_model": model,
             "reported_model": getattr(response, "model", None),
@@ -411,6 +424,10 @@ def run_api(cases, model, trials, temperature, manifest, run_dir):
                 retrieved_docs=[doc["doc_id"] for doc in docs], raw_answer=text2,
                 usage={"input_tokens": usage1["input_tokens"] + usage2["input_tokens"],
                        "output_tokens": usage1["output_tokens"] + usage2["output_tokens"],
+                       "input_utf8_bytes": (usage1["input_utf8_bytes"]
+                                            + usage2["input_utf8_bytes"]),
+                       "output_utf8_bytes": (usage1["output_utf8_bytes"]
+                                             + usage2["output_utf8_bytes"]),
                        "calls": 2},
                 provenance={**base, "calls": [call1, call2]}))
     write_json(run_dir / "run_manifest.json", manifest)
@@ -482,11 +499,16 @@ def manual_stage3(cases, manifest, run_dir):
     for case in cases:
         for cond in ("A", "B"):
             name = f"{case['id']}__{cond}"
+            prompt = prompt_record(manifest, name)
+            response = response_record(run_dir, name)
             rows.append(dict(
                 case_id=case["id"], condition=cond, trial=0,
-                raw_answer=read_response(run_dir, name), usage={"calls": 1},
-                provenance={**base, "prompts": [prompt_record(manifest, name)],
-                            "responses": [response_record(run_dir, name)],
+                raw_answer=read_response(run_dir, name),
+                usage={"calls": 1,
+                       "input_utf8_bytes": prompt["utf8_bytes"],
+                       "output_utf8_bytes": response["utf8_bytes"]},
+                provenance={**base, "prompts": [prompt],
+                            "responses": [response],
                             "assembled_at_utc": utc_now()}))
 
         derivation = manifest.get("c2_derivations", {}).get(case["id"])
@@ -507,15 +529,21 @@ def manual_stage3(cases, manifest, run_dir):
         if bound and bound.get("sha256") != c2record["sha256"]:
             raise ValueError(f"{case['id']}: C2 response SHA-256 drift")
         derivation["c2_response"] = c2record
+        c1prompt = prompt_record(manifest, c1name)
+        c2prompt = prompt_record(manifest, c2name)
         rows.append(dict(
             case_id=case["id"], condition="C", trial=0,
             provisional_answer=derivation.get("provisional_answer"),
             falsifier=derivation.get("falsifiers"), queries=derivation.get("queries"),
             retrieved_docs=derivation.get("retrieved_docs"),
-            raw_answer=read_response(run_dir, c2name), usage={"calls": 2},
+            raw_answer=read_response(run_dir, c2name),
+            usage={"calls": 2,
+                   "input_utf8_bytes": (c1prompt["utf8_bytes"]
+                                        + c2prompt["utf8_bytes"]),
+                   "output_utf8_bytes": (c1record["utf8_bytes"]
+                                         + c2record["utf8_bytes"])},
             provenance={**base,
-                        "prompts": [prompt_record(manifest, c1name),
-                                    prompt_record(manifest, c2name)],
+                        "prompts": [c1prompt, c2prompt],
                         "responses": [c1record, c2record],
                         "assembled_at_utc": utc_now()}))
     return rows

@@ -16,14 +16,16 @@ def check(name, cond, detail=""):
 print("=== 1. py_compile ===")
 r = subprocess.run([sys.executable, "-m", "py_compile",
                     str(HERE / "prompts.py"), str(HERE / "run.py"),
-                    str(HERE / "score.py")], capture_output=True)
-check("prompts/run/score compile", r.returncode == 0, r.stderr.decode()[:200])
+                    str(HERE / "score.py"), str(HERE / "cohort.py")],
+                   capture_output=True)
+check("prompts/run/score/cohort compile", r.returncode == 0, r.stderr.decode()[:200])
 
 import prompts as P
 import run as R
 from run import (RAW_SCHEMA_VERSION, load_jsonl, retrieve, sha256_text,
                  validate_dataset)
 import score as S
+import cohort as C
 
 cases = load_jsonl(HERE / "dataset.jsonl")
 specs = load_jsonl(HERE / "specs.jsonl")
@@ -76,7 +78,8 @@ with tempfile.TemporaryDirectory() as td:
           and "settings" in manifest and bool(manifest.get("started_at_utc")))
     check("18 prompt の SHA-256 を保存",
           len(manifest["prompts"]) == 18
-          and all(len(x["sha256"]) == 64 for x in manifest["prompts"].values()))
+          and all(len(x["sha256"]) == 64 and x.get("utf8_bytes", 0) > 0
+                  for x in manifest["prompts"].values()))
 
 print("\n=== 5. pilot モードで KEEP/DROP が絶対に出ない ===")
 src = (HERE / "score.py").read_text(encoding="utf-8")
@@ -98,7 +101,7 @@ with contextlib.redirect_stdout(pilot_stdout):
 pilot_lines = [line.strip() for line in pilot_stdout.getvalue().splitlines()]
 check("print_pilot は正式判定を表示しない（behavior検査）",
       not any(line.startswith("判定:") for line in pilot_lines)
-      and not any(line in {"KEEP", "DROP", "CONDITIONAL KEEP"}
+      and not any(line in {"KEEP", "SUBSCRIPTION_KEEP", "DROP", "CONDITIONAL KEEP"}
                   for line in pilot_lines))
 full_stdout = io.StringIO()
 with contextlib.redirect_stdout(full_stdout):
@@ -112,13 +115,16 @@ pilot_branch = mainseg.split('if a.mode == "pilot":')[1].split("else:")[0]
 check("pilot 分岐で verdict_full を呼ばない", "verdict_full" not in pilot_branch)
 check("pilot の verdict は NOT_APPLICABLE", "NOT_APPLICABLE" in pilot_branch)
 
-print("\n=== 6. token 欠損が 0 扱いされない ===")
+print("\n=== 6. API token / subscription workload を混同しない ===")
 manual_rec = dict(condition="B", type="false_coherence", verdict="correct",
                   unsupported=False, malformed=False,
                   decisive_refutation_citation=True,
                   fixed_refutation_retrieval_hit=None,
-                  calls=1, in_tok=None, out_tok=None, trial=0, case_id="X")
+                  calls=1, in_tok=None, out_tok=None,
+                  input_utf8_bytes=1000, output_utf8_bytes=500,
+                  backend="manual", trial=0, case_id="X")
 check("total_tokens が None", S.total_tokens(manual_rec) is None)
+check("manual workloadはUTF-8 byteで実測", S.total_utf8_bytes(manual_rec) == 1500)
 agg = S.aggregate([manual_rec, dict(manual_rec, condition="C", calls=2),
                    dict(manual_rec, condition="A")])
 check("avg_tokens が None", agg["B"]["avg_tokens"] is None
@@ -130,10 +136,12 @@ check("Aもaggregateされ決定的反証文書の引用率を保持",
 def formal_agg(avg_tokens_c=1500):
     return {"B": dict(refutable_accuracy=0.40, trap_rate=0.50, accuracy=0.50,
                       correct_destruction=0.0, malformed=0.0,
-                      avg_tokens=1000, anchor_mismatch=0.0),
+                      avg_tokens=1000, avg_utf8_bytes=1500,
+                      backend="api", anchor_mismatch=0.0),
             "C": dict(refutable_accuracy=0.70, trap_rate=0.20, accuracy=0.80,
                       correct_destruction=0.0, malformed=0.0,
-                      avg_tokens=avg_tokens_c, anchor_mismatch=0.0)}
+                      avg_tokens=avg_tokens_c, avg_utf8_bytes=2200,
+                      backend="api", anchor_mismatch=0.0)}
 
 aggx = formal_agg(avg_tokens_c=None)
 aggx["B"]["avg_tokens"] = None
@@ -147,9 +155,49 @@ check("primary label と計算が Refutable Accuracy C-B で一致",
       S.PRE_REGISTRATION["primary"] ==
       "Refutable Accuracy gain (C - B)"
       and abs(S.primary_effect(aggy) - 0.30) < 1e-12)
-check("事前登録v3の無効化条件8件を固定",
-      S.PRE_REGISTRATION["version"] == 3
-      and len(S.PRE_REGISTRATION["invalidation_conditions"]) == 8)
+check("事前登録v4は性能閾値を維持し無効化条件10件を固定",
+      S.PRE_REGISTRATION["version"] == 4
+      and S.PRE_REGISTRATION["keep"]["refutable_accuracy_gain_min"] == 0.20
+      and S.PRE_REGISTRATION["keep"]["correct_destruction_max"] == 0.25
+      and S.PRE_REGISTRATION["keep"]["max_workload_ratio"] == 2.0
+      and len(S.PRE_REGISTRATION["invalidation_conditions"]) == 10)
+
+manual_good = formal_agg(avg_tokens_c=None)
+for condition in ("B", "C"):
+    manual_good[condition]["avg_tokens"] = None
+    manual_good[condition]["backend"] = "manual"
+manual_good["B"]["avg_utf8_bytes"] = 1500
+manual_good["C"]["avg_utf8_bytes"] = 2250
+check("APIなしmanualでも監査可能workloadでSUBSCRIPTION_KEEP",
+      S.verdict_full(manual_good)[0] == "SUBSCRIPTION_KEEP")
+manual_expensive = json.loads(json.dumps(manual_good))
+manual_expensive["C"]["avg_utf8_bytes"] = 3000
+check("manual workload比2.0以上はCONDITIONAL KEEP",
+      S.verdict_full(manual_expensive)[0] == "CONDITIONAL KEEP")
+
+calibration_ok = formal_agg()
+calibration_ok["B"]["refutable_accuracy"] = 0.50
+calibration_ok["B"]["refutable_accuracy_n"] = 14
+check("calibrationはBの中間難易度だけでCOHORT_ACCEPT",
+      S.calibration_verdict(calibration_ok, 1)[0] == "COHORT_ACCEPT")
+calibration_c_changed = json.loads(json.dumps(calibration_ok))
+calibration_c_changed["C"]["refutable_accuracy"] = 0.0
+check("calibration cohort選択はCの成績に依存しない",
+      S.calibration_verdict(calibration_c_changed, 1)
+      == S.calibration_verdict(calibration_ok, 1))
+calibration_c_broken = json.loads(json.dumps(calibration_ok))
+calibration_c_broken["C"]["malformed"] = 0.01
+check("Cの成績は選択に使わないがCの実行破損はINVALID",
+      S.calibration_verdict(calibration_c_broken, 1)[0]
+      == "CALIBRATION_INVALID")
+calibration_ceiling = json.loads(json.dumps(calibration_ok))
+calibration_ceiling["B"]["refutable_accuracy"] = 1.0
+check("Bが天井ならcohort全体をREJECT",
+      S.calibration_verdict(calibration_ceiling, 1)[0] == "COHORT_REJECT")
+calibration_ambiguous = json.loads(json.dumps(calibration_ok))
+calibration_ambiguous["B"]["correct_destruction"] = 0.50
+check("Bがno_refutationを壊す曖昧cohortはREJECT",
+      S.calibration_verdict(calibration_ambiguous, 1)[0] == "COHORT_REJECT")
 accuracy_bad = json.loads(json.dumps(aggy)); accuracy_bad["C"]["accuracy"] = 0.4
 check("Refutable Accuracy改善でも Accuracy(C)<Accuracy(B) は DROP",
       S.verdict_full(accuracy_bad)[0] == "DROP")
@@ -359,10 +407,13 @@ def _raw_row(case_id, cond, trial):
     raw_answer = "{}"
     calls = 2 if cond == "C" else 1
     responses = [{"name": f"r{i}", "sha256": sha256_text("step1"),
+                  "utf8_bytes": len("step1".encode("utf-8")),
                   "collected_at_utc": "2026-08-14T00:00:00Z"}
                  for i in range(calls)]
     responses[-1]["sha256"] = sha256_text(raw_answer)
+    responses[-1]["utf8_bytes"] = len(raw_answer.encode("utf-8"))
     prompts = [{"name": f"p{i}", "sha256": "a" * 64,
+                "utf8_bytes": 1,
                 "generated_at_utc": "2026-08-14T00:00:00Z"}
                for i in range(calls)]
     provenance = dict(
@@ -373,7 +424,10 @@ def _raw_row(case_id, cond, trial):
         prompts=prompts, responses=responses,
         assembled_at_utc="2026-08-14T00:00:00Z")
     return dict(case_id=case_id, condition=cond, trial=trial,
-                raw_answer=raw_answer, usage={"calls": calls},
+                raw_answer=raw_answer,
+                usage={"calls": calls,
+                       "input_utf8_bytes": calls,
+                       "output_utf8_bytes": sum(r["utf8_bytes"] for r in responses)},
                 provenance=provenance)
 
 
@@ -435,6 +489,17 @@ bad_digest[0]["provenance"]["responses"][0]["sha256"] = "z" * 64
 ebd, _ = S.validate_results(bad_digest, cases)
 check("非hex SHA-256を reject", any("response SHA-256 不正" in x for x in ebd))
 
+bad_usage_bytes = json.loads(json.dumps(full_rows))
+bad_usage_bytes[0]["usage"]["input_utf8_bytes"] += 1
+ebu, _ = S.validate_results(bad_usage_bytes, cases)
+check("usageとpromptのUTF-8 byte不一致を reject",
+      any("prompt UTF-8 byte合計がusageと不一致" in x for x in ebu))
+bad_record_bytes = json.loads(json.dumps(full_rows))
+bad_record_bytes[0]["provenance"]["responses"][0]["utf8_bytes"] = 0
+ebr, _ = S.validate_results(bad_record_bytes, cases)
+check("response UTF-8 byte証跡の欠損・ゼロを reject",
+      any("response UTF-8 byte証跡が不正" in x for x in ebr))
+
 # H-3: 値が存在するだけでは足りず、manifest/実ファイル由来の期待値と一致が必要。
 forged = json.loads(json.dumps(full_rows))
 for row in forged:
@@ -461,6 +526,9 @@ for row in api_rows:
             "prompt_sha256": "a" * 64,
             "response_sha256": (sha256_text(row["raw_answer"])
                                 if i == calls - 1 else sha256_text("step1")),
+            "prompt_utf8_bytes": 1,
+            "response_utf8_bytes": (len(row["raw_answer"].encode("utf-8"))
+                                     if i == calls - 1 else len(b"step1")),
             "started_at_utc": "2026-08-14T00:00:00Z",
             "completed_at_utc": "2026-08-14T00:00:01Z",
             "requested_model": "test", "reported_model": "test",
@@ -586,6 +654,13 @@ with tempfile.TemporaryDirectory() as td:
           and len(raw_rows) == 18 and raw_trials == 1, p3.stdout[-200:])
     check("生成rawのprovenanceが採点hard gateを通る",
           not raw_errors, "; ".join(raw_errors[:3]))
+    check("manual rawは全18行に実測UTF-8 workloadを保存",
+          len(raw_rows) == 18
+          and all(row["usage"].get("input_utf8_bytes", 0) > 0
+                  and row["usage"].get("output_utf8_bytes", 0) > 0
+                  for row in raw_rows)
+          and all(len(row["provenance"]["prompts"])
+                  == row["usage"]["calls"] for row in raw_rows))
     final_manifest = json.loads(
         (run_dir / "run_manifest.json").read_text(encoding="utf-8"))
     check("manifest は complete / raw SHA・行数を保存",
@@ -619,6 +694,15 @@ with tempfile.TemporaryDirectory() as td:
         "--judge", "manual", "--manual-stage", "score"]
     manual_env = dict(os.environ)
     manual_env["PYTHONPATH"] = str(fake_sdk)
+    default_judge = subprocess.run(
+        [sys.executable, str(HERE / "score.py"), "--mode", "pilot",
+         "--results", str(results_root), "--run-id", "protocol-run"],
+        capture_output=True, text=True, env=manual_env)
+    check("judge既定値はmanualで、明示なしにAPIへ到達しない",
+          default_judge.returncode != 0
+          and "--judge manual は --manual-stage" in default_judge.stdout
+          and "anthropic must not be imported" not in
+          default_judge.stdout + default_judge.stderr)
     exported = subprocess.run(
         manual_export_cmd, capture_output=True, text=True, env=manual_env)
     judge_dir = run_dir / "manual_judge"
@@ -823,6 +907,92 @@ with tempfile.TemporaryDirectory() as td:
           rerun.returncode != 0 and "raw.jsonl が存在するため不変" in rerun.stdout
           and sha256_text((run_dir / "raw.jsonl").read_text(encoding="utf-8"))
           == raw_sha_before)
+
+print("\n=== 17. 未観測60ケースの事前分割 ===")
+templates = {
+    "false_coherence": next(c for c in cases if c["type"] == "false_coherence"),
+    "absence": next(c for c in cases if c["type"] == "absence"),
+    "common_cause": next(c for c in cases if c["type"] == "common_cause"),
+    "no_refutation": next(c for c in cases if c["type"] == "no_refutation"),
+}
+spec_by_id = {spec["id"]: spec for spec in specs}
+pool_cases, pool_specs = [], []
+prefixes = {"false_coherence": "V4-FC", "absence": "V4-AB",
+            "common_cause": "V4-CC", "no_refutation": "V4-NR"}
+for case_type, count in C.POOL_COMPOSITION.items():
+    template = templates[case_type]
+    for index in range(count):
+        case = json.loads(json.dumps(template))
+        case["id"] = f"{prefixes[case_type]}-{index + 1:02d}"
+        doc_ids = [doc["doc_id"] for doc in case["documents"]]
+        refs = set(case["ground_truth"].get("refutation_document_ids") or [])
+        if case_type == "no_refutation":
+            case["design"] = {
+                "plausible_alternative_document_ids": doc_ids[-2:],
+                "why_alternatives_fail": "各代替説明は同じ文書内の記録で否定される"}
+        else:
+            non_refs = [doc_id for doc_id in doc_ids if doc_id not in refs]
+            case["design"] = {
+                "trap_support_document_ids": non_refs[:2],
+                "correct_support_document_ids": list(refs)}
+        pool_cases.append(case)
+        spec = json.loads(json.dumps(spec_by_id[template["id"]]))
+        spec["id"] = case["id"]
+        pool_specs.append(spec)
+
+pool_errors = C.validate_pool(pool_cases, pool_specs)
+check("60件 18/12/12/18 の構造poolを受理", not pool_errors,
+      "; ".join(pool_errors[:2]))
+split_cases, split_specs, assignments = C.split_pool(
+    pool_cases, pool_specs, "counterevidence-v4-cohort-01")
+check("calibration/formal/reserveが各20件・6/4/4/6",
+      all(len(split_cases[name]) == 20
+          and {typ: sum(c["type"] == typ for c in split_cases[name])
+               for typ in C.SPLIT_COMPOSITION} == C.SPLIT_COMPOSITION
+          for name in C.SPLITS))
+split_ids = [{case["id"] for case in split_cases[name]} for name in C.SPLITS]
+check("3 splitは重複なしで全60件を一度ずつ使う",
+      not (split_ids[0] & split_ids[1] or split_ids[0] & split_ids[2]
+           or split_ids[1] & split_ids[2])
+      and len(set().union(*split_ids)) == 60)
+_, _, reversed_assignments = C.split_pool(
+    list(reversed(pool_cases)), list(reversed(pool_specs)),
+    "counterevidence-v4-cohort-01")
+check("入力順を変えてもsplit assignmentは不変",
+      assignments == reversed_assignments)
+
+reused = json.loads(json.dumps(pool_cases))
+reused_specs = json.loads(json.dumps(pool_specs))
+reused_specs[0]["id"] = reused[0]["id"] = "FC-01"
+check("2026-08-15までのpilot ID再利用をreject",
+      any("pilot ID" in error for error in C.validate_pool(reused, reused_specs)))
+overlap_support = json.loads(json.dumps(pool_cases))
+first_refutable = next(c for c in overlap_support if c["type"] != "no_refutation")
+first_refutable["design"]["trap_support_document_ids"][0] = \
+    first_refutable["ground_truth"]["refutation_document_ids"][0]
+check("trap支持文書と決定的反証文書の重複をreject",
+      any("重複" in error for error in C.validate_pool(overlap_support, pool_specs)))
+
+with tempfile.TemporaryDirectory() as td:
+    td_path = pathlib.Path(td)
+    pool_path, pool_specs_path = td_path / "pool.jsonl", td_path / "specs.jsonl"
+    C.write_jsonl(pool_path, pool_cases)
+    C.write_jsonl(pool_specs_path, pool_specs)
+    frozen_dir = td_path / "frozen"
+    cohort_manifest = C.freeze_pool(
+        pool_path, pool_specs_path, frozen_dir, "counterevidence-v4-cohort-01")
+    check("freezeは6 splitファイルとSHA付きmanifestを生成",
+          len(cohort_manifest["files"]) == 6
+          and all((frozen_dir / name).is_file()
+                  and C.sha256_file(frozen_dir / name) == digest
+                  for name, digest in cohort_manifest["files"].items()))
+    try:
+        C.freeze_pool(pool_path, pool_specs_path, frozen_dir,
+                      "counterevidence-v4-cohort-01")
+        overwrite_rejected = False
+    except ValueError:
+        overwrite_rejected = True
+    check("凍結済みcohortの上書きをreject", overwrite_rejected)
 
 print("\n" + "=" * 60)
 if FAIL:
