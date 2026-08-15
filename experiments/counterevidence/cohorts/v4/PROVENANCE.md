@@ -12,16 +12,32 @@
 凍結前にも凍結中にも1件も生成していない。既存pilotの応答や成績をケース選択へ使わず、
 観測済みpilot 6 IDと既存spec案を再利用していない。
 
-60件を一括作成した後、`cohort.py` を新規の空出力先へ1回実行して
-calibration / formal / reserveへ20件ずつ固定した。個別ケースの移動・交換・再分割はしていない。
+60件を一括作成した後、`cohort.py` を新規の空出力先へ実行して
+calibration / formal / reserveへ20件ずつ固定した。個別ケースの成績による移動・交換はしていない。
+
+### 第三者意味監査後の説明ID訂正
+
+Draft PR #23の初回commit `4c5b4cb6e2f277ab874f3871200ca956b3aa3ad2` に対する
+第三者意味監査で、doc_idをSHAで分散した後も `why_decisive` 内だけ旧ID表記が残る
+系統的な不整合が発見された。反証の論理、質問、420文書、correct/trap conclusion、
+`refutation_document_ids`、design metadataは正しく、監査ではHigh指摘なしだった。
+
+回答・judge・成績が0件の状態で、41ケースの `why_decisive` のID表記だけを実文書へ同期した。
+V4-AB-08は初版から一致していた。上記以外の意味内容が不変であることを比較検査し、
+説明に現れる全IDがrefutation/correct supportへ一致することを確認した。
+
+ケースcanonical JSONが変わるため、旧splitを上書きせず退避し、60件全体を空の出力先へ
+同じcohort ID・同じ `cohort.py` で再凍結した。個別ケースを選んで移動しておらず、
+性能結果による選別もない。type内のSHA順位再計算により29ケースのsplitが機械的に変わった。
+初版のpool・split・manifestは上記commitのGit履歴に残る。
 
 ## SHA-256
 
 ```text
-316a59d1cb82fb0e1d11588aafaaa06d2099b5933168645bd891be2b35ab5e32  pool.dataset.jsonl
-ffbb5c3661f9829831897a62b9e03c4a0b1ac82ef325502d8f3f4700548a5dc4  pool.specs.jsonl
+2eb654da56a1678580327b28a8ac0cc9e02e6443a933f901ff7738ee72c4be8e  pool.dataset.jsonl
+f37c2968dbc3ef489885fa14f75e1ceceb626a37f185548fc28c05973370e650  pool.specs.jsonl
 71cb8995bd6ae5886ddd6b5c00606066960111853ffccaaaade4ce71cd7ef53f  cohort.py
-71c0f4df876109750aaf054a9b6b57debc77b4a6a15dfa6bcd32e5dc956e221d  manifest.json
+6baf9375ac1cca062c486ea1d6b19b719f4edbdb20ac01a5946c3d83a8b47d05  manifest.json
 ```
 
 完全なsplitファイルSHAと全assignmentは
