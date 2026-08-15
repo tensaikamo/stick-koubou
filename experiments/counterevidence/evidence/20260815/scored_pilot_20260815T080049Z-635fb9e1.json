@@ -1,0 +1,820 @@
+{
+  "mode": "pilot",
+  "records": [
+    {
+      "case_id": "FC-01",
+      "type": "false_coherence",
+      "condition": "A",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": null,
+      "anchor_consistent": null,
+      "key_documents": [
+        "d5",
+        "d6",
+        "d4"
+      ],
+      "decisive_refutation_citation": true,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": false,
+      "confidence": "強く支持",
+      "calls": 1,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": null,
+      "falsifier": null,
+      "provisional": null
+    },
+    {
+      "case_id": "FC-01",
+      "type": "false_coherence",
+      "condition": "B",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": "原材料（樹脂系）の国際価格上昇により商品Aの材料費が上がり、粗利が圧迫されたため値上げせざるを得なかった。",
+      "anchor_consistent": true,
+      "key_documents": [
+        "d5",
+        "d6",
+        "d4"
+      ],
+      "decisive_refutation_citation": true,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": false,
+      "confidence": "強く支持",
+      "calls": 1,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": null,
+      "falsifier": null,
+      "provisional": null
+    },
+    {
+      "case_id": "FC-01",
+      "type": "false_coherence",
+      "condition": "C",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": "商品Aの値上げの主因は原材料価格ではなく、運送業者C社の北海道内陸ルート撤退による物流費の急騰である。仕入単価は前年比0.4〜0.7%程度しか動いていない一方（d4）、原価に占める荷造運賃の構成比は6%から17%へ跳ね上がっており（d5・d6）、社内掲示の『原材料価格の高騰』（d7）は市況ムード（d1・d2・d3）に引きずられた誤帰属と考えられる。",
+      "anchor_consistent": true,
+      "key_documents": [
+        "d4",
+        "d5",
+        "d6",
+        "d7"
+      ],
+      "decisive_refutation_citation": true,
+      "fixed_refutation_retrieval_hit": false,
+      "unsupported": true,
+      "confidence": "暫定",
+      "calls": 2,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": [
+        "d5",
+        "d6"
+      ],
+      "falsifier": [
+        "4月度原価内訳の費目別『実額』を見ると、商品A1単位あたりの荷造運賃の絶対額は前年とほぼ同水準で、構成比が6%→17%へ動いたのは材料費や加工費など他費目の実額が大幅に減少した（分母縮小・製品仕様変更・単位定義変更等）ためだと示されている。この場合、運賃高騰は値上げを説明しない。",
+        "C社撤退の影響を受ける北海道内陸ルートを経由する商品Aの出荷が全出荷数量の数%にとどまり、運賃2.4倍による全社ベースの1単位あたり原価押上げ額が、実際の価格改定幅を大きく下回る（例：押上げ額が改定幅の1割未満）ことを示す出荷実績・運賃支払明細がある。",
+        "価格改定の稟議書・原価計算根拠において、改定幅が仕入先B社との新取引条件による材料単価の大幅上昇（d3の『追ってご連絡』の結果、例えば1,180円/kg→1,400円/kg超）を前提に算定されており、かつ改定の決定が物流部報告（4/20）より前に確定していた記録が存在する。"
+      ],
+      "provisional": "商品Aの値上げの主因は原材料価格ではなく、運送業者C社の北海道内陸ルート撤退による物流費の急騰である。仕入単価は前年比0.4〜0.7%程度しか動いていない一方（d4）、原価に占める荷造運賃の構成比は6%から17%へ跳ね上がっており（d5・d6）、社内掲示の『原材料価格の高騰』（d7）は市況ムード（d1・d2・d3）に引きずられた誤帰属と考えられる。"
+    },
+    {
+      "case_id": "FC-02",
+      "type": "false_coherence",
+      "condition": "A",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": null,
+      "anchor_consistent": null,
+      "key_documents": [
+        "d5",
+        "d6",
+        "d3",
+        "d4",
+        "d2"
+      ],
+      "decisive_refutation_citation": true,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": false,
+      "confidence": "強く支持",
+      "calls": 1,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": null,
+      "falsifier": null,
+      "provisional": null
+    },
+    {
+      "case_id": "FC-02",
+      "type": "false_coherence",
+      "condition": "B",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": "退職面談で『待遇』への言及が複数あったことから、賃金水準の低さ・昇給見込みのなさが主因だと考えた。",
+      "anchor_consistent": true,
+      "key_documents": [
+        "d3",
+        "d4",
+        "d5",
+        "d6",
+        "d2"
+      ],
+      "decisive_refutation_citation": true,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": true,
+      "confidence": "強く支持",
+      "calls": 1,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": null,
+      "falsifier": null,
+      "provisional": null
+    },
+    {
+      "case_id": "FC-02",
+      "type": "false_coherence",
+      "condition": "C",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": "退職急増の主因は賃金水準ではなく、2月のシフト作成担当交代（E氏→F氏）以降に生じた勤務時間帯の不安定化である。同一賃金テーブル・同等構成の製造3課で退職0名である一方、製造2課のみシフト入れ替えが1.2回→4.7回へ増え、睡眠相談も同課に集中していることから、生活リズムの破壊が離職の引き金になったと考えられる。",
+      "anchor_consistent": true,
+      "key_documents": [
+        "d5",
+        "d4",
+        "d3",
+        "d6",
+        "d2"
+      ],
+      "decisive_refutation_citation": true,
+      "fixed_refutation_retrieval_hit": true,
+      "unsupported": false,
+      "confidence": "暫定",
+      "calls": 2,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": [
+        "d5",
+        "d4"
+      ],
+      "falsifier": [
+        "退職した4名個人のシフト記録で、2月以降も勤務時間帯の入れ替え回数が増えておらず（従前と同水準、または固定シフト勤務だった）、課平均の増加が退職者以外の従業員に集中していたという事実。",
+        "製造3課でも2月以降F氏の作成により同程度（4回超/週）のシフト入れ替え増加が起きていたにもかかわらず、退職0名・睡眠相談0件だったという事実。",
+        "4名の退職意思表明日（退職願提出・上長への申出）がいずれも1月以前、すなわちシフト作成担当交代より前であり、退職先が製造2課より明確に高い賃金水準の他社だったという事実。"
+      ],
+      "provisional": "退職急増の主因は賃金水準ではなく、2月のシフト作成担当交代（E氏→F氏）以降に生じた勤務時間帯の不安定化である。同一賃金テーブル・同等構成の製造3課で退職0名である一方、製造2課のみシフト入れ替えが1.2回→4.7回へ増え、睡眠相談も同課に集中していることから、生活リズムの破壊が離職の引き金になったと考えられる。"
+    },
+    {
+      "case_id": "AB-01",
+      "type": "absence",
+      "condition": "A",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": null,
+      "anchor_consistent": null,
+      "key_documents": [
+        "d2",
+        "d3",
+        "d1",
+        "d5",
+        "d6"
+      ],
+      "decisive_refutation_citation": true,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": false,
+      "confidence": "暫定",
+      "calls": 1,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": null,
+      "falsifier": null,
+      "provisional": null
+    },
+    {
+      "case_id": "AB-01",
+      "type": "absence",
+      "condition": "B",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": "過去4年間4月上旬〜中旬に必ず入っていた年度初の定期発注（年間取引の約4割）が5月31日時点で未着なので、D社の定期発注を今期は失注した可能性が高い。",
+      "anchor_consistent": true,
+      "key_documents": [
+        "d2",
+        "d3",
+        "d1",
+        "d6",
+        "d5"
+      ],
+      "decisive_refutation_citation": true,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": true,
+      "confidence": "保留",
+      "calls": 1,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": null,
+      "falsifier": null,
+      "provisional": null
+    },
+    {
+      "case_id": "AB-01",
+      "type": "absence",
+      "condition": "C",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": "過去4年連続で4月上旬〜中旬に入っていた年間取引の約4割を占める定期発注が、5月31日時点でも受注登録されていない。日報・入金・与信・D社の会社概要に異常がないことから、当社側の関係悪化や信用問題ではなく、D社側の発注判断（投資抑制に伴う延期・縮小、または他社への振替）が起きており、今期は定期発注分の売上が失われる／大幅にずれ込むリスクが高い、と暫定的に言える。",
+      "anchor_consistent": true,
+      "key_documents": [
+        "d2",
+        "d3",
+        "d1",
+        "d5",
+        "d6"
+      ],
+      "decisive_refutation_citation": true,
+      "fixed_refutation_retrieval_hit": true,
+      "unsupported": false,
+      "confidence": "保留",
+      "calls": 2,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": [
+        "d3",
+        "d2"
+      ],
+      "falsifier": [
+        "D社の今期定期発注が6月以降に前年並みの金額で受注登録される、あるいは6月時点の内示・注文書が既に発行済みであることが確認される（＝発注判断の変化ではなく、単なる時期のずれ）。",
+        "D社との基本契約・年間取引の更改条件が今期から変更され、定期発注の起算月が4月以外（例：下期・9月起算）に移動していることを示す契約書・覚書・議事録が存在する（＝4月不在は異常ではなく仕様変更）。",
+        "定期発注分が別の受注コード・別部門・別販社経由で既に計上されており、[d3]の『定期発注分の登録なし』が集計範囲の切り分け誤り（登録漏れ・システム上の分類差）であることが確認される（＝失注も延期も起きていない）。"
+      ],
+      "provisional": "過去4年連続で4月上旬〜中旬に入っていた年間取引の約4割を占める定期発注が、5月31日時点でも受注登録されていない。日報・入金・与信・D社の会社概要に異常がないことから、当社側の関係悪化や信用問題ではなく、D社側の発注判断（投資抑制に伴う延期・縮小、または他社への振替）が起きており、今期は定期発注分の売上が失われる／大幅にずれ込むリスクが高い、と暫定的に言える。"
+    },
+    {
+      "case_id": "CC-01",
+      "type": "common_cause",
+      "condition": "A",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": null,
+      "anchor_consistent": null,
+      "key_documents": [
+        "d4",
+        "d6",
+        "d3",
+        "d5"
+      ],
+      "decisive_refutation_citation": true,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": true,
+      "confidence": "暫定",
+      "calls": 1,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": null,
+      "falsifier": null,
+      "provisional": null
+    },
+    {
+      "case_id": "CC-01",
+      "type": "common_cause",
+      "condition": "B",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": "残業増加による疲労と集中力低下が不良品率を押し上げている、すなわち残業が不良の原因である。",
+      "anchor_consistent": true,
+      "key_documents": [
+        "d4",
+        "d6",
+        "d5",
+        "d3"
+      ],
+      "decisive_refutation_citation": true,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": false,
+      "confidence": "強く支持",
+      "calls": 1,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": null,
+      "falsifier": null,
+      "provisional": null
+    },
+    {
+      "case_id": "CC-01",
+      "type": "common_cause",
+      "condition": "C",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": "残業時間と不良品率の相関は因果ではなく、受注量2.3倍・受注品目数増という共通原因による擬似相関である。不良の実質的な原因は段取り替え回数が3.4倍になったことであり（不良の8割が段取り替え直後）、残業はその同じ受注増から派生した並行結果にすぎない。",
+      "anchor_consistent": true,
+      "key_documents": [
+        "d6",
+        "d4",
+        "d5",
+        "d3",
+        "d1"
+      ],
+      "decisive_refutation_citation": true,
+      "fixed_refutation_retrieval_hit": true,
+      "unsupported": false,
+      "confidence": "強く支持",
+      "calls": 2,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": [
+        "d6",
+        "d4"
+      ],
+      "falsifier": [
+        "段取り替え回数と受注品目数を前後週と同水準に保ったまま残業時間だけを減らした期間で、不良品率が残業時間に比例して有意に低下していた（すなわち d4 の残業制限週において、段取り替え回数は通常週と同じだったのに不良品率が下がっていた）という記録。これが事実なら残業が独立した原因となり、共通原因説は崩れる。",
+        "5月第1週（不良品率0.9%）の段取り替え回数が、不良品率2.1%の週と同水準だったという記録。段取り替え回数が変わらないのに不良品率が半分以下になったのであれば、低下を説明できるのは残業時間の減少であり、段取り替えを主因とする結論は成立しない。",
+        "不良の発生時刻・工程別内訳を取ると、今期に増加した分の不良が段取り替え直後ではなく所定時間終了後の残業時間帯の定常運転中に集中していた（段取り替え1回あたりの不良発生率は今期を通じて一定で、増加分は説明できない）という分析結果。これが事実なら8割という内訳は増加分の説明にならず、疲労経路が主因となる。"
+      ],
+      "provisional": "残業時間と不良品率の相関は因果ではなく、受注量2.3倍・受注品目数増という共通原因による擬似相関である。不良の実質的な原因は段取り替え回数が3.4倍になったことであり（不良の8割が段取り替え直後）、残業はその同じ受注増から派生した並行結果にすぎない。"
+    },
+    {
+      "case_id": "NR-01",
+      "type": "no_refutation",
+      "condition": "A",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": null,
+      "anchor_consistent": null,
+      "key_documents": [
+        "d1",
+        "d2",
+        "d3",
+        "d6"
+      ],
+      "decisive_refutation_citation": null,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": true,
+      "confidence": "強く支持",
+      "calls": 1,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": null,
+      "falsifier": null,
+      "provisional": null
+    },
+    {
+      "case_id": "NR-01",
+      "type": "no_refutation",
+      "condition": "B",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": "4月の記録的な降雨により、基礎工事・外構工事などの屋外工程が中止・停滞し、それが工期遅延の主因である。",
+      "anchor_consistent": true,
+      "key_documents": [
+        "d1",
+        "d2",
+        "d3",
+        "d4",
+        "d5"
+      ],
+      "decisive_refutation_citation": null,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": true,
+      "confidence": "強く支持",
+      "calls": 1,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": null,
+      "falsifier": null,
+      "provisional": null
+    },
+    {
+      "case_id": "NR-01",
+      "type": "no_refutation",
+      "condition": "C",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "other",
+      "initial_conclusion": "現場Eの3週間の遅延は、4月の記録的降雨（平年比208%、作業中止11日で例年比+8日）が主因である。遅延が降雨に直接左右される基礎工事・外構工事にのみ集中し、屋内工程には遅延がないこと、資材・人員側に遅延要因がないことが、この因果を支持する。",
+      "anchor_consistent": true,
+      "key_documents": [
+        "d1",
+        "d2",
+        "d3",
+        "d6"
+      ],
+      "decisive_refutation_citation": null,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": true,
+      "confidence": "暫定",
+      "calls": 2,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": [
+        "d6",
+        "d1"
+      ],
+      "falsifier": [
+        "作業中止11日の日別内訳を見たとき、その大半の日には元々基礎・外構の作業予定が入っておらず（屋内工程日または元から非稼働日）、降雨で実際に失われた基礎・外構の稼働日が3週間の遅延を説明できない少数日（例えば5日以下）にとどまるという記録。これが事実なら、降雨中止日数と工程遅延の間に因果の実体がない。",
+        "4月の降雨が始まる前の3月末時点の出来高管理表で、基礎工事が既に2〜3週間の遅れを抱えていたという記録。遅延が降雨に先行して存在していたなら、4月の降雨は遅延の主因ではなく、遅延と時期が重なっただけの併存事象である。",
+        "4月の降雨のない晴天日に、現場Eの基礎・外構が稼働していなかった（協力会社が他現場を優先し人員を引き揚げていた、または手待ちだった）という稼働記録。この場合、失われた工期の主因は降雨そのものではなく、d6の『他現場との調整』＝協力会社のリソース配分であり、降雨は引き金にすぎない。"
+      ],
+      "provisional": "現場Eの3週間の遅延は、4月の記録的降雨（平年比208%、作業中止11日で例年比+8日）が主因である。遅延が降雨に直接左右される基礎工事・外構工事にのみ集中し、屋内工程には遅延がないこと、資材・人員側に遅延要因がないことが、この因果を支持する。"
+    },
+    {
+      "case_id": "NR-02",
+      "type": "no_refutation",
+      "condition": "A",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": null,
+      "anchor_consistent": null,
+      "key_documents": [
+        "d1",
+        "d2",
+        "d3"
+      ],
+      "decisive_refutation_citation": null,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": false,
+      "confidence": "強く支持",
+      "calls": 1,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": null,
+      "falsifier": null,
+      "provisional": null
+    },
+    {
+      "case_id": "NR-02",
+      "type": "no_refutation",
+      "condition": "B",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": "燃料の単価が上がったため。走行距離がほぼ横ばいなのに燃料費が142%になっているので、価格上昇が主因だと考えた。",
+      "anchor_consistent": true,
+      "key_documents": [
+        "d1",
+        "d2",
+        "d3"
+      ],
+      "decisive_refutation_citation": null,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": false,
+      "confidence": "強く支持",
+      "calls": 1,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": null,
+      "falsifier": null,
+      "provisional": null
+    },
+    {
+      "case_id": "NR-02",
+      "type": "no_refutation",
+      "condition": "C",
+      "trial": 0,
+      "malformed": false,
+      "verdict": "correct",
+      "initial_conclusion": "燃料費増加の主因は燃料単価の上昇である。単価が148円→201円(約1.36倍)へ上昇し、走行距離は104%とほぼ横ばいであるため、1.36×1.04≒1.41となり前期比142%の増加はほぼ単価要因で説明できる。",
+      "anchor_consistent": true,
+      "key_documents": [
+        "d1",
+        "d2",
+        "d3",
+        "d4",
+        "d5",
+        "d6"
+      ],
+      "decisive_refutation_citation": null,
+      "fixed_refutation_retrieval_hit": null,
+      "unsupported": true,
+      "confidence": "暫定",
+      "calls": 2,
+      "in_tok": null,
+      "out_tok": null,
+      "retrieved": [
+        "d2",
+        "d1"
+      ],
+      "falsifier": [
+        "今期の総給油量(リットル)が前期比135〜142%程度に増加していた。この場合、費用増は単価ではなく消費量の増加で説明され、単価×数量の分解で単価寄与が支配的とは言えなくなる。",
+        "d2の201円が店頭表示価格であり、実際の請求単価が法人契約・カード値引き後で前期と同水準(150円前後)にとどまっていた。この場合、当社が支払った単価は上昇しておらず、価格メカニズム自体が成立しない。",
+        "経理の燃料費142%に、期中増車した車両分の給油費、他部門・傭車分の立替給油、または勘定科目の変更(従来は別科目だった費用の燃料費への振替)が含まれていた。この場合、既存車両の単価上昇以外の要因で計上額が膨らんでおり、単価主因説は棄却される。"
+      ],
+      "provisional": "燃料費増加の主因は燃料単価の上昇である。単価が148円→201円(約1.36倍)へ上昇し、走行距離は104%とほぼ横ばいであるため、1.36×1.04≒1.41となり前期比142%の増加はほぼ単価要因で説明できる。"
+    }
+  ],
+  "aggregate": {
+    "A": {
+      "n": 6,
+      "accuracy": 1.0,
+      "refutable_accuracy": 1.0,
+      "refutable_accuracy_n": 4,
+      "trap_rate": 0.0,
+      "trap_rate_scored_n": 4,
+      "decisive_refutation_citation": 1.0,
+      "decisive_refutation_citation_n": 4,
+      "fixed_refutation_retrieval_hit": null,
+      "fixed_refutation_retrieval_hit_n": 0,
+      "correct_destruction": 0.0,
+      "unsupported": 0.3333333333333333,
+      "malformed": 0.0,
+      "anchor_mismatch": null,
+      "avg_calls": 1.0,
+      "avg_tokens": null
+    },
+    "B": {
+      "n": 6,
+      "accuracy": 1.0,
+      "refutable_accuracy": 1.0,
+      "refutable_accuracy_n": 4,
+      "trap_rate": 0.0,
+      "trap_rate_scored_n": 4,
+      "decisive_refutation_citation": 1.0,
+      "decisive_refutation_citation_n": 4,
+      "fixed_refutation_retrieval_hit": null,
+      "fixed_refutation_retrieval_hit_n": 0,
+      "correct_destruction": 0.0,
+      "unsupported": 0.5,
+      "malformed": 0.0,
+      "anchor_mismatch": 0.0,
+      "avg_calls": 1.0,
+      "avg_tokens": null
+    },
+    "C": {
+      "n": 6,
+      "accuracy": 0.8333333333333334,
+      "refutable_accuracy": 1.0,
+      "refutable_accuracy_n": 4,
+      "trap_rate": 0.0,
+      "trap_rate_scored_n": 4,
+      "decisive_refutation_citation": 1.0,
+      "decisive_refutation_citation_n": 4,
+      "fixed_refutation_retrieval_hit": 0.75,
+      "fixed_refutation_retrieval_hit_n": 4,
+      "correct_destruction": 0.5,
+      "unsupported": 0.5,
+      "malformed": 0.0,
+      "anchor_mismatch": 0.0,
+      "avg_calls": 2.0,
+      "avg_tokens": null
+    }
+  },
+  "verdict": "NOT_APPLICABLE",
+  "reason": "pilot モードでは正式判定を行わない",
+  "judge_provenance": {
+    "route": "subscription_ui",
+    "api_used": false,
+    "provider": "openai",
+    "model": "gpt-5.6-sol",
+    "model_verification": "unverifiable_manual",
+    "response_records": [
+      {
+        "request_id": "J001",
+        "response_sha256": "22735f8d8e382e3ca8f27607af3e4da0bc32487f910a5796a5b3676d46d219bf",
+        "observed_at_utc": "2026-08-15T11:56:26.846296Z"
+      },
+      {
+        "request_id": "J002",
+        "response_sha256": "dd978577861d70ce3f2ccdad6509795c7f9eb51a77d277673dfb6cfc06e45a3a",
+        "observed_at_utc": "2026-08-15T11:56:26.846516Z"
+      },
+      {
+        "request_id": "J003",
+        "response_sha256": "22735f8d8e382e3ca8f27607af3e4da0bc32487f910a5796a5b3676d46d219bf",
+        "observed_at_utc": "2026-08-15T11:56:26.846638Z"
+      },
+      {
+        "request_id": "J004",
+        "response_sha256": "f592f25369b08c8923d9e463ad37bb65a65724d8543a6c6d0f8d10227daf50cb",
+        "observed_at_utc": "2026-08-15T11:56:26.846713Z"
+      },
+      {
+        "request_id": "J005",
+        "response_sha256": "1eb16fb5b68e9b94e97f2aaa449ec446cbbba053d6cc6fca1f6c37e1f8296e9d",
+        "observed_at_utc": "2026-08-15T11:56:26.846845Z"
+      },
+      {
+        "request_id": "J006",
+        "response_sha256": "5763ac78cda9e332d0669ebf8bab9d77416d83d66e6d643437b8d0f8c7bc2639",
+        "observed_at_utc": "2026-08-15T11:56:26.846993Z"
+      },
+      {
+        "request_id": "J007",
+        "response_sha256": "c1cfde20aae17d84b1cb56f9c250189074f114dd3e086ae6165c280cee2b44a8",
+        "observed_at_utc": "2026-08-15T11:56:26.847103Z"
+      },
+      {
+        "request_id": "J008",
+        "response_sha256": "f9bbaf1c51e09d8c0fc86c13810793e7746f8be36e46f60ffe10670c50c7ccd3",
+        "observed_at_utc": "2026-08-15T11:56:26.847228Z"
+      },
+      {
+        "request_id": "J009",
+        "response_sha256": "f6f681b3159a5a296db0c6b75ddde3221a6b74bf0119c92ba0388f8c3f80ea44",
+        "observed_at_utc": "2026-08-15T11:56:26.847347Z"
+      },
+      {
+        "request_id": "J010",
+        "response_sha256": "455f8df701f8795aee78ad988b2d486ef59261e74b4fbfa6ddaaaa00f5d6b1e0",
+        "observed_at_utc": "2026-08-15T11:56:26.847428Z"
+      },
+      {
+        "request_id": "J011",
+        "response_sha256": "131413e590f110dd3f0c7738c7ef277f0fcacdf9ee42c8fbde69c5cdcf5839a5",
+        "observed_at_utc": "2026-08-15T11:56:26.847524Z"
+      },
+      {
+        "request_id": "J012",
+        "response_sha256": "93d2e8374b1ec187cc9dd25c335241e01924aef660574c335cee87d23b0facd2",
+        "observed_at_utc": "2026-08-15T11:56:26.847643Z"
+      },
+      {
+        "request_id": "J013",
+        "response_sha256": "029f48477756b374f98a0f9ba2698015aaaa5b594aee1c2f81d6564df03c3680",
+        "observed_at_utc": "2026-08-15T11:56:26.847823Z"
+      },
+      {
+        "request_id": "J014",
+        "response_sha256": "183a60761acb45d484ff70b1f047b582e4b828a0fa9d3f118764e036fe861870",
+        "observed_at_utc": "2026-08-15T11:56:26.847937Z"
+      },
+      {
+        "request_id": "J015",
+        "response_sha256": "852764a76f157db0e4f23a10cc26967bae392f9ffac55049f2242ec3ecc997b8",
+        "observed_at_utc": "2026-08-15T11:56:26.848042Z"
+      },
+      {
+        "request_id": "J016",
+        "response_sha256": "9bb76334e7e905f898fef9c85ea4bf25dff53c071303173ca337d138b263535a",
+        "observed_at_utc": "2026-08-15T11:56:26.848208Z"
+      },
+      {
+        "request_id": "J017",
+        "response_sha256": "317a57ad556163cdba5fc7d2074317c389e7f978cb22361e7a261be7e2367fc5",
+        "observed_at_utc": "2026-08-15T11:56:26.848365Z"
+      },
+      {
+        "request_id": "J018",
+        "response_sha256": "8198baf27197466746807ca4abcd2578e0bca02a003bbf4b55c5d0bd35c0cf1b",
+        "observed_at_utc": "2026-08-15T11:56:26.848511Z"
+      },
+      {
+        "request_id": "J019",
+        "response_sha256": "2de4cec82e1529b1ff895f836e27a16b506e41e40a7491718ee20b69a8bf0701",
+        "observed_at_utc": "2026-08-15T11:56:26.848637Z"
+      },
+      {
+        "request_id": "J020",
+        "response_sha256": "dcac46e467632e2a22c9449af3e2d591af062fcc8320a563cfcc5e8bd9c1f72d",
+        "observed_at_utc": "2026-08-15T11:56:26.848762Z"
+      },
+      {
+        "request_id": "J021",
+        "response_sha256": "750d6e22601bd4fa9c8d95d5f01a795edaee17d50357617d4a5d4317401e5cba",
+        "observed_at_utc": "2026-08-15T11:56:26.848882Z"
+      },
+      {
+        "request_id": "J022",
+        "response_sha256": "80504d82509ca757715b42f5ac8a717debf223282f276f834f41db745461c59a",
+        "observed_at_utc": "2026-08-15T11:56:26.848991Z"
+      },
+      {
+        "request_id": "J023",
+        "response_sha256": "582ae3951f0c2f4a08432cd0af392d5f0617d877f56597e32459be8638568615",
+        "observed_at_utc": "2026-08-15T11:56:26.849099Z"
+      },
+      {
+        "request_id": "J024",
+        "response_sha256": "fe69182ed9777b17ee6080d8d39fed77834ad09656d8727134cbb95cc97c01bf",
+        "observed_at_utc": "2026-08-15T11:56:26.849222Z"
+      },
+      {
+        "request_id": "J025",
+        "response_sha256": "d363ddac63121a76ae1649e6552da953efe9a4b45e26b7f49ec5bb90d7e9f338",
+        "observed_at_utc": "2026-08-15T11:56:26.849326Z"
+      },
+      {
+        "request_id": "J026",
+        "response_sha256": "fab97e224e5fa1f8ddd9d8a716e80ee5cfaec737f8045d58dd2efee01bc42614",
+        "observed_at_utc": "2026-08-15T11:56:26.849412Z"
+      },
+      {
+        "request_id": "J027",
+        "response_sha256": "fb0dc88a852be80a33d12b90d6c6562ea27a5f3edc4709c8489c990b8bda1087",
+        "observed_at_utc": "2026-08-15T11:56:26.849518Z"
+      },
+      {
+        "request_id": "J028",
+        "response_sha256": "477c8d5bc004dc3469b9ae36abc5009a19c2aeccf83cf3020da248f7f76c6e83",
+        "observed_at_utc": "2026-08-15T11:56:26.849581Z"
+      },
+      {
+        "request_id": "J029",
+        "response_sha256": "8be8db4e58617c33a4ba060028fd5afd0e7267aa67e425b1113bc5404282857c",
+        "observed_at_utc": "2026-08-15T11:56:26.849663Z"
+      },
+      {
+        "request_id": "J030",
+        "response_sha256": "238ffd7589f612e1eae6d3436b8cf9127a135e6efadcaf88d4f3b3f23d0bf512",
+        "observed_at_utc": "2026-08-15T11:56:26.849757Z"
+      },
+      {
+        "request_id": "J031",
+        "response_sha256": "b461180c39e4340d89f3a12527170c71387fa03a0541bf37833edb2ca26e05d2",
+        "observed_at_utc": "2026-08-15T11:56:26.849832Z"
+      },
+      {
+        "request_id": "J032",
+        "response_sha256": "9103ac1071602806b7e92cc4982ef1bd273ed23d873ed3d99c3739b436fb0c60",
+        "observed_at_utc": "2026-08-15T11:56:26.849917Z"
+      },
+      {
+        "request_id": "J033",
+        "response_sha256": "3457aa15bf18c3a555e3bc66c341b5058f9762e190a73343fe6e3bdbfaff4bbf",
+        "observed_at_utc": "2026-08-15T11:56:26.850015Z"
+      },
+      {
+        "request_id": "J034",
+        "response_sha256": "22c84d776191ef51e02b2d097cbf46cad83c8aa56933ad10b976659c2bcb70d8",
+        "observed_at_utc": "2026-08-15T11:56:26.850135Z"
+      },
+      {
+        "request_id": "J035",
+        "response_sha256": "11524e602beacd245eed410e207b58e3b8581e8659a403e60353e6a48d579574",
+        "observed_at_utc": "2026-08-15T11:56:26.850235Z"
+      },
+      {
+        "request_id": "J036",
+        "response_sha256": "0619c36b8fff8e180df95dc92d42dbf62e1e0eab66f7de0a3381c0de2932c7f8",
+        "observed_at_utc": "2026-08-15T11:56:26.850435Z"
+      }
+    ],
+    "status": "complete",
+    "manifest_sha256": "23af14807e3595b5f48ff83f33d76f543f8a0970808ca0b21ff002b61b4b8791",
+    "ledger_attested": true
+  },
+  "source_raw": {
+    "path": "/tmp/pr21-audit.ovqkAr/experiments/counterevidence/results/runs/20260815T080049Z-635fb9e1/raw.jsonl",
+    "sha256": "33754ccabd713fd22503842120b6b38bd534ed9a3f0528d8e80f915c1219adcd",
+    "run_id": "20260815T080049Z-635fb9e1",
+    "model_verification": "unverifiable_manual"
+  },
+  "pre_registration": {
+    "version": 3,
+    "frozen_on": "2026-08-15",
+    "primary": "Refutable Accuracy gain (C - B)",
+    "primary_formula": "refutable_accuracy_C - refutable_accuracy_B",
+    "amendment_reason": "v1のcounterevidence定義とground truthの対象が不一致だった。v2のTrap Rateは、trapからother/unclear/malformedへの移行を正答化と同額で評価し、さらに工程指標の分母をモデル出力に依存させていた。formal row 0件のまま第三者静的監査を受け、結論の正答化を直接測る出力非依存の指標へ修正したため",
+    "known_observations_before_freeze": {
+      "formal_rows": 0,
+      "AB-01_smoke": "A key_documents=d2,d3,d6; B/Cはinitial=correct側、counterevidence_documents=d1。B-Cの正答率差は未観測",
+      "AB-01_legacy_C2": "PR #18以前のpromptでcounterevidence_documents=d2,d3",
+      "v2_static_probes": "trapからotherへの移行だけで正答増加0でもKEEP、Cの反証可能14行がmalformedでもKEEPになり得ることを第三者監査がオフライン再現"
+    },
+    "initial_anchor_rule": "B/Cはinitial_conclusionを記録する。CはC1 provisionalとの不一致を記録し、1件でもあれば正式判定を無効とする",
+    "anchor_mismatch_max": 0.0,
+    "refutable_case_count": 14,
+    "no_refutation_case_count": 6,
+    "keep": {
+      "refutable_accuracy_gain_min": 0.2,
+      "malformed_max": 0.0,
+      "correct_destruction_max": 0.25,
+      "max_token_ratio": 2.0,
+      "note": "token情報が欠損している場合、KEEP は出せない"
+    },
+    "conditional_keep": {
+      "note": "Refutable Accuracy (C-B) >= +0.20 だが、破壊率超過 / token比>=2.0 / token情報欠損"
+    },
+    "drop": {
+      "note": "Refutable Accuracy (C-B) < +0.20、Trap Rate悪化、または総合正答率でCがBを下回る"
+    },
+    "process_metrics": "Decisive Refutation Citationは全条件のkey_documents、Fixed-refutation Retrieval HitはCのretrieved_docsで集計する。どちらも全反証可能行を分母としprimary判定には使わない",
+    "power_caveat": "N=20 は screening。+0.20 未満は検出力不足であり判定不能。判定不能は DROP として扱う（不確かな部品を残さない）",
+    "pilot_rule": "6件パイロットの結果で KEEP/DROP を判断してはならない",
+    "invalidation_conditions": [
+      "formal row生成後のPRE_REGISTRATION変更",
+      "20件×全trial完了前の中間解析または逐次打ち切り",
+      "run途中の生成モデル・判定モデル・設定変更",
+      "anchor_mismatch > 0",
+      "B/Cいずれかのprimary分母 != 14 × trials",
+      "B/Cいずれかにmalformed JSONが1件以上",
+      "2026-08-14 smoke応答のformal流用",
+      "pilotでのKEEP/DROP判断"
+    ]
+  }
+}

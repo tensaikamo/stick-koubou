@@ -1,4 +1,24 @@
 {
   "schema_version": "counterevidence.attestations.v1",
-  "entries": []
+  "entries": [
+    {
+      "run_id": "20260815T080049Z-635fb9e1",
+      "completed_at_utc": "2026-08-15T08:11:01.531068Z",
+      "raw_sha256": "33754ccabd713fd22503842120b6b38bd534ed9a3f0528d8e80f915c1219adcd",
+      "manifest_sha256": "7d97aa96e52693ec073223ed882634e05275142c1d714974b7228ad16143bdf5",
+      "dataset_sha256": "2174bf26fc7f847492617f2c45bd55fba0aa34bbac7f9a2b839902e73228109a",
+      "specs_sha256": "4c4340f0f6b09d8c188aac8123bfec6008e848fdc1e63054688c67702e0dfe3b",
+      "backend": "manual",
+      "provider": "anthropic",
+      "model": "claude-opus-5",
+      "manual_judge": {
+        "manifest_sha256": "23af14807e3595b5f48ff83f33d76f543f8a0970808ca0b21ff002b61b4b8791",
+        "provider": "openai",
+        "model": "gpt-5.6-sol",
+        "model_verification": "unverifiable_manual",
+        "response_count": 36,
+        "completed_at_utc": "2026-08-15T11:56:26.851606Z"
+      }
+    }
+  ]
 }

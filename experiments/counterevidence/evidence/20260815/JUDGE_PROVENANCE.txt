@@ -1,0 +1,62 @@
+================================================================================
+JUDGE PROVENANCE — pilot run 20260815T080049Z-635fb9e1
+================================================================================
+
+対象:
+  PR #21 head e5389d4fa1163476786cda7a992d70bf70fd3a51
+  source raw SHA-256:
+    33754ccabd713fd22503842120b6b38bd534ed9a3f0528d8e80f915c1219adcd
+
+実行経路:
+  route              subscription_ui
+  provider           openai
+  model declaration  gpt-5.6-sol
+  model verification unverifiable_manual
+  api_used           false
+
+Claude生成モデルによる自己採点を避けるため、保存済みの
+anthropic / claude-opus-5 packet（responses 0件）は原状の生成アーカイブ内に保持し、
+監査用コピー上で削除して openai / gpt-5.6-sol 向けpacketを再exportした。
+元アーカイブ、元run、PR headのファイルは変更していない。
+
+36個のjudge promptは、それぞれfork_turns=noneの独立した新規サブエージェントへ
+prompt本文だけを渡した。別prompt、生成時の会話、親会話の実験内容は渡していない。
+全件同一モデル経路で実行し、途中切替はない。API、SDK、judge_apiは使用していない。
+
+結果:
+  unique prompts       36
+  logical calls        36
+  responses            36
+  invalid JSON          0
+  missing responses     0
+  score.py exit         0
+  manual manifest SHA   23af14807e3595b5f48ff83f33d76f543f8a0970808ca0b21ff002b61b4b8791
+  scored_pilot SHA      892aad783880c047e285004e503c5854cd89c02dbb623d6190011446624d1905
+  updated ledger SHA    a6eab1d077fd3034da7f920882d8605e8616afb5425258462080423761438926
+
+pilot集計:
+                           A       B       C
+  Accuracy              1.00    1.00    0.83
+  Refutable Accuracy    1.00    1.00    1.00
+  Trap Rate             0.00    0.00    0.00
+  Citation              1.00    1.00    1.00
+  Retrieval Hit          N/A     N/A    0.75
+  Correct Destruction   0.00    0.00    0.50
+  Anchor mismatch        N/A    0.00    0.00
+  Malformed             0.00    0.00    0.00
+  Unsupported           0.33    0.50    0.50
+
+解釈制約:
+  これは6件pilotであり、KEEP/DROPは出していない。
+  verdictはNOT_APPLICABLEである。
+  反証可能4件はA/B/Cすべて正答で、primary比較に天井効果がある。
+  Cはno_refutation 2件中1件を壊し、Correct Destruction=0.50だった。
+  この観測は正式効果判定ではなく、pilot目的4のfloor/ceiling確認として扱う。
+
+judge分散の観測:
+  CC-01の意味が近い強い因果表現に対するunsupported判定で、
+  J020=true、J022=falseという厳しさの揺れが観測された。
+  応答は後から統一・修正せず、そのままSHA固定した。
+  primaryの最終結論分類は当該2件とも候補1で一致している。
+
+================================================================================

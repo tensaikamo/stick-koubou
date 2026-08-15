@@ -1,0 +1,20 @@
+# JUDGE MANIFEST — pilot run 20260815T080049Z-635fb9e1
+# 生成側のMANIFEST.sha256.txtは変更しない。これは独立judge完了後の追加台帳。
+# judged archive: 125 files / gzip OK / safe tar paths verified
+
+# top-level judged artifacts
+1a44132483a188af4720bdf29cfe8c4146da9d5b68535bae9f4de48fc8771896  counterevidence_run_20260815T080049Z-635fb9e1_judged_openai.tar.gz
+892aad783880c047e285004e503c5854cd89c02dbb623d6190011446624d1905  scored_pilot_20260815T080049Z-635fb9e1.json
+23af14807e3595b5f48ff83f33d76f543f8a0970808ca0b21ff002b61b4b8791  manual_judge_manifest_openai_complete.json
+bc0e4cfd38033e50f3def2206fa43624d92f8300589320eb2485e3fa82ddbb77  JUDGE_PROVENANCE.txt
+e0913e05f440a5f809f88a8a5e96f1d14457cfdc1dd979d68fc47e0d8b57b360  PILOT_SCORE_REPORT.txt
+
+# tracked ledger after score.py finalization
+a6eab1d077fd3034da7f920882d8605e8616afb5425258462080423761438926  results/run_attestations.json
+
+# unchanged generation anchors inside judged archive
+33754ccabd713fd22503842120b6b38bd534ed9a3f0528d8e80f915c1219adcd  20260815T080049Z-635fb9e1/raw.jsonl
+7d97aa96e52693ec073223ed882634e05275142c1d714974b7228ad16143bdf5  20260815T080049Z-635fb9e1/run_manifest.json
+
+# response-level hashes and observed_at_utc are sealed in
+# manual_judge_manifest_openai_complete.json. Its SHA above binds all 36.

@@ -1,0 +1,184 @@
+================================================================================
+PROVENANCE — counterevidence 正式パイロット run 実行証跡
+================================================================================
+
+■ run 識別
+  run_id      : 20260815T080049Z-635fb9e1
+  実行日時    : 2026-08-15 08:00:49 UTC 開始 / 08:11:01 UTC 台帳追記
+  実行日      : 2026-08-15（Asia/Tokyo）
+  対象tree    : b1ca8a75214dea2cb56470a38502f1eab45d812d
+                （既定ブランチ「メイン」のmerge commit
+                  "Add zero-API subscription UI judge workflow (#20)"）
+  実行ブランチ: claude/stick-koubou-pilot-generation-3fs1m1
+
+■ このrunの位置づけ（重要）
+  これは 6件パイロット専用のrunである。full run ではない。
+
+  - dataset は 6件（false_coherence 2 / absence 1 / common_cause 1 /
+    no_refutation 2）であり、事前登録v3が要求する20件（6/4/4/6）を満たさない。
+  - したがって KEEP / DROP 判定は出していない。出してはならない。
+    事前登録v3の「runの無効化条件 8」が
+    「6件パイロットでKEEP/DROPを判断」を無効化事由として明示している。
+  - パイロットの目的は4つに限定される：
+      1. プロンプトが機能するか
+      2. JSON が安定するか（malformed 率）
+      3. retrieval が壊れていないか
+      4. 明白な floor / ceiling effect がないか
+  - score.py --mode pilot は verdict_full を呼ばず、構造的に KEEP/DROP を出さない。
+
+■ 実行経路と課金
+  実行経路      : Claude Code のサブスクリプション OAuth 経由、対話型 Agent tool のみ
+  API課金       : 発生していない。以下を確認済み。
+                  - ANTHROPIC_API_KEY   … 未設定
+                  - ANTHROPIC_AUTH_TOKEN … 未設定
+                  - anthropic SDK 自体が未インストール（ModuleNotFoundError）
+                    → run.py の call_api、score.py の judge_api は
+                      import 時点で失敗し、到達不能である
+  不使用        : API直呼び / Agent SDK / claude -p / judge_api /
+                  Console credits / PAYG / extra usage
+  実行後の証跡  : run_manifest.json は api_calls: {} / backend: "manual" のまま
+  ツール使用    : 全24サブエージェントで tool_uses = 0
+
+■ モデル同一性と、申告値の不一致（全開示）
+  manifest 記録値 : provider "anthropic" / model "claude-opus-5"
+  model_verification : "unverifiable_manual"
+
+  全24応答は Agent tool の model パラメータへ "opus" を明示指定して実行した。
+  したがって A / B / C1 / C2 の全条件・全6ケースで生成モデルは同一である。
+  run途中でのモデル切替は発生していない（事前登録の無効化条件3に非該当）。
+  利用上限には到達しなかったため、中断・再開も発生していない。
+
+  ただし、申告値そのものに解決できない不一致がある。
+
+    - セッションの /model コマンドは "claude-opus-5" を設定した。
+    - 一方、同セッションのシステムプロンプトは、設定モデルを
+      "claude-fable-5" と記載していた。
+
+  どちらが実体かを、セッション内部から外部検証する手段はない。
+  manifest には /model が設定した "claude-opus-5" を記録したが、
+  これは操作者申告であり、応答本文から真偽を判定することはできない。
+
+  これは README が manual backend について規定する
+  model_verification: "unverifiable_manual" の状態そのものであり、
+  生き残っている弱点 #9（manual応答の実モデル名は外部検証不能）に該当する。
+  正式な無条件 KEEP には、従来どおり API backend による追試が必要である。
+
+■ 会話分離（hard gate）
+  24件すべてを、それぞれ独立した新規サブエージェント＝新規会話で実行した。
+  各サブエージェントへは、対応する prompt のテキストのみを逐語で投入し、
+  他条件・他ケースの文脈は一切与えていない。会話の使い回しはない。
+  ラッパー指示や追加の手順説明も付けていない（prompt本文のみ）。
+
+■ 生成結果
+  完了応答数    : 24 / 24
+                  stage 1 : A 6件 / B 6件 / C1 6件 = 18件
+                  stage 2 : C2 6件（C1応答から run.py が生成した prompt に対する応答）
+  未完了        : 0件
+  raw.jsonl     : 18行（A 6 / B 6 / C 6）、1 trial per condition
+  malformed JSON: 0 / 24
+  anchor一致    : 6 / 6 全 MATCH
+                  （C1 の provisional_conclusion が C2 の initial_conclusion へ
+                    逐語コピーされている。INVALID_ANCHOR に非該当）
+
+  パイロット目的のうち 1・2・3 については問題を検出しなかった。
+  4（floor / ceiling effect）の評価は judge 採点を要するため未評価である。
+
+■ 旧データの不使用
+  以下は本runへ一切流用していない。削除・上書きもしていない。
+
+    results/responses/AB-01__C1.txt   … 2026-08-13 回収版（manifest導入前）
+    results/responses/AB-01__C2.txt   … 同上
+    evidence/20260814/                … 2026-08-14 AB-01 smoke（非formal）
+
+  事前登録v3の無効化条件7（2026-08-14 smoke応答をformal runへ流用）に非該当。
+  本runは stage 1 で新しい run_id を発行し、results/runs/<run_id>/ 配下に
+  完全に分離して生成した。過去runや回収証跡への上書きは発生していない。
+
+■ manual judge は未実行
+  judge は実行していない。export までで停止している。
+
+    packet    : results/runs/20260815T080049Z-635fb9e1/manual_judge/
+    prompts   : 36件（unique 36 / scoring calls 36）
+    responses : 0件（manual_judge/responses/ は空ディレクトリ）
+    status    : "awaiting_responses"
+    judge申告 : route "subscription_ui" / api_used false /
+                provider "anthropic" / model "claude-opus-5" /
+                model_verification "unverifiable_manual"
+
+  したがって scored_pilot.json は存在せず、採点結果も判定も存在しない。
+
+  留意点：judge に宣言した provider/model が生成側と同一であるため、
+  このまま採点すると自己採点構成になる。README の実行例は judge に
+  別プロバイダ（openai）を挙げており、別UIを想定していた可能性がある。
+  packet は provider/model に SHA 束縛されているため、別UIで採点する場合は
+  manual_judge/ を削除して再export が必要である。judge応答が0件の現時点では
+  損失なく変更できる。この判断は未了である。
+
+  また、manual 実行では token 情報が得られないため、manual judge のみで
+  正式な無条件 KEEP に到達することは構造的に不可能である
+  （COST_COMPARISON_UNAVAILABLE）。
+
+■ アーカイブ内容
+  counterevidence_run_20260815T080049Z-635fb9e1.tar.gz
+
+  展開すると 20260815T080049Z-635fb9e1/ が現れる。内訳は88ファイル：
+
+    run_manifest.json                 1  （read-only 444。stage 3 完了時に固定）
+    raw.jsonl                         1  （read-only 444。同上）
+    prompts/                         24  （A/B/C1 各6 + stage 2生成のC2 6）
+    responses/                       24  （上記に対応する応答本文）
+    manual_judge/manifest.json        1
+    manual_judge/HOW_TO.txt           1
+    manual_judge/prompts/            36  （J001〜J036）
+    manual_judge/responses/           0  （空。judge未実行）
+
+  tar は --sort=name / --owner=0 / --group=0 / --numeric-owner、
+  gzip は -n（timestamp埋め込みなし）で作成した決定的アーカイブである。
+  mtime は実行時刻を保持している。
+
+  各ファイルの SHA-256、サイズ、mtime は MANIFEST.sha256.txt を参照。
+  同ファイルにはアーカイブ自身の SHA-256 と、このrunを束縛する
+  dataset.jsonl / specs.jsonl / prompts.py / run.py / score.py および
+  results/run_attestations.json の SHA-256 も記録している。
+
+■ なぜアーカイブが必要か
+  .gitignore が experiments/counterevidence/results/runs/ を除外しているため、
+  run 本体（prompts・responses・raw.jsonl・judge packet）は Git 追跡外である。
+  実行環境は一時コンテナであり、非活動状態が続くと回収される。
+  この tar.gz と MANIFEST が、run 本体を Git 追跡下へ残す唯一の経路である。
+
+  README は「実run後はこの台帳差分を証跡PRとしてcommitするまで、
+  ローカルファイルだけを改ざん不能とはみなさない」と規定している。
+  本コミットはその証跡PRにあたる。
+
+■ 台帳（results/run_attestations.json）
+  score.py の manual judge export が、本runのエントリを1件追記した。
+  手書きではない。内容：
+
+    run_id           20260815T080049Z-635fb9e1
+    completed_at_utc 2026-08-15T08:11:01.531068Z
+    raw_sha256       33754ccabd713fd22503842120b6b38bd534ed9a3f0528d8e80f915c1219adcd
+    manifest_sha256  7d97aa96e52693ec073223ed882634e05275142c1d714974b7228ad16143bdf5
+    dataset_sha256   2174bf26fc7f847492617f2c45bd55fba0aa34bbac7f9a2b839902e73228109a
+    specs_sha256     4c4340f0f6b09d8c188aac8123bfec6008e848fdc1e63054688c67702e0dfe3b
+    backend          manual
+    provider         anthropic
+    model            claude-opus-5
+
+  manual judge manifest の SHA-256 は
+    2432bca976a27ca4740897894c3a341dc48773e23cf8d2df27512300047ffbd5
+  である。README の規定により、台帳への manual judge manifest SHA の追記は
+  採点成功後にのみ行われるため、judge 未実行の現時点では台帳に含まれていない。
+
+■ このコミットで行っていないこと
+  - judge の実行
+  - manual judge packet の再export
+  - 採点（score.py --manual-stage score）
+  - KEEP / DROP 判定
+  - 既定ブランチ「メイン」への直接 push、および merge
+
+  AI_CONSTITUTION.md、evals/、.github/CODEOWNERS、
+  .github/workflows/evolution-evals.yml、合格条件を定めるテストは
+  いずれも変更していない。
+
+================================================================================
