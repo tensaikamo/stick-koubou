@@ -962,7 +962,10 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "公開情報から四半期決算報告書およびデータセンター部門売上高に関する証拠が取得できないため判定できません。",
+      "url": ""
+    },
     "rejected": [
       {
         "draft": {
@@ -996,7 +999,8 @@
     ],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "judge_attempts": 1
   },
   {
     "id": "2026-08-02-h02",
@@ -1008,7 +1012,7 @@
     "claim": "Bitcoinの取引価格が100,000米ドルを上回る",
     "subject": "Bitcoin",
     "resolution": {
-      "source": "CoinMarketCap",
+      "source": "https://coinmarketcap.com/currencies/bitcoin/",
       "check_query": "Bitcoin price USD",
       "decider": "CoinMarketCapにおいてBitcoinの表示価格が100,000.00米ドル以上に達すること"
     },
@@ -1017,10 +1021,13 @@
     "counter": "主要国の金融規制強化やマクロ経済指標の悪化に伴い、リスクオフの売り圧力が強まるリスクが存在する。",
     "indicators": [],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-16T06:48:12.933050+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "CoinMarketCapのページにおいて、Bitcoinの現在価格は約63,089ドルであり、作成日から期限までの期間に100,000米ドル以上に達した記録は確認できない。",
+      "url": "https://coinmarketcap.com/currencies/bitcoin/"
+    },
     "rejected": [
       {
         "draft": {
@@ -1054,7 +1061,8 @@
     ],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-08-03-h01",
