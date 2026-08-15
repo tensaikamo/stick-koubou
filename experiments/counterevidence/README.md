@@ -31,7 +31,7 @@
 | | 内容 | これが真なら見えるもの |
 |---|---|---|
 | H1 | pipeline は誤った整合への固定を減らす | 反証可能ケースの Trap Rate が C で B より明確に低い |
-| H2 | 効果に見えるものは推論量の効果 | C と B に差がない、または token 比で説明できる |
+| H2 | 効果に見えるものは推論量の効果 | C と B に差がない、または workload 比で説明できる |
 | H3 | 疑いすぎて正解も壊す | C の Correct Destruction が B より高い |
 
 **B vs C がprimary比較。** Aは通常回答の記述的baselineとして、Accuracy / Trap Rate /
@@ -78,6 +78,11 @@ B は1呼び出しなので、本当に反証検討前に考えた説明かを�
 | Common Cause | 4 | 1 |
 | No-refutation | 6 | 2 |
 
+現在の6件は2026-08-15 pilotで全件観測済みのため、正式評価には使わない。
+v4は新規60件を回答生成前に `calibration / formal / reserve` へ20件ずつ固定分割する。
+各splitは同じ6/4/4/6構成。作成・凍結・破棄条件は
+[`DATASET_PROTOCOL.md`](DATASET_PROTOCOL.md) と `cohort.py` を正本とする。
+
 `refutation_document_ids` は配列。`refutation_match` が `ANY` なら1件でも引用すれば発見、
 `ALL` なら全件必要。ケースごとに ground truth 側で指定する。
 
@@ -105,12 +110,15 @@ B は1呼び出しなので、本当に反証検討前に考えた説明かを�
 
 ---
 
-## pilot と full は完全に別物
+## pilot / calibration / full は完全に別物
 
 > **6件パイロットの結果で部品を KEEP / DROP してはならない。**
 
 `score.py --mode pilot` は KEEP/DROP を構造的に出さない（`verdict_full` を呼ばない）。
-`score.py --mode full` は 20件・6/4/4/6 を code 側で強制し、満たさなければ採点自体を拒否する。
+`score.py --mode calibration` は20件・6/4/4/6を強制し、Bの難易度だけでcohortを
+`COHORT_ACCEPT / COHORT_REJECT` にする。Cの成績をcohort選択へ使わない。
+B/Cのmalformed・anchorだけは実行完全性gateとして別に検査する。
+`score.py --mode full` は封印していた別の20件・6/4/4/6を強制し、正式判定を一度だけ出す。
 
 **パイロットの目的は4つだけ：**
 1. プロンプトが機能するか
@@ -124,28 +132,38 @@ B は1呼び出しなので、本当に反証検討前に考えた説明かを�
 
 ```bash
 python selftest.py                          # 実験前に必ず通す
-python run.py --validate                    # データセット検証
+python cohort.py --pool cohorts/v4/pool.dataset.jsonl \
+  --specs cohorts/v4/pool.specs.jsonl \
+  --cohort-id counterevidence-v4-cohort-01 \
+  --out results/cohorts/counterevidence-v4-cohort-01
 
-# 手動（各プロンプトは新しい会話で実行すること）
-# provider/model は実際に使う値を必ず明示する。temperature不明なら省略し、unknownで残す。
-python run.py --backend manual --stage 1 \
-  --provider anthropic --model claude-haiku-4-5-20251001  # 18 prompts
-python run.py --backend manual --stage 2    # C1応答から C2 生成
-python run.py --backend manual --stage 3    # raw.jsonl へ集約
+# まずcalibration 20件。全stageで同じdataset/specsを指定する。
+CE_DATASET=results/cohorts/counterevidence-v4-cohort-01/calibration.dataset.jsonl
+CE_SPECS=results/cohorts/counterevidence-v4-cohort-01/calibration.specs.jsonl
+python run.py --backend manual --stage 1 --require-full \
+  --dataset "$CE_DATASET" --specs "$CE_SPECS" \
+  --provider anthropic --model '<UIに表示されたモデル名>'
+python run.py --backend manual --stage 2 --require-full \
+  --dataset "$CE_DATASET" --specs "$CE_SPECS"
+python run.py --backend manual --stage 3 --require-full \
+  --dataset "$CE_DATASET" --specs "$CE_SPECS"
 
 # judgeもAPIを使わない（ChatGPT / Claude / Grok等の契約済みUIを1つに固定）
-python score.py --mode pilot --judge manual --manual-stage export \
+python score.py --mode calibration --judge manual --manual-stage export \
+  --dataset "$CE_DATASET" --specs "$CE_SPECS" \
   --judge-provider openai --judge-model '<UIに表示されたモデル名>'
 # results/runs/<run_id>/manual_judge/HOW_TO.txt に従い、各JSONを保存
-python score.py --mode pilot --judge manual --manual-stage score
+python score.py --mode calibration --judge manual --manual-stage score \
+  --dataset "$CE_DATASET" --specs "$CE_SPECS"
 
-# API（20件揃ってから）
-python run.py --backend api --trials 3 --require-full
-python score.py --mode full
+# COHORT_ACCEPT後だけ、別runで封印済みformal 20件を同じmanual手順で実行
+# CE_DATASET/CE_SPECSをformal.*へ替えて上記run手順を繰り返し、
+# 最後の採点だけ --mode full にする。APIは不要。
 ```
 
 ### API課金なしの手動judge
 
+`score.py` の既定judgeは `manual`。`--judge api` を明示しない限り課金APIへ進まない。
 `--judge manual` はAnthropic SDKをimportせず、外部APIを呼ばない。`export` は正式な
 judge promptを `manual_judge/prompts/` へ書き出し、`score` は同番号の
 `manual_judge/responses/` に保存されたJSONだけを取り込む。raw・dataset・specs・実コード・
@@ -164,8 +182,10 @@ API応答の `reported_model` のように外部検証することはできな�
 `route: subscription_ui` / `api_used: false` を保存する。
 
 無料APIや別モデルを、凍結済みjudgeの無言の代替にしてはならない。使う場合は別の
-再現性・感度分析としてrunと事前登録を分離する。manual生成ではtoken情報が得られないため、
-manual judgeを使っても正式な無条件 `KEEP` には到達せず、従来どおりAPI追試が必要である。
+再現性・感度分析としてrunと事前登録を分離する。manual生成ではtoken情報を推測せず、
+実際のprompt/responseファイルからUTF-8 byteを記録する。全性能・安全gateとworkload比を
+満たしたmanual full runは `SUBSCRIPTION_KEEP` に到達できる。これは実際の契約UIでCを
+採用する判断であり、provider-reported model identityや特定APIモデルへの一般化ではない。
 
 ### 実行証跡と会話分離の hard gate
 
@@ -226,42 +246,45 @@ response SHAの不一致を `INCOMPLETE_RESULTS` として拒否する。壊れ�
 `INCOMPLETE_RESULTS` として採点を拒否する（`--trials 3` なら 20×3×3 = 180 行）。
 難しいケースだけが欠けた条件は、その条件を不当に有利にするため。
 
-**manual backend では token 数を記録しない。** 0 で埋めると token 比が 0 になり、
-「計算量差では説明できない」を誤ってクリアしてしまうため、フィールド自体を作らない。
+**manual backend では token 数を記録しない。** 0で埋めたりtokenizerを推測すると、
+「計算量差では説明できない」を誤ってクリアするためである。代わりに、実際に提示・保存した
+全prompt/responseのUTF-8 byteを各SHA証跡へ束縛して合計する。これはtoken同値ではなく、
+固定料金subscription UIにおける監査可能な入出力workload proxyとしてだけ使う。
 
 ---
 
-## 事前登録v3の判定基準（2026-08-15凍結）
+## 事前登録v4の判定基準（2026-08-15凍結）
 
 `score.py` の `PRE_REGISTRATION` に固定。**結果を見てから変更した場合、その実験は無効。**
 
-v1のRefutation Discovery Rateは、promptが「モデル自身のinitial」を弱める文書を求める一方、
-採点器が「固定trap」を弱める文書を数えており、同じ構成概念を測っていなかった。
-v2のTrap Rate reductionは、trap→`other` / `unclear` / malformedをtrap→correctと同額で
-評価でき、正答を1件も増やさずKEEPに到達できた。また工程指標を`initial=trap`に限定したため、
-分母がモデル出力に依存してB/Cで食い違った。formal rowはまだ0件で、観測済みAB-01 smokeでも
-B/Cの正答は同値だったため、C−Bの正答率差は未観測である。静的監査結果を全開示したうえで、
-結果生成前にv3へ改訂した。
+v1〜v3の修正履歴は削除しない。v3で出力非依存のRefutable Accuracyへ修理した後、
+2026-08-15 pilotは反証可能4件でA/B/C全て1.00という天井効果と、C Correct Destruction=0.50を
+観測した。これは `NOT_APPLICABLE` のpilotでありformal rowは0件。PR #21に全応答・採点・SHAを
+固定し、第三者監査PASS後にmergeした。
 
-v2へのオフライン合成probeでは、正答増加0のままtrap→otherへ移したケースと、Cの反証可能
-14行をすべてmalformedにしたケースの双方でKEEPに到達できた。これは実モデルの効果観測ではなく、
-判定ロジックの反例である。
+v4は性能結果に合わせて閾値を動かさない。+0.20、破壊率0.25、workload比2.0、分母、malformed、
+anchor、Trap Rate、総合Accuracyのgateはv3のまま。変更点は次の2つだけである。
+
+1. 観測済み6件をformalから除外し、新規60件を回答前に3 splitへ固定する
+2. manual UIの費用・利用量比較を、推測tokenではなく実ファイルのUTF-8 byteで完結させる
 
 反証可能ケースは **14件**（false_coherence 6 + absence 4 + common_cause 4）。
 no_refutation は **6件**。
 
 | 判定 | 条件 |
 |---|---|
-| **KEEP** | 反証可能ケースの Refutable Accuracy gain (C−B) ≥ **+0.20**、Trap Rate(C) ≤ Trap Rate(B)、Accuracy(C) ≥ Accuracy(B)、B/C malformed=0、Correct Destruction(C) ≤ 0.25、token比 < 2.0 |
-| **CONDITIONAL KEEP** | primary・Trap Rate・Accuracy・malformed gateを満たすが、破壊率超過 / token比 ≥ 2.0 / **token情報欠損** |
+| **KEEP** | API runで全性能・安全gateを満たし、token workload比 < 2.0 |
+| **SUBSCRIPTION_KEEP** | manual full runで同じ性能・安全gateを満たし、実測UTF-8 workload比 < 2.0。契約UIでの採用判断であり特定APIモデルへ一般化しない |
+| **CONDITIONAL KEEP** | primary等を満たすが、破壊率超過 / workload比 ≥ 2.0 / workload証跡欠損。第一世代への常時搭載はしない |
 | **DROP** | Refutable Accuracy (C−B) < +0.20、Trap Rate悪化、または総合正答率で C が B を下回る |
 | **INVALID_OUTPUT** | BまたはCにmalformed JSONが1件以上。効果判定を出さない |
 | **INVALID_ANCHOR** | BまたはCで `initial_conclusion` のanchor不一致が1件以上。効果判定を出さない |
 
 - **+0.20** は反証可能14件中およそ **2.8件 ≒ 3件** に相当
 - **0.25** は no_refutation 6件中 **1.5件** に相当
-- **token情報が欠損している場合、KEEP は出せない**（`COST_COMPARISON_UNAVAILABLE`）。
-  manual 実行だけで KEEP に到達することは構造的に不可能
+- APIはtotal token、manualは実prompt/responseのUTF-8 byteをworkloadに使う。混ぜない
+- manualのprovider/modelは `unverifiable_manual` のまま。`SUBSCRIPTION_KEEP` は名前どおり
+  subscription UI経路だけの運用判断
 - full の表にも `Initial-anchor mismatch` を表示する。Cの逐語コピー失敗を「反証未発見」と
   混同したまま KEEP/DROP を出さない
 - primaryの分母はB/Cそれぞれ `14 × trials` 行。trialはcase内反復であり、独立Nではない
@@ -273,7 +296,7 @@ no_refutation は **6件**。
 **+0.20 未満は検出力不足であり「判定不能」だが、事前登録の規定により DROP として扱う**
 （不確かな部品を残さない）。
 
-### v3凍結前に判明していた観測（全開示）
+### v4凍結前に判明していた観測（全開示）
 
 - AB-01 A: `key_documents=["d2","d3","d6"]`
 - AB-01 B/C: initialはcorrect側、`counterevidence_documents=["d1"]`、旧RDRは両方False
@@ -282,6 +305,9 @@ no_refutation は **6件**。
 - formal runの行は未生成。BとCが同値だったため効果量の符号も未観測
 - smoke実物と報告書のSHA-256は `evidence/20260814/SMOKE_MANIFEST.sha256.txt` に記録し、
   実行経路と非formal用途を同ディレクトリの `PROVENANCE.txt` に固定
+- 2026-08-15 pilot: A/B/C Refutable Accuracy=1.00、C Correct Destruction=0.50、
+  C Retrieval Hit=0.75。生成・独立judge・監査結果は `evidence/20260815/` に固定
+- 2026-08-15 pilotのverdictは `NOT_APPLICABLE`。fullの効果量は未観測、formal rowは0件
 
 ### runの無効化条件
 
@@ -293,6 +319,8 @@ no_refutation は **6件**。
 6. B/Cいずれかにmalformed JSONが1件以上
 7. 2026-08-14 smoke応答をformal runへ流用
 8. 6件pilotでKEEP/DROPを判断
+9. 2026-08-15までのpilot 6件をcalibration/formal/reserveへ再利用
+10. manual full runのUTF-8 workload証跡が欠損または実ファイルと不一致
 
 ---
 
@@ -311,13 +339,13 @@ Cについては、`retrieved_docs` に固定ground truthの反証文書が含�
 |---|---|---|
 | 1 | **N=20 は screening**。大きい効果しか検出できない | 生き残る |
 | 2 | **人工課題であり、反証が少数文書に局在**。実世界では分散している | 生き残る。C に有利な可能性 |
-| 3 | **同予算比較をしていない**（C は 2 呼び出し） | 部分的に対処（token比を判定条件に組込）。完全統制は追試 |
+| 3 | **C は2呼び出し、Bは1呼び出し** | APIはtoken比、manualはUTF-8 workload比を判定条件に組込。byteは計算量そのものではない |
 | 4 | **B の強さは主観的**。より強い B を書けば C の優位が消えるかもしれない | 生き残る |
 | 5 | **judge も LLM**。判定自体が偏りうる | 部分的に対処（候補順を case ごとに固定、sha256で再現可能） |
 | 6 | **C の効果はパイプライン全体の効果**。どの部品が効いたかは分離できない | 生き残る。設計上の限界として明記 |
 | 7 | `key_documents` は自己申告。**反証を理解したが根拠文書に挙げない**場合を取りこぼす | 生き残る。引用率は記述指標に限定しprimaryから除外。検索到達とは呼ばない |
 | 8 | 反証ありケースが14に対し反証なしが6。**「疑う」戦略がやや有利** | 部分的に対処（4→6件へ増）。完全な対称ではない |
-| 9 | **manual応答の実モデル名は外部検証不能**。操作者が途中で切替えても本文だけでは判定できない | 生き残る。`unverifiable_manual` を証跡・採点警告へ明示し、正式KEEPにはAPI追試が必要 |
+| 9 | **manual応答の実モデル名は外部検証不能**。操作者が途中で切替えても本文だけでは判定できない | 生き残る。`unverifiable_manual` を明示し、判定名を `SUBSCRIPTION_KEEP` に限定 |
 
 ---
 
