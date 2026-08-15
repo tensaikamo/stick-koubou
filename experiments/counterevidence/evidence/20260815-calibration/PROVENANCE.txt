@@ -1,0 +1,94 @@
+counterevidence v4 calibration run — 証跡（未完了）
+====================================================
+
+run_id: 20260815T144509Z-401bd7d8
+cohort: counterevidence-v4-cohort-01 / split: calibration (20件)
+実施日: 2026-08-15 (UTC)
+メイン HEAD: 7ac51b2638611523aa67533e3df35f770c260d73（実行前に一致を確認）
+
+*** 状態: INCOMPLETE ***
+stage 1 応答: 60 / 60 取得済み
+stage 2 応答: 0 / 20 未取得
+raw.jsonl: 未生成 / attestation: 未登録 / judge・採点: 未実行
+このアーカイブは完了runの証跡ではない。実行途中で保全した中間証跡である。
+KEEP/DROP判定には使用してはならない。
+
+実行条件
+--------
+backend: manual (stage 1 → stage 2)
+provider申告: claude-code-subscription
+model申告: claude-sonnet-5
+実際の実行経路: Claude Code の Agent tool サブエージェント
+  model="sonnet" を全80件で固定。途中でモデルを変更していない。
+  ※ モデル同一性はオペレータ申告であり provider reported_model による
+    検証は行っていない（unverifiable_manual 相当）。
+
+課金
+----
+ANTHROPIC_API_KEY: 未設定
+Anthropic API 直呼び / Agent SDK / claude -p / judge_api: いずれも未使用
+Extra Usage: 有効化していない
+使用したのは Claude Code サブスクリプション OAuth のみ
+
+独立性
+------
+A / B / C1 / C2 は、それぞれ完全に独立した新規サブエージェントで実行。
+各エージェントへ渡したのは対象 prompt 本文のみ。
+親会話・別条件の prompt・他エージェントの応答は一切渡していない。
+C1 → C2 の受け渡しは run.py の manual_stage2（retrieve + build_c2）による
+プロンプト生成のみで、これは実験設計上意図された唯一の経路。
+
+サブエージェントの tool 使用
+----------------------------
+全60エージェント中、tool を使用したのは3件のみ。
+  V4-AB-12__A / V4-FC-06__B / V4-FC-09__A
+いずれも Bash "echo done"（no-op）で、dataset・ground truth・
+formal/reserve への参照は0件。汚染なし。
+残り57件は tool_uses=0。
+
+ground truth 非参照
+-------------------
+- formal.dataset.jsonl / reserve.dataset.jsonl は一度も開いていない。
+- calibration の ground_truth 値は表示・参照していない（キー名のみ確認）。
+- 生成した60プロンプト全件について、ground_truth 由来の文字列が
+  プロンプト内に混入していないことを機械的に検査した。混入 0 件。
+
+形式検証（stage 1、60件）
+-------------------------
+JSON parse 失敗: 0
+必須フィールド欠損: 0
+  A : conclusion / key_documents / confidence
+  B : initial_conclusion / conclusion / key_documents / confidence
+  C1: provisional_conclusion / falsifiers / queries
+  （v4 では counterevidence_documents は要求されない。
+    prompts.py:9「出力依存の対象を作らないため、
+    counterevidence_documents は要求しない。」）
+
+形式逸脱（除外せず記録のみ。応答は一切改変せず逐語保存）
+  1. V4-FC-06__A — コードフェンス禁止の指示に反し ```json で包まれていた。
+     run.py / score.py の parse_json はフェンスを剥がすため parse は成功する。
+  2. V4-FC-17__C1 — falsifiers が5要素（実質3件＋空文字列2件）。
+     テンプレートのプレースホルダを写したもの。JSONとしては正当。
+     空要素を削除する改変は行っていない。
+
+未実施
+------
+- C2 応答 20件（stage 2 プロンプトは生成済み・未回答）
+- stage 3（raw.jsonl 生成）
+- attestation 登録
+- judge / 採点（指示により未実行）
+- anchor 一致検証（C2 応答が無いため未実施）
+
+再開手順
+--------
+1. cd experiments/counterevidence
+2. R=results/runs/20260815T144509Z-401bd7d8
+3. 未取得を列挙:
+   for p in $R/prompts/*.txt; do n=$(basename $p .txt);
+     [ -f $R/responses/$n.txt ] || echo $n; done
+4. 各 C2 プロンプト本文のみを新規サブエージェント(model="sonnet")へ渡す
+5. 応答を $R/responses/<name>.txt へ逐語保存
+6. 80件そろったら stage 3 → attestation → 再アーカイブ
+
+注意: results/runs/ は .gitignore 対象のため、この tar.gz が
+      run ディレクトリの唯一の可搬コピーである。
