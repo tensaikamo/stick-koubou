@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tensaikamo.github.io/stick-koubou/schemas/counterevidence-autoloop-manifest-v1.json",
+  "title": "Counterevidence AutoLoop manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "execution_plane",
+    "repository_visibility",
+    "state",
+    "paused_from",
+    "generator",
+    "judge",
+    "call_plan",
+    "calls",
+    "score_sha256",
+    "attestation_sha256",
+    "verdict",
+    "sequence",
+    "previous_checkpoint_sha256",
+    "checkpoint_sha256",
+    "merge_attempted",
+    "auto_merge"
+  ],
+  "properties": {
+    "schema_version": {"const": "counterevidence.autoloop.v1"},
+    "run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
+    "execution_plane": {"enum": ["public_control", "private_trusted"]},
+    "repository_visibility": {"enum": ["public", "private"]},
+    "state": {
+      "enum": [
+        "CREATED", "GENERATING", "VALIDATING_GENERATION", "JUDGING",
+        "VALIDATING_JUDGMENTS", "SCORING", "ATTESTING", "DRAFT_PR_READY",
+        "PAUSED_QUOTA", "BLOCKED_AUTH", "BLOCKED_BILLING_ROUTE",
+        "INVALID_OUTPUT", "INVALID_PROVENANCE", "INVALID_INDEPENDENCE", "FAILED_TESTS"
+      ]
+    },
+    "paused_from": {"enum": ["GENERATING", "JUDGING", null]},
+    "generator": {"$ref": "#/$defs/executor"},
+    "judge": {"$ref": "#/$defs/executor"},
+    "call_plan": {"type": "array", "items": {"$ref": "#/$defs/planItem"}},
+    "calls": {"type": "array", "items": {"$ref": "#/$defs/call"}},
+    "checkpoint_sha256": {"$ref": "#/$defs/sha256"},
+    "score_sha256": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+    "attestation_sha256": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+    "verdict": {"type": ["string", "null"]},
+    "sequence": {"type": "integer", "minimum": 0},
+    "previous_checkpoint_sha256": {
+      "oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]
+    },
+    "merge_attempted": {"const": false},
+    "auto_merge": {"const": false}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "executor": {
+      "type": "object",
+      "required": ["provider", "model", "route", "session_id"],
+      "properties": {
+        "provider": {"type": "string", "minLength": 1},
+        "model": {"type": "string", "minLength": 1},
+        "route": {"enum": ["subscription_oauth", "chatgpt_managed"]},
+        "session_id": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "planItem": {
+      "type": "object",
+      "required": ["role", "stage", "expected"],
+      "properties": {
+        "role": {"enum": ["generator", "judge"]},
+        "stage": {"type": "string", "minLength": 1},
+        "expected": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "call": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "call_id", "role", "stage", "prompt_sha256", "response_sha256",
+        "response_utf8_bytes", "status", "attempts"
+      ],
+      "properties": {
+        "call_id": {"type": "string", "minLength": 1},
+        "role": {"enum": ["generator", "judge"]},
+        "stage": {"type": "string", "minLength": 1},
+        "prompt_sha256": {"$ref": "#/$defs/sha256"},
+        "response_sha256": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "response_utf8_bytes": {"type": ["integer", "null"], "minimum": 0},
+        "status": {"enum": ["pending", "complete", "invalid"]},
+        "attempts": {"enum": [0, 1]},
+        "source_response_sha256": {"$ref": "#/$defs/sha256"},
+        "derivation": {
+          "type": "object",
+          "required": ["c1_call_id", "c1_response_sha256"],
+          "properties": {
+            "c1_call_id": {"type": "string", "minLength": 1},
+            "c1_response_sha256": {"$ref": "#/$defs/sha256"}
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}
