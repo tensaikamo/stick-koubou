@@ -132,12 +132,40 @@ python run.py --backend manual --stage 1 \
   --provider anthropic --model claude-haiku-4-5-20251001  # 18 prompts
 python run.py --backend manual --stage 2    # C1応答から C2 生成
 python run.py --backend manual --stage 3    # raw.jsonl へ集約
-python score.py --mode pilot
+
+# judgeもAPIを使わない（ChatGPT / Claude / Grok等の契約済みUIを1つに固定）
+python score.py --mode pilot --judge manual --manual-stage export \
+  --judge-provider openai --judge-model '<UIに表示されたモデル名>'
+# results/runs/<run_id>/manual_judge/HOW_TO.txt に従い、各JSONを保存
+python score.py --mode pilot --judge manual --manual-stage score
 
 # API（20件揃ってから）
 python run.py --backend api --trials 3 --require-full
 python score.py --mode full
 ```
+
+### API課金なしの手動judge
+
+`--judge manual` はAnthropic SDKをimportせず、外部APIを呼ばない。`export` は正式な
+judge promptを `manual_judge/prompts/` へ書き出し、`score` は同番号の
+`manual_judge/responses/` に保存されたJSONだけを取り込む。raw・dataset・specs・実コード・
+各prompt・各responseをSHA-256で束縛し、欠損、形式不正、prompt改変、コード変更は
+`INCOMPLETE_JUDGMENTS` としてfail-closedにする。同一promptは1件にまとめるが、採点時の
+論理call数はmanifestに別記する。全promptが採点経路で消費された後だけmanifestを
+`complete` にし、全response SHAを固定してprompt・response・manifestをread-onlyにする。
+完了後に応答本文が変わった場合は再採点を拒否する。最終manifest SHAはGit追跡対象の
+`results/run_attestations.json` の同一run entryにも追記する。実run後はこの台帳差分を
+証跡PRとしてcommitするまで、ローカルファイルだけを改ざん不能とはみなさない。
+
+各promptは別の新規チャットへ貼り、全件で同じprovider/modelを使う。途中で利用上限に
+達したら、回復後に同じモデルで続ける。別モデルへ切り替えた応答を同じpacketへ混ぜない。
+provider/modelは操作者申告の `unverifiable_manual` であり、UIのサブスクリプション利用を
+API応答の `reported_model` のように外部検証することはできない。manifestと採点結果には
+`route: subscription_ui` / `api_used: false` を保存する。
+
+無料APIや別モデルを、凍結済みjudgeの無言の代替にしてはならない。使う場合は別の
+再現性・感度分析としてrunと事前登録を分離する。manual生成ではtoken情報が得られないため、
+manual judgeを使っても正式な無条件 `KEEP` には到達せず、従来どおりAPI追試が必要である。
 
 ### 実行証跡と会話分離の hard gate
 

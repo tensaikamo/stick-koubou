@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """selftest.py -- 監査で要求された自動テスト。実験前に必ず通すこと。"""
-import contextlib, io, subprocess, sys, json, pathlib, hashlib, tempfile, shutil
+import contextlib, io, subprocess, sys, json, pathlib, hashlib, tempfile, shutil, os
 
 HERE = pathlib.Path(__file__).parent
 sys.path.insert(0, str(HERE))
@@ -598,6 +598,148 @@ with tempfile.TemporaryDirectory() as td:
     check("raw/manifest/実入力/attestation bundle が一致",
           not bundle_errors and len(ledger["entries"]) == 1,
           "; ".join(bundle_errors[:2]))
+
+    print("\n=== 16. API課金なし manual judge の end-to-end ===")
+    # anthropic がimportされた瞬間に失敗する偽SDKを置き、manual経路がAPI実装を
+    # 読み込まないことをbehaviorで確認する。
+    fake_sdk = pathlib.Path(td) / "fake-sdk"
+    fake_sdk.mkdir()
+    (fake_sdk / "anthropic.py").write_text(
+        'raise RuntimeError("anthropic must not be imported in manual judge")\n',
+        encoding="utf-8")
+    manual_export_cmd = [
+        sys.executable, str(HERE / "score.py"), "--mode", "pilot",
+        "--results", str(results_root), "--run-id", "protocol-run",
+        "--judge", "manual", "--manual-stage", "export",
+        "--judge-provider", "test-subscription-ui",
+        "--judge-model", "operator-declared-test-model"]
+    manual_score_cmd = [
+        sys.executable, str(HERE / "score.py"), "--mode", "pilot",
+        "--results", str(results_root), "--run-id", "protocol-run",
+        "--judge", "manual", "--manual-stage", "score"]
+    manual_env = dict(os.environ)
+    manual_env["PYTHONPATH"] = str(fake_sdk)
+    exported = subprocess.run(
+        manual_export_cmd, capture_output=True, text=True, env=manual_env)
+    judge_dir = run_dir / "manual_judge"
+    judge_manifest_path = judge_dir / "manifest.json"
+    judge_manifest = (json.loads(judge_manifest_path.read_text(encoding="utf-8"))
+                      if judge_manifest_path.exists() else {})
+    check("manual export はanthropicをimportせず成功",
+          exported.returncode == 0 and "manual judge packet" in exported.stdout
+          and "anthropic must not be imported" not in exported.stdout + exported.stderr,
+          exported.stdout[-240:] + exported.stderr[-120:])
+    check("manual packet は18行×2=36 callをSHA付きpromptへ束縛",
+          judge_manifest.get("call_count") == 36
+          and judge_manifest.get("unique_prompt_count") == len(
+              judge_manifest.get("prompts", []))
+          and all(len(x.get("prompt_sha256", "")) == 64
+                  for x in judge_manifest.get("prompts", [])))
+    check("manual judge provenance はsubscription_ui/API未使用/検証不能を明示",
+          judge_manifest.get("judge") == {
+              "route": "subscription_ui", "api_used": False,
+              "provider": "test-subscription-ui",
+              "model": "operator-declared-test-model",
+              "model_verification": "unverifiable_manual"})
+
+    missing_judge = subprocess.run(
+        manual_score_cmd, capture_output=True, text=True, env=manual_env)
+    check("judge応答欠損はAPIへfallbackせずINCOMPLETE_JUDGMENTS",
+          missing_judge.returncode != 0
+          and "[INCOMPLETE_JUDGMENTS]" in missing_judge.stdout
+          and "judge応答が未回収" in missing_judge.stdout
+          and "anthropic must not be imported" not in missing_judge.stdout + missing_judge.stderr)
+
+    response_dir_manual = judge_dir / "responses"
+    first = judge_manifest["prompts"][0]
+    (response_dir_manual / f"{first['request_id']}.txt").write_text(
+        '{"broken":true}', encoding="utf-8")
+    malformed_judge = subprocess.run(
+        manual_score_cmd, capture_output=True, text=True, env=manual_env)
+    check("形式不正judge応答をfail-closedで拒否",
+          malformed_judge.returncode != 0
+          and "judge応答不正" in malformed_judge.stdout
+          and "Traceback" not in malformed_judge.stdout + malformed_judge.stderr)
+
+    for record in judge_manifest["prompts"]:
+        if record["kind"] == "match":
+            value = {"match": "unclear", "reason": "selftest"}
+        elif record["kind"] == "reference":
+            value = {"matches_reference": False, "reason": "selftest"}
+        else:
+            value = {"has_unsupported": False, "items": [], "reason": "selftest"}
+        (response_dir_manual / f"{record['request_id']}.txt").write_text(
+            json.dumps(value, ensure_ascii=False), encoding="utf-8")
+    scored_manual = subprocess.run(
+        manual_score_cmd, capture_output=True, text=True, env=manual_env)
+    scored_path = run_dir / "scored_pilot.json"
+    scored_value = (json.loads(scored_path.read_text(encoding="utf-8"))
+                    if scored_path.exists() else {})
+    check("全judge応答回収後はAPIなしでpilot採点完了",
+          scored_manual.returncode == 0
+          and scored_value.get("verdict") == "NOT_APPLICABLE"
+          and scored_value.get("judge_provenance", {}).get("api_used") is False,
+          scored_manual.stdout[-240:] + scored_manual.stderr[-120:])
+    completed_judge_manifest = json.loads(
+        judge_manifest_path.read_text(encoding="utf-8"))
+    completed_ledger = json.loads(
+        (results_root / "run_attestations.json").read_text(encoding="utf-8"))
+    manual_attestation = completed_ledger["entries"][0].get("manual_judge", {})
+    check("採点成功後だけmanifestをcompleteにして全response SHAを固定",
+          completed_judge_manifest.get("status") == "complete"
+          and bool(completed_judge_manifest.get("completed_at_utc"))
+          and len(completed_judge_manifest.get("responses", []))
+          == completed_judge_manifest.get("unique_prompt_count")
+          and scored_value.get("judge_provenance", {}).get("status") == "complete"
+          and len(scored_value.get("judge_provenance", {}).get(
+              "manifest_sha256", "")) == 64)
+    check("manual judge manifest SHAをGit追跡対象run台帳へ外部アンカー化",
+          manual_attestation.get("manifest_sha256")
+          == R.sha256_file(judge_manifest_path)
+          == scored_value.get("judge_provenance", {}).get("manifest_sha256")
+          and manual_attestation.get("response_count")
+          == completed_judge_manifest.get("unique_prompt_count")
+          and scored_value.get("judge_provenance", {}).get("ledger_attested") is True)
+
+    first_response = response_dir_manual / f"{first['request_id']}.txt"
+    original_response = first_response.read_text(encoding="utf-8")
+    first_response.chmod(0o644)
+    first_response.write_text(original_response + " ", encoding="utf-8")
+    tampered_response = subprocess.run(
+        manual_score_cmd, capture_output=True, text=True, env=manual_env)
+    check("採点完了後のjudge応答改ざんを保存済みSHAで拒否",
+          tampered_response.returncode != 0
+          and "完了後のjudge応答SHAが不一致" in tampered_response.stdout)
+    first_response.write_text(original_response, encoding="utf-8")
+    first_response.chmod(0o444)
+
+    original_manifest_text = judge_manifest_path.read_text(encoding="utf-8")
+    changed_manifest = json.loads(original_manifest_text)
+    changed_manifest["completed_at_utc"] = "2099-01-01T00:00:00Z"
+    judge_manifest_path.chmod(0o644)
+    judge_manifest_path.write_text(
+        json.dumps(changed_manifest, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8")
+    tampered_manifest = subprocess.run(
+        manual_score_cmd, capture_output=True, text=True, env=manual_env)
+    check("manifestと応答を自己整合させても追跡対象台帳SHA不一致で拒否",
+          tampered_manifest.returncode != 0
+          and "台帳のmanual judge attestationが実体と不一致"
+          in tampered_manifest.stdout)
+    judge_manifest_path.write_text(original_manifest_text, encoding="utf-8")
+    judge_manifest_path.chmod(0o444)
+
+    first_prompt = judge_dir / first["prompt_file"]
+    original_prompt = first_prompt.read_text(encoding="utf-8")
+    first_prompt.chmod(0o644)
+    first_prompt.write_text(original_prompt + "\ntampered", encoding="utf-8")
+    tampered_judge = subprocess.run(
+        manual_score_cmd, capture_output=True, text=True, env=manual_env)
+    check("judge prompt改ざんはSHA不一致で拒否",
+          tampered_judge.returncode != 0
+          and "prompt SHA-256が不一致" in tampered_judge.stdout)
+    first_prompt.write_text(original_prompt, encoding="utf-8")
+    first_prompt.chmod(0o444)
 
     def refresh_test_bundle(root):
         """改変検知より先のエラー経路を試すため、テスト用bundleだけ再署名する。"""
