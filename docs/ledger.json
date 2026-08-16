@@ -1,24 +1,38 @@
 {
-  "updated_at": "2026-08-16 06:51",
+  "updated_at": "2026-08-17 06:52",
   "score": {
     "hit": 0,
-    "miss": 19,
-    "total": 19,
+    "miss": 20,
+    "total": 20,
     "rate": 0.0,
-    "pending": 18,
-    "brier": 0.5934684210526316,
-    "brier_n": 19,
-    "brier_initial": 0.5934684210526316,
+    "pending": 17,
+    "brier": 0.5957950000000001,
+    "brier_n": 20,
+    "brier_initial": 0.5957950000000001,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-08-16",
-    "days": 0
+    "date": "2026-08-18",
+    "days": 1
   },
   "decided": [
+    {
+      "id": "2026-08-05-h02",
+      "claim": "Googleは12日以内に、Google AI Studioの利用可能モデル一覧および公式ドキュメントに「Gemini 3.5 Flash Cyber」を追加する。",
+      "subject": "Google",
+      "deadline": "2026-08-17",
+      "confidence": 0.8,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "サイバーセキュリティ特化モデルの性質上、誤用リスクを防ぐためにVertex AI限定の審査制提供に留まり、パブリックなAI Studioには展開されないリスクが存在する。",
+      "evidence": "期日時点の公式ドキュメントのモデル一覧に「gemini-3.5-flash-cyber」の追加が確認できないため。",
+      "signals": []
+    },
     {
       "id": "2026-08-05-h01",
       "claim": "Anthropicは10日以内に、Anthropic APIの公式価格ドキュメントにおいて「Claude Opus 5」の入力・出力トークン単価を正式掲載する。",
@@ -172,20 +186,6 @@
       "counter": "Anthropicが安全検証の完了までOpus 4.8を旧環境互換用にデフォルト指定のまま残し、手動オプション変更のみで対応する可能性がある。",
       "evidence": "公式ドキュメント(docs.anthropic.com)において、Claude CodeのデフォルトモデルをOpus 5に変更するスケジュールやOpus 4.8の非推奨化日程の記載が確認できないため。",
       "signals": []
-    },
-    {
-      "id": "2026-07-27-h02",
-      "claim": "Hugging Faceは18日以内に、モデル評価用Agentによるアクセス制限と識別を目的とした専用APIトークン（Agent Token）の発行仕様を公式ブログで公表する。",
-      "subject": "Hugging Face",
-      "deadline": "2026-08-14",
-      "confidence": 0.7,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "Hugging Faceが個別API更新ではなくネットワークIPブロック等の既存インフラ層での対応のみで済ませた場合、新API仕様は発表されない。",
-      "evidence": "Hugging Face公式ブログの掲載記事を確認したところ、指定期間内にAgent向け専用APIトークンや新たなアクセス制限・専用認証機能に関する発表記事は掲載されていない。",
-      "signals": []
     }
   ],
   "pending": [
@@ -284,21 +284,7 @@
       "status": "pending",
       "alert": false,
       "counter": "主要顧客による設備投資時期の先送りや先端パッケージング工程での歩留まり低下が出荷量に影響を及ぼす可能性がある。",
-      "evidence": "公開情報から四半期決算報告書およびデータセンター部門売上高に関する証拠が取得できないため判定できません。",
-      "signals": []
-    },
-    {
-      "id": "2026-08-05-h02",
-      "claim": "Googleは12日以内に、Google AI Studioの利用可能モデル一覧および公式ドキュメントに「Gemini 3.5 Flash Cyber」を追加する。",
-      "subject": "Google",
-      "deadline": "2026-08-17",
-      "confidence": 0.8,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "サイバーセキュリティ特化モデルの性質上、誤用リスクを防ぐためにVertex AI限定の審査制提供に留まり、パブリックなAI Studioには展開されないリスクが存在する。",
-      "evidence": "",
+      "evidence": "公開情報から証拠を取得できず、該当期間内における決算発表およびデータセンター部門売上高の推移を確認できないため。",
       "signals": []
     },
     {
@@ -354,6 +340,20 @@
       "status": "pending",
       "alert": false,
       "counter": "求人公開にあわせてクラウドパートナー（AWS等）との提携による共同設計チップの概念発表が電撃的に行われる可能性がある。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-07-23-h01",
+      "claim": "OpenAIは広告主向けのセルフサーブ型広告出稿プラットフォームの一般提供を年内に開始する。",
+      "subject": "OpenAI",
+      "deadline": "2026-08-22",
+      "confidence": 0.75,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "",
       "evidence": "",
       "signals": []
     }
