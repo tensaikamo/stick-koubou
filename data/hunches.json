@@ -963,7 +963,7 @@
     "resolved_at": null,
     "result": null,
     "evidence": {
-      "summary": "公開情報から四半期決算報告書およびデータセンター部門売上高に関する証拠が取得できないため判定できません。",
+      "summary": "公開情報から証拠を取得できず、該当期間内における決算発表およびデータセンター部門売上高の推移を確認できないため。",
       "url": ""
     },
     "rejected": [
@@ -1000,7 +1000,7 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "judge_attempts": 1
+    "judge_attempts": 2
   },
   {
     "id": "2026-08-02-h02",
@@ -1279,7 +1279,7 @@
     "claim": "Googleは12日以内に、Google AI Studioの利用可能モデル一覧および公式ドキュメントに「Gemini 3.5 Flash Cyber」を追加する。",
     "subject": "Google",
     "resolution": {
-      "source": "Google AI Studio Model Documentation",
+      "source": "https://ai.google.dev/gemini-api/docs/models/gemini",
       "check_query": "Gemini Flash Cyber",
       "decider": "Google AI Studioのモデル選択画面または公式ドキュメント（ai.google.dev/models）に「gemini-3.5-flash-cyber」のモデルIDが追加反映されること。"
     },
@@ -1301,14 +1301,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-17T06:49:23.870223+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "期日時点の公式ドキュメントのモデル一覧に「gemini-3.5-flash-cyber」の追加が確認できないため。",
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-08-05-h03",
