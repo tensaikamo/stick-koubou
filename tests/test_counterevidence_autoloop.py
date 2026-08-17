@@ -511,6 +511,7 @@ def test_generator_and_judge_provider_and_session_are_independent(bad_judge):
     ("independence_valid", "INVALID_INDEPENDENCE"),
     ("tests_passed", "FAILED_TESTS"),
     ("billing_safe", "BLOCKED_BILLING_ROUTE"),
+    ("plan_source_verified", "INVALID_PROVENANCE"),
 ])
 def test_any_hard_gate_failure_cannot_produce_keep_or_draft(failed_gate, expected_state):
     chain = active_chain(completed_pipeline_calls(), "ATTESTING")
@@ -546,6 +547,74 @@ def test_success_stops_at_draft_pr_ready_and_never_merges():
         tampered["checkpoint_sha256"] = AUTO.checkpoint_sha256(tampered)
         with pytest.raises(AUTO.AutoLoopError):
             AUTO.validate_manifest(tampered)
+
+
+def test_unverified_plan_source_cannot_reach_draft_pr():
+    """genesis分母の外部固定を確認しないままDraft PRへ進めない。"""
+    ready = manifest(completed_pipeline_calls(), state="ATTESTING")
+    gates = {name: True for name in AUTO.REQUIRED_GATES}
+    del gates["plan_source_verified"]
+    stopped = AUTO.finalize_for_draft(
+        ready, gates, score_sha256=digest("score"),
+        attestation_sha256=digest("attestation"), verdict="KEEP",
+    )
+    assert stopped["state"] == "INVALID_PROVENANCE"
+    assert stopped["verdict"] is None
+    AUTO.validate_plan_source(ready, b"frozen-plan-source")
+    with pytest.raises(AUTO.AutoLoopError) as caught:
+        AUTO.validate_plan_source(ready, b"tampered-plan-source")
+    assert caught.value.code == "INVALID_PROVENANCE"
+
+
+@pytest.mark.parametrize("bad_verdict", [None, "", "   "])
+def test_draft_pr_requires_a_non_empty_verdict_in_code_and_schema(bad_verdict):
+    """schemaが要求する非空verdictを、Python validator側も同じ強さで要求する。"""
+    ready = manifest(completed_pipeline_calls(), state="ATTESTING")
+    with pytest.raises(AUTO.AutoLoopError) as caught:
+        AUTO.finalize_for_draft(
+            ready, {name: True for name in AUTO.REQUIRED_GATES},
+            score_sha256=digest("score"), attestation_sha256=digest("attestation"),
+            verdict=bad_verdict,
+        )
+    assert caught.value.code == "FAIL_CLOSED"
+    good = AUTO.finalize_for_draft(
+        ready, {name: True for name in AUTO.REQUIRED_GATES},
+        score_sha256=digest("score"), attestation_sha256=digest("attestation"),
+        verdict="KEEP",
+    )
+    forged = AUTO.seal_manifest({**good, "verdict": bad_verdict})
+    with pytest.raises(AUTO.AutoLoopError) as caught:
+        AUTO.validate_manifest(forged)
+    assert caught.value.code == "FAIL_CLOSED"
+    schema = json.loads((
+        ROOT / "experiments" / "counterevidence" / "autoloop_schemas" / "manifest.schema.json"
+    ).read_text(encoding="utf-8"))
+    assert list(Draft202012Validator(schema).iter_errors(forged))
+
+
+@pytest.mark.parametrize("rogue_stage", ["Z", "A2", "FINAL_VERDICT"])
+def test_unknown_generator_stage_cannot_escape_judge_coverage(rogue_stage):
+    """judge対象外の未知stageを作って被覆分母から逃れられない。"""
+    source = complete_call("A-01", stage="A", response='{"answer":"a"}')
+    judged = [
+        complete_call(f"J-{stage}", role="judge", stage=stage, response='{"v":"c"}',
+                      source_call_id=source["call_id"],
+                      source_response_sha256=source["response_sha256"])
+        for stage in ("FINAL_VERDICT", "UNSUPPORTED")
+    ]
+    rogue = complete_call("X-01", stage=rogue_stage, response='{"answer":"hidden"}')
+    plan = [
+        {"role": "generator", "stage": "A", "expected": 1},
+        {"role": "generator", "stage": rogue_stage, "expected": 1},
+        {"role": "judge", "stage": "FINAL_VERDICT", "expected": 1},
+        {"role": "judge", "stage": "UNSUPPORTED", "expected": 1},
+    ]
+    with pytest.raises(AUTO.AutoLoopError) as caught:
+        AUTO.new_manifest(
+            "run-001", generator(), judge(), [source, rogue, *judged],
+            plan_source_sha256=digest("frozen-plan-source"), call_plan=plan,
+        )
+    assert caught.value.code in {"INVALID_MANIFEST", "CALL_PLAN_DRIFT"}
 
 
 def test_dry_run_uses_no_network_process_or_subscription_secret(monkeypatch, capsys):

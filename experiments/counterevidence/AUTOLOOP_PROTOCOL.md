@@ -74,7 +74,9 @@ manifest/receiptには資格情報の値を保存せず、検出時のログも�
 3. 応答は一回だけ記録する。malformed、空欄、形式逸脱を再生成で隠さない
 4. C2はC1 call IDとC1 response SHAへ束縛する
 5. judge callは採点対象generator call IDと実在するcompleted response SHAへ束縛する
-6. FINAL_VERDICT/UNSUPPORTEDはA/B/C2の各応答をそれぞれ一度ずつ覆い、重複・欠落を許さない
+6. FINAL_VERDICT/UNSUPPORTEDはA/B/C2の各応答をそれぞれ一度ずつ覆い、重複・欠落を許さない。
+   generator stageはA/B/C1/C2、judge stageはFINAL_VERDICT/UNSUPPORTEDだけを許可し、
+   未知stageを作って被覆分母から逃れることを禁じる
 7. checkpoint再開は完了済みcallを飛ばし、未完了callだけを続ける
 8. plan数未満の欠損callを分母から除外せず、全件がcompleteになるまでscoreへ進まない
 9. generatorとjudgeはproviderおよびsessionを分ける
@@ -113,6 +115,12 @@ SHA chainはrun中のplan変更を拒否できるが、最初から小さい分�
 chain単体では判断できない。そこで`plan_source_sha256`を必須にし、回答生成前にGit追跡済みの
 cohort/preregistration artifact実体と`validate-plan-source`で照合する。この外部artifactが
 固定されていないrunは開始してはならない。
+
+照合の実施漏れを運用任せにしないため、`plan_source_verified`をDraft PRの必須gateにする。
+`validate-plan-source`が成功したrunだけがこのgateをtrueにでき、未確認のまま
+`finalize_for_draft`を呼ぶと`INVALID_PROVENANCE`で停止する。ただしcontrollerが検証できるのは
+「与えられた実体のSHAがmanifestと一致すること」までであり、その実体が正しい事前登録
+artifactであることはGit履歴とreviewerが担保する。
 
 JSON Schemaは外部consumer向けの構造契約、Python validatorはcross-call/SHA/stateを含む
 正本である。CIはDraft 2020-12 validatorでschema自体と代表fixtureを実行検証する。

@@ -81,7 +81,7 @@
         "properties": {
           "score_sha256": {"$ref": "#/$defs/sha256"},
           "attestation_sha256": {"$ref": "#/$defs/sha256"},
-          "verdict": {"type": "string", "minLength": 1}
+          "verdict": {"type": "string", "minLength": 1, "pattern": "\\S"}
         }
       },
       "else": {"properties": {"verdict": {"type": "null"}}}
@@ -114,7 +114,10 @@
         "stage": {"type": "string", "minLength": 1},
         "expected": {"type": "integer", "minimum": 1}
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "if": {"properties": {"role": {"const": "judge"}}, "required": ["role"]},
+      "then": {"properties": {"stage": {"enum": ["FINAL_VERDICT", "UNSUPPORTED"]}}},
+      "else": {"properties": {"stage": {"enum": ["A", "B", "C1", "C2"]}}}
     },
     "call": {
       "type": "object",
@@ -157,7 +160,8 @@
                 {"required": ["source_call_id"]},
                 {"required": ["source_response_sha256"]}
               ]
-            }
+            },
+            "properties": {"stage": {"enum": ["A", "B", "C1", "C2"]}}
           }
         },
         {

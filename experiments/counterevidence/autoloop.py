@@ -63,6 +63,7 @@ CALL_FIELDS = frozenset({
     "response_utf8_bytes", "status", "attempts", "derivation",
     "source_call_id", "source_response_sha256",
 })
+GENERATOR_STAGES = frozenset({"A", "B", "C1", "C2"})
 JUDGE_SOURCE_STAGES = frozenset({"A", "B", "C2"})
 JUDGE_STAGES = frozenset({"FINAL_VERDICT", "UNSUPPORTED"})
 
@@ -422,8 +423,11 @@ def _validate_call(call: Any, call_ids: set[str]) -> None:
             raise AutoLoopError("INVALID_PROVENANCE", f"{call_id}: judge対象call/SHAがありません")
         if call.get("stage") not in JUDGE_STAGES:
             raise AutoLoopError("INVALID_MANIFEST", f"{call_id}: judge stageが不正")
-    elif "source_call_id" in call or "source_response_sha256" in call:
-        raise AutoLoopError("INVALID_MANIFEST", f"{call_id}: generatorにjudge束縛を設定できません")
+    else:
+        if "source_call_id" in call or "source_response_sha256" in call:
+            raise AutoLoopError("INVALID_MANIFEST", f"{call_id}: generatorにjudge束縛を設定できません")
+        if call.get("stage") not in GENERATOR_STAGES:
+            raise AutoLoopError("INVALID_MANIFEST", f"{call_id}: generator stageが不正")
 
 
 def _validate_call_plan(plan: Any, calls: Sequence[Mapping[str, Any]]) -> Counter:
@@ -450,12 +454,13 @@ def _validate_call_plan(plan: Any, calls: Sequence[Mapping[str, Any]]) -> Counte
     if unexpected or excessive:
         raise AutoLoopError("CALL_PLAN_DRIFT", f"call_plan外または過剰なcall: {unexpected + excessive}")
     eligible = sum(expected[("generator", stage)] for stage in JUDGE_SOURCE_STAGES)
-    unexpected_judge_stages = {
-        stage for (role, stage), count in expected.items()
-        if role == "judge" and count and stage not in JUDGE_STAGES
+    unexpected_stages = {
+        (role, stage) for (role, stage), count in expected.items() if count and stage not in (
+            JUDGE_STAGES if role == "judge" else GENERATOR_STAGES
+        )
     }
-    if unexpected_judge_stages:
-        raise AutoLoopError("CALL_PLAN_DRIFT", "未知のjudge stageがあります")
+    if unexpected_stages:
+        raise AutoLoopError("CALL_PLAN_DRIFT", f"未知のstageがあります: {sorted(unexpected_stages)}")
     judge_plan = {stage: expected[("judge", stage)] for stage in JUDGE_STAGES
                   if expected[("judge", stage)]}
     if judge_plan:
@@ -567,6 +572,8 @@ def validate_manifest(manifest: Mapping[str, Any], *, verify_checkpoint: bool = 
         raise AutoLoopError("INVALID_PROVENANCE", "Draft PRにはscore SHAが必要です")
     if manifest.get("state") != "DRAFT_PR_READY" and manifest.get("verdict") is not None:
         raise AutoLoopError("FAIL_CLOSED", "Draft PR準備前にverdictを確定できません")
+    if manifest.get("state") == "DRAFT_PR_READY" and not _nonempty_string(manifest.get("verdict")):
+        raise AutoLoopError("FAIL_CLOSED", "Draft PRには非空のverdictが必要です")
     if manifest.get("state") in STOP_STATES and manifest.get("verdict") is not None:
         raise AutoLoopError("FAIL_CLOSED", "停止状態ではverdictを確定できません")
     if manifest.get("state") == "PAUSED_QUOTA":
@@ -794,6 +801,7 @@ REQUIRED_GATES = (
     "independence_valid",
     "tests_passed",
     "billing_safe",
+    "plan_source_verified",
 )
 
 
@@ -803,7 +811,7 @@ def finalize_for_draft(
     *,
     score_sha256: str,
     attestation_sha256: str,
-    verdict: str | None,
+    verdict: str,
 ) -> dict[str, Any]:
     """既存scoreの結果を封印し、Draft PR準備で止める。mergeはしない。"""
     validate_manifest(manifest)
@@ -813,7 +821,9 @@ def finalize_for_draft(
     if missing:
         state = "FAILED_TESTS" if "tests_passed" in missing else (
             "INVALID_INDEPENDENCE" if "independence_valid" in missing else (
-                "INVALID_PROVENANCE" if "provenance_valid" in missing else "INVALID_OUTPUT"
+                "INVALID_PROVENANCE"
+                if {"provenance_valid", "plan_source_verified"} & set(missing)
+                else "INVALID_OUTPUT"
             )
         )
         if "billing_safe" in missing:
@@ -824,6 +834,8 @@ def finalize_for_draft(
         return evolve_manifest(manifest, updated)
     if not _is_sha256(score_sha256) or not _is_sha256(attestation_sha256):
         raise AutoLoopError("INVALID_PROVENANCE", "score/attestation SHAが不正")
+    if not _nonempty_string(verdict):
+        raise AutoLoopError("FAIL_CLOSED", "Draft PRには非空のverdictが必要です")
     if not manifest["calls"] or any(call["status"] != "complete" for call in manifest["calls"]):
         raise AutoLoopError("INCOMPLETE_CALLS", "全call完了前にDraft PRを作れません")
     updated = copy.deepcopy(dict(manifest))
