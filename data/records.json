@@ -1846,5 +1846,59 @@
       "2026-08-07-r04",
       "2026-08-01-r01"
     ]
+  },
+  {
+    "id": "2026-08-18-r01",
+    "created_at": "2026-08-18T06:51:47.898348+09:00",
+    "headline": "OpenAIが公式Python SDK v3.2.0をPyPIに公開",
+    "what_happened": "OpenAIは2026年8月18日、公式Pythonライブラリの最新バージョン「openai 3.2.0」をPyPIで公開した。同ライブラリはPython 3.10以上に対応し、Responses APIを主要インターフェースとして位置づけている。HTTPXベースの同期および非同期クライアントを提供している。",
+    "background": "OpenAIは2026年8月13日にv3.0.0へのメジャーバージョンアップを実施し、Responses APIを中心とする構成へ刷新した後、短期間でマイナーアップデートを重ねている。",
+    "changed": "v3.1.0に続くマイナーアップデートとしてv3.2.0が利用可能になり、クライアント側の型定義や内部処理が更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.2.0/",
+      "title": "openai Python SDK v3.2.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-16-r03",
+      "2026-08-13-r01",
+      "2026-08-12-r03",
+      "2026-08-08-r03",
+      "2026-08-08-r02",
+      "2026-08-07-r04"
+    ]
+  },
+  {
+    "id": "2026-08-18-r02",
+    "created_at": "2026-08-18T06:51:47.898348+09:00",
+    "headline": "OpenAIが公式ブログで「The Defender’s Window」を公開",
+    "what_happened": "OpenAIは公式ブログに「The Defender’s Window」と題する記事を公開した。本文の取得に失敗したため、タイトルのみに基づく記録である。",
+    "background": "OpenAIはセキュリティ、AI安全性、防御的サイバー技術に関する見解を公式ブログで定期的に発信している。",
+    "changed": "公式ウェブサイト上に新たな論考記事が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://openai.com/index/the-defenders-window",
+      "title": "The Defender’s Window",
+      "hn_score": 0,
+      "name": "OpenAI公式",
+      "tier": 1
+    },
+    "body_fetched": false,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-16-r03",
+      "2026-08-13-r01",
+      "2026-08-12-r03",
+      "2026-08-08-r03",
+      "2026-08-08-r02",
+      "2026-08-07-r04"
+    ]
   }
 ]

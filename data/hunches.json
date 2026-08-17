@@ -605,7 +605,7 @@
     "claim": "Hugging Faceは20日以内に、評価用AIエージェントのアクセス制限と隔離を行うサンドボックス仕様または専用リポジトリを公式GitHubに公開する。",
     "subject": "Hugging Face",
     "resolution": {
-      "source": "Hugging Face Official GitHub Organization (https://github.com/huggingface)",
+      "source": "https://github.com/huggingface",
       "check_query": "agent evaluation sandbox",
       "decider": "Hugging Faceの公式GitHubにおいて、Agent隔離または評価用サンドボックスに関連する新規リポジトリが公開されること。"
     },
@@ -623,14 +623,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-18T06:52:03.516259+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "判定先であるHugging Face公式GitHubのリポジトリ一覧を確認したところ、期間内にAgent隔離や評価用サンドボックスに関連する新規リポジトリの公開は確認されなかった。",
+      "url": "https://github.com/huggingface"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-07-30-h01",
@@ -963,7 +967,7 @@
     "resolved_at": null,
     "result": null,
     "evidence": {
-      "summary": "公開情報から証拠を取得できず、該当期間内における決算発表およびデータセンター部門売上高の推移を確認できないため。",
+      "summary": "期間内にNVIDIAの四半期決算発表およびデータセンター部門売上高に関する公開情報が確認できなかったため。",
       "url": ""
     },
     "rejected": [
@@ -1000,7 +1004,8 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "judge_attempts": 2
+    "judge_attempts": 3,
+    "needs_review": true
   },
   {
     "id": "2026-08-02-h02",
@@ -1197,7 +1202,7 @@
     "claim": "Googleは14日以内に、Google Cloud Vertex AIの公式モデルドキュメントに「Gemini 3.6 Flash」のエンドポイント仕様と価格案内を追加する。",
     "subject": "Google",
     "resolution": {
-      "source": "Google Cloud Vertex AI Documentation",
+      "source": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models",
       "check_query": "Gemini 3 6 Flash",
       "decider": "Google Cloud Vertex AIの公式ドキュメント（cloud.google.com/vertex-ai/generative-ai/docs/learn/models）に「Gemini 3.6 Flash」が追加・掲載されること。"
     },
@@ -1215,14 +1220,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-18T06:52:03.516259+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "Google Cloud Vertex AIの公式モデルドキュメント内に「3.6 Flash」の掲載が確認されたため的中。",
+      "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-08-05-h01",
@@ -1602,5 +1611,45 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.89
+  },
+  {
+    "id": "2026-08-18-h01",
+    "created_at": "2026-08-18T06:51:47.898348+09:00",
+    "based_on": [
+      "2026-08-18-r01"
+    ],
+    "prose": "OpenAIはv3.0.0を投入した直後であり、現在はv3.1.0およびv3.2.0と連日パッチ・マイナー改定でインターフェースを微調整している段階にある。大規模な破壊的変更を伴うメジャー改定を短期に再実行する運用は通常のSDK保守サイクルから外れる。今後14日以内にメジャーバージョンv4.0.0が正式リリースされることは見送られる。",
+    "claim": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」のメジャーバージョン「4.0.0」（プレリリース版を除く）をリリースしない。",
+    "subject": "OpenAI",
+    "resolution": {
+      "source": "https://pypi.org/project/openai/#history",
+      "check_query": "openai 4.0.0",
+      "decider": "2026年9月1日時点で、PyPIのopenaiプロジェクトのRelease historyに正式版「4.0.0」が存在しない場合に的中、存在する場合に外しと判定する。"
+    },
+    "deadline": "2026-09-01",
+    "confidence": 0.93,
+    "base_rate": 0.03,
+    "base_rate_class": "主要AI企業がSDKのメジャーバージョン公開後14日以内に再度次期メジャーバージョンを正式リリースする頻度",
+    "confidence_why": "直近でv3.0.0が公開されたばかりであり、現在はマイナーバージョンの連発による安定化フェーズにあるため、非発生（v4.0.0が出ない）の確度を基準率に沿って高く設定した。",
+    "counter": "v3系の設計に回復不能な重大な欠陥が発覚し、即時の再度の破壊的API変更を伴うv4.0.0リリースが強制される場合。",
+    "indicators": [
+      {
+        "sign": "PyPI上でopenaiの3.2.x系または3.3.x系のマイナー・パッチリリースが継続する",
+        "dir": "confirm"
+      },
+      {
+        "sign": "GitHubのopenai-pythonリポジトリにv4.0.0アルファ・ベータ版等のリリース準備PRが作成される",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.7-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
