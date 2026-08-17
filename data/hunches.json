@@ -1600,6 +1600,14 @@
         "why": "google-genai Python SDK v2.18.1がリリースされ、v2系のパッチ更新がPyPIに追加されたため。",
         "conf_before": 0.95,
         "conf_after": 0.95
+      },
+      {
+        "date": "2026-08-18",
+        "sign": "PyPIにgoogle-genaiのv2.19.0などv2系のマイナー/パッチ更新が追加される",
+        "dir": "confirm",
+        "why": "本日の事象としてgoogle-genai Python SDK v2.18.1のリリースが確認されており、v2系のマイナー/パッチ更新の継続（confirm）に該当するため。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
       }
     ],
     "status": "pending",
@@ -1627,7 +1635,7 @@
       "decider": "2026年9月1日時点で、PyPIのopenaiプロジェクトのRelease historyに正式版「4.0.0」が存在しない場合に的中、存在する場合に外しと判定する。"
     },
     "deadline": "2026-09-01",
-    "confidence": 0.93,
+    "confidence": 0.95,
     "base_rate": 0.03,
     "base_rate_class": "主要AI企業がSDKのメジャーバージョン公開後14日以内に再度次期メジャーバージョンを正式リリースする頻度",
     "confidence_why": "直近でv3.0.0が公開されたばかりであり、現在はマイナーバージョンの連発による安定化フェーズにあるため、非発生（v4.0.0が出ない）の確度を基準率に沿って高く設定した。",
@@ -1642,7 +1650,16 @@
         "dir": "kill"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-08-18",
+        "sign": "PyPI上でopenaiの3.2.x系または3.3.x系のマイナー・パッチリリースが継続する",
+        "dir": "confirm",
+        "why": "本日の事象としてopenai Python SDK v3.2.0のリリースが確認されており、3.2.x系のマイナー・パッチリリースの継続（confirm）に該当するため。",
+        "conf_before": 0.93,
+        "conf_after": 0.95
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -1650,6 +1667,7 @@
     "rejected": [],
     "model": "gemini-3.7-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.93
   }
 ]

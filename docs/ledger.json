@@ -1,21 +1,21 @@
 {
-  "updated_at": "2026-08-17 06:52",
+  "updated_at": "2026-08-18 06:56",
   "score": {
-    "hit": 0,
-    "miss": 20,
-    "total": 20,
-    "rate": 0.0,
-    "pending": 17,
-    "brier": 0.5957950000000001,
-    "brier_n": 20,
-    "brier_initial": 0.5957950000000001,
+    "hit": 1,
+    "miss": 21,
+    "total": 22,
+    "rate": 0.045454545454545456,
+    "pending": 16,
+    "brier": 0.5690181818181819,
+    "brier_n": 22,
+    "brier_initial": 0.5690181818181819,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-08-18",
+    "date": "2026-08-19",
     "days": 1
   },
   "decided": [
@@ -45,6 +45,20 @@
       "alert": false,
       "counter": "Opus 5のAPIインフラプロビジョニングの負荷調整を理由に、パブリックAPIの価格掲載が数週間延期される可能性がある。",
       "evidence": "公式価格ページ（https://www.anthropic.com/pricing）を確認したところ、「Claude Opus 5」の名称およびトークン単価の記載は確認できなかったため。",
+      "signals": []
+    },
+    {
+      "id": "2026-08-04-h02",
+      "claim": "Googleは14日以内に、Google Cloud Vertex AIの公式モデルドキュメントに「Gemini 3.6 Flash」のエンドポイント仕様と価格案内を追加する。",
+      "subject": "Google",
+      "deadline": "2026-08-18",
+      "confidence": 0.8,
+      "initial_confidence": null,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "Gemini 3.6 Flashの初期提供がGoogle AI Studio（プロトタイプ環境）限定に留まり、Vertex AI側へのロールアウトが遅延する可能性がある。",
+      "evidence": "Google Cloud Vertex AIの公式モデルドキュメント内に「3.6 Flash」の掲載が確認されたため的中。",
       "signals": []
     },
     {
@@ -172,20 +186,6 @@
       "counter": "CLIツールの個別環境依存を解決できず、Docker構成の公式提供を延期してユーザー側でのビルドに任せる方針をとる可能性がある。",
       "evidence": "openai/codex-securityリポジトリの期日までのコミットおよびリリース履歴において、Dockerfileや.devcontainerフォルダの追加は確認されないため。",
       "signals": []
-    },
-    {
-      "id": "2026-07-28-h01",
-      "claim": "Anthropicは14日以内に、Claude CodeにおけるデフォルトモデルをOpus 5へ自動昇格させるマイグレーションスケジュールを公式ドキュメントで公開する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-11",
-      "confidence": 0.85,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "Anthropicが安全検証の完了までOpus 4.8を旧環境互換用にデフォルト指定のまま残し、手動オプション変更のみで対応する可能性がある。",
-      "evidence": "公式ドキュメント(docs.anthropic.com)において、Claude CodeのデフォルトモデルをOpus 5に変更するスケジュールやOpus 4.8の非推奨化日程の記載が確認できないため。",
-      "signals": []
     }
   ],
   "pending": [
@@ -284,35 +284,7 @@
       "status": "pending",
       "alert": false,
       "counter": "主要顧客による設備投資時期の先送りや先端パッケージング工程での歩留まり低下が出荷量に影響を及ぼす可能性がある。",
-      "evidence": "公開情報から証拠を取得できず、該当期間内における決算発表およびデータセンター部門売上高の推移を確認できないため。",
-      "signals": []
-    },
-    {
-      "id": "2026-07-29-h02",
-      "claim": "Hugging Faceは20日以内に、評価用AIエージェントのアクセス制限と隔離を行うサンドボックス仕様または専用リポジトリを公式GitHubに公開する。",
-      "subject": "Hugging Face",
-      "deadline": "2026-08-18",
-      "confidence": 0.75,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "新リポジトリの分離公開を行わず、既存のHubセキュリティ機能のマイナーアップデートのみで処置を済ませる可能性がある。",
-      "evidence": "",
-      "signals": []
-    },
-    {
-      "id": "2026-08-04-h02",
-      "claim": "Googleは14日以内に、Google Cloud Vertex AIの公式モデルドキュメントに「Gemini 3.6 Flash」のエンドポイント仕様と価格案内を追加する。",
-      "subject": "Google",
-      "deadline": "2026-08-18",
-      "confidence": 0.8,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "Gemini 3.6 Flashの初期提供がGoogle AI Studio（プロトタイプ環境）限定に留まり、Vertex AI側へのロールアウトが遅延する可能性がある。",
-      "evidence": "",
+      "evidence": "期間内にNVIDIAの四半期決算発表およびデータセンター部門売上高に関する公開情報が確認できなかったため。",
       "signals": []
     },
     {
@@ -356,6 +328,34 @@
       "counter": "",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-08-11-h01",
+      "claim": "Anthropicは14日以内に、公式APIドキュメント（platform.claude.com）において「Claude Tag」に関する独立したドキュメントページを公開しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-25",
+      "confidence": 0.88,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "Anthropicがすでに「Claude Tag」のプライベートベータを終了させており、求人公開と連動した即時GA発表を準備している場合。",
+      "evidence": "",
+      "signals": []
+    },
+    {
+      "id": "2026-08-05-h03",
+      "claim": "NVIDIAの次回決算におけるデータセンター部門売上高が280億ドルを上回る。",
+      "subject": "NVIDIA",
+      "deadline": "2026-08-26",
+      "confidence": 0.82,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "主要カスタマーによる自社製AIチップへの切り替え速度が予想を超えた場合、成長率が急速に鈍化するリスクがある。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
@@ -388,16 +388,6 @@
       "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-08-08",
-          "headline": "OpenAIが税務顧問組織での導入事例を公開",
-          "url": "https://openai.com/index/hsp-gruppe"
-        },
-        {
-          "date": "2026-08-12",
-          "headline": "OpenAIがPython SDKのバージョン2.54.0をリリース",
-          "url": "https://pypi.org/project/openai/2.54.0/"
-        },
-        {
           "date": "2026-08-13",
           "headline": "OpenAIがPython SDK v3.0.0をPyPIに公開",
           "url": "https://pypi.org/project/openai/3.0.0/"
@@ -406,6 +396,16 @@
           "date": "2026-08-16",
           "headline": "OpenAIがPython SDK v3.1.0を公開、Responses APIのサポートを継続強化",
           "url": "https://pypi.org/project/openai/3.1.0/"
+        },
+        {
+          "date": "2026-08-18",
+          "headline": "OpenAIが公式Python SDK v3.2.0をPyPIに公開",
+          "url": "https://pypi.org/project/openai/3.2.0/"
+        },
+        {
+          "date": "2026-08-18",
+          "headline": "OpenAIが公式ブログで「The Defender’s Window」を公開",
+          "url": "https://openai.com/index/the-defenders-window"
         }
       ]
     },
@@ -487,6 +487,20 @@
   ],
   "records": [
     {
+      "id": "2026-08-18-r02",
+      "date": "2026-08-18",
+      "headline": "OpenAIが公式ブログで「The Defender’s Window」を公開",
+      "certainty": "confirmed",
+      "url": "https://openai.com/index/the-defenders-window"
+    },
+    {
+      "id": "2026-08-18-r01",
+      "date": "2026-08-18",
+      "headline": "OpenAIが公式Python SDK v3.2.0をPyPIに公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.2.0/"
+    },
+    {
       "id": "2026-08-16-r03",
       "date": "2026-08-16",
       "headline": "OpenAIがPython SDK v3.1.0を公開、Responses APIのサポートを継続強化",
@@ -555,21 +569,7 @@
       "headline": "AnthropicがPython SDK v0.122.0をPyPIにリリース",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/anthropic/0.122.0/"
-    },
-    {
-      "id": "2026-08-13-r04",
-      "date": "2026-08-13",
-      "headline": "Sparse Autoencodersの概念表現に関する評価論文が公開",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2608.11197v1"
-    },
-    {
-      "id": "2026-08-13-r03",
-      "date": "2026-08-13",
-      "headline": "Anthropicが幹部保護を担当するセキュリティマネージャーの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5385626008"
     }
   ],
-  "record_count": 56
+  "record_count": 58
 }

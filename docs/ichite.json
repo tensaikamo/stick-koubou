@@ -1,169 +1,163 @@
 {
-  "date": "2026-08-17",
+  "date": "2026-08-18",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "DeepSeekの値上げに対し、iPhoneのメモに残した代替APIルーティング設計の差分は何か",
-    "Anthropicの求人加速から逆算して、個人プロキシの切り替えをいつまでに終わらせるか",
-    "無料のクレジットやブローカーを完全に捨てて、自前の最小構成コードを今夜どう書き換えるか"
+    "OpenRouterの価格改定データに基づき、既存アプリのAPI呼び出しエンドポイントをSol Proに今夜書き換えるか。",
+    "Python SDK v3.2.0への追従コストを削減するため、エラーハンドリングの例外分岐を今夜30分以内で修正するか。",
+    "ハイエンドモデル値上げによる利益圧迫を防ぐため、個人利用枠の予算上限アラートを今夜設定するか。"
   ],
   "moves": [
     {
-      "t": "AnthropicのPython SDKのバージョン更新履歴と今回のインフラ変更点の差分をGitHubで確認する",
-      "why": "公式SDKの更新からインフラ側の仕様変更の予兆を先回りして察知するため",
+      "t": "APIクライアントの接続先をLuna ProからSol Proへ書き換える",
+      "why": "OpenAIのハイエンドモデル値上げによるトラフィックコストの肥大化を直ちに防ぐため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.65,
-      "success_p_min": 0.5,
-      "success_p_max": 0.8,
-      "success_why": "パブリックなリリースノートで変更差分が公開されているため",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "SDK更新差分の要約メモ",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "上流の変更に追従するための必須情報となるため",
-      "evidence_ids": [
-        "2026-08-14-r01"
-      ],
-      "assumptions": [
-        "リリースノートに重要な変更が含まれていること"
-      ],
-      "disconfirm": "マイナーなバグ修正のみである場合",
-      "continue_if": "APIスキーマに影響する変更がある場合",
-      "stop": "リポジトリの更新が長期間停止した場合"
-    },
-    {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "success_p": 0.45,
+      "success_p_min": 0.3,
+      "success_p_max": 0.6,
+      "success_why": "OpenRouter上の価格差改定データに基づく公式の料金変更実績による",
       "value_score": 3,
       "learning_value": 2,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
+      "outcome": "API接続先エンドポイントの切り替え完了",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "APIコストの流出を即座に食い止める基盤修正であるため",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-08-01-r01"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "OpenRouter上でSol Proが正常に応答を返すこと"
       ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "Sol Proの応答速度が実用に耐えない遅延を示すこと",
+      "continue_if": "エラー率が許容範囲内に収まること",
+      "stop": "切り替え先モデルの廃止または仕様変更が発覚した場合"
     },
     {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "t": "公式Python SDK v3.2.0へのアップデートを検証する",
+      "why": "最新のResponses APIサポート継続強化を取り込み不具合を防ぐため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "value_score": 2,
+      "success_p": 0.4,
+      "success_p_min": 0.25,
+      "success_p_max": 0.55,
+      "success_why": "PyPIでのバージョン公開実績が既に確認されているため",
+      "value_score": 3,
       "learning_value": 3,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "一次情報の要点メモが3行残る",
-      "category": "research",
+      "outcome": "requirements.txtのSDKバージョン更新",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "ライブラリの追従により今後の実装ブレを防ぐため",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-08-18-r01",
+        "2026-08-16-r03"
       ],
       "assumptions": [
-        "読む情報が現在の目標に関係する"
+        "既存のコードベースとv3.2.0に破壊的変更がないこと"
       ],
-      "disconfirm": "要点が次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
+      "disconfirm": "既存の呼び出しメソッドで致命的な型エラーが発生すること",
+      "continue_if": "テストスクリプトが正常に通過すること",
+      "stop": "依存関係の競合が解消できない場合"
     },
     {
-      "t": "予測を1件確認し確度メモを1行更新する",
-      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
+      "t": "API利用量の月間上限アラートを小額プランで設定する",
+      "why": "予期せぬルーティングコスト増大による予算超過を防ぐため",
+      "cost_min": 500,
+      "cost_max": 2000,
+      "loss_max": 2000,
+      "success_p": 0.35,
+      "success_p_min": 0.2,
+      "success_p_max": 0.5,
+      "success_why": "プラットフォーム側の課金設定画面で即座に閾値を適用できるため",
+      "value_score": 4,
+      "learning_value": 2,
+      "time_minutes": 10,
+      "payback_days": 7,
+      "outcome": "OpenRouterのアカウントに予算上限通知が設定されること",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.1,
+      "impact_why": "無駄な出費を事前に強制遮断できるため",
+      "evidence_ids": [
+        "2026-08-01-r01"
+      ],
+      "assumptions": [
+        "決済用クレジットカードが登録済みであること"
+      ],
+      "disconfirm": "設定画面の仕様変更により上限アラート機能が削除されていること",
+      "continue_if": "正常にアラートテストメールが届くこと",
+      "stop": "決済手段のエラーが発生した場合"
+    },
+    {
+      "t": "The Defender's Windowの文書から防衛側システムの隙を抽出する",
+      "why": "OpenAI公式ブログの戦略的意図を読み解き個人の先回り領域を特定するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "既存予測の更新なので新規企画より着地しやすい",
-      "value_score": 2,
+      "success_p": 0.3,
+      "success_p_min": 0.15,
+      "success_p_max": 0.45,
+      "success_why": "公開された一次情報に直接アクセス可能であるため",
+      "value_score": 3,
       "learning_value": 4,
-      "time_minutes": 20,
+      "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "追跡中予測の確度メモが更新される",
-      "category": "review",
+      "outcome": "隙を突くための仮説メモが1本書かれること",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "誤った前提で投資する損失を減らす",
+      "impact_min": 0.05,
+      "impact_max": 0.1,
+      "impact_why": "大手資本の動向からこぼれ落ちる個人向けの余地を見つけるため",
       "evidence_ids": [
-        "action-history"
+        "2026-08-18-r02"
       ],
       "assumptions": [
-        "予測が現在の投資判断に関係する"
+        "該当ブログ記事の内容がブラウザで閲覧可能であること"
       ],
-      "disconfirm": "確度更新が次の行動や支出を変えない",
-      "continue_if": "確度を動かす一次根拠が見つかった",
-      "stop": "根拠URLを1本確認したら終了",
-      "fallback": true
+      "disconfirm": "記事内容が抽象的な広報文に終始しており具体的な実利が読み取れない場合",
+      "continue_if": "具体的なセキュリティや防衛インフラの動向に言及があること",
+      "stop": "ページへのアクセスが制限された場合"
     },
     {
-      "t": "独自ドメイン候補を決め購入画面まで進める",
-      "why": "公開先を固定し、他人へ渡せる形へ近づけるため。",
-      "cost_min": 1000,
-      "cost_max": 4000,
-      "loss_max": 4000,
-      "success_p": 0.65,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "価格と空きを確認できるが、名前の決定で迷う余地がある",
-      "value_score": 4,
-      "learning_value": 2,
-      "time_minutes": 30,
-      "payback_days": 180,
-      "outcome": "候補ドメインと年間費用が確定する",
-      "category": "buy",
+      "t": "OpenRouter上の代替フラッシュモデルの価格表をスプレッドシートに比較記録する",
+      "why": "値上げされたハイエンドから逃れるための低単価層の受け皿を網羅するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.5,
+      "success_p_min": 0.35,
+      "success_p_max": 0.65,
+      "success_why": "プロバイダーごとの公開単価を横並びで集計できるため",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "主要フラッシュモデルのトークン単価比較リストの完成",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.08,
-      "impact_why": "公開と共有の摩擦を下げるが、ドメインだけでは成果にならない",
+      "impact_min": 0.05,
+      "impact_max": 0.1,
+      "impact_why": "最適なコストパフォーマンスの接続先を即座に選定できるため",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-08-01-r01"
       ],
       "assumptions": [
-        "90日以内に公開する"
+        "価格表がWeb上で常時閲覧可能であること"
       ],
-      "disconfirm": "公開日や見せる相手が決まっていない",
-      "continue_if": "公開予定日と最初に見せる相手が決まっている",
-      "stop": "年間4000円を超えたら購入しない",
-      "fallback": true
+      "disconfirm": "価格改定が頻繁すぎてリストの数値が即座に陳腐化すること",
+      "continue_if": "主要な他社製モデルの単価傾向が把握できること",
+      "stop": "データソースのAPI提供が停止した場合"
     }
   ],
-  "kan": "Anthropicは14日以内に、公式ニュースルームで新たな資金調達または大規模なエンタープライズ向け提携の契約を発表する。過去の発表頻度と直近の拡張ペースを基準に置くと、この規模の企業が半月以内に大きな商用ニュースを出す確率は2割程度だが、現在の市場の焦燥感を考慮して強めに調整する。"
+  "kan": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」のメジャーバージョン「4.0.0」（プレリリース版を除く）をリリースしない。"
 }
