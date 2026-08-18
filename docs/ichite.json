@@ -1,163 +1,162 @@
 {
-  "date": "2026-08-18",
+  "date": "2026-08-19",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの価格改定データに基づき、既存アプリのAPI呼び出しエンドポイントをSol Proに今夜書き換えるか。",
-    "Python SDK v3.2.0への追従コストを削減するため、エラーハンドリングの例外分岐を今夜30分以内で修正するか。",
-    "ハイエンドモデル値上げによる利益圧迫を防ぐため、個人利用枠の予算上限アラートを今夜設定するか。"
+    "防衛・公共部門向けAIインフラの調達仕様書から、個人が模倣できる最小限のプロンプト構成を今日抽出するか？",
+    "オープンソースの依存関係監視をやめ、防衛関連SDKの差分追跡だけに30分を全振りするか？",
+    "Nvidiaのインフラ保証縮小に際し、個人で構築可能なコスト最小の代替動線に切り替えるか？"
   ],
   "moves": [
     {
-      "t": "APIクライアントの接続先をLuna ProからSol Proへ書き換える",
-      "why": "OpenAIのハイエンドモデル値上げによるトラフィックコストの肥大化を直ちに防ぐため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "OpenRouter上の価格差改定データに基づく公式の料金変更実績による",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "API接続先エンドポイントの切り替え完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "APIコストの流出を即座に食い止める基盤修正であるため",
-      "evidence_ids": [
-        "2026-08-01-r01"
-      ],
-      "assumptions": [
-        "OpenRouter上でSol Proが正常に応答を返すこと"
-      ],
-      "disconfirm": "Sol Proの応答速度が実用に耐えない遅延を示すこと",
-      "continue_if": "エラー率が許容範囲内に収まること",
-      "stop": "切り替え先モデルの廃止または仕様変更が発覚した場合"
-    },
-    {
-      "t": "公式Python SDK v3.2.0へのアップデートを検証する",
-      "why": "最新のResponses APIサポート継続強化を取り込み不具合を防ぐため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.25,
-      "success_p_max": 0.55,
-      "success_why": "PyPIでのバージョン公開実績が既に確認されているため",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "requirements.txtのSDKバージョン更新",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "ライブラリの追従により今後の実装ブレを防ぐため",
-      "evidence_ids": [
-        "2026-08-18-r01",
-        "2026-08-16-r03"
-      ],
-      "assumptions": [
-        "既存のコードベースとv3.2.0に破壊的変更がないこと"
-      ],
-      "disconfirm": "既存の呼び出しメソッドで致命的な型エラーが発生すること",
-      "continue_if": "テストスクリプトが正常に通過すること",
-      "stop": "依存関係の競合が解消できない場合"
-    },
-    {
-      "t": "API利用量の月間上限アラートを小額プランで設定する",
-      "why": "予期せぬルーティングコスト増大による予算超過を防ぐため",
-      "cost_min": 500,
-      "cost_max": 2000,
-      "loss_max": 2000,
-      "success_p": 0.35,
-      "success_p_min": 0.2,
-      "success_p_max": 0.5,
-      "success_why": "プラットフォーム側の課金設定画面で即座に閾値を適用できるため",
-      "value_score": 4,
-      "learning_value": 2,
-      "time_minutes": 10,
-      "payback_days": 7,
-      "outcome": "OpenRouterのアカウントに予算上限通知が設定されること",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.1,
-      "impact_why": "無駄な出費を事前に強制遮断できるため",
-      "evidence_ids": [
-        "2026-08-01-r01"
-      ],
-      "assumptions": [
-        "決済用クレジットカードが登録済みであること"
-      ],
-      "disconfirm": "設定画面の仕様変更により上限アラート機能が削除されていること",
-      "continue_if": "正常にアラートテストメールが届くこと",
-      "stop": "決済手段のエラーが発生した場合"
-    },
-    {
-      "t": "The Defender's Windowの文書から防衛側システムの隙を抽出する",
-      "why": "OpenAI公式ブログの戦略的意図を読み解き個人の先回り領域を特定するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.3,
-      "success_p_min": 0.15,
-      "success_p_max": 0.45,
-      "success_why": "公開された一次情報に直接アクセス可能であるため",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "隙を突くための仮説メモが1本書かれること",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.1,
-      "impact_why": "大手資本の動向からこぼれ落ちる個人向けの余地を見つけるため",
-      "evidence_ids": [
-        "2026-08-18-r02"
-      ],
-      "assumptions": [
-        "該当ブログ記事の内容がブラウザで閲覧可能であること"
-      ],
-      "disconfirm": "記事内容が抽象的な広報文に終始しており具体的な実利が読み取れない場合",
-      "continue_if": "具体的なセキュリティや防衛インフラの動向に言及があること",
-      "stop": "ページへのアクセスが制限された場合"
-    },
-    {
-      "t": "OpenRouter上の代替フラッシュモデルの価格表をスプレッドシートに比較記録する",
-      "why": "値上げされたハイエンドから逃れるための低単価層の受け皿を網羅するため",
+      "t": "OpenAIの公式Python SDKの最新バージョン変更履歴を比較する",
+      "why": "SDKのバージョンアップから、プラットフォーム側が意図するAPIの制限強化の兆候を先回りして読むため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.5,
-      "success_p_min": 0.35,
-      "success_p_max": 0.65,
-      "success_why": "プロバイダーごとの公開単価を横並びで集計できるため",
+      "success_p_min": 0.3,
+      "success_p_max": 0.7,
+      "success_why": "v3.3.0への更新履歴がすでにPyPI上で公開されているため確度高めとする。",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "Responses API周辺の仕様変更の差分メモ",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "SDKの変更把握は下流のプロンプト構築の前提条件であるため。",
+      "evidence_ids": [
+        "2026-08-19-r01"
+      ],
+      "assumptions": [
+        "PyPI上のドキュメントが更新されていること"
+      ],
+      "disconfirm": "SDKのバージョン番号がロールバックされること",
+      "continue_if": "新機能のサポート範囲が明確になる場合",
+      "stop": "SDKの更新が完全に途絶えた場合"
+    },
+    {
+      "t": "iPhoneのブラウザ上でAPI経由のカスタムプロンプトテンプレートを一つ作成して保存する",
+      "why": "防衛・公共部門向け要件の厳格化から逆算し、個人がiPhone一台で運用できる最小限の入出力構造を固定するため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.3,
+      "success_p_min": 0.1,
+      "success_p_max": 0.5,
+      "success_why": "スマホからのAPI直接操作はUIの制約があるため、失敗確率が一定以上あると見る。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "GitHubのWeb画面に保存されたカスタムプロンプトテンプレートファイル",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "実際の成果物がリポジトリに残るため、次段階への足がかりになる。",
+      "evidence_ids": [
+        "2026-08-10-r02"
+      ],
+      "assumptions": [
+        "GitHubのWebエディタがiPhoneのSafariで正常に動作すること"
+      ],
+      "disconfirm": "Webエディタからの保存が文字コードエラー等で弾かれること",
+      "continue_if": "テンプレートのコミットがエラーなく完了した場合",
+      "stop": "iPhoneからの直接編集が不可能な仕様変更が起きた場合"
+    },
+    {
+      "t": "OpenAIの公式ブログから「The Defender's Window」の要点を箇条書きで抽出する",
+      "why": "プラットフォーム側が防衛・セキュリティ市場へ軸足を移すロジックを読み解き、個人の逃げ道を定めるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.6,
+      "success_p_min": 0.4,
+      "success_p_max": 0.8,
+      "success_why": "公開済みの公式ブログ記事であるため確実に対象を読み取れる。",
       "value_score": 3,
       "learning_value": 3,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "主要フラッシュモデルのトークン単価比較リストの完成",
-      "category": "research",
+      "outcome": "セキュリティ強化の要件をまとめたテキストメモ",
+      "category": "review",
       "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.1,
-      "impact_why": "最適なコストパフォーマンスの接続先を即座に選定できるため",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "戦略的背景の理解には役立つが、直接的な成果物自体は文章メモに留まるため。",
       "evidence_ids": [
-        "2026-08-01-r01"
+        "2026-08-18-r02"
       ],
       "assumptions": [
-        "価格表がWeb上で常時閲覧可能であること"
+        "対象の記事ページが常時アクセス可能であること"
       ],
-      "disconfirm": "価格改定が頻繁すぎてリストの数値が即座に陳腐化すること",
-      "continue_if": "主要な他社製モデルの単価傾向が把握できること",
-      "stop": "データソースのAPI提供が停止した場合"
+      "disconfirm": "記事が削除または非公開に変更されること",
+      "continue_if": "実利に直結するセキュリティ要件が発見できた場合",
+      "stop": "内容が抽象的な広報文に終始していると判明した場合"
+    },
+    {
+      "t": "Anthropicの財務・データ統合系エンジニアの求人要件から必要な入力データの構造を測る",
+      "why": "企業が内部で求めているデータ統合の方向性から、個人が模倣すべき小規模な構造の隙を見つけるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.4,
+      "success_p_min": 0.2,
+      "success_p_max": 0.6,
+      "success_why": "求人ページに記載された要件の粒度が一定の推測を可能にするため。",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "求められるデータ要件を逆算したチェックリスト",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "組織の動向把握には有用だが、自らのコード生成に直結するわけではないため。",
+      "evidence_ids": [
+        "2026-08-15-r02"
+      ],
+      "assumptions": [
+        "求人情報が公開状態を維持していること"
+      ],
+      "disconfirm": "募集が締め切られてページが消滅すること",
+      "continue_if": "特定の財務システム連携の指定が明記されている場合",
+      "stop": "要件が定型的な人事文言のみで構成されている場合"
+    },
+    {
+      "t": "有料のAPIクレジットを追加購入してカスタムプロンプトの動作検証を30分行う",
+      "why": "無料枠の制限を突破し、実運用環境での挙動を確認して仮説の正誤を確定させるため。",
+      "cost_min": 1500,
+      "cost_max": 3000,
+      "loss_max": 3000,
+      "success_p": 0.4,
+      "success_p_min": 0.2,
+      "success_p_max": 0.6,
+      "success_why": "APIのレートリミットや仕様変更により想定通りの動作にならないリスクがあるため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 14,
+      "outcome": "API実環境での検証結果ログと応答速度の計測値",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "実環境での検証を経て初めて次の実装段階に進むことができるため。",
+      "evidence_ids": [
+        "2026-08-19-r01"
+      ],
+      "assumptions": [
+        "iPhoneのSafariから決済およびAPIのテスト実行が行えること"
+      ],
+      "disconfirm": "決済システムが日本のカードを弾く、またはAPIのエラー率が50%を超えること",
+      "continue_if": "エラー率が10%未満に収まり、期待通りの応答が返る場合",
+      "stop": "想定外の課金エラーや高レイテンシが発生した場合"
     }
   ],
-  "kan": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」のメジャーバージョン「4.0.0」（プレリリース版を除く）をリリースしない。"
+  "kan": "今後14日以内にAnthropicが米国防総省または情報機関と直接結びついた政府調達・専用インフラ構築に関する大型の公式発表を行うと見る。"
 }

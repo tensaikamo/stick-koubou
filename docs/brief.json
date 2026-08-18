@@ -1,50 +1,61 @@
 {
-  "date": "2026-08-18",
-  "updated_at": "2026-08-18 06:57",
+  "date": "2026-08-19",
+  "updated_at": "2026-08-19 06:55",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenAIはOpenRouter上の「GPT-5.6 Luna Pro」を100%値上げする一方、「GPT-5.6 Sol Pro」を50%値下げし、モデルごとの価格差を広げた。",
-  "ura": "OpenAIが高級路線の利益率を極限まで高めるための意図的な価格改定と見る。資本の土俵であるこの値上げに個人が追随しても養分になるだけであり、隙は値上げで弾き出された低単価層向けの代替モデルへの流動にある。",
-  "ura_taikou": "単なるインフラ基盤の刷新に伴うシステム上の自動調整であるという仮説は、価格の上下動がモデルの特性ごとに分かれている点と矛盾するため退けた。",
-  "dousuru": "OpenRouter上のOpenAI製ハイエンドモデルの値上げによるトラフィック変動を直ちに確認しろ。APIのルーティング設定を即座に見直し、高単価なLuna Proから軽量かつ安価なSol Proまたは他社製フラッシュモデルへ接続先を切り替えろ。明日以降の無駄なAPIコストの発生を防ぐため、コード内のエンドポイントと単価上限のしきい値を今すぐ書き換えろ。",
-  "kan": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」のメジャーバージョン「4.0.0」（プレリリース版を除く）をリリースしない。",
-  "kan_konkyo": "直近でv3.0.0が公開されたばかりであり、現在はマイナーバージョンの連発による安定化フェーズにあるため、非発生（v4.0.0が出ない）の確度を基準率に沿って高く設定した。",
-  "kan_hantai": "v3系の設計に回復不能な重大な欠陥が発覚し、即時の再度の破壊的API変更を伴うv4.0.0リリースが強制される場合。",
-  "kan_conf": 0.95,
-  "ippan": "AIサービスの価格改定やプラン変更のニュースは、使っている機能のコストが突然変わるサインだ。知らないうちに高いプランに誘導されないよう、利用しているAIツールの明細やトークン消費量を今一度確認しておこう。",
-  "votes": [],
+  "omote": "AnthropicがワシントンD.C.を拠点とする国家安全保障・公共部門向けのApplied AI Architectの求人を開始し、NvidiaがOpenAI向けの巨額インフラ資金保証を大幅に縮小した。",
+  "ura": "民間SaaSの価格競争が限界に達する中、AI企業は防衛・国家予算という巨額の安定財源へ直結するインフラへの寄生を急いでいる。Nvidiaの保証縮小は、ハードウェア覇権を握る側が顧客の収益化リスクの肩代わりを拒絶し始めたシグナルだ。",
+  "ura_taikou": "Nvidiaによる保証縮小はリスクヘッジではなく、独占禁止法規制を回避するための形式的な財務スキームの組み替えに過ぎないという仮説は、実際のハードウェア供給契約の巨大な規模を考慮して退けた。",
+  "dousuru": "iPhoneのSafariからGitHubのWeb画面を開き、AnthropicとOpenAIの公式SDKリポジトリのWatch設定を行って毎朝コミットログの差分を追跡しろ。防衛向け求人の仕様要件から逆算し、個人がiPhoneのブラウザ上でAPI経由で構築できる極小のカスタムプロンプトテンプレートを一つ作成してリポジトリに保存せよ。",
+  "kan": "今後14日以内にAnthropicが米国防総省または情報機関と直接結びついた政府調達・専用インフラ構築に関する大型の公式発表を行うと見る。",
+  "kan_konkyo": "AnthropicがワシントンD.C.で国家安全保障に特化したApplied AI Architectの求人を急遽開始した一次情報から推定した。",
+  "kan_hantai": "防衛市場への本格参入はまだ実証実験の段階に留まり、数週間以内に大々的な発表が行われるほど組織体制が整っていない可能性が高い。",
+  "kan_conf": 0.32,
+  "ippan": "AIサービスの有料プランやAPIの価格改定ニュースに惑わされず、まずは自分が日常的に使っている無料のチャットツールで十分か見極めよ。企業がインフラ投資のツケを払い始めることで値上げや機能制限が突然起きるため、重要データのバックアップは常にローカルに保存する習慣をつけておけ。",
+  "votes": [
+    0.12,
+    0.42,
+    0.32
+  ],
   "mijoriku": [
     {
-      "title": "OpenAI: GPT-5.6 Luna Pro 値上げ 100%",
-      "desc": "OpenRouter上で特定フラグシップモデルの価格が倍増した",
-      "why": "海外の価格変動データは日本の個人開発者に届くのが遅いため、コスト最適化の先回りができる"
+      "title": "Anthropic: Applied AI Architect, Public Sector (National Security)",
+      "desc": "防衛・国家安全保障部門に特化したAIアーキテクトの求人",
+      "why": "AI企業が民間ビジネスから政府・軍事予算の獲得へと主戦場を急速にシフトさせている実態を示す一次証拠だから"
     },
     {
-      "title": "v0.27.2rc0: [Spec Decode] DSpark confidence-scheduled verification",
-      "desc": "vLLMの最新リリース候補における推論効率化のアップデート",
-      "why": "GitHub上のRC版の細かな変更点は日本の技術コミュニティへの浸透にタイムラグがあるため"
+      "title": "Nvidia scales back $250 billion OpenAI data center guarantee",
+      "desc": "NvidiaがOpenAIインフラに対する巨額の資金保証を大幅縮小",
+      "why": "AIバブルを支えるハードウェア覇権側が、川下の資金繰りリスクに対して明確に防衛策を取り始めた構造変化の裏付けだから"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値上げ 30%",
-    "[差分] 価格が動いた: OpenAI: GPT-5.6 Luna Pro 値上げ 100%",
-    "[差分] 価格が動いた: OpenAI: GPT-5.6 Luna 値上げ 100%",
-    "[差分] 価格が動いた: OpenAI: GPT-5.6 Terra Pro 値上げ 100%",
-    "[差分] 価格が動いた: OpenAI: GPT-5.6 Terra 値上げ 100%",
-    "[差分] 価格が動いた: OpenAI: GPT-5.6 Sol Pro 値下げ 50%"
+    "[差分] 退役予定日が設定された: NVIDIA: Nemotron Nano 12B 2 VL (free) → 2026-08-24",
+    "[差分] 価格が動いた: Thinking Machines: Inkling (batch) 値上げ 100%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.2 値上げ 158%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.2 (batch) 値上げ 100%",
+    "[差分] 価格が動いた: MoonshotAI: Kimi K2.7 Code (batch) 値上げ 100%",
+    "[差分] 価格が動いた: NVIDIA: Nemotron 3 Ultra (batch) 値上げ 100%"
   ],
   "evidence": [
     {
-      "claim": "OpenAIは高単価層から利益を回収する構造にシフトするためにLuna Proを値上げした",
-      "confidence": 0.45,
-      "disconfirm": "単なるプロバイダー側のコスト変動やルーティング上の誤設定による価格改定であることが証明された場合",
+      "claim": "Anthropicは民間市場を補うために国家安全保障・公共部門への営業・技術基盤の構築を急ピッチで進めている。",
+      "confidence": 0.65,
+      "disconfirm": "求人が形式的なものであり、実際の採用活動が行われていないことが判明した場合。",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: OpenAI: GPT-5.6 Luna Pro 値上げ 100%",
-          "url": "https://openrouter.ai/models"
-        },
+          "title": "[新規求人] anthropic: Applied AI Architect, Public Sector (National Security) (Washington, DC)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390877008"
+        }
+      ]
+    },
+    {
+      "claim": "NvidiaはOpenAIへの過度なインフラ資金の保証を縮小し、リスク管理の比重を厳格化している。",
+      "confidence": 0.7,
+      "disconfirm": "Nvidiaが別の形での直接的な巨額ファイナンスや保証スキームを新たに発表した場合。",
+      "sources": [
         {
-          "title": "[差分] 価格が動いた: OpenAI: GPT-5.6 Sol Pro 値下げ 50%",
-          "url": "https://openrouter.ai/models"
+          "title": "Nvidia dramatically reduces amount of OpenAI infra financing it may guarantee",
+          "url": "https://www.reuters.com/business/nvidia-scales-back-250-billion-openai-data-center-guarantee-wsj-reports-2026-08-14/"
         }
       ]
     }

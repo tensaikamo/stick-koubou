@@ -1,21 +1,21 @@
 {
-  "updated_at": "2026-08-18 06:56",
+  "updated_at": "2026-08-19 06:53",
   "score": {
     "hit": 1,
-    "miss": 21,
-    "total": 22,
-    "rate": 0.045454545454545456,
-    "pending": 16,
-    "brier": 0.5690181818181819,
-    "brier_n": 22,
-    "brier_initial": 0.5690181818181819,
+    "miss": 22,
+    "total": 23,
+    "rate": 0.043478260869565216,
+    "pending": 15,
+    "brier": 0.5721043478260871,
+    "brier_n": 23,
+    "brier_initial": 0.5721043478260871,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-08-19",
+    "date": "2026-08-20",
     "days": 1
   },
   "decided": [
@@ -288,20 +288,6 @@
       "signals": []
     },
     {
-      "id": "2026-07-29-h01",
-      "claim": "Anthropicは21日以内に公式利用規約を改定し、商用API顧客に対する著作権保護補償（Indemnification）の適用範囲を拡張する文言を追加する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-19",
-      "confidence": 0.8,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "和解金支払いの最終手続きの完了まで法務上の理由から規約改定を延期する可能性がある。",
-      "evidence": "",
-      "signals": []
-    },
-    {
       "id": "2026-08-06-h01",
       "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社設計ハードウェアまたは独自カスタムチップに関する公式発表を行わない。",
       "subject": "Anthropic",
@@ -356,6 +342,20 @@
       "counter": "主要カスタマーによる自社製AIチップへの切り替え速度が予想を超えた場合、成長率が急速に鈍化するリスクがある。",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-08-12-h01",
+      "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社データセンターの開設または500億ドル規模インフラ投資に関する独立したプレスリリースを公開しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-26",
+      "confidence": 0.88,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "政府機関やハイパースケーラーとの提携交渉が既に完了しており、採用公開と連動してプレスリリースが近日中に前倒し発信される可能性がある。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
@@ -388,11 +388,6 @@
       "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-08-13",
-          "headline": "OpenAIがPython SDK v3.0.0をPyPIに公開",
-          "url": "https://pypi.org/project/openai/3.0.0/"
-        },
-        {
           "date": "2026-08-16",
           "headline": "OpenAIがPython SDK v3.1.0を公開、Responses APIのサポートを継続強化",
           "url": "https://pypi.org/project/openai/3.1.0/"
@@ -406,17 +401,17 @@
           "date": "2026-08-18",
           "headline": "OpenAIが公式ブログで「The Defender’s Window」を公開",
           "url": "https://openai.com/index/the-defenders-window"
+        },
+        {
+          "date": "2026-08-19",
+          "headline": "OpenAIが公式Python SDK v3.3.0をPyPIに公開",
+          "url": "https://pypi.org/project/openai/3.3.0/"
         }
       ]
     },
     {
       "subject": "Google",
       "events": [
-        {
-          "date": "2026-07-22",
-          "headline": "GoogleがGemini 3.6 Flash、3.5 Flash-Lite、および3.5 Flash Cyberを発表",
-          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/"
-        },
         {
           "date": "2026-07-24",
           "headline": "GoogleがNotebookLMをGemini Notebookへ改名",
@@ -431,6 +426,11 @@
           "date": "2026-08-15",
           "headline": "GoogleがGenAI Python SDK v2.18.1を公開し次期メジャーでの自動関数呼び出し仕様変更を予告",
           "url": "https://pypi.org/project/google-genai/2.18.1/"
+        },
+        {
+          "date": "2026-08-19",
+          "headline": "DeepMind等の研究陣がAlphaEvolveを用いた行列乗算計算量の改善手法を発表",
+          "url": "https://arxiv.org/abs/2608.16884v1"
         }
       ]
     },
@@ -486,6 +486,20 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-08-19-r02",
+      "date": "2026-08-19",
+      "headline": "DeepMind等の研究陣がAlphaEvolveを用いた行列乗算計算量の改善手法を発表",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2608.16884v1"
+    },
+    {
+      "id": "2026-08-19-r01",
+      "date": "2026-08-19",
+      "headline": "OpenAIが公式Python SDK v3.3.0をPyPIに公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.3.0/"
+    },
     {
       "id": "2026-08-18-r02",
       "date": "2026-08-18",
@@ -555,21 +569,7 @@
       "headline": "Anthropicが教育および認証基盤を担うスタッフエンジニアの求人を公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5389305008"
-    },
-    {
-      "id": "2026-08-14-r02",
-      "date": "2026-08-14",
-      "headline": "Anthropicがライフサイエンス専門の専任法務担当者の求人募集を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5286008008"
-    },
-    {
-      "id": "2026-08-14-r01",
-      "date": "2026-08-14",
-      "headline": "AnthropicがPython SDK v0.122.0をPyPIにリリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/0.122.0/"
     }
   ],
-  "record_count": 58
+  "record_count": 60
 }
