@@ -1900,5 +1900,57 @@
       "2026-08-08-r02",
       "2026-08-07-r04"
     ]
+  },
+  {
+    "id": "2026-08-19-r01",
+    "created_at": "2026-08-19T06:49:32.867001+09:00",
+    "headline": "OpenAIが公式Python SDK v3.3.0をPyPIに公開",
+    "what_happened": "OpenAIは2026年8月19日、公式Pythonクライアントライブラリ「openai」のバージョン3.3.0をPyPIで公開した。直近でv3.1.0（8月16日）、v3.2.0（8月18日）に続く短期間でのバージョン更新となっている。Responses APIを主要インターフェースとする構成が維持されている。",
+    "background": "OpenAIのPython SDKはREST APIとの通信を抽象化する公式ライブラリであり、新機能や新規エンドポイントの追加に合わせてマイナー/パッチ更新が頻繁に行われる。",
+    "changed": "openaiパッケージの最新バージョンが3.2.0から3.3.0へ更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.3.0/",
+      "title": "openai Python SDK v3.3.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-18-r02",
+      "2026-08-18-r01",
+      "2026-08-16-r03",
+      "2026-08-13-r01",
+      "2026-08-12-r03",
+      "2026-08-08-r03"
+    ]
+  },
+  {
+    "id": "2026-08-19-r02",
+    "created_at": "2026-08-19T06:49:32.867001+09:00",
+    "headline": "DeepMind等の研究陣がAlphaEvolveを用いた行列乗算計算量の改善手法を発表",
+    "what_happened": "Emilien Dupont、Josh Alman、Virginia Vassilevska Williamsら共同研究チームは、行列乗算の計算量指数ωの上限改善に関する論文をarXivに公開した。最適化問題を定式化し直し、MLアルゴリズムとAlphaEvolveを組み合わせて最適化手順を改良するアプローチを提案している。",
+    "background": "行列乗算の理論計算量指数ωの最小化は計算機科学の重要課題であり、近年はレーザー法とその派生最適化にアルゴリズム探索AIが適用される事例が増加している。",
+    "changed": "行列乗算指数の最適化探索にAlphaEvolveを組み合わせた新たな上限導出手法が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2608.16884v1",
+      "title": "Improving the matrix multiplication exponent with modern optimization and AlphaEvolve",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-15-r01",
+      "2026-08-07-r06",
+      "2026-07-24-r05",
+      "2026-07-22-r03"
+    ]
   }
 ]

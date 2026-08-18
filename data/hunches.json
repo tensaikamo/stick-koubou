@@ -568,7 +568,7 @@
     "claim": "Anthropicは21日以内に公式利用規約を改定し、商用API顧客に対する著作権保護補償（Indemnification）の適用範囲を拡張する文言を追加する。",
     "subject": "Anthropic",
     "resolution": {
-      "source": "Anthropic Commercial Terms of Service (https://www.anthropic.com/legal/commercial-terms)",
+      "source": "https://www.anthropic.com/legal/commercial-terms",
       "check_query": "copyright indemnification commercial",
       "decider": "公式利用規約内に、商用利用顧客に対する著作権侵害訴訟の補償または防御義務に関する新条項が追加定義されること。"
     },
@@ -586,14 +586,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-19T06:49:49.323245+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "商用利用規約の有効日は2025年6月17日版のままであり、予測期間内に著作権保護補償を拡張する規約改定は行われていない。",
+      "url": "https://www.anthropic.com/legal/commercial-terms"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-07-29-h02",
