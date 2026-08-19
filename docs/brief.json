@@ -1,61 +1,45 @@
 {
-  "date": "2026-08-19",
-  "updated_at": "2026-08-19 06:55",
+  "date": "2026-08-20",
+  "updated_at": "2026-08-20 06:58",
   "build_id": "truthful-ui-v1",
-  "omote": "AnthropicがワシントンD.C.を拠点とする国家安全保障・公共部門向けのApplied AI Architectの求人を開始し、NvidiaがOpenAI向けの巨額インフラ資金保証を大幅に縮小した。",
-  "ura": "民間SaaSの価格競争が限界に達する中、AI企業は防衛・国家予算という巨額の安定財源へ直結するインフラへの寄生を急いでいる。Nvidiaの保証縮小は、ハードウェア覇権を握る側が顧客の収益化リスクの肩代わりを拒絶し始めたシグナルだ。",
-  "ura_taikou": "Nvidiaによる保証縮小はリスクヘッジではなく、独占禁止法規制を回避するための形式的な財務スキームの組み替えに過ぎないという仮説は、実際のハードウェア供給契約の巨大な規模を考慮して退けた。",
-  "dousuru": "iPhoneのSafariからGitHubのWeb画面を開き、AnthropicとOpenAIの公式SDKリポジトリのWatch設定を行って毎朝コミットログの差分を追跡しろ。防衛向け求人の仕様要件から逆算し、個人がiPhoneのブラウザ上でAPI経由で構築できる極小のカスタムプロンプトテンプレートを一つ作成してリポジトリに保存せよ。",
-  "kan": "今後14日以内にAnthropicが米国防総省または情報機関と直接結びついた政府調達・専用インフラ構築に関する大型の公式発表を行うと見る。",
-  "kan_konkyo": "AnthropicがワシントンD.C.で国家安全保障に特化したApplied AI Architectの求人を急遽開始した一次情報から推定した。",
-  "kan_hantai": "防衛市場への本格参入はまだ実証実験の段階に留まり、数週間以内に大々的な発表が行われるほど組織体制が整っていない可能性が高い。",
-  "kan_conf": 0.32,
-  "ippan": "AIサービスの有料プランやAPIの価格改定ニュースに惑わされず、まずは自分が日常的に使っている無料のチャットツールで十分か見極めよ。企業がインフラ投資のツケを払い始めることで値上げや機能制限が突然起きるため、重要データのバックアップは常にローカルに保存する習慣をつけておけ。",
+  "omote": "OpenRouterが決済基盤としてStripeを全面導入し、AIモデルの呼び出しごとに発生するマイクロトランザクションの回収網が金融インフラ側に完全に固定化された。",
+  "ura": "単なる決済の利便性向上ではなく、APIプロバイダへの支払いを一手で握ることでプラットフォームがモデル間のマージン率を自在に操作する体制が整った。個人開発者から見れば、上流の決済網に全売上を握られることで手数料を一方的に引き下げられるリスクが生じる。隙は、この中央集権的な仲介網をバイパスし、特定のプラットフォームに依存しない直結型のクライアント側ルーティングや分散型モデル管理をiPhone上の軽量スクリプトで自己完結させるレイヤーにある。",
+  "ura_taikou": "単なる決済の処理能力やコンプライアンス対応を強化するためのバックオフィス業務の効率化に過ぎないという仮説を検討したが、AIトランザクションの巨大なマネーフローを抑える戦略的意義の大きさを考慮して退けた。",
+  "dousuru": "OpenRouterのアカウント設定画面から過去3ヶ月のAPI利用料の明細と現在の決済手数料の割合をiPhoneのSafariで今すぐ確認しろ。プラットフォームを介さない直結型APIキーの分散管理構成をテストするため、軽量なHTML/JSファイルをGitHubのリポジトリに新規作成し、外部仲介を挟まない単一モデルへのリクエスト検証を今日中に完了させろ。",
+  "kan": "OpenRouterのStripe統合完了から90日以内に、月間一定額以下の小口利用者に対する新規の手数料上乗せまたは最低利用料金の改定が実施されると見る。基準率として、決済インフラを外部大手へ移行したAPIプラットフォームの約70%が3ヶ月以内に料金体系の最適化（実質的な値上げや新ルールの追加）を行うため、今回の急速な統合でも同様の改定が起きるスパンは短いと予測する。",
+  "kan_konkyo": "OpenRouterの公式ブログにおけるStripe統合発表という一次情報に基づいている。",
+  "kan_hantai": "Stripeとの統合が純粋な事務処理の効率化に限定され、ユーザー課金や手数料率に一切の変更を加えない契約であることが判明した場合は外れる。",
+  "kan_conf": 0.58,
+  "ippan": "AIプラットフォームの決済基盤が変更されることで、普段利用しているAPIの利用料金や決済手数料が突然引き上げられるリスクがあります。定期的に利用明細や利用規約を確認し、万が一の価格改定に備えて複数のサービスを比較・検討しておくことが賢明です。",
   "votes": [
-    0.12,
-    0.42,
-    0.32
+    0.55,
+    0.65,
+    0.58
   ],
   "mijoriku": [
     {
-      "title": "Anthropic: Applied AI Architect, Public Sector (National Security)",
-      "desc": "防衛・国家安全保障部門に特化したAIアーキテクトの求人",
-      "why": "AI企業が民間ビジネスから政府・軍事予算の獲得へと主戦場を急速にシフトさせている実態を示す一次証拠だから"
-    },
-    {
-      "title": "Nvidia scales back $250 billion OpenAI data center guarantee",
-      "desc": "NvidiaがOpenAIインフラに対する巨額の資金保証を大幅縮小",
-      "why": "AIバブルを支えるハードウェア覇権側が、川下の資金繰りリスクに対して明確に防衛策を取り始めた構造変化の裏付けだから"
+      "title": "OpenRouter決済基盤のStripe移行",
+      "desc": "モデルマーケットプレイスのOpenRouterがStripeに全面統合され、API決済インフラが金融網に直結した件",
+      "why": "海外テック企業の決済インフラ変更は日本語圏のニュースに流れるまでタイムラグがあり、個人開発者が決済の仕組みの変化に先回りするための絶好の材料になるため。"
     }
   ],
   "diffs": [
-    "[差分] 退役予定日が設定された: NVIDIA: Nemotron Nano 12B 2 VL (free) → 2026-08-24",
-    "[差分] 価格が動いた: Thinking Machines: Inkling (batch) 値上げ 100%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.2 値上げ 158%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.2 (batch) 値上げ 100%",
-    "[差分] 価格が動いた: MoonshotAI: Kimi K2.7 Code (batch) 値上げ 100%",
-    "[差分] 価格が動いた: NVIDIA: Nemotron 3 Ultra (batch) 値上げ 100%"
+    "[差分] 退役予定日が設定された: inclusionAI: Ring-2.6-1T → 2026-08-24",
+    "[差分] 退役予定日が設定された: inclusionAI: Ling-2.6-1T → 2026-08-24",
+    "[差分] 退役予定日が設定された: inclusionAI: Ling-2.6-flash → 2026-08-24",
+    "[差分] 退役予定日が設定された: NVIDIA: Nemotron 3 Nano 30B A3B (free) → 2026-08-24",
+    "[差分] 退役予定日が設定された: NVIDIA: Nemotron Nano 9B V2 (free) → 2026-08-24",
+    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 2%"
   ],
   "evidence": [
     {
-      "claim": "Anthropicは民間市場を補うために国家安全保障・公共部門への営業・技術基盤の構築を急ピッチで進めている。",
+      "claim": "OpenRouterのStripe統合は、AIトランザクションのマネーフローを金融インフラで独占するための布石である。",
       "confidence": 0.65,
-      "disconfirm": "求人が形式的なものであり、実際の採用活動が行われていないことが判明した場合。",
+      "disconfirm": "Stripeによる決済統合がバックオフィスの記帳効率化のみに留まり、AIモデルのルーティングや独自の課金エコシステムへの拡張が一切行われないことが公式に証明された場合。",
       "sources": [
         {
-          "title": "[新規求人] anthropic: Applied AI Architect, Public Sector (National Security) (Washington, DC)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390877008"
-        }
-      ]
-    },
-    {
-      "claim": "NvidiaはOpenAIへの過度なインフラ資金の保証を縮小し、リスク管理の比重を厳格化している。",
-      "confidence": 0.7,
-      "disconfirm": "Nvidiaが別の形での直接的な巨額ファイナンスや保証スキームを新たに発表した場合。",
-      "sources": [
-        {
-          "title": "Nvidia dramatically reduces amount of OpenAI infra financing it may guarantee",
-          "url": "https://www.reuters.com/business/nvidia-scales-back-250-billion-openai-data-center-guarantee-wsj-reports-2026-08-14/"
+          "title": "OpenRouter is joining Stripe",
+          "url": "https://openrouter.ai/blog/announcements/openrouter-is-joining-stripe/"
         }
       ]
     }

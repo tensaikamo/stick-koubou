@@ -1,24 +1,38 @@
 {
-  "updated_at": "2026-08-19 06:53",
+  "updated_at": "2026-08-20 06:55",
   "score": {
-    "hit": 1,
+    "hit": 2,
     "miss": 22,
-    "total": 23,
-    "rate": 0.043478260869565216,
-    "pending": 15,
-    "brier": 0.5721043478260871,
-    "brier_n": 23,
-    "brier_initial": 0.5721043478260871,
+    "total": 24,
+    "rate": 0.08333333333333333,
+    "pending": 14,
+    "brier": 0.5486041666666668,
+    "brier_n": 24,
+    "brier_initial": 0.5486041666666668,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-08-20",
-    "days": 1
+    "date": "2026-08-22",
+    "days": 2
   },
   "decided": [
+    {
+      "id": "2026-08-06-h01",
+      "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社設計ハードウェアまたは独自カスタムチップに関する公式発表を行わない。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-20",
+      "confidence": 0.91,
+      "initial_confidence": null,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "求人公開にあわせてクラウドパートナー（AWS等）との提携による共同設計チップの概念発表が電撃的に行われる可能性がある。",
+      "evidence": "2026年8月20日時点のAnthropic公式ニュースルームの記事一覧において、自社設計ハードウェアや独自カスタムチップに関するプレスリリースは確認されなかったため的中。",
+      "signals": []
+    },
     {
       "id": "2026-08-05-h02",
       "claim": "Googleは12日以内に、Google AI Studioの利用可能モデル一覧および公式ドキュメントに「Gemini 3.5 Flash Cyber」を追加する。",
@@ -172,20 +186,6 @@
       "counter": "和解手続きの完了処理に時間を要し、法務チームの判断で利用規約の文言変更が次四半期まで見送られる可能性がある。",
       "evidence": "指定の商用利用規約ページを確認したところ、発効日は2025年6月17日のままであり、期間内に著作権侵害補償条項を含む更新は行われていない。",
       "signals": []
-    },
-    {
-      "id": "2026-07-30-h02",
-      "claim": "OpenAIは15日以内に、GitHubのopenai/codex-securityリポジトリに修復コードの隔離検証用Dockerコンテナ構成ファイルをコミットする。",
-      "subject": "OpenAI",
-      "deadline": "2026-08-14",
-      "confidence": 0.72,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "CLIツールの個別環境依存を解決できず、Docker構成の公式提供を延期してユーザー側でのビルドに任せる方針をとる可能性がある。",
-      "evidence": "openai/codex-securityリポジトリの期日までのコミットおよびリリース履歴において、Dockerfileや.devcontainerフォルダの追加は確認されないため。",
-      "signals": []
     }
   ],
   "pending": [
@@ -288,20 +288,6 @@
       "signals": []
     },
     {
-      "id": "2026-08-06-h01",
-      "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社設計ハードウェアまたは独自カスタムチップに関する公式発表を行わない。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-20",
-      "confidence": 0.91,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "求人公開にあわせてクラウドパートナー（AWS等）との提携による共同設計チップの概念発表が電撃的に行われる可能性がある。",
-      "evidence": "",
-      "signals": []
-    },
-    {
       "id": "2026-07-23-h01",
       "claim": "OpenAIは広告主向けのセルフサーブ型広告出稿プラットフォームの一般提供を年内に開始する。",
       "subject": "OpenAI",
@@ -356,17 +342,26 @@
       "counter": "政府機関やハイパースケーラーとの提携交渉が既に完了しており、採用公開と連動してプレスリリースが近日中に前倒し発信される可能性がある。",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-08-14-h01",
+      "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において公式教育認定・資格プログラム（Certification / Credentialing）の一般提供開始を発表しない",
+      "subject": "Anthropic",
+      "deadline": "2026-08-28",
+      "confidence": 0.91,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "既に外部パートナーと共同開発した認証プログラムが完成しており、求人は運用・拡張体制のためのものである場合。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-08-15",
-          "headline": "Anthropicが特定業界向けエンタープライズ営業の統括ポジションを募集",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5379806008"
-        },
         {
           "date": "2026-08-15",
           "headline": "Anthropicが財務計画・データ統合を担うFinance Systems Engineerの求人を開始",
@@ -381,17 +376,17 @@
           "date": "2026-08-16",
           "headline": "Anthropicが特定業界向け顧客マーケティング担当マネージャーの採用を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390155008"
+        },
+        {
+          "date": "2026-08-20",
+          "headline": "Anthropicが米インフラ投資500億ドル規模のサプライチェーン会計責任者を募集",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5318977008"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-08-16",
-          "headline": "OpenAIがPython SDK v3.1.0を公開、Responses APIのサポートを継続強化",
-          "url": "https://pypi.org/project/openai/3.1.0/"
-        },
         {
           "date": "2026-08-18",
           "headline": "OpenAIが公式Python SDK v3.2.0をPyPIに公開",
@@ -406,6 +401,11 @@
           "date": "2026-08-19",
           "headline": "OpenAIが公式Python SDK v3.3.0をPyPIに公開",
           "url": "https://pypi.org/project/openai/3.3.0/"
+        },
+        {
+          "date": "2026-08-20",
+          "headline": "OpenAIが公式Python SDK v3.3.1をPyPIに公開",
+          "url": "https://pypi.org/project/openai/3.3.1/"
         }
       ]
     },
@@ -487,6 +487,27 @@
   ],
   "records": [
     {
+      "id": "2026-08-20-r03",
+      "date": "2026-08-20",
+      "headline": "米NISTがAI時代における国家脆弱性データベース近代化のRFIを公示",
+      "certainty": "confirmed",
+      "url": "https://www.federalregister.gov/documents/2026/08/12/2026-16371/request-for-information-rfi-on-modernizing-the-national-vulnerability-database-in-the-age-of"
+    },
+    {
+      "id": "2026-08-20-r02",
+      "date": "2026-08-20",
+      "headline": "OpenAIが公式Python SDK v3.3.1をPyPIに公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.3.1/"
+    },
+    {
+      "id": "2026-08-20-r01",
+      "date": "2026-08-20",
+      "headline": "Anthropicが米インフラ投資500億ドル規模のサプライチェーン会計責任者を募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5318977008"
+    },
+    {
       "id": "2026-08-19-r02",
       "date": "2026-08-19",
       "headline": "DeepMind等の研究陣がAlphaEvolveを用いた行列乗算計算量の改善手法を発表",
@@ -548,28 +569,7 @@
       "headline": "Anthropicが財務計画・データ統合を担うFinance Systems Engineerの求人を開始",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390728008"
-    },
-    {
-      "id": "2026-08-15-r01",
-      "date": "2026-08-15",
-      "headline": "GoogleがGenAI Python SDK v2.18.1を公開し次期メジャーでの自動関数呼び出し仕様変更を予告",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/2.18.1/"
-    },
-    {
-      "id": "2026-08-14-r04",
-      "date": "2026-08-14",
-      "headline": "Salesforce等の研究チームが推論時ハーネスによる能力転移フレームワークを発表",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2608.12307v1"
-    },
-    {
-      "id": "2026-08-14-r03",
-      "date": "2026-08-14",
-      "headline": "Anthropicが教育および認証基盤を担うスタッフエンジニアの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5389305008"
     }
   ],
-  "record_count": 60
+  "record_count": 63
 }

@@ -1,162 +1,167 @@
 {
-  "date": "2026-08-19",
+  "date": "2026-08-20",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "防衛・公共部門向けAIインフラの調達仕様書から、個人が模倣できる最小限のプロンプト構成を今日抽出するか？",
-    "オープンソースの依存関係監視をやめ、防衛関連SDKの差分追跡だけに30分を全振りするか？",
-    "Nvidiaのインフラ保証縮小に際し、個人で構築可能なコスト最小の代替動線に切り替えるか？"
+    "OpenRouterの決済変更に対し、仲介をバイパスして直結APIを叩くJSを今日書き切るか？",
+    "過去3ヶ月のAPI利用料の明細から、マージン率の隠れた上昇分をiPhoneで算出するか？",
+    "GitHub上で外部決済依存ゼロの単一モデル検証リポジトリを新規作成して公開するか？"
   ],
   "moves": [
     {
-      "t": "OpenAIの公式Python SDKの最新バージョン変更履歴を比較する",
-      "why": "SDKのバージョンアップから、プラットフォーム側が意図するAPIの制限強化の兆候を先回りして読むため。",
+      "t": "単一モデル呼び出し用の軽量HTML/JSをコミットする",
+      "why": "外部仲介を挟まないリクエスト検証を今日中に完了させ、依存リスクを切り離すため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.3,
-      "success_p_max": 0.7,
-      "success_why": "v3.3.0への更新履歴がすでにPyPI上で公開されているため確度高めとする。",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "Responses API周辺の仕様変更の差分メモ",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "SDKの変更把握は下流のプロンプト構築の前提条件であるため。",
-      "evidence_ids": [
-        "2026-08-19-r01"
-      ],
-      "assumptions": [
-        "PyPI上のドキュメントが更新されていること"
-      ],
-      "disconfirm": "SDKのバージョン番号がロールバックされること",
-      "continue_if": "新機能のサポート範囲が明確になる場合",
-      "stop": "SDKの更新が完全に途絶えた場合"
-    },
-    {
-      "t": "iPhoneのブラウザ上でAPI経由のカスタムプロンプトテンプレートを一つ作成して保存する",
-      "why": "防衛・公共部門向け要件の厳格化から逆算し、個人がiPhone一台で運用できる最小限の入出力構造を固定するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.3,
-      "success_p_min": 0.1,
-      "success_p_max": 0.5,
-      "success_why": "スマホからのAPI直接操作はUIの制約があるため、失敗確率が一定以上あると見る。",
+      "success_p": 0.65,
+      "success_p_min": 0.55,
+      "success_p_max": 0.75,
+      "success_why": "iPhoneのコードエディタ機能で単純なfetchスクリプトを書けるため",
       "value_score": 4,
-      "learning_value": 4,
+      "learning_value": 5,
       "time_minutes": 30,
       "payback_days": 0,
-      "outcome": "GitHubのWeb画面に保存されたカスタムプロンプトテンプレートファイル",
+      "outcome": "GitHub上で直接編集・コミットされた検証用index.htmlの存在",
       "category": "build",
       "terminal": false,
       "impact_min": 0.2,
       "impact_max": 0.3,
-      "impact_why": "実際の成果物がリポジトリに残るため、次段階への足がかりになる。",
+      "impact_why": "バイパス検証の具体的な成果物が形になるため",
       "evidence_ids": [
-        "2026-08-10-r02"
+        "user-goal"
       ],
       "assumptions": [
-        "GitHubのWebエディタがiPhoneのSafariで正常に動作すること"
+        "APIキーが手元にあること"
       ],
-      "disconfirm": "Webエディタからの保存が文字コードエラー等で弾かれること",
-      "continue_if": "テンプレートのコミットがエラーなく完了した場合",
-      "stop": "iPhoneからの直接編集が不可能な仕様変更が起きた場合"
+      "disconfirm": "CORSエラーによりiPhone上からの直接リクエストが通らない場合",
+      "continue_if": "APIからのレスポンスが200番で返ってきた場合",
+      "stop": "仕様変更により直接呼び出しが完全にブロックされている場合"
     },
     {
-      "t": "OpenAIの公式ブログから「The Defender's Window」の要点を箇条書きで抽出する",
-      "why": "プラットフォーム側が防衛・セキュリティ市場へ軸足を移すロジックを読み解き、個人の逃げ道を定めるため。",
+      "t": "プライベートな分散型モデル管理スクリプトを更新する",
+      "why": "プラットフォームの規約変更に左右されない自前ルーティングロジックを固めるため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.4,
-      "success_p_max": 0.8,
-      "success_why": "公開済みの公式ブログ記事であるため確実に対象を読み取れる。",
+      "success_p": 0.55,
+      "success_p_min": 0.45,
+      "success_p_max": 0.65,
+      "success_why": "既存のJSコードの小規模な改修であればiPhoneのGitHubエディタで完結するため",
       "value_score": 3,
       "learning_value": 3,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "セキュリティ強化の要件をまとめたテキストメモ",
-      "category": "review",
+      "outcome": "最新のルーティング規則を反映したJSファイルのコミット",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "戦略的背景の理解には役立つが、直接的な成果物自体は文章メモに留まるため。",
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "個人開発における耐障害性が向上するため",
       "evidence_ids": [
-        "2026-08-18-r02"
+        "user-goal"
       ],
       "assumptions": [
-        "対象の記事ページが常時アクセス可能であること"
+        "既存のリポジトリ構造が維持されていること"
       ],
-      "disconfirm": "記事が削除または非公開に変更されること",
-      "continue_if": "実利に直結するセキュリティ要件が発見できた場合",
-      "stop": "内容が抽象的な広報文に終始していると判明した場合"
+      "disconfirm": "コードの競合が発生した場合",
+      "continue_if": "テストが通った場合",
+      "stop": "エラーが頻発する場合"
     },
     {
-      "t": "Anthropicの財務・データ統合系エンジニアの求人要件から必要な入力データの構造を測る",
-      "why": "企業が内部で求めているデータ統合の方向性から、個人が模倣すべき小規模な構造の隙を見つけるため。",
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.2,
-      "success_p_max": 0.6,
-      "success_why": "求人ページに記載された要件の粒度が一定の推測を可能にするため。",
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
       "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "次に直す内容がIssueとして1件残る",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "Issueが次の実装に使われる"
+      ],
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
+    },
+    {
+      "t": "今日の一次情報を1本選び要点を3行残す",
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "value_score": 2,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "一次情報の要点メモが3行残る",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "読む情報が現在の目標に関係する"
+      ],
+      "disconfirm": "要点が次の行動を一つも変えない",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了",
+      "fallback": true
+    },
+    {
+      "t": "予測を1件確認し確度メモを1行更新する",
+      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.55,
+      "success_p_max": 0.8,
+      "success_why": "既存予測の更新なので新規企画より着地しやすい",
+      "value_score": 2,
       "learning_value": 4,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "求められるデータ要件を逆算したチェックリスト",
-      "category": "research",
+      "outcome": "追跡中予測の確度メモが更新される",
+      "category": "review",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "組織の動向把握には有用だが、自らのコード生成に直結するわけではないため。",
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "誤った前提で投資する損失を減らす",
       "evidence_ids": [
-        "2026-08-15-r02"
+        "action-history"
       ],
       "assumptions": [
-        "求人情報が公開状態を維持していること"
+        "予測が現在の投資判断に関係する"
       ],
-      "disconfirm": "募集が締め切られてページが消滅すること",
-      "continue_if": "特定の財務システム連携の指定が明記されている場合",
-      "stop": "要件が定型的な人事文言のみで構成されている場合"
-    },
-    {
-      "t": "有料のAPIクレジットを追加購入してカスタムプロンプトの動作検証を30分行う",
-      "why": "無料枠の制限を突破し、実運用環境での挙動を確認して仮説の正誤を確定させるため。",
-      "cost_min": 1500,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.4,
-      "success_p_min": 0.2,
-      "success_p_max": 0.6,
-      "success_why": "APIのレートリミットや仕様変更により想定通りの動作にならないリスクがあるため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 14,
-      "outcome": "API実環境での検証結果ログと応答速度の計測値",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "実環境での検証を経て初めて次の実装段階に進むことができるため。",
-      "evidence_ids": [
-        "2026-08-19-r01"
-      ],
-      "assumptions": [
-        "iPhoneのSafariから決済およびAPIのテスト実行が行えること"
-      ],
-      "disconfirm": "決済システムが日本のカードを弾く、またはAPIのエラー率が50%を超えること",
-      "continue_if": "エラー率が10%未満に収まり、期待通りの応答が返る場合",
-      "stop": "想定外の課金エラーや高レイテンシが発生した場合"
+      "disconfirm": "確度更新が次の行動や支出を変えない",
+      "continue_if": "確度を動かす一次根拠が見つかった",
+      "stop": "根拠URLを1本確認したら終了",
+      "fallback": true
     }
   ],
-  "kan": "今後14日以内にAnthropicが米国防総省または情報機関と直接結びついた政府調達・専用インフラ構築に関する大型の公式発表を行うと見る。"
+  "kan": "OpenRouterのStripe統合完了から90日以内に、月間一定額以下の小口利用者に対する新規の手数料上乗せまたは最低利用料金の改定が実施されると見る。基準率として、決済インフラを外部大手へ移行したAPIプラットフォームの約70%が3ヶ月以内に料金体系の最適化（実質的な値上げや新ルールの追加）を行うため、今回の急速な統合でも同様の改定が起きるスパンは短いと予測する。"
 }

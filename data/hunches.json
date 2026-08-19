@@ -1624,6 +1624,14 @@
         "why": "google-genai Python SDK v2.18.1がリリースされ、v2系のパッチ/マイナー更新が確認されたため。",
         "conf_before": 0.95,
         "conf_after": 0.95
+      },
+      {
+        "date": "2026-08-20",
+        "sign": "PyPIにgoogle-genaiのv2.19.0などv2系のマイナー/パッチ更新が追加される",
+        "dir": "confirm",
+        "why": "google-genai Python SDK v2.18.1のリリースが確認され、v2系のマイナー/パッチ更新が行われたため。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
       }
     ],
     "status": "pending",
@@ -1680,6 +1688,14 @@
         "sign": "PyPI上でopenaiの3.2.x系または3.3.x系のマイナー・パッチリリースが継続する",
         "dir": "confirm",
         "why": "openai Python SDK v3.3.0がリリースされ、3.3.x系のマイナーリリースが確認されたため。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
+      },
+      {
+        "date": "2026-08-20",
+        "sign": "PyPI上でopenaiの3.2.x系または3.3.x系のマイナー・パッチリリースが継続する",
+        "dir": "confirm",
+        "why": "openai Python SDK v3.3.1のリリースが確認され、3.3.x系のパッチリリースが継続したため。",
         "conf_before": 0.95,
         "conf_after": 0.95
       }
