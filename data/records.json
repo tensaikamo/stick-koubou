@@ -1952,5 +1952,79 @@
       "2026-07-24-r05",
       "2026-07-22-r03"
     ]
+  },
+  {
+    "id": "2026-08-20-r01",
+    "created_at": "2026-08-20T06:52:29.076822+09:00",
+    "headline": "Anthropicが米インフラ投資500億ドル規模のサプライチェーン会計責任者を募集",
+    "what_happened": "Anthropicは「Director, Infrastructure Supply Chain Accounting」の新規求人票を公開した。職務内容には、同社が進める米国コンピュートインフラへの500億ドル以上の投資を支えるため、チップ、ネットワーク機器、ラック、データセンター建設に至るサプライチェーン全体の会計と固定資産管理を統括することが明記されている。サンフランシスコおよびニューヨークでの勤務を対象としている。",
+    "background": "AIフロンティアモデルの開発競争では、計算資源確保に向けた巨額の設備投資が進んでおり、クラウドベンダー経由の調達だけでなく物理コンポーネントやデータセンター設備への直接関与・サプライチェーン管理の重要性が増している。",
+    "changed": "Anthropicが数兆円（500億ドル）規模のインフラ資産を自社管理・計上するための専門組織体制の構築を本格化させた。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5318977008",
+      "title": "[新規求人] anthropic: Director, Infrastructure Supply Chain Accounting (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-16-r02",
+      "2026-08-16-r01",
+      "2026-08-15-r03",
+      "2026-08-15-r02",
+      "2026-08-14-r03",
+      "2026-08-14-r02"
+    ]
+  },
+  {
+    "id": "2026-08-20-r02",
+    "created_at": "2026-08-20T06:52:29.076822+09:00",
+    "headline": "OpenAIが公式Python SDK v3.3.1をPyPIに公開",
+    "what_happened": "OpenAIは公式Pythonライブラリのパッチバージョン「openai 3.3.1」をPyPIに公開した。HTTPX2を基盤とし、OpenAPI仕様から生成されたREST APIクライアントの最新修正が含まれている。",
+    "background": "OpenAIはSDKのメジャーバージョン3系においてResponses APIへの集約を進めており、頻繁なマイナー・パッチリリースで仕様整合を維持している。",
+    "changed": "OpenAI APIを利用するPython環境向けに最新のバグ修正が提供された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.3.1/",
+      "title": "openai Python SDK v3.3.1 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-19-r01",
+      "2026-08-18-r02",
+      "2026-08-18-r01",
+      "2026-08-16-r03",
+      "2026-08-13-r01",
+      "2026-08-12-r03"
+    ]
+  },
+  {
+    "id": "2026-08-20-r03",
+    "created_at": "2026-08-20T06:52:29.076822+09:00",
+    "headline": "米NISTがAI時代における国家脆弱性データベース近代化のRFIを公示",
+    "what_happened": "米国連邦官報（Federal Register）において、米国立標準技術研究所（NIST）による国家脆弱性データベース（NVD）の近代化に関する情報提供依頼（RFI）が公示された。AI技術の進展に伴う脆弱性管理体制の再構築や自動化への対応策について広く意見を募集している。",
+    "background": "NVDは世界的なセキュリティ脆弱性（CVE）情報の基盤だが、近年の登録件数増大とAIシステム固有のセキュリティ課題への対応が課題視されていた。",
+    "changed": "米政府主導によるセキュリティ脆弱性管理インフラのAI対応に向けた制度設計プロセスが開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://www.federalregister.gov/documents/2026/08/12/2026-16371/request-for-information-rfi-on-modernizing-the-national-vulnerability-database-in-the-age-of",
+      "title": "[米規制] Request for Information (RFI) on Modernizing the National Vulnerability Database in the Age of Artificial Intelligence",
+      "hn_score": 0,
+      "name": "FederalRegister",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": []
   }
 ]
