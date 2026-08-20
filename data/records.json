@@ -2026,5 +2026,83 @@
     "body_fetched": true,
     "model": "gemini-3.7-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-08-21-r01",
+    "created_at": "2026-08-21T06:54:57.064526+09:00",
+    "headline": "Anthropicが公式Python SDKのメジャーバージョンv1.0.0を公開",
+    "what_happened": "Anthropicは公式Python SDK「anthropic」のメジャーバージョンとなるv1.0.0をPyPIに公開した。0.x系からの移行ガイドが案内されており、APIクライアント設計が正式版仕様に固定された。取得されたドキュメント抜粋にはclaude-opus-5などの記述が含まれる。",
+    "background": "AI企業の公式SDKは0.x系から1.0.0に移行することで、後方互換性を保証するセマンティックバージョニングへ移行し、エンタープライズ本番環境への組み込みを促進する標準的な手順を踏む。",
+    "changed": "Anthropic APIを利用する開発者向けライブラリが正式版（v1.0.0）に昇格し、今後の破壊的変更がメジャーアップデート時のみに限定される体制へ移行した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.0.0/",
+      "title": "anthropic Python SDK v1.0.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-20-r01",
+      "2026-08-16-r02",
+      "2026-08-16-r01",
+      "2026-08-15-r03",
+      "2026-08-15-r02",
+      "2026-08-14-r03"
+    ]
+  },
+  {
+    "id": "2026-08-21-r02",
+    "created_at": "2026-08-21T06:54:57.064526+09:00",
+    "headline": "Anthropicがシンガポール拠点のASEAN公共部門向け営業職の求人を開始",
+    "what_happened": "Anthropicはシンガポールを勤務地とする「Account Executive - Public Sector (ASEAN)」の募集を開始した。東南アジア各国の政府機関、省庁、法定機関に対するClaudeの導入推進と市場参入戦略の策定を担う。",
+    "background": "東南アジア（ASEAN）は各国政府主導で国家AI戦略の推進が進んでおり、公共調達におけるセキュリティ要件やコンプライアンス適合が重視される地域市場となっている。",
+    "changed": "Anthropicが東南アジア地域の政府・公共調達市場に向けた直接的な営業体制構築に着手した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391381008",
+      "title": "[新規求人] anthropic: Account Executive - Public Sector (ASEAN) (Singapore)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-20-r01",
+      "2026-08-16-r02",
+      "2026-08-16-r01",
+      "2026-08-15-r03",
+      "2026-08-15-r02",
+      "2026-08-14-r03"
+    ]
+  },
+  {
+    "id": "2026-08-21-r03",
+    "created_at": "2026-08-21T06:54:57.064526+09:00",
+    "headline": "xAIがメンフィスColossus向け専用発電所運用のディレクター求人を公開",
+    "what_happened": "xAI（SpaceXAI）はミシシッピ州サウスヘブンを勤務地とする「Director, Memphis Power Plant Operations」の募集を開始した。テネシー州メンフィスのAI学習用Colossusデータセンター向け専用ガスタービン発電施設の運用・保守・試運転および拡張を統括する。",
+    "background": "xAIはメンフィスに超巨大AIクラスタ「Colossus」を構築しているが、電力網からの受電容量の制約に対処するため、自前のガスタービン発電設備を併設・運用している。",
+    "changed": "xAIがデータセンター電力供給用ガスタービン発電所の自前運用・拡張を専任で統括する幹部ポストの採用に入った。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5216112007",
+      "title": "[新規求人] xai: Director, Memphis Power Plant Operations  (Southaven, Mississippi)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-09-r02",
+      "2026-08-06-r03",
+      "2026-08-06-r02"
+    ]
   }
 ]
