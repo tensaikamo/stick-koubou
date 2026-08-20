@@ -1632,6 +1632,14 @@
         "why": "google-genai Python SDK v2.18.1のリリースが確認され、v2系のマイナー/パッチ更新が行われたため。",
         "conf_before": 0.95,
         "conf_after": 0.95
+      },
+      {
+        "date": "2026-08-21",
+        "sign": "PyPIにgoogle-genaiのv2.19.0などv2系のマイナー/パッチ更新が追加される",
+        "dir": "confirm",
+        "why": "本日の事象としてgoogle-genai Python SDK v2.19.0がリリースされたため、v2系のマイナー/パッチ更新が追加されたconfirm指標が点灯する。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
       }
     ],
     "status": "pending",
@@ -1698,6 +1706,14 @@
         "why": "openai Python SDK v3.3.1のリリースが確認され、3.3.x系のパッチリリースが継続したため。",
         "conf_before": 0.95,
         "conf_after": 0.95
+      },
+      {
+        "date": "2026-08-21",
+        "sign": "PyPI上でopenaiの3.2.x系または3.3.x系のマイナー・パッチリリースが継続する",
+        "dir": "confirm",
+        "why": "本日の事象でopenai Python SDK v3.3.1がリリースされたため、3.2.x系または3.3.x系のマイナー・パッチリリースが継続するconfirm指標が点灯する。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
       }
     ],
     "status": "pending",
@@ -1725,7 +1741,7 @@
       "decider": "期日時点でニュースルーム一覧にシンガポールまたはASEANにおける新オフィス・地域統括拠点設立を告知する公式記事が掲載されていないこと。"
     },
     "deadline": "2026-09-04",
-    "confidence": 0.89,
+    "confidence": 0.927,
     "base_rate": 0.88,
     "base_rate_class": "先端AI企業が特定地域の営業求人を公開してから14日以内に当該地域の公式オフィス開設発表を行う頻度（不発生率）",
     "confidence_why": "営業担当者の求人が開始されたばかりの初期段階であり、人事配置やオフィス契約完了前に14日という短期間で公式広報を打つ可能性は極めて低いため、基準率よりわずかに高く設定。",
@@ -1740,7 +1756,16 @@
         "dir": "confirm"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-08-21",
+        "sign": "Greenhouse求人一覧にシンガポール勤務の法務・人事・総務ポジションが追加される",
+        "dir": "confirm",
+        "why": "本日の新規求人一覧にAccount Executive - Public Sector (ASEAN) (Singapore)などのシンガポール勤務ポジションが追加されたためconfirm指標が点灯する。",
+        "conf_before": 0.89,
+        "conf_after": 0.927
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -1748,6 +1773,7 @@
     "rejected": [],
     "model": "gemini-3.7-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.89
   }
 ]

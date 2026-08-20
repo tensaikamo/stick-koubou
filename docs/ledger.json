@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-08-20 06:55",
+  "updated_at": "2026-08-21 06:58",
   "score": {
     "hit": 2,
     "miss": 22,
     "total": 24,
     "rate": 0.08333333333333333,
-    "pending": 14,
+    "pending": 15,
     "brier": 0.5486041666666668,
     "brier_n": 24,
     "brier_initial": 0.5486041666666668,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-08-22",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -363,16 +363,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-08-15",
-          "headline": "Anthropicが財務計画・データ統合を担うFinance Systems Engineerの求人を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390728008"
-        },
-        {
-          "date": "2026-08-16",
-          "headline": "Anthropicが商用レール構築を担うプラットフォームエコシステム組織の創設エンジニアを募集",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5392335008"
-        },
-        {
           "date": "2026-08-16",
           "headline": "Anthropicが特定業界向け顧客マーケティング担当マネージャーの採用を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390155008"
@@ -381,6 +371,16 @@
           "date": "2026-08-20",
           "headline": "Anthropicが米インフラ投資500億ドル規模のサプライチェーン会計責任者を募集",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5318977008"
+        },
+        {
+          "date": "2026-08-21",
+          "headline": "Anthropicがシンガポール拠点のASEAN公共部門向け営業職の求人を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391381008"
+        },
+        {
+          "date": "2026-08-21",
+          "headline": "Anthropicが公式Python SDKのメジャーバージョンv1.0.0を公開",
+          "url": "https://pypi.org/project/anthropic/1.0.0/"
         }
       ]
     },
@@ -451,6 +451,11 @@
           "date": "2026-08-09",
           "headline": "xAIがスロバキア語・ルーマニア語など多言語音声機能向けのAIチューター求人を同時公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5207599007"
+        },
+        {
+          "date": "2026-08-21",
+          "headline": "xAIがメンフィスColossus向け専用発電所運用のディレクター求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5216112007"
         }
       ]
     },
@@ -486,6 +491,27 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-08-21-r03",
+      "date": "2026-08-21",
+      "headline": "xAIがメンフィスColossus向け専用発電所運用のディレクター求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5216112007"
+    },
+    {
+      "id": "2026-08-21-r02",
+      "date": "2026-08-21",
+      "headline": "Anthropicがシンガポール拠点のASEAN公共部門向け営業職の求人を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391381008"
+    },
+    {
+      "id": "2026-08-21-r01",
+      "date": "2026-08-21",
+      "headline": "Anthropicが公式Python SDKのメジャーバージョンv1.0.0を公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/1.0.0/"
+    },
     {
       "id": "2026-08-20-r03",
       "date": "2026-08-20",
@@ -548,28 +574,7 @@
       "headline": "Anthropicが商用レール構築を担うプラットフォームエコシステム組織の創設エンジニアを募集",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5392335008"
-    },
-    {
-      "id": "2026-08-16-r01",
-      "date": "2026-08-16",
-      "headline": "Anthropicが特定業界向け顧客マーケティング担当マネージャーの採用を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390155008"
-    },
-    {
-      "id": "2026-08-15-r03",
-      "date": "2026-08-15",
-      "headline": "Anthropicが特定業界向けエンタープライズ営業の統括ポジションを募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5379806008"
-    },
-    {
-      "id": "2026-08-15-r02",
-      "date": "2026-08-15",
-      "headline": "Anthropicが財務計画・データ統合を担うFinance Systems Engineerの求人を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390728008"
     }
   ],
-  "record_count": 63
+  "record_count": 66
 }

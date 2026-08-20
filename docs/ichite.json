@@ -1,167 +1,162 @@
 {
-  "date": "2026-08-20",
+  "date": "2026-08-21",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの決済変更に対し、仲介をバイパスして直結APIを叩くJSを今日書き切るか？",
-    "過去3ヶ月のAPI利用料の明細から、マージン率の隠れた上昇分をiPhoneで算出するか？",
-    "GitHub上で外部決済依存ゼロの単一モデル検証リポジトリを新規作成して公開するか？"
+    "OpenRouterでのDeepSeek V4 Proの利用比率が3割を超えるか、今すぐSafariで確認して数字を出せ。",
+    "Flash Latestへの切り替え設定を、今日の30分以内にコード上で完了させられるか。",
+    "コスト高騰による出血を止めるために、どのAPI呼び出し部分を最初に書き換えるか。"
   ],
   "moves": [
     {
-      "t": "単一モデル呼び出し用の軽量HTML/JSをコミットする",
-      "why": "外部仲介を挟まないリクエスト検証を今日中に完了させ、依存リスクを切り離すため",
+      "t": "コード内の呼び出し先モデルをFlash Latestへ書き換えてデプロイする",
+      "why": "15%値下げされた軽量モデルにトラフィックを逃がし、プロモデルの値上げによる開発コストの直撃を回避するため",
       "cost_min": 0,
       "cost_max": 0,
-      "loss_max": 0,
+      "loss_max": 1000,
       "success_p": 0.65,
-      "success_p_min": 0.55,
-      "success_p_max": 0.75,
-      "success_why": "iPhoneのコードエディタ機能で単純なfetchスクリプトを書けるため",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "GitHub上で直接編集・コミットされた検証用index.htmlの存在",
+      "success_p_min": 0.5,
+      "success_p_max": 0.8,
+      "success_why": "GitHubのWeb画面上から直接リポジトリのソースコードを編集して即座に反映できるため",
+      "value_score": 5,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 1,
+      "outcome": "APIのルーティング先が安価なFlash Latestに切り替わったコミットログ",
       "category": "build",
       "terminal": false,
       "impact_min": 0.2,
       "impact_max": 0.3,
-      "impact_why": "バイパス検証の具体的な成果物が形になるため",
+      "impact_why": "直接的なAPIコストの削減に直結し個人開発のランニングコストを抑えるため",
       "evidence_ids": [
-        "user-goal"
+        "2026-08-21-r02"
       ],
       "assumptions": [
-        "APIキーが手元にあること"
+        "GitHubのWebエディタから直接コード修正と反映が行えること"
       ],
-      "disconfirm": "CORSエラーによりiPhone上からの直接リクエストが通らない場合",
-      "continue_if": "APIからのレスポンスが200番で返ってきた場合",
-      "stop": "仕様変更により直接呼び出しが完全にブロックされている場合"
+      "disconfirm": "軽量モデルへの切り替えによってアプリケーションの挙動が致命的に破綻する場合",
+      "continue_if": "モデル変更後も出力品質が実用範囲内に収まっている場合",
+      "stop": "精度低下によってユーザー体験が著しく損なわれる場合"
     },
     {
-      "t": "プライベートな分散型モデル管理スクリプトを更新する",
-      "why": "プラットフォームの規約変更に左右されない自前ルーティングロジックを固めるため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
+      "t": "OpenRouterのプリファードプロバイダー設定を変更してコストを最適化する",
+      "why": "仲介プラットフォームの価格改定の隙を突き、同じ性能のプロバイダーを安価なルートに固定するため",
+      "cost_min": 1500,
+      "cost_max": 3000,
+      "loss_max": 3000,
       "success_p": 0.55,
-      "success_p_min": 0.45,
-      "success_p_max": 0.65,
-      "success_why": "既存のJSコードの小規模な改修であればiPhoneのGitHubエディタで完結するため",
-      "value_score": 3,
+      "success_p_min": 0.4,
+      "success_p_max": 0.7,
+      "success_why": "OpenRouterのルーティング設定機能により特定の安価なプロバイダーを優先指定できるため",
+      "value_score": 4,
       "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "最新のルーティング規則を反映したJSファイルのコミット",
+      "time_minutes": 25,
+      "payback_days": 7,
+      "outcome": "最適化されたプロバイダー設定画面のスクリーンショット",
       "category": "build",
       "terminal": false,
       "impact_min": 0.15,
       "impact_max": 0.25,
-      "impact_why": "個人開発における耐障害性が向上するため",
+      "impact_why": "プラットフォームの価格変動リスクに対する耐性を高められるため",
       "evidence_ids": [
-        "user-goal"
+        "2026-08-21-r02"
       ],
       "assumptions": [
-        "既存のリポジトリ構造が維持されていること"
+        "OpenRouterのダッシュボードからプロバイダーの個別指定が可能であること"
       ],
-      "disconfirm": "コードの競合が発生した場合",
-      "continue_if": "テストが通った場合",
-      "stop": "エラーが頻発する場合"
+      "disconfirm": "指定した安価なプロバイダーの応答速度や可用性が極端に低い場合",
+      "continue_if": "コスト削減効果が試算の範囲内に収まっている場合",
+      "stop": "エラー率の上昇によりサービスの継続に支障が出る場合"
     },
     {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "t": "APIコスト変動のシミュレーション結果をテキストにまとめてGitHubに保存する",
+      "why": "今後のモデルの値上げトレンドに備え、月間予算の許容限界を数字で明確に固定するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.9,
+      "success_p_min": 0.8,
+      "success_p_max": 0.95,
+      "success_why": "テキストエディタとGitHubのWeb画面さえあれば確実にファイルとして残せるため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "月間APIコスト予測を記述したMarkdownファイル",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "場当たり的な開発投資を防ぎ、持続可能な運用の土台を作るため",
+      "evidence_ids": [
+        "2026-08-21-r02"
+      ],
+      "assumptions": [
+        "GitHubのWeb画面から新規Markdownファイルの作成とコミットができること"
+      ],
+      "disconfirm": "APIの価格変動が激しすぎて短期的な予測が全く成り立たない場合",
+      "continue_if": "試算に基づき次の打ち手が明確に導き出せる場合",
+      "stop": "前提となる価格体系が数日単位で覆る場合"
+    },
+    {
+      "t": "有料のAPI監視アラートツールを導入してコスト超過に備える",
+      "why": "急激な値上げや予期せぬトラフィック増による予期せぬ赤字を防ぐため",
+      "cost_min": 3000,
+      "cost_max": 6000,
+      "loss_max": 6000,
+      "success_p": 0.5,
+      "success_p_min": 0.35,
+      "success_p_max": 0.65,
+      "success_why": "既存のサードパーティ製監視ツールとOpenRouterがAPI経由で連携できるため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 30,
+      "payback_days": 14,
+      "outcome": "コスト超過アラートの設定が完了した管理画面のキャプチャ",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "資金の枯渇リスクを自動で検知し致命傷を避ける防衛線になるため",
+      "evidence_ids": [
+        "2026-08-21-r02"
+      ],
+      "assumptions": [
+        "iPhoneのブラウザから外部の監視ツールとAPIキーの紐付けが完了すること"
+      ],
+      "disconfirm": "ツールの月額費用自体が現在のAPI利用コスト対比で割高になる場合",
+      "continue_if": "設定した予算閾値の超過通知が正しくテスト送信できた場合",
+      "stop": "誤検知が多く実用に耐えない場合"
+    },
+    {
+      "t": "競合する安価なAPIプロバイダーの価格表をスプレッドシートに整理する",
+      "why": "特定の仲介プラットフォームの値上げに依存しないための代替ルートをあらかじめ確保しておくため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
-      "success_p_min": 0.7,
+      "success_p_min": 0.65,
       "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "success_why": "主要なプロバイダーの料金ページはSafariから容易に一覧化できるため",
       "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 15,
+      "learning_value": 4,
+      "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
-      "evidence_ids": [
-        "user-goal",
-        "action-history"
-      ],
-      "assumptions": [
-        "Issueが次の実装に使われる"
-      ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
-    },
-    {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "value_score": 2,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "一次情報の要点メモが3行残る",
+      "outcome": "主要APIの単価比較をまとめたスプレッドシートのリンク",
       "category": "research",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "プラットフォーム側の価格改定に対して迅速に移行先を判断できる材料になるため",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-08-21-r02"
       ],
       "assumptions": [
-        "読む情報が現在の目標に関係する"
+        "各社のAPI料金ページがインターネット上で公開されていること"
       ],
-      "disconfirm": "要点が次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
-    },
-    {
-      "t": "予測を1件確認し確度メモを1行更新する",
-      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "既存予測の更新なので新規企画より着地しやすい",
-      "value_score": 2,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "追跡中予測の確度メモが更新される",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "誤った前提で投資する損失を減らす",
-      "evidence_ids": [
-        "action-history"
-      ],
-      "assumptions": [
-        "予測が現在の投資判断に関係する"
-      ],
-      "disconfirm": "確度更新が次の行動や支出を変えない",
-      "continue_if": "確度を動かす一次根拠が見つかった",
-      "stop": "根拠URLを1本確認したら終了",
-      "fallback": true
+      "disconfirm": "隠れた手数料やレートリミットのせいで単純比較が意味を持たない場合",
+      "continue_if": "現行より20%以上安い代替先候補が見つかった場合",
+      "stop": "どのプロバイダーも価格体系が横並びで優位性がない場合"
     }
   ],
-  "kan": "OpenRouterのStripe統合完了から90日以内に、月間一定額以下の小口利用者に対する新規の手数料上乗せまたは最低利用料金の改定が実施されると見る。基準率として、決済インフラを外部大手へ移行したAPIプラットフォームの約70%が3ヶ月以内に料金体系の最適化（実質的な値上げや新ルールの追加）を行うため、今回の急速な統合でも同様の改定が起きるスパンは短いと予測する。"
+  "kan": "Anthropicは今後14日以内に、シンガポールオフィスの開設またはASEAN地域拠点設立に関する公式発表を自社ニュースルームに掲載しない。"
 }
