@@ -175,11 +175,15 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "提供された証拠にはOpenAIによる広告出稿用セルフサーブプラットフォームの一般提供に関する情報が含まれておらず、判定に必要な公開情報を確認できないため。",
+      "url": ""
+    },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "judge_attempts": 1
   },
   {
     "id": "2026-07-23-h02",
@@ -255,7 +259,7 @@
     },
     "deadline": "2026-08-07",
     "confidence": 0.85,
-    "status": "pending",
+    "status": "unscorable",
     "resolved_at": null,
     "result": null,
     "evidence": {
@@ -266,7 +270,7 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "needs_review": true
+    "needs_review": false
   },
   {
     "id": "2026-07-25-h01",
@@ -1775,5 +1779,45 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.89
+  },
+  {
+    "id": "2026-08-22-h01",
+    "created_at": "2026-08-22T06:51:18.676908+09:00",
+    "based_on": [
+      "2026-08-22-r01"
+    ],
+    "prose": "過去の失敗から基準率に立ち返ると、短期的に特定のマイナーバージョン更新が連続する確率は低い。OpenAIの過去のSDKリリース頻度と現在の安定期を考慮すると、今後14日以内にさらに連続してメジャーアップデートや新機能追加のマイナーパッチが出る可能性は低い。",
+    "claim": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」の新たなマイナーまたはメジャーバージョン（v3.4.0以降）をリリースしない。",
+    "subject": "OpenAI",
+    "resolution": {
+      "source": "https://pypi.org/project/openai/#history",
+      "check_query": "openai pypi release history",
+      "decider": "PyPIのリリース履歴ページにおいて、本日より14日以内の期間にv3.4.0以降の新しいバージョンが公開されていないこと"
+    },
+    "deadline": "2026-09-05",
+    "confidence": 0.65,
+    "base_rate": 0.7,
+    "base_rate_class": "大手AI企業が公式SDKの直近アップデートから14日以内に再度バージョン更新を行う頻度",
+    "confidence_why": "直近でv3.3.1が出たばかりであり、短期間の連続リリースは稀であるため基準率よりやや高めに置くが、過去の過信を戒め過度な偏りを避けるため基準率の範囲内に留める。",
+    "counter": "緊急のバグ修正や脆弱性対応により、予期せぬパッチバージョンが数日以内に強制投入される可能性。",
+    "indicators": [
+      {
+        "sign": "PyPIのopenaiリリース履歴にv3.3.2などのパッチが追加される",
+        "dir": "kill"
+      },
+      {
+        "sign": "GitHubのopenai-pythonリポジトリでメインブランチへの大型PRが連続してマージされる",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]

@@ -2104,5 +2104,31 @@
       "2026-08-06-r03",
       "2026-08-06-r02"
     ]
+  },
+  {
+    "id": "2026-08-22-r01",
+    "created_at": "2026-08-22T06:51:18.676908+09:00",
+    "headline": "google-genai Python SDK v2.19.0 リリース",
+    "what_happened": "PyPIにおいてgoogle-genai Python SDKのバージョン2.19.0が公開された。本文はPyPI上のパッケージ配布ページおよびドキュメントへのリンクを記載している。次期バージョンでのAutomatic Function Calling (AFC)の挙動変更に関する警告を含んでいる。",
+    "background": "Googleが提供するGenAIモデル統合用Python SDKであり、頻繁なマイナーアップデートと仕様変更が行われている。",
+    "changed": "google-genaiパッケージがバージョン2.19.0に更新され、次期バージョンでのAFC変更に関する警告が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/2.19.0/",
+      "title": "google-genai Python SDK v2.19.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-19-r02",
+      "2026-08-15-r01",
+      "2026-08-07-r06",
+      "2026-07-24-r05",
+      "2026-07-22-r03"
+    ]
   }
 ]
