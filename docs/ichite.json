@@ -1,162 +1,172 @@
 {
-  "date": "2026-08-21",
+  "date": "2026-08-22",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterでのDeepSeek V4 Proの利用比率が3割を超えるか、今すぐSafariで確認して数字を出せ。",
-    "Flash Latestへの切り替え設定を、今日の30分以内にコード上で完了させられるか。",
-    "コスト高騰による出血を止めるために、どのAPI呼び出し部分を最初に書き換えるか。"
+    "Anthropicの東京向け代理店求人に対し、今夜iPhoneから直接突撃メールを送る相手を3社特定せよ",
+    "OpenAIのインフラ融資縮小の隙を突くために、今日のAPI利用費5000円枠をどこにぶつけるか",
+    "既存のAPI検証リポジトリに、今日中に追加する垂直特化の自動化スクリプトの機能を一言で言え"
   ],
   "moves": [
     {
-      "t": "コード内の呼び出し先モデルをFlash Latestへ書き換えてデプロイする",
-      "why": "15%値下げされた軽量モデルにトラフィックを逃がし、プロモデルの値上げによる開発コストの直撃を回避するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 1000,
-      "success_p": 0.65,
-      "success_p_min": 0.5,
-      "success_p_max": 0.8,
-      "success_why": "GitHubのWeb画面上から直接リポジトリのソースコードを編集して即座に反映できるため",
-      "value_score": 5,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 1,
-      "outcome": "APIのルーティング先が安価なFlash Latestに切り替わったコミットログ",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "直接的なAPIコストの削減に直結し個人開発のランニングコストを抑えるため",
-      "evidence_ids": [
-        "2026-08-21-r02"
-      ],
-      "assumptions": [
-        "GitHubのWebエディタから直接コード修正と反映が行えること"
-      ],
-      "disconfirm": "軽量モデルへの切り替えによってアプリケーションの挙動が致命的に破綻する場合",
-      "continue_if": "モデル変更後も出力品質が実用範囲内に収まっている場合",
-      "stop": "精度低下によってユーザー体験が著しく損なわれる場合"
-    },
-    {
-      "t": "OpenRouterのプリファードプロバイダー設定を変更してコストを最適化する",
-      "why": "仲介プラットフォームの価格改定の隙を突き、同じ性能のプロバイダーを安価なルートに固定するため",
-      "cost_min": 1500,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.55,
-      "success_p_min": 0.4,
-      "success_p_max": 0.7,
-      "success_why": "OpenRouterのルーティング設定機能により特定の安価なプロバイダーを優先指定できるため",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 25,
-      "payback_days": 7,
-      "outcome": "最適化されたプロバイダー設定画面のスクリーンショット",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "プラットフォームの価格変動リスクに対する耐性を高められるため",
-      "evidence_ids": [
-        "2026-08-21-r02"
-      ],
-      "assumptions": [
-        "OpenRouterのダッシュボードからプロバイダーの個別指定が可能であること"
-      ],
-      "disconfirm": "指定した安価なプロバイダーの応答速度や可用性が極端に低い場合",
-      "continue_if": "コスト削減効果が試算の範囲内に収まっている場合",
-      "stop": "エラー率の上昇によりサービスの継続に支障が出る場合"
-    },
-    {
-      "t": "APIコスト変動のシミュレーション結果をテキストにまとめてGitHubに保存する",
-      "why": "今後のモデルの値上げトレンドに備え、月間予算の許容限界を数字で明確に固定するため",
+      "t": "無料のAPIドキュメントを読み込み、代理店がまだ手を出せないニッチな自動化ロジックをiPhoneのメモに1本書き下せ",
+      "why": "代理店立ち上げ期の隙を突くには、本体が見ない垂直特化の設計図を先に固める必要があるからだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.9,
-      "success_p_min": 0.8,
-      "success_p_max": 0.95,
-      "success_why": "テキストエディタとGitHubのWeb画面さえあれば確実にファイルとして残せるため",
+      "success_p": 0.4,
+      "success_p_min": 0.2,
+      "success_p_max": 0.6,
+      "success_why": "過去に公式SDKの更新が頻発しているため仕様の穴が見つけやすいことによる",
       "value_score": 3,
       "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "月間APIコスト予測を記述したMarkdownファイル",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "場当たり的な開発投資を防ぎ、持続可能な運用の土台を作るため",
-      "evidence_ids": [
-        "2026-08-21-r02"
-      ],
-      "assumptions": [
-        "GitHubのWeb画面から新規Markdownファイルの作成とコミットができること"
-      ],
-      "disconfirm": "APIの価格変動が激しすぎて短期的な予測が全く成り立たない場合",
-      "continue_if": "試算に基づき次の打ち手が明確に導き出せる場合",
-      "stop": "前提となる価格体系が数日単位で覆る場合"
-    },
-    {
-      "t": "有料のAPI監視アラートツールを導入してコスト超過に備える",
-      "why": "急激な値上げや予期せぬトラフィック増による予期せぬ赤字を防ぐため",
-      "cost_min": 3000,
-      "cost_max": 6000,
-      "loss_max": 6000,
-      "success_p": 0.5,
-      "success_p_min": 0.35,
-      "success_p_max": 0.65,
-      "success_why": "既存のサードパーティ製監視ツールとOpenRouterがAPI経由で連携できるため",
-      "value_score": 4,
-      "learning_value": 3,
       "time_minutes": 30,
-      "payback_days": 14,
-      "outcome": "コスト超過アラートの設定が完了した管理画面のキャプチャ",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "資金の枯渇リスクを自動で検知し致命傷を避ける防衛線になるため",
-      "evidence_ids": [
-        "2026-08-21-r02"
-      ],
-      "assumptions": [
-        "iPhoneのブラウザから外部の監視ツールとAPIキーの紐付けが完了すること"
-      ],
-      "disconfirm": "ツールの月額費用自体が現在のAPI利用コスト対比で割高になる場合",
-      "continue_if": "設定した予算閾値の超過通知が正しくテスト送信できた場合",
-      "stop": "誤検知が多く実用に耐えない場合"
-    },
-    {
-      "t": "競合する安価なAPIプロバイダーの価格表をスプレッドシートに整理する",
-      "why": "特定の仲介プラットフォームの値上げに依存しないための代替ルートをあらかじめ確保しておくため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.65,
-      "success_p_max": 0.9,
-      "success_why": "主要なプロバイダーの料金ページはSafariから容易に一覧化できるため",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "主要APIの単価比較をまとめたスプレッドシートのリンク",
+      "outcome": "iPhoneのメモに残る具体的な自動化ロジックのテキスト",
       "category": "research",
       "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "30分の作業では全体の検証フェーズの断片にしか寄与しないため",
+      "evidence_ids": [
+        "2026-08-21-r01",
+        "2026-08-20-r02"
+      ],
+      "assumptions": [
+        "APIの仕様が直近で急激に変更されないこと",
+        "iPhoneのブラウザからドキュメントが閲覧可能であること"
+      ],
+      "disconfirm": "既に大手SIerが同じニッチ領域のツールを公開していると判明した場合",
+      "continue_if": "独自の隙間を突くプロトタイプの構想が固まった場合",
+      "stop": "一般的な機能しか思い浮かばず差別化できない場合"
+    },
+    {
+      "t": "月額5000円のAPI枠を使い、特定業務の自動化スクリプトをGitHubへプッシュせよ",
+      "why": "Nvidiaの融資縮小で既存大手の動きが鈍る中、個人が実動する成果物を最速で公開して先回りするためだ。",
+      "cost_min": 5000,
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.3,
+      "success_p_min": 0.1,
+      "success_p_max": 0.5,
+      "success_why": "インフラ融資の縮小により大手が小回りの利かない領域に空白地帯が生まれているため",
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 30,
+      "payback_days": 30,
+      "outcome": "GitHubリポジトリに公開された自動化スクリプト",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.25,
+      "impact_why": "実際のコードを公開することで個人としての信用と露出が生まれるため",
+      "evidence_ids": [
+        "2026-08-21-r01",
+        "2026-08-20-r02"
+      ],
+      "assumptions": [
+        "iPhoneのWeb画面からGitHubへコードを直接プッシュできること",
+        "APIの月額利用枠が正常に機能すること"
+      ],
+      "disconfirm": "APIのエラー頻発によりコードが動作しない場合",
+      "continue_if": "スクリプトが正常に動作しログが出力された場合",
+      "stop": "API仕様の変更により開発継続が不可能な場合"
+    },
+    {
+      "t": "小規模事業者向けに、構築した自動化スクリプトの直接販売提案メールをiPhoneから1通送れ",
+      "why": "東京オフィスのリセラー担当が動く前に、個人が直接顧客に食い込む導線を作るためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.2,
+      "success_p_min": 0.05,
+      "success_p_max": 0.4,
+      "success_why": "Anthropicが東京向けのリセラーマネージャーを採用し始める過渡期であるため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 14,
+      "outcome": "送信済みの営業提案メールの控え",
+      "category": "sell",
+      "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "プラットフォーム側の価格改定に対して迅速に移行先を判断できる材料になるため",
+      "impact_why": "最初の顧客との接点を作ることで市場の需要を直接測れるため",
       "evidence_ids": [
+        "2026-08-21-r01",
         "2026-08-21-r02"
       ],
       "assumptions": [
-        "各社のAPI料金ページがインターネット上で公開されていること"
+        "ターゲット企業の連絡先がWebから取得できること",
+        "提案文がiPhoneのメールアプリから送信可能であること"
       ],
-      "disconfirm": "隠れた手数料やレートリミットのせいで単純比較が意味を持たない場合",
-      "continue_if": "現行より20%以上安い代替先候補が見つかった場合",
-      "stop": "どのプロバイダーも価格体系が横並びで優位性がない場合"
+      "disconfirm": "宛先のエラーや即座の拒絶返信が返ってきた場合",
+      "continue_if": "相手から何らかの返信や追加の質問があった場合",
+      "stop": "全通のメールが送達エラーまたは無視された場合"
+    },
+    {
+      "t": "標準的投資としてAPI利用枠を15,000円に引き上げ、複数プロンプトの検証データを拡張せよ",
+      "why": "単発のスクリプトを超えて、競合が真似できない精度の高い検証データを蓄積するためだ。",
+      "cost_min": 10000,
+      "cost_max": 15000,
+      "loss_max": 15000,
+      "success_p": 0.35,
+      "success_p_min": 0.15,
+      "success_p_max": 0.55,
+      "success_why": "SDKのバージョンアップが相次ぎ、最新機能を取り入れた検証の価値が高まっているため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 45,
+      "outcome": "拡張されたプロンプトの検証データセット",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.28,
+      "impact_why": "検証の厚みが増すことで次の販売フェーズの説得力が上がるため",
+      "evidence_ids": [
+        "2026-08-21-r01",
+        "2026-08-20-r02"
+      ],
+      "assumptions": [
+        "予算の上限内で決済処理が完了すること",
+        "追加のAPI枠が即時反映されること"
+      ],
+      "disconfirm": "費用対効果に見合う出力の改善が見られない場合",
+      "continue_if": "出力の精度が明確に向上し実用ラインを超えた場合",
+      "stop": "コスト増大に見合う成果が得られないと判断した場合"
+    },
+    {
+      "t": "積極的投資として月額30,000円を投じ、専用の外部API連携機能を実装したWebアプリを公開せよ",
+      "why": "大手が手を出さない隙間市場で、完全な自動化Webアプリとしてシェアを先取りするためだ。",
+      "cost_min": 25000,
+      "cost_max": 30000,
+      "loss_max": 30000,
+      "success_p": 0.25,
+      "success_p_min": 0.05,
+      "success_p_max": 0.45,
+      "success_why": "市場の黎明期において機能特化したWebアプリは初期のトラフィックを獲得しやすいため",
+      "value_score": 5,
+      "learning_value": 5,
+      "time_minutes": 30,
+      "payback_days": 60,
+      "outcome": "一般公開された外部連携型WebアプリのURL",
+      "category": "build",
+      "terminal": true,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "プロダクトの公開により一連の仮説検証が形として完結するため",
+      "evidence_ids": [
+        "2026-08-21-r01",
+        "2026-08-20-r01"
+      ],
+      "assumptions": [
+        "iPhoneのブラウザ環境からWebアプリのデプロイが完了すること",
+        "外部APIとの連携が安定して動作すること"
+      ],
+      "disconfirm": "デプロイ環境のエラーが解消せずアプリが起動しない場合",
+      "continue_if": "ユーザーからのアクセスや初期の利用ログが観測された場合",
+      "stop": "致命的なセキュリティ上の懸念やAPI制限に直面した場合"
     }
   ],
-  "kan": "Anthropicは今後14日以内に、シンガポールオフィスの開設またはASEAN地域拠点設立に関する公式発表を自社ニュースルームに掲載しない。"
+  "kan": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」の新たなマイナーまたはメジャーバージョン（v3.4.0以降）をリリースしない。"
 }

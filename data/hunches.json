@@ -1644,6 +1644,14 @@
         "why": "本日の事象としてgoogle-genai Python SDK v2.19.0がリリースされたため、v2系のマイナー/パッチ更新が追加されたconfirm指標が点灯する。",
         "conf_before": 0.95,
         "conf_after": 0.95
+      },
+      {
+        "date": "2026-08-22",
+        "sign": "PyPIにgoogle-genaiのv2.19.0などv2系のマイナー/パッチ更新が追加される",
+        "dir": "confirm",
+        "why": "google-genai Python SDK v2.19.0がリリースされ、v2系の更新が追加されたため。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
       }
     ],
     "status": "pending",
@@ -1716,6 +1724,14 @@
         "sign": "PyPI上でopenaiの3.2.x系または3.3.x系のマイナー・パッチリリースが継続する",
         "dir": "confirm",
         "why": "本日の事象でopenai Python SDK v3.3.1がリリースされたため、3.2.x系または3.3.x系のマイナー・パッチリリースが継続するconfirm指標が点灯する。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
+      },
+      {
+        "date": "2026-08-22",
+        "sign": "PyPI上でopenaiの3.2.x系または3.3.x系のマイナー・パッチリリースが継続する",
+        "dir": "confirm",
+        "why": "openai Python SDK v3.3.1がリリースされ、3.3.x系のパッチリリースが確認されたため。",
         "conf_before": 0.95,
         "conf_after": 0.95
       }
@@ -1795,7 +1811,7 @@
       "decider": "PyPIのリリース履歴ページにおいて、本日より14日以内の期間にv3.4.0以降の新しいバージョンが公開されていないこと"
     },
     "deadline": "2026-09-05",
-    "confidence": 0.65,
+    "confidence": 0.542,
     "base_rate": 0.7,
     "base_rate_class": "大手AI企業が公式SDKの直近アップデートから14日以内に再度バージョン更新を行う頻度",
     "confidence_why": "直近でv3.3.1が出たばかりであり、短期間の連続リリースは稀であるため基準率よりやや高めに置くが、過去の過信を戒め過度な偏りを避けるため基準率の範囲内に留める。",
@@ -1810,7 +1826,16 @@
         "dir": "kill"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-08-22",
+        "sign": "PyPIのopenaiリリース履歴にv3.3.2などのパッチが追加される",
+        "dir": "kill",
+        "why": "openai Python SDK v3.3.1がリリースされ、パッチバージョンが追加されたため。",
+        "conf_before": 0.65,
+        "conf_after": 0.542
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -1818,6 +1843,8 @@
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.65,
+    "alert": true
   }
 ]

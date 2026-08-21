@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-21 06:58",
+  "updated_at": "2026-08-22 06:57",
   "score": {
     "hit": 2,
     "miss": 22,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-08-22",
-    "days": 1
+    "days": 0
   },
   "decided": [
     {
@@ -190,20 +190,6 @@
   ],
   "pending": [
     {
-      "id": "2026-07-24-h02",
-      "claim": "GoogleはGoogle AI StudioにおいてGemini 3.5 Flash-Liteの一般提供APIを開始する。",
-      "subject": "Google",
-      "deadline": "2026-08-07",
-      "confidence": 0.85,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "",
-      "evidence": "判定先ページはブログであり、Google AI StudioやGoogle Cloudの公式ドキュメントでGemini 3.5 Flash-LiteのAPIエンドポイントがGA公開されたかを確認するには別の場所を確認する必要があるため判定不能です。",
-      "signals": []
-    },
-    {
       "id": "2026-07-30-h01",
       "claim": "Anthropicは12日以内に、Claude APIの公式ドキュメントにおいてOpus 5向けのコード実行サンドボックス環境（Code Execution Tool）のパブリックベータ仕様を公開する。",
       "subject": "Anthropic",
@@ -298,7 +284,7 @@
       "status": "pending",
       "alert": false,
       "counter": "",
-      "evidence": "",
+      "evidence": "提供された証拠にはOpenAIによる広告出稿用セルフサーブプラットフォームの一般提供に関する情報が含まれておらず、判定に必要な公開情報を確認できないため。",
       "signals": []
     },
     {
@@ -356,6 +342,31 @@
       "counter": "既に外部パートナーと共同開発した認証プログラムが完成しており、求人は運用・拡張体制のためのものである場合。",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-08-15-h01",
+      "claim": "Googleは14日以内に、PyPIにおけるgoogle-genaiのメジャーバージョン（v3.0.0以上）を公開せず、最新版をv2系に維持する。",
+      "subject": "Google",
+      "deadline": "2026-08-29",
+      "confidence": 0.95,
+      "initial_confidence": 0.89,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "Geminiの新規モデル発表やAPI側の仕様更新に合わせてSDKの大型刷新を前倒しで強行リリースした場合は外れる。",
+      "evidence": "",
+      "signals": [
+        {
+          "date": "2026-08-21",
+          "dir": "confirm",
+          "why": "本日の事象としてgoogle-genai Python SDK v2.19.0がリリースされたため、v2系のマイナー/パッチ更新が追加されたconfirm指標が点灯する。"
+        },
+        {
+          "date": "2026-08-22",
+          "dir": "confirm",
+          "why": "google-genai Python SDK v2.19.0がリリースされ、v2系の更新が追加されたため。"
+        }
+      ]
     }
   ],
   "threads": [
@@ -413,11 +424,6 @@
       "subject": "Google",
       "events": [
         {
-          "date": "2026-07-24",
-          "headline": "GoogleがNotebookLMをGemini Notebookへ改名",
-          "url": "https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/"
-        },
-        {
           "date": "2026-08-07",
           "headline": "Google Gen AI Python SDK v2.17.0がリリースされ自動関数呼び出しの非推奨仕様が公表",
           "url": "https://pypi.org/project/google-genai/2.17.0/"
@@ -431,6 +437,11 @@
           "date": "2026-08-19",
           "headline": "DeepMind等の研究陣がAlphaEvolveを用いた行列乗算計算量の改善手法を発表",
           "url": "https://arxiv.org/abs/2608.16884v1"
+        },
+        {
+          "date": "2026-08-22",
+          "headline": "google-genai Python SDK v2.19.0 リリース",
+          "url": "https://pypi.org/project/google-genai/2.19.0/"
         }
       ]
     },
@@ -491,6 +502,13 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-08-22-r01",
+      "date": "2026-08-22",
+      "headline": "google-genai Python SDK v2.19.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/2.19.0/"
+    },
     {
       "id": "2026-08-21-r03",
       "date": "2026-08-21",
@@ -567,14 +585,7 @@
       "headline": "OpenAIがPython SDK v3.1.0を公開、Responses APIのサポートを継続強化",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/openai/3.1.0/"
-    },
-    {
-      "id": "2026-08-16-r02",
-      "date": "2026-08-16",
-      "headline": "Anthropicが商用レール構築を担うプラットフォームエコシステム組織の創設エンジニアを募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5392335008"
     }
   ],
-  "record_count": 66
+  "record_count": 67
 }

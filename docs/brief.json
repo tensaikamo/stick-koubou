@@ -1,46 +1,52 @@
 {
-  "date": "2026-08-21",
-  "updated_at": "2026-08-21 06:59",
+  "date": "2026-08-22",
+  "updated_at": "2026-08-22 06:59",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouter上のDeepSeek V4 Proが80%値上げされた一方で、軽量モデルであるFlash Latestは15%値下げされた。",
-  "ura": "API仲介プラットフォーム側がヘビーユーザー向けのプロモデルで確実に回収しつつ、ライト層を低価格モデルで囲い込む構造にシフトしたと見る。自前の計算資源を持たない個人開発者がOpenRouterを経由してプロモデルを叩くアーキテクチャは、今後数ヶ月で利益が削られる構造になっている。",
-  "ura_taikou": "単にAPIプロバイダ側のマージン確保ではなく、特定の一時的なハードウェア調達難に起因する一時的な価格変動であるという仮説を検討したが、複数のモデルで同時に価格改定が起きているため、構造的なコスト転嫁であると判断して退けた。",
-  "dousuru": "OpenRouterのダッシュボードにSafariからアクセスし、過去7日間のAPI消費量におけるDeepSeek V4 Proの割合を確認しろ。比率が3割を超えるなら、今すぐコードの呼び出し先を競合の安価な同等モデルへ書き換えてコストの出血を止めろ。",
-  "kan": "Anthropicは今後14日以内に、シンガポールオフィスの開設またはASEAN地域拠点設立に関する公式発表を自社ニュースルームに掲載しない。",
-  "kan_konkyo": "営業担当者の求人が開始されたばかりの初期段階であり、人事配置やオフィス契約完了前に14日という短期間で公式広報を打つ可能性は極めて低いため、基準率よりわずかに高く設定。",
-  "kan_hantai": "既に現地法人設立やオフィス契約が完了しており、求人公開と連動した対外PR施策が直近で準備されている場合。",
-  "kan_conf": 0.927,
-  "ippan": "AIを使ってアプリやサービスを作っている人は、利用しているAPIの価格改定情報を見逃さないようにしなさい。無料枠や安さにつられて実装していると、ある日突然コストが跳ね上がって赤字になるので、複数の代替エンドポイントを常に用意しておきなさい。",
+  "omote": "Anthropicが東京オフィス向けにリセラー担当のチャネルアカウントマネージャーの求人を出した。同時にNvidiaがOpenAI向けの巨大インフラ融資の保証額を大幅に縮小したことが報じられた。",
+  "ura": "外資の日本法人における代理店立ち上げ期は、本体が直接見ないニッチな業界特化型のインテグレーターや個人が、API直叩きのプロトタイプを持ち込んで大手に先回りして食い込む絶好の隙が生まれる。",
+  "ura_taikou": "代理店モデルへの移行ではなく、あくまで外資系特有の直販体制の補強に過ぎないという対抗仮説は、求人タイトルがリセラーチャネル特化である点と矛盾するため退けた。",
+  "dousuru": "Anthropicの日本向け代理店網が本格稼働するまでの短期間に、現行のAPI直叩き環境で構築した尖った垂直特化アプリの成果物をGitHubで公開し、SIerがまだ手を出せないニッチな領域のシェアを先取りしておけ。他人が使えない独自のプロンプトや検証データをiPhoneのメモから即座にリポジトリへ反映させ、明日中に形にしろ。有料案として、月額5,000円のAPI利用枠を用いて特定業務の自動化スクリプトを構築し、小規模事業者向けの直接販売ルートを検証する。回収目安は30日以内、最大損失は今月のAPI利用費の上限額とする。続行条件は最初の顧客からのフィードバック獲得、撤退条件はAPI仕様の急激な変更による動作不能とする。",
+  "kan": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」の新たなマイナーまたはメジャーバージョン（v3.4.0以降）をリリースしない。",
+  "kan_konkyo": "直近でv3.3.1が出たばかりであり、短期間の連続リリースは稀であるため基準率よりやや高めに置くが、過去の過信を戒め過度な偏りを避けるため基準率の範囲内に留める。",
+  "kan_hantai": "緊急のバグ修正や脆弱性対応により、予期せぬパッチバージョンが数日以内に強制投入される可能性。",
+  "kan_conf": 0.542,
+  "ippan": "AIサービスの価格競争が激化していますが、大手が安売りしているからといって安易に飛びつくのは危険です。提供元企業の財務リスクを見極め、依存しすぎないツール選びを心がけてください。",
   "votes": [],
-  "mijoriku": [],
+  "mijoriku": [
+    {
+      "title": "Channel Account Manager, Reseller (Tokyo, Japan)",
+      "desc": "Anthropicの日本における代理店網構築を目的とした新規求人",
+      "why": "日本の大手SIerを巻き込んだエコシステムの裏側を先読みし、個人開発者の立ち回りを決める材料になるため"
+    }
+  ],
   "diffs": [
-    "[差分] 退役予定日が設定された: Dots Studio: Dots3-Note Preview (free) → 2026-09-30",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値上げ 80%",
-    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 15%",
-    "[差分] 価格が動いた: Qwen: Qwen3.6 27B 値上げ 100%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値上げ 11%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値上げ 2%"
+    "[差分] 価格が動いた: Meta: Muse Glimmer 30B 値下げ 14%",
+    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値上げ 29%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値下げ 43%",
+    "[差分] 価格が動いた: OpenAI: GPT-5.6 Sol Pro 値下げ 20%",
+    "[差分] 価格が動いた: OpenAI: GPT-5.6 Sol Pro (batch) 値下げ 20%",
+    "[差分] 価格が動いた: OpenAI: GPT-5.6 Sol 値下げ 20%"
   ],
   "evidence": [
     {
-      "claim": "DeepSeek V4 Proが80%値上げされ、インフラコストの転嫁が始まっている",
+      "claim": "Anthropicが東京でのリセラー向けチャネルマネージャー求人を通じ、代理店モデルへ移行している",
       "confidence": 0.45,
-      "disconfirm": "他社プロバイダが同等性能モデルの価格を据え置いている、あるいはさらに値下げしている事実が確認された場合",
+      "disconfirm": "直販体制を維持し、日本での代理店網構築を全面凍結するという公式発表が出る",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値上げ 80%",
-          "url": "https://openrouter.ai/models"
+          "title": "[新規求人] anthropic: Channel Account Manager, Reseller (Tokyo, Japan)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391257008"
         }
       ]
     },
     {
-      "claim": "軽量モデルのFlash Latestが値下げされ、低価格帯でのシェア争いが激化している",
-      "confidence": 0.55,
-      "disconfirm": "該当モデルの利用トークン数が前週比で減少し、値下げが顧客獲得に寄与していないことが示された場合",
+      "claim": "NvidiaがOpenAI向けインフラ融資の保証額を縮小し、ハードウェア供給側がリスク回避に動いている",
+      "confidence": 0.4,
+      "disconfirm": "Nvidiaがさらに巨額の追加保証や直接出資を即座に発表する",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 15%",
-          "url": "https://openrouter.ai/models"
+          "title": "Nvidia dramatically reduces amount of OpenAI infra financing it may guarantee",
+          "url": "https://www.reuters.com/business/nvidia-scales-back-250-billion-openai-data-center-guarantee-wsj-reports-2026-08-14/"
         }
       ]
     }
