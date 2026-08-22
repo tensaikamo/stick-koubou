@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-22 06:57",
+  "updated_at": "2026-08-23 06:55",
   "score": {
     "hit": 2,
     "miss": 22,
@@ -15,8 +15,8 @@
     }
   },
   "next_due": {
-    "date": "2026-08-22",
-    "days": 0
+    "date": "2026-08-25",
+    "days": 2
   },
   "decided": [
     {
@@ -284,7 +284,7 @@
       "status": "pending",
       "alert": false,
       "counter": "",
-      "evidence": "提供された証拠にはOpenAIによる広告出稿用セルフサーブプラットフォームの一般提供に関する情報が含まれておらず、判定に必要な公開情報を確認できないため。",
+      "evidence": "対象期間内にOpenAIがセルフサーブ型広告出稿プラットフォームの一般提供を開始・発表したかを確認できる公開情報が存在しないため。",
       "signals": []
     },
     {
@@ -503,6 +503,13 @@
   ],
   "records": [
     {
+      "id": "2026-08-23-r01",
+      "date": "2026-08-23",
+      "headline": "ConceptGuard: Benchmarking Context-Sensitive Unlearning in Large Language Models",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2608.20338v1"
+    },
+    {
       "id": "2026-08-22-r01",
       "date": "2026-08-22",
       "headline": "google-genai Python SDK v2.19.0 リリース",
@@ -578,14 +585,7 @@
       "headline": "OpenAIが公式Python SDK v3.2.0をPyPIに公開",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/openai/3.2.0/"
-    },
-    {
-      "id": "2026-08-16-r03",
-      "date": "2026-08-16",
-      "headline": "OpenAIがPython SDK v3.1.0を公開、Responses APIのサポートを継続強化",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.1.0/"
     }
   ],
-  "record_count": 67
+  "record_count": 68
 }

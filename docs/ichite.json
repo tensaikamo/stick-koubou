@@ -1,172 +1,167 @@
 {
-  "date": "2026-08-22",
+  "date": "2026-08-23",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "Anthropicの東京向け代理店求人に対し、今夜iPhoneから直接突撃メールを送る相手を3社特定せよ",
-    "OpenAIのインフラ融資縮小の隙を突くために、今日のAPI利用費5000円枠をどこにぶつけるか",
-    "既存のAPI検証リポジトリに、今日中に追加する垂直特化の自動化スクリプトの機能を一言で言え"
+    "OpenRouterの過去30日間の価格下落幅から、競合が追随できない下限単価をどう算出するか？",
+    "APIコスト1ドル未満で回るプロンプト圧縮パターンを、今日どのAPIクライアントで実装し切るか？",
+    "仲介業者の淘汰が本格化する前に、ローカル特化型バッチ処理のどの隙間を最初に塞ぐか？"
   ],
   "moves": [
     {
-      "t": "無料のAPIドキュメントを読み込み、代理店がまだ手を出せないニッチな自動化ロジックをiPhoneのメモに1本書き下せ",
-      "why": "代理店立ち上げ期の隙を突くには、本体が見ない垂直特化の設計図を先に固める必要があるからだ。",
+      "t": "計算資源デリバティブの上場意見募集に対する独自の見解を短い文章にまとめる",
+      "why": "規制と金融化のタイムラインを見据え、市場の動向を自らの予測として言語化しておくため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.2,
-      "success_p_max": 0.6,
-      "success_why": "過去に公式SDKの更新が頻発しているため仕様の穴が見つけやすいことによる",
+      "success_p": 0.7,
+      "success_p_min": 0.5,
+      "success_p_max": 0.85,
+      "success_why": "公的文書のポイントを抽出し、自身の視点を交えてテキスト化するだけだから",
       "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "iPhoneのメモに残る具体的な自動化ロジックのテキスト",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "30分の作業では全体の検証フェーズの断片にしか寄与しないため",
-      "evidence_ids": [
-        "2026-08-21-r01",
-        "2026-08-20-r02"
-      ],
-      "assumptions": [
-        "APIの仕様が直近で急激に変更されないこと",
-        "iPhoneのブラウザからドキュメントが閲覧可能であること"
-      ],
-      "disconfirm": "既に大手SIerが同じニッチ領域のツールを公開していると判明した場合",
-      "continue_if": "独自の隙間を突くプロトタイプの構想が固まった場合",
-      "stop": "一般的な機能しか思い浮かばず差別化できない場合"
-    },
-    {
-      "t": "月額5000円のAPI枠を使い、特定業務の自動化スクリプトをGitHubへプッシュせよ",
-      "why": "Nvidiaの融資縮小で既存大手の動きが鈍る中、個人が実動する成果物を最速で公開して先回りするためだ。",
-      "cost_min": 5000,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.3,
-      "success_p_min": 0.1,
-      "success_p_max": 0.5,
-      "success_why": "インフラ融資の縮小により大手が小回りの利かない領域に空白地帯が生まれているため",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 30,
-      "outcome": "GitHubリポジトリに公開された自動化スクリプト",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "実際のコードを公開することで個人としての信用と露出が生まれるため",
-      "evidence_ids": [
-        "2026-08-21-r01",
-        "2026-08-20-r02"
-      ],
-      "assumptions": [
-        "iPhoneのWeb画面からGitHubへコードを直接プッシュできること",
-        "APIの月額利用枠が正常に機能すること"
-      ],
-      "disconfirm": "APIのエラー頻発によりコードが動作しない場合",
-      "continue_if": "スクリプトが正常に動作しログが出力された場合",
-      "stop": "API仕様の変更により開発継続が不可能な場合"
-    },
-    {
-      "t": "小規模事業者向けに、構築した自動化スクリプトの直接販売提案メールをiPhoneから1通送れ",
-      "why": "東京オフィスのリセラー担当が動く前に、個人が直接顧客に食い込む導線を作るためだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.2,
-      "success_p_min": 0.05,
-      "success_p_max": 0.4,
-      "success_why": "Anthropicが東京向けのリセラーマネージャーを採用し始める過渡期であるため",
-      "value_score": 4,
-      "learning_value": 4,
+      "learning_value": 3,
       "time_minutes": 25,
-      "payback_days": 14,
-      "outcome": "送信済みの営業提案メールの控え",
-      "category": "sell",
+      "payback_days": 0,
+      "outcome": "計算資源デリバティブに関する期限付きの予測を記したテキスト",
+      "category": "publish",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "最初の顧客との接点を作ることで市場の需要を直接測れるため",
+      "impact_why": "長期的なマクロの動きに対する個人の立ち位置を明確にするため",
       "evidence_ids": [
-        "2026-08-21-r01",
-        "2026-08-21-r02"
+        "2026-08-01-r02"
       ],
       "assumptions": [
-        "ターゲット企業の連絡先がWebから取得できること",
-        "提案文がiPhoneのメールアプリから送信可能であること"
+        "連邦官報の概要がオンラインで取得できること"
       ],
-      "disconfirm": "宛先のエラーや即座の拒絶返信が返ってきた場合",
-      "continue_if": "相手から何らかの返信や追加の質問があった場合",
-      "stop": "全通のメールが送達エラーまたは無視された場合"
+      "disconfirm": "すでに市場のコンセンサスが完全に一致している場合",
+      "continue_if": "独自の切り口が文字として整理できた場合",
+      "stop": "一次情報へのアクセスが不可能な場合"
     },
     {
-      "t": "標準的投資としてAPI利用枠を15,000円に引き上げ、複数プロンプトの検証データを拡張せよ",
-      "why": "単発のスクリプトを超えて、競合が真似できない精度の高い検証データを蓄積するためだ。",
-      "cost_min": 10000,
-      "cost_max": 15000,
-      "loss_max": 15000,
-      "success_p": 0.35,
-      "success_p_min": 0.15,
-      "success_p_max": 0.55,
-      "success_why": "SDKのバージョンアップが相次ぎ、最新機能を取り入れた検証の価値が高まっているため",
+      "t": "価格崩壊後の仲介業者淘汰に関する分析ノートを公開プラットフォームに投稿する",
+      "why": "独自に得た裏の動きの視点を外部に発信し、個人としての情報優位を固定化するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.65,
+      "success_p_min": 0.45,
+      "success_p_max": 0.8,
+      "success_why": "スマートフォンからの文章入力だけで直接パブリッシュできるため",
       "value_score": 4,
       "learning_value": 4,
       "time_minutes": 30,
-      "payback_days": 45,
-      "outcome": "拡張されたプロンプトの検証データセット",
-      "category": "research",
+      "payback_days": 0,
+      "outcome": "公開された分析ノートのURL",
+      "category": "publish",
       "terminal": false,
       "impact_min": 0.15,
-      "impact_max": 0.28,
-      "impact_why": "検証の厚みが増すことで次の販売フェーズの説得力が上がるため",
+      "impact_max": 0.25,
+      "impact_why": "市場における独自の立ち位置と発信力を高めるため",
       "evidence_ids": [
-        "2026-08-21-r01",
-        "2026-08-20-r02"
+        "2026-08-01-r02"
       ],
       "assumptions": [
-        "予算の上限内で決済処理が完了すること",
-        "追加のAPI枠が即時反映されること"
+        "投稿プラットフォームが正常に稼働していること"
       ],
-      "disconfirm": "費用対効果に見合う出力の改善が見られない場合",
-      "continue_if": "出力の精度が明確に向上し実用ラインを超えた場合",
-      "stop": "コスト増大に見合う成果が得られないと判断した場合"
+      "disconfirm": "内容が単なる一般論に終始していると判断した場合",
+      "continue_if": "読者からのフィードバックや特定の反応が得られた場合",
+      "stop": "規約違反などでアカウントが制限された場合"
     },
     {
-      "t": "積極的投資として月額30,000円を投じ、専用の外部API連携機能を実装したWebアプリを公開せよ",
-      "why": "大手が手を出さない隙間市場で、完全な自動化Webアプリとしてシェアを先取りするためだ。",
-      "cost_min": 25000,
-      "cost_max": 30000,
-      "loss_max": 30000,
-      "success_p": 0.25,
-      "success_p_min": 0.05,
-      "success_p_max": 0.45,
-      "success_why": "市場の黎明期において機能特化したWebアプリは初期のトラフィックを獲得しやすいため",
-      "value_score": 5,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 60,
-      "outcome": "一般公開された外部連携型WebアプリのURL",
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "次に直す内容がIssueとして1件残る",
       "category": "build",
-      "terminal": true,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "プロダクトの公開により一連の仮説検証が形として完結するため",
+      "terminal": false,
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
       "evidence_ids": [
-        "2026-08-21-r01",
-        "2026-08-20-r01"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "iPhoneのブラウザ環境からWebアプリのデプロイが完了すること",
-        "外部APIとの連携が安定して動作すること"
+        "Issueが次の実装に使われる"
       ],
-      "disconfirm": "デプロイ環境のエラーが解消せずアプリが起動しない場合",
-      "continue_if": "ユーザーからのアクセスや初期の利用ログが観測された場合",
-      "stop": "致命的なセキュリティ上の懸念やAPI制限に直面した場合"
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
+    },
+    {
+      "t": "今日の一次情報を1本選び要点を3行残す",
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "value_score": 2,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "一次情報の要点メモが3行残る",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "読む情報が現在の目標に関係する"
+      ],
+      "disconfirm": "要点が次の行動を一つも変えない",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了",
+      "fallback": true
+    },
+    {
+      "t": "予測を1件確認し確度メモを1行更新する",
+      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.55,
+      "success_p_max": 0.8,
+      "success_why": "既存予測の更新なので新規企画より着地しやすい",
+      "value_score": 2,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "追跡中予測の確度メモが更新される",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "誤った前提で投資する損失を減らす",
+      "evidence_ids": [
+        "action-history"
+      ],
+      "assumptions": [
+        "予測が現在の投資判断に関係する"
+      ],
+      "disconfirm": "確度更新が次の行動や支出を変えない",
+      "continue_if": "確度を動かす一次根拠が見つかった",
+      "stop": "根拠URLを1本確認したら終了",
+      "fallback": true
     }
   ],
-  "kan": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」の新たなマイナーまたはメジャーバージョン（v3.4.0以降）をリリースしない。"
+  "kan": "計算資源デリバティブの意見募集に対し、市場が本格的な金融化を迎えるのは2027年後半以降であり、今後180日以内に規制当局が具体的な上場承認の裁定を下すことはないと見る。"
 }
