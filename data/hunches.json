@@ -176,14 +176,14 @@
     "resolved_at": null,
     "result": null,
     "evidence": {
-      "summary": "提供された証拠にはOpenAIによる広告出稿用セルフサーブプラットフォームの一般提供に関する情報が含まれておらず、判定に必要な公開情報を確認できないため。",
+      "summary": "対象期間内にOpenAIがセルフサーブ型広告出稿プラットフォームの一般提供を開始・発表したかを確認できる公開情報が存在しないため。",
       "url": ""
     },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1",
-    "judge_attempts": 1
+    "judge_attempts": 2
   },
   {
     "id": "2026-07-23-h02",
