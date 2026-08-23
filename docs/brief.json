@@ -1,50 +1,59 @@
 {
-  "date": "2026-08-23",
-  "updated_at": "2026-08-23 07:02",
+  "date": "2026-08-24",
+  "updated_at": "2026-08-24 06:55",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouter経由のDeepSeek V4 Proが74%の大幅値下げを断行し、米連邦官報は計算資源デリバティブの上場に関する意見募集を発出した。",
-  "ura": "API価格の底割れは中抜き業者の生存領域を消し去る。個人が先回りすべきは仲介機能ではなく、大手クラウドが価格崩壊によって切り捨てる『ローカル特化型の極小バッチ処理』の隙間だ。",
-  "ura_taikou": "計算資源のデリバティブ化は既存の大手クラウドベンダーの寡占に対する独占禁止法的な対抗策として即座に制度化されるという見立ては、法令策定の歴史的基準率である最低数年のタイムラグを考慮して棄却した。",
-  "dousuru": "OpenRouterの履歴から過去30日の価格下落率をiPhoneのメモに算出し、APIコストが1ドル未満で回るプロンプト圧縮のパターンを1つ作って検証し切れ。",
-  "kan": "計算資源デリバティブの意見募集に対し、市場が本格的な金融化を迎えるのは2027年後半以降であり、今後180日以内に規制当局が具体的な上場承認の裁定を下すことはないと見る。",
-  "kan_konkyo": "米連邦官報（Federal Register）が計算資源デリバティブ契約の上場に関する意見募集を発出したという事実に基づく。",
-  "kan_hantai": "AIインフラの逼迫を危惧するエネルギー業界や金融機関からの強い政治的圧力により、予想以上に早く先物市場の開設に向けた実証実験や特例承認が前倒しで決定されること。",
+  "omote": "OpenRouterでDeepSeek V4 Flash Latestの推論単価が38%引き下げられ、AnthropicがPython SDK v1.0.0をリリースした。",
+  "ura": "APIリセラーがマージンを削って開発者の囲い込みに走る動きは、プラットフォーム側の価格破壊によって個人の自前インフラ維持コストがゼロに近づいたことを意味する。資本側が消耗戦で利益を削る一方、個人の勝機は、スマホからのAPI直叩きで月30分以内の運用に絞り、他社依存の自動化スクリプトを一切の固定費なしで回し切るレイヤーにある。",
+  "ura_taikou": "価格競争ではなく各社が独自エコシステムの排他化に特化するという仮説は、リセラー間の激しいディスカウント実態に反するため退けた。",
+  "dousuru": "SafariからOpenRouterのダッシュボードを開き、手元のAPIキーにおけるDeepSeek V4 Flash Latestの新単価反映を確認せよ。スマホブラウザの計算ツールで1日あたりの運用コストを3割引き下げて再設定し、今夜はその範囲内でオートメーションの動作テストを1件だけ完了させろ。",
+  "kan": "今後14日以内に、価格競争の激化を背景として主要なAPIプロバイダーのいずれかが、従量課金における特定モデルのバースト枠無料追加を発表すると見る。",
+  "kan_konkyo": "OpenRouterにおけるDeepSeekの38%値下げをはじめとする直近の価格改定の頻度と下落幅から予測した。",
+  "kan_hantai": "主要プロバイダーが価格競争から撤退し、高価格帯のプレミアム路線と機能制限による囲い込みに舵を切る場合は発表されない。",
   "kan_conf": 0.12,
-  "ippan": "AIサービスの価格が急激に下がっていますが、焦って高額な月額サブスクリプションに契約せず、まずは無料枠や都度払いのAPIで実際のコストを試してから使いましょう。",
+  "ippan": "AIの単価が下がり続けているため、新しい有料プランを契約する前に他社の料金と比較して冷静にコストを見直すことが重要だ。",
   "votes": [
-    0.08,
     0.12,
+    0.18,
     0.12
   ],
-  "mijoriku": [],
+  "mijoriku": [
+    {
+      "title": "FlowEvo: Self-Evolving Agents through the Co-Evolution of Workflows and Executable Skills",
+      "desc": "ワークフローと実行可能スキルを相互進化させる自律型エージェントの論文プレプリント",
+      "why": "日本語圏では未翻訳であり、プロンプト不要でエージェント自体が処理手順を書き換える仕組みを個人開発の自動化に先取りできるため"
+    },
+    {
+      "title": "Request for Comment on the Listing of Compute Derivatives Contracts",
+      "desc": "米連邦官報による計算資源デリバティブ取引上場のパブリックコメント募集",
+      "why": "AI計算資源が金融商品として制度化される動きを捉えており、日本国内のテック系メディアで扱われていない初期の動向であるため"
+    }
+  ],
   "diffs": [
-    "[差分] 価格が動いた: Qwen: Qwen3.8 27B 値下げ 11%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値下げ 6%",
-    "[差分] 価格が動いた: Meta: Muse Glimmer 30B 値上げ 17%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値下げ 74%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値下げ 28%",
-    "[差分] 価格が動いた: MoonshotAI: Kimi K2.6 値下げ 7%"
+    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 38%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値下げ 4%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値下げ 17%",
+    "[差分] 価格が動いた: MiniMax: MiniMax M2.7 値下げ 20%"
   ],
   "evidence": [
     {
-      "claim": "計算資源の金融商品化とデリバティブ市場の制度化が始まっている",
-      "confidence": 0.65,
-      "disconfirm": "米政府が計算資源の先物市場開設を断念または無期限延期する観測事実",
+      "claim": "OpenRouterにおけるDeepSeek V4 Flash Latestの推論価格が38%引き下げられた",
+      "confidence": 0.8,
+      "disconfirm": "OpenRouterの該当モデルの価格設定が元の水準に巻き戻される",
       "sources": [
         {
-          "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
-          "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
+          "title": "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 38%",
+          "url": "https://openrouter.ai/models"
         }
       ]
     },
     {
-      "claim": "推論モデルの価格破壊がAPI仲介業者の収益を圧迫している",
-      "confidence": 0.7,
-      "disconfirm": "主要APIプロバイダが一斉に価格を元に戻し、高価格帯路線へ回帰する動き",
+      "claim": "AnthropicがPython SDK v1.0.0を正式リリースした",
+      "confidence": 0.9,
+      "disconfirm": "PyPIの該当バージョンが削除される",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値下げ 74%",
-          "url": "https://openrouter.ai/models"
+          "title": "anthropic Python SDK v1.0.0 リリース",
+          "url": "https://pypi.org/project/anthropic/1.0.0/"
         }
       ]
     }

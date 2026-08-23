@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-23 06:55",
+  "updated_at": "2026-08-24 06:53",
   "score": {
     "hit": 2,
     "miss": 22,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-08-25",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -284,7 +284,7 @@
       "status": "pending",
       "alert": false,
       "counter": "",
-      "evidence": "対象期間内にOpenAIがセルフサーブ型広告出稿プラットフォームの一般提供を開始・発表したかを確認できる公開情報が存在しないため。",
+      "evidence": "判定期間内に該当する公式発表が行われたかを確認できる公開情報が存在しないため。",
       "signals": []
     },
     {
@@ -357,12 +357,12 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-08-21",
+          "date": "2026-08-22",
           "dir": "confirm",
-          "why": "本日の事象としてgoogle-genai Python SDK v2.19.0がリリースされたため、v2系のマイナー/パッチ更新が追加されたconfirm指標が点灯する。"
+          "why": "google-genai Python SDK v2.19.0がリリースされ、v2系の更新が追加されたため。"
         },
         {
-          "date": "2026-08-22",
+          "date": "2026-08-24",
           "dir": "confirm",
           "why": "google-genai Python SDK v2.19.0がリリースされ、v2系の更新が追加されたため。"
         }
@@ -374,16 +374,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-08-16",
-          "headline": "Anthropicが特定業界向け顧客マーケティング担当マネージャーの採用を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390155008"
-        },
-        {
-          "date": "2026-08-20",
-          "headline": "Anthropicが米インフラ投資500億ドル規模のサプライチェーン会計責任者を募集",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5318977008"
-        },
-        {
           "date": "2026-08-21",
           "headline": "Anthropicがシンガポール拠点のASEAN公共部門向け営業職の求人を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391381008"
@@ -392,6 +382,16 @@
           "date": "2026-08-21",
           "headline": "Anthropicが公式Python SDKのメジャーバージョンv1.0.0を公開",
           "url": "https://pypi.org/project/anthropic/1.0.0/"
+        },
+        {
+          "date": "2026-08-24",
+          "headline": "anthropicによるEMEA地域向けSafety & Security Counselの求人公開（ダブリン）",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398659008"
+        },
+        {
+          "date": "2026-08-24",
+          "headline": "anthropicによるEMEA地域向けSafety & Security Counselの求人公開（ロンドン）",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398653008"
         }
       ]
     },
@@ -503,6 +503,20 @@
   ],
   "records": [
     {
+      "id": "2026-08-24-r02",
+      "date": "2026-08-24",
+      "headline": "anthropicによるEMEA地域向けSafety & Security Counselの求人公開（ロンドン）",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398653008"
+    },
+    {
+      "id": "2026-08-24-r01",
+      "date": "2026-08-24",
+      "headline": "anthropicによるEMEA地域向けSafety & Security Counselの求人公開（ダブリン）",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398659008"
+    },
+    {
       "id": "2026-08-23-r01",
       "date": "2026-08-23",
       "headline": "ConceptGuard: Benchmarking Context-Sensitive Unlearning in Large Language Models",
@@ -571,21 +585,7 @@
       "headline": "OpenAIが公式Python SDK v3.3.0をPyPIに公開",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/openai/3.3.0/"
-    },
-    {
-      "id": "2026-08-18-r02",
-      "date": "2026-08-18",
-      "headline": "OpenAIが公式ブログで「The Defender’s Window」を公開",
-      "certainty": "confirmed",
-      "url": "https://openai.com/index/the-defenders-window"
-    },
-    {
-      "id": "2026-08-18-r01",
-      "date": "2026-08-18",
-      "headline": "OpenAIが公式Python SDK v3.2.0をPyPIに公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.2.0/"
     }
   ],
-  "record_count": 68
+  "record_count": 70
 }
