@@ -2150,5 +2150,59 @@
     "body_fetched": true,
     "model": "gemini-3.5-flash-lite",
     "related_ids": []
+  },
+  {
+    "id": "2026-08-24-r01",
+    "created_at": "2026-08-24T06:48:16.044759+09:00",
+    "headline": "anthropicによるEMEA地域向けSafety & Security Counselの求人公開（ダブリン）",
+    "what_happened": "Anthropicはアイルランド・ダブリンを勤務地とする「Safety & Security Counsel, EMEA」の求人をGreenhouse上で公開した。本ポジションは利用規約の執行枠組みやセキュリティインシデント対応などを担当する。本文は求人ページ上の公開情報に基づいている。",
+    "background": "Anthropicは欧州における法的・規制対応や安全性ガバナンスの体制強化を進めている。",
+    "changed": "EMEA地域における法務・セキュリティ体制を強化するための求人が新たに公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398659008",
+      "title": "[新規求人] anthropic: Safety & Security Counsel, EMEA (Dublin, IE)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-21-r02",
+      "2026-08-21-r01",
+      "2026-08-20-r01",
+      "2026-08-16-r02",
+      "2026-08-16-r01",
+      "2026-08-15-r03"
+    ]
+  },
+  {
+    "id": "2026-08-24-r02",
+    "created_at": "2026-08-24T06:48:16.044759+09:00",
+    "headline": "anthropicによるEMEA地域向けSafety & Security Counselの求人公開（ロンドン）",
+    "what_happened": "Anthropicはイギリス・ロンドンを勤務地とする「Safety & Security Counsel, EMEA」の求人をGreenhouse上で公開した。ダブリンと同様の法務・セキュリティ担当ポジションである。本文は求人ページ上の公開情報に基づいている。",
+    "background": "Anthropicは欧州主要拠点でのコンプライアンスおよび安全性・セキュリティの専門人材確保を並行して進めている。",
+    "changed": "ロンドン拠点における法務・セキュリティ体制を強化するための求人が新たに公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398653008",
+      "title": "[新規求人] anthropic: Safety & Security Counsel, EMEA (London, UK)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-21-r02",
+      "2026-08-21-r01",
+      "2026-08-20-r01",
+      "2026-08-16-r02",
+      "2026-08-16-r01",
+      "2026-08-15-r03"
+    ]
   }
 ]
