@@ -1469,14 +1469,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-25T06:55:26.464390+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "公式ドキュメント（platform.claude.com/docs/en/build-with-claude）の内容を確認したところ、「Claude Tag」に関する独立したドキュメントページや見出しセクションは掲載されておらず、予測通り公開されなかったことが確認された。",
+      "url": "https://platform.claude.com/docs/en/build-with-claude"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-08-12-h01",
@@ -1863,5 +1867,45 @@
     "generator_ver": "v1",
     "initial_confidence": 0.65,
     "alert": true
+  },
+  {
+    "id": "2026-08-25-h01",
+    "created_at": "2026-08-25T06:55:04.601740+09:00",
+    "based_on": [
+      "2026-08-25-r02"
+    ],
+    "prose": "Anthropicが国家安全保障・国防総省向けセールス組織の統括ポジションを公開した。しかし、営業組織の立ち上げと国防総省やインテリジェンス機関が要求するセキュリティ認定（FedRAMP HighやIL5/IL6等）の取得には通常数ヶ月以上の準備期間を要する。求人公開からわずか2週間で専用オファリングが公式発表される公算は極めて低く、短期的なローンチ発表は見送られる見込みだ。",
+    "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて国防総省または情報機関向けの専用エンタープライズプランや専用ソリューションの正式発表を行わない。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Defense Intelligence National",
+      "decider": "期日時点で、指定URLのニュース記事一覧に「Department of Defense」「National Security」「Intelligence Community」のいずれかを対象とした専用製品・専用枠の正式提供開始を報じる記事が掲載されていない場合、的中と判定する。"
+    },
+    "deadline": "2026-09-08",
+    "confidence": 0.86,
+    "base_rate": 0.88,
+    "base_rate_class": "大手AI企業が特定専門領域の統括求人を公開してから14日以内に該当領域の専用プロダクトを正式ローンチしない確率",
+    "confidence_why": "営業責任者の採用開始段階では組織立ち上げやコンプライアンス要件定義の最中であり、14日という極めて短い期間内に正式プロダクト発表に至る確率は基準率通り低いため。",
+    "counter": "水面下で既に政府機関とのパイロット運用および認証手続きが完了しており、求人公開と連動してマーケティング発表を即時投入してくる可能性がある。",
+    "indicators": [
+      {
+        "sign": "Anthropic公式ニュースルームに連邦政府または国防機関との提携プレスリリースが掲載される",
+        "dir": "kill"
+      },
+      {
+        "sign": "Anthropicの求人一覧に政府向けソリューションアーキテクトやコンプライアンス担当の追加求人が出る",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.7-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]

@@ -2204,5 +2204,57 @@
       "2026-08-16-r01",
       "2026-08-15-r03"
     ]
+  },
+  {
+    "id": "2026-08-25-r01",
+    "created_at": "2026-08-25T06:55:04.601740+09:00",
+    "headline": "Anthropicが国家安全保障および地方自治体向けセールス責任者の募集を開始",
+    "what_happened": "Anthropicは米国防省・インテリジェンスコミュニティ向けセールス部門トップ（Head of National Security Sales）および地方自治体向けセールス部門トップ（Head of State and Local Government Sales）の求人を公開した。国防・情報機関のミッションに合わせたGTM戦略の策定およびセキュリティ基準を満たすチーム組成が職務として明記されている。",
+    "background": "AIフロンティア各社は、連邦政府や安全保障機関向けの大規模契約獲得に向け、専門のセールス体制とセキュリティクリアランス対応組織の構築を急速に進めている。",
+    "changed": "Anthropicが公的セクターおよび国防・安全保障分野への専任営業組織の本格的な立ち上げに着手した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391504008",
+      "title": "[新規求人] anthropic: Head of National Security Sales (DoW/IC) (Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-24-r02",
+      "2026-08-24-r01",
+      "2026-08-21-r02",
+      "2026-08-21-r01",
+      "2026-08-20-r01",
+      "2026-08-16-r02"
+    ]
+  },
+  {
+    "id": "2026-08-25-r02",
+    "created_at": "2026-08-25T06:55:04.601740+09:00",
+    "headline": "xAIがメンフィスおよびサウスヘイブンのデータセンター向けに高圧・中圧電気工事士の採用を開始",
+    "what_happened": "xAIはテネシー州メンフィスおよびミシシッピ州サウスヘイブンのデータセンター施設向けに、高圧・中圧電気工事士（High/Medium Voltage Electrician）および機械コミッショニング技術者の募集を開始した。自社内の建設・電気チームを組成し、受変電設備やバックアップ電源、冷却インフラの稼働立ち上げを直接担わせる方針が示されている。",
+    "background": "xAIはメンフィスに構築したAIスーパーコンピュータ施設「Colossus」において、外部業者依存から内製保守・運用体制への切り替えを進めている。",
+    "changed": "xAIがデータセンターの電力配線および受電インフラの施工・コミッショニングを自社雇用技術者で賄う体制を強化した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5219540007",
+      "title": "[新規求人] xai: High Voltage Electrician (Construction) (Memphis, Tennessee; Southaven, Mississippi)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-21-r03",
+      "2026-08-09-r02",
+      "2026-08-06-r03",
+      "2026-08-06-r02"
+    ]
   }
 ]
