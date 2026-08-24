@@ -1,59 +1,61 @@
 {
-  "date": "2026-08-24",
-  "updated_at": "2026-08-24 06:55",
+  "date": "2026-08-25",
+  "updated_at": "2026-08-25 06:59",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouterでDeepSeek V4 Flash Latestの推論単価が38%引き下げられ、AnthropicがPython SDK v1.0.0をリリースした。",
-  "ura": "APIリセラーがマージンを削って開発者の囲い込みに走る動きは、プラットフォーム側の価格破壊によって個人の自前インフラ維持コストがゼロに近づいたことを意味する。資本側が消耗戦で利益を削る一方、個人の勝機は、スマホからのAPI直叩きで月30分以内の運用に絞り、他社依存の自動化スクリプトを一切の固定費なしで回し切るレイヤーにある。",
-  "ura_taikou": "価格競争ではなく各社が独自エコシステムの排他化に特化するという仮説は、リセラー間の激しいディスカウント実態に反するため退けた。",
-  "dousuru": "SafariからOpenRouterのダッシュボードを開き、手元のAPIキーにおけるDeepSeek V4 Flash Latestの新単価反映を確認せよ。スマホブラウザの計算ツールで1日あたりの運用コストを3割引き下げて再設定し、今夜はその範囲内でオートメーションの動作テストを1件だけ完了させろ。",
-  "kan": "今後14日以内に、価格競争の激化を背景として主要なAPIプロバイダーのいずれかが、従量課金における特定モデルのバースト枠無料追加を発表すると見る。",
-  "kan_konkyo": "OpenRouterにおけるDeepSeekの38%値下げをはじめとする直近の価格改定の頻度と下落幅から予測した。",
-  "kan_hantai": "主要プロバイダーが価格競争から撤退し、高価格帯のプレミアム路線と機能制限による囲い込みに舵を切る場合は発表されない。",
-  "kan_conf": 0.12,
-  "ippan": "AIの単価が下がり続けているため、新しい有料プランを契約する前に他社の料金と比較して冷静にコストを見直すことが重要だ。",
-  "votes": [
-    0.12,
-    0.18,
-    0.12
-  ],
+  "omote": "Anthropicが国家安全保障や政府機関向けの営業組織を強化する一方、米連邦官報では計算資源のデリバティブ契約に関する意見公募が始まった。",
+  "ura": "政府調達の優先枠を確保したAIベンダーが、そのままインフラの転売・金融化のライセンスも独占する構造に入っていると見る。単なる企業間のシェア争いではなく、国家予算を背負った調達網がそのままAIの資本配分を決めるフェーズに移行した。",
+  "ura_taikou": "計算資源のデリバティブ化は単なる金融業界の実験的提案に過ぎず、実際のAIインフラ市場への影響は限定的であるという仮説は、政府によるインフラ統制の潮流を軽視しているため退けた。",
+  "dousuru": "iPhoneのSafariからGitHubのプライベートリポジトリを一つ開き、直近のコミット履歴にある不要なAPIキーやデバッグ用エンドポイントが露出していないかを直ちに点検・削除してセッションを閉じろ。",
+  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて国防総省または情報機関向けの専用エンタープライズプランや専用ソリューションの正式発表を行わない。",
+  "kan_konkyo": "営業責任者の採用開始段階では組織立ち上げやコンプライアンス要件定義の最中であり、14日という極めて短い期間内に正式プロダクト発表に至る確率は基準率通り低いため。",
+  "kan_hantai": "水面下で既に政府機関とのパイロット運用および認証手続きが完了しており、求人公開と連動してマーケティング発表を即時投入してくる可能性がある。",
+  "kan_conf": 0.906,
+  "ippan": "AIサービスの価格競争が激化していますが、安易に複数の有料プランを契約せず、まずは無料で使える範囲で機能を検証しましょう。",
+  "votes": [],
   "mijoriku": [
     {
-      "title": "FlowEvo: Self-Evolving Agents through the Co-Evolution of Workflows and Executable Skills",
-      "desc": "ワークフローと実行可能スキルを相互進化させる自律型エージェントの論文プレプリント",
-      "why": "日本語圏では未翻訳であり、プロンプト不要でエージェント自体が処理手順を書き換える仕組みを個人開発の自動化に先取りできるため"
+      "title": "Request for Comment on the Listing of Compute Derivatives Contracts",
+      "desc": "計算資源の先物・デリバティブ契約に関する米連邦官報の意見公募",
+      "why": "AIインフラの金融化という、日本国内では全く議論されていない裏側の構造変化を先回りして捉えられるから。"
     },
     {
-      "title": "Request for Comment on the Listing of Compute Derivatives Contracts",
-      "desc": "米連邦官報による計算資源デリバティブ取引上場のパブリックコメント募集",
-      "why": "AI計算資源が金融商品として制度化される動きを捉えており、日本国内のテック系メディアで扱われていない初期の動向であるため"
+      "title": "Qwen3Guard: Real-time Safety for Your Token Stream",
+      "desc": "トークンストリーム向けのリアルタイム安全ガードレールモデル",
+      "why": "オープンソースモデルの安全管理コストを下げる動きが、今後の個人開発者のインフラ選択にどう影響するかを見極める材料になるから。"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 38%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値下げ 4%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値下げ 17%",
-    "[差分] 価格が動いた: MiniMax: MiniMax M2.7 値下げ 20%"
+    "[差分] 退役予定日が設定された: MoonshotAI: Kimi K2.5 → 2026-08-31",
+    "[差分] 退役予定日が設定された: Z.ai: GLM 4.5V → 2026-12-31",
+    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 12%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値下げ 18%",
+    "[差分] 価格が動いた: Thinking Machines: Inkling 値上げ 5%",
+    "[差分] 価格が動いた: Qwen: Qwen3.6 27B 値下げ 47%"
   ],
   "evidence": [
     {
-      "claim": "OpenRouterにおけるDeepSeek V4 Flash Latestの推論価格が38%引き下げられた",
-      "confidence": 0.8,
-      "disconfirm": "OpenRouterの該当モデルの価格設定が元の水準に巻き戻される",
+      "claim": "Anthropicは国防総省や情報機関向けの営業部門を急ピッチで拡大している。",
+      "confidence": 0.82,
+      "disconfirm": "政府との大型契約の事実が公式に否定されるか、関連する求人が一斉に削除される場合。",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 38%",
-          "url": "https://openrouter.ai/models"
+          "title": "[新規求人] anthropic: IT Systems Engineer, Mobile Client Platform Engineer  (Boston, MA; Remote-Friendly (Travel-Required) | San Francisco, CA | Seattle, WA | New York City, NY; Washington, DC)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5396384008"
+        },
+        {
+          "title": "[新規求人] anthropic: Head of National Security Sales (DoW/IC) (Washington, DC)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391504008"
         }
       ]
     },
     {
-      "claim": "AnthropicがPython SDK v1.0.0を正式リリースした",
-      "confidence": 0.9,
-      "disconfirm": "PyPIの該当バージョンが削除される",
+      "claim": "計算資源を対象としたデリバティブ契約の規制や市場化の議論が表面化している。",
+      "confidence": 0.75,
+      "disconfirm": "米連邦官報の意見公募が意見の集まらないまま打ち切られ、法制化の動きが完全に停止する場合。",
       "sources": [
         {
-          "title": "anthropic Python SDK v1.0.0 リリース",
-          "url": "https://pypi.org/project/anthropic/1.0.0/"
+          "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
+          "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
         }
       ]
     }

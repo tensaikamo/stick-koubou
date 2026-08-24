@@ -1,164 +1,163 @@
 {
-  "date": "2026-08-24",
+  "date": "2026-08-25",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのDeepSeek V4 Flash新単価を反映したコスト算出を、iPhoneの表計算アプリで今すぐ完了させたか？",
-    "Anthropicのシンガポール法人関連求人の動きに対し、自分のAPIルーティング戦略を今日どう書き換えるか？",
-    "自動化スクリプトの固定費をゼロに保ったまま、スマホからのAPI直叩き運用テストを1件実行したか？"
+    "GitHubのシークレット漏洩対策において、過去のコミット履歴まで完全スキャンを終えたか？",
+    "Anthropicの動向に依存しない独自の収益源を確保するため、今日の30分でどの公開APIの検証を進めるか？",
+    "国家予算調達の裏で締め出される中小・個人向けの代替インフラとして、自分が真っ先に移行すべき次の一手は何か？"
   ],
   "moves": [
     {
-      "t": "OpenRouterダッシュボードをスマホのSafariで開き新単価を適用せよ",
-      "why": "OpenRouterにおけるDeepSeek V4 Flashの38%引き下げが直近の利益余地を直撃するため。資本の価格破壊を個人のコストゼロ化へ直結させる",
+      "t": "GitHubのコミット履歴を精査しAPIキーを完全削除する",
+      "why": "Anthropicのセキュリティ・国家安全保障向けの包囲網が狭まる中、個人アカウントの漏洩リスクをゼロにするため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.85,
       "success_p_min": 0.8,
       "success_p_max": 0.9,
-      "success_why": "OpenRouter公式のAPI単価改定アナウンスおよびダッシュボード仕様の安定性に基づく",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 10,
+      "success_why": "iPhoneのSafariからブラウザ経由でリポジトリの設定や履歴を確認できるため",
+      "value_score": 5,
+      "learning_value": 4,
+      "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "APIキーごとの単価改定が反映されたダッシュボードの確認完了",
+      "outcome": "プライベートリポジトリの露出リスク排除の完了",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "アカウント全体の安全性確保に直結するため",
+      "evidence_ids": [
+        "2026-08-25-r01"
+      ],
+      "assumptions": [
+        "GitHubのWeb版インターフェースのみで履歴の確認・削除が可能であること"
+      ],
+      "disconfirm": "履歴内に意図しない機密情報が既に広くクローラー等に回収されている形跡がある場合",
+      "continue_if": "漏洩の形跡がなく、安全なリポジトリ状態を維持できている場合",
+      "stop": "外部サービス等による致命的な漏洩がすでに発覚した場合"
+    },
+    {
+      "t": "クラウド型APIサービスの月額利用枠を最適化する",
+      "why": "国家調達・インフラの集約が進む中、個人開発における無駄な固定費を削り資本効率を高めるため",
+      "cost_min": 1500,
+      "cost_max": 3000,
+      "loss_max": 3000,
+      "success_p": 0.6,
+      "success_p_min": 0.5,
+      "success_p_max": 0.7,
+      "success_why": "利用規約や課金ダッシュボードからプラン変更が即座に反映されるため",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 30,
+      "outcome": "無駄なAPI課金プランのダウングレードまたは停止完了",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.15,
+      "impact_why": "固定費削減によって実験継続日数が延びるため",
+      "evidence_ids": [
+        "2026-08-20-r01"
+      ],
+      "assumptions": [
+        "iPhoneのブラウザから決済・サブスク管理画面へアクセスできること"
+      ],
+      "disconfirm": "プラン変更によって必要な検証用APIまでロックされてしまう場合",
+      "continue_if": "コストを下げつつ主要な検証機能が維持できている場合",
+      "stop": "必要な開発環境の維持に支障が出る場合"
+    },
+    {
+      "t": "政府調達関連の一次情報を米連邦官報から抽出しメモる",
+      "why": "裏で動く国家資本とインフラのデリバティブ契約の構造を、個人の先回り戦術に組み込むため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.45,
+      "success_p_min": 0.35,
+      "success_p_max": 0.55,
+      "success_why": "連邦官報の公開フィードはスマホのブラウザで直接閲覧可能であるため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "計算資源規制に関する最新の官報条文の要約メモ",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "運用コストの物理的削減に直結するが単体では一部の最適化に留まるため",
+      "impact_why": "マクロ規制の変化を個人のリスク管理に反映できるため",
       "evidence_ids": [
-        "2026-08-21-r01"
+        "2026-08-25-r01",
+        "2026-08-20-r01"
       ],
       "assumptions": [
-        "iPhoneのSafariからOpenRouterの管理画面に正常にログインできること"
+        "官報の検索ページがモバイル環境で動作すること"
       ],
-      "disconfirm": "単価改定が自分のアカウントに適用されていない場合",
-      "continue_if": "新単価での推論コスト計算が想定通り3割以上低下すること",
-      "stop": "プラットフォーム側の仕様変更で単価改定が無効化された場合"
+      "disconfirm": "公開された情報が既存の報道の域を出ず、新しいサプライチェーンの動きが含まれない場合",
+      "continue_if": "独自の規制条文や新規の意見公募の枠組みを発見できた場合",
+      "stop": "該当する規制文書へのアクセスがブロックまたは有料化された場合"
     },
     {
-      "t": "iPhoneの表計算アプリで1日あたりのAPI運用コストを再計算せよ",
-      "why": "38%の価格引き下げ分を手元の収支計算に反映させ、自動化運用の予算上限を正確に再定義するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "既存のコストシミュレーションシートが存在するため",
+      "t": "外部連携用Webサービスの有料プロファイルを検証する",
+      "why": "大手が囲い込むプラットフォームの隙間で、個人が独占できるニッチな自動化処理の動く範囲を試すため",
+      "cost_min": 3000,
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.4,
+      "success_p_min": 0.3,
+      "success_p_max": 0.5,
+      "success_why": "有料プランのテスト環境や1ヶ月限定のプロモーション枠を利用できるため",
       "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "改定後の1日あたり運用コスト試算表の更新",
-      "category": "build",
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 45,
+      "outcome": "有料機能の制限値と自動化フローの動作検証完了",
+      "category": "apply",
       "terminal": false,
       "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "日々の予算管理の精度を維持するため",
+      "impact_max": 0.15,
+      "impact_why": "プラットフォームの仕様変更に対する耐性を高められるため",
       "evidence_ids": [
-        "2026-08-21-r01"
+        "2026-08-21-r02"
       ],
       "assumptions": [
-        "前回のコストデータが手元にあること"
+        "スマホからの支払い手続きがスムーズに完了すること"
       ],
-      "disconfirm": "利用量が想定を大きく上回っており単価引き下げの効果が相殺される場合",
-      "continue_if": "コスト削減幅が月間予算の許容範囲内に収まること",
-      "stop": "API利用モデルを変更せざるを得ない場合"
+      "disconfirm": "期待した自動化フローがプラットフォーム側のセキュリティ制限で遮断される場合",
+      "continue_if": "有料枠によって実行速度や制限が明確に緩和された場合",
+      "stop": "コスト対効果が合わず、無料枠の範囲で十分と判明した場合"
     },
     {
-      "t": "スマホブラウザからOpenRouterのAPIを叩くテストを1件実行せよ",
-      "why": "余分なインフラを挟まないスマホ直叩きの動線を検証し、固定費ゼロの運用体制を実証するため",
-      "cost_min": 50,
-      "cost_max": 200,
-      "loss_max": 200,
-      "success_p": 0.7,
-      "success_p_min": 0.6,
-      "success_p_max": 0.8,
-      "success_why": "cURL代替のWebインターフェース経由でのAPIリクエストテストが可能なため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 1,
-      "outcome": "APIからの正常なレスポンス取得のログ",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "インフラ依存を排除した軽量運用の実効性が証明されるため",
-      "evidence_ids": [
-        "2026-08-21-r01"
-      ],
-      "assumptions": [
-        "APIキーに十分な初期残高または決済手段が紐づいていること"
-      ],
-      "disconfirm": "スマホの簡易ツールからHTTPSリクエストが通らない場合",
-      "continue_if": "意図したレスポンスがエラーなく返ってくること",
-      "stop": "API仕様の制限によりスマホからの直接実行が不可能な場合"
-    },
-    {
-      "t": "Anthropicのシンガポール及びEMEA求人情報を確認し動向を記録せよ",
-      "why": "パブリックセクターおよび地域拠点の新設がAPAC市場の価格や規制環境に与える影響を先読みするため",
+      "t": "プライベートリポジトリのドキュメントを更新する",
+      "why": "進捗の散逸を防ぎ、次回の30分で直ちに実装や検証の続きに移行できるようにするため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.9,
       "success_p_min": 0.85,
       "success_p_max": 0.95,
-      "success_why": "Greenhouse上の公式求人ページが直接公開されているため",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "地域別展開のロードマップに関するメモの作成",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "プラットフォームの地域戦略を予測する材料になるため",
-      "evidence_ids": [
-        "2026-08-24-r01",
-        "2026-08-24-r02",
-        "2026-08-21-r02"
-      ],
-      "assumptions": [
-        "公開された求人情報が直近の組織拡大を正確に反映していること"
-      ],
-      "disconfirm": "求人が単なる欠員補充であり地域戦略の変更を含まない場合",
-      "continue_if": "APAC向けのインフラ投資や価格施策の兆候が見つかること",
-      "stop": "公式発表が数週間停止し動向が追えなくなった場合"
-    },
-    {
-      "t": "月額有料プランのAPIプロバイダー追加枠を比較検討せよ",
-      "why": "価格競争に伴うバースト枠や追加特典の有無を確認し、小額の固定費投入で得られる利点を精査するため",
-      "cost_min": 1000,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.6,
-      "success_p_min": 0.5,
-      "success_p_max": 0.7,
-      "success_why": "各社が価格競争下で上位プランの特典を強化している動向があるため",
-      "value_score": 3,
+      "success_why": "GitHubのWebエディタを用いてテキストの追記・コミットが確実に行えるため",
+      "value_score": 4,
       "learning_value": 3,
-      "time_minutes": 25,
-      "payback_days": 14,
-      "outcome": "有料プラン導入の是非に関する判断メモ",
-      "category": "research",
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "次回作業の前提条件を記したREADMEの更新完了",
+      "category": "publish",
       "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "リソースの拡張可能性を広げるため",
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "作業の迷いをなくし毎日の30分を100%効率化できるため",
       "evidence_ids": [
         "2026-08-21-r01"
       ],
       "assumptions": [
-        "有料枠への移行によって追加のバースト性能が得られること"
+        "GitHubのWebエディタでのコミットが正常に保存されること"
       ],
-      "disconfirm": "無料枠と有料枠の性能差が価格差に見合わない場合",
-      "continue_if": "投資額に対する処理能力の向上が明確に予測できること",
-      "stop": "無料枠の範囲内で十分に要件が満たせる場合"
+      "disconfirm": "リポジトリの構成変更でドキュメントの場所が不明確になる場合",
+      "continue_if": "継続的な記録がプロジェクトの構造整理に役立っている場合",
+      "stop": "プロジェクト自体の方向性が完全に転換する場合"
     }
   ],
-  "kan": "今後14日以内に、価格競争の激化を背景として主要なAPIプロバイダーのいずれかが、従量課金における特定モデルのバースト枠無料追加を発表すると見る。"
+  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて国防総省または情報機関向けの専用エンタープライズプランや専用ソリューションの正式発表を行わない。"
 }

@@ -1665,6 +1665,14 @@
         "why": "google-genai Python SDK v2.19.0がリリースされ、v2系の更新が追加されたため。",
         "conf_before": 0.95,
         "conf_after": 0.95
+      },
+      {
+        "date": "2026-08-25",
+        "sign": "PyPIにgoogle-genaiのv2.19.0などv2系のマイナー/パッチ更新が追加される",
+        "dir": "confirm",
+        "why": "本日の事象に「google-genai Python SDK v2.19.0 リリース」が含まれており、PyPIにv2系のマイナー更新が追加されたため。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
       }
     ],
     "status": "pending",
@@ -1883,7 +1891,7 @@
       "decider": "期日時点で、指定URLのニュース記事一覧に「Department of Defense」「National Security」「Intelligence Community」のいずれかを対象とした専用製品・専用枠の正式提供開始を報じる記事が掲載されていない場合、的中と判定する。"
     },
     "deadline": "2026-09-08",
-    "confidence": 0.86,
+    "confidence": 0.906,
     "base_rate": 0.88,
     "base_rate_class": "大手AI企業が特定専門領域の統括求人を公開してから14日以内に該当領域の専用プロダクトを正式ローンチしない確率",
     "confidence_why": "営業責任者の採用開始段階では組織立ち上げやコンプライアンス要件定義の最中であり、14日という極めて短い期間内に正式プロダクト発表に至る確率は基準率通り低いため。",
@@ -1898,7 +1906,16 @@
         "dir": "confirm"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-08-25",
+        "sign": "Anthropicの求人一覧に政府向けソリューションアーキテクトやコンプライアンス担当の追加求人が出る",
+        "dir": "confirm",
+        "why": "本日の求人一覧に「Head of National Security Sales (DoW/IC)」など政府・国防向けの追加求人が確認できるため。",
+        "conf_before": 0.86,
+        "conf_after": 0.906
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -1906,6 +1923,7 @@
     "rejected": [],
     "model": "gemini-3.7-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.86
   }
 ]

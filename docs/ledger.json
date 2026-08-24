@@ -1,24 +1,38 @@
 {
-  "updated_at": "2026-08-24 06:53",
+  "updated_at": "2026-08-25 06:58",
   "score": {
-    "hit": 2,
+    "hit": 3,
     "miss": 22,
-    "total": 24,
-    "rate": 0.08333333333333333,
+    "total": 25,
+    "rate": 0.12,
     "pending": 15,
-    "brier": 0.5486041666666668,
-    "brier_n": 24,
-    "brier_initial": 0.5486041666666668,
+    "brier": 0.5272360000000001,
+    "brier_n": 25,
+    "brier_initial": 0.5272360000000001,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-08-25",
+    "date": "2026-08-26",
     "days": 1
   },
   "decided": [
+    {
+      "id": "2026-08-11-h01",
+      "claim": "Anthropicは14日以内に、公式APIドキュメント（platform.claude.com）において「Claude Tag」に関する独立したドキュメントページを公開しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-25",
+      "confidence": 0.88,
+      "initial_confidence": null,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "Anthropicがすでに「Claude Tag」のプライベートベータを終了させており、求人公開と連動した即時GA発表を準備している場合。",
+      "evidence": "公式ドキュメント（platform.claude.com/docs/en/build-with-claude）の内容を確認したところ、「Claude Tag」に関する独立したドキュメントページや見出しセクションは掲載されておらず、予測通り公開されなかったことが確認された。",
+      "signals": []
+    },
     {
       "id": "2026-08-06-h01",
       "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社設計ハードウェアまたは独自カスタムチップに関する公式発表を行わない。",
@@ -172,20 +186,6 @@
       "counter": "OpenAIがCLIとTypeScript SDKの初期メンテナスおよびバグ修正に注力し、CI統合機能の公式提供を後回しにする可能性がある。",
       "evidence": "openai/codex-securityリポジトリの確認結果、action.ymlの追加やPyPIへの公開に関する記載はなく、TypeScript SDKおよびnpmパッケージとして運用されています。",
       "signals": []
-    },
-    {
-      "id": "2026-07-31-h01",
-      "claim": "Anthropicは14日以内に公式利用規約（API Terms of Service）を更新し、商用API顧客に対する著作権侵害補償範囲を規定した新条項を追加する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-14",
-      "confidence": 0.8,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "和解手続きの完了処理に時間を要し、法務チームの判断で利用規約の文言変更が次四半期まで見送られる可能性がある。",
-      "evidence": "指定の商用利用規約ページを確認したところ、発効日は2025年6月17日のままであり、期間内に著作権侵害補償条項を含む更新は行われていない。",
-      "signals": []
     }
   ],
   "pending": [
@@ -288,20 +288,6 @@
       "signals": []
     },
     {
-      "id": "2026-08-11-h01",
-      "claim": "Anthropicは14日以内に、公式APIドキュメント（platform.claude.com）において「Claude Tag」に関する独立したドキュメントページを公開しない。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-25",
-      "confidence": 0.88,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "Anthropicがすでに「Claude Tag」のプライベートベータを終了させており、求人公開と連動した即時GA発表を準備している場合。",
-      "evidence": "",
-      "signals": []
-    },
-    {
       "id": "2026-08-05-h03",
       "claim": "NVIDIAの次回決算におけるデータセンター部門売上高が280億ドルを上回る。",
       "subject": "NVIDIA",
@@ -357,14 +343,39 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-08-22",
+          "date": "2026-08-24",
           "dir": "confirm",
           "why": "google-genai Python SDK v2.19.0がリリースされ、v2系の更新が追加されたため。"
         },
         {
+          "date": "2026-08-25",
+          "dir": "confirm",
+          "why": "本日の事象に「google-genai Python SDK v2.19.0 リリース」が含まれており、PyPIにv2系のマイナー更新が追加されたため。"
+        }
+      ]
+    },
+    {
+      "id": "2026-08-18-h01",
+      "claim": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」のメジャーバージョン「4.0.0」（プレリリース版を除く）をリリースしない。",
+      "subject": "OpenAI",
+      "deadline": "2026-09-01",
+      "confidence": 0.95,
+      "initial_confidence": 0.93,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "v3系の設計に回復不能な重大な欠陥が発覚し、即時の再度の破壊的API変更を伴うv4.0.0リリースが強制される場合。",
+      "evidence": "",
+      "signals": [
+        {
+          "date": "2026-08-22",
+          "dir": "confirm",
+          "why": "openai Python SDK v3.3.1がリリースされ、3.3.x系のパッチリリースが確認されたため。"
+        },
+        {
           "date": "2026-08-24",
           "dir": "confirm",
-          "why": "google-genai Python SDK v2.19.0がリリースされ、v2系の更新が追加されたため。"
+          "why": "openai Python SDK v3.3.1がリリースされ、3.3.x系のパッチリリースが確認されたため。"
         }
       ]
     }
@@ -373,11 +384,6 @@
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-08-21",
-          "headline": "Anthropicがシンガポール拠点のASEAN公共部門向け営業職の求人を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391381008"
-        },
         {
           "date": "2026-08-21",
           "headline": "Anthropicが公式Python SDKのメジャーバージョンv1.0.0を公開",
@@ -392,6 +398,11 @@
           "date": "2026-08-24",
           "headline": "anthropicによるEMEA地域向けSafety & Security Counselの求人公開（ロンドン）",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398653008"
+        },
+        {
+          "date": "2026-08-25",
+          "headline": "Anthropicが国家安全保障および地方自治体向けセールス責任者の募集を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391504008"
         }
       ]
     },
@@ -450,11 +461,6 @@
       "events": [
         {
           "date": "2026-08-06",
-          "headline": "xAI、XのデータおよびAIエージェント接続を統合する開発者プラットフォームエンジニアを募集",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5204788007"
-        },
-        {
-          "date": "2026-08-06",
           "headline": "xAI、超高密度データセンターおよび発電施設向け運用技術エンジニアの求人を開始",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5204393007"
         },
@@ -467,6 +473,11 @@
           "date": "2026-08-21",
           "headline": "xAIがメンフィスColossus向け専用発電所運用のディレクター求人を公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5216112007"
+        },
+        {
+          "date": "2026-08-25",
+          "headline": "xAIがメンフィスおよびサウスヘイブンのデータセンター向けに高圧・中圧電気工事士の採用を開始",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5219540007"
         }
       ]
     },
@@ -502,6 +513,20 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-08-25-r02",
+      "date": "2026-08-25",
+      "headline": "xAIがメンフィスおよびサウスヘイブンのデータセンター向けに高圧・中圧電気工事士の採用を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5219540007"
+    },
+    {
+      "id": "2026-08-25-r01",
+      "date": "2026-08-25",
+      "headline": "Anthropicが国家安全保障および地方自治体向けセールス責任者の募集を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391504008"
+    },
     {
       "id": "2026-08-24-r02",
       "date": "2026-08-24",
@@ -571,21 +596,7 @@
       "headline": "Anthropicが米インフラ投資500億ドル規模のサプライチェーン会計責任者を募集",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5318977008"
-    },
-    {
-      "id": "2026-08-19-r02",
-      "date": "2026-08-19",
-      "headline": "DeepMind等の研究陣がAlphaEvolveを用いた行列乗算計算量の改善手法を発表",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2608.16884v1"
-    },
-    {
-      "id": "2026-08-19-r01",
-      "date": "2026-08-19",
-      "headline": "OpenAIが公式Python SDK v3.3.0をPyPIに公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.3.0/"
     }
   ],
-  "record_count": 70
+  "record_count": 72
 }
