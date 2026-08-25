@@ -673,7 +673,7 @@
       }
     ],
     "signals": [],
-    "status": "pending",
+    "status": "unscorable",
     "resolved_at": null,
     "result": null,
     "evidence": {
@@ -684,7 +684,7 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "needs_review": true
+    "needs_review": false
   },
   {
     "id": "2026-07-30-h02",
@@ -1354,7 +1354,10 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "公開情報から決算レポート等の証拠を取得できなかったため判定不能です。",
+      "url": ""
+    },
     "rejected": [
       {
         "draft": {
@@ -1392,7 +1395,8 @@
     ],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "judge_attempts": 1
   },
   {
     "id": "2026-08-06-h01",
@@ -1514,14 +1518,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-26T06:56:44.713050+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "2026年8月26日時点のAnthropic公式ニュースルームを確認したところ、自社データセンター開設や500億ドル規模のインフラ投資に関する単体プレスリリースは掲載されておらず、的中条件を満たしている。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.6-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-08-14-h01",
@@ -1925,5 +1933,49 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.86
+  },
+  {
+    "id": "2026-08-26-h01",
+    "created_at": "2026-08-26T06:54:37.691016+09:00",
+    "based_on": [
+      "2026-08-26-r01"
+    ],
+    "prose": "Google Gen AI Python SDKにおいて次期メジャーバージョンでの挙動変更が予告されている。APIやSDKの仕様変更フェーズにおいて、短期的なパッチリリースやマイナーアップデートが連続する事例は多いが、直近14日以内に再び大きな破壊的変更を伴う新バージョンが強制的にプッシュされる基準率は低い。したがって、今回は安定期間に入るとみる方が自然である。",
+    "claim": "Googleは今後14日以内に、PyPIにおけるgoogle-genaiの新たなメジャーバージョン(v3.0.0)をリリースしない。",
+    "subject": "Google",
+    "resolution": {
+      "source": "https://pypi.org/project/google-genai/",
+      "check_query": "google-genai version history pypi",
+      "decider": "PyPIのリリース履歴ページにおいて、バージョンが3.0.0以上に達していないこと"
+    },
+    "deadline": "2026-09-09",
+    "confidence": 0.65,
+    "base_rate": 0.7,
+    "base_rate_class": "主要AI企業のPython SDKが短期14日以内にメジャーバージョンを連続更新する頻度",
+    "confidence_why": "予告された仕様変更に関するドキュメントは出たものの、実際のコード変更とメジャーリリースには通常数週間のバッファが置かれるため、基準率よりもやや起きない方に寄せた",
+    "counter": "仕様変更への切迫した対応として、開発陣が前倒しでメジャーバージョンを強制リリースする動機が存在する点",
+    "indicators": [
+      {
+        "sign": "PyPIのgoogle-genaiリリース履歴にv3.0.0系が現れる",
+        "dir": "kill"
+      },
+      {
+        "sign": "GitHubリポジトリのissuesやPRでメジャーリリース向けのマイルストーンがクローズされる",
+        "dir": "kill"
+      },
+      {
+        "sign": "PyPIのバージョンが2.20.x台のマイナー修正に留まる",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]

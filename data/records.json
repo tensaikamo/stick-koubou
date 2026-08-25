@@ -2256,5 +2256,92 @@
       "2026-08-06-r03",
       "2026-08-06-r02"
     ]
+  },
+  {
+    "id": "2026-08-26-r01",
+    "created_at": "2026-08-26T06:54:37.691016+09:00",
+    "headline": "Google Gen AI Python SDK v2.20.0のリリース",
+    "what_happened": "PyPIにおいてgoogle-genaiパッケージのバージョン2.20.0が公開された。Gemini Developer APIおよびGemini Enterprise Agent Platformの双方をサポートする。次期メジャーバージョンにおけるAutomatic Function Callingの挙動変更に関する警告が含まれている。本文は記事のタイトルおよびPyPIの公開情報に基づいている。",
+    "background": "Googleの生成AIモデルをPythonから統合するための公式SDKとしてgoogle-genaiが提供されている。",
+    "changed": "google-genai Python SDKのバージョンが2.20.0に更新され、将来の変更に関する警告が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/2.20.0/",
+      "title": "google-genai Python SDK v2.20.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-22-r01",
+      "2026-08-19-r02",
+      "2026-08-15-r01",
+      "2026-08-07-r06",
+      "2026-07-24-r05",
+      "2026-07-22-r03"
+    ]
+  },
+  {
+    "id": "2026-08-26-r02",
+    "created_at": "2026-08-26T06:54:37.691016+09:00",
+    "headline": "Best-Practice Critic Optimization (BPCO)に関する論文の公開",
+    "what_happened": "arXivにおいて「How to Train a Critic Stably and Efficiently」と題する論文が提出された。大規模言語モデルのグループベース強化学習におけるクリティックス訓練の不安定性を研究し、BPCOというレシピを提案している。本文はarXivのプレプリント情報に基づいている。",
+    "background": "言語モデルの強化学習において、報酬の推定やアドバンテージ計算を行うクリティックモデルの安定した訓練手法は研究の主要な課題である。",
+    "changed": "クリティック訓練の安定化手法をまとめた研究論文が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2608.23566v1",
+      "title": "How to Train a Critic Stably and Efficiently",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-08-26-r03",
+    "created_at": "2026-08-26T06:54:37.691016+09:00",
+    "headline": "ReWorld: 長期記憶を持つインタラクティブワールドモデルに関する論文の公開",
+    "what_happened": "arXivにおいて「ReWorld: An Interactive World Model with Long-Horizon Memory」と題する論文が提出された。制御と記憶のトレードオフを解消するため、混合ヘッドアテンションやポーズインデックス付きランドマークバンク等を用いたワールドモデルを提案している。本文はarXivのプレプリント情報に基づいている。",
+    "background": "インタラクティブなワールドモデルでは、リアルタイムなストリーミング処理と長期間のコンテキスト記憶を両立させることが構造的な課題となっている。",
+    "changed": "長期記憶を効率的に扱うワールドモデルの設計手法が提案された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2608.23565v1",
+      "title": "ReWorld: An Interactive World Model with Long-Horizon Memory",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-08-26-r04",
+    "created_at": "2026-08-26T06:54:37.691016+09:00",
+    "headline": "SWE Refactor Benchに関する論文の公開",
+    "what_happened": "arXivにおいて「SWE Refactor Bench: Can Coding Agents Complete a Long-Horizon, Whole-Repository Stack Migration?」と題する論文が提出された。コードエージェントの長期的かつリポジトリ全体にわたるリファクタリング・移行能力を評価するためのベンチマークが提案されている。本文はarXivのプレプリント情報に基づいている。",
+    "background": "既存のコーディングエージェントのベンチマークは動作の正確性評価に偏っており、実際のソフトウェア移行や技術的負債の解消能力を測定できていないという問題があった。",
+    "changed": "全リポジトリ規模の移行タスクを評価する新しいベンチマークが発表された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2608.23564v1",
+      "title": "SWE Refactor Bench: Can Coding Agents Complete a Long-Horizon, Whole-Repository Stack Migration?",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
   }
 ]
