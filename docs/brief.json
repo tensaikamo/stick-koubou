@@ -1,61 +1,69 @@
 {
-  "date": "2026-08-25",
-  "updated_at": "2026-08-25 06:59",
+  "date": "2026-08-26",
+  "updated_at": "2026-08-26 07:02",
   "build_id": "truthful-ui-v1",
-  "omote": "Anthropicが国家安全保障や政府機関向けの営業組織を強化する一方、米連邦官報では計算資源のデリバティブ契約に関する意見公募が始まった。",
-  "ura": "政府調達の優先枠を確保したAIベンダーが、そのままインフラの転売・金融化のライセンスも独占する構造に入っていると見る。単なる企業間のシェア争いではなく、国家予算を背負った調達網がそのままAIの資本配分を決めるフェーズに移行した。",
-  "ura_taikou": "計算資源のデリバティブ化は単なる金融業界の実験的提案に過ぎず、実際のAIインフラ市場への影響は限定的であるという仮説は、政府によるインフラ統制の潮流を軽視しているため退けた。",
-  "dousuru": "iPhoneのSafariからGitHubのプライベートリポジトリを一つ開き、直近のコミット履歴にある不要なAPIキーやデバッグ用エンドポイントが露出していないかを直ちに点検・削除してセッションを閉じろ。",
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて国防総省または情報機関向けの専用エンタープライズプランや専用ソリューションの正式発表を行わない。",
-  "kan_konkyo": "営業責任者の採用開始段階では組織立ち上げやコンプライアンス要件定義の最中であり、14日という極めて短い期間内に正式プロダクト発表に至る確率は基準率通り低いため。",
-  "kan_hantai": "水面下で既に政府機関とのパイロット運用および認証手続きが完了しており、求人公開と連動してマーケティング発表を即時投入してくる可能性がある。",
-  "kan_conf": 0.906,
-  "ippan": "AIサービスの価格競争が激化していますが、安易に複数の有料プランを契約せず、まずは無料で使える範囲で機能を検証しましょう。",
+  "omote": "DeepSeekは最新のV4 Flash Latestを33%値上げする一方で旧版を39%値下げし、同時にGoogle DeepMindがGemini 3.7 Flashを発表した。API提供側は初期のダンピングから、インフラ維持費の回収とエコシステムへの強制囲い込みのフェーズへ移行している。",
+  "ura": "価格の二極化は単なる負荷調整ではなく、新版の値上げでヘビー層からマージンを抜く一方で、旧版の安値で個人開発者をAPIエコシステムから逃がさないための強制的な囲い込み罠である。プラットフォーム側が価格支配力を強めることで、開発者の依存関係を固定化して収益を最大化する狙いのはずだ。",
+  "ura_taikou": "価格改定はインフラコストの変動によるものではなく、単なる一時的なテスト運用に過ぎないという仮説は、主要プロバイダーが同時に異なる方向へ価格を大きく動かしている実態と矛盾するため退けた。",
+  "dousuru": "OpenRouter上で起きたDeepSeekの価格改定データを開き、自社アプリで叩いているエンドポイントの単価変動を確認しろ。最新版の値上げで固定費が跳ね上がる前に、軽量タスクを値下げされた旧特定バージョンへルーティングし直す設定を今日の30分以内に終わらせろ。",
+  "kan": "Googleは今後14日以内に、PyPIにおけるgoogle-genaiの新たなメジャーバージョン(v3.0.0)をリリースしない。",
+  "kan_konkyo": "予告された仕様変更に関するドキュメントは出たものの、実際のコード変更とメジャーリリースには通常数週間のバッファが置かれるため、基準率よりもやや起きない方に寄せた",
+  "kan_hantai": "仕様変更への切迫した対応として、開発陣が前倒しでメジャーバージョンを強制リリースする動機が存在する点",
+  "kan_conf": 0.744,
+  "ippan": "AIサービスの月額料金やAPIの価格が予告なく変わることがあるため、無料プランや安価な初期価格だけでサービスを固定して使い続けるのは避けるべきである。複数のAIツールを渡り歩けるようにデータやプロンプトを特定のプラットフォームに依存させない工夫が、急な値上げから身を守る実用的な防衛策になる。",
   "votes": [],
   "mijoriku": [
     {
-      "title": "Request for Comment on the Listing of Compute Derivatives Contracts",
-      "desc": "計算資源の先物・デリバティブ契約に関する米連邦官報の意見公募",
-      "why": "AIインフラの金融化という、日本国内では全く議論されていない裏側の構造変化を先回りして捉えられるから。"
+      "title": "DeepSeek V4 Flash Latest 値上げ 33% / 旧版値下げ 39%",
+      "desc": "同一モデルの新旧で価格が急激に二極化",
+      "why": "国内メディアは新モデルの性能評価に終始しており、APIの価格差を利用したプラットフォーム側の囲い込み構造の分析はまだ日本語圏に出ていないため"
     },
     {
-      "title": "Qwen3Guard: Real-time Safety for Your Token Stream",
-      "desc": "トークンストリーム向けのリアルタイム安全ガードレールモデル",
-      "why": "オープンソースモデルの安全管理コストを下げる動きが、今後の個人開発者のインフラ選択にどう影響するかを見極める材料になるから。"
+      "title": "vLLM v0.28.0rc2 DFlash2",
+      "desc": "ローカル畳み込みを用いた推論高速化の導入",
+      "why": "クラウドAPIの値上げに対抗するオープンソース側の実戦的な最適化コードの変更であり、国内の開発者コミュニティでほとんどキャッチアップされていないため"
     }
   ],
   "diffs": [
-    "[差分] 退役予定日が設定された: MoonshotAI: Kimi K2.5 → 2026-08-31",
-    "[差分] 退役予定日が設定された: Z.ai: GLM 4.5V → 2026-12-31",
-    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 12%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値下げ 18%",
-    "[差分] 価格が動いた: Thinking Machines: Inkling 値上げ 5%",
-    "[差分] 価格が動いた: Qwen: Qwen3.6 27B 値下げ 47%"
+    "[差分] 価格が動いた: Qwen: Qwen3.8 27B 値上げ 6%",
+    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値上げ 33%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値下げ 39%",
+    "[差分] 価格が動いた: Thinking Machines: Inkling 値下げ 5%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.2 値上げ 23%",
+    "[差分] 価格が動いた: MoonshotAI Kimi Latest 値下げ 2%"
   ],
   "evidence": [
     {
-      "claim": "Anthropicは国防総省や情報機関向けの営業部門を急ピッチで拡大している。",
-      "confidence": 0.82,
-      "disconfirm": "政府との大型契約の事実が公式に否定されるか、関連する求人が一斉に削除される場合。",
+      "claim": "API提供側は初期ダンピングからインフラ費用の回収と囲い込みフェーズへ移行している",
+      "confidence": 0.35,
+      "disconfirm": "全社が再び一斉に価格を引き下げ、ダンピング競争に回帰する観測事実",
       "sources": [
         {
-          "title": "[新規求人] anthropic: IT Systems Engineer, Mobile Client Platform Engineer  (Boston, MA; Remote-Friendly (Travel-Required) | San Francisco, CA | Seattle, WA | New York City, NY; Washington, DC)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5396384008"
+          "title": "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値上げ 33%",
+          "url": "https://openrouter.ai/models"
         },
         {
-          "title": "[新規求人] anthropic: Head of National Security Sales (DoW/IC) (Washington, DC)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391504008"
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値下げ 39%",
+          "url": "https://openrouter.ai/models"
         }
       ]
     },
     {
-      "claim": "計算資源を対象としたデリバティブ契約の規制や市場化の議論が表面化している。",
-      "confidence": 0.75,
-      "disconfirm": "米連邦官報の意見公募が意見の集まらないまま打ち切られ、法制化の動きが完全に停止する場合。",
+      "claim": "価格の二極化戦術により開発者の移行が強制されている",
+      "confidence": 0.4,
+      "disconfirm": "旧バージョンのサポートが即座に打ち切られ、安価な代替選択肢が完全に消滅する事態",
       "sources": [
         {
-          "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
-          "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
+          "title": "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値上げ 33%",
+          "url": "https://openrouter.ai/models"
+        },
+        {
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値下げ 39%",
+          "url": "https://openrouter.ai/models"
+        },
+        {
+          "title": "Introducing Gemini 3.7 Flash",
+          "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash/"
         }
       ]
     }

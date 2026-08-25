@@ -1,163 +1,162 @@
 {
-  "date": "2026-08-25",
+  "date": "2026-08-26",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "GitHubのシークレット漏洩対策において、過去のコミット履歴まで完全スキャンを終えたか？",
-    "Anthropicの動向に依存しない独自の収益源を確保するため、今日の30分でどの公開APIの検証を進めるか？",
-    "国家予算調達の裏で締め出される中小・個人向けの代替インフラとして、自分が真っ先に移行すべき次の一手は何か？"
+    "OpenRouterのAPI管理画面を開き、エンドポイントごとの単価変動を確認したか？",
+    "旧版モデルへのルーティング切り替えを今日30分以内に終わらせるか？",
+    "固定費の高騰を避けるためのフォールバック設定を実装するか？"
   ],
   "moves": [
     {
-      "t": "GitHubのコミット履歴を精査しAPIキーを完全削除する",
-      "why": "Anthropicのセキュリティ・国家安全保障向けの包囲網が狭まる中、個人アカウントの漏洩リスクをゼロにするため",
+      "t": "旧特定バージョンへのルーティングを設定する",
+      "why": "最新版の値上げから逃れるため、軽量タスクを値下げされた旧版へ強制的に振り向けるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.8,
-      "success_p_max": 0.9,
-      "success_why": "iPhoneのSafariからブラウザ経由でリポジトリの設定や履歴を確認できるため",
+      "success_p": 0.7,
+      "success_p_min": 0.5,
+      "success_p_max": 0.8,
+      "success_why": "APIクライアントのパラメータ変更のみで対応可能なため。",
       "value_score": 5,
       "learning_value": 4,
       "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "プライベートリポジトリの露出リスク排除の完了",
-      "category": "review",
+      "outcome": "旧版モデルへのルーティング切り替えの完了",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "固定費の急増を直接防ぐため。",
+      "evidence_ids": [
+        "2026-08-26-r01"
+      ],
+      "assumptions": [
+        "エンドポイントの書き換えだけで挙動が維持できること"
+      ],
+      "disconfirm": "旧バージョンのAPI自体が廃止されている場合",
+      "continue_if": "リクエストが旧モデルに正常にルーティングされる場合",
+      "stop": "ルーティング変更後にエラーが頻発する場合"
+    },
+    {
+      "t": "有料プランのコスト上限アラートを設定する",
+      "why": "予期せぬAPI値上げによる予算超過を防ぐため。",
+      "cost_min": 500,
+      "cost_max": 2000,
+      "loss_max": 2000,
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "各プラットフォームの標準機能として課金上限アラートが提供されているため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 10,
+      "payback_days": 30,
+      "outcome": "API利用料金の超過アラート設定完了",
+      "category": "apply",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "アカウント全体の安全性確保に直結するため",
+      "impact_why": "最大損失を限定するため。",
       "evidence_ids": [
-        "2026-08-25-r01"
+        "2026-08-26-r01"
       ],
       "assumptions": [
-        "GitHubのWeb版インターフェースのみで履歴の確認・削除が可能であること"
+        "利用プラットフォームにアラート機能が存在すること"
       ],
-      "disconfirm": "履歴内に意図しない機密情報が既に広くクローラー等に回収されている形跡がある場合",
-      "continue_if": "漏洩の形跡がなく、安全なリポジトリ状態を維持できている場合",
-      "stop": "外部サービス等による致命的な漏洩がすでに発覚した場合"
+      "disconfirm": "アラート機能が有料プラン限定である場合",
+      "continue_if": "設定が正常に保存された場合",
+      "stop": "プラットフォーム自体が変更された場合"
     },
     {
-      "t": "クラウド型APIサービスの月額利用枠を最適化する",
-      "why": "国家調達・インフラの集約が進む中、個人開発における無駄な固定費を削り資本効率を高めるため",
-      "cost_min": 1500,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.6,
-      "success_p_min": 0.5,
-      "success_p_max": 0.7,
-      "success_why": "利用規約や課金ダッシュボードからプラン変更が即座に反映されるため",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 30,
-      "outcome": "無駄なAPI課金プランのダウングレードまたは停止完了",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.15,
-      "impact_why": "固定費削減によって実験継続日数が延びるため",
-      "evidence_ids": [
-        "2026-08-20-r01"
-      ],
-      "assumptions": [
-        "iPhoneのブラウザから決済・サブスク管理画面へアクセスできること"
-      ],
-      "disconfirm": "プラン変更によって必要な検証用APIまでロックされてしまう場合",
-      "continue_if": "コストを下げつつ主要な検証機能が維持できている場合",
-      "stop": "必要な開発環境の維持に支障が出る場合"
-    },
-    {
-      "t": "政府調達関連の一次情報を米連邦官報から抽出しメモる",
-      "why": "裏で動く国家資本とインフラのデリバティブ契約の構造を、個人の先回り戦術に組み込むため",
+      "t": "APIフォールバック処理の実装テストを行う",
+      "why": "主要モデルの価格変更や障害時に備え、自動で旧モデルや別プロバイダへ逃げる導線を張るため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.35,
-      "success_p_max": 0.55,
-      "success_why": "連邦官報の公開フィードはスマホのブラウザで直接閲覧可能であるため",
+      "success_p": 0.6,
+      "success_p_min": 0.4,
+      "success_p_max": 0.7,
+      "success_why": "簡易的なエラーハンドリングと条件分岐の追加で実装できるため。",
       "value_score": 4,
       "learning_value": 4,
       "time_minutes": 30,
       "payback_days": 0,
-      "outcome": "計算資源規制に関する最新の官報条文の要約メモ",
+      "outcome": "フォールバック時の挙動確認ログ",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "プラットフォーム側の価格支配力に対するリスクヘッジになるため。",
+      "evidence_ids": [
+        "2026-08-26-r01"
+      ],
+      "assumptions": [
+        "コードの例外処理を編集できる環境があること"
+      ],
+      "disconfirm": "SDK仕様によりフォールバックが困難な場合",
+      "continue_if": "テストリクエストが代替エンドポイントへ流れる場合",
+      "stop": "実装が30分以内に終わらない場合"
+    },
+    {
+      "t": "商用向けAPIエコシステムの価格マトリクスを作成する",
+      "why": "今後のプラットフォーム側の囲い込み戦略に対して、乗り換え先の選択肢をあらかじめ洗い出しておくため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.6,
+      "success_p_max": 0.8,
+      "success_why": "主要素をスプレッドシートやメモに列挙するだけで作成可能なため。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "主要APIプロバイダの価格比較表の完成",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "マクロ規制の変化を個人のリスク管理に反映できるため",
+      "impact_why": "今後の選択ミスを防ぐため。",
       "evidence_ids": [
-        "2026-08-25-r01",
-        "2026-08-20-r01"
+        "2026-08-26-r01"
       ],
       "assumptions": [
-        "官報の検索ページがモバイル環境で動作すること"
+        "主要プロバイダの価格情報がWebで公開されていること"
       ],
-      "disconfirm": "公開された情報が既存の報道の域を出ず、新しいサプライチェーンの動きが含まれない場合",
-      "continue_if": "独自の規制条文や新規の意見公募の枠組みを発見できた場合",
-      "stop": "該当する規制文書へのアクセスがブロックまたは有料化された場合"
+      "disconfirm": "価格改定が頻繁すぎて表が機能しない場合",
+      "continue_if": "比較によって明確な安価ルートが見つかった場合",
+      "stop": "情報が古すぎて参考にならない場合"
     },
     {
-      "t": "外部連携用Webサービスの有料プロファイルを検証する",
-      "why": "大手が囲い込むプラットフォームの隙間で、個人が独占できるニッチな自動化処理の動く範囲を試すため",
-      "cost_min": 3000,
+      "t": "有料の代替LLMプロバイダの枠を試験購入する",
+      "why": "主要モデル以外の選択肢を実際に試し、価格優位性を検証するため。",
+      "cost_min": 1500,
       "cost_max": 5000,
       "loss_max": 5000,
-      "success_p": 0.4,
+      "success_p": 0.5,
       "success_p_min": 0.3,
-      "success_p_max": 0.5,
-      "success_why": "有料プランのテスト環境や1ヶ月限定のプロモーション枠を利用できるため",
+      "success_p_max": 0.6,
+      "success_why": "海外プロバイダの決済とクレジット付与が即時完了するため。",
       "value_score": 3,
       "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 45,
-      "outcome": "有料機能の制限値と自動化フローの動作検証完了",
-      "category": "apply",
+      "time_minutes": 15,
+      "payback_days": 60,
+      "outcome": "新規プロバイダのAPIキーと初期動作確認",
+      "category": "buy",
       "terminal": false,
       "impact_min": 0.1,
-      "impact_max": 0.15,
-      "impact_why": "プラットフォームの仕様変更に対する耐性を高められるため",
+      "impact_max": 0.2,
+      "impact_why": "依存リスクの分散につながるため。",
       "evidence_ids": [
-        "2026-08-21-r02"
+        "2026-08-26-r01"
       ],
       "assumptions": [
-        "スマホからの支払い手続きがスムーズに完了すること"
+        "クレジットカードでの即時決済が可能なこと"
       ],
-      "disconfirm": "期待した自動化フローがプラットフォーム側のセキュリティ制限で遮断される場合",
-      "continue_if": "有料枠によって実行速度や制限が明確に緩和された場合",
-      "stop": "コスト対効果が合わず、無料枠の範囲で十分と判明した場合"
-    },
-    {
-      "t": "プライベートリポジトリのドキュメントを更新する",
-      "why": "進捗の散逸を防ぎ、次回の30分で直ちに実装や検証の続きに移行できるようにするため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.9,
-      "success_p_min": 0.85,
-      "success_p_max": 0.95,
-      "success_why": "GitHubのWebエディタを用いてテキストの追記・コミットが確実に行えるため",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "次回作業の前提条件を記したREADMEの更新完了",
-      "category": "publish",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "作業の迷いをなくし毎日の30分を100%効率化できるため",
-      "evidence_ids": [
-        "2026-08-21-r01"
-      ],
-      "assumptions": [
-        "GitHubのWebエディタでのコミットが正常に保存されること"
-      ],
-      "disconfirm": "リポジトリの構成変更でドキュメントの場所が不明確になる場合",
-      "continue_if": "継続的な記録がプロジェクトの構造整理に役立っている場合",
-      "stop": "プロジェクト自体の方向性が完全に転換する場合"
+      "disconfirm": "決済エラーが発生した場合",
+      "continue_if": "テストリクエストが正常に返ってくる場合",
+      "stop": "ドキュメントが不十分で実装に支障が出る場合"
     }
   ],
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて国防総省または情報機関向けの専用エンタープライズプランや専用ソリューションの正式発表を行わない。"
+  "kan": "Googleは今後14日以内に、PyPIにおけるgoogle-genaiの新たなメジャーバージョン(v3.0.0)をリリースしない。"
 }

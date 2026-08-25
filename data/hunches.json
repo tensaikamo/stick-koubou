@@ -1771,6 +1771,14 @@
         "why": "openai Python SDK v3.3.1がリリースされ、3.3.x系のパッチリリースが確認されたため。",
         "conf_before": 0.95,
         "conf_after": 0.95
+      },
+      {
+        "date": "2026-08-26",
+        "sign": "PyPI上でopenaiの3.2.x系または3.3.x系のマイナー・パッチリリースが継続する",
+        "dir": "confirm",
+        "why": "本日の事象においてopenai Python SDK v3.3.1がリリースされたため、openaiの3.3.x系のマイナー・パッチリリース継続の指標に合致する。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
       }
     ],
     "status": "pending",
@@ -1848,7 +1856,7 @@
       "decider": "PyPIのリリース履歴ページにおいて、本日より14日以内の期間にv3.4.0以降の新しいバージョンが公開されていないこと"
     },
     "deadline": "2026-09-05",
-    "confidence": 0.542,
+    "confidence": 0.43,
     "base_rate": 0.7,
     "base_rate_class": "大手AI企業が公式SDKの直近アップデートから14日以内に再度バージョン更新を行う頻度",
     "confidence_why": "直近でv3.3.1が出たばかりであり、短期間の連続リリースは稀であるため基準率よりやや高めに置くが、過去の過信を戒め過度な偏りを避けるため基準率の範囲内に留める。",
@@ -1871,6 +1879,14 @@
         "why": "openai Python SDK v3.3.1がリリースされ、パッチバージョンが追加されたため。",
         "conf_before": 0.65,
         "conf_after": 0.542
+      },
+      {
+        "date": "2026-08-26",
+        "sign": "PyPIのopenaiリリース履歴にv3.3.2などのパッチが追加される",
+        "dir": "kill",
+        "why": "本日の事象においてopenai Python SDK v3.3.1がリリースされたため、v3.3.x系のパッチ追加の指標に該当する。",
+        "conf_before": 0.542,
+        "conf_after": 0.43
       }
     ],
     "status": "pending",
@@ -1949,7 +1965,7 @@
       "decider": "PyPIのリリース履歴ページにおいて、バージョンが3.0.0以上に達していないこと"
     },
     "deadline": "2026-09-09",
-    "confidence": 0.65,
+    "confidence": 0.744,
     "base_rate": 0.7,
     "base_rate_class": "主要AI企業のPython SDKが短期14日以内にメジャーバージョンを連続更新する頻度",
     "confidence_why": "予告された仕様変更に関するドキュメントは出たものの、実際のコード変更とメジャーリリースには通常数週間のバッファが置かれるため、基準率よりもやや起きない方に寄せた",
@@ -1968,7 +1984,16 @@
         "dir": "confirm"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-08-26",
+        "sign": "PyPIのバージョンが2.20.x台のマイナー修正に留まる",
+        "dir": "confirm",
+        "why": "本日の事象においてgoogle-genai Python SDK v2.20.0がリリースされており、バージョンが2.20.x台のマイナー修正に留まるという指標に合致する。",
+        "conf_before": 0.65,
+        "conf_after": 0.744
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -1976,6 +2001,7 @@
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.65
   }
 ]

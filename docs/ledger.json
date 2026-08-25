@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-08-25 06:58",
+  "updated_at": "2026-08-26 07:01",
   "score": {
-    "hit": 3,
+    "hit": 4,
     "miss": 22,
-    "total": 25,
-    "rate": 0.12,
-    "pending": 15,
-    "brier": 0.5272360000000001,
-    "brier_n": 25,
-    "brier_initial": 0.5272360000000001,
+    "total": 26,
+    "rate": 0.15384615384615385,
+    "pending": 14,
+    "brier": 0.5075115384615386,
+    "brier_n": 26,
+    "brier_initial": 0.5075115384615386,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
@@ -16,9 +16,23 @@
   },
   "next_due": {
     "date": "2026-08-26",
-    "days": 1
+    "days": 0
   },
   "decided": [
+    {
+      "id": "2026-08-12-h01",
+      "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社データセンターの開設または500億ドル規模インフラ投資に関する独立したプレスリリースを公開しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-08-26",
+      "confidence": 0.88,
+      "initial_confidence": null,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "政府機関やハイパースケーラーとの提携交渉が既に完了しており、採用公開と連動してプレスリリースが近日中に前倒し発信される可能性がある。",
+      "evidence": "2026年8月26日時点のAnthropic公式ニュースルームを確認したところ、自社データセンター開設や500億ドル規模のインフラ投資に関する単体プレスリリースは掲載されておらず、的中条件を満たしている。",
+      "signals": []
+    },
     {
       "id": "2026-08-11-h01",
       "claim": "Anthropicは14日以内に、公式APIドキュメント（platform.claude.com）において「Claude Tag」に関する独立したドキュメントページを公開しない。",
@@ -172,37 +186,9 @@
       "counter": "プレビュー期間が長引き、既存3.5 Flashの料金設定と非推奨化スケジュールが来月以降に先送りされる可能性がある。",
       "evidence": "Google AI Studioの価格表ページにおいてGemini 3.6 Flashの価格記載およびGemini 3.5 Flashに対するLegacyや非推奨の注記が確認できないため。",
       "signals": []
-    },
-    {
-      "id": "2026-07-31-h02",
-      "claim": "OpenAIは12日以内に、GitHubの「openai/codex-security」リポジトリにGitHub Actions統合用ファイル（action.yml）を追加するか、またはPyPIへ公式Pythonパッケージを登録する。",
-      "subject": "OpenAI",
-      "deadline": "2026-08-12",
-      "confidence": 0.75,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "OpenAIがCLIとTypeScript SDKの初期メンテナスおよびバグ修正に注力し、CI統合機能の公式提供を後回しにする可能性がある。",
-      "evidence": "openai/codex-securityリポジトリの確認結果、action.ymlの追加やPyPIへの公開に関する記載はなく、TypeScript SDKおよびnpmパッケージとして運用されています。",
-      "signals": []
     }
   ],
   "pending": [
-    {
-      "id": "2026-07-30-h01",
-      "claim": "Anthropicは12日以内に、Claude APIの公式ドキュメントにおいてOpus 5向けのコード実行サンドボックス環境（Code Execution Tool）のパブリックベータ仕様を公開する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-11",
-      "confidence": 0.78,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "自社インフラでのコード実行リスクを避け、既存のMCP（Model Context Protocol）経由の外部環境接続を推奨し続ける設計を選択する可能性がある。",
-      "evidence": "docs.anthropic.comのトップページにCode executionの項目は確認できますが、具体的なパラメータ説明や仕様詳細は個別ガイドページを確認しないと判明しないため判定不能です。",
-      "signals": []
-    },
     {
       "id": "2026-07-23-h02",
       "claim": "AnthropicはClaude Codeの初期化トークン消費量を削減するアップデートを公開する。",
@@ -298,21 +284,7 @@
       "status": "pending",
       "alert": false,
       "counter": "主要カスタマーによる自社製AIチップへの切り替え速度が予想を超えた場合、成長率が急速に鈍化するリスクがある。",
-      "evidence": "",
-      "signals": []
-    },
-    {
-      "id": "2026-08-12-h01",
-      "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社データセンターの開設または500億ドル規模インフラ投資に関する独立したプレスリリースを公開しない。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-26",
-      "confidence": 0.88,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "政府機関やハイパースケーラーとの提携交渉が既に完了しており、採用公開と連動してプレスリリースが近日中に前倒し発信される可能性がある。",
-      "evidence": "",
+      "evidence": "公開情報から決算レポート等の証拠を取得できなかったため判定不能です。",
       "signals": []
     },
     {
@@ -368,14 +340,59 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-08-22",
+          "date": "2026-08-24",
           "dir": "confirm",
           "why": "openai Python SDK v3.3.1がリリースされ、3.3.x系のパッチリリースが確認されたため。"
         },
         {
-          "date": "2026-08-24",
+          "date": "2026-08-26",
           "dir": "confirm",
-          "why": "openai Python SDK v3.3.1がリリースされ、3.3.x系のパッチリリースが確認されたため。"
+          "why": "本日の事象においてopenai Python SDK v3.3.1がリリースされたため、openaiの3.3.x系のマイナー・パッチリリース継続の指標に合致する。"
+        }
+      ]
+    },
+    {
+      "id": "2026-08-21-h01",
+      "claim": "Anthropicは今後14日以内に、シンガポールオフィスの開設またはASEAN地域拠点設立に関する公式発表を自社ニュースルームに掲載しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-09-04",
+      "confidence": 0.927,
+      "initial_confidence": 0.89,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "既に現地法人設立やオフィス契約が完了しており、求人公開と連動した対外PR施策が直近で準備されている場合。",
+      "evidence": "",
+      "signals": [
+        {
+          "date": "2026-08-21",
+          "dir": "confirm",
+          "why": "本日の新規求人一覧にAccount Executive - Public Sector (ASEAN) (Singapore)などのシンガポール勤務ポジションが追加されたためconfirm指標が点灯する。"
+        }
+      ]
+    },
+    {
+      "id": "2026-08-22-h01",
+      "claim": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」の新たなマイナーまたはメジャーバージョン（v3.4.0以降）をリリースしない。",
+      "subject": "OpenAI",
+      "deadline": "2026-09-05",
+      "confidence": 0.43,
+      "initial_confidence": 0.65,
+      "result": null,
+      "status": "pending",
+      "alert": true,
+      "counter": "緊急のバグ修正や脆弱性対応により、予期せぬパッチバージョンが数日以内に強制投入される可能性。",
+      "evidence": "",
+      "signals": [
+        {
+          "date": "2026-08-22",
+          "dir": "kill",
+          "why": "openai Python SDK v3.3.1がリリースされ、パッチバージョンが追加されたため。"
+        },
+        {
+          "date": "2026-08-26",
+          "dir": "kill",
+          "why": "本日の事象においてopenai Python SDK v3.3.1がリリースされたため、v3.3.x系のパッチ追加の指標に該当する。"
         }
       ]
     }
@@ -435,11 +452,6 @@
       "subject": "Google",
       "events": [
         {
-          "date": "2026-08-07",
-          "headline": "Google Gen AI Python SDK v2.17.0がリリースされ自動関数呼び出しの非推奨仕様が公表",
-          "url": "https://pypi.org/project/google-genai/2.17.0/"
-        },
-        {
           "date": "2026-08-15",
           "headline": "GoogleがGenAI Python SDK v2.18.1を公開し次期メジャーでの自動関数呼び出し仕様変更を予告",
           "url": "https://pypi.org/project/google-genai/2.18.1/"
@@ -453,6 +465,11 @@
           "date": "2026-08-22",
           "headline": "google-genai Python SDK v2.19.0 リリース",
           "url": "https://pypi.org/project/google-genai/2.19.0/"
+        },
+        {
+          "date": "2026-08-26",
+          "headline": "Google Gen AI Python SDK v2.20.0のリリース",
+          "url": "https://pypi.org/project/google-genai/2.20.0/"
         }
       ]
     },
@@ -514,6 +531,34 @@
   ],
   "records": [
     {
+      "id": "2026-08-26-r04",
+      "date": "2026-08-26",
+      "headline": "SWE Refactor Benchに関する論文の公開",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2608.23564v1"
+    },
+    {
+      "id": "2026-08-26-r03",
+      "date": "2026-08-26",
+      "headline": "ReWorld: 長期記憶を持つインタラクティブワールドモデルに関する論文の公開",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2608.23565v1"
+    },
+    {
+      "id": "2026-08-26-r02",
+      "date": "2026-08-26",
+      "headline": "Best-Practice Critic Optimization (BPCO)に関する論文の公開",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2608.23566v1"
+    },
+    {
+      "id": "2026-08-26-r01",
+      "date": "2026-08-26",
+      "headline": "Google Gen AI Python SDK v2.20.0のリリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/2.20.0/"
+    },
+    {
       "id": "2026-08-25-r02",
       "date": "2026-08-25",
       "headline": "xAIがメンフィスおよびサウスヘイブンのデータセンター向けに高圧・中圧電気工事士の採用を開始",
@@ -568,35 +613,7 @@
       "headline": "Anthropicがシンガポール拠点のASEAN公共部門向け営業職の求人を開始",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391381008"
-    },
-    {
-      "id": "2026-08-21-r01",
-      "date": "2026-08-21",
-      "headline": "Anthropicが公式Python SDKのメジャーバージョンv1.0.0を公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/1.0.0/"
-    },
-    {
-      "id": "2026-08-20-r03",
-      "date": "2026-08-20",
-      "headline": "米NISTがAI時代における国家脆弱性データベース近代化のRFIを公示",
-      "certainty": "confirmed",
-      "url": "https://www.federalregister.gov/documents/2026/08/12/2026-16371/request-for-information-rfi-on-modernizing-the-national-vulnerability-database-in-the-age-of"
-    },
-    {
-      "id": "2026-08-20-r02",
-      "date": "2026-08-20",
-      "headline": "OpenAIが公式Python SDK v3.3.1をPyPIに公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.3.1/"
-    },
-    {
-      "id": "2026-08-20-r01",
-      "date": "2026-08-20",
-      "headline": "Anthropicが米インフラ投資500億ドル規模のサプライチェーン会計責任者を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5318977008"
     }
   ],
-  "record_count": 72
+  "record_count": 76
 }
