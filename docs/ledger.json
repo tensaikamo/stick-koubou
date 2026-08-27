@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-26 07:01",
+  "updated_at": "2026-08-27 10:05",
   "score": {
     "hit": 4,
     "miss": 22,
@@ -15,8 +15,8 @@
     }
   },
   "next_due": {
-    "date": "2026-08-26",
-    "days": 0
+    "date": "2026-08-28",
+    "days": 1
   },
   "decided": [
     {
@@ -284,7 +284,7 @@
       "status": "pending",
       "alert": false,
       "counter": "主要カスタマーによる自社製AIチップへの切り替え速度が予想を超えた場合、成長率が急速に鈍化するリスクがある。",
-      "evidence": "公開情報から決算レポート等の証拠を取得できなかったため判定不能です。",
+      "evidence": "公開情報から決算レポートの証拠を取得できなかったため、判定不能です。",
       "signals": []
     },
     {
@@ -315,14 +315,14 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-08-24",
-          "dir": "confirm",
-          "why": "google-genai Python SDK v2.19.0がリリースされ、v2系の更新が追加されたため。"
-        },
-        {
           "date": "2026-08-25",
           "dir": "confirm",
           "why": "本日の事象に「google-genai Python SDK v2.19.0 リリース」が含まれており、PyPIにv2系のマイナー更新が追加されたため。"
+        },
+        {
+          "date": "2026-08-27",
+          "dir": "confirm",
+          "why": "google-genai Python SDK v2.20.0がリリースされ、v2系のマイナー更新が確認されたため。"
         }
       ]
     },
@@ -402,35 +402,30 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-08-21",
-          "headline": "Anthropicが公式Python SDKのメジャーバージョンv1.0.0を公開",
-          "url": "https://pypi.org/project/anthropic/1.0.0/"
+          "date": "2026-08-27",
+          "headline": "anthropic Python SDK v1.1.0 リリース",
+          "url": "https://pypi.org/project/anthropic/1.1.0/"
         },
         {
-          "date": "2026-08-24",
-          "headline": "anthropicによるEMEA地域向けSafety & Security Counselの求人公開（ダブリン）",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398659008"
+          "date": "2026-08-27",
+          "headline": "anthropic: Corporate Development Integration Lead 求人公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358146008"
         },
         {
-          "date": "2026-08-24",
-          "headline": "anthropicによるEMEA地域向けSafety & Security Counselの求人公開（ロンドン）",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398653008"
+          "date": "2026-08-27",
+          "headline": "anthropic: Head of GTM Programs 求人公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390976008"
         },
         {
-          "date": "2026-08-25",
-          "headline": "Anthropicが国家安全保障および地方自治体向けセールス責任者の募集を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391504008"
+          "date": "2026-08-27",
+          "headline": "anthropic: Technical Program Manager, Billing 求人公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5406817008"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-08-18",
-          "headline": "OpenAIが公式Python SDK v3.2.0をPyPIに公開",
-          "url": "https://pypi.org/project/openai/3.2.0/"
-        },
         {
           "date": "2026-08-18",
           "headline": "OpenAIが公式ブログで「The Defender’s Window」を公開",
@@ -445,6 +440,11 @@
           "date": "2026-08-20",
           "headline": "OpenAIが公式Python SDK v3.3.1をPyPIに公開",
           "url": "https://pypi.org/project/openai/3.3.1/"
+        },
+        {
+          "date": "2026-08-27",
+          "headline": "openai Python SDK v3.4.0 リリース",
+          "url": "https://pypi.org/project/openai/3.4.0/"
         }
       ]
     },
@@ -477,16 +477,6 @@
       "subject": "xAI",
       "events": [
         {
-          "date": "2026-08-06",
-          "headline": "xAI、超高密度データセンターおよび発電施設向け運用技術エンジニアの求人を開始",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5204393007"
-        },
-        {
-          "date": "2026-08-09",
-          "headline": "xAIがスロバキア語・ルーマニア語など多言語音声機能向けのAIチューター求人を同時公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5207599007"
-        },
-        {
           "date": "2026-08-21",
           "headline": "xAIがメンフィスColossus向け専用発電所運用のディレクター求人を公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5216112007"
@@ -495,6 +485,16 @@
           "date": "2026-08-25",
           "headline": "xAIがメンフィスおよびサウスヘイブンのデータセンター向けに高圧・中圧電気工事士の採用を開始",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5219540007"
+        },
+        {
+          "date": "2026-08-27",
+          "headline": "xAI: AV Administrator, Events & Experiences 求人公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5222092007"
+        },
+        {
+          "date": "2026-08-27",
+          "headline": "xAI: Client Account Manager- SMB 求人公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5221126007"
         }
       ]
     },
@@ -531,6 +531,55 @@
   ],
   "records": [
     {
+      "id": "2026-08-27-r07",
+      "date": "2026-08-27",
+      "headline": "xAI: Client Account Manager- SMB 求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5221126007"
+    },
+    {
+      "id": "2026-08-27-r06",
+      "date": "2026-08-27",
+      "headline": "xAI: AV Administrator, Events & Experiences 求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5222092007"
+    },
+    {
+      "id": "2026-08-27-r05",
+      "date": "2026-08-27",
+      "headline": "anthropic: Corporate Development Integration Lead 求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358146008"
+    },
+    {
+      "id": "2026-08-27-r04",
+      "date": "2026-08-27",
+      "headline": "anthropic: Technical Program Manager, Billing 求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5406817008"
+    },
+    {
+      "id": "2026-08-27-r03",
+      "date": "2026-08-27",
+      "headline": "anthropic: Head of GTM Programs 求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390976008"
+    },
+    {
+      "id": "2026-08-27-r02",
+      "date": "2026-08-27",
+      "headline": "anthropic Python SDK v1.1.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/1.1.0/"
+    },
+    {
+      "id": "2026-08-27-r01",
+      "date": "2026-08-27",
+      "headline": "openai Python SDK v3.4.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.4.0/"
+    },
+    {
       "id": "2026-08-26-r04",
       "date": "2026-08-26",
       "headline": "SWE Refactor Benchに関する論文の公開",
@@ -564,56 +613,7 @@
       "headline": "xAIがメンフィスおよびサウスヘイブンのデータセンター向けに高圧・中圧電気工事士の採用を開始",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/xai/jobs/5219540007"
-    },
-    {
-      "id": "2026-08-25-r01",
-      "date": "2026-08-25",
-      "headline": "Anthropicが国家安全保障および地方自治体向けセールス責任者の募集を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391504008"
-    },
-    {
-      "id": "2026-08-24-r02",
-      "date": "2026-08-24",
-      "headline": "anthropicによるEMEA地域向けSafety & Security Counselの求人公開（ロンドン）",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398653008"
-    },
-    {
-      "id": "2026-08-24-r01",
-      "date": "2026-08-24",
-      "headline": "anthropicによるEMEA地域向けSafety & Security Counselの求人公開（ダブリン）",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398659008"
-    },
-    {
-      "id": "2026-08-23-r01",
-      "date": "2026-08-23",
-      "headline": "ConceptGuard: Benchmarking Context-Sensitive Unlearning in Large Language Models",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2608.20338v1"
-    },
-    {
-      "id": "2026-08-22-r01",
-      "date": "2026-08-22",
-      "headline": "google-genai Python SDK v2.19.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/2.19.0/"
-    },
-    {
-      "id": "2026-08-21-r03",
-      "date": "2026-08-21",
-      "headline": "xAIがメンフィスColossus向け専用発電所運用のディレクター求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5216112007"
-    },
-    {
-      "id": "2026-08-21-r02",
-      "date": "2026-08-21",
-      "headline": "Anthropicがシンガポール拠点のASEAN公共部門向け営業職の求人を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391381008"
     }
   ],
-  "record_count": 76
+  "record_count": 83
 }

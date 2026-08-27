@@ -1,162 +1,171 @@
 {
-  "date": "2026-08-26",
+  "date": "2026-08-27",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのAPI管理画面を開き、エンドポイントごとの単価変動を確認したか？",
-    "旧版モデルへのルーティング切り替えを今日30分以内に終わらせるか？",
-    "固定費の高騰を避けるためのフォールバック設定を実装するか？"
+    "OpenRouterのモデルルーティングを最新版へ今すぐ書き換えるか？",
+    "旧モデルの値上げ分を他のAPIのコスト削減でどう相殺するか？",
+    "APIキーの自動フェイルオーバー機能を今日の30分で設定するか？"
   ],
   "moves": [
     {
-      "t": "旧特定バージョンへのルーティングを設定する",
-      "why": "最新版の値上げから逃れるため、軽量タスクを値下げされた旧版へ強制的に振り向けるため。",
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.5,
-      "success_p_max": 0.8,
-      "success_why": "APIクライアントのパラメータ変更のみで対応可能なため。",
-      "value_score": 5,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "旧版モデルへのルーティング切り替えの完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "固定費の急増を直接防ぐため。",
-      "evidence_ids": [
-        "2026-08-26-r01"
-      ],
-      "assumptions": [
-        "エンドポイントの書き換えだけで挙動が維持できること"
-      ],
-      "disconfirm": "旧バージョンのAPI自体が廃止されている場合",
-      "continue_if": "リクエストが旧モデルに正常にルーティングされる場合",
-      "stop": "ルーティング変更後にエラーが頻発する場合"
-    },
-    {
-      "t": "有料プランのコスト上限アラートを設定する",
-      "why": "予期せぬAPI値上げによる予算超過を防ぐため。",
-      "cost_min": 500,
-      "cost_max": 2000,
-      "loss_max": 2000,
       "success_p": 0.8,
       "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "各プラットフォームの標準機能として課金上限アラートが提供されているため。",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 10,
-      "payback_days": 30,
-      "outcome": "API利用料金の超過アラート設定完了",
-      "category": "apply",
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "次に直す内容がIssueとして1件残る",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "最大損失を限定するため。",
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
       "evidence_ids": [
-        "2026-08-26-r01"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "利用プラットフォームにアラート機能が存在すること"
+        "Issueが次の実装に使われる"
       ],
-      "disconfirm": "アラート機能が有料プラン限定である場合",
-      "continue_if": "設定が正常に保存された場合",
-      "stop": "プラットフォーム自体が変更された場合"
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
     },
     {
-      "t": "APIフォールバック処理の実装テストを行う",
-      "why": "主要モデルの価格変更や障害時に備え、自動で旧モデルや別プロバイダへ逃げる導線を張るため。",
+      "t": "今日の一次情報を1本選び要点を3行残す",
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.4,
-      "success_p_max": 0.7,
-      "success_why": "簡易的なエラーハンドリングと条件分岐の追加で実装できるため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 30,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "value_score": 2,
+      "learning_value": 3,
+      "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "フォールバック時の挙動確認ログ",
-      "category": "build",
+      "outcome": "一次情報の要点メモが3行残る",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "プラットフォーム側の価格支配力に対するリスクヘッジになるため。",
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "意思決定へ使えた時だけ価値になる",
       "evidence_ids": [
-        "2026-08-26-r01"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "コードの例外処理を編集できる環境があること"
+        "読む情報が現在の目標に関係する"
       ],
-      "disconfirm": "SDK仕様によりフォールバックが困難な場合",
-      "continue_if": "テストリクエストが代替エンドポイントへ流れる場合",
-      "stop": "実装が30分以内に終わらない場合"
+      "disconfirm": "要点が次の行動を一つも変えない",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了",
+      "fallback": true
     },
     {
-      "t": "商用向けAPIエコシステムの価格マトリクスを作成する",
-      "why": "今後のプラットフォーム側の囲い込み戦略に対して、乗り換え先の選択肢をあらかじめ洗い出しておくため。",
+      "t": "予測を1件確認し確度メモを1行更新する",
+      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.7,
-      "success_p_min": 0.6,
+      "success_p_min": 0.55,
       "success_p_max": 0.8,
-      "success_why": "主要素をスプレッドシートやメモに列挙するだけで作成可能なため。",
-      "value_score": 3,
-      "learning_value": 3,
+      "success_why": "既存予測の更新なので新規企画より着地しやすい",
+      "value_score": 2,
+      "learning_value": 4,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "主要APIプロバイダの価格比較表の完成",
-      "category": "research",
+      "outcome": "追跡中予測の確度メモが更新される",
+      "category": "review",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "今後の選択ミスを防ぐため。",
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "誤った前提で投資する損失を減らす",
       "evidence_ids": [
-        "2026-08-26-r01"
+        "action-history"
       ],
       "assumptions": [
-        "主要プロバイダの価格情報がWebで公開されていること"
+        "予測が現在の投資判断に関係する"
       ],
-      "disconfirm": "価格改定が頻繁すぎて表が機能しない場合",
-      "continue_if": "比較によって明確な安価ルートが見つかった場合",
-      "stop": "情報が古すぎて参考にならない場合"
+      "disconfirm": "確度更新が次の行動や支出を変えない",
+      "continue_if": "確度を動かす一次根拠が見つかった",
+      "stop": "根拠URLを1本確認したら終了",
+      "fallback": true
     },
     {
-      "t": "有料の代替LLMプロバイダの枠を試験購入する",
-      "why": "主要モデル以外の選択肢を実際に試し、価格優位性を検証するため。",
-      "cost_min": 1500,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.5,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "海外プロバイダの決済とクレジット付与が即時完了するため。",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 60,
-      "outcome": "新規プロバイダのAPIキーと初期動作確認",
+      "t": "独自ドメイン候補を決め購入画面まで進める",
+      "why": "公開先を固定し、他人へ渡せる形へ近づけるため。",
+      "cost_min": 1000,
+      "cost_max": 4000,
+      "loss_max": 4000,
+      "success_p": 0.65,
+      "success_p_min": 0.45,
+      "success_p_max": 0.75,
+      "success_why": "価格と空きを確認できるが、名前の決定で迷う余地がある",
+      "value_score": 4,
+      "learning_value": 2,
+      "time_minutes": 30,
+      "payback_days": 180,
+      "outcome": "候補ドメインと年間費用が確定する",
       "category": "buy",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "依存リスクの分散につながるため。",
+      "impact_min": 0.02,
+      "impact_max": 0.08,
+      "impact_why": "公開と共有の摩擦を下げるが、ドメインだけでは成果にならない",
       "evidence_ids": [
-        "2026-08-26-r01"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "クレジットカードでの即時決済が可能なこと"
+        "90日以内に公開する"
       ],
-      "disconfirm": "決済エラーが発生した場合",
-      "continue_if": "テストリクエストが正常に返ってくる場合",
-      "stop": "ドキュメントが不十分で実装に支障が出る場合"
+      "disconfirm": "公開日や見せる相手が決まっていない",
+      "continue_if": "公開予定日と最初に見せる相手が決まっている",
+      "stop": "年間4000円を超えたら購入しない",
+      "fallback": true
+    },
+    {
+      "t": "有料AI機能を1か月だけ比較検証する",
+      "why": "無料制約で実装速度を落とさず、支払う価値を測るため。",
+      "cost_min": 3000,
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.55,
+      "success_p_min": 0.35,
+      "success_p_max": 0.7,
+      "success_why": "短縮効果はあり得るが、成果との相関は未計測",
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 30,
+      "payback_days": 30,
+      "outcome": "無料版との比較メモが1件残る",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.02,
+      "impact_max": 0.12,
+      "impact_why": "実装速度を上げる可能性はあるが成果増加は未確認",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "週2回以上使う"
+      ],
+      "disconfirm": "無料版と完成件数が変わらない",
+      "continue_if": "無料版より月2件以上多く成果物が完成する",
+      "stop": "30日で成果物が2件増えなければ解約する",
+      "fallback": true
     }
   ],
-  "kan": "Googleは今後14日以内に、PyPIにおけるgoogle-genaiの新たなメジャーバージョン(v3.0.0)をリリースしない。"
+  "kan": "本命ではないが、今後14日以内にDeepSeek以外の主要プロバイダも旧モデルの強制値上げに追随すると見る。"
 }

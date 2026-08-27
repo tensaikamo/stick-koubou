@@ -1603,14 +1603,6 @@
     ],
     "signals": [
       {
-        "date": "2026-08-15",
-        "sign": "PyPIにgoogle-genaiのv2.19.0などv2系のマイナー/パッチ更新が追加される",
-        "dir": "confirm",
-        "why": "google-genai Python SDKのv2系パッチ更新であるv2.18.1がリリースされたため。",
-        "conf_before": 0.89,
-        "conf_after": 0.927
-      },
-      {
         "date": "2026-08-16",
         "sign": "PyPIにgoogle-genaiのv2.19.0などv2系のマイナー/パッチ更新が追加される",
         "dir": "confirm",
@@ -1679,6 +1671,14 @@
         "sign": "PyPIにgoogle-genaiのv2.19.0などv2系のマイナー/パッチ更新が追加される",
         "dir": "confirm",
         "why": "本日の事象に「google-genai Python SDK v2.19.0 リリース」が含まれており、PyPIにv2系のマイナー更新が追加されたため。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
+      },
+      {
+        "date": "2026-08-27",
+        "sign": "PyPIにgoogle-genaiのv2.19.0などv2系のマイナー/パッチ更新が追加される",
+        "dir": "confirm",
+        "why": "google-genai Python SDK v2.20.0がリリースされ、v2系のマイナー更新が確認されたため。",
         "conf_before": 0.95,
         "conf_after": 0.95
       }
@@ -1965,7 +1965,7 @@
       "decider": "PyPIのリリース履歴ページにおいて、バージョンが3.0.0以上に達していないこと"
     },
     "deadline": "2026-09-09",
-    "confidence": 0.744,
+    "confidence": 0.82,
     "base_rate": 0.7,
     "base_rate_class": "主要AI企業のPython SDKが短期14日以内にメジャーバージョンを連続更新する頻度",
     "confidence_why": "予告された仕様変更に関するドキュメントは出たものの、実際のコード変更とメジャーリリースには通常数週間のバッファが置かれるため、基準率よりもやや起きない方に寄せた",
@@ -1992,6 +1992,14 @@
         "why": "本日の事象においてgoogle-genai Python SDK v2.20.0がリリースされており、バージョンが2.20.x台のマイナー修正に留まるという指標に合致する。",
         "conf_before": 0.65,
         "conf_after": 0.744
+      },
+      {
+        "date": "2026-08-27",
+        "sign": "PyPIのバージョンが2.20.x台のマイナー修正に留まる",
+        "dir": "confirm",
+        "why": "google-genai Python SDK v2.20.0がリリースされ、2.20.x台の更新となったため。",
+        "conf_before": 0.744,
+        "conf_after": 0.82
       }
     ],
     "status": "pending",
