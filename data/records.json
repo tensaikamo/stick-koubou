@@ -2343,5 +2343,192 @@
     "body_fetched": true,
     "model": "gemini-3.5-flash-lite",
     "related_ids": []
+  },
+  {
+    "id": "2026-08-27-r01",
+    "created_at": "2026-08-27T09:59:37.633917+09:00",
+    "headline": "openai Python SDK v3.4.0 リリース",
+    "what_happened": "OpenAIはPyPIにおいて公式Python SDKのバージョン3.4.0をリリースした。本バージョンでは同期・非同期クライアントやHTTPXベースの通信機能を提供し、OpenAPI仕様に基づいた型定義が含まれている。詳細な仕様は公式ドキュメントおよびapi.mdに記載されている。",
+    "background": "OpenAIのAPIを利用するPythonアプリケーション開発において、公式SDKのアップデートは必須の基盤情報である。",
+    "changed": "openaiパッケージのバージョンが3.4.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.4.0/",
+      "title": "openai Python SDK v3.4.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-20-r02",
+      "2026-08-19-r01",
+      "2026-08-18-r02",
+      "2026-08-18-r01",
+      "2026-08-16-r03",
+      "2026-08-13-r01"
+    ]
+  },
+  {
+    "id": "2026-08-27-r02",
+    "created_at": "2026-08-27T09:59:37.633917+09:00",
+    "headline": "anthropic Python SDK v1.1.0 リリース",
+    "what_happened": "AnthropicはPyPIにおいて公式Python SDKのバージョン1.1.0をリリースした。本ライブラリによりPythonアプリケーションからClaude APIへアクセス可能となり、移行ガイドや初期設定用のコード例が提供されている。",
+    "background": "Claude APIを呼び出すための公式Pythonクライアントのバージョン管理と更新履歴を示すデータである。",
+    "changed": "anthropicパッケージのバージョンが1.1.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.1.0/",
+      "title": "anthropic Python SDK v1.1.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-25-r01",
+      "2026-08-24-r02",
+      "2026-08-24-r01",
+      "2026-08-21-r02",
+      "2026-08-21-r01",
+      "2026-08-20-r01"
+    ]
+  },
+  {
+    "id": "2026-08-27-r03",
+    "created_at": "2026-08-27T09:59:37.633917+09:00",
+    "headline": "anthropic: Head of GTM Programs 求人公開",
+    "what_happened": "AnthropicはグローバルGTMプログラム機能を立ち上げるための「Head of GTM Programs」の求人をGreenhouse上で公開した。営業、マーケティング、パートナーシップ、カスタマーサクセスなどの組織横断的な連携やコンテンツ整備をゼロから構築する役割を担う。",
+    "background": "AI企業の営業・収益化体制（GTM）拡大に向けた組織構築の動きを示す一次情報である。",
+    "changed": "GTMプログラム統括責任者の採用活動が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390976008",
+      "title": "[新規求人] anthropic: Head of GTM Programs (Remote-Friendly (Travel Required) | San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-25-r01",
+      "2026-08-24-r02",
+      "2026-08-24-r01",
+      "2026-08-21-r02",
+      "2026-08-21-r01",
+      "2026-08-20-r01"
+    ]
+  },
+  {
+    "id": "2026-08-27-r04",
+    "created_at": "2026-08-27T09:59:37.633917+09:00",
+    "headline": "anthropic: Technical Program Manager, Billing 求人公開",
+    "what_happened": "Anthropicは請求基盤および関連プログラムを統括する「Technical Program Manager, Billing」の求人を公開した。新製品や新リージョン、新チャネルに対応する課金・請求処理のエスカレーション対応から標準的なプログラムへの移行を主導する。",
+    "background": "商用サービスの拡大に伴い、複雑化する課金・請求システムの整理を進めている背景がある。",
+    "changed": "請求基盤専門のテクニカルプログラムマネージャーの募集が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5406817008",
+      "title": "[新規求人] anthropic: Technical Program Manager, Billing (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-25-r01",
+      "2026-08-24-r02",
+      "2026-08-24-r01",
+      "2026-08-21-r02",
+      "2026-08-21-r01",
+      "2026-08-20-r01"
+    ]
+  },
+  {
+    "id": "2026-08-27-r05",
+    "created_at": "2026-08-27T09:59:37.633917+09:00",
+    "headline": "anthropic: Corporate Development Integration Lead 求人公開",
+    "what_happened": "AnthropicはM&A後の統合フェーズを担当する「Corporate Development Integration Lead」の求人を公開した。デューデリジェンスから統合計画、オペレーションの実行までを担い、買収案件の戦略的価値の実現を目的とする。",
+    "background": "企業のM&A活動の活発化に伴い、組織的・技術的統合を専任で進める体制の構築を示している。",
+    "changed": "M&A統合リードの専門ポジションの採用が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358146008",
+      "title": "[新規求人] anthropic: Corporate Development Integration Lead (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-25-r01",
+      "2026-08-24-r02",
+      "2026-08-24-r01",
+      "2026-08-21-r02",
+      "2026-08-21-r01",
+      "2026-08-20-r01"
+    ]
+  },
+  {
+    "id": "2026-08-27-r06",
+    "created_at": "2026-08-27T09:59:37.633917+09:00",
+    "headline": "xAI: AV Administrator, Events & Experiences 求人公開",
+    "what_happened": "xAIはニューヨークにおけるイベントやコラボレーションスペースの音響・映像（AV）システムを設計・維持する「AV Administrator, Events & Experiences」の求人を公開した。フラットな組織のもとで技術と創造性を組み合わせた空間構築を求めている。",
+    "background": "xAIの拠点拡大に伴うインフラおよび施設運用の拡充を示す。",
+    "changed": "ニューヨークオフィス向けのAV管理担当者の採用が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5222092007",
+      "title": "[新規求人] xai: AV Administrator, Events & Experiences (New York, New York)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-25-r02",
+      "2026-08-21-r03",
+      "2026-08-09-r02",
+      "2026-08-06-r03",
+      "2026-08-06-r02"
+    ]
+  },
+  {
+    "id": "2026-08-27-r07",
+    "created_at": "2026-08-27T09:59:37.633917+09:00",
+    "headline": "xAI: Client Account Manager- SMB 求人公開",
+    "what_happened": "xAIは中小企業広告主や代理店のポートフォリオを管理する「Client Account Manager- SMB」の求人を公開した。広告商品の提案、キャンペーンの実行・最適化を通じて成長を駆動する役割を担う。",
+    "background": "xAIが広告事業およびSMB向けのアカウント管理機能の構築を進めていることを示す。",
+    "changed": "SMB向け広告アカウントマネージャーの募集が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5221126007",
+      "title": "[新規求人] xai: Client Account Manager- SMB (New York, New York)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-25-r02",
+      "2026-08-21-r03",
+      "2026-08-09-r02",
+      "2026-08-06-r03",
+      "2026-08-06-r02"
+    ]
   }
 ]

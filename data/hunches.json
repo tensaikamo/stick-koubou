@@ -1355,7 +1355,7 @@
     "resolved_at": null,
     "result": null,
     "evidence": {
-      "summary": "公開情報から決算レポート等の証拠を取得できなかったため判定不能です。",
+      "summary": "公開情報から決算レポートの証拠を取得できなかったため、判定不能です。",
       "url": ""
     },
     "rejected": [
@@ -1396,7 +1396,7 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "judge_attempts": 1
+    "judge_attempts": 2
   },
   {
     "id": "2026-08-06-h01",
