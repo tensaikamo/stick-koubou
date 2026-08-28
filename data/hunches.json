@@ -202,7 +202,7 @@
     },
     "deadline": "2026-08-13",
     "confidence": 0.7,
-    "status": "pending",
+    "status": "unscorable",
     "resolved_at": null,
     "result": null,
     "evidence": {
@@ -213,7 +213,7 @@
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1",
-    "needs_review": true
+    "needs_review": false
   },
   {
     "id": "2026-07-24-h01",
@@ -1106,7 +1106,7 @@
       }
     ],
     "signals": [],
-    "status": "pending",
+    "status": "unscorable",
     "resolved_at": null,
     "result": null,
     "evidence": {
@@ -1117,7 +1117,7 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "needs_review": true
+    "needs_review": false
   },
   {
     "id": "2026-08-03-h02",
@@ -1396,7 +1396,8 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "judge_attempts": 2
+    "judge_attempts": 3,
+    "needs_review": true
   },
   {
     "id": "2026-08-06-h01",
@@ -1569,7 +1570,8 @@
     "rejected": [],
     "model": "gemini-3.7-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "judge_attempts": 1
   },
   {
     "id": "2026-08-15-h01",
