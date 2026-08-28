@@ -1,12 +1,72 @@
 {
-  "date": "2026-08-27",
+  "date": "2026-08-28",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのモデルルーティングを最新版へ今すぐ書き換えるか？",
-    "旧モデルの値上げ分を他のAPIのコスト削減でどう相殺するか？",
-    "APIキーの自動フェイルオーバー機能を今日の30分で設定するか？"
+    "DeepSeekの価格引き下げを受けて今すぐ既存アプリのエラー処理をどう書き換えるか",
+    "APIの突発的な終了に備えてiPhoneから切り替えられるバックアップ先をどこに固定するか",
+    "現在進行中のアプリの改良において今日の30分でどの機能を削ぎ落とすか"
   ],
   "moves": [
+    {
+      "t": "既存アプリのエラー検知ロジックに新モデルのフォールバックを書き込む",
+      "why": "特定のミドルレンジAPIの消失リスクに備えて動的な切り替え経路を確保するためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.3,
+      "success_p_min": 0.1,
+      "success_p_max": 0.5,
+      "success_why": "iPhoneのブラウザ上のコード編集は制約が多く意図通りに動かないことがあるため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "API接続エラー時に予備エンドポイントへ自動で切り替わるコードの保存",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "プラットフォーム側の変更によるサービス停止を防げるため。",
+      "evidence_ids": [
+        "2026-07-22-r02"
+      ],
+      "assumptions": [
+        "GitHubのWebエディタまたは対応プラットフォームから直接コード修正ができること"
+      ],
+      "disconfirm": "iPhoneからのコード編集で構文エラーが取れない場合",
+      "continue_if": "テストリクエストが正常にフォールバック先へ流れた場合",
+      "stop": "環境の制約によりコードの保存ができない場合"
+    },
+    {
+      "t": "個人用アプリの不要なAPI呼び出し処理を削除して最適化する",
+      "why": "維持コストの高い旧世代モデルへの依存を断ち切りリソースをスリム化するためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.45,
+      "success_p_min": 0.2,
+      "success_p_max": 0.7,
+      "success_why": "コードを削るだけの作業でありiPhoneからでも十分に完遂できるため。",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "無駄なリクエスト処理が除外されたスリムなコードベース",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "アプリの動作安定性と保守性が向上するため。",
+      "evidence_ids": [
+        "2026-08-01-r02"
+      ],
+      "assumptions": [
+        "該当部分のコードが特定されていること"
+      ],
+      "disconfirm": "削除によって既存の重要機能まで停止した場合",
+      "continue_if": "エラーなく軽量化された動作が確認できた場合",
+      "stop": "依存関係が複雑でiPhoneからの修正が困難な場合"
+    },
     {
       "t": "GitHubの改善候補を1件Issueに書く",
       "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
@@ -101,71 +161,7 @@
       "continue_if": "確度を動かす一次根拠が見つかった",
       "stop": "根拠URLを1本確認したら終了",
       "fallback": true
-    },
-    {
-      "t": "独自ドメイン候補を決め購入画面まで進める",
-      "why": "公開先を固定し、他人へ渡せる形へ近づけるため。",
-      "cost_min": 1000,
-      "cost_max": 4000,
-      "loss_max": 4000,
-      "success_p": 0.65,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "価格と空きを確認できるが、名前の決定で迷う余地がある",
-      "value_score": 4,
-      "learning_value": 2,
-      "time_minutes": 30,
-      "payback_days": 180,
-      "outcome": "候補ドメインと年間費用が確定する",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.08,
-      "impact_why": "公開と共有の摩擦を下げるが、ドメインだけでは成果にならない",
-      "evidence_ids": [
-        "user-goal",
-        "action-history"
-      ],
-      "assumptions": [
-        "90日以内に公開する"
-      ],
-      "disconfirm": "公開日や見せる相手が決まっていない",
-      "continue_if": "公開予定日と最初に見せる相手が決まっている",
-      "stop": "年間4000円を超えたら購入しない",
-      "fallback": true
-    },
-    {
-      "t": "有料AI機能を1か月だけ比較検証する",
-      "why": "無料制約で実装速度を落とさず、支払う価値を測るため。",
-      "cost_min": 3000,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.55,
-      "success_p_min": 0.35,
-      "success_p_max": 0.7,
-      "success_why": "短縮効果はあり得るが、成果との相関は未計測",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 30,
-      "outcome": "無料版との比較メモが1件残る",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.12,
-      "impact_why": "実装速度を上げる可能性はあるが成果増加は未確認",
-      "evidence_ids": [
-        "user-goal",
-        "action-history"
-      ],
-      "assumptions": [
-        "週2回以上使う"
-      ],
-      "disconfirm": "無料版と完成件数が変わらない",
-      "continue_if": "無料版より月2件以上多く成果物が完成する",
-      "stop": "30日で成果物が2件増えなければ解約する",
-      "fallback": true
     }
   ],
-  "kan": "本命ではないが、今後14日以内にDeepSeek以外の主要プロバイダも旧モデルの強制値上げに追随すると見る。"
+  "kan": "今後14日以内に、価格競争の余力がない中小のAPIプロバイダーの間で、突発的なサービス終了や主要モデルの強制統合が表面化すると見る。"
 }

@@ -1,53 +1,68 @@
 {
-  "date": "2026-08-27",
-  "updated_at": "2026-08-27 10:07",
+  "date": "2026-08-28",
+  "updated_at": "2026-08-28 14:59",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouter上のDeepSeek V4 Flash Latestが14%値下げされた一方、同0731版は50%値上げされた。旧バージョンの切り捨てと新モデルへの移行強制をAPI価格差で演出している。",
-  "ura": "プロバイダ側がインフラの維持コストを新型へ集中させたいからだ。古いバージョンのAPIを強制的に割高にすることで、ユーザーの移行コストを肩代わりさせずに一気に新モデルへ誘導する狙いがある。",
-  "ura_taikou": "単なる一時的なプロバイダ側のデータ入力ミスや為替変動による例外的な調整であるという仮説は、新版の値下げと旧版の50%値上げという非対称な方向性が同時に起きている点から却下した。",
-  "dousuru": "OpenRouterのダッシュボードを開き、APIキーの紐づきを旧「0731」版から「Latest」あるいは最新の「Pro」モデルへ今すぐ手動で切り替えろ。放置すれば無駄なコストを払うことになるため、朝の3分でモデルのルーティング設定を書き換えろ。",
-  "kan": "本命ではないが、今後14日以内にDeepSeek以外の主要プロバイダも旧モデルの強制値上げに追随すると見る。",
-  "kan_konkyo": "OpenRouterにおける同一モデルの新旧での対照的な価格改定（値下げと50%値上げの同時発生）というデータから。",
-  "kan_hantai": "競合他社が旧モデルを据え置くことで、価格優位性をアピールして顧客を奪う戦略に出る可能性が高い。",
-  "kan_conf": 0.32,
-  "ippan": "AIサービスの裏で古い料金プランや旧型モデルがこっそり値上げされる動きが出ている。普段使っているアプリやAPIで、知らず知らずのうちに古いバージョンに高い料金を払い続けていないか、一度契約状況を確認しておくと損をせずに済む。",
+  "omote": "OpenRouter上でMoonshotAIのKimi K2.5に2026年8月31日の退役予定日が設定され、DeepSeek V4 Proも41%の大幅値下げを実施した。",
+  "ura": "API仲介プラットフォームが開発リソースの収益化に窮し、維持コストの高い旧世代モデルの切り捨てを前倒しせざるを得なくなっている裏返しと見る。この突然のライフサイクル短縮は、資本投下に見合うリターンを生まないモデルを即座に削ぎ落とす生存競争の表れであり、個人開発者が依存してきた特定のミドルレンジAPIが前触れなく消失するリスクが跳ね上がっている。",
+  "ura_taikou": "単なるプラットフォーム側のインフラ効率化やバージョン管理の定常的なアップデートに過ぎず、コスト圧迫による強制退役ではないという仮説を検討したが、複数のモデルで同時に価格破壊と旧モデルの廃止が観測されているため退けた。",
+  "dousuru": "DeepSeekの低価格化で手に入った安価なAPI枠を活用し、iPhone単体のSafariから動かしている既存の個人用Webアプリのエラー検知ロジックを今すぐ書き換えろ。新しいネタへの乗り換えは即座に止め、現在進行中のアプリの改良だけに30分の作業時間を使い切れ。",
+  "kan": "今後14日以内に、価格競争の余力がない中小のAPIプロバイダーの間で、突発的なサービス終了や主要モデルの強制統合が表面化すると見る。",
+  "kan_konkyo": "OpenRouter上でのMoonshotAI K2.5への具体的な退役予定日設定と、DeepSeek V4 Proの41%値下げという数字から推測した。",
+  "kan_hantai": "主要プロバイダーの資金力が十分であれば、価格競争が激化しても当面の間はモデルの強制退役やサービス統合は起きない。",
+  "kan_conf": 0.35,
+  "ippan": "AIの価格破壊が進むと、最新モデルと謳う有料アプリの多くが中身は古いモデルのまま高額な料金を取り続ける現象が起きます。見知らぬサービスに安易に課金せず、信頼できるプラットフォームの直APIを使うか無料枠の範囲内で十分に検証してから判断してください。",
   "votes": [
     0.22,
-    0.42,
-    0.32
+    0.38,
+    0.35
   ],
   "mijoriku": [
     {
-      "title": "BrowserForge: Scaling Web Episode via Parallel Browser Sandboxes",
-      "desc": "並列ブラウザサンドボックスを用いてWebエピソードの訓練データをスケーリングする手法",
-      "why": "日本語圏ではまだ個人のWeb自動化におけるデータ収集のボトルネック突破策としてほとんど議論されていないため"
+      "title": "CritICL: Inference-Time Weak-to-Strong Generalization from Small Language Model Failure Modes",
+      "desc": "小規模モデルの失敗モードを逆手に取って推論時の一般化性能を高めるフレームワーク",
+      "why": "高額な巨大LLMを呼ばずにiPhone上の軽量スクリプトでエラーハンドリングを強化できるため、日本でまだ誰も応用していない"
     },
     {
-      "title": "Recursive Experiential-Working Memory Evolution for Long-Horizon Agent Harnesses",
-      "desc": "長期エージェントの記憶維持における課題を解決する再帰的経験・ワーキングメモリ進化構造",
-      "why": "自律型AIエージェントの商用化を左右するコンテキスト管理の最新アプローチとして、国内の個人開発者に見落とされているため"
+      "title": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
+      "desc": "エージェントの試行錯誤から得られた経験を永続的な知識として構造化・再利用する仕組み",
+      "why": "プロンプトの属人性を排除して個人開発アプリの自動改善ループを構築する隙になるため"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 14%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値上げ 50%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値上げ 56%",
-    "[差分] 価格が動いた: Google: Gemma 4 31B 値下げ 10%",
-    "[差分] 価格が動いた: Qwen: Qwen3.5-35B-A3B 値下げ 10%",
-    "[差分] 価格が動いた: Qwen: Qwen3.5 397B A17B 値下げ 22%"
+    "[差分] 退役予定日が設定された: MoonshotAI: Kimi K2.5 → 2026-08-31",
+    "[差分] 価格が動いた: Qwen: Qwen3.8 Flash 値下げ 6%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値下げ 41%",
+    "[差分] 価格が動いた: NVIDIA: Nemotron 3.5 Lightning 値上げ 25%",
+    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値上げ 33%",
+    "[差分] 価格が動いた: MoonshotAI: Kimi K2.7 Code 値下げ 1%"
   ],
   "evidence": [
     {
-      "claim": "OpenRouter上のDeepSeek V4 Flash Latest値下げと旧版値上げによる新モデルへのユーザー誘導",
-      "confidence": 0.45,
-      "disconfirm": "旧モデルの価格が元の水準に戻り、新旧併売が長期化する場合",
+      "claim": "APIプロバイダーによる旧世代モデルの切り捨てと価格競争の激化",
+      "confidence": 0.65,
+      "disconfirm": "主要プロバイダーが旧世代モデルのサポート期間を延長し、価格を据え置くこと",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 14%",
+          "title": "[差分] 退役予定日が設定された: MoonshotAI: Kimi K2.5 → 2026-08-31",
           "url": "https://openrouter.ai/models"
         },
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値上げ 50%",
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値下げ 41%",
+          "url": "https://openrouter.ai/models"
+        }
+      ]
+    },
+    {
+      "claim": "資本力不足による中小APIプロバイダーのサービス終了リスクの増大",
+      "confidence": 0.6,
+      "disconfirm": "すべての主要プラットフォームが十分な資金調達に成功し、旧モデルを維持し続けること",
+      "sources": [
+        {
+          "title": "[差分] 退役予定日が設定された: MoonshotAI: Kimi K2.5 → 2026-08-31",
+          "url": "https://openrouter.ai/models"
+        },
+        {
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値下げ 41%",
           "url": "https://openrouter.ai/models"
         }
       ]

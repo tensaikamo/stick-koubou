@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-08-27 10:05",
+  "updated_at": "2026-08-28 14:57",
   "score": {
     "hit": 4,
     "miss": 22,
     "total": 26,
     "rate": 0.15384615384615385,
-    "pending": 14,
+    "pending": 12,
     "brier": 0.5075115384615386,
     "brier_n": 26,
     "brier_initial": 0.5075115384615386,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-08-28",
-    "days": 1
+    "days": 0
   },
   "decided": [
     {
@@ -189,34 +189,6 @@
     }
   ],
   "pending": [
-    {
-      "id": "2026-07-23-h02",
-      "claim": "AnthropicはClaude Codeの初期化トークン消費量を削減するアップデートを公開する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-13",
-      "confidence": 0.7,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "",
-      "evidence": "Claude Codeの更新情報はGitHubリポジトリのCHANGELOG.mdを参照するよう案内されており、提供されたリリースノートページからは確認できません。",
-      "signals": []
-    },
-    {
-      "id": "2026-08-03-h01",
-      "claim": "OpenAIは10日以内に、PyPI（Python Package Index）にて「codex-security」またはそれに類する公式Pythonパッケージを公開する。",
-      "subject": "OpenAI",
-      "deadline": "2026-08-13",
-      "confidence": 0.75,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "TypeScript SDKとCLIのバイナリ配布のみに機能を絞り、Python用パッケージの個別提供を見送る可能性がある。",
-      "evidence": "提供されたPyPIトップページの内容だけでは「codex-security」等のOpenAI公式パッケージが公開されているか確認できないため判定不能。",
-      "signals": []
-    },
     {
       "id": "2026-07-25-h02",
       "claim": "Google CloudはGemini 3.5 Flash Cyberの公開ドキュメントにおいて、セキュリティ検証エージェント用の専用隔離サンドボックス実行環境ガイドラインを一般公開する。",
@@ -393,6 +365,51 @@
           "date": "2026-08-26",
           "dir": "kill",
           "why": "本日の事象においてopenai Python SDK v3.3.1がリリースされたため、v3.3.x系のパッチ追加の指標に該当する。"
+        }
+      ]
+    },
+    {
+      "id": "2026-08-25-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて国防総省または情報機関向けの専用エンタープライズプランや専用ソリューションの正式発表を行わない。",
+      "subject": "Anthropic",
+      "deadline": "2026-09-08",
+      "confidence": 0.906,
+      "initial_confidence": 0.86,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "水面下で既に政府機関とのパイロット運用および認証手続きが完了しており、求人公開と連動してマーケティング発表を即時投入してくる可能性がある。",
+      "evidence": "",
+      "signals": [
+        {
+          "date": "2026-08-25",
+          "dir": "confirm",
+          "why": "本日の求人一覧に「Head of National Security Sales (DoW/IC)」など政府・国防向けの追加求人が確認できるため。"
+        }
+      ]
+    },
+    {
+      "id": "2026-08-26-h01",
+      "claim": "Googleは今後14日以内に、PyPIにおけるgoogle-genaiの新たなメジャーバージョン(v3.0.0)をリリースしない。",
+      "subject": "Google",
+      "deadline": "2026-09-09",
+      "confidence": 0.82,
+      "initial_confidence": 0.65,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "仕様変更への切迫した対応として、開発陣が前倒しでメジャーバージョンを強制リリースする動機が存在する点",
+      "evidence": "",
+      "signals": [
+        {
+          "date": "2026-08-26",
+          "dir": "confirm",
+          "why": "本日の事象においてgoogle-genai Python SDK v2.20.0がリリースされており、バージョンが2.20.x台のマイナー修正に留まるという指標に合致する。"
+        },
+        {
+          "date": "2026-08-27",
+          "dir": "confirm",
+          "why": "google-genai Python SDK v2.20.0がリリースされ、2.20.x台の更新となったため。"
         }
       ]
     }
