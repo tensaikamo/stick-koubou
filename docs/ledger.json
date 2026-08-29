@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-08-29 12:24",
+  "updated_at": "2026-08-30 08:35",
   "score": {
     "hit": 6,
     "miss": 22,
     "total": 28,
     "rate": 0.21428571428571427,
-    "pending": 9,
+    "pending": 8,
     "brier": 0.4716392857142858,
     "brier_n": 28,
     "brier_initial": 0.471982142857143,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-01",
-    "days": 3
+    "days": 2
   },
   "decided": [
     {
@@ -201,20 +201,6 @@
   ],
   "pending": [
     {
-      "id": "2026-07-28-h02",
-      "claim": "Hugging Faceは18日以内に、外部AIモデルによる自動評価アクセスに関するネットワーク接続制限とアクセス制御方針を公式セキュリティドキュメントに追加する。",
-      "subject": "Hugging Face",
-      "deadline": "2026-08-15",
-      "confidence": 0.8,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "Hugging Faceがプラットフォームのオープン性を重視し、ネットワーク遮断を行わず評価アカウントの身元確認強化のみにとどめる可能性がある。",
-      "evidence": "Hugging Face公式ブログには該当する発表が確認できないが、的中条件に含まれる公式セキュリティポリシーページやセキュリティドキュメントの改定状況が確認できないため判定不能。",
-      "signals": []
-    },
-    {
       "id": "2026-08-02-h01",
       "claim": "NVIDIAが発表する四半期決算において、データセンター部門の売上高が前四半期比10%以上増加する。",
       "subject": "NVIDIA",
@@ -351,7 +337,7 @@
       "claim": "Googleは今後14日以内に、PyPIにおけるgoogle-genaiの新たなメジャーバージョン(v3.0.0)をリリースしない。",
       "subject": "Google",
       "deadline": "2026-09-09",
-      "confidence": 0.877,
+      "confidence": 0.918,
       "initial_confidence": 0.65,
       "result": null,
       "status": "pending",
@@ -360,14 +346,14 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-08-27",
-          "dir": "confirm",
-          "why": "google-genai Python SDK v2.20.0がリリースされ、2.20.x台の更新となったため。"
-        },
-        {
           "date": "2026-08-29",
           "dir": "confirm",
           "why": "google-genai Python SDK v2.20.0がリリースされ、バージョンが2.20.x台に留まる指標に合致したため。"
+        },
+        {
+          "date": "2026-08-30",
+          "dir": "confirm",
+          "why": "google-genai Python SDK v2.20.0がリリースされ、バージョンが2.20.x台に留まっていることが確認されたため。"
         }
       ]
     }
@@ -506,6 +492,13 @@
   ],
   "records": [
     {
+      "id": "2026-08-30-r01",
+      "date": "2026-08-30",
+      "headline": "CritICL: Inference-Time Weak-to-Strong Generalization from Small Language Model Failure Modes",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2608.27455v1"
+    },
+    {
       "id": "2026-08-29-r03",
       "date": "2026-08-29",
       "headline": "Anthropicがサイバー攻撃悪用対策を担う執行リードの求人を開始",
@@ -581,14 +574,7 @@
       "headline": "SWE Refactor Benchに関する論文の公開",
       "certainty": "reported",
       "url": "https://arxiv.org/abs/2608.23564v1"
-    },
-    {
-      "id": "2026-08-26-r03",
-      "date": "2026-08-26",
-      "headline": "ReWorld: 長期記憶を持つインタラクティブワールドモデルに関する論文の公開",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2608.23565v1"
     }
   ],
-  "record_count": 86
+  "record_count": 87
 }
