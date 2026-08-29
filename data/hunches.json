@@ -550,7 +550,7 @@
       }
     ],
     "signals": [],
-    "status": "pending",
+    "status": "unscorable",
     "resolved_at": null,
     "result": null,
     "evidence": {
@@ -561,7 +561,7 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "needs_review": true
+    "needs_review": false
   },
   {
     "id": "2026-07-29-h01",

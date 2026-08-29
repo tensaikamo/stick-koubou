@@ -2611,5 +2611,25 @@
       "2026-08-25-r01",
       "2026-08-24-r02"
     ]
+  },
+  {
+    "id": "2026-08-30-r01",
+    "created_at": "2026-08-30T08:33:05.712337+09:00",
+    "headline": "CritICL: Inference-Time Weak-to-Strong Generalization from Small Language Model Failure Modes",
+    "what_happened": "Yufan Wuらの研究グループが、小規模言語モデルの失敗モードを推論時の指針として活用するフレームワーク「CritICL」に関する論文をarXivに投稿した。推論時スケーリングの効率改善を目的とし、弱モデルの失敗パターンをプロンプト内での批判的文脈例として統合する手法を提案している。",
+    "background": "LLMの推論時性能向上において、計算効率を維持しながら外部検証や繰り返し生成に依存しない手法の研究が進められている。",
+    "changed": "小規模モデルの失敗モードを活用した推論時一般化手法「CritICL」の論文が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2608.27455v1",
+      "title": "CritICL: Inference-Time Weak-to-Strong Generalization from Small Language Model Failure Modes",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
   }
 ]
