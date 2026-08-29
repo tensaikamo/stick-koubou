@@ -1,167 +1,162 @@
 {
-  "date": "2026-08-28",
+  "date": "2026-08-29",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "DeepSeekの価格引き下げを受けて今すぐ既存アプリのエラー処理をどう書き換えるか",
-    "APIの突発的な終了に備えてiPhoneから切り替えられるバックアップ先をどこに固定するか",
-    "現在進行中のアプリの改良において今日の30分でどの機能を削ぎ落とすか"
+    "Geminiの価格急騰に対し、今日どの代替APIキーへ全ルートを切り替えるか？",
+    "API料金の高騰で消える個人開発者の隙を、どのオープンウェイトモデルで突くか？",
+    "iPhoneからアクセスして無料枠で検証可能な別モデルのプレイグラウンドはどこか？"
   ],
   "moves": [
     {
-      "t": "既存アプリのエラー検知ロジックに新モデルのフォールバックを書き込む",
-      "why": "特定のミドルレンジAPIの消失リスクに備えて動的な切り替え経路を確保するためだ。",
+      "t": "OpenRouterの管理画面でモデルをGeminiからDeepSeekへ一括切替する",
+      "why": "Gemini 3.7 Flashの100%値上げに対応するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.3,
-      "success_p_min": 0.1,
-      "success_p_max": 0.5,
-      "success_why": "iPhoneのブラウザ上のコード編集は制約が多く意図通りに動かないことがあるため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "API接続エラー時に予備エンドポイントへ自動で切り替わるコードの保存",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "プラットフォーム側の変更によるサービス停止を防げるため。",
-      "evidence_ids": [
-        "2026-07-22-r02"
-      ],
-      "assumptions": [
-        "GitHubのWebエディタまたは対応プラットフォームから直接コード修正ができること"
-      ],
-      "disconfirm": "iPhoneからのコード編集で構文エラーが取れない場合",
-      "continue_if": "テストリクエストが正常にフォールバック先へ流れた場合",
-      "stop": "環境の制約によりコードの保存ができない場合"
-    },
-    {
-      "t": "個人用アプリの不要なAPI呼び出し処理を削除して最適化する",
-      "why": "維持コストの高い旧世代モデルへの依存を断ち切りリソースをスリム化するためだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.2,
-      "success_p_max": 0.7,
-      "success_why": "コードを削るだけの作業でありiPhoneからでも十分に完遂できるため。",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "無駄なリクエスト処理が除外されたスリムなコードベース",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "アプリの動作安定性と保守性が向上するため。",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "該当部分のコードが特定されていること"
-      ],
-      "disconfirm": "削除によって既存の重要機能まで停止した場合",
-      "continue_if": "エラーなく軽量化された動作が確認できた場合",
-      "stop": "依存関係が複雑でiPhoneからの修正が困難な場合"
-    },
-    {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
+      "success_p": 0.85,
+      "success_p_min": 0.8,
       "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 15,
+      "success_why": "APIキーのルーティング設定変更のみで完了するため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
+      "outcome": "API呼び出し先が安価なモデル群へ完全に移行していること",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "コスト急騰による開発中断を防ぐため",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-08-26-r01"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "OpenRouterアカウントにアクセス可能であること"
       ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "切替後も旧モデルの課金が継続する場合",
+      "continue_if": "エラーなく代替モデルから応答が返ること",
+      "stop": "API接続に致命的な互換性エラーが発生した場合"
     },
     {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "t": "GitHub上のコードベースでGemini固定のエンドポイント変数を書き換える",
+      "why": "ハードコードされた依存先を排除してコスト最適化を図るため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "value_score": 2,
-      "learning_value": 3,
-      "time_minutes": 20,
+      "success_p_min": 0.7,
+      "success_p_max": 0.8,
+      "success_why": "iPhoneのGitHub Webエディタから直接編集できるため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "一次情報の要点メモが3行残る",
-      "category": "research",
+      "outcome": "リポジトリの環境変数部分が更新されコミットされていること",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "コードレベルでのベンダーロックインを回避するため",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-08-22-r01"
       ],
       "assumptions": [
-        "読む情報が現在の目標に関係する"
+        "GitHubのWebエディタが利用可能であること"
       ],
-      "disconfirm": "要点が次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
+      "disconfirm": "Webエディタでの保存時にコンフリクトが起きること",
+      "continue_if": "コミットが正常に完了すること",
+      "stop": "認証エラーによりリポジトリを編集できない場合"
     },
     {
-      "t": "予測を1件確認し確度メモを1行更新する",
-      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
+      "t": "Qwenのオープンウェイトモデルを代替とするフォールバック設定を記述する",
+      "why": "単一プロバイダー障害時の自動退避ルートを確保するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.65,
+      "success_p_min": 0.55,
+      "success_p_max": 0.75,
+      "success_why": "マルチモデル対応のルーター設定はドキュメント化されているため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "フォールバック先が定義された設定ファイルがプッシュされていること",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "プラットフォーム側の価格変動リスクを相殺するため",
+      "evidence_ids": [
+        "2026-07-25-r07"
+      ],
+      "assumptions": [
+        "設定ファイルのフォーマット仕様を把握していること"
+      ],
+      "disconfirm": "構文エラーでルーターが起動しない場合",
+      "continue_if": "テストリクエストが正常に別モデルへルーティングされること",
+      "stop": "フォールバック機能が有償プラン限定である場合"
+    },
+    {
+      "t": "APIコール数を監視するダッシュボードの更新スクリプトをiPhoneから確認する",
+      "why": "モデル切替後の消費コストとエラー率をリアルタイムで追跡するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.7,
-      "success_p_min": 0.55,
+      "success_p_min": 0.6,
       "success_p_max": 0.8,
-      "success_why": "既存予測の更新なので新規企画より着地しやすい",
-      "value_score": 2,
-      "learning_value": 4,
-      "time_minutes": 20,
+      "success_why": "既存のブラウザモニタリングツールをそのまま利用できるため",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "追跡中予測の確度メモが更新される",
+      "outcome": "ダッシュボードに直近のAPIリクエスト状況が正しく表示されること",
       "category": "review",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "誤った前提で投資する損失を減らす",
+      "impact_min": 0.1,
+      "impact_max": 0.15,
+      "impact_why": "コスト超過の予兆を早期に察知するため",
       "evidence_ids": [
-        "action-history"
+        "2026-08-15-r01"
       ],
       "assumptions": [
-        "予測が現在の投資判断に関係する"
+        "モニタリング用Webページがモバイル表示に対応していること"
       ],
-      "disconfirm": "確度更新が次の行動や支出を変えない",
-      "continue_if": "確度を動かす一次根拠が見つかった",
-      "stop": "根拠URLを1本確認したら終了",
-      "fallback": true
+      "disconfirm": "データが反映されずローディングのままになる場合",
+      "continue_if": "直近のメトリクスがグラフ化されること",
+      "stop": "監視ツール自体の仕様が変更されている場合"
+    },
+    {
+      "t": "Metaのオープンウェイト系最新モデルを比較検証するためのプロンプト集を作る",
+      "why": "商用利用時の推論精度とコストパフォーマンスを定量評価するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.6,
+      "success_p_min": 0.5,
+      "success_p_max": 0.7,
+      "success_why": "ブラウザ上のプレイグラウンドで容易にテスト入力できるため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "主要モデル間での出力比較結果をまとめたメモが残ること",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "最適な代替モデルを選定するための判断材料になるため",
+      "evidence_ids": [
+        "2026-07-25-r07"
+      ],
+      "assumptions": [
+        "各社のプレイグラウンドが無償で利用可能であること"
+      ],
+      "disconfirm": "モデルごとの挙動差が小さすぎて優劣がつかない場合",
+      "continue_if": "明確な出力品質の差が確認できること",
+      "stop": "利用制限により検証用プロンプトが実行できない場合"
     }
   ],
-  "kan": "今後14日以内に、価格競争の余力がない中小のAPIプロバイダーの間で、突発的なサービス終了や主要モデルの強制統合が表面化すると見る。"
+  "kan": "米連邦官報の公示を受け、今後30日以内に大手取引所がGPUコンピュート時間を裏付けとする標準化先物契約の正式申請に踏み切る確率は、過去の新規コモディティ承認の基準率から見て五分に満たない30%の目にとどまると見る。"
 }
