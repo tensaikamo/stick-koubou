@@ -2530,5 +2530,86 @@
       "2026-08-06-r03",
       "2026-08-06-r02"
     ]
+  },
+  {
+    "id": "2026-08-29-r01",
+    "created_at": "2026-08-29T12:17:35.369057+09:00",
+    "headline": "OpenAIが公式Python SDKバージョン3.6.0を公開",
+    "what_happened": "OpenAIは公式Pythonライブラリの最新版「openai 3.6.0」をPyPIに公開した。Python 3.10以上に対応し、同期・非同期クライアントおよび型定義を提供する。OpenAPI仕様に基づいた自動生成コードで構成されている。",
+    "background": "OpenAIはAPIクライアントの仕様変更や新機能追加に合わせて高頻度でマイナーバージョンをリリースしている。",
+    "changed": "PyPI経由でインストール可能な公式Pythonクライアントの最新バージョンが3.6.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.6.0/",
+      "title": "openai Python SDK v3.6.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-27-r01",
+      "2026-08-20-r02",
+      "2026-08-19-r01",
+      "2026-08-18-r02",
+      "2026-08-18-r01",
+      "2026-08-16-r03"
+    ]
+  },
+  {
+    "id": "2026-08-29-r02",
+    "created_at": "2026-08-29T12:17:35.369057+09:00",
+    "headline": "Anthropicが公式Python SDKバージョン1.2.0を公開",
+    "what_happened": "Anthropicは公式Pythonクライアントのマイナーアップデート版「anthropic 1.2.0」をPyPIにリリースした。SDKを通じたClaude APIの呼び出し機能を提供する。",
+    "background": "AnthropicはClaudeの機能拡張やAPI仕様更新に追従するため、定期的にSDKのバージョンを更新している。",
+    "changed": "PyPIにおけるAnthropic公式SDKの最新タグが1.2.0となった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.2.0/",
+      "title": "anthropic Python SDK v1.2.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-27-r05",
+      "2026-08-27-r04",
+      "2026-08-27-r03",
+      "2026-08-27-r02",
+      "2026-08-25-r01",
+      "2026-08-24-r02"
+    ]
+  },
+  {
+    "id": "2026-08-29-r03",
+    "created_at": "2026-08-29T12:17:35.369057+09:00",
+    "headline": "Anthropicがサイバー攻撃悪用対策を担う執行リードの求人を開始",
+    "what_happened": "Anthropicは「Safeguards Enforcement Lead, Cyber Harms」の職種で新規求人を公開した。マルウェア開発や攻撃的エクスプロイトなど、同社AIモデルが悪意あるサイバー作戦に悪用される事例の検知・執行フレームワーク策定とチーム統括を担当する。勤務地はワシントンDC、サンフランシスコ、ニューヨーク等。",
+    "background": "フロンティアAIモデルのコーディング能力向上に伴い、マルウェア作成や脆弱性悪用への転用リスクに対する監視体制の構築がAI各社に求められている。",
+    "changed": "Anthropic社内においてサイバー悪用事案に特化した執行アナリストチームの専任リーダー職の募集が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5403775008",
+      "title": "[新規求人] anthropic: Safeguards Enforcement Lead, Cyber Harms (Remote-Friendly (Travel-Required) |  Washington, DC; San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.7-flash",
+    "related_ids": [
+      "2026-08-27-r05",
+      "2026-08-27-r04",
+      "2026-08-27-r03",
+      "2026-08-27-r02",
+      "2026-08-25-r01",
+      "2026-08-24-r02"
+    ]
   }
 ]

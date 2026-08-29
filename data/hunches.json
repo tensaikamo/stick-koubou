@@ -322,7 +322,7 @@
     "deadline": "2026-08-14",
     "confidence": 0.75,
     "counter": "Google Cloudが個別製品ごとのガイドライン追加ではなく、既存のVertex AI全般のセキュリティガイドラインの改訂のみで対応を済ませる可能性がある。",
-    "status": "pending",
+    "status": "unscorable",
     "resolved_at": null,
     "result": null,
     "evidence": {
@@ -333,7 +333,7 @@
     "model": "gemini-3.6-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "needs_review": true
+    "needs_review": false
   },
   {
     "id": "2026-07-26-h01",
@@ -1563,15 +1563,19 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-29T12:18:08.486388+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "期日である2026年8月28日までのAnthropic公式ニュースルームにおいて、公式資格認証プログラム（Certification/Credentialing）のローンチ発表は確認されなかったため。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.7-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "judge_attempts": 1
+    "judge_attempts": 1,
+    "needs_review": false
   },
   {
     "id": "2026-08-15-h01",
@@ -1685,15 +1689,19 @@
         "conf_after": 0.95
       }
     ],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-08-29T12:18:08.486388+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "判定期限（2026-08-29）時点でPyPIにおけるgoogle-genaiの最新バージョンが2.20.0であり、3.0.0未満（v2系）に維持されていることが確認されたため。",
+      "url": "https://pypi.org/project/google-genai/#history"
+    },
     "rejected": [],
     "model": "gemini-3.7-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "initial_confidence": 0.89
+    "initial_confidence": 0.89,
+    "needs_review": false
   },
   {
     "id": "2026-08-18-h01",
