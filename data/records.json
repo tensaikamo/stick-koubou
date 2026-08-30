@@ -2631,5 +2631,92 @@
     "body_fetched": true,
     "model": "gemini-3.5-flash-lite",
     "related_ids": []
+  },
+  {
+    "id": "2026-08-31-r01",
+    "created_at": "2026-08-31T08:44:41.318115+09:00",
+    "headline": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
+    "what_happened": "AIエージェントのスキルを進化させるため、実行経験を永続的な知識ベース（Wiki）へ体系的にコンパイル・統合するフレームワーク「WikiSkill」を提案する論文がarXivに投稿された。未加工の実行経験、蓄積された知識、実行可能なスキルを分離して共進化させるアプローチを示している。著者陣はLiyan Tangほか。",
+    "background": "AIエージェントの自律的なスキル獲得と経験の蓄積に関する研究。",
+    "changed": "エージェントの経験を永続的知識へ変換するWikiSkillフレームワークの論文が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2608.27454v1",
+      "title": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-08-31-r02",
+    "created_at": "2026-08-31T08:44:41.318115+09:00",
+    "headline": "SWE-Prime: Fewer Trajectories, Better Performance",
+    "what_happened": "実世界のソフトウェア課題を解決するLLMの能力を高めるため、プロセス品質や結果品質に基づいてトレーニングデータを軌跡およびセグメントレベルで段階的にフィルタリングする2段階SFTデータ選択手法「SWE-Prime」を提案する論文がarXivに投稿された。ノイズの多い指導を排除し効率的な学習を目指す。著者陣はDewu Zhengほか。",
+    "background": "ソフトウェア工学ベンチマークにおけるLLMのエージェント性能とSFTデータ品質の改善に関する研究。",
+    "changed": "高品質な軌跡選択を行うSFT手法SWE-Primeの論文が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2608.27449v1",
+      "title": "SWE-Prime: Fewer Trajectories, Better Performance",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-08-31-r03",
+    "created_at": "2026-08-31T08:44:41.318115+09:00",
+    "headline": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
+    "what_happened": "連邦官報（Federal Register）の計算デリバティブ契約の上場に関する意見募集ページであるが、本文は自動スクレイピング対策のCAPTCHA認証画面となっており、詳細な内容は取得できなかった。body_fetched=trueの記事であるがタイトルのみに基づいている。",
+    "background": "AI計算資源やデリバティブ関連の米国規制および意見募集手続き。",
+    "changed": "連邦官報の該当ページでアクセス制限によるCAPTCHA認証が発生していることが確認された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts",
+      "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
+      "hn_score": 0,
+      "name": "FederalRegister",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-08-31-r04",
+    "created_at": "2026-08-31T08:44:41.318115+09:00",
+    "headline": "[新規求人] anthropic: Director, Finance Systems - Revenue Systems Engineering",
+    "what_happened": "Anthropicがサンフランシスコまたはシアトルを勤務地として、財務システム部門のディレクター（Revenue Systems Engineering）の求人を公開した。受注から入金までのOrder-to-Cashシステムのテクニカルアーキテクチャの構築、収益認識プロセスの自動化、ERPエコシステム内での収益システムの統合等を担う役割となっている。",
+    "background": "グローバルな事業拡大に伴うAnthropicの社内財務・収益基盤の構築と人材採用。",
+    "changed": "収益システムエンジニアリングを統括するディレクター職の求人が公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5409055008",
+      "title": "[新規求人] anthropic: Director, Finance Systems - Revenue Systems Engineering (San Francisco, CA | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-29-r03",
+      "2026-08-29-r02",
+      "2026-08-27-r05",
+      "2026-08-27-r04",
+      "2026-08-27-r03",
+      "2026-08-27-r02"
+    ]
   }
 ]

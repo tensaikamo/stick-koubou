@@ -972,7 +972,7 @@
     "counter": "主要顧客による設備投資時期の先送りや先端パッケージング工程での歩留まり低下が出荷量に影響を及ぼす可能性がある。",
     "indicators": [],
     "signals": [],
-    "status": "pending",
+    "status": "unscorable",
     "resolved_at": null,
     "result": null,
     "evidence": {
@@ -1014,7 +1014,7 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "judge_attempts": 3,
-    "needs_review": true
+    "needs_review": false
   },
   {
     "id": "2026-08-02-h02",
