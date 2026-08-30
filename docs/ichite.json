@@ -1,167 +1,164 @@
 {
-  "date": "2026-08-30",
+  "date": "2026-08-31",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの値上げを受け、APIの呼び出し頻度を現在の何割まで削るか?",
-    "最小トークンルートへの切り替え設定を今夜の30分以内に終えるか?",
-    "主要仲介プラットフォームの月額定額廃止に備え、代替プロバイダの直契約へ動くか?"
+    "OpenAIのSDK v3.6.0の変更点を確認し、既存のAPI呼び出しに影響が出るかを今すぐ検証したか？",
+    "Anthropicのビルリング系求人から読み取れるAPI価格改定の兆候に対し、手元の予算配分をどう組み替えるか？",
+    "SpaceXとの統合による開発環境の変化に対し、今夜iPhoneからアクセスするクラウドIDEの導線を固定したか？"
   ],
   "moves": [
     {
-      "t": "xAIのプラットフォームエンジニア募集要項から要求スキルと接続仕様の変更点を分析する",
-      "why": "プラットフォーム側の次の統合の動きを先回りして察知するため",
+      "t": "Anthropicの請求管理システム系求人ページの要求スキルを読み込む",
+      "why": "Anthropicが財務システムや請求管理に特化したエンジニアの採用を急ぐ背景から、料金体系の急変リスクをあらかじめ見抜くためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.6,
-      "success_p_max": 0.8,
-      "success_why": "公式の採用情報に具体的な技術スタックが記載されているため",
+      "success_p": 0.85,
+      "success_p_min": 0.75,
+      "success_p_max": 0.9,
+      "success_why": "Greenhouseの求人ページは常に一般公開されており、閲覧の障害が少ないため。",
       "value_score": 3,
       "learning_value": 4,
-      "time_minutes": 20,
+      "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "要求スキルとAPI連携の変更点に関する分析メモ",
+      "outcome": "求人要件から読み取れるAnthropicの収益化構造の変化に関する要約メモ",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "次のエコシステムの動きを予測できるため",
+      "impact_max": 0.15,
+      "impact_why": "資本がどのようなインフラ投資に動いているかを現場の動きから逆算できるため。",
       "evidence_ids": [
-        "2026-08-06-r02"
+        "2026-08-31-r04",
+        "2026-08-27-r04"
       ],
       "assumptions": [
-        "求人情報からプラットフォームの方向性が読み取れること"
+        "求人情報が現在も有効であり閲覧可能であること"
       ],
-      "disconfirm": "求人内容が定型的なもので技術的な特記がない場合",
-      "continue_if": "具体的なAPI統合の方向性が確認できた場合",
-      "stop": "情報が一般公開の枠を超えない場合"
+      "disconfirm": "募集要項に収益システムや課金基盤に関する具体的な技術要件が記載されていない場合",
+      "continue_if": "課金やリソース配分に関する新たなキーワードが複数見つかった場合",
+      "stop": "単なる一般的なコーポレート経理の求人であることが確認できた場合"
     },
     {
-      "t": "主要モデルの価格改定に合わせた有料プランの月額上限を5000円に設定してプロトタイプ運用を継続する",
-      "why": "値上げ環境下でも実験を継続しつつ最大の赤字額を固定するため",
-      "cost_min": 1000,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.65,
-      "success_p_min": 0.55,
-      "success_p_max": 0.75,
-      "success_why": "予算上限を設定することで破綻を防ぎながら実機テストを回せるため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 30,
-      "outcome": "月額上限付き有料プランでの動作検証完了",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "有料環境での実際の挙動データを確保できるため",
-      "evidence_ids": [
-        "2026-08-01-r02",
-        "2026-08-06-r02"
-      ],
-      "assumptions": [
-        "月額上限に達した時点でAPIが自動停止すること"
-      ],
-      "disconfirm": "上限超過後に意図しない課金が発生した場合",
-      "continue_if": "予算内で期待される処理が回り続ける場合",
-      "stop": "コスト対効果の合致が見込めなくなった場合"
-    },
-    {
-      "t": "xAIのデータ統合動向を踏まえた簡易的な外部連携スクリプトをiPhoneのWebエディタで修正する",
-      "why": "プラットフォームの変化に対応する最小限のコード資産を維持するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.5,
-      "success_p_max": 0.7,
-      "success_why": "既存のWebエディタ上でAPIのエンドポイントを書き換えるだけで完結するため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "エンドポイント変更済みの軽量スクリプト",
-      "category": "build",
-      "terminal": true,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "環境変化に対する即座の適応力がつくため",
-      "evidence_ids": [
-        "2026-08-06-r02"
-      ],
-      "assumptions": [
-        "iPhoneのWebブラウザ環境だけでスクリプトの修正と保存ができること"
-      ],
-      "disconfirm": "APIの仕様が複雑でブラウザ編集の限界を超える場合",
-      "continue_if": "エラーなくコードの保存とテスト送信が通った場合",
-      "stop": "プラットフォーム側の仕様が不安定な場合"
-    },
-    {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "t": "Anthropic公式Python SDK v1.2.0の更新履歴と前回バージョンの差分を測る",
+      "why": "OpenAI側の価格・組織再編に追随する形で、Anthropic側のSDKにも接続仕様の細かい変更が混入しているため、早期に追従する必要がある。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
       "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
-      "value_score": 3,
-      "learning_value": 2,
+      "success_why": "公式のパッケージリポジトリに直接アクセスして仕様を確かめるだけであるため確度は高い。",
+      "value_score": 4,
+      "learning_value": 3,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
-      "category": "build",
+      "outcome": "Anthropic SDK v1.2.0における変更点のリストアップ",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "複数モデルをまたいだマルチエージェント基盤の移行ルートを確保するため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-08-29-r02",
+        "2026-08-27-r02"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "PyPI上のSDKバージョン情報をiPhoneから閲覧できること"
       ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "バージョン番号が上がっているだけで実質的なコード上の差分が存在しない場合",
+      "continue_if": "APIエンドポイントや呼び出しの前提条件に変更が含まれている場合",
+      "stop": "バージョンが巻き戻されるか、該当パッケージが更新停止した場合"
     },
     {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "t": "外部APIのコスト変動に備えるための小額な検証プランに500円を投じる",
+      "why": "無料枠の圧迫が確実視される中、有料の軽量プランをあらかじめテスト運用し、価格転嫁に耐える動線を作っておく必要があるためだ。",
+      "cost_min": 500,
+      "cost_max": 1000,
+      "loss_max": 1000,
+      "success_p": 0.6,
+      "success_p_min": 0.4,
+      "success_p_max": 0.75,
+      "success_why": "低価格なAPIティアへの切り替え自体は通常の決済手段で即時完了するため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 30,
+      "outcome": "小額有料プランでのAPI接続テストの成功ログ",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "無料枠が締め出された際に即座に代替ルートへ移行できる実証済みの足場ができるため。",
+      "evidence_ids": [
+        "2026-08-29-r01"
+      ],
+      "assumptions": [
+        "iPhoneの決済機能（Apple Payやクレジットカード）が正常に機能すること"
+      ],
+      "disconfirm": "小額プランであっても急激な価格改定により数日で利用価値が消滅する場合",
+      "continue_if": "投入したコストに対して得られる応答速度や安定性が期待値を上回る場合",
+      "stop": "決済直後にサービス側の仕様変更でプランが廃止された場合"
+    },
+    {
+      "t": "サイバー攻撃対策を掲げるAnthropicの執行リード求人の業務範囲を精読する",
+      "why": "AIプラットフォームの安全保障・ガバナンス強化が個人のAPI利用にどう制限をかけるかを事前に察知するためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.75,
-      "success_p_min": 0.6,
+      "success_p_min": 0.65,
       "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "value_score": 2,
+      "success_why": "公式のキャリアページに掲載された公開情報であるため確実に入手できる。",
+      "value_score": 3,
       "learning_value": 3,
-      "time_minutes": 20,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "一次情報の要点メモが3行残る",
+      "outcome": "セキュリティおよび悪用対策の強化方針に関する分析メモ",
       "category": "research",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "impact_min": 0.1,
+      "impact_max": 0.15,
+      "impact_why": "プラットフォーム側の規制強化の波を先読みし、アカウントBAN等のリスクを回避するため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-08-29-r03"
       ],
       "assumptions": [
-        "読む情報が現在の目標に関係する"
+        "求人ページの記載内容が実際の企業のコンプライアンス方針を反映していること"
       ],
-      "disconfirm": "要点が次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
+      "disconfirm": "単なる形式的な人事上のポジションであり実質的な規制強化につながらない場合",
+      "continue_if": "特定の利用パターンに対する監視強化が明確に示されている場合",
+      "stop": "該当する求人がすでに募集終了している場合"
+    },
+    {
+      "t": "GTMプログラムの責任者求人から各社が狙う次の販売チャネルの構造を書き出す",
+      "why": "大手AI企業がGo-To-Market戦略をどう塗り替えようとしているかを知ることで、個人が取り残される領域を正確に見極めるためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.6,
+      "success_p_max": 0.8,
+      "success_why": "公開された求人票の職務記述書から営業・販売戦略の方向性を読み解くことは十分に可能であるため。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "大手がシフトしつつあるターゲット層と、個人が避けるべき領域の対比表",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "資本が狙う大口顧客の動線と、個人が潜るべき隙間を明確に切り分けるため。",
+      "evidence_ids": [
+        "2026-08-27-r03"
+      ],
+      "assumptions": [
+        "求人情報の職務記述書に実際の営業戦略の方向性が表れていること"
+      ],
+      "disconfirm": "記載内容が極めて抽象的で具体的な市場戦略が読み取れない場合",
+      "continue_if": "特定のエンタープライズ向け販売モデルへの集中が確認できる場合",
+      "stop": "求人ページが削除されている場合"
     }
   ],
-  "kan": "今後14日以内に、主要なAI仲介プラットフォームが従量課金の上限設定機能の有料化、あるいは月額定額プランの廃止を相次いで発表すると見る。"
+  "kan": "Anthropicが今後14日以内に防衛・宇宙関連の新規サプライチェーン統合に関する特設ページを開設する確率は五分に満たない。過去の基準率から見て大企業が月内にこうした大型再編を連続させる確率は極めて低い。"
 }

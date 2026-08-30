@@ -1975,7 +1975,7 @@
       "decider": "PyPIのリリース履歴ページにおいて、バージョンが3.0.0以上に達していないこと"
     },
     "deadline": "2026-09-09",
-    "confidence": 0.918,
+    "confidence": 0.946,
     "base_rate": 0.7,
     "base_rate_class": "主要AI企業のPython SDKが短期14日以内にメジャーバージョンを連続更新する頻度",
     "confidence_why": "予告された仕様変更に関するドキュメントは出たものの、実際のコード変更とメジャーリリースには通常数週間のバッファが置かれるため、基準率よりもやや起きない方に寄せた",
@@ -2026,6 +2026,14 @@
         "why": "google-genai Python SDK v2.20.0がリリースされ、バージョンが2.20.x台に留まっていることが確認されたため。",
         "conf_before": 0.877,
         "conf_after": 0.918
+      },
+      {
+        "date": "2026-08-31",
+        "sign": "PyPIのバージョンが2.20.x台のマイナー修正に留まる",
+        "dir": "confirm",
+        "why": "google-genai Python SDK v2.20.0がリリースされ、バージョンが2.20.x台に留まっていることが確認されたため。",
+        "conf_before": 0.918,
+        "conf_after": 0.946
       }
     ],
     "status": "pending",

@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-08-30 08:35",
+  "updated_at": "2026-08-31 08:49",
   "score": {
     "hit": 6,
     "miss": 22,
     "total": 28,
     "rate": 0.21428571428571427,
-    "pending": 8,
+    "pending": 7,
     "brier": 0.4716392857142858,
     "brier_n": 28,
     "brier_initial": 0.471982142857143,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-01",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -201,20 +201,6 @@
   ],
   "pending": [
     {
-      "id": "2026-08-02-h01",
-      "claim": "NVIDIAが発表する四半期決算において、データセンター部門の売上高が前四半期比10%以上増加する。",
-      "subject": "NVIDIA",
-      "deadline": "2026-08-16",
-      "confidence": 0.75,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "主要顧客による設備投資時期の先送りや先端パッケージング工程での歩留まり低下が出荷量に影響を及ぼす可能性がある。",
-      "evidence": "期間内にNVIDIAの四半期決算発表およびデータセンター部門売上高に関する公開情報が確認できなかったため。",
-      "signals": []
-    },
-    {
       "id": "2026-07-23-h01",
       "claim": "OpenAIは広告主向けのセルフサーブ型広告出稿プラットフォームの一般提供を年内に開始する。",
       "subject": "OpenAI",
@@ -337,7 +323,7 @@
       "claim": "Googleは今後14日以内に、PyPIにおけるgoogle-genaiの新たなメジャーバージョン(v3.0.0)をリリースしない。",
       "subject": "Google",
       "deadline": "2026-09-09",
-      "confidence": 0.918,
+      "confidence": 0.946,
       "initial_confidence": 0.65,
       "result": null,
       "status": "pending",
@@ -346,12 +332,12 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-08-29",
+          "date": "2026-08-30",
           "dir": "confirm",
-          "why": "google-genai Python SDK v2.20.0がリリースされ、バージョンが2.20.x台に留まる指標に合致したため。"
+          "why": "google-genai Python SDK v2.20.0がリリースされ、バージョンが2.20.x台に留まっていることが確認されたため。"
         },
         {
-          "date": "2026-08-30",
+          "date": "2026-08-31",
           "dir": "confirm",
           "why": "google-genai Python SDK v2.20.0がリリースされ、バージョンが2.20.x台に留まっていることが確認されたため。"
         }
@@ -362,11 +348,6 @@
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-08-27",
-          "headline": "anthropic: Head of GTM Programs 求人公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390976008"
-        },
         {
           "date": "2026-08-27",
           "headline": "anthropic: Technical Program Manager, Billing 求人公開",
@@ -381,6 +362,11 @@
           "date": "2026-08-29",
           "headline": "Anthropicが公式Python SDKバージョン1.2.0を公開",
           "url": "https://pypi.org/project/anthropic/1.2.0/"
+        },
+        {
+          "date": "2026-08-31",
+          "headline": "[新規求人] anthropic: Director, Finance Systems - Revenue Systems Engineering",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5409055008"
         }
       ]
     },
@@ -492,6 +478,34 @@
   ],
   "records": [
     {
+      "id": "2026-08-31-r04",
+      "date": "2026-08-31",
+      "headline": "[新規求人] anthropic: Director, Finance Systems - Revenue Systems Engineering",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5409055008"
+    },
+    {
+      "id": "2026-08-31-r03",
+      "date": "2026-08-31",
+      "headline": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
+      "certainty": "reported",
+      "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
+    },
+    {
+      "id": "2026-08-31-r02",
+      "date": "2026-08-31",
+      "headline": "SWE-Prime: Fewer Trajectories, Better Performance",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2608.27449v1"
+    },
+    {
+      "id": "2026-08-31-r01",
+      "date": "2026-08-31",
+      "headline": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2608.27454v1"
+    },
+    {
       "id": "2026-08-30-r01",
       "date": "2026-08-30",
       "headline": "CritICL: Inference-Time Weak-to-Strong Generalization from Small Language Model Failure Modes",
@@ -546,35 +560,7 @@
       "headline": "anthropic: Technical Program Manager, Billing 求人公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5406817008"
-    },
-    {
-      "id": "2026-08-27-r03",
-      "date": "2026-08-27",
-      "headline": "anthropic: Head of GTM Programs 求人公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390976008"
-    },
-    {
-      "id": "2026-08-27-r02",
-      "date": "2026-08-27",
-      "headline": "anthropic Python SDK v1.1.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/1.1.0/"
-    },
-    {
-      "id": "2026-08-27-r01",
-      "date": "2026-08-27",
-      "headline": "openai Python SDK v3.4.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.4.0/"
-    },
-    {
-      "id": "2026-08-26-r04",
-      "date": "2026-08-26",
-      "headline": "SWE Refactor Benchに関する論文の公開",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2608.23564v1"
     }
   ],
-  "record_count": 87
+  "record_count": 91
 }
