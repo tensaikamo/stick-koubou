@@ -2880,5 +2880,113 @@
       "2026-08-09-r02",
       "2026-08-06-r03"
     ]
+  },
+  {
+    "id": "2026-09-02-r01",
+    "created_at": "2026-09-02T08:30:16.406870+09:00",
+    "headline": "anthropic: Senior Manager, IT SOX (San Francisco, CA)",
+    "what_happened": "Anthropicが内部監査チーム向けに「Senior Manager, IT SOX」の求人を公開した。IT全般統制やアプリケーション統制、システムリスク評価を担当する役割とされる。本文取得ずみの Greenhouse ジョブボード情報に基づく。",
+    "background": "AI企業が組織拡大や上場準備に伴い、内部統制やコンプライアンス体制を構築する動きの一環である。",
+    "changed": "AnthropicがIT統制・内部監査領域の人材採用を強化する事実が確認された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357941008",
+      "title": "[新規求人] anthropic: Senior Manager, IT SOX (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-01-r04",
+      "2026-09-01-r03",
+      "2026-09-01-r02",
+      "2026-08-31-r04",
+      "2026-08-29-r03",
+      "2026-08-29-r02"
+    ]
+  },
+  {
+    "id": "2026-09-02-r02",
+    "created_at": "2026-09-02T08:30:16.406870+09:00",
+    "headline": "anthropic: Director, US International Tax Planning (Remote-Friendly | San Francisco, CA)",
+    "what_happened": "Anthropicが財務・会計部門の税務チーム向けに「Director, US International Tax Planning」の求人を公開した。米国国際税務やM&A、国際展開に伴う税務ストラクチャーの構築を担当する。本文取得ずみの Greenhouse ジョブボード情報に基づく。",
+    "background": "グローバル展開や海外拠点の新設、クロスボーダーの取引増加に伴う税務体制の整備が求められている。",
+    "changed": "Anthropicが国際税務戦略を統括する上位レイヤーの人材採用を進めていることが示された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5387009008",
+      "title": "[新規求人] anthropic: Director, US International Tax Planning (Remote-Friendly (Travel Required) | San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-01-r04",
+      "2026-09-01-r03",
+      "2026-09-01-r02",
+      "2026-08-31-r04",
+      "2026-08-29-r03",
+      "2026-08-29-r02"
+    ]
+  },
+  {
+    "id": "2026-09-02-r03",
+    "created_at": "2026-09-02T08:30:16.406870+09:00",
+    "headline": "anthropic: Head of Business Controls (San Francisco, CA)",
+    "what_happened": "Anthropicが内部監査チームのリーダーとして「Head of Business Controls」の求人を公開した。財務監査やSOX 404コンプライアンスプログラムを統括し、将来的な公開企業としての体制構築を担うと記載されている。本文取得ずみの Greenhouse ジョブボード情報に基づく。",
+    "background": "急速に成長するAI企業が、パブリックカンパニー基準の財務報告や監査体制の構築に着手している。",
+    "changed": "Anthropic社内において財務プロセス統制とIPO向けガバナンス構築の責任者ポストが新設・募集された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357943008",
+      "title": "[新規求人] anthropic: Head of Business Controls (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-01-r04",
+      "2026-09-01-r03",
+      "2026-09-01-r02",
+      "2026-08-31-r04",
+      "2026-08-29-r03",
+      "2026-08-29-r02"
+    ]
+  },
+  {
+    "id": "2026-09-02-r04",
+    "created_at": "2026-09-02T08:30:16.406870+09:00",
+    "headline": "xai: Facilities Engineer, Electrical (Memphis, Tennessee; Southaven, Mississippi)",
+    "what_happened": "xAIがメンフィスおよびサウスヘイブンでの施設運用・電気システム設計を担当する「Facilities Engineer, Electrical」の求人を公開した。データセンターや関連インフラの電力供給・維持管理を担う。本文取得ずみの Greenhouse ジョブボード情報に基づく。",
+    "background": "大規模なAI学習クラスターを運用する企業にとって、電力インフラと施設の安定稼働が継続的な課題となっている。",
+    "changed": "xAIがインフラ施設の電気設備設計・保守を強化するためのエンジニア採用を継続していることが確認された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5227980007",
+      "title": "[新規求人] xai: Facilities Engineer, Electrical (Memphis, Tennessee; Southaven, Mississippi)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-01-r06",
+      "2026-09-01-r05",
+      "2026-08-27-r07",
+      "2026-08-27-r06",
+      "2026-08-25-r02",
+      "2026-08-21-r03"
+    ]
   }
 ]
