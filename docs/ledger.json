@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-01 09:52",
+  "updated_at": "2026-09-02 08:36",
   "score": {
     "hit": 7,
     "miss": 22,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-04",
-    "days": 3
+    "days": 2
   },
   "decided": [
     {
@@ -309,7 +309,7 @@
       "claim": "Googleは今後14日以内に、PyPIにおけるgoogle-genaiの新たなメジャーバージョン(v3.0.0)をリリースしない。",
       "subject": "Google",
       "deadline": "2026-09-09",
-      "confidence": 0.946,
+      "confidence": 0.95,
       "initial_confidence": 0.65,
       "result": null,
       "status": "pending",
@@ -318,14 +318,14 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-08-30",
+          "date": "2026-08-31",
           "dir": "confirm",
           "why": "google-genai Python SDK v2.20.0がリリースされ、バージョンが2.20.x台に留まっていることが確認されたため。"
         },
         {
-          "date": "2026-08-31",
+          "date": "2026-09-02",
           "dir": "confirm",
-          "why": "google-genai Python SDK v2.20.0がリリースされ、バージョンが2.20.x台に留まっていることが確認されたため。"
+          "why": "本日の事象においてgoogle-genai Python SDK v2.21.0がリリースされ、メジャーバージョンではなく2.20.x台を超えるマイナー修正の範囲内であるため。"
         }
       ]
     }
@@ -335,24 +335,24 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-08-31",
-          "headline": "[新規求人] anthropic: Director, Finance Systems - Revenue Systems Engineering",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5409055008"
-        },
-        {
-          "date": "2026-09-01",
-          "headline": "AnthropicがApplied AI Research職種の求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5129961008"
-        },
-        {
-          "date": "2026-09-01",
-          "headline": "AnthropicがProduct Manager, Claude Scienceの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394887008"
-        },
-        {
           "date": "2026-09-01",
           "headline": "AnthropicがTreasury Directorの求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358114008"
+        },
+        {
+          "date": "2026-09-02",
+          "headline": "anthropic: Director, US International Tax Planning (Remote-Friendly | San Francisco, CA)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5387009008"
+        },
+        {
+          "date": "2026-09-02",
+          "headline": "anthropic: Head of Business Controls (San Francisco, CA)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357943008"
+        },
+        {
+          "date": "2026-09-02",
+          "headline": "anthropic: Senior Manager, IT SOX (San Francisco, CA)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357941008"
         }
       ]
     },
@@ -386,11 +386,6 @@
       "events": [
         {
           "date": "2026-08-27",
-          "headline": "xAI: AV Administrator, Events & Experiences 求人公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5222092007"
-        },
-        {
-          "date": "2026-08-27",
           "headline": "xAI: Client Account Manager- SMB 求人公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5221126007"
         },
@@ -403,6 +398,11 @@
           "date": "2026-09-01",
           "headline": "xAIがLead Electrical Reliability Engineerの求人を公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5226701007"
+        },
+        {
+          "date": "2026-09-02",
+          "headline": "xai: Facilities Engineer, Electrical (Memphis, Tennessee; Southaven, Mississippi)",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5227980007"
         }
       ]
     },
@@ -464,6 +464,34 @@
   ],
   "records": [
     {
+      "id": "2026-09-02-r04",
+      "date": "2026-09-02",
+      "headline": "xai: Facilities Engineer, Electrical (Memphis, Tennessee; Southaven, Mississippi)",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5227980007"
+    },
+    {
+      "id": "2026-09-02-r03",
+      "date": "2026-09-02",
+      "headline": "anthropic: Head of Business Controls (San Francisco, CA)",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357943008"
+    },
+    {
+      "id": "2026-09-02-r02",
+      "date": "2026-09-02",
+      "headline": "anthropic: Director, US International Tax Planning (Remote-Friendly | San Francisco, CA)",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5387009008"
+    },
+    {
+      "id": "2026-09-02-r01",
+      "date": "2026-09-02",
+      "headline": "anthropic: Senior Manager, IT SOX (San Francisco, CA)",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357941008"
+    },
+    {
       "id": "2026-09-01-r06",
       "date": "2026-09-01",
       "headline": "xAIがLead Electrical Engineerの求人を公開",
@@ -518,35 +546,7 @@
       "headline": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
       "certainty": "reported",
       "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
-    },
-    {
-      "id": "2026-08-31-r02",
-      "date": "2026-08-31",
-      "headline": "SWE-Prime: Fewer Trajectories, Better Performance",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2608.27449v1"
-    },
-    {
-      "id": "2026-08-31-r01",
-      "date": "2026-08-31",
-      "headline": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2608.27454v1"
-    },
-    {
-      "id": "2026-08-30-r01",
-      "date": "2026-08-30",
-      "headline": "CritICL: Inference-Time Weak-to-Strong Generalization from Small Language Model Failure Modes",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2608.27455v1"
-    },
-    {
-      "id": "2026-08-29-r03",
-      "date": "2026-08-29",
-      "headline": "Anthropicがサイバー攻撃悪用対策を担う執行リードの求人を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5403775008"
     }
   ],
-  "record_count": 97
+  "record_count": 101
 }

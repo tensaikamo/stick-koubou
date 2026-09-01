@@ -1,12 +1,102 @@
 {
-  "date": "2026-09-01",
+  "date": "2026-09-02",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの価格改定に対応してフォールバック先モデルを何秒以内に切り替える設計にするか？",
-    "API呼び出しの失敗時に手動確認を挟まず自動リトライさせるコードを今夜どこに挿入するか？",
-    "計算資源の先物ヘッジを見据えて今月いくらのAPIバジェットを確保するか？"
+    "OpenRouterの価格破壊とHugging FaceのWebGPU化を受け、既存の有料API依存サービスからどの機能層に逃げ込むか？",
+    "iPhoneのSafariだけで動くブラウザ完結型ミニアプリの最初のHTMLを今夜30分で作るか？",
+    "クラウド代をゼロにするクライアントサイド実行の設計図をどのリポジトリにコミットするか？"
   ],
   "moves": [
+    {
+      "t": "DeepSeek V4 Flashのベンチマーク数値をiPhoneのメモに整理して比較表を作る",
+      "why": "プロバイダー間の消耗戦における他社モデルの優位性を明確にするため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.6,
+      "success_p_min": 0.4,
+      "success_p_max": 0.8,
+      "success_why": "公開されたベンチマークデータを構造化して手元に残せるため",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "競合モデルのコストパフォーマンス比較表の完成",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.15,
+      "impact_why": "次の一手を決めるための判断材料が揃うため",
+      "evidence_ids": [
+        "2026-08-01-r02"
+      ],
+      "assumptions": [
+        "Artificial Analysisのデータが閲覧可能であること"
+      ],
+      "disconfirm": "主要な比較指標が欠落している場合",
+      "continue_if": "明確なコスト差と性能差の傾向が読み取れた場合",
+      "stop": "データが更新されておらず参考にならない場合"
+    },
+    {
+      "t": "AlibabaのオープンモデルQwen 3.8の活用事例を海外フォーラムから3件抽出して要約する",
+      "why": "オープンモデルの実際の個人利用における隙を探るため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.45,
+      "success_p_min": 0.25,
+      "success_p_max": 0.65,
+      "success_why": "公開されたトラッキング情報から具体的なユースケースを拾えるため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "海外での実装事例の要約メモの作成",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "他者がまだ気づいていない活用アプローチを発見できるため",
+      "evidence_ids": [
+        "2026-07-28-r04"
+      ],
+      "assumptions": [
+        "英語のフォーラムやレポートにアクセスできること"
+      ],
+      "disconfirm": "抽象的な宣伝記事ばかりで具体的な実装例がない場合",
+      "continue_if": "個人の検証レポートが見つかった場合",
+      "stop": "情報ソースの信頼性が低いと判断した場合"
+    },
+    {
+      "t": "OpenAIとHugging Faceのセキュリティインシデント報告書の該当箇所をスマホで和訳しリスクを整理する",
+      "why": "サンドボックス脱出等の脆弱性情報を自身のアプリ設計の反面教師にするため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.55,
+      "success_p_min": 0.35,
+      "success_p_max": 0.75,
+      "success_why": "公式のセキュリティインシデント詳細がWeb公開されているため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "モデル評価時のリスク管理項目のリスト化",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "セキュリティ要件の抜け穴を自作アプリで避けるため",
+      "evidence_ids": [
+        "2026-07-22-r01"
+      ],
+      "assumptions": [
+        "公式ブログの記事が継続して一般公開されていること"
+      ],
+      "disconfirm": "すでに周知の一般的な内容しか書かれていない場合",
+      "continue_if": "具体的な防御策や失敗原因の記述が含まれている場合",
+      "stop": "ページが削除されている場合"
+    },
     {
       "t": "GitHubの改善候補を1件Issueに書く",
       "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
@@ -70,102 +160,7 @@
       "continue_if": "次の判断に使える差分が1つ見つかった",
       "stop": "3行書いたら終了",
       "fallback": true
-    },
-    {
-      "t": "予測を1件確認し確度メモを1行更新する",
-      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "既存予測の更新なので新規企画より着地しやすい",
-      "value_score": 2,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "追跡中予測の確度メモが更新される",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "誤った前提で投資する損失を減らす",
-      "evidence_ids": [
-        "action-history"
-      ],
-      "assumptions": [
-        "予測が現在の投資判断に関係する"
-      ],
-      "disconfirm": "確度更新が次の行動や支出を変えない",
-      "continue_if": "確度を動かす一次根拠が見つかった",
-      "stop": "根拠URLを1本確認したら終了",
-      "fallback": true
-    },
-    {
-      "t": "独自ドメイン候補を決め購入画面まで進める",
-      "why": "公開先を固定し、他人へ渡せる形へ近づけるため。",
-      "cost_min": 1000,
-      "cost_max": 4000,
-      "loss_max": 4000,
-      "success_p": 0.65,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "価格と空きを確認できるが、名前の決定で迷う余地がある",
-      "value_score": 4,
-      "learning_value": 2,
-      "time_minutes": 30,
-      "payback_days": 180,
-      "outcome": "候補ドメインと年間費用が確定する",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.08,
-      "impact_why": "公開と共有の摩擦を下げるが、ドメインだけでは成果にならない",
-      "evidence_ids": [
-        "user-goal",
-        "action-history"
-      ],
-      "assumptions": [
-        "90日以内に公開する"
-      ],
-      "disconfirm": "公開日や見せる相手が決まっていない",
-      "continue_if": "公開予定日と最初に見せる相手が決まっている",
-      "stop": "年間4000円を超えたら購入しない",
-      "fallback": true
-    },
-    {
-      "t": "有料AI機能を1か月だけ比較検証する",
-      "why": "無料制約で実装速度を落とさず、支払う価値を測るため。",
-      "cost_min": 3000,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.55,
-      "success_p_min": 0.35,
-      "success_p_max": 0.7,
-      "success_why": "短縮効果はあり得るが、成果との相関は未計測",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 30,
-      "outcome": "無料版との比較メモが1件残る",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.12,
-      "impact_why": "実装速度を上げる可能性はあるが成果増加は未確認",
-      "evidence_ids": [
-        "user-goal",
-        "action-history"
-      ],
-      "assumptions": [
-        "週2回以上使う"
-      ],
-      "disconfirm": "無料版と完成件数が変わらない",
-      "continue_if": "無料版より月2件以上多く成果物が完成する",
-      "stop": "30日で成果物が2件増えなければ解約する",
-      "fallback": true
     }
   ],
-  "kan": "米商品先物取引委員会（CFTC）等の規制当局は、今回の意見公募を受けても今後90日以内に計算資源デリバティブの正式な上場承認を完了せず、審議継続または追加要請にとどまる公算が高い。"
+  "kan": "本命ではないが、今月から来月にかけてHugging FaceのWebGPU基盤を活用したブラウザ完結型の個人開発アプリが急増し、既存の有料API依存サービスの一部が淘汰される目がある。"
 }
