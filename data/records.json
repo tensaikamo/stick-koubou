@@ -2718,5 +2718,167 @@
       "2026-08-27-r03",
       "2026-08-27-r02"
     ]
+  },
+  {
+    "id": "2026-09-01-r01",
+    "created_at": "2026-09-01T09:44:49.705535+09:00",
+    "headline": "GoogleがPyPIでgoogle-genai Python SDK v2.21.0をリリース",
+    "what_happened": "GoogleはPyPIにおいてGenAI Python SDKのバージョン2.21.0をリリースした。次期メジャーバージョンにおけるAutomatic Function Callingの挙動変更に関する警告が含まれている。本文はPyPI上のプロジェクトページより取得した。",
+    "background": "GoogleはGeminiモデル等に接続するためのGenAI SDKを公開・更新している。",
+    "changed": "google-genai Python SDKがv2.21.0に更新され、次期メジャー変更の警告が記載された点のみが事実である。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/2.21.0/",
+      "title": "google-genai Python SDK v2.21.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-26-r01",
+      "2026-08-22-r01",
+      "2026-08-19-r02",
+      "2026-08-15-r01",
+      "2026-08-07-r06",
+      "2026-07-24-r05"
+    ]
+  },
+  {
+    "id": "2026-09-01-r02",
+    "created_at": "2026-09-01T09:44:49.705535+09:00",
+    "headline": "AnthropicがApplied AI Research職種の求人を公開",
+    "what_happened": "AnthropicはGreenhouseの求人プラットフォームにおいて、サンフランシスコおよびニューヨークを勤務地とするApplied AI Research (Capabilities)の求人を公開した。顧客企業との協力を通じてフロンティアAIモデルの適応や能力向上を推進する役割を担うとされる。本文は求人ページより取得した。",
+    "background": "Anthropicは研究開発および顧客向けの適用支援を進めるため、継続的にエンジニアや研究者を募集している。",
+    "changed": "該当する職種の求人情報が新たに掲載された点のみが事実である。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5129961008",
+      "title": "[新規求人] anthropic: Applied AI Research (Capabilities) (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-31-r04",
+      "2026-08-29-r03",
+      "2026-08-29-r02",
+      "2026-08-27-r05",
+      "2026-08-27-r04",
+      "2026-08-27-r03"
+    ]
+  },
+  {
+    "id": "2026-09-01-r03",
+    "created_at": "2026-09-01T09:44:49.705535+09:00",
+    "headline": "AnthropicがTreasury Directorの求人を公開",
+    "what_happened": "AnthropicはGreenhouseにおいて、Treasury Director, Investments & Liquidityの求人を公開した。資本配分の最適化、投資方針の策定、社内トレーディングインフラの立ち上げなどを担う財務部門の役職とされる。本文は求人ページより取得した。",
+    "background": "急速に事業を拡大するAI企業において、資金運用や財務インフラを整備するための人材採用が進められている。",
+    "changed": "財務部門のディレクター職の求人が新たに掲載された点のみが事実である。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358114008",
+      "title": "[新規求人] anthropic: Treasury Director, Investments & Liquidity (Remote-Friendly (Travel Required) | San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-31-r04",
+      "2026-08-29-r03",
+      "2026-08-29-r02",
+      "2026-08-27-r05",
+      "2026-08-27-r04",
+      "2026-08-27-r03"
+    ]
+  },
+  {
+    "id": "2026-09-01-r04",
+    "created_at": "2026-09-01T09:44:49.705535+09:00",
+    "headline": "AnthropicがProduct Manager, Claude Scienceの求人を公開",
+    "what_happened": "AnthropicはGreenhouseにおいて、Product Manager, Claude Scienceの求人を公開した。科学研究向けのAIワークベンチ「Claude Science」の開発ロードマップを主導するプロダクトマネージャーを募集している。本文は求人ページより取得した。",
+    "background": "Anthropicはタンパク質構造やゲノム解析などの科学分野に特化したAIツール群の構築を進めている。",
+    "changed": "Claude Science向けのプロダクトマネージャー求人が新たに掲載された点のみが事実である。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394887008",
+      "title": "[新規求人] anthropic: Product Manager, Claude Science (San Francisco, CA | New York City, NY | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-31-r04",
+      "2026-08-29-r03",
+      "2026-08-29-r02",
+      "2026-08-27-r05",
+      "2026-08-27-r04",
+      "2026-08-27-r03"
+    ]
+  },
+  {
+    "id": "2026-09-01-r05",
+    "created_at": "2026-09-01T09:44:49.705535+09:00",
+    "headline": "xAIがLead Electrical Reliability Engineerの求人を公開",
+    "what_happened": "xAIはGreenhouseにおいて、メンフィスおよびサウスヘイブンを勤務地とするLead Electrical Reliability Engineer (Data Center Infrastructure)の求人を公開した。データセンターの電力系統の設計・構築を担う施設エンジニアリングチームのメンバーを募集している。本文は求人ページより取得した。",
+    "background": "xAIは大規模なデータセンターインフラの構築と電力供給網の安定化に向けた採用を続けている。",
+    "changed": "データセンターインフラ関連の電気信頼性エンジニアの求人が新たに掲載された点のみが事実である。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5226701007",
+      "title": "[新規求人] xai: Lead Electrical Reliability Engineer (Data Center Infrastructure) (Memphis, Tennessee; Southaven, Mississippi)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-27-r07",
+      "2026-08-27-r06",
+      "2026-08-25-r02",
+      "2026-08-21-r03",
+      "2026-08-09-r02",
+      "2026-08-06-r03"
+    ]
+  },
+  {
+    "id": "2026-09-01-r06",
+    "created_at": "2026-09-01T09:44:49.705535+09:00",
+    "headline": "xAIがLead Electrical Engineerの求人を公開",
+    "what_happened": "xAIはGreenhouseにおいて、メンフィスを勤務地とするLead Electrical Engineer (Facilities Engineering)の求人を公開した。先端施設およびデータセンターの電力システムの設計・維持を主導するエンジニアを募集している。本文は求人ページより取得した。",
+    "background": "xAIはデータセンターの拡張に伴い、施設エンジニアリング部門のリーダー層の採用を進めている。",
+    "changed": "施設エンジニアリング分野の電気エンジニア求人が新たに掲載された点のみが事実である。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5226686007",
+      "title": "[新規求人] xai: Lead Electrical Engineer (Facilities Engineering) (Memphis, Tennessee)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-27-r07",
+      "2026-08-27-r06",
+      "2026-08-25-r02",
+      "2026-08-21-r03",
+      "2026-08-09-r02",
+      "2026-08-06-r03"
+    ]
   }
 ]

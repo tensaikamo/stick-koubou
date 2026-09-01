@@ -1791,15 +1791,19 @@
         "conf_after": 0.95
       }
     ],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-09-01T09:49:47.826609+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "PyPIの公式ページにおけるopenaiのバージョンは3.6.0であり、2026年9月1日時点でメジャーバージョン「4.0.0」は存在しないため、予測は的中した。",
+      "url": "https://pypi.org/project/openai/#history"
+    },
     "rejected": [],
     "model": "gemini-3.7-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "initial_confidence": 0.93
+    "initial_confidence": 0.93,
+    "needs_review": false
   },
   {
     "id": "2026-08-21-h01",
