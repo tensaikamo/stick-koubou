@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02 08:36",
+  "updated_at": "2026-09-03 08:32",
   "score": {
     "hit": 7,
     "miss": 22,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-04",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -335,16 +335,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-09-01",
-          "headline": "AnthropicがTreasury Directorの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358114008"
-        },
-        {
-          "date": "2026-09-02",
-          "headline": "anthropic: Director, US International Tax Planning (Remote-Friendly | San Francisco, CA)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5387009008"
-        },
-        {
           "date": "2026-09-02",
           "headline": "anthropic: Head of Business Controls (San Francisco, CA)",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357943008"
@@ -353,17 +343,22 @@
           "date": "2026-09-02",
           "headline": "anthropic: Senior Manager, IT SOX (San Francisco, CA)",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357941008"
+        },
+        {
+          "date": "2026-09-03",
+          "headline": "[新規求人] anthropic: People Partner, Engineering",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5412783008"
+        },
+        {
+          "date": "2026-09-03",
+          "headline": "anthropic Python SDK v1.3.0 リリース",
+          "url": "https://pypi.org/project/anthropic/1.3.0/"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-08-19",
-          "headline": "OpenAIが公式Python SDK v3.3.0をPyPIに公開",
-          "url": "https://pypi.org/project/openai/3.3.0/"
-        },
         {
           "date": "2026-08-20",
           "headline": "OpenAIが公式Python SDK v3.3.1をPyPIに公開",
@@ -378,6 +373,11 @@
           "date": "2026-08-29",
           "headline": "OpenAIが公式Python SDKバージョン3.6.0を公開",
           "url": "https://pypi.org/project/openai/3.6.0/"
+        },
+        {
+          "date": "2026-09-03",
+          "headline": "openai Python SDK v3.7.0 リリース",
+          "url": "https://pypi.org/project/openai/3.7.0/"
         }
       ]
     },
@@ -410,11 +410,6 @@
       "subject": "Google",
       "events": [
         {
-          "date": "2026-08-19",
-          "headline": "DeepMind等の研究陣がAlphaEvolveを用いた行列乗算計算量の改善手法を発表",
-          "url": "https://arxiv.org/abs/2608.16884v1"
-        },
-        {
           "date": "2026-08-22",
           "headline": "google-genai Python SDK v2.19.0 リリース",
           "url": "https://pypi.org/project/google-genai/2.19.0/"
@@ -428,6 +423,11 @@
           "date": "2026-09-01",
           "headline": "GoogleがPyPIでgoogle-genai Python SDK v2.21.0をリリース",
           "url": "https://pypi.org/project/google-genai/2.21.0/"
+        },
+        {
+          "date": "2026-09-03",
+          "headline": "google-genai Python SDK v2.22.0 リリースとAutomatic Function Callingの警告",
+          "url": "https://pypi.org/project/google-genai/2.22.0/"
         }
       ]
     },
@@ -464,6 +464,55 @@
   ],
   "records": [
     {
+      "id": "2026-09-03-r07",
+      "date": "2026-09-03",
+      "headline": "[新規求人] anthropic: People Partner, Engineering",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5412783008"
+    },
+    {
+      "id": "2026-09-03-r06",
+      "date": "2026-09-03",
+      "headline": "Adaptive Critical Token-Aware Retrieval for Repository-Level Code Generation",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2609.01601v1"
+    },
+    {
+      "id": "2026-09-03-r05",
+      "date": "2026-09-03",
+      "headline": "Efficient SWE Agent Benchmarking via Trajectory-Aware Evaluation",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2609.01603v1"
+    },
+    {
+      "id": "2026-09-03-r04",
+      "date": "2026-09-03",
+      "headline": "Beyond Scores: Understanding LLM-as-a-Judge Mechanisms in Summarization Evaluation",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2609.01604v1"
+    },
+    {
+      "id": "2026-09-03-r03",
+      "date": "2026-09-03",
+      "headline": "google-genai Python SDK v2.22.0 リリースとAutomatic Function Callingの警告",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/2.22.0/"
+    },
+    {
+      "id": "2026-09-03-r02",
+      "date": "2026-09-03",
+      "headline": "anthropic Python SDK v1.3.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/1.3.0/"
+    },
+    {
+      "id": "2026-09-03-r01",
+      "date": "2026-09-03",
+      "headline": "openai Python SDK v3.7.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.7.0/"
+    },
+    {
       "id": "2026-09-02-r04",
       "date": "2026-09-02",
       "headline": "xai: Facilities Engineer, Electrical (Memphis, Tennessee; Southaven, Mississippi)",
@@ -497,56 +546,7 @@
       "headline": "xAIがLead Electrical Engineerの求人を公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/xai/jobs/5226686007"
-    },
-    {
-      "id": "2026-09-01-r05",
-      "date": "2026-09-01",
-      "headline": "xAIがLead Electrical Reliability Engineerの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5226701007"
-    },
-    {
-      "id": "2026-09-01-r04",
-      "date": "2026-09-01",
-      "headline": "AnthropicがProduct Manager, Claude Scienceの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394887008"
-    },
-    {
-      "id": "2026-09-01-r03",
-      "date": "2026-09-01",
-      "headline": "AnthropicがTreasury Directorの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358114008"
-    },
-    {
-      "id": "2026-09-01-r02",
-      "date": "2026-09-01",
-      "headline": "AnthropicがApplied AI Research職種の求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5129961008"
-    },
-    {
-      "id": "2026-09-01-r01",
-      "date": "2026-09-01",
-      "headline": "GoogleがPyPIでgoogle-genai Python SDK v2.21.0をリリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/2.21.0/"
-    },
-    {
-      "id": "2026-08-31-r04",
-      "date": "2026-08-31",
-      "headline": "[新規求人] anthropic: Director, Finance Systems - Revenue Systems Engineering",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5409055008"
-    },
-    {
-      "id": "2026-08-31-r03",
-      "date": "2026-08-31",
-      "headline": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
-      "certainty": "reported",
-      "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
     }
   ],
-  "record_count": 101
+  "record_count": 108
 }
