@@ -2988,5 +2988,173 @@
       "2026-08-25-r02",
       "2026-08-21-r03"
     ]
+  },
+  {
+    "id": "2026-09-03-r01",
+    "created_at": "2026-09-03T08:30:44.793779+09:00",
+    "headline": "openai Python SDK v3.7.0 リリース",
+    "what_happened": "OpenAIはPyPIにおいて公式Python SDKのバージョン3.7.0をリリースした。本文によれば、本ライブラリはOpenAI REST APIへの接続を容易にし、HTTPXを用いた同期・非同期クライアントを提供する。OpenAPI仕様から自動生成されている。",
+    "background": "OpenAIの公式Python SDKは定期的にマイナーバージョンアップや機能追加を行っており、PyPI上で公開されている。",
+    "changed": "openaiライブラリがv3.7.0へ更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.7.0/",
+      "title": "openai Python SDK v3.7.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-08-29-r01",
+      "2026-08-27-r01",
+      "2026-08-20-r02",
+      "2026-08-19-r01",
+      "2026-08-18-r02",
+      "2026-08-18-r01"
+    ]
+  },
+  {
+    "id": "2026-09-03-r02",
+    "created_at": "2026-09-03T08:30:44.793779+09:00",
+    "headline": "anthropic Python SDK v1.3.0 リリース",
+    "what_happened": "PyPIのanthropicページにおいてバージョン1.3.0の配信情報が登録された。ただし本文はブラウザエラーやクライアントチャレンジの検知画面となっており、詳細な変更履歴は直接取得できていない（body_fetched=trueだが本文はエラー画面）。",
+    "background": "AnthropicもOpenAI同様に公式のPython SDKをPyPI経由で提供している。",
+    "changed": "anthropicライブラリのバージョン1.3.0がPyPIに登録された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.3.0/",
+      "title": "anthropic Python SDK v1.3.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-02-r03",
+      "2026-09-02-r02",
+      "2026-09-02-r01",
+      "2026-09-01-r04",
+      "2026-09-01-r03",
+      "2026-09-01-r02"
+    ]
+  },
+  {
+    "id": "2026-09-03-r03",
+    "created_at": "2026-09-03T08:30:44.793779+09:00",
+    "headline": "google-genai Python SDK v2.22.0 リリースとAutomatic Function Callingの警告",
+    "what_happened": "GoogleはPyPIにおいてgoogle-genai Python SDKのバージョン2.22.0をリリースした。本文によれば、次期メジャーバージョンにおいてAutomatic Function Calling (AFC) の挙動を変更する予定であり、Models.generate_content等からの直接呼び出しが制限されるという警告が含まれている。",
+    "background": "GoogleのGenAI SDKはGeminiモデル群をPythonから利用するためのインターフェースであり、機能仕様の変更が随時アナウンスされる。",
+    "changed": "google-genaiがv2.22.0に更新され、次期メジャーでのAFC挙動変更の警告が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/2.22.0/",
+      "title": "google-genai Python SDK v2.22.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-01-r01",
+      "2026-08-26-r01",
+      "2026-08-22-r01",
+      "2026-08-19-r02",
+      "2026-08-15-r01",
+      "2026-08-07-r06"
+    ]
+  },
+  {
+    "id": "2026-09-03-r04",
+    "created_at": "2026-09-03T08:30:44.793779+09:00",
+    "headline": "Beyond Scores: Understanding LLM-as-a-Judge Mechanisms in Summarization Evaluation",
+    "what_happened": "Himil VasavaらがarXivに論文を投稿した。要約評価におけるLLMベースの評価者（LLM-as-a-Judge）の内部メカニズムを、8つの攻撃による摂動タクソノミーや因果トレース等を用いて機械的に調査した内容である。",
+    "background": "LLMの評価手法において、スコア背後の判定プロセスを解明する研究が進められている。",
+    "changed": "LLM評価者の内部メカニズムに関する新しい研究論文が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.01604v1",
+      "title": "Beyond Scores: Understanding LLM-as-a-Judge Mechanisms in Summarization Evaluation",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-03-r05",
+    "created_at": "2026-09-03T08:30:44.793779+09:00",
+    "headline": "Efficient SWE Agent Benchmarking via Trajectory-Aware Evaluation",
+    "what_happened": "Kefeng DuanらはarXivにおいて、ソフトウェアエンジニアリングエージェントの効率的なベンチマーク評価手法である「PTA-IRT」を提案した。プロセスとアウトカムのシグナルを融合させることで、低い校正予算でも正確な能力推定を行うフレームワークである。",
+    "background": "ソフトウェア開発タスクを自動実行するエージェントの評価コストを削減するための研究。",
+    "changed": "軌跡情報を考慮したSWEエージェントの評価手法に関する論文が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.01603v1",
+      "title": "Efficient SWE Agent Benchmarking via Trajectory-Aware Evaluation",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-03-r06",
+    "created_at": "2026-09-03T08:30:44.793779+09:00",
+    "headline": "Adaptive Critical Token-Aware Retrieval for Repository-Level Code Generation",
+    "what_happened": "Kefeng DuanらはarXivに、リポジトリレベルのコード生成において決定的なトークンを適応的に特定して取得するRAG手法に関する論文を投稿した。",
+    "background": "大規模なコードリポジトリをコンテキストとしてLLMに入力する際の情報検索効率化に関する研究。",
+    "changed": "リポジトリコード生成向けの新しいたまご型RAG手法の論文が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.01601v1",
+      "title": "Adaptive Critical Token-Aware Retrieval for Repository-Level Code Generation",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-03-r07",
+    "created_at": "2026-09-03T08:30:44.793779+09:00",
+    "headline": "[新規求人] anthropic: People Partner, Engineering",
+    "what_happened": "Anthropicはグリーンハウスの求人プラットフォームにおいて、プロダクトおよびコアテクノロジーチーム（特にエンジニアリング）をサポートする「People Partner, Engineering」の求人を公開した。勤務地はサンフランシスコまたはシアトル。",
+    "background": "Anthropicは組織拡大に伴い、エンジニアリング組織向けの人事・組織体制の強化を継続している。",
+    "changed": "Anthropicのエンジニアリング部門向け人事担当の求人が新たに出された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5412783008",
+      "title": "[新規求人] anthropic: People Partner, Engineering (San Francisco, CA | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-02-r03",
+      "2026-09-02-r02",
+      "2026-09-02-r01",
+      "2026-09-01-r04",
+      "2026-09-01-r03",
+      "2026-09-01-r02"
+    ]
   }
 ]
