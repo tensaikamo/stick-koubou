@@ -1845,15 +1845,19 @@
         "conf_after": 0.927
       }
     ],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-09-04T08:29:54.821875+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "期日時点でAnthropicのニュースルームを確認したところ、シンガポールオフィスの開設やASEAN拠点設立に関する公式告知記事は掲載されておらず、予測通り不掲載であることが確認された。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.7-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "initial_confidence": 0.89
+    "initial_confidence": 0.89,
+    "needs_review": false
   },
   {
     "id": "2026-08-22-h01",

@@ -3156,5 +3156,119 @@
       "2026-09-01-r03",
       "2026-09-01-r02"
     ]
+  },
+  {
+    "id": "2026-09-04-r01",
+    "created_at": "2026-09-04T08:28:27.686309+09:00",
+    "headline": "openai Python SDK v3.8.0 リリース",
+    "what_happened": "PyPIにおいてopenaiパッケージのバージョン3.8.0が公開された。記事の本文取得によれば、OpenAI Python SDKはOpenAI REST APIへのアクセスを提供する公式ライブラリである。仕様に基づきHTTPXを活用した同期・非同期クライアントを内包している。",
+    "background": "OpenAIは公式のPython SDKを継続的に更新しており、小規模なバージョンインクリメントや機能追加が頻繁に行われている。",
+    "changed": "PyPI上のopenaiパッケージがv3.8.0に更新された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.8.0/",
+      "title": "openai Python SDK v3.8.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-03-r01",
+      "2026-08-29-r01",
+      "2026-08-27-r01",
+      "2026-08-20-r02",
+      "2026-08-19-r01",
+      "2026-08-18-r02"
+    ]
+  },
+  {
+    "id": "2026-09-04-r02",
+    "created_at": "2026-09-04T08:28:27.686309+09:00",
+    "headline": "Discriminative World Models for Web Agents",
+    "what_happened": "arXivにウェブエージェント向けの世界モデルに関する論文が投稿された。行動選択の精度を高めるため、予測された状態が他の代替行動と区別可能であることを重視した「predicted-state matching」という学習目的を提案している。",
+    "background": "Web上のタスクを自動実行するウェブエージェントの性能向上において、環境の状態予測や報酬モデルの改善が研究されている。",
+    "changed": "ウェブエージェントの識別的状態予測に関する新しい学習手法を提案する論文が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.02885v1",
+      "title": "Discriminative World Models for Web Agents",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-04-r03",
+    "created_at": "2026-09-04T08:28:27.686309+09:00",
+    "headline": "Towards Trustworthy Autonomous Robots: An Explainable AI-Based Decision Framework",
+    "what_happened": "arXivに自律型ロボット向けの監査可能な意思決定フレームワーク（TRACE）に関する論文が投稿された。深層学習を用いた自律動作の因果関係を追跡可能にすることを目指している。",
+    "background": "自律ロボットやAIシステムの意思決定における説明可能性（XAI）と監査性の確保が課題となっている。",
+    "changed": "自律システムの意思決定プロセスを可視化するフレームワークを提案する論文が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.02861v1",
+      "title": "Towards Trustworthy Autonomous Robots: An Explainable AI-Based Decision Framework",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-04-r04",
+    "created_at": "2026-09-04T08:28:27.686309+09:00",
+    "headline": "User Feedback Provides a Unique Signal that LLMs Can not Detect",
+    "what_happened": "arXivに、ユーザーからの自然なフィードバックがLLMの改善に有効なシグナルであることを論じた論文が投稿された。既存の評価パラダイムの偏りを指摘し、フィードバックを取り入れたモデル改修の効果を示している。",
+    "background": "LLMの性能改善やアライメントにおいて、ユーザーインタラクションから得られるデータの活用方法が研究されている。",
+    "changed": "ユーザーフィードバックの有効性と評価手法の偏りに関する研究論文が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.02859v1",
+      "title": "User Feedback Provides a Unique Signal that LLMs Can not Detect",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-04-r05",
+    "created_at": "2026-09-04T08:28:27.686309+09:00",
+    "headline": "[新規求人] anthropic: Sales Strategy, Operational Excellence",
+    "what_happened": "Anthropicがサンフランシスコおよびニューヨークを勤務地とする「Sales Strategy, Operational Excellence」の求人を公開した。GTM（Go-To-Market）組織の運営体制や計画サイクルの整備を担う人材を募集している。",
+    "background": "Anthropicは法人向け営業体制や組織の拡大に伴い、GTM部門のオペレーションを強化する採用を行っている。",
+    "changed": "Anthropicの営業戦略・オペレーション管理に関する新規求人が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5414793008",
+      "title": "[新規求人] anthropic: Sales Strategy, Operational Excellence (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-03-r07",
+      "2026-09-03-r02",
+      "2026-09-02-r03",
+      "2026-09-02-r02",
+      "2026-09-02-r01",
+      "2026-09-01-r04"
+    ]
   }
 ]
