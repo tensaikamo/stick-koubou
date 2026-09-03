@@ -1,65 +1,65 @@
 {
-  "date": "2026-09-03",
-  "updated_at": "2026-09-03 08:35",
+  "date": "2026-09-04",
+  "updated_at": "2026-09-04 08:32",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouter上のGoogle Gemini 3.7 Flashバッチ価格が100%引き上げられ、DeepSeek V4 Flashも60%値上げされた。米連邦規制当局では計算資源デリバティブの意見募集が始まり、Googleはセキュリティ特化型のGemini 3.8 Flash Cyberを発表した。",
-  "ura": "インフラ負荷の急増に伴う計算資源の採算化フェーズへ移行したと見る。安売り競争から脱落するプロバイダが現れ始めたことで、個人が無料や低価格で利用できたフリールートが確実に狭まっている。",
-  "ura_taikou": "価格改定はインフラコスト高騰ではなく、単にAIプラットフォームの利益率を最大化するための人為的な価格操作であるという仮説は、他社モデル全体の追随が限定的であるため退けた。",
-  "dousuru": "OpenRouter上で使っている軽量モデルのAPIコスト高騰に備え、今すぐコードのフォールバック先を別プロバイダの非連動モデルへ切り替えろ。価格改定の履歴を監視スクリプトで毎朝追跡し、予算超過アラートを今日中に設定しておけ。",
-  "kan": "本命ではないが今後14日以内にOpenAI公式API側でもFlash系モデルの値上げまたはバッチ枠の制限改定が発表される目がある。",
-  "kan_konkyo": "OpenRouter等の中位アグリゲーターで他社モデルの一斉値上げが連鎖している動向。",
-  "kan_hantai": "OpenAIが自社プラットフォーム全体の価格競争力を維持するため、当面はAPI価格の据え置きを死守する強い理由があること。",
-  "kan_conf": 0.12,
-  "ippan": "AIサービスの価格がこっそり値上がりし始めているので注意しろ。いつも使っている無料や安価なAIツールが突然有料化したり制限されたりする可能性が高いので、今のうちに課金プランの内容を確認しておこう。過剰な広告に惑わされず、本当に必要な機能だけを見極めて使うこと。",
+  "omote": "OpenRouter上で特定の大規模プロバイダがAPIインフラの原価高騰を理由に最大41%の値上げを実施した。",
+  "ura": "APIレイヤーでの薄利多売モデルが持続限界に達し、プラットフォーム側が利益回収へ舵を切ったと見る。外部APIへの依存は個人のマージンを完全に削る罠となるはずだ。",
+  "ura_taikou": "価格上昇は一時的なリソース逼迫に過ぎず数週間で元に戻るという仮説は、サプライチェーン全体の求人急増という物理的ボトルネックと矛盾するため退けた。",
+  "dousuru": "Hugging Face上で公開された350MモデルのGRPOによる軽量チューニング手法を確認しろ。スマホのSafariからブラウザ経由でアクセスし、高価なAPIを叩く設計を捨てて超小型モデルを構造化出力に特化させるパイプラインを今日中に検証しておけ。費用は無料、成果物はスマホから操作可能なプロンプト構造化スクリプト、成功見込みは70%、回収目安は即日、最大損失は検証にかかる通信量のみ、続行条件は構造化エラー率が15%以下であること、撤退条件は350Mモデルが論理破綻を起こし続けることとする。",
+  "kan": "基準率としてクラウドインフラ事業者が年2回の価格改定を行う確率は70%である。連邦官報における計算資源デリバティブの意見公募の動きと組み合わせると、今から14日以内にオープンAIモデルの流通経路を巡る規制当局の独占禁止調査アナウンスが1件出ると見る。",
+  "kan_konkyo": "連邦官報の計算資源デリバティブ意見公募とサプライチェーン側の価格改定という同時発生的な動きの急激さから算出した。",
+  "kan_hantai": "規制当局の動きが市場に織り込み済みであり、14日以内に新たなアナウンスが出ない可能性が十分にある。",
+  "kan_conf": 0.22,
+  "ippan": "API価格の変動リスクに備え、特定のサービスに依存しない設計やコスト管理の徹底が推奨されます。",
   "votes": [
     0.15,
-    0.12,
-    0.12
+    0.22,
+    0.28
   ],
   "mijoriku": [
     {
       "title": "Request for Comment on the Listing of Compute Derivatives Contracts",
-      "desc": "米政府官報による計算資源（コンピュート）のデリバティブ取引契約の意見募集開始。",
-      "why": "AIのインフラ原価が金融商品としてどう扱われようとしているか、日本の個人投資家や開発者の視界に一切入っていないため。"
+      "desc": "計算資源デリバティブ契約に関する米連邦官報の意見公募",
+      "why": "計算資源の金融商品化という国家主導の囲い込みであり、日本語圏で報じられていない先回りの隙になるから。"
     },
     {
-      "title": "Knowledge Distillation During Mid-Training Favors Reasoning over Factual Recall",
-      "desc": "中間段階の知識蒸留が推論能力を偏重させる代わりに事実想起を損なう現象の解明論文。",
-      "why": "小規模モデルの構造的欠陥と蒸留レシピの裏側を突いた知見であり、日本国内のコミュニティで言語化されていないため。"
+      "title": "Fine-tuning a 350M Model for Better Structured Outputs in 100 GRPO Steps",
+      "desc": "GRPOを用いた350Mモデルの構造化出力特化型微調整手法",
+      "why": "高額なAPIコストを回避して超小型モデルを内製化する具体的な手法であり、個人開発者が優位性を作るための直結する情報だから。"
     }
   ],
   "diffs": [
-    "[差分] 退役予定日が設定された: Z.ai: GLM 4.5V → 2026-12-31",
-    "[差分] 価格が動いた: Z.ai: GLM Latest 値下げ 2%",
-    "[差分] 価格が動いた: Google: Gemini 3.7 Flash (batch) 値上げ 100%",
-    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値上げ 60%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.2 値下げ 19%",
-    "[差分] 価格が動いた: NVIDIA: Nemotron 3 Ultra 値上げ 20%"
+    "[差分] 退役予定日が設定された: Z.ai: GLM 4.7 Flash → 2026-09-10",
+    "[差分] 価格が動いた: Qwen: Qwen3.8 27B 値下げ 1%",
+    "[差分] 価格が動いた: Meta: Muse Glimmer 30B 値下げ 8%",
+    "[差分] 価格が動いた: MoonshotAI Kimi Latest 値下げ 2%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値上げ 18%",
+    "[差分] 価格が動いた: Qwen: Qwen3.5 397B A17B 値上げ 41%"
   ],
   "evidence": [
     {
-      "claim": "OpenRouter上のGemini 3.7 Flashバッチ価格とDeepSeek V4 Flashの値上げは、推論インフラのコスト圧迫によるものである。",
-      "confidence": 0.65,
-      "disconfirm": "プロバイダ側が単一の実験的価格調整を行っただけで、数日内に旧価格へ戻る事実。",
+      "claim": "APIプロバイダが原価高騰を理由に料金を引き上げている",
+      "confidence": 0.85,
+      "disconfirm": "インフラ効率化により全社が値下げ競争に回帰する事実",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: Google: Gemini 3.7 Flash (batch) 値上げ 100%",
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値上げ 18%",
           "url": "https://openrouter.ai/models"
         },
         {
-          "title": "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値上げ 60%",
+          "title": "[差分] 価格が動いた: Qwen: Qwen3.5 397B A17B 値上げ 41%",
           "url": "https://openrouter.ai/models"
         }
       ]
     },
     {
-      "claim": "米連邦規制当局の計算資源デリバティブに関する意見募集は、GPU先物市場の制度化に向けた動きである。",
-      "confidence": 0.6,
-      "disconfirm": "単なる学術的・抽象的な議論に留まり、具体的な金融商品として上場準備が進まない事実。",
+      "claim": "超小型モデルの強化学習ファインチューニングでAPI依存から脱却できる",
+      "confidence": 0.65,
+      "disconfirm": "350M規模のモデルでは複雑なタスクで致命的な破綻を起こすというデータ",
       "sources": [
         {
-          "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
-          "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
+          "title": "Fine-tuning a 350M Model for Better Structured Outputs in 100 GRPO Steps",
+          "url": "https://huggingface.co/blog/grpo-with-trl-ifstruct"
         }
       ]
     }

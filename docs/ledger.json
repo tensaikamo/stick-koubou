@@ -1,24 +1,44 @@
 {
-  "updated_at": "2026-09-03 08:32",
+  "updated_at": "2026-09-04 08:29",
   "score": {
-    "hit": 7,
+    "hit": 8,
     "miss": 22,
-    "total": 29,
-    "rate": 0.2413793103448276,
-    "pending": 6,
-    "brier": 0.45546206896551733,
-    "brier_n": 29,
-    "brier_initial": 0.45587586206896563,
+    "total": 30,
+    "rate": 0.26666666666666666,
+    "pending": 5,
+    "brier": 0.44045763333333343,
+    "brier_n": 30,
+    "brier_initial": 0.44108333333333344,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-09-04",
+    "date": "2026-09-05",
     "days": 1
   },
   "decided": [
+    {
+      "id": "2026-08-21-h01",
+      "claim": "Anthropicは今後14日以内に、シンガポールオフィスの開設またはASEAN地域拠点設立に関する公式発表を自社ニュースルームに掲載しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-09-04",
+      "confidence": 0.927,
+      "initial_confidence": 0.89,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "既に現地法人設立やオフィス契約が完了しており、求人公開と連動した対外PR施策が直近で準備されている場合。",
+      "evidence": "期日時点でAnthropicのニュースルームを確認したところ、シンガポールオフィスの開設やASEAN拠点設立に関する公式告知記事は掲載されておらず、予測通り不掲載であることが確認された。",
+      "signals": [
+        {
+          "date": "2026-08-21",
+          "dir": "confirm",
+          "why": "本日の新規求人一覧にAccount Executive - Public Sector (ASEAN) (Singapore)などのシンガポール勤務ポジションが追加されたためconfirm指標が点灯する。"
+        }
+      ]
+    },
     {
       "id": "2026-08-18-h01",
       "claim": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」のメジャーバージョン「4.0.0」（プレリリース版を除く）をリリースしない。",
@@ -194,20 +214,6 @@
       "counter": "限定的な招待制プライベートプレビューとして運用され、一般公開価格の表示が延期される可能性がある。",
       "evidence": "2026年8月10日時点のGoogle AI Studio公式価格ページにおいて「Gemini 3.5 Flash Cyber」の掲載が確認できないため。",
       "signals": []
-    },
-    {
-      "id": "2026-08-02-h02",
-      "claim": "Bitcoinの取引価格が100,000米ドルを上回る",
-      "subject": "Bitcoin",
-      "deadline": "2026-08-16",
-      "confidence": 0.75,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "主要国の金融規制強化やマクロ経済指標の悪化に伴い、リスクオフの売り圧力が強まるリスクが存在する。",
-      "evidence": "CoinMarketCapのページにおいて、Bitcoinの現在価格は約63,089ドルであり、作成日から期限までの期間に100,000米ドル以上に達した記録は確認できない。",
-      "signals": []
     }
   ],
   "pending": [
@@ -238,26 +244,6 @@
       "counter": "主要カスタマーによる自社製AIチップへの切り替え速度が予想を超えた場合、成長率が急速に鈍化するリスクがある。",
       "evidence": "公開情報から決算レポートの証拠を取得できなかったため、判定不能です。",
       "signals": []
-    },
-    {
-      "id": "2026-08-21-h01",
-      "claim": "Anthropicは今後14日以内に、シンガポールオフィスの開設またはASEAN地域拠点設立に関する公式発表を自社ニュースルームに掲載しない。",
-      "subject": "Anthropic",
-      "deadline": "2026-09-04",
-      "confidence": 0.927,
-      "initial_confidence": 0.89,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "既に現地法人設立やオフィス契約が完了しており、求人公開と連動した対外PR施策が直近で準備されている場合。",
-      "evidence": "",
-      "signals": [
-        {
-          "date": "2026-08-21",
-          "dir": "confirm",
-          "why": "本日の新規求人一覧にAccount Executive - Public Sector (ASEAN) (Singapore)などのシンガポール勤務ポジションが追加されたためconfirm指標が点灯する。"
-        }
-      ]
     },
     {
       "id": "2026-08-22-h01",
@@ -336,11 +322,6 @@
       "events": [
         {
           "date": "2026-09-02",
-          "headline": "anthropic: Head of Business Controls (San Francisco, CA)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357943008"
-        },
-        {
-          "date": "2026-09-02",
           "headline": "anthropic: Senior Manager, IT SOX (San Francisco, CA)",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357941008"
         },
@@ -353,17 +334,17 @@
           "date": "2026-09-03",
           "headline": "anthropic Python SDK v1.3.0 リリース",
           "url": "https://pypi.org/project/anthropic/1.3.0/"
+        },
+        {
+          "date": "2026-09-04",
+          "headline": "[新規求人] anthropic: Sales Strategy, Operational Excellence",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5414793008"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-08-20",
-          "headline": "OpenAIが公式Python SDK v3.3.1をPyPIに公開",
-          "url": "https://pypi.org/project/openai/3.3.1/"
-        },
         {
           "date": "2026-08-27",
           "headline": "openai Python SDK v3.4.0 リリース",
@@ -378,6 +359,11 @@
           "date": "2026-09-03",
           "headline": "openai Python SDK v3.7.0 リリース",
           "url": "https://pypi.org/project/openai/3.7.0/"
+        },
+        {
+          "date": "2026-09-04",
+          "headline": "openai Python SDK v3.8.0 リリース",
+          "url": "https://pypi.org/project/openai/3.8.0/"
         }
       ]
     },
@@ -464,6 +450,41 @@
   ],
   "records": [
     {
+      "id": "2026-09-04-r05",
+      "date": "2026-09-04",
+      "headline": "[新規求人] anthropic: Sales Strategy, Operational Excellence",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5414793008"
+    },
+    {
+      "id": "2026-09-04-r04",
+      "date": "2026-09-04",
+      "headline": "User Feedback Provides a Unique Signal that LLMs Can not Detect",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2609.02859v1"
+    },
+    {
+      "id": "2026-09-04-r03",
+      "date": "2026-09-04",
+      "headline": "Towards Trustworthy Autonomous Robots: An Explainable AI-Based Decision Framework",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2609.02861v1"
+    },
+    {
+      "id": "2026-09-04-r02",
+      "date": "2026-09-04",
+      "headline": "Discriminative World Models for Web Agents",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2609.02885v1"
+    },
+    {
+      "id": "2026-09-04-r01",
+      "date": "2026-09-04",
+      "headline": "openai Python SDK v3.8.0 リリース",
+      "certainty": "reported",
+      "url": "https://pypi.org/project/openai/3.8.0/"
+    },
+    {
       "id": "2026-09-03-r07",
       "date": "2026-09-03",
       "headline": "[新規求人] anthropic: People Partner, Engineering",
@@ -511,42 +532,7 @@
       "headline": "openai Python SDK v3.7.0 リリース",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/openai/3.7.0/"
-    },
-    {
-      "id": "2026-09-02-r04",
-      "date": "2026-09-02",
-      "headline": "xai: Facilities Engineer, Electrical (Memphis, Tennessee; Southaven, Mississippi)",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5227980007"
-    },
-    {
-      "id": "2026-09-02-r03",
-      "date": "2026-09-02",
-      "headline": "anthropic: Head of Business Controls (San Francisco, CA)",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357943008"
-    },
-    {
-      "id": "2026-09-02-r02",
-      "date": "2026-09-02",
-      "headline": "anthropic: Director, US International Tax Planning (Remote-Friendly | San Francisco, CA)",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5387009008"
-    },
-    {
-      "id": "2026-09-02-r01",
-      "date": "2026-09-02",
-      "headline": "anthropic: Senior Manager, IT SOX (San Francisco, CA)",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357941008"
-    },
-    {
-      "id": "2026-09-01-r06",
-      "date": "2026-09-01",
-      "headline": "xAIがLead Electrical Engineerの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5226686007"
     }
   ],
-  "record_count": 108
+  "record_count": 113
 }

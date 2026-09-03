@@ -1,164 +1,163 @@
 {
-  "date": "2026-09-03",
+  "date": "2026-09-04",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの価格改定を監視するスクリプトをiPhoneのWebブラウザ経由で今日どこにデプロイするか？",
-    "軽量モデルのAPIコスト高騰に備えて今日切り替える別プロバイダの選定を終えたか？",
-    "OpenAI公式API側のバッチ枠制限改定に備えて今日の予算超過アラートを設定したか？"
+    "OpenRouterのAPI値上げに対し、スマホから350Mモデルの構造化出力へ即座に切り替えるか？",
+    "APIレイヤーのコスト高騰を避けるために既存のプロンプトパイプラインを今日どう再設計するか？",
+    "オープンAIの流通経路への規制調査を見越し、自走用スクリプトの依存先をどこへ分散させるか？"
   ],
   "moves": [
     {
-      "t": "OpenRouterの価格変動を追跡する通知設定を構築する",
-      "why": "急激な価格改定に対応するため、コスト異常を即座に検知する仕組みが不可欠だからだ。",
-      "cost_min": 0,
-      "cost_max": 500,
-      "loss_max": 500,
-      "success_p": 0.5,
-      "success_p_min": 0.35,
-      "success_p_max": 0.65,
-      "success_why": "クラウドの簡易監視ツールやWebhook通知機能を利用できるため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 7,
-      "outcome": "価格変動アラートの稼働",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "予期せぬコスト爆発を防ぐ防衛策となるため。",
-      "evidence_ids": [
-        "2026-09-03-r03"
-      ],
-      "assumptions": [
-        "利用する監視サービスが無料枠または小額プランを提供していること"
-      ],
-      "disconfirm": "APIの価格変動が頻繁すぎて通知が機能しないこと",
-      "continue_if": "通知が正確に届くこと",
-      "stop": "コスト超過アラートの設定自体が有料かつ高額な場合"
-    },
-    {
-      "t": "API利用量の予算超過アラートをダッシュボードに設定する",
-      "why": "バッチ価格の引き上げや予期せぬトークン消費による予算破綻を防ぐためだ。",
-      "cost_min": 0,
-      "cost_max": 1000,
-      "loss_max": 1000,
-      "success_p": 0.6,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "主要なAPIプラットフォームには標準で予算制限機能が備わっているため。",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 1,
-      "outcome": "予算超過時の自動停止設定完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "予期せぬ損失を物理的に遮断できるため。",
-      "evidence_ids": [
-        "2026-09-03-r03"
-      ],
-      "assumptions": [
-        "利用中のプロバイダに予算制限のAPI/UI機能があること"
-      ],
-      "disconfirm": "プロバイダ側で予算制限機能が提供されていないこと",
-      "continue_if": "制限ラインの設定が正常に保存されること",
-      "stop": "予算制限機能を使うために上位プランへの加入が強制される場合"
-    },
-    {
-      "t": "軽量モデルのフォールバック処理をコードに実装する",
-      "why": "特定のプロバイダが値上がりまたは停止した際に自動で別系統へ逃げる動線を作るためだ。",
+      "t": "スマホのSafariからHugging Faceにアクセスし350Mモデルの構造化出力を検証する",
+      "why": "OpenRouterの値上げに対抗し、高価なAPI依存を断つための代替パイプラインを即座に構築するからだ",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.45,
       "success_p_min": 0.3,
       "success_p_max": 0.6,
-      "success_why": "既存の例外処理ルーチンを流用して実装できるため。",
-      "value_score": 5,
-      "learning_value": 5,
+      "success_why": "小規模モデルは軽量だが論理破綻の確率が無視できないため",
+      "value_score": 3,
+      "learning_value": 4,
       "time_minutes": 30,
       "payback_days": 0,
-      "outcome": "フォールバック対応済みのコード片",
+      "outcome": "スマホから操作可能なプロンプト構造化スクリプトの試作品",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.3,
-      "impact_why": "プラットフォーム依存のリスクを直接低減できるため。",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "30分の単発検証であるため全体への寄与は限定的である",
       "evidence_ids": [
-        "2026-09-03-r03",
-        "2026-09-03-r01"
+        "2026-07-22-r01"
       ],
       "assumptions": [
-        "APIクライアントのインターフェースが共通化されていること"
+        "Hugging Faceのブラウザ経由インターフェースがスマホから正常に動作すること"
       ],
-      "disconfirm": "モデル間の出力仕様が大きく異なり共通処理化できないこと",
-      "continue_if": "テストリクエストが別プロバイダで成功すること",
-      "stop": "仕様の違いにより例外処理が複雑化しすぎる場合"
+      "disconfirm": "350Mモデルが論理破綻を連発して構造化出力が成立しないこと",
+      "continue_if": "構造化エラー率が15%以下に収まっていること",
+      "stop": "何度プロンプトを修正してもJSONフォーマットが崩れ続けること"
     },
     {
-      "t": "OpenAI公式API側のモデル価格改定リスクを検証する",
-      "why": "GoogleやDeepSeekの値上げに追随してOpenAI側も同様の制限や値上げを行う可能性が高いためだ。",
+      "t": "有料APIの従量課金上限を直ちに引き下げて予期せぬコスト爆発を防ぐ",
+      "why": "主要プロバイダのAPIインフラ原価高騰を受け、個人が不意の出費を負うリスクを最小化するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.6,
+      "success_p_max": 0.8,
+      "success_why": "アカウント設定画面からのリミット変更は確実に実行可能であるため",
+      "value_score": 2,
+      "learning_value": 1,
+      "time_minutes": 10,
+      "payback_days": 0,
+      "outcome": "APIダッシュボードにおけるハードリミットの設定完了",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.1,
+      "impact_why": "防御的な設定変更であり直接的な利益を生むものではないため",
+      "evidence_ids": [
+        "2026-07-22-r01"
+      ],
+      "assumptions": [
+        "各APIプロバイダがダッシュボードからの即時リミット変更に対応していること"
+      ],
+      "disconfirm": "設定変更画面が一時的にメンテナンス中で操作できないこと",
+      "continue_if": "リミット超過の警告通知が正しく機能していること",
+      "stop": "プラットフォーム側の仕様変更で上限設定が撤廃された場合"
+    },
+    {
+      "t": "月額5000円の外部APIバースト枠を購入してスループットを維持する",
+      "why": "API原価高騰の最中でも既存の検証フローを止めることなく処理速度を担保するため",
+      "cost_min": 4500,
+      "cost_max": 5500,
+      "loss_max": 5500,
       "success_p": 0.4,
       "success_p_min": 0.25,
       "success_p_max": 0.55,
-      "success_why": "業界全体のインフラコスト高騰というマクロな圧力が存在するため。",
+      "success_why": "価格改定直後のプラン変更は予期せぬエラーや追加請求リスクがあるため",
       "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "OpenAIの価格改定予測レポート",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "次の動きを先回りして予測するための基礎資料となるため。",
-      "evidence_ids": [
-        "2026-09-03-r01",
-        "2026-08-29-r01"
-      ],
-      "assumptions": [
-        "競合他社の動向が価格設定に連動すること"
-      ],
-      "disconfirm": "OpenAIが価格据え置きの方針を明言すること",
-      "continue_if": "類似のインフラ負荷兆候が確認できること",
-      "stop": "予測の根拠となるデータが不足している場合"
-    },
-    {
-      "t": "有料の監視・バックアップAPIプランの比較表を作成する",
-      "why": "無料枠が狭まる中、安定稼働のために有料プランへ少額投資する価値があるかを判断するためだ。",
-      "cost_min": 1000,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.5,
-      "success_p_min": 0.35,
-      "success_p_max": 0.65,
-      "success_why": "各社の料金プランと提供リソースの公開情報から費用対効果を算出できるため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
+      "learning_value": 2,
+      "time_minutes": 15,
       "payback_days": 14,
-      "outcome": "有料プラン導入判断のための比較表",
-      "category": "research",
+      "outcome": "優先ルーティングが適用されたAPIキーの取得",
+      "category": "buy",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.25,
-      "impact_why": "資本投下による優位性確保の是非を決めるため。",
+      "impact_why": "開発速度が一時的に向上するため",
       "evidence_ids": [
-        "2026-09-03-r03"
+        "2026-07-22-r01"
       ],
       "assumptions": [
-        "主要サービスが月額数千円程度の小額プランを用意していること"
+        "支払いに利用するiPhoneのApple Payまたはクレジットカードが正常に処理されること"
       ],
-      "disconfirm": "個人向けの現実的な価格帯のプランが存在しないこと",
-      "continue_if": "費用対効果が見合ると判断できるプランがあること",
-      "stop": "すべての有料プランが個人利用には過剰に高額である場合"
+      "disconfirm": "値上げの影響で追加枠自体が購入停止措置を受けていること",
+      "continue_if": "APIの応答速度が前週比で20%以上改善していること",
+      "stop": "追加購入後もレートリミットエラーが頻発する場合"
+    },
+    {
+      "t": "OpenAIとHugging Faceの過去のセキュリティインシデント報告を精読する",
+      "why": "モデル評価時の脆弱性を突いた攻撃手口を把握し、自身のパイプライン設計の防衛策とするため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "公式の事後分析レポートが既に公開されているため",
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "インシデントの共通パターンのメモ書き",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "知識の獲得にとどまり直接的なシステム構築にはならないため",
+      "evidence_ids": [
+        "2026-07-24-r01",
+        "2026-07-22-r01"
+      ],
+      "assumptions": [
+        "公開されているインシデントレポートに実用的な技術的詳細が含まれていること"
+      ],
+      "disconfirm": "情報が抽象的すぎて具体的な攻撃ベクトルが読み取れないこと",
+      "continue_if": "自前のスクリプトに応用できる防衛の知見が3点以上見つかること",
+      "stop": "記事の内容がすでに周知の事実である場合"
+    },
+    {
+      "t": "月額15000円のプレミアムセキュリティ監査ツールを導入して依存先の脆弱性をスキャンする",
+      "why": "外部APIの価格高騰と連動するサプライチェーンのリスクを事前に洗い出すため",
+      "cost_min": 14000,
+      "cost_max": 16000,
+      "loss_max": 16000,
+      "success_p": 0.35,
+      "success_p_min": 0.2,
+      "success_p_max": 0.5,
+      "success_why": "高度な監査ツールは設定と解釈に専門的な知識を要するため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 30,
+      "outcome": "依存ライブラリの脆弱性レポートの出力",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.3,
+      "impact_why": "セキュリティリスクの早期発見につながるため",
+      "evidence_ids": [
+        "2026-07-22-r01"
+      ],
+      "assumptions": [
+        "モバイルブラウザ経由でも監査ツールのダッシュボードが閲覧・操作できること"
+      ],
+      "disconfirm": "検出された脆弱性のほとんどが個人開発のスコープ外であること",
+      "continue_if": "重大なリスクが1件以上特定され、対策の道筋が見えること",
+      "stop": "ツールが生成するアラートが過剰でノイズが大半を占める場合"
     }
   ],
-  "kan": "本命ではないが今後14日以内にOpenAI公式API側でもFlash系モデルの値上げまたはバッチ枠の制限改定が発表される目がある。"
+  "kan": "基準率としてクラウドインフラ事業者が年2回の価格改定を行う確率は70%である。連邦官報における計算資源デリバティブの意見公募の動きと組み合わせると、今から14日以内にオープンAIモデルの流通経路を巡る規制当局の独占禁止調査アナウンスが1件出ると見る。"
 }
