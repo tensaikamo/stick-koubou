@@ -3270,5 +3270,119 @@
       "2026-09-02-r01",
       "2026-09-01-r04"
     ]
+  },
+  {
+    "id": "2026-09-05-r01",
+    "created_at": "2026-09-05T08:12:40.613419+09:00",
+    "headline": "anthropic Python SDK v1.4.0 リリース",
+    "what_happened": "AnthropicはPyPIにおいてClaude API用Python SDKのバージョン1.4.0をリリースした。本パッケージはPythonアプリケーションからClaude APIを直接呼び出すための機能を提供する。本文はインストール手順や初期化コード例を含んでいる。",
+    "background": "AnthropicのPython SDKは、Claudeモデル群をアプリケーションから利用するための公式インターフェースである。",
+    "changed": "Claude SDK for Pythonのバージョンが1.4.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.4.0/",
+      "title": "anthropic Python SDK v1.4.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-04-r05",
+      "2026-09-03-r07",
+      "2026-09-03-r02",
+      "2026-09-02-r03",
+      "2026-09-02-r02",
+      "2026-09-02-r01"
+    ]
+  },
+  {
+    "id": "2026-09-05-r02",
+    "created_at": "2026-09-05T08:12:40.613419+09:00",
+    "headline": "Compile by Training: Turning Natural-Language Specifications into Local Neural Functions",
+    "what_happened": "Yuntian Dengらは、自然言語の仕様を再利用可能なローカルのニューラル関数に変換する手法「Compile by Training」に関する論文をarXivに発表した。教師モデルが生成したタスク特化型データを用いてコンパクトなインタプリタ用アダプターを訓練するアプローチをとる。FuzzyBench-Hardにおいて83.6%のセマンティック精度を達成したとしている。",
+    "background": "大規模なリモートモデルへの依存コストやレイテンシを軽減するため、小規模なローカル関数へコンパイルする技術研究が進められている。",
+    "changed": "自然言語仕様からローカルニューラル関数を生成するコンパイル手法と評価結果が公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.04199v1",
+      "title": "Compile by Training: Turning Natural-Language Specifications into Local Neural Functions",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-05-r03",
+    "created_at": "2026-09-05T08:12:40.613419+09:00",
+    "headline": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
+    "what_happened": "Haoyaun Zhuらは、共有エンドポイント上のブラックボックスLLMオブザーバーにおける事前登録された信頼性検証の失敗に関する論文をarXivに発表した。同一リクエストの翌日再実行や同一ウィンドウ内でのランキング比較において、必要な合意水準を満たさない結果が得られたことを報告している。",
+    "background": "LLMの出力を測定器として利用する際、モデルの挙動変動やプロバイダ側の変更による再現性の課題が議論されている。",
+    "changed": "共有エンドポイント上のLLMオブザーバーにおける測定の不安定性を示す検証データが公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.04198v1",
+      "title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-05-r04",
+    "created_at": "2026-09-05T08:12:40.613419+09:00",
+    "headline": "ESPO: Error-Structured Prompt Optimization via Diagnose, Diversify, and Stabilize",
+    "what_happened": "Lihao Liuらは、エラー構造化プロンプト最適化手法「ESPO」に関する論文をarXivに発表した。エラーの構造的パターンへの分類、多様な候補生成、およびブートストラップ安定性選択を組み合わせることで、プロンプト肥大化を抑えつつ平均精度を向上させる手法を提案している。",
+    "background": "進化型プロンプト最適化におけるプロンプトの肥大化と精度低下のトレードオフを解消する研究が行われている。",
+    "changed": "エラー構造に基づく新しいプロンプト最適化手法ESPOが提案され、ベンチマーク結果が公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.04197v1",
+      "title": "ESPO: Error-Structured Prompt Optimization via Diagnose, Diversify, and Stabilize",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-05-r05",
+    "created_at": "2026-09-05T08:12:40.613419+09:00",
+    "headline": "[新規求人] anthropic: Senior Manager, Infrastructure Asset Accounting",
+    "what_happened": "Anthropicはサンフランシスコまたはニューヨークを勤務地とする「Senior Manager, Infrastructure Asset Accounting」の求人情報をGreenhouse上で公開した。募集要項には、チップやデータセンターなどの50億ドル規模に及ぶインフラ資産のライフサイクル会計管理を担うことが明記されている。",
+    "background": "大規模な計算インフラ投資を進めるAI企業において、財務およびインフラ資産の専門的な会計管理体制の構築が急務となっている。",
+    "changed": "Anthropicが大規模インフラ資産の会計管理責任者の募集を開始したことが確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357949008",
+      "title": "[新規求人] anthropic: Senior Manager, Infrastructure Asset Accounting (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-04-r05",
+      "2026-09-03-r07",
+      "2026-09-03-r02",
+      "2026-09-02-r03",
+      "2026-09-02-r02",
+      "2026-09-02-r01"
+    ]
   }
 ]

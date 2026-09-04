@@ -1907,16 +1907,20 @@
         "conf_after": 0.43
       }
     ],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-09-05T08:14:11.648092+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "PyPI上で公式SDKのバージョンがopenai 3.8.0となっていることが確認でき、期間内にv3.4.0以降のバージョンがリリースされたため。",
+      "url": "https://pypi.org/project/openai/#history"
+    },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.65,
-    "alert": true
+    "alert": true,
+    "needs_review": false
   },
   {
     "id": "2026-08-25-h01",
