@@ -1,24 +1,49 @@
 {
-  "updated_at": "2026-09-04 08:29",
+  "updated_at": "2026-09-05 08:14",
   "score": {
     "hit": 8,
-    "miss": 22,
-    "total": 30,
-    "rate": 0.26666666666666666,
-    "pending": 5,
-    "brier": 0.44045763333333343,
-    "brier_n": 30,
-    "brier_initial": 0.44108333333333344,
+    "miss": 23,
+    "total": 31,
+    "rate": 0.25806451612903225,
+    "pending": 4,
+    "brier": 0.4322138387096775,
+    "brier_n": 31,
+    "brier_initial": 0.44048387096774205,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-09-05",
-    "days": 1
+    "date": "2026-09-08",
+    "days": 3
   },
   "decided": [
+    {
+      "id": "2026-08-22-h01",
+      "claim": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」の新たなマイナーまたはメジャーバージョン（v3.4.0以降）をリリースしない。",
+      "subject": "OpenAI",
+      "deadline": "2026-09-05",
+      "confidence": 0.43,
+      "initial_confidence": 0.65,
+      "result": "miss",
+      "status": "resolved",
+      "alert": true,
+      "counter": "緊急のバグ修正や脆弱性対応により、予期せぬパッチバージョンが数日以内に強制投入される可能性。",
+      "evidence": "PyPI上で公式SDKのバージョンがopenai 3.8.0となっていることが確認でき、期間内にv3.4.0以降のバージョンがリリースされたため。",
+      "signals": [
+        {
+          "date": "2026-08-22",
+          "dir": "kill",
+          "why": "openai Python SDK v3.3.1がリリースされ、パッチバージョンが追加されたため。"
+        },
+        {
+          "date": "2026-08-26",
+          "dir": "kill",
+          "why": "本日の事象においてopenai Python SDK v3.3.1がリリースされたため、v3.3.x系のパッチ追加の指標に該当する。"
+        }
+      ]
+    },
     {
       "id": "2026-08-21-h01",
       "claim": "Anthropicは今後14日以内に、シンガポールオフィスの開設またはASEAN地域拠点設立に関する公式発表を自社ニュースルームに掲載しない。",
@@ -200,20 +225,6 @@
       "counter": "AnthropicがOpus 5の初期トラフィックをリアルタイムAPIリクエストの安定化に集中させ、Batch API対応の公開を次月中旬以降に延期する可能性がある。",
       "evidence": "期日（2026-08-14）時点のAnthropic公式ドキュメント（docs.anthropic.com）のモデルおよび料金ページを確認したところ、「Claude Opus 5」のBatch API料金体系や割引に関する記載は掲載されていない。",
       "signals": []
-    },
-    {
-      "id": "2026-08-03-h02",
-      "claim": "Googleは7日以内に、Google AI Studioの公式価格一覧ドキュメントに「Gemini 3.5 Flash Cyber」の従量課金単価を追加する。",
-      "subject": "Google",
-      "deadline": "2026-08-10",
-      "confidence": 0.7,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "限定的な招待制プライベートプレビューとして運用され、一般公開価格の表示が延期される可能性がある。",
-      "evidence": "2026年8月10日時点のGoogle AI Studio公式価格ページにおいて「Gemini 3.5 Flash Cyber」の掲載が確認できないため。",
-      "signals": []
     }
   ],
   "pending": [
@@ -244,31 +255,6 @@
       "counter": "主要カスタマーによる自社製AIチップへの切り替え速度が予想を超えた場合、成長率が急速に鈍化するリスクがある。",
       "evidence": "公開情報から決算レポートの証拠を取得できなかったため、判定不能です。",
       "signals": []
-    },
-    {
-      "id": "2026-08-22-h01",
-      "claim": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」の新たなマイナーまたはメジャーバージョン（v3.4.0以降）をリリースしない。",
-      "subject": "OpenAI",
-      "deadline": "2026-09-05",
-      "confidence": 0.43,
-      "initial_confidence": 0.65,
-      "result": null,
-      "status": "pending",
-      "alert": true,
-      "counter": "緊急のバグ修正や脆弱性対応により、予期せぬパッチバージョンが数日以内に強制投入される可能性。",
-      "evidence": "",
-      "signals": [
-        {
-          "date": "2026-08-22",
-          "dir": "kill",
-          "why": "openai Python SDK v3.3.1がリリースされ、パッチバージョンが追加されたため。"
-        },
-        {
-          "date": "2026-08-26",
-          "dir": "kill",
-          "why": "本日の事象においてopenai Python SDK v3.3.1がリリースされたため、v3.3.x系のパッチ追加の指標に該当する。"
-        }
-      ]
     },
     {
       "id": "2026-08-25-h01",
@@ -321,16 +307,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-09-02",
-          "headline": "anthropic: Senior Manager, IT SOX (San Francisco, CA)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357941008"
-        },
-        {
-          "date": "2026-09-03",
-          "headline": "[新規求人] anthropic: People Partner, Engineering",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5412783008"
-        },
-        {
           "date": "2026-09-03",
           "headline": "anthropic Python SDK v1.3.0 リリース",
           "url": "https://pypi.org/project/anthropic/1.3.0/"
@@ -339,6 +315,16 @@
           "date": "2026-09-04",
           "headline": "[新規求人] anthropic: Sales Strategy, Operational Excellence",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5414793008"
+        },
+        {
+          "date": "2026-09-05",
+          "headline": "[新規求人] anthropic: Senior Manager, Infrastructure Asset Accounting",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357949008"
+        },
+        {
+          "date": "2026-09-05",
+          "headline": "anthropic Python SDK v1.4.0 リリース",
+          "url": "https://pypi.org/project/anthropic/1.4.0/"
         }
       ]
     },
@@ -450,6 +436,41 @@
   ],
   "records": [
     {
+      "id": "2026-09-05-r05",
+      "date": "2026-09-05",
+      "headline": "[新規求人] anthropic: Senior Manager, Infrastructure Asset Accounting",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357949008"
+    },
+    {
+      "id": "2026-09-05-r04",
+      "date": "2026-09-05",
+      "headline": "ESPO: Error-Structured Prompt Optimization via Diagnose, Diversify, and Stabilize",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2609.04197v1"
+    },
+    {
+      "id": "2026-09-05-r03",
+      "date": "2026-09-05",
+      "headline": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoi",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2609.04198v1"
+    },
+    {
+      "id": "2026-09-05-r02",
+      "date": "2026-09-05",
+      "headline": "Compile by Training: Turning Natural-Language Specifications into Local Neural Functions",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2609.04199v1"
+    },
+    {
+      "id": "2026-09-05-r01",
+      "date": "2026-09-05",
+      "headline": "anthropic Python SDK v1.4.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/1.4.0/"
+    },
+    {
       "id": "2026-09-04-r05",
       "date": "2026-09-04",
       "headline": "[新規求人] anthropic: Sales Strategy, Operational Excellence",
@@ -497,42 +518,7 @@
       "headline": "Adaptive Critical Token-Aware Retrieval for Repository-Level Code Generation",
       "certainty": "reported",
       "url": "https://arxiv.org/abs/2609.01601v1"
-    },
-    {
-      "id": "2026-09-03-r05",
-      "date": "2026-09-03",
-      "headline": "Efficient SWE Agent Benchmarking via Trajectory-Aware Evaluation",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2609.01603v1"
-    },
-    {
-      "id": "2026-09-03-r04",
-      "date": "2026-09-03",
-      "headline": "Beyond Scores: Understanding LLM-as-a-Judge Mechanisms in Summarization Evaluation",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2609.01604v1"
-    },
-    {
-      "id": "2026-09-03-r03",
-      "date": "2026-09-03",
-      "headline": "google-genai Python SDK v2.22.0 リリースとAutomatic Function Callingの警告",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/2.22.0/"
-    },
-    {
-      "id": "2026-09-03-r02",
-      "date": "2026-09-03",
-      "headline": "anthropic Python SDK v1.3.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/1.3.0/"
-    },
-    {
-      "id": "2026-09-03-r01",
-      "date": "2026-09-03",
-      "headline": "openai Python SDK v3.7.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.7.0/"
     }
   ],
-  "record_count": 113
+  "record_count": 118
 }
