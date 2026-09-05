@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-09-05 08:14",
+  "updated_at": "2026-09-06 08:12",
   "score": {
     "hit": 8,
     "miss": 23,
     "total": 31,
     "rate": 0.25806451612903225,
-    "pending": 4,
+    "pending": 3,
     "brier": 0.4322138387096775,
     "brier_n": 31,
     "brier_initial": 0.44048387096774205,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-08",
-    "days": 3
+    "days": 2
   },
   "decided": [
     {
@@ -229,20 +229,6 @@
   ],
   "pending": [
     {
-      "id": "2026-07-23-h01",
-      "claim": "OpenAIは広告主向けのセルフサーブ型広告出稿プラットフォームの一般提供を年内に開始する。",
-      "subject": "OpenAI",
-      "deadline": "2026-08-22",
-      "confidence": 0.75,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "",
-      "evidence": "判定期間内に該当する公式発表が行われたかを確認できる公開情報が存在しないため。",
-      "signals": []
-    },
-    {
       "id": "2026-08-05-h03",
       "claim": "NVIDIAの次回決算におけるデータセンター部門売上高が280億ドルを上回る。",
       "subject": "NVIDIA",
@@ -307,11 +293,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-09-03",
-          "headline": "anthropic Python SDK v1.3.0 リリース",
-          "url": "https://pypi.org/project/anthropic/1.3.0/"
-        },
-        {
           "date": "2026-09-04",
           "headline": "[新規求人] anthropic: Sales Strategy, Operational Excellence",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5414793008"
@@ -325,6 +306,11 @@
           "date": "2026-09-05",
           "headline": "anthropic Python SDK v1.4.0 リリース",
           "url": "https://pypi.org/project/anthropic/1.4.0/"
+        },
+        {
+          "date": "2026-09-06",
+          "headline": "[新規求人] anthropic: Product Designer, Evals & Prompts (San Francisco, CA)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5411318008"
         }
       ]
     },
@@ -436,6 +422,13 @@
   ],
   "records": [
     {
+      "id": "2026-09-06-r01",
+      "date": "2026-09-06",
+      "headline": "[新規求人] anthropic: Product Designer, Evals & Prompts (San Francisco, CA)",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5411318008"
+    },
+    {
       "id": "2026-09-05-r05",
       "date": "2026-09-05",
       "headline": "[新規求人] anthropic: Senior Manager, Infrastructure Asset Accounting",
@@ -511,14 +504,7 @@
       "headline": "[新規求人] anthropic: People Partner, Engineering",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5412783008"
-    },
-    {
-      "id": "2026-09-03-r06",
-      "date": "2026-09-03",
-      "headline": "Adaptive Critical Token-Aware Retrieval for Repository-Level Code Generation",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2609.01601v1"
     }
   ],
-  "record_count": 118
+  "record_count": 119
 }

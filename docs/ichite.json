@@ -1,162 +1,162 @@
 {
-  "date": "2026-09-05",
+  "date": "2026-09-06",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "Anthropicのインフラ資産会計の求人に対し、自前の原価計算モデルの構築を今夜開始するか？",
-    "DeepSeek V4の価格破壊に対し、無料のクラウド環境で構造化出力の限界値を今夜測定するか？",
-    "OpenRouterの価格引き下げを前提とした最安パイプラインの試作品を今夜GitHubに上げるか？"
+    "OpenRouterの最新単価表に基づき、自作アプリのAPI呼び出しコストを今夜中に再計算するか？",
+    "国内の仲介再販サービスをすべて切り、直のAPI利用への切り替え手続きをiPhoneのSafariから完了させるか？",
+    "推論コストの低下圧力を踏まえ、現在動かしているWebアプリのAPI設定だけを更新して新しいネタを完全に捨てるか？"
   ],
   "moves": [
     {
-      "t": "クラウドノート環境で構造化出力を試す",
-      "why": "推論コスト低下の波に乗り、極小モデルのスキーマ準拠率を実測して先回りパイプラインを固めるため",
+      "t": "OpenRouterの最新単価表でAPIコストを再計算する",
+      "why": "DeepSeek V4 Proの価格改定が入り、自作アプリのランニングコストを直近の数字で固定し直す必要があるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.55,
-      "success_p_min": 0.4,
-      "success_p_max": 0.7,
-      "success_why": "Hugging Face上に公開されたGRPO構造化出力チュートリアルが存在するため",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
+      "success_p": 0.85,
+      "success_p_min": 0.7,
+      "success_p_max": 0.95,
+      "success_why": "Web画面の単価表を参照するだけで完了するため不確定要素が少ない",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "構造化出力のスキーマ準拠率の計測結果の記録",
+      "outcome": "月間APIコストの試算メモが手元に残る",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "1回の30分作業ではパイプラインの基礎検証までが限界であるため",
+      "impact_why": "コスト構造の把握により無駄な支出を防ぐため",
       "evidence_ids": [
-        "2026-09-05-r01"
+        "2026-09-03-r01"
       ],
       "assumptions": [
-        "iPhoneのSafariから無料クラウドノート環境にアクセスできること"
+        "OpenRouterの価格表が更新されていること"
       ],
-      "disconfirm": "チュートリアルのコードがエラーを吐き動きすらしないこと",
-      "continue_if": "スキーマ準拠率が80パーセントを超えること",
-      "stop": "実行環境の制限でコードが完結しないこと"
+      "disconfirm": "価格表に変動がない場合",
+      "continue_if": "試算結果に基づきコスト削減余地が見つかった場合",
+      "stop": "既に最適化済みと判明した場合"
     },
     {
-      "t": "有料APIを用いた最小構成のプロトタイプ構築",
-      "why": "AnthropicのSDKアップデートに伴い最新の仕様に追従したAPI呼び出しを実地で検証するため",
-      "cost_min": 500,
-      "cost_max": 1500,
-      "loss_max": 1500,
+      "t": "国内再販サービスを経由せず直のAPI利用へ切り替える",
+      "why": "中間マージンを排除してコストを最小化し、個人が生き残るための隙間を確保するため。",
+      "cost_min": 1000,
+      "cost_max": 5000,
+      "loss_max": 5000,
       "success_p": 0.6,
-      "success_p_min": 0.45,
+      "success_p_min": 0.4,
       "success_p_max": 0.75,
-      "success_why": "公式Python SDKがv1.4.0へ更新されており安定したインターフェースが提供されているため",
+      "success_why": "決済手段とアカウント設定のみで直契約へ移行できるため",
       "value_score": 4,
       "learning_value": 4,
       "time_minutes": 30,
-      "payback_days": 14,
-      "outcome": "最新SDKを用いたAPI疎通確認の完了",
+      "payback_days": 30,
+      "outcome": "直APIキーによる接続設定の完了",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "仲介コストを削減し利益率を上げるため",
+      "evidence_ids": [
+        "2026-08-29-r01"
+      ],
+      "assumptions": [
+        "海外決済可能なカードがiPhoneに登録されていること"
+      ],
+      "disconfirm": "直契約の決済システムが日本のカードを弾く場合",
+      "continue_if": "APIキーの発行と疎通確認が成功した場合",
+      "stop": "決済エラーが解消しない場合"
+    },
+    {
+      "t": "WebアプリのAPIエンドポイント設定を更新する",
+      "why": "新ネタへ乗り換えずに現在のアプリの続きを追うことで、着地を確実に果たすため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "既存コードのURLを書き換えるだけの作業であるため",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "アプリが新しい安価なAPIエンドポイントを向くこと",
       "category": "build",
       "terminal": false,
       "impact_min": 0.15,
       "impact_max": 0.25,
-      "impact_why": "継続的な検証基盤の土台を作るため",
+      "impact_why": "コスト最適化が直接アプリに反映されるため",
       "evidence_ids": [
-        "2026-09-05-r01"
+        "2026-09-03-r01"
       ],
       "assumptions": [
-        "APIキーの残高が十分にありWebブラウザから操作可能であること"
+        "GitHubのWebエディタからコード修正ができること"
       ],
-      "disconfirm": "SDKの仕様変更により既存の呼び出しが完全に破綻すること",
-      "continue_if": "想定通りのレスポンスが返ってくること",
-      "stop": "APIの料金体系が変わり個人の予算を超えること"
+      "disconfirm": "エンドポイントの仕様変更でエラーが頻発する場合",
+      "continue_if": "テストリクエストが正常に返ってくる場合",
+      "stop": "コード構造の大幅な書き換えが必要と判明した場合"
     },
     {
-      "t": "インフラ資産会計の求人要件から原価計算ロジックを設計",
-      "why": "Anthropicの財務インフラ強化の動きを逆手に取り、個人開発におけるコスト最適化モデルを導出するため",
+      "t": "APIエラーログをSafariから確認して修正する",
+      "why": "モデル価格改定に伴う挙動の変化や例外処理の漏れを早期につぶすため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "シニアマネージャーの求人情報から同社が注力するコスト構造の開示軸が推測できるため",
+      "success_p": 0.65,
+      "success_p_min": 0.5,
+      "success_p_max": 0.8,
+      "success_why": "ダッシュボードのログ画面で直近のエラーが一覧できるため",
       "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 30,
+      "learning_value": 3,
+      "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "インフラコスト算出のためのメモ書きの作成",
+      "outcome": "直近の例外エラーが解消された状態",
       "category": "review",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "机上の設計であるため直接的な収益には結びつかないため",
+      "impact_why": "アプリの安定稼働に直結するため",
       "evidence_ids": [
-        "2026-09-05-r05"
+        "2026-08-20-r02"
       ],
       "assumptions": [
-        "公開された求人情報の職務記述書が十分に具体的であること"
+        "プロバイダの管理画面にアクセス可能であること"
       ],
-      "disconfirm": "情報が抽象的すぎて個人のコスト計算に応用できないこと",
-      "continue_if": "自社のコスト削減に直結する示唆が得られること",
-      "stop": "大企業の会計手法が個人開発に全く適用できないと判明すること"
+      "disconfirm": "ログに記録が一切残っていない場合",
+      "continue_if": "特定のエラーコードを特定できた場合",
+      "stop": "原因がAPI側の大規模障害にある場合"
     },
     {
-      "t": "財務システム関連の求人情報を分析して自動化ポイントを抽出",
-      "why": "プラットフォーム側の収益システム構築のトレンドを把握し個人が横取りできる隙を見つけるため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.25,
-      "success_p_max": 0.55,
-      "success_why": "レベニューシステムズエンジニアの求人から収益化のボトルネックが読み取れるため",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "収益システムにおける自動化隙のリストアップ",
-      "category": "research",
+      "t": "有料プランの月額上限アラートを設定する",
+      "why": "推論コスト低下の中でも暴走による予算超過を防ぐ防衛策を張るため。",
+      "cost_min": 500,
+      "cost_max": 2000,
+      "loss_max": 2000,
+      "success_p": 0.8,
+      "success_p_min": 0.65,
+      "success_p_max": 0.9,
+      "success_why": "アカウント設定画面に利用上限のハードリミット機能があるため",
+      "value_score": 4,
+      "learning_value": 2,
+      "time_minutes": 10,
+      "payback_days": 30,
+      "outcome": "予算超過時にAPIが自動停止する設定の完了",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.15,
-      "impact_why": "リサーチ段階であり実体を伴う成果物には至らないため",
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "予期せぬ金銭的損失を確実に遮断するため",
       "evidence_ids": [
-        "2026-08-31-r04"
+        "2026-08-18-r01"
       ],
       "assumptions": [
-        "求人情報の要求スキルが市場の実際のシステム構成を反映していること"
+        "利用制限の閾値設定項目が存在すること"
       ],
-      "disconfirm": "求人内容が一般的な業務記述に留まっており新しい知見がないこと",
-      "continue_if": "具体的なシステムアーキテクチャのヒントが見つかること",
-      "stop": "資本側のクローズドな情報に阻まれて隙が見えないこと"
-    },
-    {
-      "t": "財務統括ポジションの動向を基にしたリスク試算",
-      "why": "トレジャリーディレクターの採用から資金移動のトレンドを読み解くため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.35,
-      "success_p_min": 0.2,
-      "success_p_max": 0.5,
-      "success_why": "企業の財務体制強化のタイミングとインフラ投資のサイクルが連動しているため",
-      "value_score": 2,
-      "learning_value": 3,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "資金調達動向とAPI価格変動の関係性をまとめたメモ",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "間接的なマクロ動向の分析に留まるため",
-      "evidence_ids": [
-        "2026-09-01-r03"
-      ],
-      "assumptions": [
-        "財務統括の採用が次の価格改定やインフラ投資のサインであること"
-      ],
-      "disconfirm": "単なる組織補充のための求人であると確認できること",
-      "continue_if": "財務戦略とモデル価格に相関が見出せること",
-      "stop": "公開情報から実態を追うことが不可能なこと"
+      "disconfirm": "上限設定機能が有料プラン固有で使えない場合",
+      "continue_if": "保存ボタンを押して設定が反映された場合",
+      "stop": "APIプロバイダ側で制限機能がサポートされていない場合"
     }
   ],
-  "kan": "本命ではないが、今後14日以内に米CFTCまたは証券当局が計算資源先物の実証実験に関する具体的な枠組みを発表すると見る。"
+  "kan": "OpenAIは今後30日以内に、自律エージェントの外部干渉トラブルを受けてAPIのエージェント実行権限やセキュリティ制限を急遽強化するアップデートを公式発表すると見る。"
 }
