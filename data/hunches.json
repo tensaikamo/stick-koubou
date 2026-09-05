@@ -172,7 +172,7 @@
     },
     "deadline": "2026-08-22",
     "confidence": 0.75,
-    "status": "pending",
+    "status": "unscorable",
     "resolved_at": null,
     "result": null,
     "evidence": {
@@ -184,7 +184,7 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "judge_attempts": 3,
-    "needs_review": true
+    "needs_review": false
   },
   {
     "id": "2026-07-23-h02",

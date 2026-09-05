@@ -3384,5 +3384,32 @@
       "2026-09-02-r02",
       "2026-09-02-r01"
     ]
+  },
+  {
+    "id": "2026-09-06-r01",
+    "created_at": "2026-09-06T08:10:41.442817+09:00",
+    "headline": "[新規求人] anthropic: Product Designer, Evals & Prompts (San Francisco, CA)",
+    "what_happened": "Anthropicがサンフランシスコを勤務地とする「Product Designer, Evals & Prompts」の求人をGreenhouse上で公開した。プロンプト仕様の作成や評価（Evals）、ハーネスの構築、デザイナー向けツールの開発を担うProduct Prompt and Eval Designチームの人材募集である。モデルのリリース時にプロンプトエンジニアリングチームとペアを組み、安全性や製品戦略との整合性を維持する役割が求められている。",
+    "background": "Anthropicはモデルの安全性や挙動の制御（ステアビリティ）を重視し、プロンプト設計と評価体制を製品開発の根幹に置いている。",
+    "changed": "Anthropicの製品デザイン組織において、プロンプト設計と評価ハーネス構築に特化した専門人材の募集が開始された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5411318008",
+      "title": "[新規求人] anthropic: Product Designer, Evals & Prompts (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-05-r05",
+      "2026-09-05-r01",
+      "2026-09-04-r05",
+      "2026-09-03-r07",
+      "2026-09-03-r02",
+      "2026-09-02-r03"
+    ]
   }
 ]
