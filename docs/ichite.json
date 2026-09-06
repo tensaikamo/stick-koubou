@@ -1,162 +1,167 @@
 {
-  "date": "2026-09-06",
+  "date": "2026-09-07",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの最新単価表に基づき、自作アプリのAPI呼び出しコストを今夜中に再計算するか？",
-    "国内の仲介再販サービスをすべて切り、直のAPI利用への切り替え手続きをiPhoneのSafariから完了させるか？",
-    "推論コストの低下圧力を踏まえ、現在動かしているWebアプリのAPI設定だけを更新して新しいネタを完全に捨てるか？"
+    "OpenRouterのプロバイダー別単価一覧を開き、現在呼び出しているモデルより安い代替先をiPhoneのSafariで今特定したか？",
+    "OpenRouterのAPIキーのルーティング設定を変更し、固定費削減の自動切り替えを有効化したか？",
+    "競合モデルの価格破壊に追随しない場合、他プロバイダーへの完全移行を実行する期限を何日後に設定したか？"
   ],
   "moves": [
     {
-      "t": "OpenRouterの最新単価表でAPIコストを再計算する",
-      "why": "DeepSeek V4 Proの価格改定が入り、自作アプリのランニングコストを直近の数字で固定し直す必要があるため。",
+      "t": "バックアップ用として別のAPI仲介サービスの無料枠をテストする",
+      "why": "今後14日以内に特定の主要モデルのAPI提供停止が起きるリスクに対する実務的な回避策を打つため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.7,
-      "success_p_max": 0.95,
-      "success_why": "Web画面の単価表を参照するだけで完了するため不確定要素が少ない",
+      "success_p": 0.5,
+      "success_p_min": 0.4,
+      "success_p_max": 0.6,
+      "success_why": "アグリゲーターのモデル入れ替えが四半期に1回起きる基準率に基づき、代替路線の確保が急務であるため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "代替APIプロバイダーでのテストリクエスト成功ログ",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "単一プラットフォーム依存のリスクを直接低減するため。",
+      "evidence_ids": [
+        "2026-07-28-r04"
+      ],
+      "assumptions": [
+        "競合アグリゲーターにも同等モデルの無料枠またはテスト枠が存在すること"
+      ],
+      "disconfirm": "代替サービスのレイテンシが実用に耐えないほど高いこと",
+      "continue_if": "数秒以内にテスト応答が返る場合",
+      "stop": "アカウント登録時に追加の証明書や複雑な認証を要求される場合"
+    },
+    {
+      "t": "独自ルーティング設定のログをエクスポートし不整合を点検する",
+      "why": "価格破壊の波及による予期せぬプロバイダーの品質劣化を早期に検知し、属人化を防ぐため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.6,
+      "success_p_max": 0.8,
+      "success_why": "プラットフォーム側のダッシュボードからCSV形式等でログのダウンロードが可能であるため。",
       "value_score": 3,
       "learning_value": 3,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "月間APIコストの試算メモが手元に残る",
-      "category": "research",
-      "terminal": false,
+      "outcome": "直近のAPI呼び出しログファイルとそのエラー率分析",
+      "category": "review",
+      "terminal": true,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "コスト構造の把握により無駄な支出を防ぐため",
+      "impact_why": "ルーティング最適化の最終確認フェーズであるため。",
       "evidence_ids": [
-        "2026-09-03-r01"
+        "2026-08-01-r02"
       ],
       "assumptions": [
-        "OpenRouterの価格表が更新されていること"
+        "iPhoneのファイルアプリでログの確認・集計ができること"
       ],
-      "disconfirm": "価格表に変動がない場合",
-      "continue_if": "試算結果に基づきコスト削減余地が見つかった場合",
-      "stop": "既に最適化済みと判明した場合"
+      "disconfirm": "エラー率が許容範囲を超えて急上昇していること",
+      "continue_if": "エラー率が1%未満で安定している場合",
+      "stop": "APIプロバイダー側の大規模障害によりログ自体が取得できない場合"
     },
     {
-      "t": "国内再販サービスを経由せず直のAPI利用へ切り替える",
-      "why": "中間マージンを排除してコストを最小化し、個人が生き残るための隙間を確保するため。",
-      "cost_min": 1000,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.6,
-      "success_p_min": 0.4,
-      "success_p_max": 0.75,
-      "success_why": "決済手段とアカウント設定のみで直契約へ移行できるため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 30,
-      "outcome": "直APIキーによる接続設定の完了",
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "次に直す内容がIssueとして1件残る",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "仲介コストを削減し利益率を上げるため",
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
       "evidence_ids": [
-        "2026-08-29-r01"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "海外決済可能なカードがiPhoneに登録されていること"
+        "Issueが次の実装に使われる"
       ],
-      "disconfirm": "直契約の決済システムが日本のカードを弾く場合",
-      "continue_if": "APIキーの発行と疎通確認が成功した場合",
-      "stop": "決済エラーが解消しない場合"
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
     },
     {
-      "t": "WebアプリのAPIエンドポイント設定を更新する",
-      "why": "新ネタへ乗り換えずに現在のアプリの続きを追うことで、着地を確実に果たすため。",
+      "t": "今日の一次情報を1本選び要点を3行残す",
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.75,
       "success_p_min": 0.6,
       "success_p_max": 0.85,
-      "success_why": "既存コードのURLを書き換えるだけの作業であるため",
-      "value_score": 3,
-      "learning_value": 2,
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "value_score": 2,
+      "learning_value": 3,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "アプリが新しい安価なAPIエンドポイントを向くこと",
-      "category": "build",
+      "outcome": "一次情報の要点メモが3行残る",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "コスト最適化が直接アプリに反映されるため",
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "意思決定へ使えた時だけ価値になる",
       "evidence_ids": [
-        "2026-09-03-r01"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "GitHubのWebエディタからコード修正ができること"
+        "読む情報が現在の目標に関係する"
       ],
-      "disconfirm": "エンドポイントの仕様変更でエラーが頻発する場合",
-      "continue_if": "テストリクエストが正常に返ってくる場合",
-      "stop": "コード構造の大幅な書き換えが必要と判明した場合"
+      "disconfirm": "要点が次の行動を一つも変えない",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了",
+      "fallback": true
     },
     {
-      "t": "APIエラーログをSafariから確認して修正する",
-      "why": "モデル価格改定に伴う挙動の変化や例外処理の漏れを早期につぶすため。",
+      "t": "予測を1件確認し確度メモを1行更新する",
+      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.65,
-      "success_p_min": 0.5,
+      "success_p": 0.7,
+      "success_p_min": 0.55,
       "success_p_max": 0.8,
-      "success_why": "ダッシュボードのログ画面で直近のエラーが一覧できるため",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 25,
+      "success_why": "既存予測の更新なので新規企画より着地しやすい",
+      "value_score": 2,
+      "learning_value": 4,
+      "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "直近の例外エラーが解消された状態",
+      "outcome": "追跡中予測の確度メモが更新される",
       "category": "review",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "アプリの安定稼働に直結するため",
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "誤った前提で投資する損失を減らす",
       "evidence_ids": [
-        "2026-08-20-r02"
+        "action-history"
       ],
       "assumptions": [
-        "プロバイダの管理画面にアクセス可能であること"
+        "予測が現在の投資判断に関係する"
       ],
-      "disconfirm": "ログに記録が一切残っていない場合",
-      "continue_if": "特定のエラーコードを特定できた場合",
-      "stop": "原因がAPI側の大規模障害にある場合"
-    },
-    {
-      "t": "有料プランの月額上限アラートを設定する",
-      "why": "推論コスト低下の中でも暴走による予算超過を防ぐ防衛策を張るため。",
-      "cost_min": 500,
-      "cost_max": 2000,
-      "loss_max": 2000,
-      "success_p": 0.8,
-      "success_p_min": 0.65,
-      "success_p_max": 0.9,
-      "success_why": "アカウント設定画面に利用上限のハードリミット機能があるため",
-      "value_score": 4,
-      "learning_value": 2,
-      "time_minutes": 10,
-      "payback_days": 30,
-      "outcome": "予算超過時にAPIが自動停止する設定の完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "予期せぬ金銭的損失を確実に遮断するため",
-      "evidence_ids": [
-        "2026-08-18-r01"
-      ],
-      "assumptions": [
-        "利用制限の閾値設定項目が存在すること"
-      ],
-      "disconfirm": "上限設定機能が有料プラン固有で使えない場合",
-      "continue_if": "保存ボタンを押して設定が反映された場合",
-      "stop": "APIプロバイダ側で制限機能がサポートされていない場合"
+      "disconfirm": "確度更新が次の行動や支出を変えない",
+      "continue_if": "確度を動かす一次根拠が見つかった",
+      "stop": "根拠URLを1本確認したら終了",
+      "fallback": true
     }
   ],
-  "kan": "OpenAIは今後30日以内に、自律エージェントの外部干渉トラブルを受けてAPIのエージェント実行権限やセキュリティ制限を急遽強化するアップデートを公式発表すると見る。"
+  "kan": "今後14日以内にOpenRouterが特定の主要モデルのAPI提供を突如停止し、開発者が別のプロバイダーへ一斉移動する混乱が起きると見る。基準率としてアグリゲーターのモデル入れ替えは四半期に1回起きるが、今回の価格急落はその前兆である。"
 }

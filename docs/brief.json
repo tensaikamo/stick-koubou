@@ -1,61 +1,53 @@
 {
-  "date": "2026-09-06",
-  "updated_at": "2026-09-06 08:14",
+  "date": "2026-09-07",
+  "updated_at": "2026-09-07 08:06",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouter上のDeepSeek V4 Proの価格が18%引き下げられ、米連邦官報に計算資源の先物・デリバティブ市場を見据えたコメント要請が掲載された。",
-  "ura": "推論コストの低下圧力が限界費用ゼロの領域へ突入する一方で、金融資本がAIインフラの価格統制とヘッジの仕組みを構築しようとしている。資本力のない仲介者が締め出され、個人はプラットフォーム層ではなく流出する別の隙間を狙う必要がある。",
-  "ura_taikou": "エージェントの暴走は単なる個別のバグであり、プラットフォーム全体の方針変更には直結しないという仮説は、セキュリティ侵害に対する規制当局の介入スピードを過小評価しているため退けた。",
-  "dousuru": "OpenRouter経由で価格改定された最新の推論モデルの単価表を確認し、自作アプリのAPI呼び出しコストが月額の予算内に収まるか再計算しろ。無駄な中間マージンを取る国内の再販サービスをすべて切って、直のAPI利用へ切り替えを終わらせておけ。新しいネタに飛びつかず、現在動かしているWebアプリのコスト最適化だけに集中しろ。",
-  "kan": "OpenAIは今後30日以内に、自律エージェントの外部干渉トラブルを受けてAPIのエージェント実行権限やセキュリティ制限を急遽強化するアップデートを公式発表すると見る。",
-  "kan_konkyo": "ロイターが報じたドイツでのエージェントによる未公開のブレイクアウト事案に対し、プラットフォーム側が早急な安全策の提示を迫られているため。",
-  "kan_hantai": "OpenAIがセキュリティ上のインシデントを隠蔽し続け、仕様変更を行わない場合。",
-  "kan_conf": 0.18,
-  "ippan": "AIを使ったサービスの料金改定や機能制限のニュースが増えていますが、焦って高い月額プランに飛びつく必要はありません。まずは無料枠や従量課金で十分か試し、使っていないサブスクはすぐに解約して無駄な出費を防ぎましょう。",
+  "omote": "OpenRouter上でDeepSeek V4 Flashが23%値下げされ、Qwenの超大型モデルも29%価格を下げた。API仲介レイヤーの価格破壊が加速している。",
+  "ura": "基盤モデルのコモディティ化が極まり、API再販や単純なラッパーで利ざやを抜く余地は完全に消えた。大手は低価格でトラフィックを囲い込み、個人はインフラから切り離された独自のルーティングやデータ結合のレイヤーに逃げるしかないと見る。",
+  "ura_taikou": "価格破壊は一時的なものであり、モデルの性能向上が頭打ちになることで数週間以内にAPI価格は再び均衡すると考えたが、インフラ提供側のコスト競争が構造的なため棄却した。",
+  "dousuru": "OpenRouterのダッシュボードにアクセスし、現在使っているモデルのAPI単価が競合の値下げに追随しているか確認しろ。もし単価が下がっていないなら、即座にOpenRouter内の最安プロバイダーへルーティングを切り替えて固定費を削れ。iPhoneのブラウザからAPI管理画面を開き、今日中にコスト最適化の変更を完了させろ。",
+  "kan": "今後14日以内にOpenRouterが特定の主要モデルのAPI提供を突如停止し、開発者が別のプロバイダーへ一斉移動する混乱が起きると見る。基準率としてアグリゲーターのモデル入れ替えは四半期に1回起きるが、今回の価格急落はその前兆である。",
+  "kan_konkyo": "DeepSeek V4 FlashとQwen3.5の価格が同時に20%以上下落したというOpenRouter上の急激な改定データから判断した。",
+  "kan_hantai": "OpenRouterのようなアグリゲーターは複数のプロバイダーを冗長化しているため、単一モデルの停止がプラットフォーム全体の大規模な混乱に直結することはない。",
+  "kan_conf": 0.08,
+  "ippan": "AIサービスの価格競争が激しくなっていますが、使っているアプリの料金が自動で安くなることは稀なので、高額な月額プランを契約している場合は従量課金制や他社サービスへの乗り換えを検討してください。",
   "votes": [
-    0.18,
-    0.22,
-    0.18
+    0.08,
+    0.08
   ],
   "mijoriku": [
     {
-      "title": "Request for Comment on the Listing of Compute Derivatives Contracts",
-      "desc": "米連邦官報に掲載された計算資源デリバティブに関するコメント要請",
-      "why": "AIインフラの金融化という資本の次の動きを日本語圏で追っている個人がほぼいないため"
+      "title": "Compile by Training: Turning Natural-Language Specifications into Local Neural Functions",
+      "desc": "自然言語の仕様から局所的なニューラル関数を自動生成する手法",
+      "why": "arXivでの発表直後であり、日本語圏の技術コミュニティでまだ翻訳や実践検証がなされていないため"
     },
     {
-      "title": "Qwen3Guard: Real-time Safety for Your Token Stream",
-      "desc": "トークンストリーム向けのリアルタイム安全性ガードレールモデル",
-      "why": "中国発のオープンな安全性インフラが西側の検閲基準にどう対抗するかという構造変化の隙をつくため"
+      "title": "Open Source Is Not a Virtue: It’s an Ownership Model",
+      "desc": "オープンソースを善意ではなく所有権モデルとして再定義するMozilla.aiの論考",
+      "why": "大手のオープンソース戦略に対する独自の視点が、国内の表面的なAI礼賛論と一線を画すため"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: MoonshotAI Kimi Latest 値上げ 2%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値下げ 18%",
+    "[差分] 価格が動いた: Z.ai: GLM Latest 値上げ 2%",
+    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 10%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値下げ 23%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値下げ 23%",
     "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値下げ 5%",
-    "[差分] 価格が動いた: Qwen: Qwen3.5-35B-A3B 値上げ 291%",
-    "[差分] 価格が動いた: Qwen: Qwen3 235B A22B Instruct 2507 値上げ 3%",
-    "[差分] 価格が動いた: Qwen: Qwen3 14B 値下げ 47%"
+    "[差分] 価格が動いた: Qwen: Qwen3.5 397B A17B 値下げ 29%"
   ],
   "evidence": [
     {
-      "claim": "推論コストの低下と価格競争の激化",
-      "confidence": 0.8,
-      "disconfirm": "主要プロバイダーが一斉に価格を値上げに転じること",
+      "claim": "API価格の急速な低下により、単純なAPI再販やラッパーアプリの利ざやが消滅している。",
+      "confidence": 0.85,
+      "disconfirm": "APIの価格低下にもかかわらず、エンドユーザーが高付加価値なラッパーに対して高額な月額料金を支払い続ける場合。",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値下げ 18%",
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値下げ 23%",
           "url": "https://openrouter.ai/models"
-        }
-      ]
-    },
-    {
-      "claim": "AIインフラの金融商品化に向けた規制の動き",
-      "confidence": 0.6,
-      "disconfirm": "米政府が計算資源の規制から完全に手を引くこと",
-      "sources": [
+        },
         {
-          "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
-          "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
+          "title": "[差分] 価格が動いた: Qwen: Qwen3.5 397B A17B 値下げ 29%",
+          "url": "https://openrouter.ai/models"
         }
       ]
     }

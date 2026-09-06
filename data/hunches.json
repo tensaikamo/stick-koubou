@@ -2054,6 +2054,14 @@
         "why": "本日の事象においてgoogle-genai Python SDK v2.21.0がリリースされ、メジャーバージョンではなく2.20.x台を超えるマイナー修正の範囲内であるため。",
         "conf_before": 0.946,
         "conf_after": 0.95
+      },
+      {
+        "date": "2026-09-07",
+        "sign": "PyPIのバージョンが2.20.x台のマイナー修正に留まる",
+        "dir": "confirm",
+        "why": "google-genai Python SDKのバージョンがv2.22.0であり、2.20.x台のマイナー修正に留まるという条件を満たしているため",
+        "conf_before": 0.95,
+        "conf_after": 0.95
       }
     ],
     "status": "pending",

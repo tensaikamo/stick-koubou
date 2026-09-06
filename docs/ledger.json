@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-06 08:12",
+  "updated_at": "2026-09-07 08:04",
   "score": {
     "hit": 8,
     "miss": 23,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-08",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -276,14 +276,14 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-08-31",
-          "dir": "confirm",
-          "why": "google-genai Python SDK v2.20.0がリリースされ、バージョンが2.20.x台に留まっていることが確認されたため。"
-        },
-        {
           "date": "2026-09-02",
           "dir": "confirm",
           "why": "本日の事象においてgoogle-genai Python SDK v2.21.0がリリースされ、メジャーバージョンではなく2.20.x台を超えるマイナー修正の範囲内であるため。"
+        },
+        {
+          "date": "2026-09-07",
+          "dir": "confirm",
+          "why": "google-genai Python SDKのバージョンがv2.22.0であり、2.20.x台のマイナー修正に留まるという条件を満たしているため"
         }
       ]
     }
