@@ -1,24 +1,44 @@
 {
-  "updated_at": "2026-09-07 08:04",
+  "updated_at": "2026-09-08 08:45",
   "score": {
-    "hit": 8,
+    "hit": 9,
     "miss": 23,
-    "total": 31,
-    "rate": 0.25806451612903225,
-    "pending": 3,
-    "brier": 0.4322138387096775,
-    "brier_n": 31,
-    "brier_initial": 0.44048387096774205,
+    "total": 32,
+    "rate": 0.28125,
+    "pending": 2,
+    "brier": 0.4189832812500001,
+    "brier_n": 32,
+    "brier_initial": 0.4273312500000001,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-09-08",
+    "date": "2026-09-09",
     "days": 1
   },
   "decided": [
+    {
+      "id": "2026-08-25-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて国防総省または情報機関向けの専用エンタープライズプランや専用ソリューションの正式発表を行わない。",
+      "subject": "Anthropic",
+      "deadline": "2026-09-08",
+      "confidence": 0.906,
+      "initial_confidence": 0.86,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "水面下で既に政府機関とのパイロット運用および認証手続きが完了しており、求人公開と連動してマーケティング発表を即時投入してくる可能性がある。",
+      "evidence": "指定されたニュース一覧ページにおいて、期限までに国防総省や情報機関向けの専用プランの発表に関する記事は掲載されていないため。",
+      "signals": [
+        {
+          "date": "2026-08-25",
+          "dir": "confirm",
+          "why": "本日の求人一覧に「Head of National Security Sales (DoW/IC)」など政府・国防向けの追加求人が確認できるため。"
+        }
+      ]
+    },
     {
       "id": "2026-08-22-h01",
       "claim": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」の新たなマイナーまたはメジャーバージョン（v3.4.0以降）をリリースしない。",
@@ -211,20 +231,6 @@
       "counter": "Gemini 3.6 Flashの初期提供がGoogle AI Studio（プロトタイプ環境）限定に留まり、Vertex AI側へのロールアウトが遅延する可能性がある。",
       "evidence": "Google Cloud Vertex AIの公式モデルドキュメント内に「3.6 Flash」の掲載が確認されたため的中。",
       "signals": []
-    },
-    {
-      "id": "2026-08-04-h01",
-      "claim": "Anthropicは10日以内に、Anthropic APIの公式ドキュメント（料金ページ）において「Claude Opus 5」のBatch API料金体系を公表する。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-14",
-      "confidence": 0.85,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "AnthropicがOpus 5の初期トラフィックをリアルタイムAPIリクエストの安定化に集中させ、Batch API対応の公開を次月中旬以降に延期する可能性がある。",
-      "evidence": "期日（2026-08-14）時点のAnthropic公式ドキュメント（docs.anthropic.com）のモデルおよび料金ページを確認したところ、「Claude Opus 5」のBatch API料金体系や割引に関する記載は掲載されていない。",
-      "signals": []
     }
   ],
   "pending": [
@@ -241,26 +247,6 @@
       "counter": "主要カスタマーによる自社製AIチップへの切り替え速度が予想を超えた場合、成長率が急速に鈍化するリスクがある。",
       "evidence": "公開情報から決算レポートの証拠を取得できなかったため、判定不能です。",
       "signals": []
-    },
-    {
-      "id": "2026-08-25-h01",
-      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて国防総省または情報機関向けの専用エンタープライズプランや専用ソリューションの正式発表を行わない。",
-      "subject": "Anthropic",
-      "deadline": "2026-09-08",
-      "confidence": 0.906,
-      "initial_confidence": 0.86,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "水面下で既に政府機関とのパイロット運用および認証手続きが完了しており、求人公開と連動してマーケティング発表を即時投入してくる可能性がある。",
-      "evidence": "",
-      "signals": [
-        {
-          "date": "2026-08-25",
-          "dir": "confirm",
-          "why": "本日の求人一覧に「Head of National Security Sales (DoW/IC)」など政府・国防向けの追加求人が確認できるため。"
-        }
-      ]
     },
     {
       "id": "2026-08-26-h01",
@@ -293,11 +279,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-09-04",
-          "headline": "[新規求人] anthropic: Sales Strategy, Operational Excellence",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5414793008"
-        },
-        {
           "date": "2026-09-05",
           "headline": "[新規求人] anthropic: Senior Manager, Infrastructure Asset Accounting",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357949008"
@@ -311,6 +292,11 @@
           "date": "2026-09-06",
           "headline": "[新規求人] anthropic: Product Designer, Evals & Prompts (San Francisco, CA)",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5411318008"
+        },
+        {
+          "date": "2026-09-08",
+          "headline": "Anthropicがアイルランド・ダブリン拠点でスタートアップ向け営業責任者の求人を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391313008"
         }
       ]
     },
@@ -422,6 +408,20 @@
   ],
   "records": [
     {
+      "id": "2026-09-08-r02",
+      "date": "2026-09-08",
+      "headline": "実着用データと血液生体指標を統合した健康推論ベンチマークWearableQAが公開",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2609.05405v1"
+    },
+    {
+      "id": "2026-09-08-r01",
+      "date": "2026-09-08",
+      "headline": "Anthropicがアイルランド・ダブリン拠点でスタートアップ向け営業責任者の求人を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391313008"
+    },
+    {
       "id": "2026-09-06-r01",
       "date": "2026-09-06",
       "headline": "[新規求人] anthropic: Product Designer, Evals & Prompts (San Francisco, CA)",
@@ -490,21 +490,7 @@
       "headline": "Discriminative World Models for Web Agents",
       "certainty": "reported",
       "url": "https://arxiv.org/abs/2609.02885v1"
-    },
-    {
-      "id": "2026-09-04-r01",
-      "date": "2026-09-04",
-      "headline": "openai Python SDK v3.8.0 リリース",
-      "certainty": "reported",
-      "url": "https://pypi.org/project/openai/3.8.0/"
-    },
-    {
-      "id": "2026-09-03-r07",
-      "date": "2026-09-03",
-      "headline": "[新規求人] anthropic: People Partner, Engineering",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5412783008"
     }
   ],
-  "record_count": 119
+  "record_count": 121
 }

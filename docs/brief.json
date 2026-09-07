@@ -1,52 +1,55 @@
 {
-  "date": "2026-09-07",
-  "updated_at": "2026-09-07 08:06",
+  "date": "2026-09-08",
+  "updated_at": "2026-09-08 08:48",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouter上でDeepSeek V4 Flashが23%値下げされ、Qwenの超大型モデルも29%価格を下げた。API仲介レイヤーの価格破壊が加速している。",
-  "ura": "基盤モデルのコモディティ化が極まり、API再販や単純なラッパーで利ざやを抜く余地は完全に消えた。大手は低価格でトラフィックを囲い込み、個人はインフラから切り離された独自のルーティングやデータ結合のレイヤーに逃げるしかないと見る。",
-  "ura_taikou": "価格破壊は一時的なものであり、モデルの性能向上が頭打ちになることで数週間以内にAPI価格は再び均衡すると考えたが、インフラ提供側のコスト競争が構造的なため棄却した。",
-  "dousuru": "OpenRouterのダッシュボードにアクセスし、現在使っているモデルのAPI単価が競合の値下げに追随しているか確認しろ。もし単価が下がっていないなら、即座にOpenRouter内の最安プロバイダーへルーティングを切り替えて固定費を削れ。iPhoneのブラウザからAPI管理画面を開き、今日中にコスト最適化の変更を完了させろ。",
-  "kan": "今後14日以内にOpenRouterが特定の主要モデルのAPI提供を突如停止し、開発者が別のプロバイダーへ一斉移動する混乱が起きると見る。基準率としてアグリゲーターのモデル入れ替えは四半期に1回起きるが、今回の価格急落はその前兆である。",
-  "kan_konkyo": "DeepSeek V4 FlashとQwen3.5の価格が同時に20%以上下落したというOpenRouter上の急激な改定データから判断した。",
-  "kan_hantai": "OpenRouterのようなアグリゲーターは複数のプロバイダーを冗長化しているため、単一モデルの停止がプラットフォーム全体の大規模な混乱に直結することはない。",
+  "omote": "米連邦官報が計算力デリバティブ契約のリスティングに関する意見公募を開始し、OpenRouter上でDeepSeek V4 Flashが180%の大幅値上げを実施した。",
+  "ura": "AIの計算資源そのものが金融商品として先物やデリバティブ市場に組み込まれようとしており、安価なAPIでシェアを奪ってきたDeepSeekも初期の囲い込みを終えて収益化フェーズへ移行した。ウォール街の資本がインフラの現物からリスクヘッジの金融派生商品へ主戦場を移し始めたと見る。",
+  "ura_taikou": "計算力デリバティブの議論は暗号資産やDeFiの文脈におけるマイニング報酬の先物取引と何ら変わらず、AI特有の新たな金融市場は形成されないという仮説は、機関投資家向けの規制枠組みが具体化している動きと矛盾するため退けた。",
+  "dousuru": "OpenRouter上のAPI価格改定履歴を今すぐ確認し、値上げされたモデルに依存しているスクリプトのルーティングを別の低価格プロバイダへ切り替えろ。次に米連邦官報の計算資源デリバティブに関する意見公募の原文に目を通し、機関投資家が狙うヘッジの枠組みを把握しておけ。",
+  "kan": "本命ではないが、計算力デリバティブの規制整備を契機に、大手クラウドベンダー以外の独立系マイナー事業者が発行する計算資源トークンが金融商品の規制対象として米国で最初に摘発されるのは、今後90日以内と見る。",
+  "kan_konkyo": "米連邦官報が計算力デリバティブ契約のリスティングに関する意見公募を正式に開始したという一次情報の記述から。",
+  "kan_hantai": "計算力デリバティブの議論が単なる金融業界の観測に留まり、実態としての金融商品化や規制当局の介入まで至らないこと。",
   "kan_conf": 0.08,
-  "ippan": "AIサービスの価格競争が激しくなっていますが、使っているアプリの料金が自動で安くなることは稀なので、高額な月額プランを契約している場合は従量課金制や他社サービスへの乗り換えを検討してください。",
+  "ippan": "AIサービスの利用制限が厳しくなったり価格が上がったりする動きが出てきているため、普段使っているツールの料金改定や回数制限の通知に注意しておきましょう。無料のまま使い続けられると思い込まず、自分の利用量が本当にその価格に見合っているか見直すことが大切です。",
   "votes": [
     0.08,
+    0.18,
     0.08
   ],
   "mijoriku": [
     {
-      "title": "Compile by Training: Turning Natural-Language Specifications into Local Neural Functions",
-      "desc": "自然言語の仕様から局所的なニューラル関数を自動生成する手法",
-      "why": "arXivでの発表直後であり、日本語圏の技術コミュニティでまだ翻訳や実践検証がなされていないため"
-    },
-    {
-      "title": "Open Source Is Not a Virtue: It’s an Ownership Model",
-      "desc": "オープンソースを善意ではなく所有権モデルとして再定義するMozilla.aiの論考",
-      "why": "大手のオープンソース戦略に対する独自の視点が、国内の表面的なAI礼賛論と一線を画すため"
+      "title": "Request for Comment on the Listing of Compute Derivatives Contracts",
+      "desc": "米連邦官報による計算力デリバティブの意見公募",
+      "why": "日本のAI・金融メディアでまだ報じられておらず、AIインフラの金融化という次の主戦場に個人が先回りできる材料になるため"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: Z.ai: GLM Latest 値上げ 2%",
-    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値下げ 10%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値下げ 23%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値下げ 23%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値下げ 5%",
-    "[差分] 価格が動いた: Qwen: Qwen3.5 397B A17B 値下げ 29%"
+    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値下げ 5%",
+    "[差分] 価格が動いた: Z.ai: GLM Latest 値下げ 4%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値上げ 14%",
+    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値上げ 11%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値上げ 180%",
+    "[差分] 価格が動いた: MoonshotAI Kimi Latest 値下げ 2%"
   ],
   "evidence": [
     {
-      "claim": "API価格の急速な低下により、単純なAPI再販やラッパーアプリの利ざやが消滅している。",
-      "confidence": 0.85,
-      "disconfirm": "APIの価格低下にもかかわらず、エンドユーザーが高付加価値なラッパーに対して高額な月額料金を支払い続ける場合。",
+      "claim": "AIの計算資源そのものが金融商品のデリバティブ市場に組み込まれようとしている",
+      "confidence": 0.65,
+      "disconfirm": "米政府が計算資源の金融派生商品化を全面的に禁止する法案を可決する事実",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値下げ 23%",
-          "url": "https://openrouter.ai/models"
-        },
+          "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
+          "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
+        }
+      ]
+    },
+    {
+      "claim": "DeepSeekが初期の囲い込みを終えて収益化フェーズへ移行している",
+      "confidence": 0.7,
+      "disconfirm": "値上げ直後に競合の攻勢によってDeepSeekのAPI利用シェアが急落する事実",
+      "sources": [
         {
-          "title": "[差分] 価格が動いた: Qwen: Qwen3.5 397B A17B 値下げ 29%",
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値上げ 180%",
           "url": "https://openrouter.ai/models"
         }
       ]
