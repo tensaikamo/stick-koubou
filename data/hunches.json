@@ -1962,15 +1962,19 @@
         "conf_after": 0.906
       }
     ],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-09-08T08:43:58.803532+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "指定されたニュース一覧ページにおいて、期限までに国防総省や情報機関向けの専用プランの発表に関する記事は掲載されていないため。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.7-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "initial_confidence": 0.86
+    "initial_confidence": 0.86,
+    "needs_review": false
   },
   {
     "id": "2026-08-26-h01",

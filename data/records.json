@@ -3411,5 +3411,52 @@
       "2026-09-03-r02",
       "2026-09-02-r03"
     ]
+  },
+  {
+    "id": "2026-09-08-r01",
+    "created_at": "2026-09-08T08:42:18.484665+09:00",
+    "headline": "Anthropicがアイルランド・ダブリン拠点でスタートアップ向け営業責任者の求人を開始",
+    "what_happened": "Anthropicは採用管理システムGreenhouseにおいて、アイルランド・ダブリン勤務の「Account Executive, Startups」の募集を開始した。欧州・中東・アフリカ（EMEA）地域における初期セールスメンバーとして、現地の高成長スタートアップに対するフロンティアAIモデルの導入支援を担当する職種とされている。",
+    "background": "Anthropicはロンドンオフィスの開設など欧州展開を加速させており、多くのビッグテックが欧州本社を置くアイルランド・ダブリンでの営業体制構築が注目されていた。",
+    "changed": "EMEA地域のスタートアップ向け直販営業機能をダブリンに設置し、英国外の欧州域内における商用販売体制の拡張に着手した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391313008",
+      "title": "[新規求人] anthropic: Account Executive, Startups (Dublin, IE)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-06-r01",
+      "2026-09-05-r05",
+      "2026-09-05-r01",
+      "2026-09-04-r05",
+      "2026-09-03-r07",
+      "2026-09-03-r02"
+    ]
+  },
+  {
+    "id": "2026-09-08-r02",
+    "created_at": "2026-09-08T08:42:18.484665+09:00",
+    "headline": "実着用データと血液生体指標を統合した健康推論ベンチマークWearableQAが公開",
+    "what_happened": "研究者グループがarXivにて、ウェアラブル端末の長期時系列データと血液バイオマーカーに基づくAI健康推論ベンチマーク「WearableQA」を発表した。実ユーザー200名・最長500日分の実測値から4,084問の10択問題を構築し、端末ノイズや個人差を含む環境下での計算・医学的推論能力を測定する。",
+    "background": "ウェアラブル端末の生体計測データに基づく健康指導AIの需要が高まる一方、長期的なノイズを含む実データを解釈・推論できるかを統一評価するベンチマークは不足していた。",
+    "changed": "ウェアラブル実測時系列と血液指標を突き合わせたAIモデルの長期健康推論能力を定量評価する基準が提示された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.05405v1",
+      "title": "WearableQA: A Benchmark for Health Reasoning over Real-World Wearable Data",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": []
   }
 ]
