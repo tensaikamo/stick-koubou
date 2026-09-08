@@ -3458,5 +3458,59 @@
     "body_fetched": true,
     "model": "gemini-3.8-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-09-09-r01",
+    "created_at": "2026-09-09T08:35:35.697308+09:00",
+    "headline": "openai Python SDK v3.9.0 リリース",
+    "what_happened": "PyPIにおいて、OpenAI公式のPythonライブラリであるopenaiのバージョン3.9.0が公開された。Python 3.10以降に対応し、HTTPXをベースにした同期・非同期クライアントを提供する。OpenAPI仕様から生成された型定義を含み、各種APIへのアクセスを可能にしている。",
+    "background": "OpenAIは公式のPython SDKを継続的にアップデートしており、マイナーバージョンやパッチバージョンの更新が頻繁に行われている。",
+    "changed": "openai Python SDKのバージョンが3.9.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.9.0/",
+      "title": "openai Python SDK v3.9.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-04-r01",
+      "2026-09-03-r01",
+      "2026-08-29-r01",
+      "2026-08-27-r01",
+      "2026-08-20-r02",
+      "2026-08-19-r01"
+    ]
+  },
+  {
+    "id": "2026-09-09-r02",
+    "created_at": "2026-09-09T08:35:35.697308+09:00",
+    "headline": "[新規求人] anthropic: GTM Strategy & Operations - AMER Enterprise Tech",
+    "what_happened": "AnthropicがGreenhouseの求人プラットフォーム上で「GTM Strategy & Operations - AMER Enterprise Tech」のポジションを新たに公開した。勤務地はサンフランシスコまたはニューヨークシティとなっている。body_fetched=falseのためタイトル情報のみに基づいている。",
+    "background": "Anthropicは事業拡大に伴い、GTM（Go-To-Market）戦略およびオペレーション分野の採用を継続的に行っている。",
+    "changed": "AMER地域のエンタープライズ技術向けGTM戦略・オペレーションの求人が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390956008",
+      "title": "[新規求人] anthropic: GTM Strategy & Operations - AMER Enterprise Tech (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": false,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-08-r01",
+      "2026-09-06-r01",
+      "2026-09-05-r05",
+      "2026-09-05-r01",
+      "2026-09-04-r05",
+      "2026-09-03-r07"
+    ]
   }
 ]
