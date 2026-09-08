@@ -1,24 +1,46 @@
 {
-  "updated_at": "2026-09-08 08:45",
+  "updated_at": "2026-09-09 08:37",
   "score": {
-    "hit": 9,
+    "hit": 10,
     "miss": 23,
-    "total": 32,
-    "rate": 0.28125,
-    "pending": 2,
-    "brier": 0.4189832812500001,
-    "brier_n": 32,
-    "brier_initial": 0.4273312500000001,
+    "total": 33,
+    "rate": 0.30303030303030304,
+    "pending": 1,
+    "brier": 0.40636257575757584,
+    "brier_n": 33,
+    "brier_initial": 0.4180939393939395,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
-  "next_due": {
-    "date": "2026-09-09",
-    "days": 1
-  },
+  "next_due": null,
   "decided": [
+    {
+      "id": "2026-08-26-h01",
+      "claim": "Googleは今後14日以内に、PyPIにおけるgoogle-genaiの新たなメジャーバージョン(v3.0.0)をリリースしない。",
+      "subject": "Google",
+      "deadline": "2026-09-09",
+      "confidence": 0.95,
+      "initial_confidence": 0.65,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "仕様変更への切迫した対応として、開発陣が前倒しでメジャーバージョンを強制リリースする動機が存在する点",
+      "evidence": "期日である2026年9月9日時点でPyPI上のgoogle-genaiの最新バージョンは2.22.0であり、3.0.0以上に達していないことが確認されたため。",
+      "signals": [
+        {
+          "date": "2026-09-02",
+          "dir": "confirm",
+          "why": "本日の事象においてgoogle-genai Python SDK v2.21.0がリリースされ、メジャーバージョンではなく2.20.x台を超えるマイナー修正の範囲内であるため。"
+        },
+        {
+          "date": "2026-09-07",
+          "dir": "confirm",
+          "why": "google-genai Python SDKのバージョンがv2.22.0であり、2.20.x台のマイナー修正に留まるという条件を満たしているため"
+        }
+      ]
+    },
     {
       "id": "2026-08-25-h01",
       "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて国防総省または情報機関向けの専用エンタープライズプランや専用ソリューションの正式発表を行わない。",
@@ -217,20 +239,6 @@
       "counter": "Opus 5のAPIインフラプロビジョニングの負荷調整を理由に、パブリックAPIの価格掲載が数週間延期される可能性がある。",
       "evidence": "公式価格ページ（https://www.anthropic.com/pricing）を確認したところ、「Claude Opus 5」の名称およびトークン単価の記載は確認できなかったため。",
       "signals": []
-    },
-    {
-      "id": "2026-08-04-h02",
-      "claim": "Googleは14日以内に、Google Cloud Vertex AIの公式モデルドキュメントに「Gemini 3.6 Flash」のエンドポイント仕様と価格案内を追加する。",
-      "subject": "Google",
-      "deadline": "2026-08-18",
-      "confidence": 0.8,
-      "initial_confidence": null,
-      "result": "hit",
-      "status": "resolved",
-      "alert": false,
-      "counter": "Gemini 3.6 Flashの初期提供がGoogle AI Studio（プロトタイプ環境）限定に留まり、Vertex AI側へのロールアウトが遅延する可能性がある。",
-      "evidence": "Google Cloud Vertex AIの公式モデルドキュメント内に「3.6 Flash」の掲載が確認されたため的中。",
-      "signals": []
     }
   ],
   "pending": [
@@ -247,42 +255,12 @@
       "counter": "主要カスタマーによる自社製AIチップへの切り替え速度が予想を超えた場合、成長率が急速に鈍化するリスクがある。",
       "evidence": "公開情報から決算レポートの証拠を取得できなかったため、判定不能です。",
       "signals": []
-    },
-    {
-      "id": "2026-08-26-h01",
-      "claim": "Googleは今後14日以内に、PyPIにおけるgoogle-genaiの新たなメジャーバージョン(v3.0.0)をリリースしない。",
-      "subject": "Google",
-      "deadline": "2026-09-09",
-      "confidence": 0.95,
-      "initial_confidence": 0.65,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "仕様変更への切迫した対応として、開発陣が前倒しでメジャーバージョンを強制リリースする動機が存在する点",
-      "evidence": "",
-      "signals": [
-        {
-          "date": "2026-09-02",
-          "dir": "confirm",
-          "why": "本日の事象においてgoogle-genai Python SDK v2.21.0がリリースされ、メジャーバージョンではなく2.20.x台を超えるマイナー修正の範囲内であるため。"
-        },
-        {
-          "date": "2026-09-07",
-          "dir": "confirm",
-          "why": "google-genai Python SDKのバージョンがv2.22.0であり、2.20.x台のマイナー修正に留まるという条件を満たしているため"
-        }
-      ]
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-09-05",
-          "headline": "[新規求人] anthropic: Senior Manager, Infrastructure Asset Accounting",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357949008"
-        },
         {
           "date": "2026-09-05",
           "headline": "anthropic Python SDK v1.4.0 リリース",
@@ -297,17 +275,17 @@
           "date": "2026-09-08",
           "headline": "Anthropicがアイルランド・ダブリン拠点でスタートアップ向け営業責任者の求人を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391313008"
+        },
+        {
+          "date": "2026-09-09",
+          "headline": "[新規求人] anthropic: GTM Strategy & Operations - AMER Enterprise Tech",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390956008"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-08-27",
-          "headline": "openai Python SDK v3.4.0 リリース",
-          "url": "https://pypi.org/project/openai/3.4.0/"
-        },
         {
           "date": "2026-08-29",
           "headline": "OpenAIが公式Python SDKバージョン3.6.0を公開",
@@ -322,6 +300,11 @@
           "date": "2026-09-04",
           "headline": "openai Python SDK v3.8.0 リリース",
           "url": "https://pypi.org/project/openai/3.8.0/"
+        },
+        {
+          "date": "2026-09-09",
+          "headline": "openai Python SDK v3.9.0 リリース",
+          "url": "https://pypi.org/project/openai/3.9.0/"
         }
       ]
     },
@@ -408,6 +391,20 @@
   ],
   "records": [
     {
+      "id": "2026-09-09-r02",
+      "date": "2026-09-09",
+      "headline": "[新規求人] anthropic: GTM Strategy & Operations - AMER Enterprise Tech",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390956008"
+    },
+    {
+      "id": "2026-09-09-r01",
+      "date": "2026-09-09",
+      "headline": "openai Python SDK v3.9.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.9.0/"
+    },
+    {
       "id": "2026-09-08-r02",
       "date": "2026-09-08",
       "headline": "実着用データと血液生体指標を統合した健康推論ベンチマークWearableQAが公開",
@@ -476,21 +473,7 @@
       "headline": "User Feedback Provides a Unique Signal that LLMs Can not Detect",
       "certainty": "reported",
       "url": "https://arxiv.org/abs/2609.02859v1"
-    },
-    {
-      "id": "2026-09-04-r03",
-      "date": "2026-09-04",
-      "headline": "Towards Trustworthy Autonomous Robots: An Explainable AI-Based Decision Framework",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2609.02861v1"
-    },
-    {
-      "id": "2026-09-04-r02",
-      "date": "2026-09-04",
-      "headline": "Discriminative World Models for Web Agents",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2609.02885v1"
     }
   ],
-  "record_count": 121
+  "record_count": 123
 }

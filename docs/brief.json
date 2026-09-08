@@ -1,56 +1,61 @@
 {
-  "date": "2026-09-08",
-  "updated_at": "2026-09-08 08:48",
+  "date": "2026-09-09",
+  "updated_at": "2026-09-09 08:41",
   "build_id": "truthful-ui-v1",
-  "omote": "米連邦官報が計算力デリバティブ契約のリスティングに関する意見公募を開始し、OpenRouter上でDeepSeek V4 Flashが180%の大幅値上げを実施した。",
-  "ura": "AIの計算資源そのものが金融商品として先物やデリバティブ市場に組み込まれようとしており、安価なAPIでシェアを奪ってきたDeepSeekも初期の囲い込みを終えて収益化フェーズへ移行した。ウォール街の資本がインフラの現物からリスクヘッジの金融派生商品へ主戦場を移し始めたと見る。",
-  "ura_taikou": "計算力デリバティブの議論は暗号資産やDeFiの文脈におけるマイニング報酬の先物取引と何ら変わらず、AI特有の新たな金融市場は形成されないという仮説は、機関投資家向けの規制枠組みが具体化している動きと矛盾するため退けた。",
-  "dousuru": "OpenRouter上のAPI価格改定履歴を今すぐ確認し、値上げされたモデルに依存しているスクリプトのルーティングを別の低価格プロバイダへ切り替えろ。次に米連邦官報の計算資源デリバティブに関する意見公募の原文に目を通し、機関投資家が狙うヘッジの枠組みを把握しておけ。",
-  "kan": "本命ではないが、計算力デリバティブの規制整備を契機に、大手クラウドベンダー以外の独立系マイナー事業者が発行する計算資源トークンが金融商品の規制対象として米国で最初に摘発されるのは、今後90日以内と見る。",
-  "kan_konkyo": "米連邦官報が計算力デリバティブ契約のリスティングに関する意見公募を正式に開始したという一次情報の記述から。",
-  "kan_hantai": "計算力デリバティブの議論が単なる金融業界の観測に留まり、実態としての金融商品化や規制当局の介入まで至らないこと。",
+  "omote": "DeepSeekがV4 Proのバッチ推論価格を50%値下げし、米連邦官報は計算力デリバティブの意見公募を開始した。",
+  "ura": "推論コストの崩壊と金融インフラの接続が同時に起きている。裏で動いているのは、AIの原材料が「計算力」という金融商品へ変貌し、従来のAPIビジネスの利益率が消滅する冷徹な再編だ。",
+  "ura_taikou": "計算力の金融化はまだ時期尚早であり、今回の意見公募は単なる学術的・行政的な実態調査の域を出ないという仮説は、金融市場のスピード感を過小評価しているため退けた。",
+  "dousuru": "DeepSeekの最新API価格表を開き、自前のプロンプトや軽量スクリプトのコスト試算を今すぐ書き換えろ。APIのラッパーで小銭を稼ぐ設計は諦め、価格破壊の底抜けを前提とした自動化の構造へ切り替えろ。",
+  "kan": "本命ではないが、今後14日以内に主要な米金融取引所から計算力（コンピュート）を対象とした先物・デリバティブの具体的上場スキームが発表されると見る。",
+  "kan_konkyo": "連邦官報での計算力デリバティブに関する意見公募が突如として開始されたという公式一次情報の公開事実に基づく。",
+  "kan_hantai": "規制当局の意見公募から実際のデリバティブ上場までは通常数年単位のプロセスが必要であり、2週間という短期間で具体的なスキームが出てくる確率は高くない。",
   "kan_conf": 0.08,
-  "ippan": "AIサービスの利用制限が厳しくなったり価格が上がったりする動きが出てきているため、普段使っているツールの料金改定や回数制限の通知に注意しておきましょう。無料のまま使い続けられると思い込まず、自分の利用量が本当にその価格に見合っているか見直すことが大切です。",
+  "ippan": "AIの利用制限や価格変更に振り回されないために、特定の有料サービスやアプリの月額プランに縛られるな。複数のモデルの価格下落が進んでいるため、使いたい機能ごとに最も安いAPIを直接叩く方法へ切り替える準備をしておけ。",
   "votes": [
+    0.02,
     0.08,
-    0.18,
     0.08
   ],
   "mijoriku": [
     {
       "title": "Request for Comment on the Listing of Compute Derivatives Contracts",
-      "desc": "米連邦官報による計算力デリバティブの意見公募",
-      "why": "日本のAI・金融メディアでまだ報じられておらず、AIインフラの金融化という次の主戦場に個人が先回りできる材料になるため"
+      "desc": "米官報が計算力のデリバティブ化に向けた意見公募を開始",
+      "why": "AIインフラが金融商品としてどう組み込まれようとしているかの最前線であり、日本のメディアではほとんど報じられていないため。"
+    },
+    {
+      "title": "Open Source Is Not a Virtue: It’s an Ownership Model",
+      "desc": "Mozilla.aiによるオープンソースの所有権モデルとしての再定義",
+      "why": "単なる道徳論としてのオープンソース賛美を完全に否定し、地政学とインフラ所有権の闘争として捉え直す視点は国内に届いていないため。"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値下げ 5%",
-    "[差分] 価格が動いた: Z.ai: GLM Latest 値下げ 4%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値上げ 14%",
-    "[差分] 価格が動いた: DeepSeek V4 Flash Latest 値上げ 11%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値上げ 180%",
-    "[差分] 価格が動いた: MoonshotAI Kimi Latest 値下げ 2%"
+    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 5%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash (batch) 値下げ 50%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値下げ 12%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 (batch) 値下げ 50%",
+    "[差分] 価格が動いた: Meta: Muse Glimmer 30B (batch) 値下げ 50%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値下げ 54%"
   ],
   "evidence": [
     {
-      "claim": "AIの計算資源そのものが金融商品のデリバティブ市場に組み込まれようとしている",
-      "confidence": 0.65,
-      "disconfirm": "米政府が計算資源の金融派生商品化を全面的に禁止する法案を可決する事実",
+      "claim": "DeepSeekがV4 Proのバッチ推論価格を50%値下げし、推論のコモディティ化が加速している",
+      "confidence": 0.85,
+      "disconfirm": "バッチ推論の価格引き下げが一時的なキャンペーンや特定のリージョン限定であることが判明した場合",
       "sources": [
         {
-          "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
-          "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 (batch) 値下げ 50%",
+          "url": "https://openrouter.ai/models"
         }
       ]
     },
     {
-      "claim": "DeepSeekが初期の囲い込みを終えて収益化フェーズへ移行している",
-      "confidence": 0.7,
-      "disconfirm": "値上げ直後に競合の攻勢によってDeepSeekのAPI利用シェアが急落する事実",
+      "claim": "米連邦官報が計算力デリバティブの意見公募を開始し、金融化の動きが本格化している",
+      "confidence": 0.75,
+      "disconfirm": "当局の意見公募だけで終わるだけで、金融市場での具体的商品化の動きが数年間見られない場合",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値上げ 180%",
-          "url": "https://openrouter.ai/models"
+          "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
+          "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
         }
       ]
     }
