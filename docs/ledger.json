@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-09 08:37",
+  "updated_at": "2026-09-10 08:30",
   "score": {
     "hit": 10,
     "miss": 23,
@@ -14,7 +14,10 @@
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
-  "next_due": null,
+  "next_due": {
+    "date": "2026-09-17",
+    "days": 7
+  },
   "decided": [
     {
       "id": "2026-08-26-h01",
@@ -243,29 +246,30 @@
   ],
   "pending": [
     {
-      "id": "2026-08-05-h03",
-      "claim": "NVIDIAの次回決算におけるデータセンター部門売上高が280億ドルを上回る。",
-      "subject": "NVIDIA",
-      "deadline": "2026-08-26",
-      "confidence": 0.82,
-      "initial_confidence": null,
+      "id": "2026-09-10-h01",
+      "claim": "OpenAIは今後7日以内に、PyPIにおける公式Python SDK「openai」の新バージョン（v3.12.0以上）をリリースする。",
+      "subject": "OpenAI",
+      "deadline": "2026-09-17",
+      "confidence": 0.801,
+      "initial_confidence": 0.72,
       "result": null,
       "status": "pending",
       "alert": false,
-      "counter": "主要カスタマーによる自社製AIチップへの切り替え速度が予想を超えた場合、成長率が急速に鈍化するリスクがある。",
-      "evidence": "公開情報から決算レポートの証拠を取得できなかったため、判定不能です。",
-      "signals": []
+      "counter": "リリースパイプラインの一時停止やCIトラブル、または機能固定期間に入ることで更新が1週間以上途切れること",
+      "evidence": "",
+      "signals": [
+        {
+          "date": "2026-09-10",
+          "dir": "confirm",
+          "why": "openai Python SDK v3.11.0 のリリースが確認されたため。"
+        }
+      ]
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-09-05",
-          "headline": "anthropic Python SDK v1.4.0 リリース",
-          "url": "https://pypi.org/project/anthropic/1.4.0/"
-        },
         {
           "date": "2026-09-06",
           "headline": "[新規求人] anthropic: Product Designer, Evals & Prompts (San Francisco, CA)",
@@ -280,17 +284,17 @@
           "date": "2026-09-09",
           "headline": "[新規求人] anthropic: GTM Strategy & Operations - AMER Enterprise Tech",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390956008"
+        },
+        {
+          "date": "2026-09-10",
+          "headline": "Anthropicが自社開発推論エンジンの性能最適化エンジニアの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418323008"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-08-29",
-          "headline": "OpenAIが公式Python SDKバージョン3.6.0を公開",
-          "url": "https://pypi.org/project/openai/3.6.0/"
-        },
         {
           "date": "2026-09-03",
           "headline": "openai Python SDK v3.7.0 リリース",
@@ -305,6 +309,11 @@
           "date": "2026-09-09",
           "headline": "openai Python SDK v3.9.0 リリース",
           "url": "https://pypi.org/project/openai/3.9.0/"
+        },
+        {
+          "date": "2026-09-10",
+          "headline": "OpenAIが公式Python SDK「openai」バージョン3.11.0をPyPIで公開",
+          "url": "https://pypi.org/project/openai/3.11.0/"
         }
       ]
     },
@@ -391,6 +400,20 @@
   ],
   "records": [
     {
+      "id": "2026-09-10-r02",
+      "date": "2026-09-10",
+      "headline": "Anthropicが自社開発推論エンジンの性能最適化エンジニアの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418323008"
+    },
+    {
+      "id": "2026-09-10-r01",
+      "date": "2026-09-10",
+      "headline": "OpenAIが公式Python SDK「openai」バージョン3.11.0をPyPIで公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.11.0/"
+    },
+    {
       "id": "2026-09-09-r02",
       "date": "2026-09-09",
       "headline": "[新規求人] anthropic: GTM Strategy & Operations - AMER Enterprise Tech",
@@ -459,21 +482,7 @@
       "headline": "anthropic Python SDK v1.4.0 リリース",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/anthropic/1.4.0/"
-    },
-    {
-      "id": "2026-09-04-r05",
-      "date": "2026-09-04",
-      "headline": "[新規求人] anthropic: Sales Strategy, Operational Excellence",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5414793008"
-    },
-    {
-      "id": "2026-09-04-r04",
-      "date": "2026-09-04",
-      "headline": "User Feedback Provides a Unique Signal that LLMs Can not Detect",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2609.02859v1"
     }
   ],
-  "record_count": 123
+  "record_count": 125
 }

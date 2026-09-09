@@ -2097,7 +2097,7 @@
       "decider": "期日までにPyPI上のopenaiパッケージにおいて、3.12.0以上のバージョンが公開されていれば的中、3.11.0以下のままであれば外れ"
     },
     "deadline": "2026-09-17",
-    "confidence": 0.72,
+    "confidence": 0.801,
     "base_rate": 0.65,
     "base_rate_class": "活発に更新されている主要開発元API公式SDKが7日以内に1回以上更新される頻度",
     "confidence_why": "base_rate（0.65）を出発点とし、OpenAIが過去1週間で3.7.0から3.11.0までほぼ連日自動生成SDKを公開している強い更新ペースを確認したため0.72へ上方調整した",
@@ -2112,7 +2112,16 @@
         "dir": "kill"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-09-10",
+        "sign": "GitHubのopenai-pythonリポジトリに新リリース向けPRがマージされる",
+        "dir": "confirm",
+        "why": "openai Python SDK v3.11.0 のリリースが確認されたため。",
+        "conf_before": 0.72,
+        "conf_after": 0.801
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -2120,6 +2129,7 @@
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.72
   }
 ]

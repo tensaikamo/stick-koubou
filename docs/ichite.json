@@ -1,167 +1,163 @@
 {
-  "date": "2026-09-09",
+  "date": "2026-09-10",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "DeepSeekのV4 Pro値下げに対し、お前の手元にあるAPIスクリプトのコスト試算はいくらに書き換えたか？",
-    "計算力デリバティブの登場を前提に、お前が仕込める先物のポジションサイズを今すぐ計算したか？",
-    "APIのラッパー稼業を捨てて、価格崩壊の底抜けを前提とした自動化の構造へ何を作り変えたか？"
+    "OpenRouterのAPIコスト変動に対し、自前のコストシミュレーションを今夜iPhoneのブラウザで完了させるか？",
+    "AnthropicとOpenAIのSDK更新頻度の差から、自社ルーティングの切り替え先を直ちに固定するか？",
+    "計算資源のデリバティブ契約の動きに対し、自分のAPI消費量を分散させる設定を今夜追加するか？"
   ],
   "moves": [
     {
-      "t": "米連邦官報の計算力デリバティブ意見公募の要旨を1ページでまとめる",
-      "why": "金融インフラとAI原材料の接続点を把握し、先回りして動くため",
+      "t": "OpenRouterのダッシュボードを開きZ.aiモデルの直近単価を記録する",
+      "why": "OpenRouter上のZ.ai価格破壊による利益率の変動を正確に把握し、自前のルーティング最適化の判断基準とするため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.6,
-      "success_p_max": 0.8,
-      "success_why": "公開されている連邦官報のテキストから直接要点を抽出できるため",
+      "success_p": 0.85,
+      "success_p_min": 0.8,
+      "success_p_max": 0.9,
+      "success_why": "OpenRouterの価格改定ログはWebブラウザから直接確認可能であるため。",
       "value_score": 3,
-      "learning_value": 5,
-      "time_minutes": 25,
+      "learning_value": 4,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "官報の意見公募の核心と影響範囲をまとめた要約メモが残る",
+      "outcome": "Z.aiの最新単価と他社モデルとの価格差のメモ",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "金融市場の次の動きを正確に予測するため",
+      "impact_why": "APIコスト削減の基盤データが整うため。",
       "evidence_ids": [
-        "2026-08-01-r02"
+        "2026-09-10-r01"
       ],
       "assumptions": [
-        "該当する官報データにアクセス可能であること"
+        "OpenRouterのアカウントにモバイルからアクセスできること"
       ],
-      "disconfirm": "公開内容がAIの計算力デリバティブとは無関係である場合",
-      "continue_if": "金融商品化の具体的なスケジュール予測へ進める場合",
-      "stop": "情報源の信頼性が確認できない場合"
+      "disconfirm": "単価変動データが公開されていない場合",
+      "continue_if": "他社モデルとの間に10%以上の単価差が確認できた場合",
+      "stop": "OpenRouterの価格仕様に変更がない場合"
     },
     {
-      "t": "価格破壊を前提とした自動化プロセスの設計図を書き下ろす",
-      "why": "ラッパー稼業から脱却し、底抜けした価格構造を逆手に取る仕組みを作るため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.65,
-      "success_p_min": 0.55,
-      "success_p_max": 0.75,
-      "success_why": "これまでのコスト前提を捨てた思考実験の成果を出力できるため",
-      "value_score": 5,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "大量処理を極安の推論コストで回す自動化システムの設計案が残る",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "個人が情報優位を作るための根幹の仕組みになるため",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "推論コストの低廉化が継続すること"
-      ],
-      "disconfirm": "価格が再び引き上げられ、コスト構造の優位性が消える場合",
-      "continue_if": "設計図をもとに具体的な実装手順へ落とし込める場合",
-      "stop": "設計の実現性が著しく低いと判明した場合"
-    },
-    {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "t": "Anthropicの最新求人ページにアクセスしインフラ最適化の要件を精読する",
+      "why": "Anthropicが注力する推論エンジン最適化の方向性を読み解き、個人の開発・選定スタンスに反映させるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "success_p_min": 0.75,
+      "success_p_max": 0.85,
+      "success_why": "Greenhouse上の求人情報は誰でも直接確認できるため。",
       "value_score": 3,
-      "learning_value": 2,
+      "learning_value": 4,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
-      "category": "build",
+      "outcome": "推論エンジン最適化に関する技術要件の抽出メモ",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "プラットフォーム側の技術的ボトルネックの所在が判明するため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-09-10-r02"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "Greenhouseの求人ページが閲覧可能であること"
       ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "求人内容が非公開に切り替わった場合",
+      "continue_if": "インフラ最適化の具体的なスタックが明記されている場合",
+      "stop": "一般的な業務要件しか記載されていない場合"
     },
     {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "t": "有料APIプロバイダの月額利用枠を拡張しコスト試算を実行する",
+      "why": "価格破壊が進む環境下で、主要APIの呼び出しコスト上限を引き上げ、スループットを維持するため。",
+      "cost_min": 1000,
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.65,
+      "success_p_min": 0.55,
+      "success_p_max": 0.75,
+      "success_why": "既存のAPI運用実績に基づき、小額の追加投資で十分検証可能なため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 30,
+      "outcome": "拡張されたAPIクレジットと試算結果のスクリーンショット",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "検証の実行速度が直接向上するため。",
+      "evidence_ids": [
+        "2026-09-10-r01"
+      ],
+      "assumptions": [
+        "クレジットカード決済がiPhoneから問題なく行えること"
+      ],
+      "disconfirm": "決済エラーが発生する場合",
+      "continue_if": "追加投資に対する処理速度の向上が体感できる場合",
+      "stop": "価格破壊による恩恵が自身の利用量に反映されない場合"
+    },
+    {
+      "t": "GitHub上の自前のAPIラッパーリポジトリにコスト監視スクリプトを追記する",
+      "why": "API価格の変動リスクを自動で検知し、手動での確認ミスを防ぐ仕組みを構築するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "value_score": 2,
-      "learning_value": 3,
-      "time_minutes": 20,
+      "success_p_min": 0.7,
+      "success_p_max": 0.8,
+      "success_why": "GitHubのWebエディタを用いてモバイルからコードの修正とコミットが完結するため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 30,
       "payback_days": 0,
-      "outcome": "一次情報の要点メモが3行残る",
-      "category": "research",
+      "outcome": "コスト監視機能が追加されたコードのコミットログ",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "運用の自動化により手戻りのリスクが大幅に減るため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-09-10-r01",
+        "2026-09-09-r01"
       ],
       "assumptions": [
-        "読む情報が現在の目標に関係する"
+        "GitHubのWebインターフェースで直接編集・コミットが行えること"
       ],
-      "disconfirm": "要点が次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
+      "disconfirm": "Webエディタでの編集が制限されるリポジトリ設定の場合",
+      "continue_if": "コミットと自動テストが正常に通過した場合",
+      "stop": "監視スクリプトの実装にローカル環境が必要と判明した場合"
     },
     {
-      "t": "予測を1件確認し確度メモを1行更新する",
-      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
+      "t": "商用APIのルーティング切り替えテストを小規模バッチで実行する",
+      "why": "Z.ai等の値下げモデルへの切り替え時に発生しうる出力品質の劣化を事前に検証するため。",
+      "cost_min": 500,
+      "cost_max": 2000,
+      "loss_max": 2000,
       "success_p": 0.7,
-      "success_p_min": 0.55,
+      "success_p_min": 0.6,
       "success_p_max": 0.8,
-      "success_why": "既存予測の更新なので新規企画より着地しやすい",
-      "value_score": 2,
+      "success_why": "既存のプロンプト資産を用いてブラウザ経由でAPIリクエストをテストできるため。",
+      "value_score": 4,
       "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "追跡中予測の確度メモが更新される",
+      "time_minutes": 25,
+      "payback_days": 14,
+      "outcome": "切り替え先モデルの出力品質とコストの比較データ",
       "category": "review",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "誤った前提で投資する損失を減らす",
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "品質を落とさずにコストを削減できるルートが確定するため。",
       "evidence_ids": [
-        "action-history"
+        "2026-09-10-r01"
       ],
       "assumptions": [
-        "予測が現在の投資判断に関係する"
+        "テスト用のAPIキーが有効であること"
       ],
-      "disconfirm": "確度更新が次の行動や支出を変えない",
-      "continue_if": "確度を動かす一次根拠が見つかった",
-      "stop": "根拠URLを1本確認したら終了",
-      "fallback": true
+      "disconfirm": "出力品質が実用に耐えないレベルまで低下する場合",
+      "continue_if": "コスト削減効果が20%以上かつ品質が同等である場合",
+      "stop": "エラー率が許容範囲を超えて高い場合"
     }
   ],
-  "kan": "本命ではないが、今後14日以内に主要な米金融取引所から計算力（コンピュート）を対象とした先物・デリバティブの具体的上場スキームが発表されると見る。"
+  "kan": "OpenAIは今後7日以内に、PyPIにおける公式Python SDK「openai」の新バージョン（v3.12.0以上）をリリースする。"
 }
