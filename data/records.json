@@ -3512,5 +3512,59 @@
       "2026-09-04-r05",
       "2026-09-03-r07"
     ]
+  },
+  {
+    "id": "2026-09-10-r01",
+    "created_at": "2026-09-10T08:27:47.447182+09:00",
+    "headline": "OpenAIが公式Python SDK「openai」バージョン3.11.0をPyPIで公開",
+    "what_happened": "OpenAIがPyPI上で公式Python SDKのマイナーアップデートとなるバージョン3.11.0を公開した。本ライブラリはOpenAI REST APIへのPython 3.10以降向けクライアントを提供する。OpenAPI仕様から自動生成され、同期・非同期リクエストに対応する。",
+    "background": "OpenAIは公式クライアントSDK（openai）をPyPI経由で高頻度に更新しており、直近数日間でも3.7.0から3.10.xへと連日アップデートを継続している。",
+    "changed": "PyPIにおけるopenaiの最新バージョンが3.11.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.11.0/",
+      "title": "openai Python SDK v3.11.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-09-r01",
+      "2026-09-04-r01",
+      "2026-09-03-r01",
+      "2026-08-29-r01",
+      "2026-08-27-r01",
+      "2026-08-20-r02"
+    ]
+  },
+  {
+    "id": "2026-09-10-r02",
+    "created_at": "2026-09-10T08:27:47.447182+09:00",
+    "headline": "Anthropicが自社開発推論エンジンの性能最適化エンジニアの求人を公開",
+    "what_happened": "Anthropicがサンフランシスコおよびニューヨーク拠点向けに「Performance Engineer, Inference Engine」の採用募集を開始した。求人票によると同社はClaudeの推論処理を自社製インハウス推論エンジン上で稼働させており、バッチ処理、メモリ管理、マルチアクセラレータ間レイアウトなどを制御している。スループット、コスト、レイテンシ最適化を担うエンジニアを求めている。",
+    "background": "フロンティアAIモデルの運用コストにおいて推論エンジンの最適化は重要課題であり、vLLM等のOSS利用だけでなく、主要ラボはハードウェア親和性の高い自社製推論スタックの内製化・最適化を強化している。",
+    "changed": "Anthropicが推論エンジン開発に特化したパフォーマンスエンジニアの外部採用を公式求人枠に追加した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418323008",
+      "title": "[新規求人] anthropic: Performance Engineer, Inference Engine (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-09-r02",
+      "2026-09-08-r01",
+      "2026-09-06-r01",
+      "2026-09-05-r05",
+      "2026-09-05-r01",
+      "2026-09-04-r05"
+    ]
   }
 ]
