@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-09-10 08:30",
+  "updated_at": "2026-09-11 08:22",
   "score": {
     "hit": 10,
     "miss": 23,
     "total": 33,
     "rate": 0.30303030303030304,
-    "pending": 1,
+    "pending": 2,
     "brier": 0.40636257575757584,
     "brier_n": 33,
     "brier_initial": 0.4180939393939395,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-17",
-    "days": 7
+    "days": 6
   },
   "decided": [
     {
@@ -264,6 +264,20 @@
           "why": "openai Python SDK v3.11.0 のリリースが確認されたため。"
         }
       ]
+    },
+    {
+      "id": "2026-09-11-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームまたはパートナー向けページにおいて、主要SIerとの具体的なリセラー契約締結や共同販売プログラムの本格稼働を発表しない",
+      "subject": "Anthropic",
+      "deadline": "2026-09-25",
+      "confidence": 0.7,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "すでに水面下で大口SIerとの交渉が完了しており、求人公開と同時にパートナーシップ発表が行われる場合",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
@@ -271,35 +285,30 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-09-06",
-          "headline": "[新規求人] anthropic: Product Designer, Evals & Prompts (San Francisco, CA)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5411318008"
-        },
-        {
-          "date": "2026-09-08",
-          "headline": "Anthropicがアイルランド・ダブリン拠点でスタートアップ向け営業責任者の求人を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391313008"
-        },
-        {
-          "date": "2026-09-09",
-          "headline": "[新規求人] anthropic: GTM Strategy & Operations - AMER Enterprise Tech",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390956008"
-        },
-        {
           "date": "2026-09-10",
           "headline": "Anthropicが自社開発推論エンジンの性能最適化エンジニアの求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418323008"
+        },
+        {
+          "date": "2026-09-11",
+          "headline": "AnthropicがExecutive Escalations Managerの求人を出した",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418743008"
+        },
+        {
+          "date": "2026-09-11",
+          "headline": "AnthropicがReseller Partner Managerの求人を出した",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391265008"
+        },
+        {
+          "date": "2026-09-11",
+          "headline": "AnthropicがSocial Escalations Program Managerの求人を出した",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418858008"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-09-03",
-          "headline": "openai Python SDK v3.7.0 リリース",
-          "url": "https://pypi.org/project/openai/3.7.0/"
-        },
         {
           "date": "2026-09-04",
           "headline": "openai Python SDK v3.8.0 リリース",
@@ -314,6 +323,11 @@
           "date": "2026-09-10",
           "headline": "OpenAIが公式Python SDK「openai」バージョン3.11.0をPyPIで公開",
           "url": "https://pypi.org/project/openai/3.11.0/"
+        },
+        {
+          "date": "2026-09-11",
+          "headline": "PyPIにopenai Python SDK v3.13.0がリリースされた",
+          "url": "https://pypi.org/project/openai/3.13.0/"
         }
       ]
     },
@@ -321,24 +335,24 @@
       "subject": "xAI",
       "events": [
         {
-          "date": "2026-08-27",
-          "headline": "xAI: Client Account Manager- SMB 求人公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5221126007"
-        },
-        {
-          "date": "2026-09-01",
-          "headline": "xAIがLead Electrical Engineerの求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5226686007"
-        },
-        {
-          "date": "2026-09-01",
-          "headline": "xAIがLead Electrical Reliability Engineerの求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5226701007"
-        },
-        {
           "date": "2026-09-02",
           "headline": "xai: Facilities Engineer, Electrical (Memphis, Tennessee; Southaven, Mississippi)",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5227980007"
+        },
+        {
+          "date": "2026-09-11",
+          "headline": "xAIがControls Technician (Physical Infrastructure)の求人を出した",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5229552007"
+        },
+        {
+          "date": "2026-09-11",
+          "headline": "xAIがFraud Analyst (Sat-Weds)の求人を出した",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5231579007"
+        },
+        {
+          "date": "2026-09-11",
+          "headline": "xAIがLegal Operations Specialistの求人を出した",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5231516007"
         }
       ]
     },
@@ -400,6 +414,55 @@
   ],
   "records": [
     {
+      "id": "2026-09-11-r07",
+      "date": "2026-09-11",
+      "headline": "PyPIにopenai Python SDK v3.13.0がリリースされた",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.13.0/"
+    },
+    {
+      "id": "2026-09-11-r06",
+      "date": "2026-09-11",
+      "headline": "xAIがLegal Operations Specialistの求人を出した",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5231516007"
+    },
+    {
+      "id": "2026-09-11-r05",
+      "date": "2026-09-11",
+      "headline": "xAIがFraud Analyst (Sat-Weds)の求人を出した",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5231579007"
+    },
+    {
+      "id": "2026-09-11-r04",
+      "date": "2026-09-11",
+      "headline": "xAIがControls Technician (Physical Infrastructure)の求人を出した",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5229552007"
+    },
+    {
+      "id": "2026-09-11-r03",
+      "date": "2026-09-11",
+      "headline": "AnthropicがExecutive Escalations Managerの求人を出した",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418743008"
+    },
+    {
+      "id": "2026-09-11-r02",
+      "date": "2026-09-11",
+      "headline": "AnthropicがReseller Partner Managerの求人を出した",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391265008"
+    },
+    {
+      "id": "2026-09-11-r01",
+      "date": "2026-09-11",
+      "headline": "AnthropicがSocial Escalations Program Managerの求人を出した",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418858008"
+    },
+    {
       "id": "2026-09-10-r02",
       "date": "2026-09-10",
       "headline": "Anthropicが自社開発推論エンジンの性能最適化エンジニアの求人を公開",
@@ -433,56 +496,7 @@
       "headline": "実着用データと血液生体指標を統合した健康推論ベンチマークWearableQAが公開",
       "certainty": "reported",
       "url": "https://arxiv.org/abs/2609.05405v1"
-    },
-    {
-      "id": "2026-09-08-r01",
-      "date": "2026-09-08",
-      "headline": "Anthropicがアイルランド・ダブリン拠点でスタートアップ向け営業責任者の求人を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391313008"
-    },
-    {
-      "id": "2026-09-06-r01",
-      "date": "2026-09-06",
-      "headline": "[新規求人] anthropic: Product Designer, Evals & Prompts (San Francisco, CA)",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5411318008"
-    },
-    {
-      "id": "2026-09-05-r05",
-      "date": "2026-09-05",
-      "headline": "[新規求人] anthropic: Senior Manager, Infrastructure Asset Accounting",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5357949008"
-    },
-    {
-      "id": "2026-09-05-r04",
-      "date": "2026-09-05",
-      "headline": "ESPO: Error-Structured Prompt Optimization via Diagnose, Diversify, and Stabilize",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2609.04197v1"
-    },
-    {
-      "id": "2026-09-05-r03",
-      "date": "2026-09-05",
-      "headline": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoi",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2609.04198v1"
-    },
-    {
-      "id": "2026-09-05-r02",
-      "date": "2026-09-05",
-      "headline": "Compile by Training: Turning Natural-Language Specifications into Local Neural Functions",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2609.04199v1"
-    },
-    {
-      "id": "2026-09-05-r01",
-      "date": "2026-09-05",
-      "headline": "anthropic Python SDK v1.4.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/1.4.0/"
     }
   ],
-  "record_count": 125
+  "record_count": 132
 }

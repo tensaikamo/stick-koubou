@@ -1,57 +1,57 @@
 {
-  "date": "2026-09-10",
-  "updated_at": "2026-09-10 08:32",
+  "date": "2026-09-11",
+  "updated_at": "2026-09-11 08:24",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouter上でZ.aiのGLM 5.2が71%値下げされた。米連邦官報には計算資源のデリバティブ契約に関する意見募集が掲載され、AnthropicやxAIはインフラ最適化の求人を加速させている。",
-  "ura": "価格破壊で中小プロバイダの利益率を削り、APIルーティング層での寡占化を急ぐフェーズに入ったと見る。同時に、AIの根幹である計算資源が国家管理下の金融スキームに組み込まれ、資本の流通が厳格にコントロールされ始めているはずだ。",
-  "ura_taikou": "価格低下は単なる一時的なプロモーションであり、APIプロバイダ間の本格的な価格破壊競争には発展しないという仮説を検討したが、複数モデルの同時値下げのトレンドが確認できるため却下した。",
-  "dousuru": "OpenRouterのAPI管理画面を開き、Z.aiモデルの単価変動ログを確認してコスト試算を直ちにやり直せ。既存のAPIラッパーを見直し、自前のルーティングで最も単価が削れるプロバイダへ切り替える準備を今日中で終わらせておけ。",
-  "kan": "OpenAIは今後7日以内に、PyPIにおける公式Python SDK「openai」の新バージョン（v3.12.0以上）をリリースする。",
-  "kan_konkyo": "base_rate（0.65）を出発点とし、OpenAIが過去1週間で3.7.0から3.11.0までほぼ連日自動生成SDKを公開している強い更新ペースを確認したため0.72へ上方調整した",
-  "kan_hantai": "リリースパイプラインの一時停止やCIトラブル、または機能固定期間に入ることで更新が1週間以上途切れること",
-  "kan_conf": 0.801,
-  "ippan": "AIサービスの価格競争が激化し、裏で利用コストが下がっているため、普段使っているチャットツールの裏にあるAPIの選択肢を確認すると得をする。複数のモデルを選べる環境なら、性能差と料金のバランスを見て乗り換えるだけで、無駄な出費を抑えられる。",
+  "omote": "汎用CPUハードウェア上でのLLMウェブ検索の低遅延化を実現する3層キャッシュアーキテクチャの論文と、長文処理における並列読み込みと深い推論を分離する手法が同時に公開された。",
+  "ura": "GPU不足と高騰の最中、クラウド大手が提供する高単価なAPI依存から逃れようとする個人開発者が、ローカルや月額数ドルの安価なVPS/CPU環境で自律型エージェントを回すためのコスト破壊レイヤーが水面下で完成しつつある。",
+  "ura_taikou": "大手クラウドベンダーがこのキャッシュ構造を自社基盤に即座に組み込み、個人のコスト優位性を完全に消し去るという仮説は、オープンソースとして公開されたレイヤーのスピード感に対抗しきれないため退けた。",
+  "dousuru": "Hugging Faceで公開されたCPU向け3層キャッシュのコードリポジトリにアクセスし、手元のiPhoneから操作可能なクラウドIDE上でAPI呼び出しログとキャッシュヒット率のシミュレーションを今夜30分以内で1回回せ。",
+  "kan": "Anthropicは今後14日以内に、公式ニュースルームまたはパートナー向けページにおいて、主要SIerとの具体的なリセラー契約締結や共同販売プログラムの本格稼働を発表しない",
+  "kan_konkyo": "基準率は高いが、求人公開から実際の商用アナウンスまでにはタイムラグがあるため、起きない方に寄せて較正する。",
+  "kan_hantai": "すでに水面下で大口SIerとの交渉が完了しており、求人公開と同時にパートナーシップ発表が行われる場合",
+  "kan_conf": 0.7,
+  "ippan": "AIを使ったウェブ検索や長文の読み込みで毎回の料金や処理の遅さに悩んでいるなら、大手サービスの言いなりにならず、最近公開されたCPU向けのコスト削減技術やキャッシュの仕組みを取り入れたツールを探すとよい。",
   "votes": [],
   "mijoriku": [
     {
-      "title": "Request for Comment on the Listing of Compute Derivatives Contracts",
-      "desc": "米連邦官報に掲載された計算資源デリバティブ契約に関する意見募集",
-      "why": "AIインフラが金融商品として国家管理される構造変化の兆候であり、日本国内ではほぼ報じられていないため"
+      "title": "A Three-Layer Caching Architecture for Low-Latency LLM Web Search on Commodity CPU Hardware",
+      "desc": "汎用CPU上でLLMウェブ検索を高速化・低コスト化する3層キャッシュの仕組み",
+      "why": "GPU前提のコスト構造から抜け出すための具体的なアーキテクチャが日本語圏の個人開発者の間ではまだ共有されていないため"
     },
     {
-      "title": "Performance Engineer, Inference Engine at Anthropic",
-      "desc": "Anthropicによる推論エンジン向けのパフォーマンスエンジニア求人",
-      "why": "モデルの賢さからハードウェア効率の最適化へ競争軸が移る現場のボトルネックを生々しく示しているため"
+      "title": "PARSER: Read in Parallel, Reason in Depth for Long-Context LLM Agents",
+      "desc": "長文コンテキストを並列読み込みと深い推論に分離して処理する手法",
+      "why": "API費用とレイテンシのボトルネックを突破する技術的詳細がまだ国内の個人開発コミュニティに輸入されていないため"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: IBM: Granite 4.2 8B 値下げ 40%",
-    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値下げ 7%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値下げ 7%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.2 値下げ 71%",
-    "[差分] 価格が動いた: MoonshotAI Kimi Latest 値下げ 6%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値下げ 7%"
+    "[差分] 退役予定日が設定された: Z.ai: GLM 5.3 Flash → 2098-12-31",
+    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 7%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 114%",
+    "[差分] 価格が動いた: Z.ai: GLM Latest 値下げ 37%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値上げ 16%",
+    "[差分] 価格が動いた: Google: Gemma 4 26B A4B  値下げ 40%"
   ],
   "evidence": [
     {
-      "claim": "Z.aiのGLM 5.2の大幅値下げはAPIルーティング層での価格競争と寡占化を加速させている",
+      "claim": "汎用CPUハードウェア上での3層キャッシュアーキテクチャにより、LLMウェブ検索の低遅延化とコスト削減が可能になる。",
       "confidence": 0.65,
-      "disconfirm": "競合他社が追随せず、一過性のプロモーションやテスト価格であることが確認された場合",
+      "disconfirm": "CPU単体での処理が追いつかず、API呼び出しのオーバーヘッドがかえって増大するという実測データが報告されること。",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: Z.ai: GLM 5.2 値下げ 71%",
-          "url": "https://openrouter.ai/models"
+          "title": "[論文] A Three-Layer Caching Architecture for Low-Latency LLM Web Search on Commodity CPU Hardware",
+          "url": "https://huggingface.co/papers/2609.05463"
         }
       ]
     },
     {
-      "claim": "米連邦官報の計算資源デリバティブに関する意見募集は、AI計算資源の金融商品化と国家管理の動きを示している",
+      "claim": "並列読み込みと深い推論を分離する手法により、長文コンテキスト処理時のボトルネックが突破される。",
       "confidence": 0.6,
-      "disconfirm": "行政手続きの一環に留まり、具体的な先物市場の開設や法制化に向けた実効的な動きに発展しない場合",
+      "disconfirm": "分割されたチャンク間の文脈の繋がりが致命的に欠落し、実務的なデータに対して使い物にならないエラー率が示されること。",
       "sources": [
         {
-          "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
-          "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
+          "title": "[論文] PARSER: Read in Parallel, Reason in Depth for Long-Context LLM Agents",
+          "url": "https://huggingface.co/papers/2609.06702"
         }
       ]
     }
