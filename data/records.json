@@ -3566,5 +3566,194 @@
       "2026-09-05-r01",
       "2026-09-04-r05"
     ]
+  },
+  {
+    "id": "2026-09-11-r01",
+    "created_at": "2026-09-11T08:21:11.471990+09:00",
+    "headline": "AnthropicがSocial Escalations Program Managerの求人を出した",
+    "what_happened": "Anthropicは、パブリックなソーシャルプラットフォーム上で高リスクなユーザー課題が発生した際の評判保護を担当する「Social Escalations Program Manager」の求人を公開した。本職種は新設される「Community & Executive Escalations」組織の立ち上げメンバーとして、リアルタイムのソーシャルレポート作成や対応プレイブックの構築を担う。本文は取得済みである。",
+    "background": "AIプラットフォームの普及に伴い、SNS上でのユーザーからの批判や炎上事案への対応が、企業のブランド防衛において重要な業務となっている。",
+    "changed": "AnthropicがSNS上のリスク対応を専門とするオペレーション組織を正式に立ち上げる体制に入った。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418858008",
+      "title": "[新規求人] anthropic: Social Escalations Program Manager  (San Francisco, CA | New York City, NY | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-10-r02",
+      "2026-09-09-r02",
+      "2026-09-08-r01",
+      "2026-09-06-r01",
+      "2026-09-05-r05",
+      "2026-09-05-r01"
+    ]
+  },
+  {
+    "id": "2026-09-11-r02",
+    "created_at": "2026-09-11T08:21:11.471990+09:00",
+    "headline": "AnthropicがReseller Partner Managerの求人を出した",
+    "what_happened": "Anthropicは、グローバル規模でのリセラープログラム構築に向けた「Reseller Partner Manager」の求人を公開した。エンタープライズ顧客が既存のパートナー経由でClaudeを購入できるようにするため、大手グローバルシステムインテグレーターとの協業関係や契約、取引フローの管理を担当する。本文は取得済みである。",
+    "background": "AI企業が直販体制から大手SIerやパートナー網を経由した代理店販売モデルへの移行を進めている。",
+    "changed": "Anthropicが外部システムインテグレーターを活用したエンタープライズ向けの間接販売チャネルを本格的に構築し始めた。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391265008",
+      "title": "[新規求人] anthropic: Reseller Partner Manager (London, UK)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-10-r02",
+      "2026-09-09-r02",
+      "2026-09-08-r01",
+      "2026-09-06-r01",
+      "2026-09-05-r05",
+      "2026-09-05-r01"
+    ]
+  },
+  {
+    "id": "2026-09-11-r03",
+    "created_at": "2026-09-11T08:21:11.471990+09:00",
+    "headline": "AnthropicがExecutive Escalations Managerの求人を出した",
+    "what_happened": "Anthropicは、エグゼクティブチャネル経由で持ち込まれる高リスクなユーザー課題への対応を担当する「Executive Escalations Manager」の求人を公開した。記事0と同様に「Community & Executive Escalations」組織の立ち上げメンバーとして、経営陣に関わるエスカレーションの一次対応やプレイブック策定を行う。本文は取得済みである。",
+    "background": "経営層や重要顧客からの直接的な苦情や特別対応案件は、通常のカスタマーサポートとは異なる迅速な意思決定ルートを必要とする。",
+    "changed": "経営陣チャネルからの重要課題を専属で処理するガバナンス体制の構築が開始された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418743008",
+      "title": "[新規求人] anthropic:  Executive Escalations Manager (San Francisco, CA | New York City, NY | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-10-r02",
+      "2026-09-09-r02",
+      "2026-09-08-r01",
+      "2026-09-06-r01",
+      "2026-09-05-r05",
+      "2026-09-05-r01"
+    ]
+  },
+  {
+    "id": "2026-09-11-r04",
+    "created_at": "2026-09-11T08:21:11.471990+09:00",
+    "headline": "xAIがControls Technician (Physical Infrastructure)の求人を出した",
+    "what_happened": "xAIは、メンフィス等のAIトレーニングキャンパスにおける制御システムの統合、試運転、保守を担当する「Controls Technician (Physical Infrastructure)」の求人を公開した。冷却プラント、配電設備、液体冷却ループ、データホールの稼働維持や産業用制御パネルの配線作業を担う。本文は取得済みである。",
+    "background": "大規模なAIスーパーコンピューターの稼働には、膨大な電力供給と冷却システムを物理的に維持する専門のインフラ技術チームが不可欠である。",
+    "changed": "xAIの物理インフラおよびデータセンターの保守体制において、現場技術者の採用が継続している。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5229552007",
+      "title": "[新規求人] xai: Controls Technician (Physical Infrastructure) - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-02-r04",
+      "2026-09-01-r06",
+      "2026-09-01-r05",
+      "2026-08-27-r07",
+      "2026-08-27-r06",
+      "2026-08-25-r02"
+    ]
+  },
+  {
+    "id": "2026-09-11-r05",
+    "created_at": "2026-09-11T08:21:11.471990+09:00",
+    "headline": "xAIがFraud Analyst (Sat-Weds)の求人を出した",
+    "what_happened": "xAIは、XMoneyにおける金融犯罪リスクの検知・調査・軽減を担当する「Fraud Analyst」の求人を公開した。銀行秘密法（BSA）や資金洗浄対策（AML）の規制遵守を維持し、不正行為から会社や顧客を保護する業務を行う。本文は取得済みである。",
+    "background": "決済機能や金融関連サービスを内製・展開する企業では、不正利用対策やコンプライアンス監視のための専任アナリストが必要とされる。",
+    "changed": "xAIの決済・金融機能周りにおける不正対策と規制遵守の監視体制が実務レベルで固められつつある。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5231579007",
+      "title": "[新規求人] xai: Fraud Analyst (Sat-Weds) ( Palo Alto, CA; New York, NY)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-02-r04",
+      "2026-09-01-r06",
+      "2026-09-01-r05",
+      "2026-08-27-r07",
+      "2026-08-27-r06",
+      "2026-08-25-r02"
+    ]
+  },
+  {
+    "id": "2026-09-11-r06",
+    "created_at": "2026-09-11T08:21:11.471990+09:00",
+    "headline": "xAIがLegal Operations Specialistの求人を出した",
+    "what_happened": "xAIは、外部法律事務所の案件管理や請求書処理、支出管理プラットフォーム「Legal Tracker」の運用を担当する「Legal Operations Specialist」の求人を公開した。法務機能のシステム運用最適化や外部ベンダー支出の引き締めを目的としている。本文は取得済みである。",
+    "background": "急拡大する組織では、法務関連の外部コストや契約ワークフローを効率的に管理するための専任オペレーションが求められる。",
+    "changed": "xAIの法務部門において、外部ベンダー管理やワークフローのシステム化に向けた専任の運用体制が整備される。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5231516007",
+      "title": "[新規求人] xai: Legal Operations Specialist ( Palo Alto, CA)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-02-r04",
+      "2026-09-01-r06",
+      "2026-09-01-r05",
+      "2026-08-27-r07",
+      "2026-08-27-r06",
+      "2026-08-25-r02"
+    ]
+  },
+  {
+    "id": "2026-09-11-r07",
+    "created_at": "2026-09-11T08:21:11.471990+09:00",
+    "headline": "PyPIにopenai Python SDK v3.13.0がリリースされた",
+    "what_happened": "Pythonパッケージインデックス（PyPI）において、公式Python SDK「openai」のバージョン3.13.0が公開された。OpenAIのREST APIへアクセスするための型定義や、同期・非同期クライアントを含んでいる。本文は取得済みである。",
+    "background": "OpenAIのPython SDKはAPIの仕様変更や機能追加に伴い、頻繁にバージョンアップが行われている。",
+    "changed": "公式Python SDKのバージョンが3.13.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.13.0/",
+      "title": "openai Python SDK v3.13.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-10-r01",
+      "2026-09-09-r01",
+      "2026-09-04-r01",
+      "2026-09-03-r01",
+      "2026-08-29-r01",
+      "2026-08-27-r01"
+    ]
   }
 ]

@@ -2131,5 +2131,45 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.72
+  },
+  {
+    "id": "2026-09-11-h01",
+    "created_at": "2026-09-11T08:21:11.471990+09:00",
+    "based_on": [
+      "2026-09-11-r02"
+    ],
+    "prose": "AnthropicがグローバルSIer向けのリセラープログラム専任マネージャーの求人を出した動きは、パートナー経由の間接販売チャネルを本格始動させる前段階にある。ただし、求人公開から実際に外部パートナー向けのエンドツーエンドの契約や取引トラッキングが公のトランスアクションとして立ち上がるまでには通常より時間がかかる。短期的な基準率の低さを考慮すると、指定日数内に公式パートナーポータル上で大規模SIer向けの専用取引プログラムや販売実績が一般公開される可能性は低い。",
+    "claim": "Anthropicは今後14日以内に、公式ニュースルームまたはパートナー向けページにおいて、主要SIerとの具体的なリセラー契約締結や共同販売プログラムの本格稼働を発表しない",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "anthropic reseller partner global system integrator announcement",
+      "decider": "Anthropicの公式ニュースルームにおいて、主要SIerとのリセラープログラムの本格稼働または契約締結に関する発表が掲載されること"
+    },
+    "deadline": "2026-09-25",
+    "confidence": 0.7,
+    "base_rate": 0.85,
+    "base_rate_class": "AI企業が求人公開から14日以内に新たな販路やプログラムの商業ローンチを発表する頻度",
+    "confidence_why": "基準率は高いが、求人公開から実際の商用アナウンスまでにはタイムラグがあるため、起きない方に寄せて較正する。",
+    "counter": "すでに水面下で大口SIerとの交渉が完了しており、求人公開と同時にパートナーシップ発表が行われる場合",
+    "indicators": [
+      {
+        "sign": "Anthropicのニュースルームにパートナーシップに関する新着リリースが掲載される",
+        "dir": "kill"
+      },
+      {
+        "sign": "求人ページから該当職種が「募集終了」にステータス変更される",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
