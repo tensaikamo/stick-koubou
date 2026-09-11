@@ -1,57 +1,61 @@
 {
-  "date": "2026-09-11",
-  "updated_at": "2026-09-11 08:24",
+  "date": "2026-09-12",
+  "updated_at": "2026-09-12 08:34",
   "build_id": "truthful-ui-v1",
-  "omote": "汎用CPUハードウェア上でのLLMウェブ検索の低遅延化を実現する3層キャッシュアーキテクチャの論文と、長文処理における並列読み込みと深い推論を分離する手法が同時に公開された。",
-  "ura": "GPU不足と高騰の最中、クラウド大手が提供する高単価なAPI依存から逃れようとする個人開発者が、ローカルや月額数ドルの安価なVPS/CPU環境で自律型エージェントを回すためのコスト破壊レイヤーが水面下で完成しつつある。",
-  "ura_taikou": "大手クラウドベンダーがこのキャッシュ構造を自社基盤に即座に組み込み、個人のコスト優位性を完全に消し去るという仮説は、オープンソースとして公開されたレイヤーのスピード感に対抗しきれないため退けた。",
-  "dousuru": "Hugging Faceで公開されたCPU向け3層キャッシュのコードリポジトリにアクセスし、手元のiPhoneから操作可能なクラウドIDE上でAPI呼び出しログとキャッシュヒット率のシミュレーションを今夜30分以内で1回回せ。",
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームまたはパートナー向けページにおいて、主要SIerとの具体的なリセラー契約締結や共同販売プログラムの本格稼働を発表しない",
-  "kan_konkyo": "基準率は高いが、求人公開から実際の商用アナウンスまでにはタイムラグがあるため、起きない方に寄せて較正する。",
-  "kan_hantai": "すでに水面下で大口SIerとの交渉が完了しており、求人公開と同時にパートナーシップ発表が行われる場合",
-  "kan_conf": 0.7,
-  "ippan": "AIを使ったウェブ検索や長文の読み込みで毎回の料金や処理の遅さに悩んでいるなら、大手サービスの言いなりにならず、最近公開されたCPU向けのコスト削減技術やキャッシュの仕組みを取り入れたツールを探すとよい。",
-  "votes": [],
+  "omote": "OpenRouter上のデータでMoonshotAIのKimi K3が46%の大幅値下げを実施した一方、Z.aiやUpstageは価格を引き上げた。",
+  "ura": "中国勢が推論コストのダンピングを加速させており、API仲介層での利益率を削り合ってシェア奪取を急いでいると見る。基盤モデルのコモディティ化がさらに進み、APIをそのまま再販するだけの薄利多売ビジネスは完全に死んだ。",
+  "ura_taikou": "価格低下は中国勢の消耗戦ではなく、次世代モデル投入前の在庫処分的な一時セールに過ぎないという仮説は、主要各社の値下げ幅が連動している事実と矛盾するため退けた。",
+  "dousuru": "OpenRouterのダッシュボードを開き、API単価が下落しているKimi K3やDeepSeek系モデルへ即座にルーティングを切り替えろ。自前で高いモデルを叩いている箇所を洗い出し、今日の夜までにコスト構造を競合より2割安く再設計しろ。仲介で稼ぐ発想を捨て、価格破壊されたインフラの差分をそのまま自社サービスの利益に乗せる動線を作れ。",
+  "kan": "本命ではないが、今月中旬に米当局の計算資源デリバティブ規制をきっかけとして、主要クラウド間のGPU価格が一時的に乱高下する目がある。",
+  "kan_konkyo": "米連邦官報（Federal Register）に計算資源デリバティブ契約のリスティングに関する意見募集が正式に掲載されたという一次データから。",
+  "kan_hantai": "米商品先物取引委員会（CFTC）や当局のリスティング検討が単なる意見聴取にとどまり、実際の金融商品としてのインフラ整備や市場への影響が数ヶ月以上先送りされること。",
+  "kan_conf": 0.12,
+  "ippan": "AIサービスの価格競争が激化し、同じ性能のAIでも使うサービスによって料金が数割違う状態が起きています。よく使うAIツールが値上げしていないか、あるいは他社がより安く提供していないかを今一度確認してください。特に広告や仲介を通した高額な有料プランに安易に入らぬよう注意しましょう。",
+  "votes": [
+    0.12,
+    0.12,
+    0.12
+  ],
   "mijoriku": [
     {
-      "title": "A Three-Layer Caching Architecture for Low-Latency LLM Web Search on Commodity CPU Hardware",
-      "desc": "汎用CPU上でLLMウェブ検索を高速化・低コスト化する3層キャッシュの仕組み",
-      "why": "GPU前提のコスト構造から抜け出すための具体的なアーキテクチャが日本語圏の個人開発者の間ではまだ共有されていないため"
+      "title": "Request for Comment on the Listing of Compute Derivatives Contracts",
+      "desc": "計算資源デリバティブ契約のリスティングに関する米連邦官報の意見募集",
+      "why": "AIのインフラであるGPU等の計算資源がウォール街の金融商品として組み込まれようとしている構造変化を、日本のテッククラスタがまだ誰も追っていないため。"
     },
     {
-      "title": "PARSER: Read in Parallel, Reason in Depth for Long-Context LLM Agents",
-      "desc": "長文コンテキストを並列読み込みと深い推論に分離して処理する手法",
-      "why": "API費用とレイテンシのボトルネックを突破する技術的詳細がまだ国内の個人開発コミュニティに輸入されていないため"
+      "title": "Mecka AI nears $500M valuation in Sequoia-led deal",
+      "desc": "Mecka AIがセコイア主導で評価額5億ドルに迫るロボット訓練データの争奪戦",
+      "why": "LLMのデータ枯渇に伴い、資本が物理世界に接続する「ロボット用アノテーションデータ」の独占権へ本格的に流れ込んでいる利権構造が日本では翻訳されていないため。"
     }
   ],
   "diffs": [
-    "[差分] 退役予定日が設定された: Z.ai: GLM 5.3 Flash → 2098-12-31",
-    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 7%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 114%",
-    "[差分] 価格が動いた: Z.ai: GLM Latest 値下げ 37%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値上げ 16%",
-    "[差分] 価格が動いた: Google: Gemma 4 26B A4B  値下げ 40%"
+    "[差分] 価格が動いた: Z.ai: GLM Latest 値上げ 25%",
+    "[差分] 価格が動いた: Upstage: Solar Pro 4 値上げ 200%",
+    "[差分] 価格が動いた: MoonshotAI: Kimi K3 値下げ 46%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.2 値上げ 114%",
+    "[差分] 価格が動いた: MoonshotAI Kimi Latest 値下げ 33%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値下げ 2%"
   ],
   "evidence": [
     {
-      "claim": "汎用CPUハードウェア上での3層キャッシュアーキテクチャにより、LLMウェブ検索の低遅延化とコスト削減が可能になる。",
-      "confidence": 0.65,
-      "disconfirm": "CPU単体での処理が追いつかず、API呼び出しのオーバーヘッドがかえって増大するという実測データが報告されること。",
+      "claim": "MoonshotAIのKimi K3の大幅値下げなどの価格変動が起きている",
+      "confidence": 0.85,
+      "disconfirm": "OpenRouter上の価格表示が一時的なバグやテスト運用であり、数日内に元の価格に戻る事実",
       "sources": [
         {
-          "title": "[論文] A Three-Layer Caching Architecture for Low-Latency LLM Web Search on Commodity CPU Hardware",
-          "url": "https://huggingface.co/papers/2609.05463"
+          "title": "[差分] 価格が動いた: MoonshotAI: Kimi K3 値下げ 46%",
+          "url": "https://openrouter.ai/models"
         }
       ]
     },
     {
-      "claim": "並列読み込みと深い推論を分離する手法により、長文コンテキスト処理時のボトルネックが突破される。",
-      "confidence": 0.6,
-      "disconfirm": "分割されたチャンク間の文脈の繋がりが致命的に欠落し、実務的なデータに対して使い物にならないエラー率が示されること。",
+      "claim": "米連邦官報に計算資源デリバティブに関する意見募集が掲載された",
+      "confidence": 0.9,
+      "disconfirm": "金融商品としてのリスティングではなく、単なる学術的調査や無関係な暗号資産の公聴会である証拠",
       "sources": [
         {
-          "title": "[論文] PARSER: Read in Parallel, Reason in Depth for Long-Context LLM Agents",
-          "url": "https://huggingface.co/papers/2609.06702"
+          "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
+          "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
         }
       ]
     }

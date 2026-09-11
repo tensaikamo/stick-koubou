@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-11 08:22",
+  "updated_at": "2026-09-12 08:31",
   "score": {
     "hit": 10,
     "miss": 23,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-17",
-    "days": 6
+    "days": 5
   },
   "decided": [
     {
@@ -285,11 +285,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-09-10",
-          "headline": "Anthropicが自社開発推論エンジンの性能最適化エンジニアの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418323008"
-        },
-        {
           "date": "2026-09-11",
           "headline": "AnthropicがExecutive Escalations Managerの求人を出した",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418743008"
@@ -303,6 +298,11 @@
           "date": "2026-09-11",
           "headline": "AnthropicがSocial Escalations Program Managerの求人を出した",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418858008"
+        },
+        {
+          "date": "2026-09-12",
+          "headline": "anthropic: Staff Software Engineer, Searchの新規求人公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5422684008"
         }
       ]
     },
@@ -335,11 +335,6 @@
       "subject": "xAI",
       "events": [
         {
-          "date": "2026-09-02",
-          "headline": "xai: Facilities Engineer, Electrical (Memphis, Tennessee; Southaven, Mississippi)",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5227980007"
-        },
-        {
           "date": "2026-09-11",
           "headline": "xAIがControls Technician (Physical Infrastructure)の求人を出した",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5229552007"
@@ -353,17 +348,17 @@
           "date": "2026-09-11",
           "headline": "xAIがLegal Operations Specialistの求人を出した",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5231516007"
+        },
+        {
+          "date": "2026-09-12",
+          "headline": "xAI: Expert Team Lead, Human Data Operationsの新規求人公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5234209007"
         }
       ]
     },
     {
       "subject": "Google",
       "events": [
-        {
-          "date": "2026-08-22",
-          "headline": "google-genai Python SDK v2.19.0 リリース",
-          "url": "https://pypi.org/project/google-genai/2.19.0/"
-        },
         {
           "date": "2026-08-26",
           "headline": "Google Gen AI Python SDK v2.20.0のリリース",
@@ -378,6 +373,11 @@
           "date": "2026-09-03",
           "headline": "google-genai Python SDK v2.22.0 リリースとAutomatic Function Callingの警告",
           "url": "https://pypi.org/project/google-genai/2.22.0/"
+        },
+        {
+          "date": "2026-09-12",
+          "headline": "google-genai Python SDK v2.23.0 リリース",
+          "url": "https://pypi.org/project/google-genai/2.23.0/"
         }
       ]
     },
@@ -413,6 +413,27 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-09-12-r03",
+      "date": "2026-09-12",
+      "headline": "xAI: Expert Team Lead, Human Data Operationsの新規求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5234209007"
+    },
+    {
+      "id": "2026-09-12-r02",
+      "date": "2026-09-12",
+      "headline": "anthropic: Staff Software Engineer, Searchの新規求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5422684008"
+    },
+    {
+      "id": "2026-09-12-r01",
+      "date": "2026-09-12",
+      "headline": "google-genai Python SDK v2.23.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/2.23.0/"
+    },
     {
       "id": "2026-09-11-r07",
       "date": "2026-09-11",
@@ -475,28 +496,7 @@
       "headline": "OpenAIが公式Python SDK「openai」バージョン3.11.0をPyPIで公開",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/openai/3.11.0/"
-    },
-    {
-      "id": "2026-09-09-r02",
-      "date": "2026-09-09",
-      "headline": "[新規求人] anthropic: GTM Strategy & Operations - AMER Enterprise Tech",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390956008"
-    },
-    {
-      "id": "2026-09-09-r01",
-      "date": "2026-09-09",
-      "headline": "openai Python SDK v3.9.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.9.0/"
-    },
-    {
-      "id": "2026-09-08-r02",
-      "date": "2026-09-08",
-      "headline": "実着用データと血液生体指標を統合した健康推論ベンチマークWearableQAが公開",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2609.05405v1"
     }
   ],
-  "record_count": 132
+  "record_count": 135
 }
