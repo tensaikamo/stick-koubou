@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-12 08:31",
+  "updated_at": "2026-09-13 08:14",
   "score": {
     "hit": 10,
     "miss": 23,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-17",
-    "days": 5
+    "days": 4
   },
   "decided": [
     {
@@ -285,24 +285,24 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-09-11",
-          "headline": "AnthropicがExecutive Escalations Managerの求人を出した",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418743008"
-        },
-        {
-          "date": "2026-09-11",
-          "headline": "AnthropicがReseller Partner Managerの求人を出した",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391265008"
-        },
-        {
-          "date": "2026-09-11",
-          "headline": "AnthropicがSocial Escalations Program Managerの求人を出した",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418858008"
-        },
-        {
           "date": "2026-09-12",
           "headline": "anthropic: Staff Software Engineer, Searchの新規求人公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5422684008"
+        },
+        {
+          "date": "2026-09-13",
+          "headline": "anthropic Python SDK v1.5.0 リリース",
+          "url": "https://pypi.org/project/anthropic/1.5.0/"
+        },
+        {
+          "date": "2026-09-13",
+          "headline": "anthropic: Senior Engineering Manager, Capacity Engineering 職種の求人公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5363210008"
+        },
+        {
+          "date": "2026-09-13",
+          "headline": "anthropic: Technical Architect 職種の求人公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5421566008"
         }
       ]
     },
@@ -414,6 +414,27 @@
   ],
   "records": [
     {
+      "id": "2026-09-13-r03",
+      "date": "2026-09-13",
+      "headline": "anthropic: Senior Engineering Manager, Capacity Engineering 職種の求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5363210008"
+    },
+    {
+      "id": "2026-09-13-r02",
+      "date": "2026-09-13",
+      "headline": "anthropic: Technical Architect 職種の求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5421566008"
+    },
+    {
+      "id": "2026-09-13-r01",
+      "date": "2026-09-13",
+      "headline": "anthropic Python SDK v1.5.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/1.5.0/"
+    },
+    {
       "id": "2026-09-12-r03",
       "date": "2026-09-12",
       "headline": "xAI: Expert Team Lead, Human Data Operationsの新規求人公開",
@@ -475,28 +496,7 @@
       "headline": "AnthropicがReseller Partner Managerの求人を出した",
       "certainty": "reported",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391265008"
-    },
-    {
-      "id": "2026-09-11-r01",
-      "date": "2026-09-11",
-      "headline": "AnthropicがSocial Escalations Program Managerの求人を出した",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418858008"
-    },
-    {
-      "id": "2026-09-10-r02",
-      "date": "2026-09-10",
-      "headline": "Anthropicが自社開発推論エンジンの性能最適化エンジニアの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418323008"
-    },
-    {
-      "id": "2026-09-10-r01",
-      "date": "2026-09-10",
-      "headline": "OpenAIが公式Python SDK「openai」バージョン3.11.0をPyPIで公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.11.0/"
     }
   ],
-  "record_count": 135
+  "record_count": 138
 }

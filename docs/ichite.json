@@ -1,131 +1,41 @@
 {
-  "date": "2026-09-12",
+  "date": "2026-09-13",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのAPI単価下落に対し、自社サービスのどのルーティングを今日変更するか？",
-    "競合の2割安を実現するために、どの重いモデルの呼び出しを即座に削るか？",
-    "API仲介の薄利多売を捨てて、どの差分利益を自社サービスの動線に乗せるか？"
+    "推論APIの単価暴落を受け、今夜の30分でどのモデル呼び出しを切り替えるか？",
+    "Anthropicの検索基盤求人を見据え、自前アプリの検索機能をどう再設計するか？",
+    "計算資源の先物化が進む中、APIコストの流出をどうやって完全に防ぐか？"
   ],
   "moves": [
     {
-      "t": "OpenRouterダッシュボードを開きKimi K3へのルーティングを設定する",
-      "why": "API単価の下落を直ちに自社サービスのコスト構造に反映させ、競合に対する価格優位性を確保するためである。",
+      "t": "Anthropicの検索基盤エンジニア求人ページにアクセスし、求められている必須要件の技術スタックを1行ずつスマホのメモに抽出する",
+      "why": "Anthropicが狙う自社検索のコア技術を逆算して自前アプリに先回り実装するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.55,
-      "success_p_min": 0.4,
-      "success_p_max": 0.7,
-      "success_why": "Fireworks.ai等でKimi K3の導入事例と大幅なコスト削減が既に確認されているため。",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "OpenRouter上のモデルルーティング設定の切り替え完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "APIコスト直結の部分であり、全体の運用コストに直接響くため。",
-      "evidence_ids": [
-        "2026-07-22-r02"
-      ],
-      "assumptions": [
-        "OpenRouterのAPIキーが既に発行され利用可能な状態であること"
-      ],
-      "disconfirm": "Kimi K3の応答速度や品質が実用に耐えないと判明した場合",
-      "continue_if": "エラー率が許容範囲内に収まっている場合",
-      "stop": "モデルの品質低下によって顧客クレームが発生した場合"
-    },
-    {
-      "t": "既存の重いモデル呼び出し箇所を洗い出しリスト化する",
-      "why": "ダンピングが加速するインフラ環境において、無駄に高いモデルを叩いているボトルネックを特定するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.5,
-      "success_p_max": 0.75,
-      "success_why": "コードベースまたは利用ログを確認することで、高コストなクエリの特定は確実に行えるため。",
+      "success_p": 0.9,
+      "success_p_min": 0.8,
+      "success_p_max": 0.95,
+      "success_why": "求人票はGreenhouse上に公開されており誰でも確認できる",
       "value_score": 3,
       "learning_value": 4,
-      "time_minutes": 25,
+      "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "削減対象となる高コストなモデル呼び出し箇所のリスト",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "コスト構造見直しの最初の正確なインプットになるため。",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "呼び出し元コードやログにアクセスできること"
-      ],
-      "disconfirm": "全てのモデル呼び出しがすでに最適化されている場合",
-      "continue_if": "明らかな無駄コストの発生源が3箇所以上見つかった場合",
-      "stop": "対象のコードが複雑すぎて即時の特定が不可能な場合"
-    },
-    {
-      "t": "価格破壊されたインフラ差分を利益に乗せる動線設計書を書く",
-      "why": "仲介での薄利多売モデルを捨て、価格差を直接自社の利益として回収するビジネスロジックを固めるため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "基盤モデルのコモディティ化が進む中で新たな収益化ポイントを文字化する必要があるため。",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "利益率改善のための新しい価格・サービス設計のメモ",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.3,
-      "impact_why": "今後の収益構造の根幹を規定する設計となるため。",
-      "evidence_ids": [
-        "2026-07-28-r04"
-      ],
-      "assumptions": [
-        "提供するサービスに独自の付加価値を上乗せできる余地があること"
-      ],
-      "disconfirm": "価格差があまりに小さく利益に乗せられないことが判明した場合",
-      "continue_if": "インフラコスト削減分をそのまま利益転換できる道筋が見える場合",
-      "stop": "競合がすでに同様の価格破壊に対応し差分が取れない場合"
-    },
-    {
-      "t": "主要AIプロバイダーの直近のAPI価格改定履歴をスプレッドシートにまとめる",
-      "why": "ダンピング競争の実態を定量的に把握し、次のルーティング戦略の基礎データとするため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "各社の公式ブログや価格表はWeb上で公開されており、iPhoneのブラウザで網羅的に収集できるため。",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "主要モデルの価格推移をまとめた比較表",
+      "outcome": "求められる技術スタックの抽出メモ",
       "category": "research",
       "terminal": false,
       "impact_min": 0.05,
       "impact_max": 0.15,
-      "impact_why": "的確なコスト最適化の判断材料が増えるため。",
+      "impact_why": "トレンドの裏にある技術的ボトルネックを特定できる",
       "evidence_ids": [
-        "2026-07-28-r04"
+        "2026-09-12-r02"
       ],
       "assumptions": [
-        "各社の価格改定情報が公式ページにタイムリーに掲載されていること"
+        "求人情報に具体的な技術要件が記載されている"
       ],
-      "disconfirm": "価格データが非公開化または頻繁に変更され追跡不能な場合",
-      "continue_if": "価格下落トレンドが明確な数値として確認できる場合",
-      "stop": "市場の変動が収まり価格が完全に安定した場合"
+      "disconfirm": "抽象的な要件しか書かれていないこと",
+      "continue_if": "具体的なミドルウェアやライブラリ名が記載されていること",
+      "stop": "求人ページが削除された場合"
     },
     {
       "t": "GitHubの改善候補を1件Issueに書く",
@@ -158,7 +68,102 @@
       "continue_if": "実装対象と完了条件を1文で書けた",
       "stop": "Issueを1件作成したら終了",
       "fallback": true
+    },
+    {
+      "t": "今日の一次情報を1本選び要点を3行残す",
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "value_score": 2,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "一次情報の要点メモが3行残る",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "読む情報が現在の目標に関係する"
+      ],
+      "disconfirm": "要点が次の行動を一つも変えない",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了",
+      "fallback": true
+    },
+    {
+      "t": "予測を1件確認し確度メモを1行更新する",
+      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.55,
+      "success_p_max": 0.8,
+      "success_why": "既存予測の更新なので新規企画より着地しやすい",
+      "value_score": 2,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "追跡中予測の確度メモが更新される",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "誤った前提で投資する損失を減らす",
+      "evidence_ids": [
+        "action-history"
+      ],
+      "assumptions": [
+        "予測が現在の投資判断に関係する"
+      ],
+      "disconfirm": "確度更新が次の行動や支出を変えない",
+      "continue_if": "確度を動かす一次根拠が見つかった",
+      "stop": "根拠URLを1本確認したら終了",
+      "fallback": true
+    },
+    {
+      "t": "独自ドメイン候補を決め購入画面まで進める",
+      "why": "公開先を固定し、他人へ渡せる形へ近づけるため。",
+      "cost_min": 1000,
+      "cost_max": 4000,
+      "loss_max": 4000,
+      "success_p": 0.65,
+      "success_p_min": 0.45,
+      "success_p_max": 0.75,
+      "success_why": "価格と空きを確認できるが、名前の決定で迷う余地がある",
+      "value_score": 4,
+      "learning_value": 2,
+      "time_minutes": 30,
+      "payback_days": 180,
+      "outcome": "候補ドメインと年間費用が確定する",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.02,
+      "impact_max": 0.08,
+      "impact_why": "公開と共有の摩擦を下げるが、ドメインだけでは成果にならない",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "90日以内に公開する"
+      ],
+      "disconfirm": "公開日や見せる相手が決まっていない",
+      "continue_if": "公開予定日と最初に見せる相手が決まっている",
+      "stop": "年間4000円を超えたら購入しない",
+      "fallback": true
     }
   ],
-  "kan": "本命ではないが、今月中旬に米当局の計算資源デリバティブ規制をきっかけとして、主要クラウド間のGPU価格が一時的に乱高下する目がある。"
+  "kan": "Anthropicの検索専任エンジニア採用が開始されたが、この種の基幹インフラ構築には通常半年以上の開発サイクルを要する基準率を踏まえると、Anthropicが今後30日以内に自社開発インデックスに基づく独自のWeb検索機能をClaude公式機能として一般公開する目は五分に満たないと見る。"
 }
