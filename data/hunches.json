@@ -2171,5 +2171,45 @@
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-09-14-h01",
+    "created_at": "2026-09-14T08:23:50.013775+09:00",
+    "based_on": [
+      "2026-09-14-r01"
+    ],
+    "prose": "Anthropicがクラウドパートナー向けポリシー執行リードの求人を公開した事実は、規約執行の枠組み整備が現在進行形の人材募集段階にあることを示している。外部パートナー（AWS・GCP・Microsoft）との合意形成や運用ガイドラインの策定は数カ月単位の調整を要するタスクであり、今後14日という極短期で公式利用ポリシー（Usage Policy）にクラウドパートナー向け専用セクションが新設・公開される公算は極めて小さい。大半のガバナンス変更は人材の着任やパートナー交渉の妥結を待つため、短期では現状維持が基準率に沿う。",
+    "claim": "Anthropicは今後14日以内に、公式利用ポリシー（Usage Policy）ページにおいてクラウドパートナー向けの執行条項を独立セクションとして新設しない",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/legal/usage-policy",
+      "check_query": "cloud partners enforcement",
+      "decider": "期日時点で https://www.anthropic.com/legal/usage-policy を確認し、クラウドパートナー（Amazon Bedrock、Google Cloud、Microsoft Foundry等）を通じた利用に関する独立した新セクションまたは見出しが追加されていない場合を的中とする"
+    },
+    "deadline": "2026-09-28",
+    "confidence": 0.91,
+    "base_rate": 0.92,
+    "base_rate_class": "大手AI企業が特定領域のリード職求人を公開してから14日以内に該当領域の公式公開規約を改定しない頻度",
+    "confidence_why": "募集開始直後であり実務担当者が未着任である可能性が高く、短期に規約改定が一般公開されるとは考えにくいため、高めの基準率（0.92）をほぼ維持し0.91とする",
+    "counter": "求人の公開前に既に主要クラウド3社との規約すり合わせが完了しており、告知と連動して法務文書の公開が即座に行われるケース",
+    "indicators": [
+      {
+        "sign": "Anthropic公式ニュースルームにクラウドパートナーとのセーフガード合意に関するプレスリリースが掲載される",
+        "dir": "kill"
+      },
+      {
+        "sign": "該当のEnforcement Operations Lead求人がGreenhouse上で引き続き募集中として維持される",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.8-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
