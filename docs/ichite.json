@@ -1,169 +1,162 @@
 {
-  "date": "2026-09-13",
+  "date": "2026-09-14",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "推論APIの単価暴落を受け、今夜の30分でどのモデル呼び出しを切り替えるか？",
-    "Anthropicの検索基盤求人を見据え、自前アプリの検索機能をどう再設計するか？",
-    "計算資源の先物化が進む中、APIコストの流出をどうやって完全に防ぐか？"
+    "Anthropicのパートナー規約変更に対し、APIコストを再計算してどのルートを切るか？",
+    "iPhoneから既存のGitHubリポジトリのログを確認し、どこにエラーが出ているか特定したか？",
+    "スプレッドシートに手動で打ち込んだAPIコストに基づき、今日どのAPIコールを停止するか？"
   ],
   "moves": [
     {
-      "t": "Anthropicの検索基盤エンジニア求人ページにアクセスし、求められている必須要件の技術スタックを1行ずつスマホのメモに抽出する",
-      "why": "Anthropicが狙う自社検索のコア技術を逆算して自前アプリに先回り実装するため",
+      "t": "スプレッドシートを開きAPI価格改定後のコスト試算を手動入力する",
+      "why": "マルチクラウド環境のガバナンス移行と価格改定による利益率圧迫を防ぐため、iPhoneのスプレッドシートで手動計算を行う",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.9,
-      "success_p_min": 0.8,
-      "success_p_max": 0.95,
-      "success_why": "求人票はGreenhouse上に公開されており誰でも確認できる",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 10,
-      "payback_days": 0,
-      "outcome": "求められる技術スタックの抽出メモ",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "トレンドの裏にある技術的ボトルネックを特定できる",
-      "evidence_ids": [
-        "2026-09-12-r02"
-      ],
-      "assumptions": [
-        "求人情報に具体的な技術要件が記載されている"
-      ],
-      "disconfirm": "抽象的な要件しか書かれていないこと",
-      "continue_if": "具体的なミドルウェアやライブラリ名が記載されていること",
-      "stop": "求人ページが削除された場合"
-    },
-    {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
-      "evidence_ids": [
-        "user-goal",
-        "action-history"
-      ],
-      "assumptions": [
-        "Issueが次の実装に使われる"
-      ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
-    },
-    {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "value_score": 2,
+      "success_p": 0.4,
+      "success_p_min": 0.2,
+      "success_p_max": 0.5,
+      "success_why": "過去のAPI利用実績データが手元にあるため",
+      "value_score": 4,
       "learning_value": 3,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "一次情報の要点メモが3行残る",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
-      "evidence_ids": [
-        "user-goal",
-        "action-history"
-      ],
-      "assumptions": [
-        "読む情報が現在の目標に関係する"
-      ],
-      "disconfirm": "要点が次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
-    },
-    {
-      "t": "予測を1件確認し確度メモを1行更新する",
-      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "既存予測の更新なので新規企画より着地しやすい",
-      "value_score": 2,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "追跡中予測の確度メモが更新される",
+      "outcome": "コスト試算が完了したスプレッドシートの行",
       "category": "review",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "誤った前提で投資する損失を減らす",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "計算のみであり直接的な収益改善にはまだ至らないため",
       "evidence_ids": [
-        "action-history"
+        "2026-09-14-r01"
       ],
       "assumptions": [
-        "予測が現在の投資判断に関係する"
+        "直近のAPIコール数が把握できていること"
       ],
-      "disconfirm": "確度更新が次の行動や支出を変えない",
-      "continue_if": "確度を動かす一次根拠が見つかった",
-      "stop": "根拠URLを1本確認したら終了",
-      "fallback": true
+      "disconfirm": "APIの利用実績データが一切記録されていない場合",
+      "continue_if": "利益率が圧迫されているルートが数値として明確になった場合",
+      "stop": "APIコストが無視できるほど微小である場合"
     },
     {
-      "t": "独自ドメイン候補を決め購入画面まで進める",
-      "why": "公開先を固定し、他人へ渡せる形へ近づけるため。",
-      "cost_min": 1000,
-      "cost_max": 4000,
-      "loss_max": 4000,
-      "success_p": 0.65,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "価格と空きを確認できるが、名前の決定で迷う余地がある",
+      "t": "利益率を圧迫している無駄なAPIルートのコードをGitHub上でコメントアウトする",
+      "why": "価格改定に備えて無駄なコストを生むルートを即座に切り、インフラの無駄を排除するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 100,
+      "success_p": 0.35,
+      "success_p_min": 0.2,
+      "success_p_max": 0.5,
+      "success_why": "GitHubのWebエディタ機能を使えばiPhoneからでもコード修正が可能であるため",
       "value_score": 4,
-      "learning_value": 2,
-      "time_minutes": 30,
-      "payback_days": 180,
-      "outcome": "候補ドメインと年間費用が確定する",
-      "category": "buy",
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "該当コードがコメントアウトされたコミット履歴",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.08,
-      "impact_why": "公開と共有の摩擦を下げるが、ドメインだけでは成果にならない",
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "コスト削減に直結するが単一アプリの一部修正にとどまるため",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-09-13-r01"
       ],
       "assumptions": [
-        "90日以内に公開する"
+        "GitHubのWebエディタで直接ファイルを編集・コミットできること"
       ],
-      "disconfirm": "公開日や見せる相手が決まっていない",
-      "continue_if": "公開予定日と最初に見せる相手が決まっている",
-      "stop": "年間4000円を超えたら購入しない",
-      "fallback": true
+      "disconfirm": "ビルドプロセスが複雑でWebエディタ単体では修正が反映されない場合",
+      "continue_if": "コミットが正常に完了しプレビュー環境で動作が維持されている場合",
+      "stop": "修正によってアプリ全体がクラッシュした場合"
+    },
+    {
+      "t": "クラウドサービスの有料プラン変更点を確認しアップグレードを申し込む",
+      "why": "プラットフォーム間のガバナンス厳格化に伴い、制限を受ける前に安定した有料枠を確保するため",
+      "cost_min": 1500,
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.4,
+      "success_p_min": 0.2,
+      "success_p_max": 0.6,
+      "success_why": "公式の価格改定および規約変更の告知に基づいているため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 30,
+      "outcome": "有料プラン契約完了の画面受領証",
+      "category": "apply",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "インフラ基盤が安定するため",
+      "evidence_ids": [
+        "2026-09-14-r01"
+      ],
+      "assumptions": [
+        "iPhoneから決済およびプラン変更画面にアクセスできること"
+      ],
+      "disconfirm": "提供されている上位プランが個人利用の規約に適合しない場合",
+      "continue_if": "新プランへの移行がエラーなく完了した場合",
+      "stop": "料金が予算の上限を超過することが判明した場合"
+    },
+    {
+      "t": "商用APIの有料枠を追加購入してリミットを引き上げる",
+      "why": "実行制限による機会損失を防ぎ、個人での先回り検証を途切れさせないため",
+      "cost_min": 3000,
+      "cost_max": 10000,
+      "loss_max": 10000,
+      "success_p": 0.35,
+      "success_p_min": 0.2,
+      "success_p_max": 0.5,
+      "success_why": "過去の利用実績から継続的なリクエスト発生が見込まれるため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 45,
+      "outcome": "APIクレジット追加完了のレシート",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "処理能力が向上し検証速度が上がるため",
+      "evidence_ids": [
+        "2026-09-13-r01"
+      ],
+      "assumptions": [
+        "iPhoneのブラウザから決済カード情報が安全に入力できること"
+      ],
+      "disconfirm": "プラットフォーム側の仕様変更で追加購入が無効化される場合",
+      "continue_if": "クレジットがアカウントに即時反映された場合",
+      "stop": "決済システム側でエラーが発生し処理が通らない場合"
+    },
+    {
+      "t": "外部の有料検証ツールを導入してAPI応答速度を計測する",
+      "why": "マルチクラウド環境での速度差を正確に把握し、最速のルートを特定するため",
+      "cost_min": 2000,
+      "cost_max": 8000,
+      "loss_max": 8000,
+      "success_p": 0.3,
+      "success_p_min": 0.1,
+      "success_p_max": 0.5,
+      "success_why": "市場に存在する標準的なモニタリングツールの価格帯に基づいているため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 60,
+      "outcome": "計測データのベンチマークレポート",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "データ取得のみで直接的な収益生まないため",
+      "evidence_ids": [
+        "2026-09-14-r01"
+      ],
+      "assumptions": [
+        "スマートフォンからツールのダッシュボードを確認できること"
+      ],
+      "disconfirm": "ツールがPC向けのデスクトップアプリやCLI環境を必須とする場合",
+      "continue_if": "レイテンシのボトルネックが数値として明確に現れた場合",
+      "stop": "費用対効果が見合わず計測データの有用性が低い場合"
     }
   ],
-  "kan": "Anthropicの検索専任エンジニア採用が開始されたが、この種の基幹インフラ構築には通常半年以上の開発サイクルを要する基準率を踏まえると、Anthropicが今後30日以内に自社開発インデックスに基づく独自のWeb検索機能をClaude公式機能として一般公開する目は五分に満たないと見る。"
+  "kan": "Anthropicは今後14日以内に、公式利用ポリシー（Usage Policy）ページにおいてクラウドパートナー向けの執行条項を独立セクションとして新設しない"
 }

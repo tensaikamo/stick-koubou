@@ -1,64 +1,50 @@
 {
-  "date": "2026-09-13",
-  "updated_at": "2026-09-13 08:18",
+  "date": "2026-09-14",
+  "updated_at": "2026-09-14 08:27",
   "build_id": "truthful-ui-v1",
-  "omote": "米連邦官報が計算資源の先物・金融派生商品（デリバティブ）契約に関する意見公募を開始し、Anthropicは独自の検索基盤をゼロから構築する専任エンジニアの採用へ着手した。同時に推論市場では、OpenRouter上でQwen3.8 27Bが49%値下げ、DeepSeek V4 Flashが40%値下げされる一方、高負荷なDeepSeek V4 Proが88%値上げされる極端な価格分離が発生した。",
-  "ura": "OpenRouterで起きたQwenとDeepSeekの4割超の一斉値下げとProモデルの88%サージ価格設定は、プロバイダーによる意図的な選別構造の完成を意味する。計算リソース先物化で原価ヘッジを進める資本側に対し、推論インフラ側は一次処理を限界費用ゼロへ叩き落として競合を締め出し、難易度の高い最終推論から超過利潤を吸い上げる体制を固めた。個人開発者がフラッグシップモデルを常時直叩きする設計は、今日を境に純粋な資本流出の欠陥アーキテクチャへ転落したと見る。",
-  "ura_taikou": "Flashモデルの値下げは単なる一時的な余剰サーバーの投げ売りであり、数日以内に元の価格帯へ戻るという仮説を検討したが、QwenとDeepSeekの双方が同時期に40%以上の値下げを一斉に実施していることから、競合排除を狙った恒久的な価格破壊競争であると判断し退けた。",
-  "dousuru": "iPhoneのSafariからGitHubを開き、運用中のWebアプリのリポジトリへ直行しろ。モデル呼び出し部分の環境変数を点検し、日常処理や前処理を担わせているAPIを、単価が暴落した軽量モデル（Qwen3.8 27BまたはDeepSeek V4 Flash）のエンドポイントへ切り替えるコード修正を行ってWebエディタ上でコミットを完了させろ。高額な上位モデルは最終判定の1往復のみに絞り、無駄な推論コストの流出を今夜のうちに遮断しろ。",
-  "kan": "Anthropicの検索専任エンジニア採用が開始されたが、この種の基幹インフラ構築には通常半年以上の開発サイクルを要する基準率を踏まえると、Anthropicが今後30日以内に自社開発インデックスに基づく独自のWeb検索機能をClaude公式機能として一般公開する目は五分に満たないと見る。",
-  "kan_konkyo": "求人票に検索基盤を「ゼロから（from the ground up）」立ち上げると明記されており、基盤開発の初期フェーズであることが確認できるため。",
-  "kan_hantai": "Anthropicが既に裏で水面下の開発を完了させており、採用はリリース後の運用保守・スケール要員確保に過ぎない場合は早期発表があり得る。",
-  "kan_conf": 0.88,
-  "ippan": "AIサービスの利用料は今後、日常的な会話機能がタダ同然に下がる一方で、難度の高い専門作業だけが急激に値上がりする二極化が進みます。普段の調べ物や文章作成で高額な最上位プランを契約し続けるのはコストの無駄になりやすいため、まずは標準機能や安価なモデルで十分事足りないかを今日必ず見直してください。",
-  "votes": [
-    0.88,
-    0.88,
-    0.03
-  ],
+  "omote": "米連邦官報がコンピュート・デリバティブ契約の上場に関する意見公募を発出し、AI計算力が金融商品としての流通段階に入った。またAnthropicはマルチクラウド環境での不正利用を統括する求人を出し、モデルの覇権争いがプラットフォーム間のガバナンス領域へ移行している。",
+  "ura": "計算力の金融商品化は、大手クラウドやファンドがインフラを金融ヘッジの道具として囲い込む動きであり、個人がその表舞台で勝負するのは資本の土俵で消耗するだけだ。隙は、マルチクラウドの監査厳格化や価格改定で弾き出されたレイヤーの周辺に落ちる非中央集権的な検証余地にある。",
+  "ura_taikou": "価格改定は単なる季節的なインフラ費用の最適化に過ぎず、金融商品化やガバナンス強化とは無関係であるという仮説は、公的官報の意見公募という公的手続きの存在を説明できないため退けた。",
+  "dousuru": "iPhoneからGitHubのWeb画面を開き、昨日仕込んだWebアプリのデプロイ状況とエラーログを今すぐ確認しろ。価格改定で変動した各社APIのコスト試算をスプレッドシートに手動で打ち込み、利益率が圧迫されるルートを即座に切れ。",
+  "kan": "Anthropicは今後14日以内に、公式利用ポリシー（Usage Policy）ページにおいてクラウドパートナー向けの執行条項を独立セクションとして新設しない",
+  "kan_konkyo": "募集開始直後であり実務担当者が未着任である可能性が高く、短期に規約改定が一般公開されるとは考えにくいため、高めの基準率（0.92）をほぼ維持し0.91とする",
+  "kan_hantai": "求人の公開前に既に主要クラウド3社との規約すり合わせが完了しており、告知と連動して法務文書の公開が即座に行われるケース",
+  "kan_conf": 0.91,
+  "ippan": "AIサービスの価格が頻繁に変わる現状では、特定のサブスクに縛られずAPI従量課金で賢く乗り換えるのが一番の防衛策だ。無料の宣伝文句に惑わされず、実際のトークン消費量に見合った性能が出ているかを必ず自分の手で検証しろ。",
+  "votes": [],
   "mijoriku": [
     {
-      "title": "米規制当局によるコンピュート（計算資源）デリバティブ上場のパブリックコメント募集",
-      "desc": "米連邦官報において、GPU計算能力を原油や電力と同様の金融派生商品として取引する契約の上場是非を問う意見公募が開始された。",
-      "why": "コンピュートが金融商品化されれば大資本による買い占めとヘッジが可能になり、末端の開発者が直面するクラウド価格変動リスクが激変するため。"
+      "title": "Request for Comment on the Listing of Compute Derivatives Contracts",
+      "desc": "米連邦官報による計算力デリバティブの意見公募",
+      "why": "計算力が金融商品化される裏側の資本の動きをいち早く把握できるため"
+    },
+    {
+      "title": "Qwen3Guard: Real-time Safety for Your Token Stream",
+      "desc": "リアルタイムのトークン安全性ガードモデル",
+      "why": "オープンモデルの商用導入障壁を削る技術の実態を国内より先に見切れるため"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: Qwen: Qwen3.8 27B 値下げ 49%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash Latest 値下げ 40%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値下げ 38%",
-    "[差分] 価格が動いた: MoonshotAI: Kimi K3 値上げ 64%",
-    "[差分] 価格が動いた: MoonshotAI: Kimi Latest 値上げ 47%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値上げ 88%"
+    "[差分] 価格が動いた: Z.ai: GLM Latest 値上げ 7%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.3 値下げ 22%",
+    "[差分] 価格が動いた: Meta: Muse Glimmer 30B 値上げ 17%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash Latest 値上げ 17%",
+    "[差分] 価格が動いた: MoonshotAI: Kimi Latest 値下げ 12%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値下げ 30%"
   ],
   "evidence": [
     {
-      "claim": "OpenRouter上の推論市場において、軽量級モデルの大幅値下げと高負荷モデルの急激な値上げという価格分離が発生している",
-      "confidence": 0.9,
-      "disconfirm": "プロバイダーの供給キャパシティ復旧により、Proモデルの価格が直ちに元の水準へ戻るか、Flashモデルの値下げが時限措置として撤回される事態",
+      "claim": "米連邦官報でのコンピュート・デリバティブ意見公募とAnthropicのクラウド統括求人は、インフラの金融化とガバナンス闘争の表れである。",
+      "confidence": 0.55,
+      "disconfirm": "政府の意見公募が形骸化し、実際のデリバティブ市場が全く形成されないこと。",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: Qwen: Qwen3.8 27B 値下げ 49%",
-          "url": "https://openrouter.ai/models"
+          "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
+          "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
         },
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash Latest 値下げ 40%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値上げ 88%",
-          "url": "https://openrouter.ai/models"
-        }
-      ]
-    },
-    {
-      "claim": "Anthropicが外部検索プロバイダー依存を排した独自検索基盤の自前構築を進めている",
-      "confidence": 0.85,
-      "disconfirm": "求人票の職務内容が外部検索APIのラッパー開発や企業内RAG基盤の改善に限定される公式見解の発表",
-      "sources": [
-        {
-          "title": "[新規求人] anthropic: Staff Software Engineer, Search (San Francisco, CA | New York City, NY)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5422684008"
+          "title": "[新規求人] anthropic: Enforcement Operations Lead, Cloud Partners (San Francisco, CA | New York City, NY | Washington, DC)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5417758008"
         }
       ]
     }
