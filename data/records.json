@@ -3944,5 +3944,207 @@
       "2026-09-11-r03",
       "2026-09-11-r02"
     ]
+  },
+  {
+    "id": "2026-09-15-r01",
+    "created_at": "2026-09-15T08:57:27.861628+09:00",
+    "headline": "AnthropicがProduct Marketing Manager, Special Projectsの求人情報を公開",
+    "what_happened": "Anthropicはサンフランシスコおよびニューヨークを勤務地とする「Product Marketing Manager, Special Projects」の求人情報を公開した。募集要項によると、単一の製品ラインに収まらないクロスファンクショナルな立ち上げや新しい機能、安全保障・サイバー領域を含むタイムセンシティブなプロジェクトの市場投入（GTM）を統括する役割が求められている。記事の本文はGreenhouseの求人ページから取得された。",
+    "background": "Anthropicはモデルの機能拡張や安全・ポリシー関連の横断的プロジェクトを推進するため、専門のプロダクトマーケティング人材の採用を進めている。",
+    "changed": "Anthropicにおいて、製品群を跨ぐ特殊プロジェクトのマーケティング体制を強化するポジションが新設された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424080008",
+      "title": "[新規求人] anthropic: Product Marketing Manager, Special Projects (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-14-r01",
+      "2026-09-13-r03",
+      "2026-09-13-r02",
+      "2026-09-13-r01",
+      "2026-09-12-r02",
+      "2026-09-11-r03"
+    ]
+  },
+  {
+    "id": "2026-09-15-r02",
+    "created_at": "2026-09-15T08:57:27.861628+09:00",
+    "headline": "AnthropicがProduct Marketing Manager, Platformの求人情報を公開",
+    "what_happened": "AnthropicはClaude Platform部門のプロダクトマーケティングマネージャーの求人を公開した。新規のAPI機能や開発者向けツール、新モデルの機能展開に伴う市場投入（GTM）を主導することが求められている。開発者向けプラットフォームのローンチ経験や営業向けのテクニカルなメッセージング作成が重視されている。記事の本文はGreenhouseの求人ページから取得された。",
+    "background": "API製品や開発者向け機能の拡充に伴い、プラットフォーム特化型のマーケティング強化が図られている。",
+    "changed": "Anthropicのプラットフォーム製品の市場投入を専門に担うマーケティング人材の募集が開始された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424078008",
+      "title": "[新規求人] anthropic: Product Marketing Manager, Platform (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-14-r01",
+      "2026-09-13-r03",
+      "2026-09-13-r02",
+      "2026-09-13-r01",
+      "2026-09-12-r02",
+      "2026-09-11-r03"
+    ]
+  },
+  {
+    "id": "2026-09-15-r03",
+    "created_at": "2026-09-15T08:57:27.861628+09:00",
+    "headline": "Anthropicがロンドン拠点でのForward Deployed Engineerの求人を公開",
+    "what_happened": "Anthropicはロンドンを勤務地とする「Forward Deployed Engineer（FDE）」の求人情報を公開した。応用AIチームに所属し、戦略的顧客の現場に常駐して高度なAIアプリケーションの実装を支援する役割となる。ポストセールスやプロダクト、エンジニアリングチームと連携して顧客ワークフローを理解し、ソリューションを開発することが業務内容に含まれる。記事の本文はGreenhouseの求人ページから取得された。",
+    "background": "Anthropicは欧州市場での顧客密着型のAI導入支援を強化するため、現地でのFDE採用を進めている。",
+    "changed": "ロンドン拠点における戦略的顧客向けの技術支援体制を拡充するポジションが追加された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5423029008",
+      "title": "[新規求人] anthropic: Forward Deployed Engineer (London, UK)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-14-r01",
+      "2026-09-13-r03",
+      "2026-09-13-r02",
+      "2026-09-13-r01",
+      "2026-09-12-r02",
+      "2026-09-11-r03"
+    ]
+  },
+  {
+    "id": "2026-09-15-r04",
+    "created_at": "2026-09-15T08:57:27.861628+09:00",
+    "headline": "xAIがEnterprise Commercial Counselの求人を公開",
+    "what_happened": "xAIはパロアルト、オースティン、ロサンゼルス、ニューヨークを拠点とする「Enterprise Commercial Counsel」の求人情報を公開した。AI製品・サービスの企業向け顧客契約をはじめ、戦略的パートナーシップ、ハイパースケーラーとの契約などの高価値な商業契約の交渉を主導する法務ポジションである。記事の本文はGreenhouseの求人ページから取得された。",
+    "background": "xAIは企業向け商談やハイパースケーラーとの提携案件の急増に伴い、契約交渉を担う商業法務担当者の採用を急いでいる。",
+    "changed": "xAIの企業向け契約やハイパースケーラー関連の法務・交渉体制を支える専門人材の募集が始まった。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5237965007",
+      "title": "[新規求人] xai: Enterprise Commercial Counsel ( Palo Alto, CA; Austin, TX; Los Angeles, CA; New York, NY)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-12-r03",
+      "2026-09-11-r06",
+      "2026-09-11-r05",
+      "2026-09-11-r04",
+      "2026-09-02-r04",
+      "2026-09-01-r06"
+    ]
+  },
+  {
+    "id": "2026-09-15-r05",
+    "created_at": "2026-09-15T08:57:27.861628+09:00",
+    "headline": "xAIがメンフィスおよびサウスヘイブンでのProduction Coordinatorの求人を公開",
+    "what_happened": "xAIはテネシー州メンフィスおよびミシシッピ州サウスヘイブンのデータセンターキャンパスを対象とした「Production Coordinator (Logistics)」の求人を公開した。データセンターの建設、コミッショニング、キャンパス運営における物流、在庫管理、受領、サイト運用チームを支援し、ハイパースケールAI訓練インフラ向けコンポーネントの納期管理を行う役割となる。記事の本文はGreenhouseの求人ページから取得された。",
+    "background": "xAIは大規模AI訓練インフラの構築スピードを加速するため、現地での物理的ロジスティクス体制を増強している。",
+    "changed": "メンフィス等のデータセンター建設・インフラ調達を支える物流調整の専門職の募集が開始された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5237890007",
+      "title": "[新規求人] xai: Production Coordinator (Logistics)  ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-12-r03",
+      "2026-09-11-r06",
+      "2026-09-11-r05",
+      "2026-09-11-r04",
+      "2026-09-02-r04",
+      "2026-09-01-r06"
+    ]
+  },
+  {
+    "id": "2026-09-15-r06",
+    "created_at": "2026-09-15T08:57:27.861628+09:00",
+    "headline": "xAIがダブリン拠点でのNetwork Engineerの求人を公開",
+    "what_happened": "xAIはアイルランド・ダブリンを拠点とする「Network Engineer」の求人情報を公開した。GPUクラスターを接続するスーパーコンピューティングファブリックや、コア・エッジ・データセンターネットワークの設計・デプロイ・運用を担当するハンズオンのエンジニアリングポジションである。記事の本文はGreenhouseの求人ページから取得された。",
+    "background": "xAIは訓練および推論インフラを支える大規模ネットワークの構築・運用拠点をアイルランドにも展開している。",
+    "changed": "ダブリンにおける高性能ネットワークインフラの構築・運用を担うエンジニアの採用が新たに開始された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5235772007",
+      "title": "[新規求人] xai: Network Engineer (Dublin, Ireland)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-12-r03",
+      "2026-09-11-r06",
+      "2026-09-11-r05",
+      "2026-09-11-r04",
+      "2026-09-02-r04",
+      "2026-09-01-r06"
+    ]
+  },
+  {
+    "id": "2026-09-15-r07",
+    "created_at": "2026-09-15T08:57:27.861628+09:00",
+    "headline": "[SEC 8-K] RadNet, Inc.の提出書類情報",
+    "what_happened": "米国証券取引委員会（SEC）のEDGARデータベースにおいて、RadNet, Inc.に関するAI関連の検索結果に基づく8-K等の提出書類情報がリストアップされた。なお、本文取得に失敗したためタイトルのみの確認となる。",
+    "background": "SECのEDGARではAIに関連するキーワードで上場企業の臨時報告書がインデックスされている。",
+    "changed": "RadNet, Inc.に関するSECへの開示情報の存在が確認された（詳細な本文は未取得）。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://www.sec.gov/edgar/search/#/q=artificial%20intelligence",
+      "title": "[SEC 8-K] RadNet, Inc.  (RDNT)  (CIK 0000790526)",
+      "hn_score": 0,
+      "name": "SEC",
+      "tier": 1
+    },
+    "body_fetched": false,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-15-r08",
+    "created_at": "2026-09-15T08:57:27.861628+09:00",
+    "headline": "[SEC 8-K] Artificial Intelligence Technology Solutions Inc.の提出書類情報",
+    "what_happened": "米国証券取引委員会（SEC）のEDGARデータベースにおいて、Artificial Intelligence Technology Solutions Inc.に関するAI関連の検索結果に基づく8-K等の提出書類情報がリストアップされた。なお、本文取得に失敗したためタイトルのみの確認となる。",
+    "background": "SECのEDGARではAI関連のキーワードで上場企業の臨時報告書がインデックスされている。",
+    "changed": "Artificial Intelligence Technology Solutions Inc.に関するSECへの開示情報の存在が確認された（詳細な本文は未取得）。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://www.sec.gov/edgar/search/#/q=artificial%20intelligence",
+      "title": "[SEC 8-K] Artificial Intelligence Technology Solutions Inc.  (AITX, AITXD)  (CIK 0001498148)",
+      "hn_score": 0,
+      "name": "SEC",
+      "tier": 1
+    },
+    "body_fetched": false,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
   }
 ]
