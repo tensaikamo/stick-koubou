@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-14 08:24",
+  "updated_at": "2026-09-15 08:59",
   "score": {
     "hit": 10,
     "miss": 23,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-17",
-    "days": 3
+    "days": 2
   },
   "decided": [
     {
@@ -299,24 +299,24 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-09-13",
-          "headline": "anthropic Python SDK v1.5.0 リリース",
-          "url": "https://pypi.org/project/anthropic/1.5.0/"
-        },
-        {
-          "date": "2026-09-13",
-          "headline": "anthropic: Senior Engineering Manager, Capacity Engineering 職種の求人公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5363210008"
-        },
-        {
-          "date": "2026-09-13",
-          "headline": "anthropic: Technical Architect 職種の求人公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5421566008"
-        },
-        {
           "date": "2026-09-14",
           "headline": "Anthropicがクラウドパートナー向け安全規約運用の統括職の採用を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5417758008"
+        },
+        {
+          "date": "2026-09-15",
+          "headline": "AnthropicがProduct Marketing Manager, Platformの求人情報を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424078008"
+        },
+        {
+          "date": "2026-09-15",
+          "headline": "AnthropicがProduct Marketing Manager, Special Projectsの求人情報を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424080008"
+        },
+        {
+          "date": "2026-09-15",
+          "headline": "Anthropicがロンドン拠点でのForward Deployed Engineerの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5423029008"
         }
       ]
     },
@@ -349,24 +349,24 @@
       "subject": "xAI",
       "events": [
         {
-          "date": "2026-09-11",
-          "headline": "xAIがControls Technician (Physical Infrastructure)の求人を出した",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5229552007"
-        },
-        {
-          "date": "2026-09-11",
-          "headline": "xAIがFraud Analyst (Sat-Weds)の求人を出した",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5231579007"
-        },
-        {
-          "date": "2026-09-11",
-          "headline": "xAIがLegal Operations Specialistの求人を出した",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5231516007"
-        },
-        {
           "date": "2026-09-12",
           "headline": "xAI: Expert Team Lead, Human Data Operationsの新規求人公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5234209007"
+        },
+        {
+          "date": "2026-09-15",
+          "headline": "xAIがEnterprise Commercial Counselの求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5237965007"
+        },
+        {
+          "date": "2026-09-15",
+          "headline": "xAIがダブリン拠点でのNetwork Engineerの求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5235772007"
+        },
+        {
+          "date": "2026-09-15",
+          "headline": "xAIがメンフィスおよびサウスヘイブンでのProduction Coordinatorの求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5237890007"
         }
       ]
     },
@@ -428,6 +428,48 @@
   ],
   "records": [
     {
+      "id": "2026-09-15-r06",
+      "date": "2026-09-15",
+      "headline": "xAIがダブリン拠点でのNetwork Engineerの求人を公開",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5235772007"
+    },
+    {
+      "id": "2026-09-15-r05",
+      "date": "2026-09-15",
+      "headline": "xAIがメンフィスおよびサウスヘイブンでのProduction Coordinatorの求人を公開",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5237890007"
+    },
+    {
+      "id": "2026-09-15-r04",
+      "date": "2026-09-15",
+      "headline": "xAIがEnterprise Commercial Counselの求人を公開",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5237965007"
+    },
+    {
+      "id": "2026-09-15-r03",
+      "date": "2026-09-15",
+      "headline": "Anthropicがロンドン拠点でのForward Deployed Engineerの求人を公開",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5423029008"
+    },
+    {
+      "id": "2026-09-15-r02",
+      "date": "2026-09-15",
+      "headline": "AnthropicがProduct Marketing Manager, Platformの求人情報を公開",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424078008"
+    },
+    {
+      "id": "2026-09-15-r01",
+      "date": "2026-09-15",
+      "headline": "AnthropicがProduct Marketing Manager, Special Projectsの求人情報を公開",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424080008"
+    },
+    {
       "id": "2026-09-14-r01",
       "date": "2026-09-14",
       "headline": "Anthropicがクラウドパートナー向け安全規約運用の統括職の採用を開始",
@@ -468,49 +510,7 @@
       "headline": "anthropic: Staff Software Engineer, Searchの新規求人公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5422684008"
-    },
-    {
-      "id": "2026-09-12-r01",
-      "date": "2026-09-12",
-      "headline": "google-genai Python SDK v2.23.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/2.23.0/"
-    },
-    {
-      "id": "2026-09-11-r07",
-      "date": "2026-09-11",
-      "headline": "PyPIにopenai Python SDK v3.13.0がリリースされた",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.13.0/"
-    },
-    {
-      "id": "2026-09-11-r06",
-      "date": "2026-09-11",
-      "headline": "xAIがLegal Operations Specialistの求人を出した",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5231516007"
-    },
-    {
-      "id": "2026-09-11-r05",
-      "date": "2026-09-11",
-      "headline": "xAIがFraud Analyst (Sat-Weds)の求人を出した",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5231579007"
-    },
-    {
-      "id": "2026-09-11-r04",
-      "date": "2026-09-11",
-      "headline": "xAIがControls Technician (Physical Infrastructure)の求人を出した",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5229552007"
-    },
-    {
-      "id": "2026-09-11-r03",
-      "date": "2026-09-11",
-      "headline": "AnthropicがExecutive Escalations Managerの求人を出した",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5418743008"
     }
   ],
-  "record_count": 139
+  "record_count": 145
 }

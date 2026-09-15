@@ -1,50 +1,61 @@
 {
-  "date": "2026-09-14",
-  "updated_at": "2026-09-14 08:27",
+  "date": "2026-09-15",
+  "updated_at": "2026-09-15 09:05",
   "build_id": "truthful-ui-v1",
-  "omote": "米連邦官報がコンピュート・デリバティブ契約の上場に関する意見公募を発出し、AI計算力が金融商品としての流通段階に入った。またAnthropicはマルチクラウド環境での不正利用を統括する求人を出し、モデルの覇権争いがプラットフォーム間のガバナンス領域へ移行している。",
-  "ura": "計算力の金融商品化は、大手クラウドやファンドがインフラを金融ヘッジの道具として囲い込む動きであり、個人がその表舞台で勝負するのは資本の土俵で消耗するだけだ。隙は、マルチクラウドの監査厳格化や価格改定で弾き出されたレイヤーの周辺に落ちる非中央集権的な検証余地にある。",
-  "ura_taikou": "価格改定は単なる季節的なインフラ費用の最適化に過ぎず、金融商品化やガバナンス強化とは無関係であるという仮説は、公的官報の意見公募という公的手続きの存在を説明できないため退けた。",
-  "dousuru": "iPhoneからGitHubのWeb画面を開き、昨日仕込んだWebアプリのデプロイ状況とエラーログを今すぐ確認しろ。価格改定で変動した各社APIのコスト試算をスプレッドシートに手動で打ち込み、利益率が圧迫されるルートを即座に切れ。",
-  "kan": "Anthropicは今後14日以内に、公式利用ポリシー（Usage Policy）ページにおいてクラウドパートナー向けの執行条項を独立セクションとして新設しない",
-  "kan_konkyo": "募集開始直後であり実務担当者が未着任である可能性が高く、短期に規約改定が一般公開されるとは考えにくいため、高めの基準率（0.92）をほぼ維持し0.91とする",
-  "kan_hantai": "求人の公開前に既に主要クラウド3社との規約すり合わせが完了しており、告知と連動して法務文書の公開が即座に行われるケース",
-  "kan_conf": 0.91,
-  "ippan": "AIサービスの価格が頻繁に変わる現状では、特定のサブスクに縛られずAPI従量課金で賢く乗り換えるのが一番の防衛策だ。無料の宣伝文句に惑わされず、実際のトークン消費量に見合った性能が出ているかを必ず自分の手で検証しろ。",
-  "votes": [],
+  "omote": "OpenRouter経由でDeepSeek V4 Flashの価格が50%値上げされたほか、米連邦官報に計算力デリバティブの意見募集が掲載された。さらにHugging Faceは、高価な通信インフラを使わずに非同期で強化学習を回す手法を公開した。",
+  "ura": "安売り合戦のフェーズが終わり、APIプロバイダ側がインフラコストの転嫁を始めていると見る。金融市場やストレージ経由の非同期処理へと資本の囲い込みと回避の双方が同時に加速している。",
+  "ura_taikou": "価格改定は単なる一時的な需給調整に過ぎず、インフラの構造変化を伴わないという説を検討したが、複数のプロバイダが同時に価格を上げた事実と矛盾するため退けた。",
+  "dousuru": "Hugging Faceが公開したストレージ経由の非同期分散学習手法のブログを確認し、手元のiPhoneからアクセスできるHugging Face Spacesの環境で、高価なGPU通信なしのパイプラインを再現できるか検証しろ。明日までに、その検証用設定ファイルのドラフトを一つ書き上げておけ。",
+  "kan": "OpenAIは今後30日以内に、公式ブログまたはGitHub上で計算資源の調達や外部インフラの分散管理に関する新たな方針を発表すると見る。年数回のインフラ戦略発表の頻度と直近の負荷分散の動きから調整した。",
+  "kan_konkyo": "xAIの物流・インフラ増強の求人や、各社の価格改定が同時多発している動きから、計算資源の物理的・価格的ボトルネックが限界に達しているため。",
+  "kan_hantai": "クラウド大手からの巨大な資金調達の発表が優先され、インフラ運用の効率化や分散化に関する情報はしばらく非公開のままにされること。",
+  "kan_conf": 0.28,
+  "ippan": "AIモデルの価格が急に変わったり、新しいサービスが次々と出てきたりしても、慌てて高額な有料プランに飛びつかないこと。まずは今使っている無料または手頃なプランのままで十分に機能が足りるかを確認し、インフラの変動に振り回されないように実用性を最優先して使いこなせ。",
+  "votes": [
+    0.12,
+    0.28,
+    0.28
+  ],
   "mijoriku": [
     {
-      "title": "Request for Comment on the Listing of Compute Derivatives Contracts",
-      "desc": "米連邦官報による計算力デリバティブの意見公募",
-      "why": "計算力が金融商品化される裏側の資本の動きをいち早く把握できるため"
+      "title": "Async GRPO with LoRA across HF Jobs",
+      "desc": "高価なマルチGPU通信なしでストレージとプロキシを使って非同期強化学習を行うHugging Faceの最新手法",
+      "why": "高額な専用ハードウェアを持たない個人が、低コストで最先端の学習プロセスを検証するための大きな隙になるから"
     },
     {
-      "title": "Qwen3Guard: Real-time Safety for Your Token Stream",
-      "desc": "リアルタイムのトークン安全性ガードモデル",
-      "why": "オープンモデルの商用導入障壁を削る技術の実態を国内より先に見切れるため"
+      "title": "Request for Comment on the Listing of Compute Derivatives Contracts",
+      "desc": "米連邦官報に掲載された計算力を対象とした金融デリバティブ契約の意見募集",
+      "why": "AIの計算力が金融商品として扱われ始める動きであり、日本国内のテック情報ではまだ誰もその構造的影響を報じていないから"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: Z.ai: GLM Latest 値上げ 7%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.3 値下げ 22%",
-    "[差分] 価格が動いた: Meta: Muse Glimmer 30B 値上げ 17%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash Latest 値上げ 17%",
-    "[差分] 価格が動いた: MoonshotAI: Kimi Latest 値下げ 12%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0423 値下げ 30%"
+    "[差分] 価格が動いた: Z.ai: GLM Latest 値下げ 4%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.3 値上げ 28%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値上げ 14%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash Latest 値上げ 14%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値上げ 50%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.2 値上げ 14%"
   ],
   "evidence": [
     {
-      "claim": "米連邦官報でのコンピュート・デリバティブ意見公募とAnthropicのクラウド統括求人は、インフラの金融化とガバナンス闘争の表れである。",
-      "confidence": 0.55,
-      "disconfirm": "政府の意見公募が形骸化し、実際のデリバティブ市場が全く形成されないこと。",
+      "claim": "DeepSeek V4 Flashなどの価格改定はインフラコストの転嫁によるものである",
+      "confidence": 0.75,
+      "disconfirm": "単なる一時的なプロモーション価格の終了であり、コスト高とは無関係であるという公式の否定声明が出ること",
       "sources": [
         {
-          "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
-          "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
-        },
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値上げ 50%",
+          "url": "https://openrouter.ai/models"
+        }
+      ]
+    },
+    {
+      "claim": "Hugging Faceの非同期分散学習手法により小規模チームでもコストを抑えた学習が可能になる",
+      "confidence": 0.65,
+      "disconfirm": "ストレージ経由のI/Oボトルネックが深刻すぎて、実用的な速度が全く出ないことが検証で判明すること",
+      "sources": [
         {
-          "title": "[新規求人] anthropic: Enforcement Operations Lead, Cloud Partners (San Francisco, CA | New York City, NY | Washington, DC)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5417758008"
+          "title": "Async GRPO with LoRA across HF Jobs: a bucket, a proxy, and no NCCL",
+          "url": "https://huggingface.co/blog/asyncgrpo-lora-hfjobs"
         }
       ]
     }
