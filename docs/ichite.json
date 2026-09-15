@@ -1,162 +1,166 @@
 {
-  "date": "2026-09-15",
+  "date": "2026-09-16",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "Hugging Face Spaces上で手元のiPhoneから非同期分散学習のパイプライン設定ファイルにアクセスし、書き換えテストをどこまで進めるか",
-    "DeepSeek V4 Flashの価格改定データをもとに、自身のiPhone上のAPI呼び出しスクリプトにおけるフォールバック先をどのプロバイダに切り替えるか",
-    "OpenAIの最新Python SDKの更新履歴を踏まえ、既存のWebアプリ内設定画面でインフラ分散管理の項目をどのように固定するか"
+    "OpenRouterの価格引き下げを受けて、API経由を捨ててiPhoneのブラウザ自動化に切り替える準備はできたか？",
+    "APIプロバイダーの無料枠縮小が起きる前に、手元のSafariから直接Web UIを叩くルートを一本化したか？",
+    "インフラ層の消耗戦から外れて、ブラウザ上の操作自動化に今日30分を投じるか？"
   ],
   "moves": [
     {
-      "t": "Hugging Face Spacesのコードエディタを開き非同期分散設定のドラフトを1箇所修正する",
-      "why": "APIプロバイダ側の値上げと非同期処理への移行というトレンドに対し、iPhoneのWebブラウザから最小の変更でインフラ非依存のパイプライン構造を維持するため",
+      "t": "Safariからクラウド上のノーコード自動化ツールの無料枠を開き検証する",
+      "why": "API価格の底割れが加速する中、仲介を介さずブラウザ層から直接入力を行うルートを確保するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.2,
-      "success_p_max": 0.6,
-      "success_why": "Hugging Face Spacesの標準エディタ機能のみで完結するため技術的な障壁が低いことによる",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "非同期分散設定ファイルのドラフト保存完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "1回30分以内の設定修正であるため全体への直接寄与は限定的である",
-      "evidence_ids": [
-        "2026-07-22-r01"
-      ],
-      "assumptions": [
-        "iPhoneのブラウザからHugging Face Spacesのコード編集画面に正常にアクセスできること"
-      ],
-      "disconfirm": "SpacesのUIがモバイルブラウザでの直接編集に対応しなくなった場合",
-      "continue_if": "エラーなく設定ファイルのコミットが成功した場合",
-      "stop": "モバイル表示でコードの改行や保存が物理的に不可能な場合"
-    },
-    {
-      "t": "OpenRouter経由のDeepSeek V4 Flashの料金変動ログをiPhoneのメモ帳に書き出す",
-      "why": "APIプロバイダがインフラコスト転嫁を始めた実態を数値として手元に固定し、今後のコスト最適化の基準値とするため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.7,
-      "success_p_max": 0.95,
-      "success_why": "公開された価格改定情報を転記するだけの作業であるため確実性が高い",
-      "value_score": 2,
-      "learning_value": 2,
-      "time_minutes": 10,
-      "payback_days": 0,
-      "outcome": "コスト変動分析メモの作成完了",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.08,
-      "impact_why": "情報整理段階であり直接的なアプリの価値向上にはつながらないため",
-      "evidence_ids": [
-        "2026-09-11-r07"
-      ],
-      "assumptions": [
-        "対象の価格データがWeb上で閲覧可能であること"
-      ],
-      "disconfirm": "価格改定の数値が非公開または誤認であることが判明した場合",
-      "continue_if": "前週比でのコスト上昇率が明確に算出できた場合",
-      "stop": "価格データ自体が確認できない場合"
-    },
-    {
-      "t": "APIコスト管理用の有料クラウドダッシュボードサービスを小額プランで契約し設定を試す",
-      "why": "APIプロバイダの値上げフェーズにおいて、リアルタイムの消費量監視を自動化し利益率を守るため",
-      "cost_min": 500,
-      "cost_max": 1500,
-      "loss_max": 1500,
-      "success_p": 0.45,
-      "success_p_min": 0.2,
-      "success_p_max": 0.7,
-      "success_why": "モバイルからのクレジットカード決済と初期APIキー連携を30分以内に完了させる必要があるため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 30,
-      "outcome": "API監視ダッシュボードへの実APIキー登録完了",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.08,
-      "impact_max": 0.2,
-      "impact_why": "コスト管理の精度が上がり無駄な出費を防げるため",
-      "evidence_ids": [
-        "2026-09-11-r07"
-      ],
-      "assumptions": [
-        "iPhoneのブラウザから外部サービスの決済画面が正常に動作すること"
-      ],
-      "disconfirm": "モバイル用設定画面がデスクトップ専用で操作できない場合",
-      "continue_if": "初回のAPIコール数が正しくダッシュボードに反映された場合",
-      "stop": "決済エラーが発生するか、追加の隠れ費用が請求された場合"
-    },
-    {
-      "t": "Hugging Face Spacesの環境内で実行可能な軽量テストスクリプトをiPhoneから追記する",
-      "why": "高価なGPU通信を使わない非同期処理の挙動を自分の手で検証し、技術的優位性を確保するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.35,
-      "success_p_min": 0.15,
-      "success_p_max": 0.55,
-      "success_why": "スマホからのコード直接入力はミスが起きやすく、実行エラーのデバッグが難しいため",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "エラーフリーのテストスクリプト追記完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "検証結果が次の実装判断の根拠となるため",
-      "evidence_ids": [
-        "2026-07-22-r01"
-      ],
-      "assumptions": [
-        "SpacesのWebIDE上でPythonコードの構文チェックが働くこと"
-      ],
-      "disconfirm": "ストレージ経由の非同期処理が仕様上シミュレートできないと判明した場合",
-      "continue_if": "テスト実行ログに特定の出力結果が返ってきた場合",
-      "stop": "環境のメモリ制限によりスクリプトが強制終了し続ける場合"
-    },
-    {
-      "t": "標準価格帯の外部ストレージAPIサービスを追加契約しデータ連携のテストを行う",
-      "why": "非同期分散学習におけるデータ受け渡し用の安定した外部パスを確保するため",
-      "cost_min": 1500,
-      "cost_max": 3000,
-      "loss_max": 3000,
       "success_p": 0.5,
       "success_p_min": 0.3,
       "success_p_max": 0.7,
-      "success_why": "一般的なWebストレージサービスのAPIはドキュメントが整備されており接続実績が豊富であるため",
+      "success_why": "過去のプラットフォームの価格改定サイクルと現在のAPI安売り競争の激化から、代替ルート確保の必要性が高いため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "クラウドブラウザ自動化ツールの無料枠での動作確認ログ",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "APIに依存しない操作ルートの初期検証として機能するため",
+      "evidence_ids": [
+        "2026-08-01-r02"
+      ],
+      "assumptions": [
+        "クラウド上の自動化ツールがiPhoneのSafariから操作可能であること"
+      ],
+      "disconfirm": "無料枠では実用に耐えない制限がかかっていることが判明した場合",
+      "continue_if": "Safariからのブラウザ操作自動化の基本設定が完了した場合",
+      "stop": "iPhoneのSafari環境でツールが正常に描画されない場合"
+    },
+    {
+      "t": "iPhoneから直接既存Web UIへの入力ショートカットを作成する",
+      "why": "APIを経由せず、ブラウザの操作を直接再現して個人で先回りする隙を作るため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.6,
+      "success_p_min": 0.4,
+      "success_p_max": 0.8,
+      "success_why": "既存のiOS標準機能で実現可能であるため",
       "value_score": 3,
       "learning_value": 3,
       "time_minutes": 25,
-      "payback_days": 45,
-      "outcome": "外部ストレージへのテストファイル書き込み成功",
-      "category": "buy",
+      "payback_days": 0,
+      "outcome": "iPhoneのショートカットアプリでの自動入力フローの完成",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.1,
-      "impact_max": 0.22,
-      "impact_why": "インフラ依存を減らすための基盤が整うため",
+      "impact_max": 0.2,
+      "impact_why": "手元のデバイスで即座に実行可能な代替ルートとなるため",
       "evidence_ids": [
-        "2026-07-24-r01"
+        "2026-08-01-r02"
       ],
       "assumptions": [
-        "iPhoneからストレージサービスの管理画面およびAPIトークン発行画面にアクセスできること"
+        "iOSのショートカット機能が対象のWeb UIに対応していること"
       ],
-      "disconfirm": "API利用規約により外部からの自動書き込みが制限されている場合",
-      "continue_if": "テストファイルのアップロードと取得のレスポンスが正常に返った場合",
-      "stop": "月額費用が事前の想定を超えて発生する挙動が見られた場合"
+      "disconfirm": "動的要素の多いUIに対してショートカットが機能しない場合",
+      "continue_if": "テスト入力が正常にWeb画面へ反映された場合",
+      "stop": "セキュリティ制限により自動入力がブロックされる場合"
+    },
+    {
+      "t": "API価格改定の影響を受ける仲介事業者の動向をリサーチして記録する",
+      "why": "価格の底割れによってどの層が締め出されるかを観測し、個人の逃げ道を特定するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.5,
+      "success_p_max": 0.9,
+      "success_why": "公開されている価格情報やフォーラムの議論から十分追跡可能であるため",
+      "value_score": 3,
+      "learning_value": 5,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "価格競争による影響を受けるプレイヤーのリスト",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.15,
+      "impact_why": "市場の歪みを正確に把握するための基礎データになるため",
+      "evidence_ids": [
+        "2026-08-01-r02"
+      ],
+      "assumptions": [
+        "主要な価格改定情報がWeb上で公開されていること"
+      ],
+      "disconfirm": "価格競争のデータが非公開で確認できない場合",
+      "continue_if": "具体的な値下がり事例が複数確認できた場合",
+      "stop": "情報が古く現在の市場を反映していない場合"
+    },
+    {
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "次に直す内容がIssueとして1件残る",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "Issueが次の実装に使われる"
+      ],
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
+    },
+    {
+      "t": "今日の一次情報を1本選び要点を3行残す",
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "value_score": 2,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "一次情報の要点メモが3行残る",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "読む情報が現在の目標に関係する"
+      ],
+      "disconfirm": "要点が次の行動を一つも変えない",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了",
+      "fallback": true
     }
   ],
-  "kan": "OpenAIは今後30日以内に、公式ブログまたはGitHub上で計算資源の調達や外部インフラの分散管理に関する新たな方針を発表すると見る。年数回のインフラ戦略発表の頻度と直近の負荷分散の動きから調整した。"
+  "kan": "今後14日以内に、APIプロバイダーの価格改定に追随する形で、個人向けノーコード自動化ツールのAPI連携プランの値上げまたは無料枠縮小が相次ぐと見る。基準率として主要プラットフォームの価格改定は四半期に1回程度だが、足元のAPI安売り競争の激化により前倒しで発生する。"
 }
