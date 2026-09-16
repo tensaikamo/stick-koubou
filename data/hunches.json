@@ -2122,15 +2122,19 @@
         "conf_after": 0.801
       }
     ],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-09-17T08:48:02.733702+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "PyPIのopenaiパッケージページでバージョン3.14.1（3.12.0以上）の公開が確認できたため。",
+      "url": "https://pypi.org/project/openai/"
+    },
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "initial_confidence": 0.72
+    "initial_confidence": 0.72,
+    "needs_review": false
   },
   {
     "id": "2026-09-11-h01",
@@ -2199,6 +2203,50 @@
       },
       {
         "sign": "該当のEnforcement Operations Lead求人がGreenhouse上で引き続き募集中として維持される",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.8-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-09-17-h01",
+    "created_at": "2026-09-17T08:45:41.482035+09:00",
+    "based_on": [
+      "2026-09-17-r02"
+    ],
+    "prose": "Anthropicの求人票に出現した「Cowork」という名称は、組織向けコラボレーション領域を標的にした新サーフェスの存在を示す。ただし、大企業向けCSMの職務記述に組み込まれた機能群は、エンタープライズ顧客への限定PoCやプライベートプレビューとして数ヶ月単位で検証されるのが通例である。求人票での初出からわずか2週間で一般向け公式アナウンスへ直結する基準率は極めて低い。したがって今後14日以内に公式ニュースルームで一般公開やパブリックベータが発表されることは見送られる公算が高い。",
+    "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて「Cowork」をタイトルに含む新機能・新製品の単独発表記事を公開しない",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Cowork Anthropic News",
+      "decider": "判定期限の日に https://www.anthropic.com/news を確認し、記事タイトルに「Cowork」という単語を含む発表記事が1件も存在しなければ的中。掲載されていた場合は外れ。"
+    },
+    "deadline": "2026-10-01",
+    "confidence": 0.88,
+    "base_rate": 0.92,
+    "base_rate_class": "大手AI企業の求人票に初出の内部プロダクト呼称が14日以内に公式単独発表記事にならない頻度",
+    "confidence_why": "Claude Codeと並列で記載されており開発が相当程度進捗している形跡があるため、完全な未着手プロジェクトよりは短期発表のリスクが存在する点を踏まえ、基準率から4ポイント下方へ調整した。",
+    "counter": "すでに特定の大手顧客との先行検証が完了しており、Claude Enterpriseプランの大型アップデートの一環として即座に公式発表を控えている場合。",
+    "indicators": [
+      {
+        "sign": "Anthropic公式Xアカウント（@AnthropicAI）がCoworkの名称を冠したティザー動画や告知を投稿する",
+        "dir": "kill"
+      },
+      {
+        "sign": "claude.aiのWeb版UI内にCowork機能への招待バナーやUI導線が追加される",
+        "dir": "kill"
+      },
+      {
+        "sign": "Anthropicが追加で公開する求人票においてCoworkへの言及が削除されず継続する",
         "dir": "confirm"
       }
     ],

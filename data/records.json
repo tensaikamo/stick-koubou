@@ -4247,5 +4247,86 @@
       "2026-09-13-r03",
       "2026-09-13-r02"
     ]
+  },
+  {
+    "id": "2026-09-17-r01",
+    "created_at": "2026-09-17T08:45:41.482035+09:00",
+    "headline": "Anthropicが規制会計・非財務開示責任者の採用を開始しCSRD対応を推進",
+    "what_happened": "Anthropicは「Senior Manager, Regulatory Accounting & Disclosures」の求人を公開した。同ポジションは非財務報告チームに属し、コンピュート基盤の拡大に伴う二酸化炭素排出・電力・水消費などの指標管理を担当する。EUの企業サステナビリティ報告指令（CSRD）や豪州のASRSなどへの義務的開示対応を主導する責務が明記されている。",
+    "background": "巨大LLM開発企業は膨大な電力とデータセンター資源を消費しており、欧州をはじめとする各国規制当局から環境負荷やインフラ投資に関する厳格な義務的情報開示を求められ始めている。",
+    "changed": "Anthropicの計算資源構築に伴う環境・設備投資の開示体制が、義務的法規制への準拠フェーズへ移行した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5425432008",
+      "title": "[新規求人] anthropic: Senior Manager, Regulatory Accounting & Disclosures (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-16-r04",
+      "2026-09-16-r02",
+      "2026-09-15-r03",
+      "2026-09-15-r02",
+      "2026-09-15-r01",
+      "2026-09-14-r01"
+    ]
+  },
+  {
+    "id": "2026-09-17-r02",
+    "created_at": "2026-09-17T08:45:41.482035+09:00",
+    "headline": "Anthropicの法人担当CSM求人に未発表サーフェス「Cowork」の記述が出現",
+    "what_happened": "Anthropicが公開したエンタープライズTech顧客向けカスタマーサクセスマネージャー（CSM）の求人票において、同社の展開サーフェスとして「API」「Claude Code」と並び「Cowork」という名称が明記された。同職種は主要テクノロジー顧客に対しClaudeの各サーフェスの本格導入を支援する役割を担う。",
+    "background": "Anthropicは開発者向けコマンドラインツール「Claude Code」などの新たな利用形態を展開中だが、「Cowork」と称する単独機能または新プロダクトは本記事公開時点で公式発表されていない。",
+    "changed": "求人票の職務記述により、Anthropicが社内または一部顧客向けに「Cowork」と呼ばれる展開サーフェスを運用・準備していることが公になった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424388008",
+      "title": "[新規求人] anthropic: Customer Success Manager, Enterprise Tech (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-16-r04",
+      "2026-09-16-r02",
+      "2026-09-15-r03",
+      "2026-09-15-r02",
+      "2026-09-15-r01",
+      "2026-09-14-r01"
+    ]
+  },
+  {
+    "id": "2026-09-17-r03",
+    "created_at": "2026-09-17T08:45:41.482035+09:00",
+    "headline": "xAIがメンフィス拠点のサイトオペレーション統括ディレクターの求人を公開",
+    "what_happened": "xAI（求人票内ではSpaceXAIと表記）は、テネシー州メンフィス拠点における「Director, Site Operations」の募集を開始した。同ポジションは5カ所以上の常時稼働サイトにまたがるスーパーコンピューティングクラスタの稼働率（アップタイム）とSLAを統轄する。サイトマネージャーやSREを含む250人以上の組織を率いる役割と規定されている。",
+    "background": "xAIはメンフィスに大規模クラスタ「Colossus」を急速に構築しているが、単一拠点にとどまらず近隣エリアを含む複数サイトへの拡張を進めている。",
+    "changed": "xAIの大規模計算クラスタの運用体制が250人超の組織規模かつ5拠点以上のマルチサイト構成で統轄される段階に達したことが判明した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5238779007",
+      "title": "[新規求人] xai: Director, Site Operations (Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-15-r06",
+      "2026-09-15-r05",
+      "2026-09-15-r04",
+      "2026-09-12-r03",
+      "2026-09-11-r06",
+      "2026-09-11-r05"
+    ]
   }
 ]
