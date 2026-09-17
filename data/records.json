@@ -4328,5 +4328,86 @@
       "2026-09-11-r06",
       "2026-09-11-r05"
     ]
+  },
+  {
+    "id": "2026-09-18-r01",
+    "created_at": "2026-09-18T08:37:38.166126+09:00",
+    "headline": "Anthropicが公共部門専任のテクニカルプログラムマネージャー求人を公開",
+    "what_happened": "Anthropicは米連邦政府機関や国家安全保障分野へのClaude展開を統括する「Technical Program Manager, Public Sector」の募集を開始した。同職種はクラウドパートナーとの準拠インフラ構築、制限環境への新モデル導入、商用機能とのパリティ確保、FedRAMP等の認証枠組みのクリアを統括する。これまで各部門に分散していた公共案件の調整を一元管理する専任責任者と位置付けられている。",
+    "background": "米国の連邦政府機関や防衛・情報コミュニティでクラウドサービスやAIモデルを利用する際は、FedRAMP認証や厳格なコンプライアンス要件を満たした隔離環境の整備が必要となる。",
+    "changed": "これまで製品・インフラ・セキュリティ各チームに分散していた公共部門向け要件定義と認証対応が、専任TPMのもとで一括プログラム化される体制へと移行した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427834008",
+      "title": "[新規求人] anthropic: Technical Program Manager, Public Sector (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-17-r02",
+      "2026-09-17-r01",
+      "2026-09-16-r04",
+      "2026-09-16-r02",
+      "2026-09-15-r03",
+      "2026-09-15-r02"
+    ]
+  },
+  {
+    "id": "2026-09-18-r02",
+    "created_at": "2026-09-18T08:37:38.166126+09:00",
+    "headline": "Googleがgoogle-genai SDK v2.24.0を公開し次期メジャーでのAFC仕様変更を予告",
+    "what_happened": "GoogleはPyPIにおいてgoogle-genai Python SDKのv2.24.0を公開した。同バージョンのドキュメントにおいて、次期メジャーバージョンでAutomatic Function Calling（AFC）の動作仕様を変更し、Models.generate_content等からの直接AFC呼び出しを不可とする予告を掲載した。",
+    "background": "google-genaiはGoogleがGemini APIおよびエンタープライズ向けエージェント基盤向けに提供する標準Pythonライブラリである。",
+    "changed": "次期メジャーリリースで既存の関数呼び出しコードに対する破壊的変更が入ることが開発者向けに明示された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/2.24.0/",
+      "title": "google-genai Python SDK v2.24.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-12-r01",
+      "2026-09-03-r03",
+      "2026-09-01-r01",
+      "2026-08-26-r01",
+      "2026-08-22-r01",
+      "2026-08-19-r02"
+    ]
+  },
+  {
+    "id": "2026-09-18-r03",
+    "created_at": "2026-09-18T08:37:38.166126+09:00",
+    "headline": "xAIがメンフィスおよびサウスヘイブン拠点向けHVAC技術者の募集を開始",
+    "what_happened": "xAIはメンフィスおよびサウスヘイブンのデータセンター施設向けに「HVAC Technician」の求人を公開した。データセンター内の空調および冷却システムの構築、稼働、日常メンテナンスを自社運用チームとして担当する人員を募集している。",
+    "background": "xAIはテネシー州メンフィスで大規模AIクラスタ「Colossus」を稼働させており、高密度計算基盤に伴う廃熱処理と冷却インフラの維持管理が重要課題となっている。",
+    "changed": "データセンター設備管理において、外部委託だけでなく自社専任の空調保守要員を直接配置する動きが確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5241407007",
+      "title": "[新規求人] xai: HVAC Technician - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-17-r03",
+      "2026-09-15-r06",
+      "2026-09-15-r05",
+      "2026-09-15-r04",
+      "2026-09-12-r03",
+      "2026-09-11-r06"
+    ]
   }
 ]
