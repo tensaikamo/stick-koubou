@@ -1,61 +1,49 @@
 {
-  "date": "2026-09-17",
-  "updated_at": "2026-09-17 08:51",
+  "date": "2026-09-18",
+  "updated_at": "2026-09-18 08:42",
   "build_id": "truthful-ui-v1",
-  "omote": "米連邦官報が計算資源デリバティブ契約のリスティングに関する意見募集を発出し、OpenAIはChatGPTに広告やSponsored Agentsを導入した。",
-  "ura": "計算資源そのものが証券化・金融商品として先物取引の土俵に組み込まれ、AIインフラの所有権がシリコンバレーのVCからウォール街の巨大資本へ移転する分水嶺だ。対話窓口の広告化は資本が最終回収フェーズに入った証拠であり、個人の隙は、APIの直接叩き合いや既存プラットフォームを経由しないローカル連携レイヤーに逃げる資金とトラフィックの受け皿を作る側にある。",
-  "ura_taikou": "プラットフォーム側が広告を完全に隠蔽し、ユーザーが広告と気づかないまま自然に消費行動へ誘導されて不満が表面化しないという仮説は、過去のどのWebサービスでも反発が起きた歴史的历史的事実から退けた",
-  "dousuru": "iPhoneのSafariからManifoldの予測市場を開き、OpenAIが9月30日までに専用サイバーモデルを一般公開するという予測に対し、直近の改悪リスクを考慮して「起きない」側に少額のポジションを入れろ。今日明日で新しいツールに手を出すな。現在動かしているWebアプリの画面周りの設定だけで30分を使い切れ。",
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて「Cowork」をタイトルに含む新機能・新製品の単独発表記事を公開しない",
-  "kan_konkyo": "Claude Codeと並列で記載されており開発が相当程度進捗している形跡があるため、完全な未着手プロジェクトよりは短期発表のリスクが存在する点を踏まえ、基準率から4ポイント下方へ調整した。",
-  "kan_hantai": "すでに特定の大手顧客との先行検証が完了しており、Claude Enterpriseプランの大型アップデートの一環として即座に公式発表を控えている場合。",
-  "kan_conf": 0.88,
-  "ippan": "ChatGPTなどのAIがおすすめしてくる商品や回答には、お金で買われた広告枠が含まれるようになり始めています。都合の良い答えをそのまま信用せず、別の無料検索やオープンなツールで裏を取る癖をつけてください。賢く使わないと、知らず知らずのうちに高いサービスへ誘導されます。",
-  "votes": [],
+  "omote": "DeepSeek Flash LatestがOpenRouter上で10%値下げされ、Z.aiのGLM 5.3 Flashは29%の大幅値上げに踏み切った。",
+  "ura": "推論コストの限界と収益化の焦りが同時に表面化し、API仲介層を握るOpenRouterの手数料構造に依存する弱小ラッパー層の利益が完全に削り取られていると見る。個人開発者が自前でプロキシ層やマルチプロバイダ切り替えの軽量スクリプトを持たない限り、仲介者の値上げとモデルの突然の廃止に全マージンを抜かれる構造が急加速するはずだ。",
+  "ura_taikou": "為替変動や一時的なサーバー負荷の調整に過ぎないという仮説は、複数モデルで一斉に方向が分かれている動きと矛盾するため棄却した。",
+  "dousuru": "iPhoneのSafariからOpenRouterのAPI管理画面を開き、直近30日間のプロバイダ別消費トークン量と単価の変動ログをCSVで書き出せ。Z.aiなどの値上げ対象モデルを直接叩いている箇所があれば、即座にDeepSeek等へのフォールバック条件をコード側へ書き足し、仲介プラットフォームの価格改定に利益を抜かれないルーティングの自衛を今日中に完了させろ。",
+  "kan": "API仲介プラットフォーム上で主要プロバイダの価格改定が連動して発生する頻度は過去のデータから四半期に1回程度だが、今月の改定速度は通常の3倍のペースで推移しているため、今後14日以内にさらに1社が価格体系の改定または特定モデルの廃止に踏み切ると見る。基準率はこの規模の変動が月1回未満であるため、直近の乱高下を考慮して確度はやや引き上げる。",
+  "kan_konkyo": "DeepSeek Flash Latestの10%値下げおよびZ.aiの29%値上げという直近の価格改定データに基づいている。",
+  "kan_hantai": "主要プロバイダが一斉に価格を据え置き、仲介プラットフォームが手数料を引き下げて開発者のコスト負担がむしろ軽減される可能性もある。",
+  "kan_conf": 0.35,
+  "ippan": "AIのAPI料金やモデルの単価が変動する時期なので、利用しているツールの月額料金やトークン単価が勝手に上がっていないか今すぐ確認しろ。知らぬ間に高いプランへ誘導されないよう、利用明細のこまめなチェックが身を守る盾になる。",
+  "votes": [
+    0.28,
+    0.65,
+    0.35
+  ],
   "mijoriku": [
     {
-      "title": "Compute Derivatives Contracts",
-      "desc": "計算資源の先物・オプション市場の創設に向けた米国の意見募集",
-      "why": "金融資本がAIインフラの寡占をさらに加速させる裏側の動きであり、日本で報じられるのは数ヶ月先になるため"
-    },
-    {
-      "title": "Generalized Agent Iteration",
-      "desc": "GPIと再帰的自己改善を統合する新フレームワークの論文",
-      "why": "エージェントの自律進化における理論的根拠の最新動向であり、国内の個人開発者がまだキャッチアップできていない領域だから"
+      "title": "Async GRPO with LoRA across HF Jobs",
+      "desc": "NCCLを使わずにHugging Face Jobs間で分散学習を行う手法の公開",
+      "why": "高価なインフラを不要にする分散学習の仕組みであり、大資本の独占を迂回する技術的隙を突く材料になるため。"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値下げ 7%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値下げ 7%",
-    "[差分] 価格が動いた: Z.ai: GLM Latest 値下げ 5%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値下げ 12%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値上げ 9%",
-    "[差分] 価格が動いた: MoonshotAI: Kimi K3 値上げ 13%"
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 10%",
+    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 7%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 29%",
+    "[差分] 価格が動いた: Z.ai: GLM Latest 値上げ 5%",
+    "[差分] 価格が動いた: Meta: Muse Glimmer 30B 値下げ 14%",
+    "[差分] 価格が動いた: NVIDIA: Nemotron 3 Ultra 値上げ 4%"
   ],
   "evidence": [
     {
-      "claim": "OpenAIの広告導入により対話の中立性が損なわれ、有料化や広告強制の動きが加速する",
-      "confidence": 0.45,
-      "disconfirm": "広告が完全にユーザーの利便性を高め、離反が全く起きないままエコシステムが定着すること",
+      "claim": "推論コストの変動と仲介プラットフォームの価格改定が個人開発者のマージンを削り取っている",
+      "confidence": 0.53,
+      "disconfirm": "主要APIプロバイダが全て固定価格制へ移行し、価格競争が完全に停止すること",
       "sources": [
         {
-          "title": "Reimagining advertising with AI",
-          "url": "https://openai.com/index/reimagining-advertising-with-ai"
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 10%",
+          "url": "https://openrouter.ai/models"
         },
         {
-          "title": "OpenAI expands ChatGPT ads with Sponsored Agents",
-          "url": "https://openai.com/index/reimagining-advertising-with-ai/"
-        }
-      ]
-    },
-    {
-      "claim": "計算資源のデリバティブ化が始まり、インフラの金融商品化が進行している",
-      "confidence": 0.6,
-      "disconfirm": "単なる行政の形式的な意見聴取に終わり、市場としての実態を作れずに頓挫すること",
-      "sources": [
-        {
-          "title": "[米規制] Request for Comment on the Listing of Compute Derivatives Contracts",
-          "url": "https://www.federalregister.gov/documents/2026/08/21/2026-17163/request-for-comment-on-the-listing-of-compute-derivatives-contracts"
+          "title": "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 29%",
+          "url": "https://openrouter.ai/models"
         }
       ]
     }

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-17 08:49",
+  "updated_at": "2026-09-18 08:38",
   "score": {
     "hit": 11,
     "miss": 23,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-25",
-    "days": 8
+    "days": 7
   },
   "decided": [
     {
@@ -300,11 +300,6 @@
       "events": [
         {
           "date": "2026-09-16",
-          "headline": "anthropic Python SDK v1.6.0 リリース",
-          "url": "https://pypi.org/project/anthropic/1.6.0/"
-        },
-        {
-          "date": "2026-09-16",
           "headline": "anthropic新規求人: Salesforce Developer, Partnerships",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5420994008"
         },
@@ -317,6 +312,11 @@
           "date": "2026-09-17",
           "headline": "Anthropicの法人担当CSM求人に未発表サーフェス「Cowork」の記述が出現",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424388008"
+        },
+        {
+          "date": "2026-09-18",
+          "headline": "Anthropicが公共部門専任のテクニカルプログラムマネージャー求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427834008"
         }
       ]
     },
@@ -350,11 +350,6 @@
       "events": [
         {
           "date": "2026-09-15",
-          "headline": "xAIがEnterprise Commercial Counselの求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5237965007"
-        },
-        {
-          "date": "2026-09-15",
           "headline": "xAIがダブリン拠点でのNetwork Engineerの求人を公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5235772007"
         },
@@ -367,17 +362,17 @@
           "date": "2026-09-17",
           "headline": "xAIがメンフィス拠点のサイトオペレーション統括ディレクターの求人を公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5238779007"
+        },
+        {
+          "date": "2026-09-18",
+          "headline": "xAIがメンフィスおよびサウスヘイブン拠点向けHVAC技術者の募集を開始",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5241407007"
         }
       ]
     },
     {
       "subject": "Google",
       "events": [
-        {
-          "date": "2026-08-26",
-          "headline": "Google Gen AI Python SDK v2.20.0のリリース",
-          "url": "https://pypi.org/project/google-genai/2.20.0/"
-        },
         {
           "date": "2026-09-01",
           "headline": "GoogleがPyPIでgoogle-genai Python SDK v2.21.0をリリース",
@@ -392,6 +387,11 @@
           "date": "2026-09-12",
           "headline": "google-genai Python SDK v2.23.0 リリース",
           "url": "https://pypi.org/project/google-genai/2.23.0/"
+        },
+        {
+          "date": "2026-09-18",
+          "headline": "Googleがgoogle-genai SDK v2.24.0を公開し次期メジャーでのAFC仕様変更を予告",
+          "url": "https://pypi.org/project/google-genai/2.24.0/"
         }
       ]
     },
@@ -427,6 +427,27 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-09-18-r03",
+      "date": "2026-09-18",
+      "headline": "xAIがメンフィスおよびサウスヘイブン拠点向けHVAC技術者の募集を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5241407007"
+    },
+    {
+      "id": "2026-09-18-r02",
+      "date": "2026-09-18",
+      "headline": "Googleがgoogle-genai SDK v2.24.0を公開し次期メジャーでのAFC仕様変更を予告",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/2.24.0/"
+    },
+    {
+      "id": "2026-09-18-r01",
+      "date": "2026-09-18",
+      "headline": "Anthropicが公共部門専任のテクニカルプログラムマネージャー求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427834008"
+    },
     {
       "id": "2026-09-17-r03",
       "date": "2026-09-17",
@@ -489,28 +510,7 @@
       "headline": "xAIがメンフィスおよびサウスヘイブンでのProduction Coordinatorの求人を公開",
       "certainty": "reported",
       "url": "https://job-boards.greenhouse.io/xai/jobs/5237890007"
-    },
-    {
-      "id": "2026-09-15-r04",
-      "date": "2026-09-15",
-      "headline": "xAIがEnterprise Commercial Counselの求人を公開",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5237965007"
-    },
-    {
-      "id": "2026-09-15-r03",
-      "date": "2026-09-15",
-      "headline": "Anthropicがロンドン拠点でのForward Deployed Engineerの求人を公開",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5423029008"
-    },
-    {
-      "id": "2026-09-15-r02",
-      "date": "2026-09-15",
-      "headline": "AnthropicがProduct Marketing Manager, Platformの求人情報を公開",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424078008"
     }
   ],
-  "record_count": 152
+  "record_count": 155
 }
