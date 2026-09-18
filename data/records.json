@@ -4409,5 +4409,59 @@
       "2026-09-12-r03",
       "2026-09-11-r06"
     ]
+  },
+  {
+    "id": "2026-09-19-r01",
+    "created_at": "2026-09-19T08:31:46.886418+09:00",
+    "headline": "Anthropicが国家安全保障分野担当CSM求人を公開しClaude for Governmentの展開体制を拡充",
+    "what_happened": "AnthropicはワシントンD.C.勤務の「Customer Success Manager, Public Sector (National Security)」の採用募集を開始した。職務記述書には、クリアランス保有クラウドプロバイダを通じて提供される機密インフラ上のClaude Code、Claude API、および「Claude for Government (C4G)」の顧客導入支援を担うことが明記されている。政府機関や認定インテグレーターとの直接折衝を想定している。",
+    "background": "Anthropicは防衛・公共部門への展開を強化しており、機密環境（classified infrastructure）で動作する専用ソリューションの提供体制構築を進めている。",
+    "changed": "「Claude for Government (C4G)」という具体的なソリューション名称と、機密インフラ上での運用支援体制が求人要件として公に確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427479008",
+      "title": "[新規求人] anthropic: Customer Success Manager, Public Sector (National Security)  (Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-18-r01",
+      "2026-09-17-r02",
+      "2026-09-17-r01",
+      "2026-09-16-r04",
+      "2026-09-16-r02",
+      "2026-09-15-r03"
+    ]
+  },
+  {
+    "id": "2026-09-19-r02",
+    "created_at": "2026-09-19T08:31:46.886418+09:00",
+    "headline": "xAIがメンフィスおよびサウスヘイブン拠点向けに工期統括スケジューラーの直接採用を開始",
+    "what_happened": "xAIはテネシー州メンフィスおよびミシシッピ州サウスヘイブンのデータセンター拠点向けに「Construction Scheduler」の求人を公開した。クリティカルパス法（CPM）による工程管理、遅延リスクの早期特定、リカバリープラン策定を担うポジションであり、現場施工の順序適正化を直接管理する役割とされている。下請け管理にとどまらず自社主導で工期短縮を図る体制が示されている。",
+    "background": "xAIはメンフィスに超大規模GPUクラスタ「Colossus」を急ピッチで建設・拡張しており、施工スケジュールと物理インフラの進捗管理がモデル開発のリードタイムに直結している。",
+    "changed": "施工スケジュールの策定・管理を外部ゼネコン任せにせず、自社直接雇用のスケジューラーが統括する運用方針が明確化された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5242789007",
+      "title": "[新規求人] xai: Construction Scheduler - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-18-r03",
+      "2026-09-17-r03",
+      "2026-09-15-r06",
+      "2026-09-15-r05",
+      "2026-09-15-r04",
+      "2026-09-12-r03"
+    ]
   }
 ]

@@ -2259,5 +2259,49 @@
     "model": "gemini-3.8-flash",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-09-19-h01",
+    "created_at": "2026-09-19T08:31:46.886418+09:00",
+    "based_on": [
+      "2026-09-19-r01"
+    ],
+    "prose": "Anthropicの国家安全保障担当求人に「Claude for Government (C4G)」の名称が出現したが、今後14日以内に一般向け公式発表や専用Webページが開設される可能性は極めて低い。機密インフラを伴う連邦調達ソリューションはセキュリティ認定やパートナー各社との調整プロセスが長期化するため、求人開始直後の短期で対外発表を打つ先行事例はほぼ存在しない。一般公開されたドメイン上でのPR展開は見送られる公算が大きい。",
+    "claim": "Anthropicは今後14日以内に、公式ニュースルーム（anthropic.com/news）において「Claude for Government」をタイトルに含む公式発表記事を公開しない。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Claude Government",
+      "decider": "判定日時点で上記URLのニュース記事一覧に「Claude for Government」をタイトルに含む記事が存在しない場合に的中"
+    },
+    "deadline": "2026-10-03",
+    "confidence": 0.82,
+    "base_rate": 0.88,
+    "base_rate_class": "大手AI企業が機密・政府向け新ソリューション求人を初出した後、14日以内に一般向け公式発表記事を出さない頻度",
+    "confidence_why": "機密インフラ向け提供であり調達手続きの長期性を踏まえれば発表見送りが基準率通り妥当だが、競合他社に対抗した先行ティーザー発表のリスクを勘案して基準率から下方へ微修正した",
+    "counter": "OpenAIやMicrosoftの公共調達先行に対抗するため、実働配備の完了を待たずにブランド認知確立を狙ったプレアナウンスを急遽実施するケース",
+    "indicators": [
+      {
+        "sign": "Anthropicの公式Xアカウントが「Claude for Government」または公共部門向け施策について言及する",
+        "dir": "kill"
+      },
+      {
+        "sign": "AnthropicのGreenhouse求人一覧においてCustomer Success Manager, Public Sectorの募集が継続掲載される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "AWS GovCloudまたはAzure Governmentの公式ブログがAnthropicとの新たな公共向け連携を発表する",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.8-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
