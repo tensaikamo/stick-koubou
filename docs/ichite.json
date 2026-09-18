@@ -1,165 +1,162 @@
 {
-  "date": "2026-09-18",
+  "date": "2026-09-19",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの直近トークン消費量を即座にCSV出力するか？",
-    "値上げ対象モデルのフォールバック処理を今日書き換えるか？",
-    "仲介マージンを避けるための直接API切り替えを実装するか？"
+    "旧Geminiモデル依存アプリのAPIエンドポイント書き換えと動作確認をSafariから今日終えるか？",
+    "AnthropicのCSM求人の増加を受け、自作アプリの営業・開拓先を公共部門へ絞るか？",
+    "API仕様変更の波に備え、フォールバック先のモデル固定コードをiPhoneのGitHubで修正するか？"
   ],
   "moves": [
     {
-      "t": "Z.ai等値上げ対象モデルを検知するフォールバック判定ロジックをコードに書き足す",
-      "why": "API仲介層の価格改定によるマージン削りを防ぐため、高騰モデルから安価なDeepSeek等へ自動迂回させる自衛策が急務だからと見る",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.65,
-      "success_p_min": 0.55,
-      "success_p_max": 0.75,
-      "success_why": "GitHubのWebエディタから既存のルーティングスクリプトに条件分岐を追加するだけで実装可能なため",
-      "value_score": 5,
-      "learning_value": 5,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "値上げモデルを迂回してDeepSeekへ接続する条件分岐コードのコミット",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "仲介層の値上げによる突然の利益剥奪リスクを直接遮断できるため",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "コードのホスティング先がGitHub等のWeb編集可能な環境であること",
-        "フォールバック先のDeepSeek APIキーがすでに発行されていること"
-      ],
-      "disconfirm": "利用中のアプリケーション構成が静的であり、動的なルーティング変更を受け付けない設計である場合",
-      "continue_if": "GitHubのWeb画面上でコードの構文エラーがなくコミットが完了した場合",
-      "stop": "リポジトリの構造が複雑で、iPhoneのブラウザ上だけではルーティング部分の特定が不可能な場合"
-    },
-    {
-      "t": "主要AIプロバイダの価格改定履歴をまとめた自社監視ダッシュボードのプロトタイプを更新する",
-      "why": "相次ぐ価格変動の傾向をいち早く把握し、次回の改定に先回りしてモデル選定を最適化するためと見る",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.5,
-      "success_p_max": 0.7,
-      "success_why": "既存の簡易ダッシュボードのHTML/CSSをGitHub上で軽微に修正するだけですぐに反映できるため",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "最新の価格変動データを反映した静的ダッシュボードページの更新完了",
-      "category": "publish",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "情報優位の構築には役立つが、直接的なコスト削減や収益化には間接的な影響にとどまるため",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "GitHub Pages等で静的サイトがすでに公開運用されていること"
-      ],
-      "disconfirm": "価格情報の更新作業が想定以上に複雑化し、30分以内に終わらない場合",
-      "continue_if": "デプロイが正常に完了し、スマホのブラウザで最新の価格比較表が表示される場合",
-      "stop": "デプロイ環境のエラーがスマホのブラウザ画面だけでは解消できない場合"
-    },
-    {
-      "t": "仲介層の価格改定リスクに特化した警告アラートスクリプトをチャット通知用に追加する",
-      "why": "モデルの急な値上げや廃止に気づくのが遅れると一瞬で利益が吹き飛ぶため、リアルタイムの検知網が必要だからと見る",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.55,
-      "success_p_min": 0.45,
-      "success_p_max": 0.65,
-      "success_why": "軽量なWebhook通知コードを既存の監視フローに組み込むだけで実装可能なため",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "価格変動検知時にスマホへプッシュ通知を送るWebhook連携の設定完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "異常事態への初動対応速度を劇的に高めることができるため",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "通知先のチャットツールやWebhookの受け口がスマホから設定可能であること"
-      ],
-      "disconfirm": "通知ツールのAPI仕様変更により、簡易スクリプトからの連携が拒否される場合",
-      "continue_if": "テスト通知がスマホのチャットアプリで正常に受信できた場合",
-      "stop": "通知設定に必要なトークンや権限がiPhoneのブラウザ環境では取得できない場合"
-    },
-    {
-      "t": "値上げされたモデルを排除した独自の軽量APIルーターアプリのベータ版を公開する",
-      "why": "仲介層の価格改定に苦しむ他の個人開発者に向けて、安全な迂回ルートを提供する新しい導線を作るためと見る",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.3,
-      "success_p_max": 0.5,
-      "success_why": "GitHub Pagesを利用して静的なルーティング設定ファイルを一般公開する形で即座にデプロイできるため",
-      "value_score": 5,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "誰でも参照できるAPI迂回ルーターの設定ファイル公開URL",
-      "category": "publish",
-      "terminal": true,
-      "impact_min": 0.3,
-      "impact_max": 0.4,
-      "impact_why": "個人の隙を突いた情報優位のツールとしてそのまま外部展開できるため",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "公開する設定ファイルに機密情報やAPIキーが含まれていないこと"
-      ],
-      "disconfirm": "公開した設定ファイルの構造に重大なセキュリティ上の欠陥が見つかった場合",
-      "continue_if": "GitHub Pages経由で外部から正常に設定ファイルが取得できる場合",
-      "stop": "デプロイプロセスでエラーが発生し、スマホからの修正が困難な場合"
-    },
-    {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "t": "GitHubのWeb画面でフォールバックモデル指定を最新の3系に書き換える",
+      "why": "API仕様変更による予期せぬエラーを防ぎ、サービス停止リスクを先回りして潰すため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
       "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 15,
+      "success_why": "iPhoneのブラウザ版GitHubからコードの直接編集とコミットが可能であるため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 30,
       "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
+      "outcome": "リポジトリ上のフォールバックモデル設定の更新完了",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "モデル廃止時の自動停止を防ぐ実質的な備えになるため",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-09-18-r02"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "GitHubリポジトリにアクセスできること"
       ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "コードの依存関係が複雑でWeb画面から修正できない場合",
+      "continue_if": "コードのコミットが正常に完了した場合",
+      "stop": "すでに最新モデルへ移行済みのプロキシ層を使用している場合"
+    },
+    {
+      "t": "Anthropicの国家安全保障分野CSM求人ページを精読し顧客要件のキーワードを抽出する",
+      "why": "Anthropicの公共部門進出における具体的なターゲット層と要求水準を先行把握するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.85,
+      "success_p_min": 0.8,
+      "success_p_max": 0.9,
+      "success_why": "公開されている求人要件の記載から具体的な職務範囲が読み取れるため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "公共部門向け機能展開における需要項目のメモ作成",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "大手資本が向かう先と個人の隙間を特定する材料になるため",
+      "evidence_ids": [
+        "2026-09-19-r01"
+      ],
+      "assumptions": [
+        "Greenhouseの求人ページにアクセスできること"
+      ],
+      "disconfirm": "求人ページが非公開または削除された場合",
+      "continue_if": "具体的な業務要件や必須スキルが確認できた場合",
+      "stop": "求人内容に独自の示唆が含まれない場合"
+    },
+    {
+      "t": "小額APIクレジットを追加購入し新モデルでの応答速度とコストを実測する",
+      "why": "価格改定と推論コストの変動期において、実運用の単価変化を自ら数字で掴むため",
+      "cost_min": 1000,
+      "cost_max": 3000,
+      "loss_max": 3000,
+      "success_p": 0.7,
+      "success_p_min": 0.6,
+      "success_p_max": 0.8,
+      "success_why": "APIプロバイダーの決済システムがiPhoneから利用可能なため",
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 25,
+      "payback_days": 14,
+      "outcome": "新モデルでの1リクエストあたりの実測コストデータの取得",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "実測データに基づくコスト統制が可能になるため",
+      "evidence_ids": [
+        "2026-09-18-r02"
+      ],
+      "assumptions": [
+        "クレジットカード決済がiPhoneで問題なく通ること"
+      ],
+      "disconfirm": "決済エラーが発生した場合",
+      "continue_if": "想定内のコストでテストリクエストが通った場合",
+      "stop": "単価が事業採算性を大きく超える場合"
+    },
+    {
+      "t": "Anthropicの未発表サーフェスCoworkに関する過去の求人記述をノートに整理する",
+      "why": "今後の機能追加を見越した個人アプリの差別化ポイントを洗い出すため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.65,
+      "success_p_min": 0.55,
+      "success_p_max": 0.75,
+      "success_why": "過去の求人データのアーカイブから推測の精度を高められるため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "Cowork機能の想定用途と個人開発への影響分析メモ",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "大手の次の一手に対する先回り戦略の立案に直結するため",
+      "evidence_ids": [
+        "2026-09-17-r02"
+      ],
+      "assumptions": [
+        "過去の証拠データが手元に保持されていること"
+      ],
+      "disconfirm": "求人情報の文脈が単なる定型業務と判明した場合",
+      "continue_if": "新機能の方向性を示す十分な手掛かりがある場合",
+      "stop": "推測の域を出ず次のアクションに繋がらない場合"
+    },
+    {
+      "t": "有料APIを用いた自動応答スクリプトの動作テストをGitHub Actions経由で実行する",
+      "why": "API仕様の変更に対するシステムの耐性を自動検証しトラブルを回避するため",
+      "cost_min": 500,
+      "cost_max": 1500,
+      "loss_max": 1500,
+      "success_p": 0.75,
+      "success_p_min": 0.65,
+      "success_p_max": 0.85,
+      "success_why": "GitHub Actions上でワークフローの手動トリガーが利用可能なため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 7,
+      "outcome": "API接続テストの成功ログの獲得",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "本番運用での予期せぬダウンタイムを防げるため",
+      "evidence_ids": [
+        "2026-09-18-r02"
+      ],
+      "assumptions": [
+        "GitHub ActionsのシークレットにAPIキーが設定されていること"
+      ],
+      "disconfirm": "ワークフローで認証エラーが発生し即座に修正できない場合",
+      "continue_if": "テストが正常終了しログに結果が残る場合",
+      "stop": "コスト対効果が見合わないと判断した場合"
     }
   ],
-  "kan": "API仲介プラットフォーム上で主要プロバイダの価格改定が連動して発生する頻度は過去のデータから四半期に1回程度だが、今月の改定速度は通常の3倍のペースで推移しているため、今後14日以内にさらに1社が価格体系の改定または特定モデルの廃止に踏み切ると見る。基準率はこの規模の変動が月1回未満であるため、直近の乱高下を考慮して確度はやや引き上げる。"
+  "kan": "Anthropicは今後14日以内に、公式ニュースルーム（anthropic.com/news）において「Claude for Government」をタイトルに含む公式発表記事を公開しない。"
 }

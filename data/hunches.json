@@ -2275,7 +2275,7 @@
       "decider": "判定日時点で上記URLのニュース記事一覧に「Claude for Government」をタイトルに含む記事が存在しない場合に的中"
     },
     "deadline": "2026-10-03",
-    "confidence": 0.82,
+    "confidence": 0.877,
     "base_rate": 0.88,
     "base_rate_class": "大手AI企業が機密・政府向け新ソリューション求人を初出した後、14日以内に一般向け公式発表記事を出さない頻度",
     "confidence_why": "機密インフラ向け提供であり調達手続きの長期性を踏まえれば発表見送りが基準率通り妥当だが、競合他社に対抗した先行ティーザー発表のリスクを勘案して基準率から下方へ微修正した",
@@ -2294,7 +2294,16 @@
         "dir": "kill"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-09-19",
+        "sign": "AnthropicのGreenhouse求人一覧においてCustomer Success Manager, Public Sectorの募集が継続掲載される",
+        "dir": "confirm",
+        "why": "Anthropicの求人一覧においてCustomer Success Manager, Public Sectorの募集が確認されたため。",
+        "conf_before": 0.82,
+        "conf_after": 0.877
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -2302,6 +2311,7 @@
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.82
   }
 ]

@@ -1,49 +1,56 @@
 {
-  "date": "2026-09-18",
-  "updated_at": "2026-09-18 08:42",
+  "date": "2026-09-19",
+  "updated_at": "2026-09-19 08:34",
   "build_id": "truthful-ui-v1",
-  "omote": "DeepSeek Flash LatestがOpenRouter上で10%値下げされ、Z.aiのGLM 5.3 Flashは29%の大幅値上げに踏み切った。",
-  "ura": "推論コストの限界と収益化の焦りが同時に表面化し、API仲介層を握るOpenRouterの手数料構造に依存する弱小ラッパー層の利益が完全に削り取られていると見る。個人開発者が自前でプロキシ層やマルチプロバイダ切り替えの軽量スクリプトを持たない限り、仲介者の値上げとモデルの突然の廃止に全マージンを抜かれる構造が急加速するはずだ。",
-  "ura_taikou": "為替変動や一時的なサーバー負荷の調整に過ぎないという仮説は、複数モデルで一斉に方向が分かれている動きと矛盾するため棄却した。",
-  "dousuru": "iPhoneのSafariからOpenRouterのAPI管理画面を開き、直近30日間のプロバイダ別消費トークン量と単価の変動ログをCSVで書き出せ。Z.aiなどの値上げ対象モデルを直接叩いている箇所があれば、即座にDeepSeek等へのフォールバック条件をコード側へ書き足し、仲介プラットフォームの価格改定に利益を抜かれないルーティングの自衛を今日中に完了させろ。",
-  "kan": "API仲介プラットフォーム上で主要プロバイダの価格改定が連動して発生する頻度は過去のデータから四半期に1回程度だが、今月の改定速度は通常の3倍のペースで推移しているため、今後14日以内にさらに1社が価格体系の改定または特定モデルの廃止に踏み切ると見る。基準率はこの規模の変動が月1回未満であるため、直近の乱高下を考慮して確度はやや引き上げる。",
-  "kan_konkyo": "DeepSeek Flash Latestの10%値下げおよびZ.aiの29%値上げという直近の価格改定データに基づいている。",
-  "kan_hantai": "主要プロバイダが一斉に価格を据え置き、仲介プラットフォームが手数料を引き下げて開発者のコスト負担がむしろ軽減される可能性もある。",
-  "kan_conf": 0.35,
-  "ippan": "AIのAPI料金やモデルの単価が変動する時期なので、利用しているツールの月額料金やトークン単価が勝手に上がっていないか今すぐ確認しろ。知らぬ間に高いプランへ誘導されないよう、利用明細のこまめなチェックが身を守る盾になる。",
-  "votes": [
-    0.28,
-    0.65,
-    0.35
-  ],
+  "omote": "GoogleはOpenRouter上でGemini 2.5のFlashおよびPro系の複数モデルに対し、2026年10月20日の退役予定日を設定した。AnthropicはClaude APIプラットフォームの財務と戦略を統括するリード人材の募集を開始した。",
+  "ura": "Googleは旧世代インフラの維持コストを削り、利用者を強制的に最新世代へ誘導することでAPI単価の統制と利益率の改善を急ぎ、AnthropicはAPI利用の急増と推論コストの変動に対応するため価格戦略の主導権を固めに来ていると見る。",
+  "ura_taikou": "単なるインフラの老朽化による定例のシステム整理であり、戦略的な意図はないという仮説は、複数のフラグシップモデルが一斉に同日の期限を切られている点から退けた。",
+  "dousuru": "OpenRouter経由で旧Geminiモデルに依存しているアプリがあるなら、今すぐ最新の3系への書き換えテストを完了させておけ。APIの仕様変更とコスト改定の波に巻き込まれないよう、利用しているエンドポイントの退役スケジュールをSafariで確認し、フォールバック先のモデルを固定しておけ。",
+  "kan": "Anthropicは今後14日以内に、公式ニュースルーム（anthropic.com/news）において「Claude for Government」をタイトルに含む公式発表記事を公開しない。",
+  "kan_konkyo": "機密インフラ向け提供であり調達手続きの長期性を踏まえれば発表見送りが基準率通り妥当だが、競合他社に対抗した先行ティーザー発表のリスクを勘案して基準率から下方へ微修正した",
+  "kan_hantai": "OpenAIやMicrosoftの公共調達先行に対抗するため、実働配備の完了を待たずにブランド認知確立を狙ったプレアナウンスを急遽実施するケース",
+  "kan_conf": 0.877,
+  "ippan": "Googleなどの主要AIサービスで旧モデルの終了や新モデルへの切り替えが相次いでいますが、普段使いのチャットツールで突然使えなくなることはありません。アプリの裏側でシステムの世代交代が進んでいるだけなので、急に有料プランへの切り替えを迫られたりしても焦って契約せず、まずは無料のままで挙動を確認しましょう。",
+  "votes": [],
   "mijoriku": [
     {
-      "title": "Async GRPO with LoRA across HF Jobs",
-      "desc": "NCCLを使わずにHugging Face Jobs間で分散学習を行う手法の公開",
-      "why": "高価なインフラを不要にする分散学習の仕組みであり、大資本の独占を迂回する技術的隙を突く材料になるため。"
+      "title": "Async GRPO with LoRA across HF Jobs: a bucket, a proxy, and no NCCL",
+      "desc": "高価なNCCLを使わずに安価なインフラで強化学習とLoRAを行う手法",
+      "why": "巨大なGPUクラスターを持たない個人でも、分散環境でのモデルチューニングをローコストで行う技術的隙になるため"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 10%",
-    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 7%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 29%",
-    "[差分] 価格が動いた: Z.ai: GLM Latest 値上げ 5%",
-    "[差分] 価格が動いた: Meta: Muse Glimmer 30B 値下げ 14%",
-    "[差分] 価格が動いた: NVIDIA: Nemotron 3 Ultra 値上げ 4%"
+    "[差分] 退役予定日が設定された: Google: Nano Banana (Gemini 2.5 Flash Image) → 2027-03-15",
+    "[差分] 退役予定日が設定された: Google: Gemini 2.5 Flash Lite → 2026-10-20",
+    "[差分] 退役予定日が設定された: Google: Gemini 2.5 Flash → 2026-10-20",
+    "[差分] 退役予定日が設定された: Google: Gemini 2.5 Flash (batch) → 2026-10-20",
+    "[差分] 退役予定日が設定された: Google: Gemini 2.5 Pro → 2026-10-20",
+    "[差分] 退役予定日が設定された: Google: Gemini 2.5 Pro (batch) → 2026-10-20"
   ],
   "evidence": [
     {
-      "claim": "推論コストの変動と仲介プラットフォームの価格改定が個人開発者のマージンを削り取っている",
-      "confidence": 0.53,
-      "disconfirm": "主要APIプロバイダが全て固定価格制へ移行し、価格競争が完全に停止すること",
+      "claim": "GoogleはGemini 2.5 FlashおよびPro系モデルの退役予定日を2026年10月20日に設定した。",
+      "confidence": 0.85,
+      "disconfirm": "Googleが旧モデルのサポート期間を公式に延長し、退役日が撤回されること。",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 10%",
+          "title": "[差分] 退役予定日が設定された: Google: Gemini 2.5 Flash → 2026-10-20",
           "url": "https://openrouter.ai/models"
         },
         {
-          "title": "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 29%",
+          "title": "[差分] 退役予定日が設定された: Google: Gemini 2.5 Pro → 2026-10-20",
           "url": "https://openrouter.ai/models"
+        }
+      ]
+    },
+    {
+      "claim": "AnthropicはAPIプラットフォームの財務戦略を最適化するための人材採用を進めている。",
+      "confidence": 0.75,
+      "disconfirm": "採用活動が長期化し、体制強化につながらないこと。",
+      "sources": [
+        {
+          "title": "[新規求人] anthropic: Finance & Strategy Lead, Claude Platform (API) (San Francisco, CA)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5358096008"
         }
       ]
     }

@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-09-18 08:38",
+  "updated_at": "2026-09-19 08:32",
   "score": {
     "hit": 11,
     "miss": 23,
     "total": 34,
     "rate": 0.3235294117647059,
-    "pending": 3,
+    "pending": 4,
     "brier": 0.3955754705882354,
     "brier_n": 34,
     "brier_initial": 0.4081029411764707,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-25",
-    "days": 7
+    "days": 6
   },
   "decided": [
     {
@@ -292,17 +292,32 @@
       "counter": "すでに特定の大手顧客との先行検証が完了しており、Claude Enterpriseプランの大型アップデートの一環として即座に公式発表を控えている場合。",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-09-19-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルーム（anthropic.com/news）において「Claude for Government」をタイトルに含む公式発表記事を公開しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-10-03",
+      "confidence": 0.877,
+      "initial_confidence": 0.82,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "OpenAIやMicrosoftの公共調達先行に対抗するため、実働配備の完了を待たずにブランド認知確立を狙ったプレアナウンスを急遽実施するケース",
+      "evidence": "",
+      "signals": [
+        {
+          "date": "2026-09-19",
+          "dir": "confirm",
+          "why": "Anthropicの求人一覧においてCustomer Success Manager, Public Sectorの募集が確認されたため。"
+        }
+      ]
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-09-16",
-          "headline": "anthropic新規求人: Salesforce Developer, Partnerships",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5420994008"
-        },
         {
           "date": "2026-09-17",
           "headline": "Anthropicが規制会計・非財務開示責任者の採用を開始しCSRD対応を推進",
@@ -317,6 +332,11 @@
           "date": "2026-09-18",
           "headline": "Anthropicが公共部門専任のテクニカルプログラムマネージャー求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427834008"
+        },
+        {
+          "date": "2026-09-19",
+          "headline": "Anthropicが国家安全保障分野担当CSM求人を公開しClaude for Governmentの展開体制を拡充",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427479008"
         }
       ]
     },
@@ -350,11 +370,6 @@
       "events": [
         {
           "date": "2026-09-15",
-          "headline": "xAIがダブリン拠点でのNetwork Engineerの求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5235772007"
-        },
-        {
-          "date": "2026-09-15",
           "headline": "xAIがメンフィスおよびサウスヘイブンでのProduction Coordinatorの求人を公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5237890007"
         },
@@ -367,6 +382,11 @@
           "date": "2026-09-18",
           "headline": "xAIがメンフィスおよびサウスヘイブン拠点向けHVAC技術者の募集を開始",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5241407007"
+        },
+        {
+          "date": "2026-09-19",
+          "headline": "xAIがメンフィスおよびサウスヘイブン拠点向けに工期統括スケジューラーの直接採用を開始",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5242789007"
         }
       ]
     },
@@ -427,6 +447,20 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-09-19-r02",
+      "date": "2026-09-19",
+      "headline": "xAIがメンフィスおよびサウスヘイブン拠点向けに工期統括スケジューラーの直接採用を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5242789007"
+    },
+    {
+      "id": "2026-09-19-r01",
+      "date": "2026-09-19",
+      "headline": "Anthropicが国家安全保障分野担当CSM求人を公開しClaude for Governmentの展開体制を拡充",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427479008"
+    },
     {
       "id": "2026-09-18-r03",
       "date": "2026-09-18",
@@ -496,21 +530,7 @@
       "headline": "openai Python SDK v3.14.1 リリース",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/openai/3.14.1/"
-    },
-    {
-      "id": "2026-09-15-r06",
-      "date": "2026-09-15",
-      "headline": "xAIがダブリン拠点でのNetwork Engineerの求人を公開",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5235772007"
-    },
-    {
-      "id": "2026-09-15-r05",
-      "date": "2026-09-15",
-      "headline": "xAIがメンフィスおよびサウスヘイブンでのProduction Coordinatorの求人を公開",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5237890007"
     }
   ],
-  "record_count": 155
+  "record_count": 157
 }
