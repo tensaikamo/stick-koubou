@@ -4463,5 +4463,167 @@
       "2026-09-15-r04",
       "2026-09-12-r03"
     ]
+  },
+  {
+    "id": "2026-09-20-r01",
+    "created_at": "2026-09-20T08:25:33.321265+09:00",
+    "headline": "openai Python SDK v3.16.2 リリース",
+    "what_happened": "PyPIにおいてopenai Python SDKのバージョン3.16.2が公開された。body_fetched=falseのためタイトルのみに基づいている。",
+    "background": "OpenAI公式のPython向けクライアントライブラリのバージョン更新。",
+    "changed": "openai Python SDKのバージョンが3.16.2に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.16.2/",
+      "title": "openai Python SDK v3.16.2 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-16-r01",
+      "2026-09-11-r07",
+      "2026-09-10-r01",
+      "2026-09-09-r01",
+      "2026-09-04-r01",
+      "2026-09-03-r01"
+    ]
+  },
+  {
+    "id": "2026-09-20-r02",
+    "created_at": "2026-09-20T08:25:33.321265+09:00",
+    "headline": "anthropic Python SDK v1.7.0 リリース",
+    "what_happened": "PyPIにおいてanthropic Python SDKのバージョン1.7.0が公開された。body_fetched=falseのためタイトルのみに基づいている。",
+    "background": "Anthropic公式のPython向けクライアントライブラリのバージョン更新。",
+    "changed": "anthropic Python SDKのバージョンが1.7.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.7.0/",
+      "title": "anthropic Python SDK v1.7.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-19-r01",
+      "2026-09-18-r01",
+      "2026-09-17-r02",
+      "2026-09-17-r01",
+      "2026-09-16-r04",
+      "2026-09-16-r02"
+    ]
+  },
+  {
+    "id": "2026-09-20-r03",
+    "created_at": "2026-09-20T08:25:33.321265+09:00",
+    "headline": "anthropic: Security Technology Deployment Specialist 求人公開",
+    "what_happened": "Anthropicがグローバルオフィスの物理セキュリティ技術の導入や検証を行う「Security Technology Deployment Specialist」の求人をGreenhouse上で公開した。",
+    "background": "オフィス網の急拡大に伴う物理セキュリティおよびインフラ展開体制の強化。",
+    "changed": "物理セキュリティ導入を専門とするポジションの採用が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5422950008",
+      "title": "[新規求人] anthropic: Security Technology Deployment Specialist (Remote-Friendly (Travel-Required) | San Francisco, CA | Seattle, WA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-19-r01",
+      "2026-09-18-r01",
+      "2026-09-17-r02",
+      "2026-09-17-r01",
+      "2026-09-16-r04",
+      "2026-09-16-r02"
+    ]
+  },
+  {
+    "id": "2026-09-20-r04",
+    "created_at": "2026-09-20T08:25:33.321265+09:00",
+    "headline": "anthropic: Compute & Infrastructure Counsel, Real Estate 求人公開",
+    "what_happened": "Anthropicが直接のデータセンターリースや建設契約、大規模インフラ投資の法務執行を担う「Compute & Infrastructure Counsel, Real Estate」の求人をGreenhouse上で公開した。",
+    "background": "独自インフラおよびデータセンター網の拡張に伴う法務体制の構築。",
+    "changed": "大規模データセンター案件担当のリアルエステート法務職の採用が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427969008",
+      "title": "[新規求人] anthropic: Compute & Infrastructure Counsel, Real Estate (San Francisco, CA | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-19-r01",
+      "2026-09-18-r01",
+      "2026-09-17-r02",
+      "2026-09-17-r01",
+      "2026-09-16-r04",
+      "2026-09-16-r02"
+    ]
+  },
+  {
+    "id": "2026-09-20-r05",
+    "created_at": "2026-09-20T08:25:33.321265+09:00",
+    "headline": "anthropic: Product Manager, Safeguards (Account Integrity & Abuse) 求人公開",
+    "what_happened": "Anthropicが不正利用対策やアカウント整合性を担当するセーフガードチームのプロダクトマネージャー求人をGreenhouse上で公開した。",
+    "background": "AIサービスの利用拡大に伴う悪用防止およびセーフガード体制の強化。",
+    "changed": "アカウント不正利用対策に特化したプロダクトマネージャーの採用が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5413576008",
+      "title": "[新規求人] anthropic: Product Manager, Safeguards (Account Integrity & Abuse)  (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-19-r01",
+      "2026-09-18-r01",
+      "2026-09-17-r02",
+      "2026-09-17-r01",
+      "2026-09-16-r04",
+      "2026-09-16-r02"
+    ]
+  },
+  {
+    "id": "2026-09-20-r06",
+    "created_at": "2026-09-20T08:25:33.321265+09:00",
+    "headline": "xai: Iron Worker (Construction) 求人公開",
+    "what_happened": "xAIがメンフィスおよびサウスヘイブン拠点のデータセンター向けに構造用鉄骨や冷却プラントの設置を行う「Iron Worker」の求人をGreenhouse上で公開した。",
+    "background": "超大規模スーパーコンピューター施設およびインフラの物理的な建設作業。",
+    "changed": "インフラ構築のための鉄骨・構造物施工要員の採用が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5242350007",
+      "title": "[新規求人] xai: Iron Worker (Construction) ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-19-r02",
+      "2026-09-18-r03",
+      "2026-09-17-r03",
+      "2026-09-15-r06",
+      "2026-09-15-r05",
+      "2026-09-15-r04"
+    ]
   }
 ]
