@@ -1,162 +1,162 @@
 {
-  "date": "2026-09-19",
+  "date": "2026-09-20",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "旧Geminiモデル依存アプリのAPIエンドポイント書き換えと動作確認をSafariから今日終えるか？",
-    "AnthropicのCSM求人の増加を受け、自作アプリの営業・開拓先を公共部門へ絞るか？",
-    "API仕様変更の波に備え、フォールバック先のモデル固定コードをiPhoneのGitHubで修正するか？"
+    "DeepSeekの価格引き下げを受けて手元のAPI呼び出し単価の再計算を今夜終えるか？",
+    "Anthropicの不動産法務求人から読み解くインフラ自前化の波にどう乗るか？",
+    "GitHub上の既存Webアプリへ予備のエンドポイントを30分以内に追記するか？"
   ],
   "moves": [
     {
-      "t": "GitHubのWeb画面でフォールバックモデル指定を最新の3系に書き換える",
-      "why": "API仕様変更による予期せぬエラーを防ぎ、サービス停止リスクを先回りして潰すため",
+      "t": "OpenRouterのDeepSeek V4 Flashエンドポイントをコードへ追加する",
+      "why": "推論限界費用の叩き合いが起きており、自前アプリのランニングコストを即座に下げるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.85,
+      "success_p_min": 0.7,
+      "success_p_max": 0.95,
+      "success_why": "iPhoneのGitHubエディタで数行書き換えるだけで完結するため。",
+      "value_score": 5,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "予備エンドポイントのコード反映済みコミット",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.3,
+      "impact_why": "コスト構造の一部が最適化されるため。",
+      "evidence_ids": [
+        "2026-09-20-r04"
+      ],
+      "assumptions": [
+        "OpenRouter経由でDeepSeek V4 Flashが利用可能であること"
+      ],
+      "disconfirm": "APIの仕様が異なりエラーが頻発すること",
+      "continue_if": "テストリクエストが正常に通ること",
+      "stop": "コードの競合でビルドが壊れる場合"
+    },
+    {
+      "t": "OpenAI/Anthropicの月次API利用費の実績を集計して比較表を作る",
+      "why": "価格破壊が進む中でどのモデルにコストを割いているかを明確化するため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "ダッシュボードの履歴から直接数値を抽出できるため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "APIコスト比較のメモ",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "無駄なプロンプト消費を発見できるため。",
+      "evidence_ids": [
+        "2026-09-20-r02"
+      ],
+      "assumptions": [
+        "各サービスの管理画面にアクセスできること"
+      ],
+      "disconfirm": "利用実績のデータがエクスポートできないこと",
+      "continue_if": "明確なコスト削減の余地が見つかること",
+      "stop": "利用額が少額すぎて分析の意味がない場合"
+    },
+    {
+      "t": "Anthropicのインフラ関連求人ページをスマホで精読し採用傾向をメモする",
+      "why": "物理インフラへの投資シフトが個人開発者の選択に与える影響を測るため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
       "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "iPhoneのブラウザ版GitHubからコードの直接編集とコミットが可能であるため",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 30,
+      "success_why": "公開されているGreenhouseの求人票を直接読めるため。",
+      "value_score": 3,
+      "learning_value": 5,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "リポジトリ上のフォールバックモデル設定の更新完了",
-      "category": "build",
+      "outcome": "採用フォーカスの要約メモ",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "モデル廃止時の自動停止を防ぐ実質的な備えになるため",
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "マクロな潮流の裏付けを取れるため。",
       "evidence_ids": [
-        "2026-09-18-r02"
+        "2026-09-20-r04"
       ],
       "assumptions": [
-        "GitHubリポジトリにアクセスできること"
+        "求人情報が閲覧可能であること"
       ],
-      "disconfirm": "コードの依存関係が複雑でWeb画面から修正できない場合",
-      "continue_if": "コードのコミットが正常に完了した場合",
-      "stop": "すでに最新モデルへ移行済みのプロキシ層を使用している場合"
+      "disconfirm": "募集要項に具体的なインフラ記述がないこと",
+      "continue_if": "特定の地域や職種に投資が集中していると確認できること",
+      "stop": "募集がすでに終了している場合"
     },
     {
-      "t": "Anthropicの国家安全保障分野CSM求人ページを精読し顧客要件のキーワードを抽出する",
-      "why": "Anthropicの公共部門進出における具体的なターゲット層と要求水準を先行把握するため",
+      "t": "Claudeの新しいSDK v1.7.0へのアップデートをコードに適用する",
+      "why": "最新のライブラリ仕様を取り込み不具合を防ぐため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.85,
+      "success_p": 0.9,
       "success_p_min": 0.8,
-      "success_p_max": 0.9,
-      "success_why": "公開されている求人要件の記載から具体的な職務範囲が読み取れるため",
+      "success_p_max": 0.95,
+      "success_why": "PyPIのリリースノートに基づき依存関係を書き換えるだけのため。",
       "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 20,
+      "learning_value": 3,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "公共部門向け機能展開における需要項目のメモ作成",
+      "outcome": "依存関係の更新を反映したコミット",
+      "category": "build",
+      "terminal": true,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "環境の陳腐化を防げるため。",
+      "evidence_ids": [
+        "2026-09-20-r02"
+      ],
+      "assumptions": [
+        "パッケージマネージャーが正常に動作すること"
+      ],
+      "disconfirm": "依存関係のコンフリクトが発生すること",
+      "continue_if": "ビルドテストが通ること",
+      "stop": "重大な破壊的変更が含まれている場合"
+    },
+    {
+      "t": "政府・公共部門向けClaudeの求人要件から個人が狙える隙を分析する",
+      "why": "大手企業が参入しづらいニッチな行政・公共の需要を見つけるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.6,
+      "success_p_min": 0.4,
+      "success_p_max": 0.75,
+      "success_why": "公開求人の必須スキルと業務内容から需要を逆算できるため。",
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "公共系AI適用の隙リスト",
       "category": "research",
       "terminal": false,
-      "impact_min": 0.15,
+      "impact_min": 0.1,
       "impact_max": 0.25,
-      "impact_why": "大手資本が向かう先と個人の隙間を特定する材料になるため",
+      "impact_why": "大手が手薄な領域のアイデアを得られるため。",
       "evidence_ids": [
         "2026-09-19-r01"
       ],
       "assumptions": [
-        "Greenhouseの求人ページにアクセスできること"
+        "求人情報に具体的な業務範囲が記載されていること"
       ],
-      "disconfirm": "求人ページが非公開または削除された場合",
-      "continue_if": "具体的な業務要件や必須スキルが確認できた場合",
-      "stop": "求人内容に独自の示唆が含まれない場合"
-    },
-    {
-      "t": "小額APIクレジットを追加購入し新モデルでの応答速度とコストを実測する",
-      "why": "価格改定と推論コストの変動期において、実運用の単価変化を自ら数字で掴むため",
-      "cost_min": 1000,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.7,
-      "success_p_min": 0.6,
-      "success_p_max": 0.8,
-      "success_why": "APIプロバイダーの決済システムがiPhoneから利用可能なため",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 25,
-      "payback_days": 14,
-      "outcome": "新モデルでの1リクエストあたりの実測コストデータの取得",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "実測データに基づくコスト統制が可能になるため",
-      "evidence_ids": [
-        "2026-09-18-r02"
-      ],
-      "assumptions": [
-        "クレジットカード決済がiPhoneで問題なく通ること"
-      ],
-      "disconfirm": "決済エラーが発生した場合",
-      "continue_if": "想定内のコストでテストリクエストが通った場合",
-      "stop": "単価が事業採算性を大きく超える場合"
-    },
-    {
-      "t": "Anthropicの未発表サーフェスCoworkに関する過去の求人記述をノートに整理する",
-      "why": "今後の機能追加を見越した個人アプリの差別化ポイントを洗い出すため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.65,
-      "success_p_min": 0.55,
-      "success_p_max": 0.75,
-      "success_why": "過去の求人データのアーカイブから推測の精度を高められるため",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "Cowork機能の想定用途と個人開発への影響分析メモ",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "大手の次の一手に対する先回り戦略の立案に直結するため",
-      "evidence_ids": [
-        "2026-09-17-r02"
-      ],
-      "assumptions": [
-        "過去の証拠データが手元に保持されていること"
-      ],
-      "disconfirm": "求人情報の文脈が単なる定型業務と判明した場合",
-      "continue_if": "新機能の方向性を示す十分な手掛かりがある場合",
-      "stop": "推測の域を出ず次のアクションに繋がらない場合"
-    },
-    {
-      "t": "有料APIを用いた自動応答スクリプトの動作テストをGitHub Actions経由で実行する",
-      "why": "API仕様の変更に対するシステムの耐性を自動検証しトラブルを回避するため",
-      "cost_min": 500,
-      "cost_max": 1500,
-      "loss_max": 1500,
-      "success_p": 0.75,
-      "success_p_min": 0.65,
-      "success_p_max": 0.85,
-      "success_why": "GitHub Actions上でワークフローの手動トリガーが利用可能なため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 7,
-      "outcome": "API接続テストの成功ログの獲得",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "本番運用での予期せぬダウンタイムを防げるため",
-      "evidence_ids": [
-        "2026-09-18-r02"
-      ],
-      "assumptions": [
-        "GitHub ActionsのシークレットにAPIキーが設定されていること"
-      ],
-      "disconfirm": "ワークフローで認証エラーが発生し即座に修正できない場合",
-      "continue_if": "テストが正常終了しログに結果が残る場合",
-      "stop": "コスト対効果が見合わないと判断した場合"
+      "disconfirm": "高度な資格や組織体制が前提となっており個人が介入できないこと",
+      "continue_if": "個人でも受託可能なレイヤーが明確になること",
+      "stop": "情報が抽象的で具体的な隙が見出せない場合"
     }
   ],
-  "kan": "Anthropicは今後14日以内に、公式ニュースルーム（anthropic.com/news）において「Claude for Government」をタイトルに含む公式発表記事を公開しない。"
+  "kan": "Anthropicは今後14日以内に、公式求人においてデータセンター用地選定（Site Selection）専任のポジションを新規追加する動きは五分に満たず、見送られると見る。"
 }

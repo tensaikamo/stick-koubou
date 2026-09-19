@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-19 08:32",
+  "updated_at": "2026-09-20 08:27",
   "score": {
     "hit": 11,
     "miss": 23,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-25",
-    "days": 6
+    "days": 5
   },
   "decided": [
     {
@@ -319,35 +319,30 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-09-17",
-          "headline": "Anthropicが規制会計・非財務開示責任者の採用を開始しCSRD対応を推進",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5425432008"
+          "date": "2026-09-20",
+          "headline": "anthropic Python SDK v1.7.0 リリース",
+          "url": "https://pypi.org/project/anthropic/1.7.0/"
         },
         {
-          "date": "2026-09-17",
-          "headline": "Anthropicの法人担当CSM求人に未発表サーフェス「Cowork」の記述が出現",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424388008"
+          "date": "2026-09-20",
+          "headline": "anthropic: Compute & Infrastructure Counsel, Real Estate 求人公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427969008"
         },
         {
-          "date": "2026-09-18",
-          "headline": "Anthropicが公共部門専任のテクニカルプログラムマネージャー求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427834008"
+          "date": "2026-09-20",
+          "headline": "anthropic: Product Manager, Safeguards (Account Integrity & Abuse) 求人公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5413576008"
         },
         {
-          "date": "2026-09-19",
-          "headline": "Anthropicが国家安全保障分野担当CSM求人を公開しClaude for Governmentの展開体制を拡充",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427479008"
+          "date": "2026-09-20",
+          "headline": "anthropic: Security Technology Deployment Specialist 求人公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5422950008"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-09-09",
-          "headline": "openai Python SDK v3.9.0 リリース",
-          "url": "https://pypi.org/project/openai/3.9.0/"
-        },
         {
           "date": "2026-09-10",
           "headline": "OpenAIが公式Python SDK「openai」バージョン3.11.0をPyPIで公開",
@@ -362,17 +357,17 @@
           "date": "2026-09-16",
           "headline": "openai Python SDK v3.14.1 リリース",
           "url": "https://pypi.org/project/openai/3.14.1/"
+        },
+        {
+          "date": "2026-09-20",
+          "headline": "openai Python SDK v3.16.2 リリース",
+          "url": "https://pypi.org/project/openai/3.16.2/"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-09-15",
-          "headline": "xAIがメンフィスおよびサウスヘイブンでのProduction Coordinatorの求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5237890007"
-        },
         {
           "date": "2026-09-17",
           "headline": "xAIがメンフィス拠点のサイトオペレーション統括ディレクターの求人を公開",
@@ -387,6 +382,11 @@
           "date": "2026-09-19",
           "headline": "xAIがメンフィスおよびサウスヘイブン拠点向けに工期統括スケジューラーの直接採用を開始",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5242789007"
+        },
+        {
+          "date": "2026-09-20",
+          "headline": "xai: Iron Worker (Construction) 求人公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5242350007"
         }
       ]
     },
@@ -448,6 +448,48 @@
   ],
   "records": [
     {
+      "id": "2026-09-20-r06",
+      "date": "2026-09-20",
+      "headline": "xai: Iron Worker (Construction) 求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5242350007"
+    },
+    {
+      "id": "2026-09-20-r05",
+      "date": "2026-09-20",
+      "headline": "anthropic: Product Manager, Safeguards (Account Integrity & Abuse) 求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5413576008"
+    },
+    {
+      "id": "2026-09-20-r04",
+      "date": "2026-09-20",
+      "headline": "anthropic: Compute & Infrastructure Counsel, Real Estate 求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427969008"
+    },
+    {
+      "id": "2026-09-20-r03",
+      "date": "2026-09-20",
+      "headline": "anthropic: Security Technology Deployment Specialist 求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5422950008"
+    },
+    {
+      "id": "2026-09-20-r02",
+      "date": "2026-09-20",
+      "headline": "anthropic Python SDK v1.7.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/1.7.0/"
+    },
+    {
+      "id": "2026-09-20-r01",
+      "date": "2026-09-20",
+      "headline": "openai Python SDK v3.16.2 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.16.2/"
+    },
+    {
       "id": "2026-09-19-r02",
       "date": "2026-09-19",
       "headline": "xAIがメンフィスおよびサウスヘイブン拠点向けに工期統括スケジューラーの直接採用を開始",
@@ -488,49 +530,7 @@
       "headline": "xAIがメンフィス拠点のサイトオペレーション統括ディレクターの求人を公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/xai/jobs/5238779007"
-    },
-    {
-      "id": "2026-09-17-r02",
-      "date": "2026-09-17",
-      "headline": "Anthropicの法人担当CSM求人に未発表サーフェス「Cowork」の記述が出現",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424388008"
-    },
-    {
-      "id": "2026-09-17-r01",
-      "date": "2026-09-17",
-      "headline": "Anthropicが規制会計・非財務開示責任者の採用を開始しCSRD対応を推進",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5425432008"
-    },
-    {
-      "id": "2026-09-16-r04",
-      "date": "2026-09-16",
-      "headline": "anthropic新規求人: Salesforce Developer, Partnerships",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5420994008"
-    },
-    {
-      "id": "2026-09-16-r03",
-      "date": "2026-09-16",
-      "headline": "Corrupt Plans, Clean Traces: Evading Chain-of-Thought Monitoring with Plan Injection",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2609.15989v1"
-    },
-    {
-      "id": "2026-09-16-r02",
-      "date": "2026-09-16",
-      "headline": "anthropic Python SDK v1.6.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/1.6.0/"
-    },
-    {
-      "id": "2026-09-16-r01",
-      "date": "2026-09-16",
-      "headline": "openai Python SDK v3.14.1 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.14.1/"
     }
   ],
-  "record_count": 157
+  "record_count": 163
 }
