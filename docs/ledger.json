@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-20 08:27",
+  "updated_at": "2026-09-21 08:27",
   "score": {
     "hit": 11,
     "miss": 23,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-25",
-    "days": 5
+    "days": 4
   },
   "decided": [
     {
@@ -298,7 +298,7 @@
       "claim": "Anthropicは今後14日以内に、公式ニュースルーム（anthropic.com/news）において「Claude for Government」をタイトルに含む公式発表記事を公開しない。",
       "subject": "Anthropic",
       "deadline": "2026-10-03",
-      "confidence": 0.877,
+      "confidence": 0.918,
       "initial_confidence": 0.82,
       "result": null,
       "status": "pending",
@@ -310,6 +310,11 @@
           "date": "2026-09-19",
           "dir": "confirm",
           "why": "Anthropicの求人一覧においてCustomer Success Manager, Public Sectorの募集が確認されたため。"
+        },
+        {
+          "date": "2026-09-21",
+          "dir": "confirm",
+          "why": "本日の事象としてCustomer Success Manager, Public Sectorの新規求人掲載が確認されたため、募集が継続掲載されていることの指標に該当する。"
         }
       ]
     }

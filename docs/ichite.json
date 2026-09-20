@@ -1,162 +1,169 @@
 {
-  "date": "2026-09-20",
+  "date": "2026-09-21",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "DeepSeekの価格引き下げを受けて手元のAPI呼び出し単価の再計算を今夜終えるか？",
-    "Anthropicの不動産法務求人から読み解くインフラ自前化の波にどう乗るか？",
-    "GitHub上の既存Webアプリへ予備のエンドポイントを30分以内に追記するか？"
+    "OpenRouterのAPI設定を開き、旧モデルのフォールバック先を最新のFlash系へ今夜書き換えたか？",
+    "自動フォールバック先が9月末の停止予定モデルに依存している箇所をすべて特定したか？",
+    "iPhoneのSafariからAPIダッシュボードにアクセスし、エンドポイントの書き換えを完了させたか？"
   ],
   "moves": [
     {
-      "t": "OpenRouterのDeepSeek V4 Flashエンドポイントをコードへ追加する",
-      "why": "推論限界費用の叩き合いが起きており、自前アプリのランニングコストを即座に下げるため。",
+      "t": "複数のプロバイダ間でのAPIエンドポイントの切り替えスクリプトまたは設定テンプレートをGitHubに保存する",
+      "why": "特定のプロバイダで急な接続障害や仕様変更が起きた際に、即座に別のインフラへ逃げられる構造を作るため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.7,
-      "success_p_max": 0.95,
-      "success_why": "iPhoneのGitHubエディタで数行書き換えるだけで完結するため。",
+      "success_p": 0.65,
+      "success_p_min": 0.45,
+      "success_p_max": 0.8,
+      "success_why": "旧モデルの退役やインフラの再編期には代替プロバイダへの切り替え速度が個人の生存率を左右するため",
       "value_score": 5,
-      "learning_value": 4,
-      "time_minutes": 20,
+      "learning_value": 5,
+      "time_minutes": 30,
       "payback_days": 0,
-      "outcome": "予備エンドポイントのコード反映済みコミット",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.3,
-      "impact_why": "コスト構造の一部が最適化されるため。",
+      "outcome": "GitHubのパブリックまたはプライベートリポジトリに設定テンプレートが保存されている状態",
+      "category": "publish",
+      "terminal": true,
+      "impact_min": 0.3,
+      "impact_max": 0.5,
+      "impact_why": "インフラの単一障害点（SPOF）を排除し、個人でも機動的に動ける基盤が完成するため",
       "evidence_ids": [
-        "2026-09-20-r04"
+        "user-goal"
       ],
       "assumptions": [
-        "OpenRouter経由でDeepSeek V4 Flashが利用可能であること"
+        "iPhoneのSafariからGitHubへコードをアップロードできること"
       ],
-      "disconfirm": "APIの仕様が異なりエラーが頻発すること",
-      "continue_if": "テストリクエストが正常に通ること",
-      "stop": "コードの競合でビルドが壊れる場合"
+      "disconfirm": "単一のプロバイダに完全に依存し続ける方針に転換する場合",
+      "continue_if": "テンプレートファイルの保存とバージョン管理が成功した場合",
+      "stop": "プラットフォーム側の仕様が固定化され切り替えが無意味になった場合"
     },
     {
-      "t": "OpenAI/Anthropicの月次API利用費の実績を集計して比較表を作る",
-      "why": "価格破壊が進む中でどのモデルにコストを割いているかを明確化するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "ダッシュボードの履歴から直接数値を抽出できるため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "APIコスト比較のメモ",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "無駄なプロンプト消費を発見できるため。",
-      "evidence_ids": [
-        "2026-09-20-r02"
-      ],
-      "assumptions": [
-        "各サービスの管理画面にアクセスできること"
-      ],
-      "disconfirm": "利用実績のデータがエクスポートできないこと",
-      "continue_if": "明確なコスト削減の余地が見つかること",
-      "stop": "利用額が少額すぎて分析の意味がない場合"
-    },
-    {
-      "t": "Anthropicのインフラ関連求人ページをスマホで精読し採用傾向をメモする",
-      "why": "物理インフラへの投資シフトが個人開発者の選択に与える影響を測るため。",
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
       "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "公開されているGreenhouseの求人票を直接読めるため。",
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
       "value_score": 3,
-      "learning_value": 5,
+      "learning_value": 2,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "採用フォーカスの要約メモ",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "マクロな潮流の裏付けを取れるため。",
-      "evidence_ids": [
-        "2026-09-20-r04"
-      ],
-      "assumptions": [
-        "求人情報が閲覧可能であること"
-      ],
-      "disconfirm": "募集要項に具体的なインフラ記述がないこと",
-      "continue_if": "特定の地域や職種に投資が集中していると確認できること",
-      "stop": "募集がすでに終了している場合"
-    },
-    {
-      "t": "Claudeの新しいSDK v1.7.0へのアップデートをコードに適用する",
-      "why": "最新のライブラリ仕様を取り込み不具合を防ぐため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.9,
-      "success_p_min": 0.8,
-      "success_p_max": 0.95,
-      "success_why": "PyPIのリリースノートに基づき依存関係を書き換えるだけのため。",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "依存関係の更新を反映したコミット",
+      "outcome": "次に直す内容がIssueとして1件残る",
       "category": "build",
-      "terminal": true,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "環境の陳腐化を防げるため。",
+      "terminal": false,
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
       "evidence_ids": [
-        "2026-09-20-r02"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "パッケージマネージャーが正常に動作すること"
+        "Issueが次の実装に使われる"
       ],
-      "disconfirm": "依存関係のコンフリクトが発生すること",
-      "continue_if": "ビルドテストが通ること",
-      "stop": "重大な破壊的変更が含まれている場合"
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
     },
     {
-      "t": "政府・公共部門向けClaudeの求人要件から個人が狙える隙を分析する",
-      "why": "大手企業が参入しづらいニッチな行政・公共の需要を見つけるため。",
+      "t": "今日の一次情報を1本選び要点を3行残す",
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.4,
-      "success_p_max": 0.75,
-      "success_why": "公開求人の必須スキルと業務内容から需要を逆算できるため。",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 25,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "value_score": 2,
+      "learning_value": 3,
+      "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "公共系AI適用の隙リスト",
+      "outcome": "一次情報の要点メモが3行残る",
       "category": "research",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "大手が手薄な領域のアイデアを得られるため。",
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "意思決定へ使えた時だけ価値になる",
       "evidence_ids": [
-        "2026-09-19-r01"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "求人情報に具体的な業務範囲が記載されていること"
+        "読む情報が現在の目標に関係する"
       ],
-      "disconfirm": "高度な資格や組織体制が前提となっており個人が介入できないこと",
-      "continue_if": "個人でも受託可能なレイヤーが明確になること",
-      "stop": "情報が抽象的で具体的な隙が見出せない場合"
+      "disconfirm": "要点が次の行動を一つも変えない",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了",
+      "fallback": true
+    },
+    {
+      "t": "予測を1件確認し確度メモを1行更新する",
+      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.55,
+      "success_p_max": 0.8,
+      "success_why": "既存予測の更新なので新規企画より着地しやすい",
+      "value_score": 2,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "追跡中予測の確度メモが更新される",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "誤った前提で投資する損失を減らす",
+      "evidence_ids": [
+        "action-history"
+      ],
+      "assumptions": [
+        "予測が現在の投資判断に関係する"
+      ],
+      "disconfirm": "確度更新が次の行動や支出を変えない",
+      "continue_if": "確度を動かす一次根拠が見つかった",
+      "stop": "根拠URLを1本確認したら終了",
+      "fallback": true
+    },
+    {
+      "t": "独自ドメイン候補を決め購入画面まで進める",
+      "why": "公開先を固定し、他人へ渡せる形へ近づけるため。",
+      "cost_min": 1000,
+      "cost_max": 4000,
+      "loss_max": 4000,
+      "success_p": 0.65,
+      "success_p_min": 0.45,
+      "success_p_max": 0.75,
+      "success_why": "価格と空きを確認できるが、名前の決定で迷う余地がある",
+      "value_score": 4,
+      "learning_value": 2,
+      "time_minutes": 30,
+      "payback_days": 180,
+      "outcome": "候補ドメインと年間費用が確定する",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.02,
+      "impact_max": 0.08,
+      "impact_why": "公開と共有の摩擦を下げるが、ドメインだけでは成果にならない",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "90日以内に公開する"
+      ],
+      "disconfirm": "公開日や見せる相手が決まっていない",
+      "continue_if": "公開予定日と最初に見せる相手が決まっている",
+      "stop": "年間4000円を超えたら購入しない",
+      "fallback": true
     }
   ],
-  "kan": "Anthropicは今後14日以内に、公式求人においてデータセンター用地選定（Site Selection）専任のポジションを新規追加する動きは五分に満たず、見送られると見る。"
+  "kan": "主要プロバイダによる旧モデルの一斉退役の波及により、個人開発者が依存していた一部の非公式APIラッパーやニッチな互換サービスが2週間以内に突如として接続エラーを起こすと見る。"
 }
