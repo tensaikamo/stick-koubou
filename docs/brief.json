@@ -1,49 +1,67 @@
 {
-  "date": "2026-09-21",
-  "updated_at": "2026-09-21 08:28",
+  "date": "2026-09-22",
+  "updated_at": "2026-09-22 09:21",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouterなどの主要プロバイダで旧世代モデルに2026年9月末から10月頭の退役日が設定され、新世代の推論特化型モデルへのリソース集約が急ピッチで進んでいる。",
-  "ura": "インフラ維持費の限界と価格破壊の加速により、プロバイダはマイナーモデルの維持コストを切り捨て、軽量高速な特化モデルへトラフィックを強制移行させてサーバー単価を削るフェーズに入っている。",
-  "ura_taikou": "単なる定期的なモデルローテーションであり、API利用者に与える影響は軽微であるという仮説は、複数社の旧モデルが一斉に排除されている現状のスピード感を説明できないため退けた。",
-  "dousuru": "OpenRouterのAPI設定画面を開き、利用している旧モデルの自動フォールバック先が停止予定モデルに依存していないか直ちに確認しろ。9月末から10月上旬にかけて順次シャットダウンされるため、今夜のうちに最新のFlash系や後継の軽量推論モデルへエンドポイントを書き換えろ。",
-  "kan": "主要プロバイダによる旧モデルの一斉退役の波及により、個人開発者が依存していた一部の非公式APIラッパーやニッチな互換サービスが2週間以内に突如として接続エラーを起こすと見る。",
-  "kan_konkyo": "OpenRouterのモデル一覧において複数社の複数モデル（MiniMax M2.1、DeepSeek V3.2系など）に同月同日付近の退役期限が集中して設定されている事実から来た。",
-  "kan_hantai": "主要プロバイダがユーザーの反発を恐れて旧モデルのサポート期間を大幅に延長する場合はこの予測は外れる。",
-  "kan_conf": 0.22,
-  "ippan": "AIサービスの裏で古いシステムが勝手に終了し、昨日まで使えていた機能が突然動かなくなる現象が増えている。特定のアプリに依存しすぎず、公式のアップデート情報をこまめに確認することが重要だ。",
-  "votes": [
-    0.15,
-    0.42,
-    0.22
-  ],
+  "omote": "Anthropicが上場企業に義務付けられる内部統制基準を担う「Senior Manager, IT SOX」の求人票を公開した。同時にAmazonはMetaの購買エージェント「Muse」からのアクセス遮断を実施した。巨大テック各社が公開企業基準への防壁固めと、自社経済圏の囲い込みを一段階引き上げている。",
+  "ura": "Senior Manager, IT SOXの設置は単なる上場観測ではなく、AmazonやGoogle等大口出資者の持ち分比率規制をクリアしつつ巨額資本を直接受け入れるための財務・システム分離実証だ。一方AmazonによるMetaのMuse遮断は、Metaによる購買手数料中抜きを潰す防衛戦である。大手プラットフォームがAIトラフィックの遮断戦争に入った以上、他社UIをまたぐ横断自動化ツールは全滅する。個人の隙は、プラットフォームに依存しない独自インプットの変換器と特化型UIの所有にある。",
+  "ura_taikou": "防衛省や政府機関向けのセキュリティ調達基準クリアのみを目的とした内部統制強化であるという見方も検証したが、職種名が明確に米国上場企業開示統制法制であるIT SOXを名指ししているため退けた。",
+  "dousuru": "今夜の30分で、GitHubで公開中の自作Webアプリの外部依存構造を点検しろ。他社サイトの動的スクレイピングや他社UIに依存する処理を完全に排除し、ユーザーの手元入力データを直接処理する独立設計へ切り替えろ。SafariからGitHubのコード編集画面を開き、外部サイト依存コードを削除してOpenRouter経由のプロンプト処理に統一してコミットを完了させろ。",
+  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて企業買収またはM&Aに関する合意を発表しない",
+  "kan_konkyo": "求人開始からディール成立・公表までの一般的なリードタイムを鑑み、基準率の低さを維持した",
+  "kan_hantai": "水面下で進んでいた大型買収交渉が予定通り期日内に合意に達し、即座に公表される場合",
+  "kan_conf": 0.825,
+  "ippan": "ネットショッピングや情報収集を「AIが代わりに自動でやってくれる」という非公認の外部ツールには手を出さないでください。大手サイト側が他社AIのアクセスをシステム的に遮断し始めており、購入した直後に使えなくなる被害が多発しています。ブラウザの公式機能だけで完結する手段を選ぶのが賢明です。",
+  "votes": [],
   "mijoriku": [
     {
-      "title": "Async GRPO with LoRA across HF Jobs",
-      "desc": "NCCLを使わずに分散環境でLoRAを適用するアーキテクチャの公開",
-      "why": "高価な通信インフラを不要にするため、個人が低コストで独自モデルの強化学習を行うための先回り材料になるから"
+      "title": "AmazonによるMeta購買エージェントMuseの遮断",
+      "desc": "Amazonが自社ドメイン内でのMeta製AIエージェントによる自動閲覧・購買処理をブロックした事象。",
+      "why": "エージェント全自動化の未来を信じて他社UIの自動操作ラッパーを作る個人が、プラットフォームの一手で排除されるリスクを先回りして回避できるため。"
     }
   ],
   "diffs": [
-    "[差分] 退役予定日が設定された: MiniMax: MiniMax M2.1 → 2026-10-08",
-    "[差分] 退役予定日が設定された: DeepSeek: DeepSeek V3.2 → 2026-09-28",
-    "[差分] 退役予定日が設定された: DeepSeek: DeepSeek V3.2 Exp → 2026-09-28",
-    "[差分] 退役予定日が設定された: DeepSeek: DeepSeek V3.1 Terminus → 2026-09-28",
-    "[差分] 退役予定日が設定された: Baidu: ERNIE 4.5 VL 424B A47B  → 2026-10-08",
-    "[差分] 退役予定日が設定された: DeepSeek: R1 Distill Llama 70B → 2026-09-28"
+    "[差分] 退役予定日が設定された: ByteDance Seed: Seed-2.0-Code → 2026-11-11",
+    "[差分] 退役予定日が設定された: ByteDance Seed: Seed 1.6 Flash → 2026-11-11",
+    "[差分] 退役予定日が設定された: ByteDance Seed: Seed 1.6 → 2026-11-11",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 7%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 8%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 67%"
   ],
   "evidence": [
     {
-      "claim": "OpenRouterにおいて旧世代モデルの退役予定日が急ピッチで設定され、インフラ集約が起きている",
-      "confidence": 0.75,
-      "disconfirm": "退役予定日を過ぎても旧モデルの稼働が継続され、プロバイダがマルチバージョン維持方針へ転換する",
+      "claim": "AnthropicがSenior Manager, IT SOXの求人を公開し上場水準の統制構築を開始した",
+      "confidence": 0.92,
+      "disconfirm": "求人票が即座に取り下げられ、単なる外部委託管理の誤植であったと訂正されること",
       "sources": [
         {
-          "title": "[差分] 退役予定日が設定された: MiniMax: MiniMax M2.1 → 2026-10-08",
-          "url": "https://openrouter.ai/models"
+          "title": "[新規求人] anthropic: Senior Manager, IT SOX (San Francisco, CA)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5430222008"
+        }
+      ]
+    },
+    {
+      "claim": "AmazonがMetaのAI購買エージェントMuseのアクセスを遮断した",
+      "confidence": 0.88,
+      "disconfirm": "AmazonがMeta等の外部購買エージェントに対して公式連携APIを開放すること",
+      "sources": [
+        {
+          "title": "Amazon blocks Meta’s new Muse AI agent from shopping on amazon.com",
+          "url": "https://www.forbes.com/sites/jonmarkman/2026/09/21/amazon-blocks-metas-new-muse-ai-agent-from-shopping-on-amazoncom/"
+        }
+      ]
+    },
+    {
+      "claim": "大手プラットフォーム間のAI遮断戦争により他社UI依存ツールは遮断リスクを負う",
+      "confidence": 0.85,
+      "disconfirm": "主要テック企業間でAIエージェントの自由なデータ収集を相互保証する協定が締結されること",
+      "sources": [
+        {
+          "title": "[新規求人] anthropic: Senior Manager, IT SOX (San Francisco, CA)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5430222008"
         },
         {
-          "title": "[差分] 退役予定日が設定された: DeepSeek: DeepSeek V3.2 → 2026-09-28",
-          "url": "https://openrouter.ai/models"
+          "title": "Amazon blocks Meta’s new Muse AI agent from shopping on amazon.com",
+          "url": "https://www.forbes.com/sites/jonmarkman/2026/09/21/amazon-blocks-metas-new-muse-ai-agent-from-shopping-on-amazoncom/"
         }
       ]
     }

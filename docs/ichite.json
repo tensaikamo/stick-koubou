@@ -1,169 +1,164 @@
 {
-  "date": "2026-09-21",
+  "date": "2026-09-22",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのAPI設定を開き、旧モデルのフォールバック先を最新のFlash系へ今夜書き換えたか？",
-    "自動フォールバック先が9月末の停止予定モデルに依存している箇所をすべて特定したか？",
-    "iPhoneのSafariからAPIダッシュボードにアクセスし、エンドポイントの書き換えを完了させたか？"
+    "他社UI遮断が進む中、自作アプリは他社依存コードを即座に削れるか？",
+    "外部データ取得が止まっても手元入力だけで成立する機能に絞れているか？",
+    "OpenRouter直接接続でプラットフォーム閉鎖リスクを回避しているか？"
   ],
   "moves": [
     {
-      "t": "複数のプロバイダ間でのAPIエンドポイントの切り替えスクリプトまたは設定テンプレートをGitHubに保存する",
-      "why": "特定のプロバイダで急な接続障害や仕様変更が起きた際に、即座に別のインフラへ逃げられる構造を作るため",
+      "t": "外部依存API呼出をGitHub上で削除する",
+      "why": "AmazonによるMeta遮断が示す通り他社UI跨ぎは潰されるため自作Webアプリの外部依存を完全遮断する。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.65,
-      "success_p_min": 0.45,
-      "success_p_max": 0.8,
-      "success_why": "旧モデルの退役やインフラの再編期には代替プロバイダへの切り替え速度が個人の生存率を左右するため",
-      "value_score": 5,
-      "learning_value": 5,
-      "time_minutes": 30,
+      "success_p": 0.85,
+      "success_p_min": 0.7,
+      "success_p_max": 0.95,
+      "success_why": "iPhoneのSafariからGitHubのリポジトリ直接編集でコード削除コミットが完結するため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "GitHubのパブリックまたはプライベートリポジトリに設定テンプレートが保存されている状態",
-      "category": "publish",
-      "terminal": true,
-      "impact_min": 0.3,
-      "impact_max": 0.5,
-      "impact_why": "インフラの単一障害点（SPOF）を排除し、個人でも機動的に動ける基盤が完成するため",
+      "outcome": "外部スクレイピング及び他社UI依存コードが除去されたコミットログ",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.2,
+      "impact_why": "プラットフォーム側の遮断によるアプリ突然死リスクをゼロにするため。",
       "evidence_ids": [
-        "user-goal"
+        "2026-09-20-r05",
+        "2026-09-22-r04"
       ],
       "assumptions": [
-        "iPhoneのSafariからGitHubへコードをアップロードできること"
+        "GitHubリポジトリにSafari経由でアクセスし直接編集できること"
       ],
-      "disconfirm": "単一のプロバイダに完全に依存し続ける方針に転換する場合",
-      "continue_if": "テンプレートファイルの保存とバージョン管理が成功した場合",
-      "stop": "プラットフォーム側の仕様が固定化され切り替えが無意味になった場合"
+      "disconfirm": "削除対象コードがなく既に完全にローカル完結している場合",
+      "continue_if": "削除後もアプリのコア機能が単体でエラーなく動作する",
+      "stop": "外部APIがないと基本機能が全く成立しない設計になっていた場合"
     },
     {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "t": "OpenRouter直接呼出へ設定を書き換える",
+      "why": "特定巨大資本の囲い込みを迂回し、ユーザー入力変換に特化した単一エンドポイントへ統一するため。",
+      "cost_min": 0,
+      "cost_max": 500,
+      "loss_max": 500,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "APIキー差替えとエンドポイントURL変更のみでiPhone上で30分以内に完結する作業であるため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 7,
+      "outcome": "OpenRouter経由でLLM出力を直接受け取るよう更新されたコードベース",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.25,
+      "impact_why": "特定プロバイダのアカウント閉鎖や仕様変更リスクから完全に脱却できるため。",
+      "evidence_ids": [
+        "2026-09-22-r04"
+      ],
+      "assumptions": [
+        "OpenRouterのAPIキーが発行済みまたは即時取得可能であること"
+      ],
+      "disconfirm": "OpenRouter経由のレイテンシがUIの許容範囲を大幅に超える場合",
+      "continue_if": "テスト実行で指定プロンプトに対する正常応答が200 OKで返る",
+      "stop": "API認証エラーが解決せず通信が3回連続で失敗した場合"
+    },
+    {
+      "t": "自作UIの手元入力フォームを拡張する",
+      "why": "外部自動収集の代わりにユーザーが直接貼り付ける生データ処理器へ転換し、閉鎖経済圏の外側に立つ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
-      "success_p_min": 0.7,
+      "success_p_min": 0.65,
       "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "success_why": "HTMLフォームのテキストエリア追加と処理ロジックの修正はWeb上の編集で完結するため。",
       "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 15,
+      "learning_value": 3,
+      "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
+      "outcome": "ユーザー入力の直接ペーストを受け付ける拡張された入力画面",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "遮断される巡回ボットではなく個人が自発的に持ち込むデータの受け皿になるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-09-20-r05"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "ユーザーが手元データをコピー＆ペーストして処理する需要があること"
       ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "手動入力の負荷が高すぎてテスト利用すら完了しない場合",
+      "continue_if": "ペーストされた生データが構文崩れを起こさず正常にパースされる",
+      "stop": "データフォーマットが複雑すぎて手動ペースト処理に向かないと判明した場合"
     },
     {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "value_score": 2,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "一次情報の要点メモが3行残る",
-      "category": "research",
+      "t": "OpenRouter少額クレジットをチャージする",
+      "why": "自前ツールを停止させずテスト運用し、プラットフォーム依存を排した個人インフラの稼働を確保する。",
+      "cost_min": 750,
+      "cost_max": 1500,
+      "loss_max": 1500,
+      "success_p": 0.9,
+      "success_p_min": 0.8,
+      "success_p_max": 0.95,
+      "success_why": "Safari上でApple Payまたはカード決済を行うだけで数分で即座に残高反映されるため。",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 10,
+      "payback_days": 14,
+      "outcome": "残高チャージ完了画面とAPIキーの課金有効化ステータス",
+      "category": "buy",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "impact_min": 0.02,
+      "impact_max": 0.1,
+      "impact_why": "インフラ停止による検証の中断を防ぎ、実運用テストを前進させるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-09-22-r04"
       ],
       "assumptions": [
-        "読む情報が現在の目標に関係する"
+        "クレジットカードまたはデビットカードがオンライン決済で使用可能であること"
       ],
-      "disconfirm": "要点が次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
+      "disconfirm": "決済が拒否されるか、アカウント停止措置を受けた場合",
+      "continue_if": "チャージ完了後に残高が即座に反映されAPIリクエストが通る",
+      "stop": "最小チャージ額が想定上限を超えているか決済手数料が過大な場合"
     },
     {
-      "t": "予測を1件確認し確度メモを1行更新する",
-      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
+      "t": "新版Webアプリを無料ホスティングへ再デプロイ",
+      "why": "外部依存を排除した独立版アプリを即座に本番稼働させ、実機での動作確認を終わらせる。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "既存予測の更新なので新規企画より着地しやすい",
-      "value_score": 2,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "追跡中予測の確度メモが更新される",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "誤った前提で投資する損失を減らす",
-      "evidence_ids": [
-        "action-history"
-      ],
-      "assumptions": [
-        "予測が現在の投資判断に関係する"
-      ],
-      "disconfirm": "確度更新が次の行動や支出を変えない",
-      "continue_if": "確度を動かす一次根拠が見つかった",
-      "stop": "根拠URLを1本確認したら終了",
-      "fallback": true
-    },
-    {
-      "t": "独自ドメイン候補を決め購入画面まで進める",
-      "why": "公開先を固定し、他人へ渡せる形へ近づけるため。",
-      "cost_min": 1000,
-      "cost_max": 4000,
-      "loss_max": 4000,
-      "success_p": 0.65,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "価格と空きを確認できるが、名前の決定で迷う余地がある",
+      "success_p_min": 0.5,
+      "success_p_max": 0.85,
+      "success_why": "GitHubコミットに連動したGitHub PagesまたはVercel等の自動ビルドでiPhoneから監視可能なため。",
       "value_score": 4,
-      "learning_value": 2,
-      "time_minutes": 30,
-      "payback_days": 180,
-      "outcome": "候補ドメインと年間費用が確定する",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.08,
-      "impact_why": "公開と共有の摩擦を下げるが、ドメインだけでは成果にならない",
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "公開URLで最新の独立動作版が正しくロードされる本番環境",
+      "category": "publish",
+      "terminal": true,
+      "impact_min": 0.1,
+      "impact_max": 0.25,
+      "impact_why": "着想段階を脱し、手元で実際に動作する成果物を確実に着地させるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-09-22-r04",
+        "2026-09-20-r05"
       ],
       "assumptions": [
-        "90日以内に公開する"
+        "CI/CDの自動デプロイ設定が正常に組まれていること"
       ],
-      "disconfirm": "公開日や見せる相手が決まっていない",
-      "continue_if": "公開予定日と最初に見せる相手が決まっている",
-      "stop": "年間4000円を超えたら購入しない",
-      "fallback": true
+      "disconfirm": "デプロイエラーが発生しビルドログの解消にPC環境が必要になる場合",
+      "continue_if": "ビルドステータスがSuccessになり公開URLが表示される",
+      "stop": "ビルドスクリプトの根本的な修正が必要でiPhone画面では修正不能な場合"
     }
   ],
-  "kan": "主要プロバイダによる旧モデルの一斉退役の波及により、個人開発者が依存していた一部の非公式APIラッパーやニッチな互換サービスが2週間以内に突如として接続エラーを起こすと見る。"
+  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて企業買収またはM&Aに関する合意を発表しない"
 }

@@ -2338,7 +2338,7 @@
       "decider": "Anthropicの公式ニュースルームに他社買収やM&A成立を告げるプレスリリースが掲載されていないこと"
     },
     "deadline": "2026-10-06",
-    "confidence": 0.75,
+    "confidence": 0.825,
     "base_rate": 0.8,
     "base_rate_class": "AI企業が求人掲載後14日以内に公式ニュースルームでM&Aを発表する頻度",
     "confidence_why": "求人開始からディール成立・公表までの一般的なリードタイムを鑑み、基準率の低さを維持した",
@@ -2357,7 +2357,16 @@
         "dir": "confirm"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-09-22",
+        "sign": "新たなM&A関連の求人や追加募集が同ページに掲載される",
+        "dir": "confirm",
+        "why": "Anthropicが新たにM&A・戦略的取引関連の職種である「Corporate Finance & Strategy, Strategic Transactions」の求人を掲載したため。",
+        "conf_before": 0.75,
+        "conf_after": 0.825
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -2365,6 +2374,7 @@
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.75
   }
 ]
