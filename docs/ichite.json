@@ -1,164 +1,162 @@
 {
-  "date": "2026-09-22",
+  "date": "2026-09-23",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "他社UI遮断が進む中、自作アプリは他社依存コードを即座に削れるか？",
-    "外部データ取得が止まっても手元入力だけで成立する機能に絞れているか？",
-    "OpenRouter直接接続でプラットフォーム閉鎖リスクを回避しているか？"
+    "OpenRouterの値下げに伴い、現在進めているWebアプリの接続先を今日中にどう書き換えるか？",
+    "APIのコスト削減分をどの機能の拡張に割り当てるか？",
+    "明日の朝までに完了させるAPIキーの切り替え手順をどう固定するか？"
   ],
   "moves": [
     {
-      "t": "外部依存API呼出をGitHub上で削除する",
-      "why": "AmazonによるMeta遮断が示す通り他社UI跨ぎは潰されるため自作Webアプリの外部依存を完全遮断する。",
+      "t": "現在のWebアプリのAPI接続先コードを検証する",
+      "why": "価格破壊された最安モデルへの切り替え準備を行うため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.6,
+      "success_p_min": 0.5,
+      "success_p_max": 0.7,
+      "success_why": "既存のコード構造を確認することで移行リスクが下がるため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "接続先変更箇所の特定リスト",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "手戻りを防ぐ最小限のコード確認のため",
+      "evidence_ids": [
+        "2026-09-20-r01"
+      ],
+      "assumptions": [
+        "GitHubのWeb画面からコードを閲覧できること"
+      ],
+      "disconfirm": "リポジトリにアクセスできない場合",
+      "continue_if": "該当箇所が特定できた場合",
+      "stop": "リポジトリが消失している場合"
+    },
+    {
+      "t": "最安モデルを利用したテストリクエストを1回送る",
+      "why": "新価格モデルの挙動と応答速度を実機で確かめるため",
+      "cost_min": 100,
+      "cost_max": 500,
+      "loss_max": 500,
+      "success_p": 0.5,
+      "success_p_min": 0.4,
+      "success_p_max": 0.6,
+      "success_why": "API仕様の変更に伴うエラーの有無を検証するため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 1,
+      "outcome": "テストリクエストの成功ログ",
+      "category": "apply",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "実用性の担保に直結するため",
+      "evidence_ids": [
+        "2026-09-20-r01"
+      ],
+      "assumptions": [
+        "APIキーの残高が足りていること"
+      ],
+      "disconfirm": "400番台のエラーが返り続ける場合",
+      "continue_if": "正常なレスポンスが返ってきた場合",
+      "stop": "認証エラーが解消しない場合"
+    },
+    {
+      "t": "API利用料金の上限アラートを設定する",
+      "why": "予期せぬコスト発生を防ぎ個人開発のリスクを限定するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.9,
+      "success_p_min": 0.8,
+      "success_p_max": 0.95,
+      "success_why": "管理画面に予算制限機能が標準搭載されているため",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "利用上限アラートの設定完了",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "安全な運用基盤を維持するため",
+      "evidence_ids": [
+        "2026-09-20-r01"
+      ],
+      "assumptions": [
+        "管理画面のダッシュボードにアクセスできること"
+      ],
+      "disconfirm": "設定項目が見つからない場合",
+      "continue_if": "上限額の保存が成功した場合",
+      "stop": "アカウント機能が制限されている場合"
+    },
+    {
+      "t": "APIキーのローテーション手順をメモに書き出す",
+      "why": "セキュリティリスクを管理し不正利用を防ぐため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.85,
-      "success_p_min": 0.7,
-      "success_p_max": 0.95,
-      "success_why": "iPhoneのSafariからGitHubのリポジトリ直接編集でコード削除コミットが完結するため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 20,
+      "success_p_min": 0.75,
+      "success_p_max": 0.9,
+      "success_why": "手順化することで次回以降の作業ミスが減るため",
+      "value_score": 2,
+      "learning_value": 2,
+      "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "外部スクレイピング及び他社UI依存コードが除去されたコミットログ",
-      "category": "build",
+      "outcome": "手順メモの作成完了",
+      "category": "learn",
       "terminal": false,
       "impact_min": 0.05,
-      "impact_max": 0.2,
-      "impact_why": "プラットフォーム側の遮断によるアプリ突然死リスクをゼロにするため。",
+      "impact_max": 0.15,
+      "impact_why": "運用保守の効率化につながるため",
       "evidence_ids": [
-        "2026-09-20-r05",
-        "2026-09-22-r04"
+        "2026-09-20-r01"
       ],
       "assumptions": [
-        "GitHubリポジトリにSafari経由でアクセスし直接編集できること"
+        "メモアプリが利用可能であること"
       ],
-      "disconfirm": "削除対象コードがなく既に完全にローカル完結している場合",
-      "continue_if": "削除後もアプリのコア機能が単体でエラーなく動作する",
-      "stop": "外部APIがないと基本機能が全く成立しない設計になっていた場合"
+      "disconfirm": "記録媒体に不具合がある場合",
+      "continue_if": "手順が1から5まで明確に書けた場合",
+      "stop": "手順が曖昧なままである場合"
     },
     {
-      "t": "OpenRouter直接呼出へ設定を書き換える",
-      "why": "特定巨大資本の囲い込みを迂回し、ユーザー入力変換に特化した単一エンドポイントへ統一するため。",
-      "cost_min": 0,
-      "cost_max": 500,
-      "loss_max": 500,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "APIキー差替えとエンドポイントURL変更のみでiPhone上で30分以内に完結する作業であるため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 7,
-      "outcome": "OpenRouter経由でLLM出力を直接受け取るよう更新されたコードベース",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.25,
-      "impact_why": "特定プロバイダのアカウント閉鎖や仕様変更リスクから完全に脱却できるため。",
-      "evidence_ids": [
-        "2026-09-22-r04"
-      ],
-      "assumptions": [
-        "OpenRouterのAPIキーが発行済みまたは即時取得可能であること"
-      ],
-      "disconfirm": "OpenRouter経由のレイテンシがUIの許容範囲を大幅に超える場合",
-      "continue_if": "テスト実行で指定プロンプトに対する正常応答が200 OKで返る",
-      "stop": "API認証エラーが解決せず通信が3回連続で失敗した場合"
-    },
-    {
-      "t": "自作UIの手元入力フォームを拡張する",
-      "why": "外部自動収集の代わりにユーザーが直接貼り付ける生データ処理器へ転換し、閉鎖経済圏の外側に立つ。",
+      "t": "切り替え後のアプリ動作確認チェックリストを作る",
+      "why": "移行漏れを防ぎ品質を担保するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
-      "success_p_min": 0.65,
+      "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "HTMLフォームのテキストエリア追加と処理ロジックの修正はWeb上の編集で完結するため。",
+      "success_why": "確認項目を固定化することで検証漏れがなくなるため",
       "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "ユーザー入力の直接ペーストを受け付ける拡張された入力画面",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "遮断される巡回ボットではなく個人が自発的に持ち込むデータの受け皿になるため。",
-      "evidence_ids": [
-        "2026-09-20-r05"
-      ],
-      "assumptions": [
-        "ユーザーが手元データをコピー＆ペーストして処理する需要があること"
-      ],
-      "disconfirm": "手動入力の負荷が高すぎてテスト利用すら完了しない場合",
-      "continue_if": "ペーストされた生データが構文崩れを起こさず正常にパースされる",
-      "stop": "データフォーマットが複雑すぎて手動ペースト処理に向かないと判明した場合"
-    },
-    {
-      "t": "OpenRouter少額クレジットをチャージする",
-      "why": "自前ツールを停止させずテスト運用し、プラットフォーム依存を排した個人インフラの稼働を確保する。",
-      "cost_min": 750,
-      "cost_max": 1500,
-      "loss_max": 1500,
-      "success_p": 0.9,
-      "success_p_min": 0.8,
-      "success_p_max": 0.95,
-      "success_why": "Safari上でApple Payまたはカード決済を行うだけで数分で即座に残高反映されるため。",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 10,
-      "payback_days": 14,
-      "outcome": "残高チャージ完了画面とAPIキーの課金有効化ステータス",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.1,
-      "impact_why": "インフラ停止による検証の中断を防ぎ、実運用テストを前進させるため。",
-      "evidence_ids": [
-        "2026-09-22-r04"
-      ],
-      "assumptions": [
-        "クレジットカードまたはデビットカードがオンライン決済で使用可能であること"
-      ],
-      "disconfirm": "決済が拒否されるか、アカウント停止措置を受けた場合",
-      "continue_if": "チャージ完了後に残高が即座に反映されAPIリクエストが通る",
-      "stop": "最小チャージ額が想定上限を超えているか決済手数料が過大な場合"
-    },
-    {
-      "t": "新版Webアプリを無料ホスティングへ再デプロイ",
-      "why": "外部依存を排除した独立版アプリを即座に本番稼働させ、実機での動作確認を終わらせる。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.5,
-      "success_p_max": 0.85,
-      "success_why": "GitHubコミットに連動したGitHub PagesまたはVercel等の自動ビルドでiPhoneから監視可能なため。",
-      "value_score": 4,
       "learning_value": 3,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "公開URLで最新の独立動作版が正しくロードされる本番環境",
-      "category": "publish",
+      "outcome": "動作確認用チェックリストの完成",
+      "category": "build",
       "terminal": true,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "着想段階を脱し、手元で実際に動作する成果物を確実に着地させるため。",
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "プロジェクト全体の品質安定に寄与するため",
       "evidence_ids": [
-        "2026-09-22-r04",
-        "2026-09-20-r05"
+        "2026-09-20-r01"
       ],
       "assumptions": [
-        "CI/CDの自動デプロイ設定が正常に組まれていること"
+        "前日までのアプリ仕様が把握できていること"
       ],
-      "disconfirm": "デプロイエラーが発生しビルドログの解消にPC環境が必要になる場合",
-      "continue_if": "ビルドステータスがSuccessになり公開URLが表示される",
-      "stop": "ビルドスクリプトの根本的な修正が必要でiPhone画面では修正不能な場合"
+      "disconfirm": "仕様が大幅に変わっている場合",
+      "continue_if": "リストの項目が網羅的である場合",
+      "stop": "チェック項目が定義できない場合"
     }
   ],
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて企業買収またはM&Aに関する合意を発表しない"
+  "kan": "今後14日以内に、主要なオープンソース系プロバイダーのいずれかが、APIの基本利用料を事実上の「ゼロ」にする月額サブスクリプション型プランを公式に発表する。"
 }

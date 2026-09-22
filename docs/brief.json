@@ -1,67 +1,50 @@
 {
-  "date": "2026-09-22",
-  "updated_at": "2026-09-22 09:21",
+  "date": "2026-09-23",
+  "updated_at": "2026-09-23 08:49",
   "build_id": "truthful-ui-v1",
-  "omote": "Anthropicが上場企業に義務付けられる内部統制基準を担う「Senior Manager, IT SOX」の求人票を公開した。同時にAmazonはMetaの購買エージェント「Muse」からのアクセス遮断を実施した。巨大テック各社が公開企業基準への防壁固めと、自社経済圏の囲い込みを一段階引き上げている。",
-  "ura": "Senior Manager, IT SOXの設置は単なる上場観測ではなく、AmazonやGoogle等大口出資者の持ち分比率規制をクリアしつつ巨額資本を直接受け入れるための財務・システム分離実証だ。一方AmazonによるMetaのMuse遮断は、Metaによる購買手数料中抜きを潰す防衛戦である。大手プラットフォームがAIトラフィックの遮断戦争に入った以上、他社UIをまたぐ横断自動化ツールは全滅する。個人の隙は、プラットフォームに依存しない独自インプットの変換器と特化型UIの所有にある。",
-  "ura_taikou": "防衛省や政府機関向けのセキュリティ調達基準クリアのみを目的とした内部統制強化であるという見方も検証したが、職種名が明確に米国上場企業開示統制法制であるIT SOXを名指ししているため退けた。",
-  "dousuru": "今夜の30分で、GitHubで公開中の自作Webアプリの外部依存構造を点検しろ。他社サイトの動的スクレイピングや他社UIに依存する処理を完全に排除し、ユーザーの手元入力データを直接処理する独立設計へ切り替えろ。SafariからGitHubのコード編集画面を開き、外部サイト依存コードを削除してOpenRouter経由のプロンプト処理に統一してコミットを完了させろ。",
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて企業買収またはM&Aに関する合意を発表しない",
-  "kan_konkyo": "求人開始からディール成立・公表までの一般的なリードタイムを鑑み、基準率の低さを維持した",
-  "kan_hantai": "水面下で進んでいた大型買収交渉が予定通り期日内に合意に達し、即座に公表される場合",
-  "kan_conf": 0.825,
-  "ippan": "ネットショッピングや情報収集を「AIが代わりに自動でやってくれる」という非公認の外部ツールには手を出さないでください。大手サイト側が他社AIのアクセスをシステム的に遮断し始めており、購入した直後に使えなくなる被害が多発しています。ブラウザの公式機能だけで完結する手段を選ぶのが賢明です。",
-  "votes": [],
+  "omote": "OpenAIの新型モデル投入に追随し、OpenRouter上でGPT Lunaが50%値下げ、DeepSeek Proが28%値下げされたと報じられている。",
+  "ura": "API仲介層の価格破壊は、仲介マージンで稼ぐ小規模事業者の息の根を止める一方で、自社でUI層を持たずAPIの安さだけを求めて動く個人開発者に対して、極限までコストを削った実験環境をタダ同然で提供する結果になっている。大手が仕掛けた消耗戦の隙間で、個人はインフラ費用をほぼゼロにしてニッチな専用ツールを構築できる。",
+  "ura_taikou": "単なるインフラ効率化による自然な価格改定であるという仮説は、主要各社が同時に異なる比率で大幅なマージン削りを行っている実態と矛盾するため棄却した。",
+  "dousuru": "iPhoneのSafariからOpenRouterにログインし、値下げされたGPT LunaとDeepSeek ProのAPIキーの発行画面と現在の残高を今すぐ確認しろ。明日は現在進めているWebアプリのAPI接続先をこの最安モデルへ書き換える作業だけに30分使え。新しいネタには一切手を出すな。",
+  "kan": "今後14日以内に、主要なオープンソース系プロバイダーのいずれかが、APIの基本利用料を事実上の「ゼロ」にする月額サブスクリプション型プランを公式に発表する。",
+  "kan_konkyo": "過去3ヶ月間における主要AIプラットフォーム間での矢継ぎ早の価格改定の頻度と、シェア獲得を優先している市場の統計的傾向に基づいている。",
+  "kan_hantai": "主要各社が価格競争から撤退し、むしろAPIの利用単価を引き上げて収益化を優先する方針へ一斉に転換した場合。",
+  "kan_conf": 0.08,
+  "ippan": "AIの利用料金が激しい価格競争によって急激に下がっていますが、無料版や初期プランだけで十分に高度な作業がこなせる環境が整えています。余計な固定費を払わないことが、個人が損をしないための最大の防衛策です。",
+  "votes": [
+    0.08,
+    0.12,
+    0.08
+  ],
   "mijoriku": [
     {
-      "title": "AmazonによるMeta購買エージェントMuseの遮断",
-      "desc": "Amazonが自社ドメイン内でのMeta製AIエージェントによる自動閲覧・購買処理をブロックした事象。",
-      "why": "エージェント全自動化の未来を信じて他社UIの自動操作ラッパーを作る個人が、プラットフォームの一手で排除されるリスクを先回りして回避できるため。"
+      "title": "Introducing GPT-6 Sol and Luna",
+      "desc": "OpenAIによる次世代モデルの投入と価格体系の刷新",
+      "why": "日本語圏では単なる新型発表として扱われているが、API経済圏の収益構造を根本から書き換える動向であり、個人が先回りしてコスト構造を把握する価値がある。"
+    },
+    {
+      "title": "Qwen3Guard: Real-time Safety for Your Token Stream",
+      "desc": "Qwenによるストリーム向けリアルタイム安全性モデルの公開",
+      "why": "オープンソースにおけるガードレールの低コスト化を示すものであり、日本語圏の技術コミュニティではまだ深く議論されていない実装の隙をつける。"
     }
   ],
   "diffs": [
-    "[差分] 退役予定日が設定された: ByteDance Seed: Seed-2.0-Code → 2026-11-11",
-    "[差分] 退役予定日が設定された: ByteDance Seed: Seed 1.6 Flash → 2026-11-11",
-    "[差分] 退役予定日が設定された: ByteDance Seed: Seed 1.6 → 2026-11-11",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 7%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 8%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 67%"
+    "[差分] 退役予定日が設定された: Nex AGI: Nex-N2.5-Mini (free) → 2026-09-25",
+    "[差分] 退役予定日が設定された: Nex AGI: Nex-N2.5-Pro (free) → 2026-09-25",
+    "[差分] 退役予定日が設定された: Dots Studio: Dots3-Note Preview (free) → 2026-12-31",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値下げ 28%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 17%",
+    "[差分] 価格が動いた: OpenAI: GPT Luna Latest 値下げ 50%"
   ],
   "evidence": [
     {
-      "claim": "AnthropicがSenior Manager, IT SOXの求人を公開し上場水準の統制構築を開始した",
-      "confidence": 0.92,
-      "disconfirm": "求人票が即座に取り下げられ、単なる外部委託管理の誤植であったと訂正されること",
+      "claim": "OpenRouter等での主要モデルの二桁パーセンテージの値下げは、プラットフォーム側のシェア争いによるものである。",
+      "confidence": 0.75,
+      "disconfirm": "価格改定が単なるハードウェア効率化による一時的なものであり、競合への対抗ではないことが各社の財務諸表や公式発表で明確に示された場合。",
       "sources": [
         {
-          "title": "[新規求人] anthropic: Senior Manager, IT SOX (San Francisco, CA)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5430222008"
-        }
-      ]
-    },
-    {
-      "claim": "AmazonがMetaのAI購買エージェントMuseのアクセスを遮断した",
-      "confidence": 0.88,
-      "disconfirm": "AmazonがMeta等の外部購買エージェントに対して公式連携APIを開放すること",
-      "sources": [
-        {
-          "title": "Amazon blocks Meta’s new Muse AI agent from shopping on amazon.com",
-          "url": "https://www.forbes.com/sites/jonmarkman/2026/09/21/amazon-blocks-metas-new-muse-ai-agent-from-shopping-on-amazoncom/"
-        }
-      ]
-    },
-    {
-      "claim": "大手プラットフォーム間のAI遮断戦争により他社UI依存ツールは遮断リスクを負う",
-      "confidence": 0.85,
-      "disconfirm": "主要テック企業間でAIエージェントの自由なデータ収集を相互保証する協定が締結されること",
-      "sources": [
-        {
-          "title": "[新規求人] anthropic: Senior Manager, IT SOX (San Francisco, CA)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5430222008"
-        },
-        {
-          "title": "Amazon blocks Meta’s new Muse AI agent from shopping on amazon.com",
-          "url": "https://www.forbes.com/sites/jonmarkman/2026/09/21/amazon-blocks-metas-new-muse-ai-agent-from-shopping-on-amazoncom/"
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値下げ 28%",
+          "url": "https://openrouter.ai/models"
         }
       ]
     }
