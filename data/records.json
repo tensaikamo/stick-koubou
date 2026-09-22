@@ -4739,5 +4739,221 @@
       "2026-09-19-r01",
       "2026-09-18-r01"
     ]
+  },
+  {
+    "id": "2026-09-23-r01",
+    "created_at": "2026-09-23T08:45:13.517525+09:00",
+    "headline": "openai Python SDK v3.18.0 リリース",
+    "what_happened": "OpenAIはPython向け公式SDKのバージョン3.18.0をPyPI上で公開した。本文によれば本ライブラリはOpenAIのREST APIへのアクセス手段を提供し、型定義や同期・非同期クライアントを含んでいる。更新履歴やリリースファイルの確認が可能である。",
+    "background": "OpenAIはAPIクライアントライブラリのバージョンを継続的に更新しており、SDKのリリースはPyPI上で公開される。",
+    "changed": "PyPI上のopenaiパッケージの最新バージョンが3.18.0に更新された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.18.0/",
+      "title": "openai Python SDK v3.18.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-20-r01",
+      "2026-09-16-r01",
+      "2026-09-11-r07",
+      "2026-09-10-r01",
+      "2026-09-09-r01",
+      "2026-09-04-r01"
+    ]
+  },
+  {
+    "id": "2026-09-23-r02",
+    "created_at": "2026-09-23T08:45:13.517525+09:00",
+    "headline": "anthropic Python SDK v1.8.0 リリース",
+    "what_happened": "AnthropicはPython向け公式SDKのバージョン1.8.0をPyPI上で公開した。本文によればClaude APIへのアクセス手段を提供し、初期化やメッセージ作成のサンプルコードが記載されている。",
+    "background": "AnthropicはPython用SDKの改版を順次行っている。",
+    "changed": "PyPI上のanthropicパッケージの最新バージョンが1.8.0に更新された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.8.0/",
+      "title": "anthropic Python SDK v1.8.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-22-r05",
+      "2026-09-22-r04",
+      "2026-09-20-r05",
+      "2026-09-20-r04",
+      "2026-09-20-r03",
+      "2026-09-20-r02"
+    ]
+  },
+  {
+    "id": "2026-09-23-r03",
+    "created_at": "2026-09-23T08:45:13.517525+09:00",
+    "headline": "google-genai Python SDK v2.25.0 リリース",
+    "what_happened": "GoogleはGeminiモデル向けPython SDKのバージョン2.25.0をPyPI上で公開した。本文では次期メジャーバージョンにおけるAutomatic Function Calling (AFC)の挙動変更についての警告が含まれている。",
+    "background": "Google Gen AI SDKはGemini開発者向けAPIおよびEnterprise Agent Platformに対応している。",
+    "changed": "PyPI上のgoogle-genaiパッケージの最新バージョンが2.25.0に更新され、次回バージョンでのAFC挙動変更の事前通知が掲載された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/2.25.0/",
+      "title": "google-genai Python SDK v2.25.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-18-r02",
+      "2026-09-12-r01",
+      "2026-09-03-r03",
+      "2026-09-01-r01",
+      "2026-08-26-r01",
+      "2026-08-22-r01"
+    ]
+  },
+  {
+    "id": "2026-09-23-r04",
+    "created_at": "2026-09-23T08:45:13.517525+09:00",
+    "headline": "anthropic: Research Operations, Reinforcement Learningの求人掲載",
+    "what_happened": "Anthropicはサンフランシスコを勤務地とする「Research Operations, Reinforcement Learning」の求人をGreenhouse上で公開した。強化学習組織のリーダーシップを支援し、モデル訓練の優先順位決定や業務推進を担う運用担当者を募集している。",
+    "background": "Anthropicは強化学習によるClaudeの能力・安全性向上チームの運用体制を拡大している。",
+    "changed": "強化学習部門のオペレーションを統括する専門職の募集が新たに公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5422117008",
+      "title": "[新規求人] anthropic: Research Operations, Reinforcement Learning (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-22-r05",
+      "2026-09-22-r04",
+      "2026-09-20-r05",
+      "2026-09-20-r04",
+      "2026-09-20-r03",
+      "2026-09-20-r02"
+    ]
+  },
+  {
+    "id": "2026-09-23-r05",
+    "created_at": "2026-09-23T08:45:13.517525+09:00",
+    "headline": "anthropic: Security Risk & Compliance, Data Centers & Computeの求人掲載",
+    "what_happened": "Anthropicは複数の都市を対象に「Security Risk & Compliance, Data Centers & Compute」の求人をGreenhouse上で公開した。AIの安全性やセキュリティ基準に対応するコンプライアンス体制を構築・維持する担当者を求めている。",
+    "background": "AIモデルの学習規模拡大に伴い、データセンターや計算基盤に対するセキュリティおよびコンプライアンス管理の重要性が増している。",
+    "changed": "データセンターおよび計算基盤向けセキュリティコンプライアンス担当の求人が追加された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5430205008",
+      "title": "[新規求人] anthropic: Security Risk & Compliance, Data Centers & Compute (San Francisco, CA | Seattle, WA | New York City, NY | Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-22-r05",
+      "2026-09-22-r04",
+      "2026-09-20-r05",
+      "2026-09-20-r04",
+      "2026-09-20-r03",
+      "2026-09-20-r02"
+    ]
+  },
+  {
+    "id": "2026-09-23-r06",
+    "created_at": "2026-09-23T08:45:13.517525+09:00",
+    "headline": "anthropic: Engineering Manager, Data Infrastructureの求人掲載",
+    "what_happened": "Anthropicはサンフランシスコおよびニューヨークを勤務地とする「Engineering Manager, Data Infrastructure」の求人をGreenhouse上で公開した。データウェアハウスおよびストリーミングインフラチームを率いるエンジニアリングマネージャーを募集している。",
+    "background": "企業規模の拡大に伴い、データ基盤の処理能力やリアルタイムストリーミング対応の強化が進められている。",
+    "changed": "データインフラチームを率いるマネージャー職の募集が開始された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5426135008",
+      "title": "[新規求人] anthropic: Engineering Manager, Data Infrastructure (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-22-r05",
+      "2026-09-22-r04",
+      "2026-09-20-r05",
+      "2026-09-20-r04",
+      "2026-09-20-r03",
+      "2026-09-20-r02"
+    ]
+  },
+  {
+    "id": "2026-09-23-r07",
+    "created_at": "2026-09-23T08:45:13.517525+09:00",
+    "headline": "xai: Material Handler - Southaven, MSの求人掲載",
+    "what_happened": "xAIはサウスヘイブンを勤務地とする「Material Handler - Southaven, MS (2nd Shift)」の求人をGreenhouse上で公開した。本文の取得には失敗したものの、タイトルから物流や資材管理に関連する現場職の募集と確認できる。",
+    "background": "xAIはメンフィスおよびサウスヘイブン地域での拠点構築やデータセンター整備を進めている。",
+    "changed": "サウスヘイブン拠点における物資取扱担当の求人情報が追加された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5246700007",
+      "title": "[新規求人] xai: Material Handler - Southaven, MS (2nd Shift) ( Southaven, MS)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": false,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-20-r06",
+      "2026-09-19-r02",
+      "2026-09-18-r03",
+      "2026-09-17-r03",
+      "2026-09-15-r06",
+      "2026-09-15-r05"
+    ]
+  },
+  {
+    "id": "2026-09-23-r08",
+    "created_at": "2026-09-23T08:45:13.517525+09:00",
+    "headline": "xai: Industrial Pipefitter - Memphisの求人掲載",
+    "what_happened": "xAIはサウスヘイブンおよびメンフィスを勤務地とする「Industrial Pipefitter - Memphis」の求人をGreenhouse上で公開した。AIスーパーコンピューティングインフラ向けの高精度な大規模工業用配管システムの設置・施工を担う人員を募集している。",
+    "background": "大規模AIスーパーコンピューターの構築には冷却等のための高度な配管インフラ工事が不可欠である。",
+    "changed": "データセンター建設を支える工業用配管工の募集が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5246678007",
+      "title": "[新規求人] xai: Industrial Pipefitter - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-20-r06",
+      "2026-09-19-r02",
+      "2026-09-18-r03",
+      "2026-09-17-r03",
+      "2026-09-15-r06",
+      "2026-09-15-r05"
+    ]
   }
 ]
