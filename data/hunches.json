@@ -2321,5 +2321,50 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.82
+  },
+  {
+    "id": "2026-09-22-h01",
+    "created_at": "2026-09-22T09:14:28.760132+09:00",
+    "based_on": [
+      "2026-09-22-r04",
+      "2026-09-22-r05"
+    ],
+    "prose": "採用情報の出稿から短期間でM&Aや大規模な企業買収の合意が公式に発表されるケースは稀であるため、14日という短期の窓では具体的な案件アナウンスは見送られる可能性が高い。基準率の低さに従い、起きない方に重きを置く。",
+    "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて企業買収またはM&Aに関する合意を発表しない",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "anthropic news acquisition merger",
+      "decider": "Anthropicの公式ニュースルームに他社買収やM&A成立を告げるプレスリリースが掲載されていないこと"
+    },
+    "deadline": "2026-10-06",
+    "confidence": 0.75,
+    "base_rate": 0.8,
+    "base_rate_class": "AI企業が求人掲載後14日以内に公式ニュースルームでM&Aを発表する頻度",
+    "confidence_why": "求人開始からディール成立・公表までの一般的なリードタイムを鑑み、基準率の低さを維持した",
+    "counter": "水面下で進んでいた大型買収交渉が予定通り期日内に合意に達し、即座に公表される場合",
+    "indicators": [
+      {
+        "sign": "公式ニュースルームに新着のプレスリリースが掲載される",
+        "dir": "kill"
+      },
+      {
+        "sign": "金融メディアやテック系メディアがAnthropicによる他社買収の完了を報じる",
+        "dir": "kill"
+      },
+      {
+        "sign": "新たなM&A関連の求人や追加募集が同ページに掲載される",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]

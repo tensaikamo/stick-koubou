@@ -4625,5 +4625,119 @@
       "2026-09-15-r05",
       "2026-09-15-r04"
     ]
+  },
+  {
+    "id": "2026-09-22-r01",
+    "created_at": "2026-09-22T09:14:28.760132+09:00",
+    "headline": "Designer-RSI: Evolving Procedural Memory from User Traffic for Agentic Graphic Designの論文投稿",
+    "what_happened": "Hongyang Duらによる論文「Designer-RSI: Evolving Procedural Memory from User Traffic for Agentic Graphic Design」がarXivに投稿された。凍結されたフロンティアモデルが230以上のツールを用いてプロフェッショナルなデザインソフトウェアを操作する継続的適応フレームワークを提案している。ユーザーのトラフィックから再利用可能なデザイン手順を蓄積・洗練させる外部プロシージャルメモリを活用している点が特徴である。",
+    "background": "プロフェッショナルなグラフィックデザインは、多くの相互依存するアクションを伴う長期的なエージェントタスクであり、信頼できるプログラム的オラクルが存在しない。",
+    "changed": "エージェント型のグラフィックデザイン自動化において、ユーザーの行動履歴から継続的にプロシージャルメモリを進化させるフレームワークが提案された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.22086v1",
+      "title": "Designer-RSI: Evolving Procedural Memory from User Traffic for Agentic Graphic Design",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-22-r02",
+    "created_at": "2026-09-22T09:14:28.760132+09:00",
+    "headline": "Cross-sector generalization of accident-process role classification in occupational accident narrativesの論文投稿",
+    "what_happened": "Aho Yapiらによる労働災害記述のクロスセクター一般化に関する論文がarXivに投稿された。労働災害の物語には作業状況や不利な条件、事故イベントに関する情報が含まれており、自動コーディングシステムが訓練ドメインを超えて一般化できるかを評価している。",
+    "background": "労働災害の記述における用語や文体はセクターや組織によって大きく異なり、自動化システムの汎用性に課題がある。",
+    "changed": "フランス語の労働災害記述における事故プロセス役割分類のクロスセクター一般化に関する評価データと手法が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.22081v1",
+      "title": "Cross-sector generalization of accident-process role classification in occupational accident narratives",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-22-r03",
+    "created_at": "2026-09-22T09:14:28.760132+09:00",
+    "headline": "CodeMidas: Scaling Agentic Coding RL Environments from Code Itselfの論文投稿",
+    "what_happened": "Bowen Yeらによる論文「CodeMidas: Scaling Agentic Coding RL Environments from Code Itself」がarXivに投稿された。既存のコードベースのソースコードを入力として、強化学習（RL）用の実行可能な環境へと自動変換するエージェントパイプラインを提案している。",
+    "background": "強化学習によるコーディングエージェントの訓練には多様なタスクと信頼性の高い検証器が必要だが、従来はissuesやcommitsなどの開発成果物に依存していた。",
+    "changed": "ソースコード自体からエージェント用のコーディングRL環境をスケーリングして構築するパイプラインが提示された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.22068v1",
+      "title": "CodeMidas: Scaling Agentic Coding RL Environments from Code Itself",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-22-r04",
+    "created_at": "2026-09-22T09:14:28.760132+09:00",
+    "headline": "AnthropicがProduct Manager, Safeguards (Generalist)の求人枠を追加",
+    "what_happened": "Anthropicの採用ページ（Greenhouse）に「Product Manager, Safeguards (Generalist)」の求人情報が掲載された。フロンティアモデルを安全にユーザーへ展開するため、検定・評価・介入システムや製品UXの開発を主導する役割を求めている。",
+    "background": "生成AIの利用拡大に伴い、乱用防止や倫理的・技術的リスクを管理するセーフガード部門の体制強化が続けられている。",
+    "changed": "セーフガードチームのプロダクトマネージャーに関する新規募集枠が公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5400720008",
+      "title": "[新規求人] anthropic: Product Manager, Safeguards (Generalist)  (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-20-r05",
+      "2026-09-20-r04",
+      "2026-09-20-r03",
+      "2026-09-20-r02",
+      "2026-09-19-r01",
+      "2026-09-18-r01"
+    ]
+  },
+  {
+    "id": "2026-09-22-r05",
+    "created_at": "2026-09-22T09:14:28.760132+09:00",
+    "headline": "AnthropicがCorporate Finance & Strategy, Strategic Transactionsの求人枠を追加",
+    "what_happened": "Anthropicの採用ページ（Greenhouse）に「Corporate Finance & Strategy, Strategic Transactions」の求人情報が掲載された。M&Aや戦略的トランザクションの財務デューデリジェンスをリードし、財務予測やディールの財務的影響を分析する人材を募集している。",
+    "background": "企業の成長や資本戦略に伴い、M&Aおよび戦略的案件を評価・実行する財務戦略チームの体制拡張が進められている。",
+    "changed": "戦略的トランザクションを担当するコーポレートファイナンス部門の新規募集枠が公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5430263008",
+      "title": "[新規求人] anthropic: Corporate Finance & Strategy, Strategic Transactions (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-20-r05",
+      "2026-09-20-r04",
+      "2026-09-20-r03",
+      "2026-09-20-r02",
+      "2026-09-19-r01",
+      "2026-09-18-r01"
+    ]
   }
 ]
