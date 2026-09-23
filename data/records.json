@@ -4955,5 +4955,86 @@
       "2026-09-15-r06",
       "2026-09-15-r05"
     ]
+  },
+  {
+    "id": "2026-09-24-r01",
+    "created_at": "2026-09-24T08:54:30.944770+09:00",
+    "headline": "openai Python SDK v3.19.1 リリース",
+    "what_happened": "PyPIにおいて、openai Python SDKのバージョン3.19.1が公開された。本文取得によれば公式PythonライブラリとしてREST APIへのアクセスを提供するものである。更新履歴や依存関係の微調整が含まれる。",
+    "background": "OpenAIの公式Python SDKはAPIを利用する際の標準的なラッパーであり、頻繁にマイナーバージョンやパッチが更新される。",
+    "changed": "openai Python SDKの最新バージョンが3.19.1に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.19.1/",
+      "title": "openai Python SDK v3.19.1 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-23-r01",
+      "2026-09-20-r01",
+      "2026-09-16-r01",
+      "2026-09-11-r07",
+      "2026-09-10-r01",
+      "2026-09-09-r01"
+    ]
+  },
+  {
+    "id": "2026-09-24-r02",
+    "created_at": "2026-09-24T08:54:30.944770+09:00",
+    "headline": "anthropic: Applied AI Architect, Public Sector 求人の公開",
+    "what_happened": "Anthropicは公的機関やGovTech企業向けにClaudeの導入を支援する「Applied AI Architect, Public Sector」の求人をGreenhouse上で公開した。サンフランシスコおよびニューヨークを勤務地としている。",
+    "background": "AI企業は政府や公共セクター向けの営業・技術支援体制を強化するため、専門の人材採用を進めている。",
+    "changed": "公共セクター向けのプリセールス・技術アーキテクト職の募集が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5382518008",
+      "title": "[新規求人] anthropic: Applied AI Architect, Public Sector  (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-23-r06",
+      "2026-09-23-r05",
+      "2026-09-23-r04",
+      "2026-09-23-r02",
+      "2026-09-22-r05",
+      "2026-09-22-r04"
+    ]
+  },
+  {
+    "id": "2026-09-24-r03",
+    "created_at": "2026-09-24T08:54:30.944770+09:00",
+    "headline": "anthropic: Policy Research, Strategic Advisory 求人の公開",
+    "what_happened": "Anthropicはパブリックポリシーチームの戦略顧問部門において、政策リサーチを担当する「Policy Research, Strategic Advisory」の求人を公開した。勤務地はサンフランシスコ。",
+    "background": "AI企業は規制対応や政策立案への影響力を強めるため、政策研究や外部パートナーシップを担うスタッフを拡充している。",
+    "changed": "政策研究および戦略的アドバイザリー業務を担当する一般政策担当者の募集が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5431235008",
+      "title": "[新規求人] anthropic: Policy Research, Strategic Advisory (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-23-r06",
+      "2026-09-23-r05",
+      "2026-09-23-r04",
+      "2026-09-23-r02",
+      "2026-09-22-r05",
+      "2026-09-22-r04"
+    ]
   }
 ]
