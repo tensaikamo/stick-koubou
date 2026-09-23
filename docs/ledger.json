@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-23 08:47",
+  "updated_at": "2026-09-24 08:56",
   "score": {
     "hit": 11,
     "miss": 23,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-25",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -345,16 +345,6 @@
       "events": [
         {
           "date": "2026-09-23",
-          "headline": "anthropic Python SDK v1.8.0 リリース",
-          "url": "https://pypi.org/project/anthropic/1.8.0/"
-        },
-        {
-          "date": "2026-09-23",
-          "headline": "anthropic: Engineering Manager, Data Infrastructureの求人掲載",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5426135008"
-        },
-        {
-          "date": "2026-09-23",
           "headline": "anthropic: Research Operations, Reinforcement Learningの求人掲載",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5422117008"
         },
@@ -362,17 +352,22 @@
           "date": "2026-09-23",
           "headline": "anthropic: Security Risk & Compliance, Data Centers & Computeの求人掲載",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5430205008"
+        },
+        {
+          "date": "2026-09-24",
+          "headline": "anthropic: Applied AI Architect, Public Sector 求人の公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5382518008"
+        },
+        {
+          "date": "2026-09-24",
+          "headline": "anthropic: Policy Research, Strategic Advisory 求人の公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5431235008"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-09-11",
-          "headline": "PyPIにopenai Python SDK v3.13.0がリリースされた",
-          "url": "https://pypi.org/project/openai/3.13.0/"
-        },
         {
           "date": "2026-09-16",
           "headline": "openai Python SDK v3.14.1 リリース",
@@ -387,6 +382,11 @@
           "date": "2026-09-23",
           "headline": "openai Python SDK v3.18.0 リリース",
           "url": "https://pypi.org/project/openai/3.18.0/"
+        },
+        {
+          "date": "2026-09-24",
+          "headline": "openai Python SDK v3.19.1 リリース",
+          "url": "https://pypi.org/project/openai/3.19.1/"
         }
       ]
     },
@@ -473,6 +473,27 @@
   ],
   "records": [
     {
+      "id": "2026-09-24-r03",
+      "date": "2026-09-24",
+      "headline": "anthropic: Policy Research, Strategic Advisory 求人の公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5431235008"
+    },
+    {
+      "id": "2026-09-24-r02",
+      "date": "2026-09-24",
+      "headline": "anthropic: Applied AI Architect, Public Sector 求人の公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5382518008"
+    },
+    {
+      "id": "2026-09-24-r01",
+      "date": "2026-09-24",
+      "headline": "openai Python SDK v3.19.1 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.19.1/"
+    },
+    {
       "id": "2026-09-23-r08",
       "date": "2026-09-23",
       "headline": "xai: Industrial Pipefitter - Memphisの求人掲載",
@@ -534,28 +555,7 @@
       "headline": "AnthropicがCorporate Finance & Strategy, Strategic Transactionsの求人枠を追加",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5430263008"
-    },
-    {
-      "id": "2026-09-22-r04",
-      "date": "2026-09-22",
-      "headline": "AnthropicがProduct Manager, Safeguards (Generalist)の求人枠を追加",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5400720008"
-    },
-    {
-      "id": "2026-09-22-r03",
-      "date": "2026-09-22",
-      "headline": "CodeMidas: Scaling Agentic Coding RL Environments from Code Itselfの論文投稿",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2609.22068v1"
-    },
-    {
-      "id": "2026-09-22-r02",
-      "date": "2026-09-22",
-      "headline": "Cross-sector generalization of accident-process role classification in occupational accident narrativesの論文投稿",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2609.22081v1"
     }
   ],
-  "record_count": 176
+  "record_count": 179
 }

@@ -1,162 +1,162 @@
 {
-  "date": "2026-09-23",
+  "date": "2026-09-24",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの値下げに伴い、現在進めているWebアプリの接続先を今日中にどう書き換えるか？",
-    "APIのコスト削減分をどの機能の拡張に割り当てるか？",
-    "明日の朝までに完了させるAPIキーの切り替え手順をどう固定するか？"
+    "Google Gen AI SDK v2.25.0への追従コストを見積もるか？",
+    "自動関数呼び出しの仕様変更に備えてAPI依存部を分離するか？",
+    "SDK更新に伴う例外処理の修正を今夜の30分枠でするか？"
   ],
   "moves": [
     {
-      "t": "現在のWebアプリのAPI接続先コードを検証する",
-      "why": "価格破壊された最安モデルへの切り替え準備を行うため",
+      "t": "自動関数呼び出しの警告箇所をコードベースから抽出する",
+      "why": "次期メジャーでのAFC仕様変更に先回りして影響範囲を特定するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.5,
-      "success_p_max": 0.7,
-      "success_why": "既存のコード構造を確認することで移行リスクが下がるため",
-      "value_score": 4,
+      "success_p": 0.4,
+      "success_p_min": 0.25,
+      "success_p_max": 0.55,
+      "success_why": "過去のv2.22.0以降から警告仕様が継続しているため。",
+      "value_score": 3,
       "learning_value": 3,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "接続先変更箇所の特定リスト",
+      "outcome": "AFC利用箇所のリストアップ",
       "category": "review",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "手戻りを防ぐ最小限のコード確認のため",
-      "evidence_ids": [
-        "2026-09-20-r01"
-      ],
-      "assumptions": [
-        "GitHubのWeb画面からコードを閲覧できること"
-      ],
-      "disconfirm": "リポジトリにアクセスできない場合",
-      "continue_if": "該当箇所が特定できた場合",
-      "stop": "リポジトリが消失している場合"
-    },
-    {
-      "t": "最安モデルを利用したテストリクエストを1回送る",
-      "why": "新価格モデルの挙動と応答速度を実機で確かめるため",
-      "cost_min": 100,
-      "cost_max": 500,
-      "loss_max": 500,
-      "success_p": 0.5,
-      "success_p_min": 0.4,
-      "success_p_max": 0.6,
-      "success_why": "API仕様の変更に伴うエラーの有無を検証するため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 1,
-      "outcome": "テストリクエストの成功ログ",
-      "category": "apply",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "実用性の担保に直結するため",
-      "evidence_ids": [
-        "2026-09-20-r01"
-      ],
-      "assumptions": [
-        "APIキーの残高が足りていること"
-      ],
-      "disconfirm": "400番台のエラーが返り続ける場合",
-      "continue_if": "正常なレスポンスが返ってきた場合",
-      "stop": "認証エラーが解消しない場合"
-    },
-    {
-      "t": "API利用料金の上限アラートを設定する",
-      "why": "予期せぬコスト発生を防ぎ個人開発のリスクを限定するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.9,
-      "success_p_min": 0.8,
-      "success_p_max": 0.95,
-      "success_why": "管理画面に予算制限機能が標準搭載されているため",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "利用上限アラートの設定完了",
-      "category": "build",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "安全な運用基盤を維持するため",
+      "impact_why": "内部構造の点検に留まるため。",
       "evidence_ids": [
-        "2026-09-20-r01"
+        "2026-09-03-r03"
       ],
       "assumptions": [
-        "管理画面のダッシュボードにアクセスできること"
+        "対象プロジェクト内にAFCを利用しているコードが存在すること"
       ],
-      "disconfirm": "設定項目が見つからない場合",
-      "continue_if": "上限額の保存が成功した場合",
-      "stop": "アカウント機能が制限されている場合"
+      "disconfirm": "コード内に自動関数呼び出しを使用している箇所がない場合",
+      "continue_if": "修正対象の関数呼び出しが複数見つかった場合",
+      "stop": "既にAFCの利用を停止している場合"
     },
     {
-      "t": "APIキーのローテーション手順をメモに書き出す",
-      "why": "セキュリティリスクを管理し不正利用を防ぐため",
+      "t": "有料APIの従量課金アラート閾値を平時より20%引き下げる設定を行う",
+      "why": "API価格競争や急な単価変動による予期せぬコスト超過を防ぐため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.75,
-      "success_p_max": 0.9,
-      "success_why": "手順化することで次回以降の作業ミスが減るため",
-      "value_score": 2,
-      "learning_value": 2,
+      "success_p": 0.5,
+      "success_p_min": 0.35,
+      "success_p_max": 0.65,
+      "success_why": "主要なプロバイダーのダッシュボードから予算通知設定が即時変更可能なため。",
+      "value_score": 4,
+      "learning_value": 3,
       "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "手順メモの作成完了",
-      "category": "learn",
+      "outcome": "新しい予算アラートの有効化確認",
+      "category": "apply",
       "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "運用保守の効率化につながるため",
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "コスト管理の安全性を高める実用的な一手であるため。",
       "evidence_ids": [
-        "2026-09-20-r01"
+        "2026-09-23-r03"
       ],
       "assumptions": [
-        "メモアプリが利用可能であること"
+        "利用中のAPI管理コンソールにアクセスできること"
       ],
-      "disconfirm": "記録媒体に不具合がある場合",
-      "continue_if": "手順が1から5まで明確に書けた場合",
-      "stop": "手順が曖昧なままである場合"
+      "disconfirm": "すでに厳格なアラート設定が適用されている場合",
+      "continue_if": "予期せぬコスト発生リスクが残っている場合",
+      "stop": "APIを全く利用していない場合"
     },
     {
-      "t": "切り替え後のアプリ動作確認チェックリストを作る",
-      "why": "移行漏れを防ぎ品質を担保するため",
+      "t": "APIプロバイダー別のバッチ処理単価を比較シートに手入力でまとめる",
+      "why": "価格改定の激しい市場で、コスト優位性のあるルートを即座に選定できるようにするため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "確認項目を固定化することで検証漏れがなくなるため",
+      "success_p": 0.4,
+      "success_p_min": 0.25,
+      "success_p_max": 0.55,
+      "success_why": "主要各社の価格ページから直近の単価を抽出できるため。",
       "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 15,
+      "learning_value": 4,
+      "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "動作確認用チェックリストの完成",
+      "outcome": "主要モデルのバッチ単価比較一覧",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "意思決定の精度を上げるための基礎資料となるため。",
+      "evidence_ids": [
+        "2026-09-23-r03"
+      ],
+      "assumptions": [
+        "各社の最新価格がWeb上で公開されていること"
+      ],
+      "disconfirm": "バッチ処理に対応しているプロバイダーが存在しない場合",
+      "continue_if": "単価の差が利益率に直結する規模である場合",
+      "stop": "APIの切り替え予定がない場合"
+    },
+    {
+      "t": "外部API障害時のフォールバック処理を実装する",
+      "why": "価格競争や買収劇によるプロバイダー急変時にサービスが停止するリスクを回避するため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.35,
+      "success_p_min": 0.2,
+      "success_p_max": 0.5,
+      "success_why": "複数エンドポイントの切り替えロジックが既存構成に組み込めるため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "フォールバック切り替え関数の実装コード",
       "category": "build",
       "terminal": true,
       "impact_min": 0.2,
       "impact_max": 0.3,
-      "impact_why": "プロジェクト全体の品質安定に寄与するため",
+      "impact_why": "システム全体の耐障害性が根本的に向上するため。",
       "evidence_ids": [
-        "2026-09-20-r01"
+        "2026-09-23-r03"
       ],
       "assumptions": [
-        "前日までのアプリ仕様が把握できていること"
+        "代替となるAPIの認証情報が既に取得済みであること"
       ],
-      "disconfirm": "仕様が大幅に変わっている場合",
-      "continue_if": "リストの項目が網羅的である場合",
-      "stop": "チェック項目が定義できない場合"
+      "disconfirm": "単一のプロバイダーに完全依存するアーキテクチャである場合",
+      "continue_if": "切り替えの自動化テストが正常に通過した場合",
+      "stop": "冗長化の必要性が低いと判断した場合"
+    },
+    {
+      "t": "AIルーターのプロキシ設定に新モデルのエンドポイントを追加する",
+      "why": "モデルの価格や仕様変更に即座に追従し、ルーター側で最適モデルにルーティングするため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.4,
+      "success_p_min": 0.25,
+      "success_p_max": 0.55,
+      "success_why": "OpenRouter等の設定画面からエンドポイントの追加が容易なため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "ルーター設定の更新と疎通確認の完了",
+      "category": "apply",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "APIコストと可用性を直ちに最適化できるため。",
+      "evidence_ids": [
+        "2026-09-23-r03"
+      ],
+      "assumptions": [
+        "プロキシサービスのアカウントにアクセスできること"
+      ],
+      "disconfirm": "プロキシ側が新しいSDKバージョンやモデルに対応していない場合",
+      "continue_if": "ルーティングのテストが成功した場合",
+      "stop": "ルーターを経由しない直接接続に移行する場合"
     }
   ],
-  "kan": "今後14日以内に、主要なオープンソース系プロバイダーのいずれかが、APIの基本利用料を事実上の「ゼロ」にする月額サブスクリプション型プランを公式に発表する。"
+  "kan": "本命ではないが、今月中にも主要なAPIプロバイダーのいずれかが破産または大手クラウドによる救済買収を発表すると見る。"
 }
