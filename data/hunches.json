@@ -2167,14 +2167,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-09-25T09:00:06.382112+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "Anthropicの公式ニュースルームにおいて、期間内にAccentureとの評価に関する提携発表はあるものの、主要SIerとのリセラープログラムの本格稼働や契約締結に関する発表は掲載されていない。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-09-14-h01",
@@ -2376,5 +2380,46 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.75
+  },
+  {
+    "id": "2026-09-25-h01",
+    "created_at": "2026-09-25T08:58:32.171778+09:00",
+    "based_on": [
+      "2026-09-25-r03",
+      "2026-09-25-r04"
+    ],
+    "prose": "Anthropicがシンガポールオフィスを起点にAPACでの採用を具体化させている中、短期的に地域特有のパートナーシップや公式展開に関する発表が追加で行われるペースは、過去の事例から見てそれほど高くない。過去の類似の組織立ち上げ期における観測では、現地採用の初期段階から外部向けのアナウンスが矢継ぎ早に出るケースは限定的であるため、今後14日以内に公式ニュースルーム等でASEAN向けの具体的な事業展開や現地企業との協業リリースが出る確率は低いと見積もる。",
+    "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて東南アジア地域を主眼とした新規の事業提携や顧客導入事例を発表しない。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Anthropic news Singapore ASEAN",
+      "decider": "指定期間内にanthropic.com/news上でシンガポールオフィスやASEAN地域での顧客・パートナー提携に関する公式プレスリリースが掲載されないこと"
+    },
+    "deadline": "2026-10-09",
+    "confidence": 0.65,
+    "base_rate": 0.7,
+    "base_rate_class": "AIスタートアップが海外拠点での初期採用段階から14日以内に現地プレスリリースを出す頻度",
+    "confidence_why": "求人が複数出ているものの、初期の採用活動と外部向け発表の間にはタイムラグがあるのが通常であり、基準率に対してやや慎重に置いた。",
+    "counter": "すでに水面下で進んでいた大型の地域提携が、現地オフィスの本格稼働に合わせて今まさに矢継ぎ早に発表される可能性。",
+    "indicators": [
+      {
+        "sign": "anthropic.com/newsページに新たなプレスリリースが掲載される",
+        "dir": "kill"
+      },
+      {
+        "sign": "求人ページでシンガポール関連の追加職種（マーケティングや営業統括など）の募集が停止される",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]

@@ -5036,5 +5036,167 @@
       "2026-09-22-r05",
       "2026-09-22-r04"
     ]
+  },
+  {
+    "id": "2026-09-25-r01",
+    "created_at": "2026-09-25T08:58:32.171778+09:00",
+    "headline": "openai Python SDK v3.19.2 リリース",
+    "what_happened": "OpenAIはPyPIにて公式Python SDKのバージョン3.19.2を公開した。本文によれば、本ライブラリはOpenAI REST APIへの接続を目的とし、Python 3.10以降に対応している。OpenAPI仕様から自動生成され、同期・非同期のクライアントを提供する。body_fetched=trueにより詳細なパッケージ説明を確認済である。",
+    "background": "OpenAIはPython向け公式SDKの改訂を頻繁に行っており、エンドポイントの追加や細かなバグ修正が継続的に反映されている。",
+    "changed": "Python環境からOpenAI APIを利用する際の公式ライブラリのバージョンが3.19.2に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.19.2/",
+      "title": "openai Python SDK v3.19.2 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-24-r01",
+      "2026-09-23-r01",
+      "2026-09-20-r01",
+      "2026-09-16-r01",
+      "2026-09-11-r07",
+      "2026-09-10-r01"
+    ]
+  },
+  {
+    "id": "2026-09-25-r02",
+    "created_at": "2026-09-25T08:58:32.171778+09:00",
+    "headline": "anthropic: Partner Marketing Manger, GSI & SI (San Francisco, NY) 新規求人",
+    "what_happened": "AnthropicはGreenhouseの求人ページにおいて、グローバルおよび地域システムインテグレーター（GSI・RSI）向けのパートナーマーケティングマネージャー職を公開した。本文によれば、パートナー企業との共同マーケティング計画の策定や、パートナー経由のエンタープライズ向け案件を拡大するための施策を担うとされる。body_fetched=trueにより詳細を確認済である。",
+    "background": "エンタープライズ市場における売上拡大のため、Anthropicは大手ITコンサルティングやSIerとのアライアンス強化を急ピッチで進めている。",
+    "changed": "システムインテグレーターとの協業マーケティングを専任で統括するポジションの採用が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5434116008",
+      "title": "[新規求人] anthropic: Partner Marketing Manger, GSI & SI (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-24-r03",
+      "2026-09-24-r02",
+      "2026-09-23-r06",
+      "2026-09-23-r05",
+      "2026-09-23-r04",
+      "2026-09-23-r02"
+    ]
+  },
+  {
+    "id": "2026-09-25-r03",
+    "created_at": "2026-09-25T08:58:32.171778+09:00",
+    "headline": "anthropic: APAC Recruiting Coordinator (Singapore) 新規求人",
+    "what_happened": "AnthropicはGreenhouseにて、シンガポール拠点のAPACリクルーティングコーディネーター職の募集を開始した。本文によれば、日本、韓国、インド、オーストラリア、東南アジアを含むアジア太平洋地域全体の採用活動および面接調整を現地から主導する最初のコーディネーター枠となる。body_fetched=trueにより詳細を確認済である。",
+    "background": "シンガポールオフィスの開設に続き、アジア太平洋地域での本格的な組織構築に向けた採用オペレーションの整備が進められている。",
+    "changed": "シンガポールを拠点としてAPAC全域の採用実務を担う専任コーディネーターの採用が公式に始まった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427309008",
+      "title": "[新規求人] anthropic: APAC Recruiting Coordinator (Singapore)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-24-r03",
+      "2026-09-24-r02",
+      "2026-09-23-r06",
+      "2026-09-23-r05",
+      "2026-09-23-r04",
+      "2026-09-23-r02"
+    ]
+  },
+  {
+    "id": "2026-09-25-r04",
+    "created_at": "2026-09-25T08:58:32.171778+09:00",
+    "headline": "anthropic: Customer Success (Singapore) 新規求人",
+    "what_happened": "AnthropicはGreenhouseにて、シンガポール拠点のカスタマーサクセス・マネージャー職の募集を公開した。本文によれば、ASEAN地域における複雑なエンタープライズ顧客の戦略的パートナーとして、Claude EnterpriseやAPIの導入から利用量拡大までを支援する初期メンバーの募集である。body_fetched=trueにより詳細を確認済である。",
+    "background": "現地法人や拠点設立の動きと連動し、ASEAN市場における顧客の利用定着化を担う実働部隊の配置が急がれている。",
+    "changed": "シンガポール拠点でASEAN顧客の導入支援を担当するカスタマーサクセス職の採用が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5433878008",
+      "title": "[新規求人] anthropic: Customer Success (Singapore)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-24-r03",
+      "2026-09-24-r02",
+      "2026-09-23-r06",
+      "2026-09-23-r05",
+      "2026-09-23-r04",
+      "2026-09-23-r02"
+    ]
+  },
+  {
+    "id": "2026-09-25-r05",
+    "created_at": "2026-09-25T08:58:32.171778+09:00",
+    "headline": "xai: Supervisor, Power Generation - Memphis 新規求人",
+    "what_happened": "xAIはGreenhouseにて、メンフィス（テネシー州／ミシシッピ州周辺）のスーパーコンピューティング施設における発電設備管理のスーパーバイザー職を公開した。本文によれば、大規模AI計算基盤を支えるオンサイトのガスタービンや電気系統の運用・保守チームを率いる役割を持つ。body_fetched=trueにより詳細を確認済である。",
+    "background": "xAIは巨大データセンターの電力供給インフラを自前で維持・拡張するため、発電・インフラ設備の求人を継続的に出している。",
+    "changed": "メンフィスのAI計算施設における電力供給システムの運用管理責任者の採用が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5248787007",
+      "title": "[新規求人] xai: Supervisor, Power Generation - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-23-r08",
+      "2026-09-23-r07",
+      "2026-09-20-r06",
+      "2026-09-19-r02",
+      "2026-09-18-r03",
+      "2026-09-17-r03"
+    ]
+  },
+  {
+    "id": "2026-09-25-r06",
+    "created_at": "2026-09-25T08:58:32.171778+09:00",
+    "headline": "xai: Facilities Maintenance Technician - 3rd Shift - Memphis 新規求人",
+    "what_happened": "xAIはGreenhouseにて、メンフィス施設の夜勤帯ファシリティーズメンテナンス技術者の求人を公開した。本文によれば、最先端データセンターの構築・稼働維持を自律的に行う技術者を求めている。body_fetched=trueにより詳細を確認済である。",
+    "background": "大規模スーパーコンピュータの24時間体制の維持管理に向け、現場の技術系人員の採用が続けられている。",
+    "changed": "メンフィス施設の夜間帯におけるデータセンター保守・運用技術者の採用枠が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5248831007",
+      "title": "[新規求人] xai: Facilities Maintenance Technician - 3rd Shift - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-23-r08",
+      "2026-09-23-r07",
+      "2026-09-20-r06",
+      "2026-09-19-r02",
+      "2026-09-18-r03",
+      "2026-09-17-r03"
+    ]
   }
 ]
