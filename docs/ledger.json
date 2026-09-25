@@ -1,24 +1,38 @@
 {
-  "updated_at": "2026-09-24 08:56",
+  "updated_at": "2026-09-25 09:01",
   "score": {
     "hit": 11,
-    "miss": 23,
-    "total": 34,
-    "rate": 0.3235294117647059,
+    "miss": 24,
+    "total": 35,
+    "rate": 0.3142857142857143,
     "pending": 5,
-    "brier": 0.3955754705882354,
-    "brier_n": 34,
-    "brier_initial": 0.4081029411764707,
+    "brier": 0.3982733142857144,
+    "brier_n": 35,
+    "brier_initial": 0.4104428571428573,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-09-25",
-    "days": 1
+    "date": "2026-09-28",
+    "days": 3
   },
   "decided": [
+    {
+      "id": "2026-09-11-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームまたはパートナー向けページにおいて、主要SIerとの具体的なリセラー契約締結や共同販売プログラムの本格稼働を発表しない",
+      "subject": "Anthropic",
+      "deadline": "2026-09-25",
+      "confidence": 0.7,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "すでに水面下で大口SIerとの交渉が完了しており、求人公開と同時にパートナーシップ発表が行われる場合",
+      "evidence": "Anthropicの公式ニュースルームにおいて、期間内にAccentureとの評価に関する提携発表はあるものの、主要SIerとのリセラープログラムの本格稼働や契約締結に関する発表は掲載されていない。",
+      "signals": []
+    },
     {
       "id": "2026-09-10-h01",
       "claim": "OpenAIは今後7日以内に、PyPIにおける公式Python SDK「openai」の新バージョン（v3.12.0以上）をリリースする。",
@@ -234,37 +248,9 @@
       "counter": "求人公開にあわせてクラウドパートナー（AWS等）との提携による共同設計チップの概念発表が電撃的に行われる可能性がある。",
       "evidence": "2026年8月20日時点のAnthropic公式ニュースルームの記事一覧において、自社設計ハードウェアや独自カスタムチップに関するプレスリリースは確認されなかったため的中。",
       "signals": []
-    },
-    {
-      "id": "2026-08-05-h02",
-      "claim": "Googleは12日以内に、Google AI Studioの利用可能モデル一覧および公式ドキュメントに「Gemini 3.5 Flash Cyber」を追加する。",
-      "subject": "Google",
-      "deadline": "2026-08-17",
-      "confidence": 0.8,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "サイバーセキュリティ特化モデルの性質上、誤用リスクを防ぐためにVertex AI限定の審査制提供に留まり、パブリックなAI Studioには展開されないリスクが存在する。",
-      "evidence": "期日時点の公式ドキュメントのモデル一覧に「gemini-3.5-flash-cyber」の追加が確認できないため。",
-      "signals": []
     }
   ],
   "pending": [
-    {
-      "id": "2026-09-11-h01",
-      "claim": "Anthropicは今後14日以内に、公式ニュースルームまたはパートナー向けページにおいて、主要SIerとの具体的なリセラー契約締結や共同販売プログラムの本格稼働を発表しない",
-      "subject": "Anthropic",
-      "deadline": "2026-09-25",
-      "confidence": 0.7,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "すでに水面下で大口SIerとの交渉が完了しており、求人公開と同時にパートナーシップ発表が行われる場合",
-      "evidence": "",
-      "signals": []
-    },
     {
       "id": "2026-09-14-h01",
       "claim": "Anthropicは今後14日以内に、公式利用ポリシー（Usage Policy）ページにおいてクラウドパートナー向けの執行条項を独立セクションとして新設しない",
@@ -337,6 +323,20 @@
           "why": "Anthropicが新たにM&A・戦略的取引関連の職種である「Corporate Finance & Strategy, Strategic Transactions」の求人を掲載したため。"
         }
       ]
+    },
+    {
+      "id": "2026-09-25-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて東南アジア地域を主眼とした新規の事業提携や顧客導入事例を発表しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-10-09",
+      "confidence": 0.65,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "すでに水面下で進んでいた大型の地域提携が、現地オフィスの本格稼働に合わせて今まさに矢継ぎ早に発表される可能性。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
@@ -344,35 +344,30 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-09-23",
-          "headline": "anthropic: Research Operations, Reinforcement Learningの求人掲載",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5422117008"
-        },
-        {
-          "date": "2026-09-23",
-          "headline": "anthropic: Security Risk & Compliance, Data Centers & Computeの求人掲載",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5430205008"
-        },
-        {
-          "date": "2026-09-24",
-          "headline": "anthropic: Applied AI Architect, Public Sector 求人の公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5382518008"
-        },
-        {
           "date": "2026-09-24",
           "headline": "anthropic: Policy Research, Strategic Advisory 求人の公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5431235008"
+        },
+        {
+          "date": "2026-09-25",
+          "headline": "anthropic: APAC Recruiting Coordinator (Singapore) 新規求人",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427309008"
+        },
+        {
+          "date": "2026-09-25",
+          "headline": "anthropic: Customer Success (Singapore) 新規求人",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5433878008"
+        },
+        {
+          "date": "2026-09-25",
+          "headline": "anthropic: Partner Marketing Manger, GSI & SI (San Francisco, NY) 新規求人",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5434116008"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-09-16",
-          "headline": "openai Python SDK v3.14.1 リリース",
-          "url": "https://pypi.org/project/openai/3.14.1/"
-        },
         {
           "date": "2026-09-20",
           "headline": "openai Python SDK v3.16.2 リリース",
@@ -387,22 +382,17 @@
           "date": "2026-09-24",
           "headline": "openai Python SDK v3.19.1 リリース",
           "url": "https://pypi.org/project/openai/3.19.1/"
+        },
+        {
+          "date": "2026-09-25",
+          "headline": "openai Python SDK v3.19.2 リリース",
+          "url": "https://pypi.org/project/openai/3.19.2/"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-09-19",
-          "headline": "xAIがメンフィスおよびサウスヘイブン拠点向けに工期統括スケジューラーの直接採用を開始",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5242789007"
-        },
-        {
-          "date": "2026-09-20",
-          "headline": "xai: Iron Worker (Construction) 求人公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5242350007"
-        },
         {
           "date": "2026-09-23",
           "headline": "xai: Industrial Pipefitter - Memphisの求人掲載",
@@ -412,6 +402,16 @@
           "date": "2026-09-23",
           "headline": "xai: Material Handler - Southaven, MSの求人掲載",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5246700007"
+        },
+        {
+          "date": "2026-09-25",
+          "headline": "xai: Facilities Maintenance Technician - 3rd Shift - Memphis 新規求人",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5248831007"
+        },
+        {
+          "date": "2026-09-25",
+          "headline": "xai: Supervisor, Power Generation - Memphis 新規求人",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5248787007"
         }
       ]
     },
@@ -473,6 +473,48 @@
   ],
   "records": [
     {
+      "id": "2026-09-25-r06",
+      "date": "2026-09-25",
+      "headline": "xai: Facilities Maintenance Technician - 3rd Shift - Memphis 新規求人",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5248831007"
+    },
+    {
+      "id": "2026-09-25-r05",
+      "date": "2026-09-25",
+      "headline": "xai: Supervisor, Power Generation - Memphis 新規求人",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5248787007"
+    },
+    {
+      "id": "2026-09-25-r04",
+      "date": "2026-09-25",
+      "headline": "anthropic: Customer Success (Singapore) 新規求人",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5433878008"
+    },
+    {
+      "id": "2026-09-25-r03",
+      "date": "2026-09-25",
+      "headline": "anthropic: APAC Recruiting Coordinator (Singapore) 新規求人",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427309008"
+    },
+    {
+      "id": "2026-09-25-r02",
+      "date": "2026-09-25",
+      "headline": "anthropic: Partner Marketing Manger, GSI & SI (San Francisco, NY) 新規求人",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5434116008"
+    },
+    {
+      "id": "2026-09-25-r01",
+      "date": "2026-09-25",
+      "headline": "openai Python SDK v3.19.2 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.19.2/"
+    },
+    {
       "id": "2026-09-24-r03",
       "date": "2026-09-24",
       "headline": "anthropic: Policy Research, Strategic Advisory 求人の公開",
@@ -513,49 +555,7 @@
       "headline": "anthropic: Engineering Manager, Data Infrastructureの求人掲載",
       "certainty": "reported",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5426135008"
-    },
-    {
-      "id": "2026-09-23-r05",
-      "date": "2026-09-23",
-      "headline": "anthropic: Security Risk & Compliance, Data Centers & Computeの求人掲載",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5430205008"
-    },
-    {
-      "id": "2026-09-23-r04",
-      "date": "2026-09-23",
-      "headline": "anthropic: Research Operations, Reinforcement Learningの求人掲載",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5422117008"
-    },
-    {
-      "id": "2026-09-23-r03",
-      "date": "2026-09-23",
-      "headline": "google-genai Python SDK v2.25.0 リリース",
-      "certainty": "reported",
-      "url": "https://pypi.org/project/google-genai/2.25.0/"
-    },
-    {
-      "id": "2026-09-23-r02",
-      "date": "2026-09-23",
-      "headline": "anthropic Python SDK v1.8.0 リリース",
-      "certainty": "reported",
-      "url": "https://pypi.org/project/anthropic/1.8.0/"
-    },
-    {
-      "id": "2026-09-23-r01",
-      "date": "2026-09-23",
-      "headline": "openai Python SDK v3.18.0 リリース",
-      "certainty": "reported",
-      "url": "https://pypi.org/project/openai/3.18.0/"
-    },
-    {
-      "id": "2026-09-22-r05",
-      "date": "2026-09-22",
-      "headline": "AnthropicがCorporate Finance & Strategy, Strategic Transactionsの求人枠を追加",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5430263008"
     }
   ],
-  "record_count": 179
+  "record_count": 185
 }

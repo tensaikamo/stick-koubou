@@ -1,162 +1,169 @@
 {
-  "date": "2026-09-24",
+  "date": "2026-09-25",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "Google Gen AI SDK v2.25.0への追従コストを見積もるか？",
-    "自動関数呼び出しの仕様変更に備えてAPI依存部を分離するか？",
-    "SDK更新に伴う例外処理の修正を今夜の30分枠でするか？"
+    "OpenRouterのルーティング設定でDeepSeekの直結エンドポイントに今夜書き換えるか？",
+    "アンソロピックのシンガポール求人拡大に対し、アジア圏の仲介を迂回する薄利多売の個人サービスをどこに仕込むか？",
+    "API価格破壊の波の中で、仲介者を捨てて自前の直接接続ラインを1本今日完遂させるか？"
   ],
   "moves": [
     {
-      "t": "自動関数呼び出しの警告箇所をコードベースから抽出する",
-      "why": "次期メジャーでのAFC仕様変更に先回りして影響範囲を特定するため。",
+      "t": "OpenRouterでAPIのエンドポイントをDeepSeekへ切り替える",
+      "why": "価格破壊による仲介者バイパスの直結ルートを30分以内に1本稼働させるため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.25,
-      "success_p_max": 0.55,
-      "success_why": "過去のv2.22.0以降から警告仕様が継続しているため。",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "AFC利用箇所のリストアップ",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "内部構造の点検に留まるため。",
-      "evidence_ids": [
-        "2026-09-03-r03"
-      ],
-      "assumptions": [
-        "対象プロジェクト内にAFCを利用しているコードが存在すること"
-      ],
-      "disconfirm": "コード内に自動関数呼び出しを使用している箇所がない場合",
-      "continue_if": "修正対象の関数呼び出しが複数見つかった場合",
-      "stop": "既にAFCの利用を停止している場合"
-    },
-    {
-      "t": "有料APIの従量課金アラート閾値を平時より20%引き下げる設定を行う",
-      "why": "API価格競争や急な単価変動による予期せぬコスト超過を防ぐため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.35,
-      "success_p_max": 0.65,
-      "success_why": "主要なプロバイダーのダッシュボードから予算通知設定が即時変更可能なため。",
+      "success_p": 0.85,
+      "success_p_min": 0.75,
+      "success_p_max": 0.95,
+      "success_why": "OpenRouter上の値下げと管理画面の仕様が直接対応しているため",
       "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 10,
-      "payback_days": 0,
-      "outcome": "新しい予算アラートの有効化確認",
-      "category": "apply",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "コスト管理の安全性を高める実用的な一手であるため。",
-      "evidence_ids": [
-        "2026-09-23-r03"
-      ],
-      "assumptions": [
-        "利用中のAPI管理コンソールにアクセスできること"
-      ],
-      "disconfirm": "すでに厳格なアラート設定が適用されている場合",
-      "continue_if": "予期せぬコスト発生リスクが残っている場合",
-      "stop": "APIを全く利用していない場合"
-    },
-    {
-      "t": "APIプロバイダー別のバッチ処理単価を比較シートに手入力でまとめる",
-      "why": "価格改定の激しい市場で、コスト優位性のあるルートを即座に選定できるようにするため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.25,
-      "success_p_max": 0.55,
-      "success_why": "主要各社の価格ページから直近の単価を抽出できるため。",
-      "value_score": 3,
       "learning_value": 4,
       "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "主要モデルのバッチ単価比較一覧",
-      "category": "research",
+      "outcome": "DeepSeek直結ルーティング設定のエラーフリーな稼働",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "意思決定の精度を上げるための基礎資料となるため。",
+      "impact_max": 0.3,
+      "impact_why": "30分作業の一環であり、API基盤の直結化という部分最適の達成にとどまるため",
       "evidence_ids": [
-        "2026-09-23-r03"
+        "2026-09-25-r04",
+        "2026-09-25-r03"
       ],
       "assumptions": [
-        "各社の最新価格がWeb上で公開されていること"
+        "OpenRouterの管理画面にiPhoneからアクセス可能であること",
+        "APIキーが正常に引き継がれること"
       ],
-      "disconfirm": "バッチ処理に対応しているプロバイダーが存在しない場合",
-      "continue_if": "単価の差が利益率に直結する規模である場合",
-      "stop": "APIの切り替え予定がない場合"
+      "disconfirm": "エンドポイントの書き換え後にエラーレートが急増すること",
+      "continue_if": "レイテンシとコストが想定通りに低下すること",
+      "stop": "接続エラーが解消せず30分を超過すること"
     },
     {
-      "t": "外部API障害時のフォールバック処理を実装する",
-      "why": "価格競争や買収劇によるプロバイダー急変時にサービスが停止するリスクを回避するため。",
+      "t": "API直結ルーティングのエラーハンドリングをテストする",
+      "why": "価格破壊後の直結ルートで予期せぬ切断を防ぎ、実用性を担保するため",
+      "cost_min": 0,
+      "cost_max": 500,
+      "loss_max": 500,
+      "success_p": 0.7,
+      "success_p_min": 0.5,
+      "success_p_max": 0.85,
+      "success_why": "小額のテストコールを流すことで疎通確認の再現性が高いため",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 1,
+      "outcome": "テストコールの200 OKレスポンスの記録",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.2,
+      "impact_why": "検証フェーズの小さな一歩に過ぎないため",
+      "evidence_ids": [
+        "2026-09-25-r04"
+      ],
+      "assumptions": [
+        "テスト用の少額残高がアカウントに残っていること",
+        "iPhoneのブラウザでログが確認できること"
+      ],
+      "disconfirm": "タイムアウトエラーが連続して発生すること",
+      "continue_if": "正常なJSON応答が安定して返ること",
+      "stop": "課金エラーが発生した時点で即時中断する"
+    },
+    {
+      "t": "アジア圏向け薄利多売サービスのAPI単価計算シートを作る",
+      "why": "中国外のサードパーティが排除される中での個人開発の利益率を算定するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.35,
-      "success_p_min": 0.2,
-      "success_p_max": 0.5,
-      "success_why": "複数エンドポイントの切り替えロジックが既存構成に組み込めるため。",
+      "success_p": 0.8,
+      "success_p_min": 0.6,
+      "success_p_max": 0.9,
+      "success_why": "値下げ率と直結ルートのコスト構造が明確に定義されているため",
       "value_score": 4,
       "learning_value": 4,
       "time_minutes": 30,
       "payback_days": 0,
-      "outcome": "フォールバック切り替え関数の実装コード",
-      "category": "build",
-      "terminal": true,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "システム全体の耐障害性が根本的に向上するため。",
+      "outcome": "利益率と許容リクエスト数の算出スプレッドシート",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.25,
+      "impact_why": "収益構造の設計図作成であり、実稼働には至らないため",
       "evidence_ids": [
-        "2026-09-23-r03"
+        "2026-09-25-r03"
       ],
       "assumptions": [
-        "代替となるAPIの認証情報が既に取得済みであること"
+        "スプレッドシートアプリがiPhoneで動作すること",
+        "新API価格のデータが手元にあること"
       ],
-      "disconfirm": "単一のプロバイダーに完全依存するアーキテクチャである場合",
-      "continue_if": "切り替えの自動化テストが正常に通過した場合",
-      "stop": "冗長化の必要性が低いと判断した場合"
+      "disconfirm": "利益が出る価格帯が現在の市場単価を下回ること",
+      "continue_if": "薄利でも月次でプラスになる試算が出る場合",
+      "stop": "計算結果が赤字構造を示す場合"
     },
     {
-      "t": "AIルーターのプロキシ設定に新モデルのエンドポイントを追加する",
-      "why": "モデルの価格や仕様変更に即座に追従し、ルーター側で最適モデルにルーティングするため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.25,
-      "success_p_max": 0.55,
-      "success_why": "OpenRouter等の設定画面からエンドポイントの追加が容易なため。",
+      "t": "仲介者をバイパスする自動リトライスクリプトを実装する",
+      "why": "大手アグリゲーターの集中を避け、直結ルートの可用性を維持するため",
+      "cost_min": 1000,
+      "cost_max": 3000,
+      "loss_max": 3000,
+      "success_p": 0.5,
+      "success_p_min": 0.3,
+      "success_p_max": 0.7,
+      "success_why": "iPhoneのブラウザ環境でのスクリプト実行は制限が多いため",
       "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "ルーター設定の更新と疎通確認の完了",
-      "category": "apply",
+      "learning_value": 5,
+      "time_minutes": 30,
+      "payback_days": 7,
+      "outcome": "GitHub上のリトライ処理コードの更新版",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "APIコストと可用性を直ちに最適化できるため。",
+      "impact_max": 0.3,
+      "impact_why": "可用性向上のためのコアコンポーネント実装であるため",
       "evidence_ids": [
-        "2026-09-23-r03"
+        "2026-09-25-r04"
       ],
       "assumptions": [
-        "プロキシサービスのアカウントにアクセスできること"
+        "GitHubのWebエディタでコード修正が完結すること",
+        "エラー時のフォールバック先が確保されていること"
       ],
-      "disconfirm": "プロキシ側が新しいSDKバージョンやモデルに対応していない場合",
-      "continue_if": "ルーティングのテストが成功した場合",
-      "stop": "ルーターを経由しない直接接続に移行する場合"
+      "disconfirm": "構文エラーがWeb環境上で解消できないこと",
+      "continue_if": "テスト実行でリトライが期待通りに動作すること",
+      "stop": "環境制約により30分以内にコードが保存できない場合"
+    },
+    {
+      "t": "シンガポール向け求人情報の更新監視ウェブフックを設定する",
+      "why": "アンソロピックのAPAC展開の動きに先回りして隙を検知するため",
+      "cost_min": 0,
+      "cost_max": 1000,
+      "loss_max": 1000,
+      "success_p": 0.65,
+      "success_p_min": 0.45,
+      "success_p_max": 0.8,
+      "success_why": "Greenhouseの求人ページ構造が一定の規則を持つため",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 3,
+      "outcome": "新規求人検知時の通知テスト成功",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "情報優位を作るためのシグナル収集の自動化であるため",
+      "evidence_ids": [
+        "2026-09-25-r04",
+        "2026-09-25-r03"
+      ],
+      "assumptions": [
+        "無料枠の自動化ツールが利用可能であること",
+        "対象URLのHTML構造が急変しないこと"
+      ],
+      "disconfirm": "スクレイピング制限や403エラーが頻発すること",
+      "continue_if": "テスト通知がiPhoneに正常に届くこと",
+      "stop": "API制限により監視がブロックされること"
     }
   ],
-  "kan": "本命ではないが、今月中にも主要なAPIプロバイダーのいずれかが破産または大手クラウドによる救済買収を発表すると見る。"
+  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて東南アジア地域を主眼とした新規の事業提携や顧客導入事例を発表しない。"
 }
