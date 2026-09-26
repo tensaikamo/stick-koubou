@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-09-25 09:01",
+  "updated_at": "2026-09-26 09:07",
   "score": {
     "hit": 11,
     "miss": 24,
     "total": 35,
     "rate": 0.3142857142857143,
-    "pending": 5,
+    "pending": 6,
     "brier": 0.3982733142857144,
     "brier_n": 35,
     "brier_initial": 0.4104428571428573,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-28",
-    "days": 3
+    "days": 2
   },
   "decided": [
     {
@@ -337,22 +337,32 @@
       "counter": "すでに水面下で進んでいた大型の地域提携が、現地オフィスの本格稼働に合わせて今まさに矢継ぎ早に発表される可能性。",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-09-26-h01",
+      "claim": "Googleは今後14日以内に、PyPIにおいて「google-genai」のバージョン3.0.0以上をリリースしない",
+      "subject": "Google",
+      "deadline": "2026-10-10",
+      "confidence": 0.809,
+      "initial_confidence": 0.73,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "Googleがエージェントプラットフォーム統合を最優先し、移行猶予を置かずにv3.0.0を先行投入して旧インターフェースを即時切り捨てる展開",
+      "evidence": "",
+      "signals": [
+        {
+          "date": "2026-09-26",
+          "dir": "confirm",
+          "why": "google-genai Python SDK v2.25.0がリリースされ、2.x系の新たなマイナー版リリースが確認されたため。"
+        }
+      ]
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-09-24",
-          "headline": "anthropic: Policy Research, Strategic Advisory 求人の公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5431235008"
-        },
-        {
-          "date": "2026-09-25",
-          "headline": "anthropic: APAC Recruiting Coordinator (Singapore) 新規求人",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427309008"
-        },
         {
           "date": "2026-09-25",
           "headline": "anthropic: Customer Success (Singapore) 新規求人",
@@ -362,6 +372,16 @@
           "date": "2026-09-25",
           "headline": "anthropic: Partner Marketing Manger, GSI & SI (San Francisco, NY) 新規求人",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5434116008"
+        },
+        {
+          "date": "2026-09-26",
+          "headline": "Anthropicがハードウェア専任の商業法務カウンセル求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5434795008"
+        },
+        {
+          "date": "2026-09-26",
+          "headline": "Anthropicが企業PACおよび政治資金関連のコンプライアンス責任者求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5433952008"
         }
       ]
     },
@@ -395,11 +415,6 @@
       "events": [
         {
           "date": "2026-09-23",
-          "headline": "xai: Industrial Pipefitter - Memphisの求人掲載",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5246678007"
-        },
-        {
-          "date": "2026-09-23",
           "headline": "xai: Material Handler - Southaven, MSの求人掲載",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5246700007"
         },
@@ -412,6 +427,11 @@
           "date": "2026-09-25",
           "headline": "xai: Supervisor, Power Generation - Memphis 新規求人",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5248787007"
+        },
+        {
+          "date": "2026-09-26",
+          "headline": "xAIが医療ドメインのAIチューター統括リーダー求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5249791007"
         }
       ]
     },
@@ -472,6 +492,27 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-09-26-r03",
+      "date": "2026-09-26",
+      "headline": "xAIが医療ドメインのAIチューター統括リーダー求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5249791007"
+    },
+    {
+      "id": "2026-09-26-r02",
+      "date": "2026-09-26",
+      "headline": "Anthropicが企業PACおよび政治資金関連のコンプライアンス責任者求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5433952008"
+    },
+    {
+      "id": "2026-09-26-r01",
+      "date": "2026-09-26",
+      "headline": "Anthropicがハードウェア専任の商業法務カウンセル求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5434795008"
+    },
     {
       "id": "2026-09-25-r06",
       "date": "2026-09-25",
@@ -534,28 +575,7 @@
       "headline": "openai Python SDK v3.19.1 リリース",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/openai/3.19.1/"
-    },
-    {
-      "id": "2026-09-23-r08",
-      "date": "2026-09-23",
-      "headline": "xai: Industrial Pipefitter - Memphisの求人掲載",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5246678007"
-    },
-    {
-      "id": "2026-09-23-r07",
-      "date": "2026-09-23",
-      "headline": "xai: Material Handler - Southaven, MSの求人掲載",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5246700007"
-    },
-    {
-      "id": "2026-09-23-r06",
-      "date": "2026-09-23",
-      "headline": "anthropic: Engineering Manager, Data Infrastructureの求人掲載",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5426135008"
     }
   ],
-  "record_count": 185
+  "record_count": 188
 }

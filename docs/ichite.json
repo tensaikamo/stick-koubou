@@ -1,169 +1,167 @@
 {
-  "date": "2026-09-25",
+  "date": "2026-09-26",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのルーティング設定でDeepSeekの直結エンドポイントに今夜書き換えるか？",
-    "アンソロピックのシンガポール求人拡大に対し、アジア圏の仲介を迂回する薄利多売の個人サービスをどこに仕込むか？",
-    "API価格破壊の波の中で、仲介者を捨てて自前の直接接続ラインを1本今日完遂させるか？"
+    "OpenRouterのモデル退役予告に対し、API切り替えを今日終わらせたか？",
+    "Anthropicのハードウェア法務求人に合わせ、自前の運用基盤で何を見直したか？",
+    "xAIの求人動向を踏まえ、医療やインフラ領域の隙を突く構想をどこまで固めたか？"
   ],
   "moves": [
     {
-      "t": "OpenRouterでAPIのエンドポイントをDeepSeekへ切り替える",
-      "why": "価格破壊による仲介者バイパスの直結ルートを30分以内に1本稼働させるため",
+      "t": "Anthropicの法務求人から読み取れるハードウェア特許の動向を1ページにまとめろ",
+      "why": "Anthropicがハードウェア専任の法務を急募した背景にあるインフラ戦略のシフトを把握するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.75,
-      "success_p_max": 0.95,
-      "success_why": "OpenRouter上の値下げと管理画面の仕様が直接対応しているため",
-      "value_score": 4,
-      "learning_value": 4,
+      "success_p": 0.6,
+      "success_p_min": 0.4,
+      "success_p_max": 0.75,
+      "success_why": "公開求人の職務記述書から狙いを特定できるため",
+      "value_score": 3,
+      "learning_value": 5,
       "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "DeepSeek直結ルーティング設定のエラーフリーな稼働",
-      "category": "build",
+      "outcome": "ハードウェア戦略に関する分析メモ1本の作成",
+      "category": "research",
       "terminal": false,
       "impact_min": 0.1,
-      "impact_max": 0.3,
-      "impact_why": "30分作業の一環であり、API基盤の直結化という部分最適の達成にとどまるため",
-      "evidence_ids": [
-        "2026-09-25-r04",
-        "2026-09-25-r03"
-      ],
-      "assumptions": [
-        "OpenRouterの管理画面にiPhoneからアクセス可能であること",
-        "APIキーが正常に引き継がれること"
-      ],
-      "disconfirm": "エンドポイントの書き換え後にエラーレートが急増すること",
-      "continue_if": "レイテンシとコストが想定通りに低下すること",
-      "stop": "接続エラーが解消せず30分を超過すること"
-    },
-    {
-      "t": "API直結ルーティングのエラーハンドリングをテストする",
-      "why": "価格破壊後の直結ルートで予期せぬ切断を防ぎ、実用性を担保するため",
-      "cost_min": 0,
-      "cost_max": 500,
-      "loss_max": 500,
-      "success_p": 0.7,
-      "success_p_min": 0.5,
-      "success_p_max": 0.85,
-      "success_why": "小額のテストコールを流すことで疎通確認の再現性が高いため",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 1,
-      "outcome": "テストコールの200 OKレスポンスの記録",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.05,
       "impact_max": 0.2,
-      "impact_why": "検証フェーズの小さな一歩に過ぎないため",
+      "impact_why": "巨頭の資本投下先を個人が先回りするための判断材料になるため",
       "evidence_ids": [
-        "2026-09-25-r04"
+        "2026-09-26-r01"
       ],
       "assumptions": [
-        "テスト用の少額残高がアカウントに残っていること",
-        "iPhoneのブラウザでログが確認できること"
+        "JDに具体的な業務内容が記載されていること"
       ],
-      "disconfirm": "タイムアウトエラーが連続して発生すること",
-      "continue_if": "正常なJSON応答が安定して返ること",
-      "stop": "課金エラーが発生した時点で即時中断する"
+      "disconfirm": "定型的な文言のみで具体的な戦略が読み取れない場合",
+      "continue_if": "インフラ投資の方向性が明確に読み取れること",
+      "stop": "情報が抽象的すぎて推測の域を出ない場合"
     },
     {
-      "t": "アジア圏向け薄利多売サービスのAPI単価計算シートを作る",
-      "why": "中国外のサードパーティが排除される中での個人開発の利益率を算定するため",
+      "t": "xAIの医療チューター求人を分析し個人が参入可能な領域を1つ書き出せ",
+      "why": "xAIが垂直統合型でドメイン特化型AIの獲得を急いでいる領域の隙を突くため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.5,
+      "success_p_min": 0.3,
+      "success_p_max": 0.7,
+      "success_why": "大手が手を出し切れていないニッチな周辺領域が存在するため",
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "個人が狙える周辺ニッチ領域の特定リスト",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "大資本の土俵から外れた場所で独自の優位性を作る足がかりになるため",
+      "evidence_ids": [
+        "2026-09-26-r03"
+      ],
+      "assumptions": [
+        "求人内容に特定のドメイン要求が明記されていること"
+      ],
+      "disconfirm": "単なる一般的な教育系AIの求人であると判明した場合",
+      "continue_if": "特定の垂直統合の意図が確認できること",
+      "stop": "大資本の独占領域で個人の隙が見当たらない場合"
+    },
+    {
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
-      "success_p_min": 0.6,
+      "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "値下げ率と直結ルートのコスト構造が明確に定義されているため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 30,
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "利益率と許容リクエスト数の算出スプレッドシート",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "収益構造の設計図作成であり、実稼働には至らないため",
-      "evidence_ids": [
-        "2026-09-25-r03"
-      ],
-      "assumptions": [
-        "スプレッドシートアプリがiPhoneで動作すること",
-        "新API価格のデータが手元にあること"
-      ],
-      "disconfirm": "利益が出る価格帯が現在の市場単価を下回ること",
-      "continue_if": "薄利でも月次でプラスになる試算が出る場合",
-      "stop": "計算結果が赤字構造を示す場合"
-    },
-    {
-      "t": "仲介者をバイパスする自動リトライスクリプトを実装する",
-      "why": "大手アグリゲーターの集中を避け、直結ルートの可用性を維持するため",
-      "cost_min": 1000,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.5,
-      "success_p_min": 0.3,
-      "success_p_max": 0.7,
-      "success_why": "iPhoneのブラウザ環境でのスクリプト実行は制限が多いため",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 7,
-      "outcome": "GitHub上のリトライ処理コードの更新版",
+      "outcome": "次に直す内容がIssueとして1件残る",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.3,
-      "impact_why": "可用性向上のためのコアコンポーネント実装であるため",
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
       "evidence_ids": [
-        "2026-09-25-r04"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "GitHubのWebエディタでコード修正が完結すること",
-        "エラー時のフォールバック先が確保されていること"
+        "Issueが次の実装に使われる"
       ],
-      "disconfirm": "構文エラーがWeb環境上で解消できないこと",
-      "continue_if": "テスト実行でリトライが期待通りに動作すること",
-      "stop": "環境制約により30分以内にコードが保存できない場合"
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
     },
     {
-      "t": "シンガポール向け求人情報の更新監視ウェブフックを設定する",
-      "why": "アンソロピックのAPAC展開の動きに先回りして隙を検知するため",
+      "t": "今日の一次情報を1本選び要点を3行残す",
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
       "cost_min": 0,
-      "cost_max": 1000,
-      "loss_max": 1000,
-      "success_p": 0.65,
-      "success_p_min": 0.45,
-      "success_p_max": 0.8,
-      "success_why": "Greenhouseの求人ページ構造が一定の規則を持つため",
-      "value_score": 3,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "value_score": 2,
       "learning_value": 3,
       "time_minutes": 20,
-      "payback_days": 3,
-      "outcome": "新規求人検知時の通知テスト成功",
-      "category": "build",
+      "payback_days": 0,
+      "outcome": "一次情報の要点メモが3行残る",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "情報優位を作るためのシグナル収集の自動化であるため",
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "意思決定へ使えた時だけ価値になる",
       "evidence_ids": [
-        "2026-09-25-r04",
-        "2026-09-25-r03"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "無料枠の自動化ツールが利用可能であること",
-        "対象URLのHTML構造が急変しないこと"
+        "読む情報が現在の目標に関係する"
       ],
-      "disconfirm": "スクレイピング制限や403エラーが頻発すること",
-      "continue_if": "テスト通知がiPhoneに正常に届くこと",
-      "stop": "API制限により監視がブロックされること"
+      "disconfirm": "要点が次の行動を一つも変えない",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了",
+      "fallback": true
+    },
+    {
+      "t": "予測を1件確認し確度メモを1行更新する",
+      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.55,
+      "success_p_max": 0.8,
+      "success_why": "既存予測の更新なので新規企画より着地しやすい",
+      "value_score": 2,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "追跡中予測の確度メモが更新される",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "誤った前提で投資する損失を減らす",
+      "evidence_ids": [
+        "action-history"
+      ],
+      "assumptions": [
+        "予測が現在の投資判断に関係する"
+      ],
+      "disconfirm": "確度更新が次の行動や支出を変えない",
+      "continue_if": "確度を動かす一次根拠が見つかった",
+      "stop": "根拠URLを1本確認したら終了",
+      "fallback": true
     }
   ],
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて東南アジア地域を主眼とした新規の事業提携や顧客導入事例を発表しない。"
+  "kan": "Googleは今後14日以内に、PyPIにおいて「google-genai」のバージョン3.0.0以上をリリースしない"
 }
