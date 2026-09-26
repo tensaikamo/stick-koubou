@@ -5279,5 +5279,59 @@
       "2026-09-20-r06",
       "2026-09-19-r02"
     ]
+  },
+  {
+    "id": "2026-09-27-r01",
+    "created_at": "2026-09-27T08:47:04.209047+09:00",
+    "headline": "xAIがメンフィスのデータセンター建設現場向けに鉄骨工の直接雇用を開始",
+    "what_happened": "xAIはテネシー州メンフィスおよびミシシッピ州サウスヘイブン拠点向けに「Iron Worker (Construction) - Memphis」の正社員募集を公開した。職務内容は次世代スーパーコンピュータ棟、冷却設備、変電所、現場インフラを支える構造用鋼材や金属設備の組立施工である。土木・機械・電気・運用チームと連携し、基礎から引き渡しまでの鉄骨据付を担う。",
+    "background": "xAIはメンフィスに大規模AIクラスタ「Colossus」を構築しており、施設拡張と電源・冷却インフラ整備を急速に進めている。",
+    "changed": "xAIがデータセンターの躯体建設に関わる職人（鉄骨工）を外部下請けだけでなく直雇用する枠組みを設けた。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5248860007",
+      "title": "[新規求人] xai: Iron Worker (Construction) - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-26-r03",
+      "2026-09-25-r06",
+      "2026-09-25-r05",
+      "2026-09-23-r08",
+      "2026-09-23-r07",
+      "2026-09-20-r06"
+    ]
+  },
+  {
+    "id": "2026-09-27-r02",
+    "created_at": "2026-09-27T08:47:04.209047+09:00",
+    "headline": "xAIがエンジニアリング領域のAIチューター統括リーダー求人を公開",
+    "what_happened": "xAIはフルリモートおよび各拠点を対象に「Expert Team Lead, Engineering」の求人を開設した。採用された人材は専任社員および契約社員からなるAIチューターチームを率い、モデル訓練データと評価データの品質管理を担当する。自身もラベリングやレビュー作業を実行しながら業務プロセスの改善を推進する手腕が求められている。",
+    "background": "xAIは汎用フロンティアモデルの精度向上のため、STEM分野や専門領域ごとの専門家（AIチューター）による高品質な正解データ生成・検証体制を強化している。",
+    "changed": "xAIのデータ作成組織において、エンジニアリング専門分野に特化したAIチューターのチームリード職が新設された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5249795007",
+      "title": "[新規求人] xai: Expert Team Lead, Engineering ( Palo Alto, CA; Asia; Australia; Canada; Europe; Remote International; Remote US; US)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-26-r03",
+      "2026-09-25-r06",
+      "2026-09-25-r05",
+      "2026-09-23-r08",
+      "2026-09-23-r07",
+      "2026-09-20-r06"
+    ]
   }
 ]
