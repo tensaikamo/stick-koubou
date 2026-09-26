@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-26 09:07",
+  "updated_at": "2026-09-27 08:48",
   "score": {
     "hit": 11,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-09-28",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -343,7 +343,7 @@
       "claim": "Googleは今後14日以内に、PyPIにおいて「google-genai」のバージョン3.0.0以上をリリースしない",
       "subject": "Google",
       "deadline": "2026-10-10",
-      "confidence": 0.809,
+      "confidence": 0.869,
       "initial_confidence": 0.73,
       "result": null,
       "status": "pending",
@@ -355,6 +355,11 @@
           "date": "2026-09-26",
           "dir": "confirm",
           "why": "google-genai Python SDK v2.25.0がリリースされ、2.x系の新たなマイナー版リリースが確認されたため。"
+        },
+        {
+          "date": "2026-09-27",
+          "dir": "confirm",
+          "why": "google-genai Python SDK v2.25.0がリリースされ、2.x系の新たなマイナー版が公開されたため。"
         }
       ]
     }
@@ -386,6 +391,31 @@
       ]
     },
     {
+      "subject": "xAI",
+      "events": [
+        {
+          "date": "2026-09-25",
+          "headline": "xai: Supervisor, Power Generation - Memphis 新規求人",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5248787007"
+        },
+        {
+          "date": "2026-09-26",
+          "headline": "xAIが医療ドメインのAIチューター統括リーダー求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5249791007"
+        },
+        {
+          "date": "2026-09-27",
+          "headline": "xAIがエンジニアリング領域のAIチューター統括リーダー求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5249795007"
+        },
+        {
+          "date": "2026-09-27",
+          "headline": "xAIがメンフィスのデータセンター建設現場向けに鉄骨工の直接雇用を開始",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5248860007"
+        }
+      ]
+    },
+    {
       "subject": "OpenAI",
       "events": [
         {
@@ -407,31 +437,6 @@
           "date": "2026-09-25",
           "headline": "openai Python SDK v3.19.2 リリース",
           "url": "https://pypi.org/project/openai/3.19.2/"
-        }
-      ]
-    },
-    {
-      "subject": "xAI",
-      "events": [
-        {
-          "date": "2026-09-23",
-          "headline": "xai: Material Handler - Southaven, MSの求人掲載",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5246700007"
-        },
-        {
-          "date": "2026-09-25",
-          "headline": "xai: Facilities Maintenance Technician - 3rd Shift - Memphis 新規求人",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5248831007"
-        },
-        {
-          "date": "2026-09-25",
-          "headline": "xai: Supervisor, Power Generation - Memphis 新規求人",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5248787007"
-        },
-        {
-          "date": "2026-09-26",
-          "headline": "xAIが医療ドメインのAIチューター統括リーダー求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5249791007"
         }
       ]
     },
@@ -492,6 +497,20 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-09-27-r02",
+      "date": "2026-09-27",
+      "headline": "xAIがエンジニアリング領域のAIチューター統括リーダー求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5249795007"
+    },
+    {
+      "id": "2026-09-27-r01",
+      "date": "2026-09-27",
+      "headline": "xAIがメンフィスのデータセンター建設現場向けに鉄骨工の直接雇用を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5248860007"
+    },
     {
       "id": "2026-09-26-r03",
       "date": "2026-09-26",
@@ -561,21 +580,7 @@
       "headline": "anthropic: Policy Research, Strategic Advisory 求人の公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5431235008"
-    },
-    {
-      "id": "2026-09-24-r02",
-      "date": "2026-09-24",
-      "headline": "anthropic: Applied AI Architect, Public Sector 求人の公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5382518008"
-    },
-    {
-      "id": "2026-09-24-r01",
-      "date": "2026-09-24",
-      "headline": "openai Python SDK v3.19.1 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.19.1/"
     }
   ],
-  "record_count": 188
+  "record_count": 190
 }

@@ -1,167 +1,162 @@
 {
-  "date": "2026-09-26",
+  "date": "2026-09-27",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのモデル退役予告に対し、API切り替えを今日終わらせたか？",
-    "Anthropicのハードウェア法務求人に合わせ、自前の運用基盤で何を見直したか？",
-    "xAIの求人動向を踏まえ、医療やインフラ領域の隙を突く構想をどこまで固めたか？"
+    "推論75%安のモデルでWebアプリの精度を何往復で上げるか？",
+    "大手対話枠が後退する中、どの専門特化プロンプトを組み込むか？",
+    "Anthropic等のインフラ囲い込みを横目に自前APIをどう固めるか？"
   ],
   "moves": [
     {
-      "t": "Anthropicの法務求人から読み取れるハードウェア特許の動向を1ページにまとめろ",
-      "why": "Anthropicがハードウェア専任の法務を急募した背景にあるインフラ戦略のシフトを把握するため",
+      "t": "API設定を格安モデルへ変更する",
+      "why": "推論コスト75%減のDeepSeek系へGitHub上で即時置換して余力を生むため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.4,
-      "success_p_max": 0.75,
-      "success_why": "公開求人の職務記述書から狙いを特定できるため",
-      "value_score": 3,
-      "learning_value": 5,
-      "time_minutes": 25,
+      "success_p": 0.85,
+      "success_p_min": 0.7,
+      "success_p_max": 0.95,
+      "success_why": "iPhoneのSafariからGitHub Web画面上のコード文字列置換とコミットのみで完結するため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "ハードウェア戦略に関する分析メモ1本の作成",
-      "category": "research",
+      "outcome": "エンドポイントが最新格安モデルへ切り替わったコミット履歴",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.1,
+      "impact_min": 0.05,
       "impact_max": 0.2,
-      "impact_why": "巨頭の資本投下先を個人が先回りするための判断材料になるため",
+      "impact_why": "APIコストを削ることで機能拡張余力が生まれサービス継続性が直結して高まるため。",
       "evidence_ids": [
         "2026-09-26-r01"
       ],
       "assumptions": [
-        "JDに具体的な業務内容が記載されていること"
+        "GitHub上で管理されている稼働中のWebアプリが存在すること"
       ],
-      "disconfirm": "定型的な文言のみで具体的な戦略が読み取れない場合",
-      "continue_if": "インフラ投資の方向性が明確に読み取れること",
-      "stop": "情報が抽象的すぎて推測の域を出ない場合"
+      "disconfirm": "新エンドポイントでレスポンス遅延やエラーが多発すること",
+      "continue_if": "エラー率1%未満で正常応答が確認できること",
+      "stop": "レスポンスエラーが頻発し切り戻しが必要になった場合"
     },
     {
-      "t": "xAIの医療チューター求人を分析し個人が参入可能な領域を1つ書き出せ",
-      "why": "xAIが垂直統合型でドメイン特化型AIの獲得を急いでいる領域の隙を突くため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.3,
-      "success_p_max": 0.7,
-      "success_why": "大手が手を出し切れていないニッチな周辺領域が存在するため",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "個人が狙える周辺ニッチ領域の特定リスト",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "大資本の土俵から外れた場所で独自の優位性を作る足がかりになるため",
-      "evidence_ids": [
-        "2026-09-26-r03"
-      ],
-      "assumptions": [
-        "求人内容に特定のドメイン要求が明記されていること"
-      ],
-      "disconfirm": "単なる一般的な教育系AIの求人であると判明した場合",
-      "continue_if": "特定の垂直統合の意図が確認できること",
-      "stop": "大資本の独占領域で個人の隙が見当たらない場合"
-    },
-    {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
-      "evidence_ids": [
-        "user-goal",
-        "action-history"
-      ],
-      "assumptions": [
-        "Issueが次の実装に使われる"
-      ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
-    },
-    {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "t": "3往復の自己検証ループを組む",
+      "why": "推論単価の暴落を利用し単発生成から自己修正ループへ書き換えて品質を跳ね上げるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.75,
       "success_p_min": 0.6,
       "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "value_score": 2,
-      "learning_value": 3,
-      "time_minutes": 20,
+      "success_why": "プロンプトチェーンのロジック追記のみでSafari上で編集・検証可能なため。",
+      "value_score": 5,
+      "learning_value": 4,
+      "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "一次情報の要点メモが3行残る",
-      "category": "research",
+      "outcome": "生成・検証・修正の3往復処理が実装されたコード差分",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "impact_min": 0.08,
+      "impact_max": 0.25,
+      "impact_why": "大手一般対話ボットを明確に超える出力精度を低コストで個人開発アプリに持たせられるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-09-26-r01"
       ],
       "assumptions": [
-        "読む情報が現在の目標に関係する"
+        "API呼び出しのループ処理を許容する非同期制御がアプリ側に書けること"
       ],
-      "disconfirm": "要点が次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
+      "disconfirm": "ループ実行による待ち時間増でユーザー体験が著しく損なわれること",
+      "continue_if": "生成出力の評価スコアが単発呼び出し時より明確に向上すること",
+      "stop": "タイムアウトが頻発し処理が完走しない場合"
     },
     {
-      "t": "予測を1件確認し確度メモを1行更新する",
-      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
+      "t": "推論APIに500円チャージする",
+      "why": "価格破壊されたモデルで多重推論エージェントの負荷テストを実課金枠で回すため。",
+      "cost_min": 500,
+      "cost_max": 1000,
+      "loss_max": 1000,
+      "success_p": 0.9,
+      "success_p_min": 0.8,
+      "success_p_max": 0.95,
+      "success_why": "OpenRouter等のプラットフォームでiPhoneのSafariから決済手続きが数分で完了するため。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 10,
+      "payback_days": 14,
+      "outcome": "APIプラットフォームのクレジット残高追加レシート画面",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.03,
+      "impact_max": 0.15,
+      "impact_why": "小額の前払いで推論制限を解除し多重ループ実験を停止なく実行できるため。",
+      "evidence_ids": [
+        "2026-09-26-r01"
+      ],
+      "assumptions": [
+        "クレジットカードまたはApple Payでの即時決済手段があること"
+      ],
+      "disconfirm": "残高チャージ後に対象モデルのAPI提供が突如停止すること",
+      "continue_if": "1トークンあたりのコストパフォーマンスが試算通り維持されること",
+      "stop": "クレジット引き落としエラーや価格引き上げが発生した場合"
+    },
+    {
+      "t": "新旧モデルの精度差を測定する",
+      "why": "値下げモデルの単なる採用でなく既存出力との品質比較を数値化して残すため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_p_min": 0.65,
+      "success_p_max": 0.9,
+      "success_why": "iPhoneのメモとWebアプリの実行画面を行き来し3パターンの出力比較を短時間で記録できるため。",
+      "value_score": 3,
+      "learning_value": 5,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "新旧モデルの同一入力に対する出力比較ログ",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.04,
+      "impact_max": 0.15,
+      "impact_why": "安価モデルの盲点やハルシネーション傾向を早期に把握しプロンプトを最適化できるため。",
+      "evidence_ids": [
+        "2026-09-26-r01"
+      ],
+      "assumptions": [
+        "比較用の固定テストプロンプトが手元に3点以上あること"
+      ],
+      "disconfirm": "新モデルの出力品質が実用に耐えない水準まで劣化していること",
+      "continue_if": "旧モデル比で同等以上の精度が確認できること",
+      "stop": "特定タスクで致命的な破綻が再現性を持って確認された場合"
+    },
+    {
+      "t": "改善版の動作ログをXへ投稿する",
+      "why": "大手の汎用チャットが退潮する隙を突き自己修復ループを備えた特化Webアプリの優位性を示すため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "既存予測の更新なので新規企画より着地しやすい",
-      "value_score": 2,
-      "learning_value": 4,
-      "time_minutes": 20,
+      "success_p_min": 0.5,
+      "success_p_max": 0.85,
+      "success_why": "iPhoneの公式Xアプリから実動作の差分テキストと所感をそのまま投稿できるため。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "追跡中予測の確度メモが更新される",
-      "category": "review",
+      "outcome": "ループ検証結果とアプリ改善を明記した公開ポスト",
+      "category": "publish",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "誤った前提で投資する損失を減らす",
+      "impact_min": 0.02,
+      "impact_max": 0.1,
+      "impact_why": "開発の進捗と技術選定の意図を公開することで先行者としての観測者を引き込めるため。",
       "evidence_ids": [
-        "action-history"
+        "2026-09-26-r01"
       ],
       "assumptions": [
-        "予測が現在の投資判断に関係する"
+        "公開可能なXアカウントを保持していること"
       ],
-      "disconfirm": "確度更新が次の行動や支出を変えない",
-      "continue_if": "確度を動かす一次根拠が見つかった",
-      "stop": "根拠URLを1本確認したら終了",
-      "fallback": true
+      "disconfirm": "投稿へのインプレッションが皆無で反応検証ができないこと",
+      "continue_if": "技術的な関心を持つフォロワーからのエンゲージメントが発生すること",
+      "stop": "アカウント方針の変更や発信リスクが生じた場合"
     }
   ],
-  "kan": "Googleは今後14日以内に、PyPIにおいて「google-genai」のバージョン3.0.0以上をリリースしない"
+  "kan": "Anthropicが直近でハードウェア専門の法務求人を出しているものの、この種の非上場フロンティア研究所が独自のデータセンターや独自半導体に関する提携を対外発表する頻度は基準率として四半期に1件未満だ。今後14日以内に、Anthropicから独自ハードウェア調達や専用インフラに関する公式発表は出ないと見る。"
 }
