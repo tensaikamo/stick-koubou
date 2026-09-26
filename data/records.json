@@ -5198,5 +5198,86 @@
       "2026-09-18-r03",
       "2026-09-17-r03"
     ]
+  },
+  {
+    "id": "2026-09-26-r01",
+    "created_at": "2026-09-26T09:04:56.051774+09:00",
+    "headline": "Anthropicがハードウェア専任の商業法務カウンセル求人を公開",
+    "what_happened": "Anthropicは「Commercial Counsel, Hardware」の新規求人枠をサンフランシスコ拠点で公開した。業務内容にはハードウェア、コンポーネント、ソフトウェア、先端技術調達に関する大量の取引交渉の主導が含まれている。また、大手テクノロジー企業や大学との技術提携契約の法務支援も担う。",
+    "background": "フロンティアモデルの開発には大規模なアクセラレータ、カスタムシリコン、ネットワーク機器などの物理インフラ調達が不可欠であり、サプライチェーン法務の専門化が進んでいる。",
+    "changed": "Anthropicが社内の法務体制において、クラウド利用にとどまらず物理ハードウェアおよびコンポーネント調達に特化した法務機能を新設した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5434795008",
+      "title": "[新規求人] anthropic: Commercial Counsel, Hardware (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-25-r04",
+      "2026-09-25-r03",
+      "2026-09-25-r02",
+      "2026-09-24-r03",
+      "2026-09-24-r02",
+      "2026-09-23-r06"
+    ]
+  },
+  {
+    "id": "2026-09-26-r02",
+    "created_at": "2026-09-26T09:04:56.051774+09:00",
+    "headline": "Anthropicが企業PACおよび政治資金関連のコンプライアンス責任者求人を公開",
+    "what_happened": "Anthropicは「Senior Compliance Program Manager, Political Law」の求人をサンフランシスコ、ニューヨーク、ワシントンD.C.対象で公開した。同職種は企業PAC（政治活動委員会）の立ち上げ・運用、企業政治献金、公職者との贈答・倫理規定、ロビー活動の登録・報告インフラの構築を統括する。",
+    "background": "大手テック企業は政策決定プロセスへの関与を強めるためPACを設立し合衆国選挙やロビー活動への資金拠出を行う。Anthropicも政策提言機能の制度化を進めている。",
+    "changed": "Anthropicが組織として公式な政治資金拠出（PAC）および連邦・州レベルのロビー活動管理体制の構築に着手した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5433952008",
+      "title": "[新規求人] anthropic: Senior Compliance Program Manager, Political Law (San Francisco, CA | New York City, NY | Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-25-r04",
+      "2026-09-25-r03",
+      "2026-09-25-r02",
+      "2026-09-24-r03",
+      "2026-09-24-r02",
+      "2026-09-23-r06"
+    ]
+  },
+  {
+    "id": "2026-09-26-r03",
+    "created_at": "2026-09-26T09:04:56.051774+09:00",
+    "headline": "xAIが医療ドメインのAIチューター統括リーダー求人を公開",
+    "what_happened": "xAIは「Expert Team Lead, Medicine」の求人を公開した。同職種はフルタイム従業員および契約社員からなるAIチューターチームを率い、モデル訓練および評価用の高品質な医療ドメインデータの作成・レビュー・品質管理を統括する。",
+    "background": "LLMの高度化に伴い、汎用的なアノテーションから医師や技術者など高度専門職によるドメイン特化型強化学習（RLHF）データの調達競争が激化している。",
+    "changed": "xAIが医療専門領域における人間によるデータ生成・評価チームの本格的な組成を開始した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5249791007",
+      "title": "[新規求人] xai: Expert Team Lead, Medicine ( Palo Alto, CA; Asia; Australia; Canada; Europe; Remote International; Remote US; US)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-09-25-r06",
+      "2026-09-25-r05",
+      "2026-09-23-r08",
+      "2026-09-23-r07",
+      "2026-09-20-r06",
+      "2026-09-19-r02"
+    ]
   }
 ]
