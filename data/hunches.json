@@ -2214,11 +2214,15 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "判定先である公式利用ポリシーのページが開けず、新設セクションの有無を確認するための証拠が不足しているため。",
+      "url": ""
+    },
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "judge_attempts": 1
   },
   {
     "id": "2026-09-17-h01",

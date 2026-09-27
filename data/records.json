@@ -5333,5 +5333,59 @@
       "2026-09-23-r07",
       "2026-09-20-r06"
     ]
+  },
+  {
+    "id": "2026-09-28-r01",
+    "created_at": "2026-09-28T08:53:25.795203+09:00",
+    "headline": "anthropic: Product Finance & Strategy, Monetizationの求人公開",
+    "what_happened": "Anthropicがサンフランシスコを勤務地として「Product Finance & Strategy, Monetization」の求人を公開した。モデルの価格設定、ティアリング、消費メカニクス、および企業向け製品のビジネスケースや投資決定を担当するファイナンス・戦略人材を募集している。",
+    "background": "AI企業の収益化モデルの構築や企業向けプライシング戦略において、専任の財務・戦略担当者を配置する動き。",
+    "changed": "Anthropicの採用情報ページにマネタイズ戦略担当の募集枠が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5435710008",
+      "title": "[新規求人] anthropic: Product Finance & Strategy, Monetization (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-26-r02",
+      "2026-09-26-r01",
+      "2026-09-25-r04",
+      "2026-09-25-r03",
+      "2026-09-25-r02",
+      "2026-09-24-r03"
+    ]
+  },
+  {
+    "id": "2026-09-28-r02",
+    "created_at": "2026-09-28T08:53:25.795203+09:00",
+    "headline": "anthropic: Marketing Analytics Lead, Enterprise Marketingの求人公開",
+    "what_happened": "Anthropicがサンフランシスコおよびニューヨークを勤務地として「Marketing Analytics Lead, Enterprise Marketing」の求人を公開した。マーケティング活動がパイプライン、収益、製品利用にどのように結びついているかを測定する単一の測定フレームワークを構築・運用する人材を募集している。",
+    "background": "企業向けマーケティングの成果測定およびデータドリブンな投資判断を行うための分析リードの採用。",
+    "changed": "Anthropicの採用情報ページにマーケティング分析リードの募集枠が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5434145008",
+      "title": "[新規求人] anthropic: Marketing Analytics Lead, Enterprise Marketing (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-26-r02",
+      "2026-09-26-r01",
+      "2026-09-25-r04",
+      "2026-09-25-r03",
+      "2026-09-25-r02",
+      "2026-09-24-r03"
+    ]
   }
 ]
