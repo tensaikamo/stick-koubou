@@ -2441,7 +2441,7 @@
       "decider": "判定期限日時点で、PyPIのgoogle-genaiのリリース履歴にバージョン3.0.0以上のリリースが存在しない（2.x.x系統にとどまる）場合に的中"
     },
     "deadline": "2026-10-10",
-    "confidence": 0.869,
+    "confidence": 0.912,
     "base_rate": 0.79,
     "base_rate_class": "大手AIプロバイダの公式SDKがbreaking change予告から14日以内に次期メジャー版をPyPI公開しない割合",
     "confidence_why": "AFC変更は既存エージェントコードを破壊するため移行猶予が置かれる慣行に沿うが、Googleの最近のリリース頻度の高さを加味して基準率からやや下方修正した",
@@ -2472,6 +2472,14 @@
         "why": "google-genai Python SDK v2.25.0がリリースされ、2.x系の新たなマイナー版が公開されたため。",
         "conf_before": 0.809,
         "conf_after": 0.869
+      },
+      {
+        "date": "2026-09-28",
+        "sign": "PyPI上でgoogle-genai 2.26.0など2.x系の新たなマイナー版がリリースされる",
+        "dir": "confirm",
+        "why": "google-genai Python SDKの新たな2.x系マイナー版であるv2.25.0がリリースされたため。",
+        "conf_before": 0.869,
+        "conf_after": 0.912
       }
     ],
     "status": "pending",
