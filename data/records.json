@@ -5387,5 +5387,194 @@
       "2026-09-25-r02",
       "2026-09-24-r03"
     ]
+  },
+  {
+    "id": "2026-09-29-r01",
+    "created_at": "2026-09-29T10:11:52.054515+09:00",
+    "headline": "openai Python SDK v3.20.0 リリース",
+    "what_happened": "OpenAI公式のPython向けAPIライブラリのバージョン3.20.0がPyPIに登録された。HTTPXベースの同期・非同期クライアントやOpenAPI仕様に基づく型定義を含み、Python 3.10以降の環境に対応する。パッケージのインストールや利用方法に関するドキュメントが更新されている。",
+    "background": "OpenAIはPython用の公式SDKをPyPIを通じて継続的にアップデートしており、APIの仕様変更や機能追加に合わせたマイナーバージョンアップが頻繁に行われている。",
+    "changed": "openaiパッケージのバージョンが3.20.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.20.0/",
+      "title": "openai Python SDK v3.20.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-25-r01",
+      "2026-09-24-r01",
+      "2026-09-23-r01",
+      "2026-09-20-r01",
+      "2026-09-16-r01",
+      "2026-09-11-r07"
+    ]
+  },
+  {
+    "id": "2026-09-29-r02",
+    "created_at": "2026-09-29T10:11:52.054515+09:00",
+    "headline": "anthropic Python SDK v1.9.0 リリース",
+    "what_happened": "Anthropic公式のClaude API向けPython SDKのバージョン1.9.0がPyPIに登録された。PythonアプリケーションからClaude APIへアクセスするためのクライアント機能や移行ガイドへのリンクが提供されている。パッケージのインストール手順が公開されている。",
+    "background": "AnthropicはClaudeモデルへのアクセスを容易にするため、公式Python SDKの改良とバージョン管理を継続している。",
+    "changed": "anthropicパッケージのバージョンが1.9.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.9.0/",
+      "title": "anthropic Python SDK v1.9.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-28-r02",
+      "2026-09-28-r01",
+      "2026-09-26-r02",
+      "2026-09-26-r01",
+      "2026-09-25-r04",
+      "2026-09-25-r03"
+    ]
+  },
+  {
+    "id": "2026-09-29-r03",
+    "created_at": "2026-09-29T10:11:52.054515+09:00",
+    "headline": "[新規求人] anthropic: State and Local Affairs Lead, West",
+    "what_happened": "Anthropicが米国西部における州および地方政府との関係構築、AI政策・立法・規制対応を担う「State and Local Affairs Lead, West」の求人をGreenhouse上で公開した。西部各州の議会や知事室、規制当局とのリレーション構築や政治戦略の実行が業務に含まれる。",
+    "background": "AI企業による政策・渉外活動の強化の一環として、各地域レベルでのロビー活動や規制対応のための専門人材採用が進められている。",
+    "changed": "Anthropicの米国西部向け政策・渉外担当の求人が新規に公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5436615008",
+      "title": "[新規求人] anthropic: State and Local Affairs Lead, West (Remote-Friendly, United States)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-28-r02",
+      "2026-09-28-r01",
+      "2026-09-26-r02",
+      "2026-09-26-r01",
+      "2026-09-25-r04",
+      "2026-09-25-r03"
+    ]
+  },
+  {
+    "id": "2026-09-29-r04",
+    "created_at": "2026-09-29T10:11:52.054515+09:00",
+    "headline": "[新規求人] anthropic: Product Designer, Claude Developer Platform",
+    "what_happened": "AnthropicがClaude開発者プラットフォーム向けのプロダクトデザイナー職の求人を公開した。サンフランシスコ、ニューヨーク、シアトルを勤務地とし、開発者向けインターフェースや体験の設計を担当するチームへの参加者を募集している。",
+    "background": "開発者向けのAPIやプラットフォーム機能の拡充に伴い、UI/UXデザインを専門とする人材の採用が行われている。",
+    "changed": "Anthropicの開発者プラットフォーム向けプロダクトデザイナーの求人が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5397654008",
+      "title": "[新規求人] anthropic: Product Designer, Claude Developer Platform (San Francisco, CA | New York City, NY | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-28-r02",
+      "2026-09-28-r01",
+      "2026-09-26-r02",
+      "2026-09-26-r01",
+      "2026-09-25-r04",
+      "2026-09-25-r03"
+    ]
+  },
+  {
+    "id": "2026-09-29-r05",
+    "created_at": "2026-09-29T10:11:52.054515+09:00",
+    "headline": "[新規求人] anthropic: Staff+ Software Engineer, Account Abuse (Machine Learning)",
+    "what_happened": "Anthropicがアカウント不正利用対策チームの機械学習エンジニア（シニア以上）の求人を公開した。計算資源の公平な割り当てや悪用者の検知・対策を行う機械学習システムの構築を担う。",
+    "background": "大規模言語モデルのAPI提供において、悪用対策やコンピューティング資源の保護は重要な運用課題となっている。",
+    "changed": "Anthropicのアカウント不正利用対策チームにおけるMLエンジニアの求人が公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5436293008",
+      "title": "[新規求人] anthropic: Staff+ Software Engineer, Account Abuse (Machine Learning) (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-28-r02",
+      "2026-09-28-r01",
+      "2026-09-26-r02",
+      "2026-09-26-r01",
+      "2026-09-25-r04",
+      "2026-09-25-r03"
+    ]
+  },
+  {
+    "id": "2026-09-29-r06",
+    "created_at": "2026-09-29T10:11:52.054515+09:00",
+    "headline": "[新規求人] xai: Lead Technician (Power Generation) - Memphis",
+    "what_happened": "xAIがメンフィスおよびサウスヘイブン地区の高密度AIスーパーコンピューティング施設向け電力供給設備の技術者を統括する「Lead Technician (Power Generation)」の求人を公開した。ガスタービンや電気系統を含むプラント設備の運用・保守を指揮する役割となる。",
+    "background": "xAIは大規模データセンターの建設と電力確保を進めており、現地でのインフラ維持・運用体制の構築を急ピッチで進めている。",
+    "changed": "xAIのメンフィス拠点における電力供給インフラの技術リーダー求人が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5250443007",
+      "title": "[新規求人] xai: Lead Technician (Power Generation) - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-27-r02",
+      "2026-09-27-r01",
+      "2026-09-26-r03",
+      "2026-09-25-r06",
+      "2026-09-25-r05",
+      "2026-09-23-r08"
+    ]
+  },
+  {
+    "id": "2026-09-29-r07",
+    "created_at": "2026-09-29T10:11:52.054515+09:00",
+    "headline": "[新規求人] xai: Infrastructure Security Engineer - London",
+    "what_happened": "xAIがロンドンおよびダブリンを拠点とするインフラストラクチャセキュリティエンジニアの求人を公開した。マルチクラウドおよびハイブリッド環境におけるセキュアなクラウド基盤の設計・維持を担当する。",
+    "background": "xAIは欧州拠点も含めたクラウド・ハイブリッド環境のセキュリティ体制を強化するため、専門エンジニアの採用を行っている。",
+    "changed": "xAIのロンドン・ダブリン向けインフラセキュリティエンジニアの求人が公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5241280007",
+      "title": "[新規求人] xai: Infrastructure Security Engineer - London  (Dublin, Ireland; London, England, United Kingdom)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-27-r02",
+      "2026-09-27-r01",
+      "2026-09-26-r03",
+      "2026-09-25-r06",
+      "2026-09-25-r05",
+      "2026-09-23-r08"
+    ]
   }
 ]

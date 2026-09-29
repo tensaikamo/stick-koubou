@@ -2215,14 +2215,14 @@
     "resolved_at": null,
     "result": null,
     "evidence": {
-      "summary": "判定先である公式利用ポリシーのページが開けず、新設セクションの有無を確認するための証拠が不足しているため。",
+      "summary": "判定先である利用ポリシーのページを開くことができず、該当するセクションが新設されたかどうかを確認できないため。",
       "url": ""
     },
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "judge_attempts": 1
+    "judge_attempts": 2
   },
   {
     "id": "2026-09-17-h01",
@@ -2491,5 +2491,45 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.73
+  },
+  {
+    "id": "2026-09-29-h01",
+    "created_at": "2026-09-29T10:11:52.054515+09:00",
+    "based_on": [
+      "2026-09-29-r06"
+    ],
+    "prose": "過去の較正実績では高確度帯での過信が外れを量産しており、短期での新規行動の基準率は低い。xAIのメンフィス向け電力チーム求人はインフラ拡張の継続を示すが、短期で特定の新規展開が発表される蓋然性は低い。したがって、期限内に公式発表やプレスリリースで大きな外部発表が行われない方に賭ける。",
+    "claim": "xAIは今後14日以内に、公式ニュースルームまたはブログにおいて、メンフィスの電力・インフラ施設に関する新たな拡張計画のプレスリリースを出さない。",
+    "subject": "xAI",
+    "resolution": {
+      "source": "https://x.ai/",
+      "check_query": "xAI news blog power infrastructure",
+      "decider": "xAIの公式ウェブサイトのニュースまたはブログセクションにおいて、メンフィスの電力設備やデータセンター拡張に関する公式発表が掲載されないこと"
+    },
+    "deadline": "2026-10-13",
+    "confidence": 0.55,
+    "base_rate": 0.7,
+    "base_rate_class": "AI企業がインフラ求人を出した後に14日以内で追加の拡張プレスリリースを出す頻度",
+    "confidence_why": "求人の存在はインフラ投資の継続を示すが、短期でのプレスリリース発出の基準率は低いため、高すぎる確度を避けて基準率に引き戻した。",
+    "counter": "データセンターの電力網接続や大型設備の搬入に関する発表が突発的に行われる可能性",
+    "indicators": [
+      {
+        "sign": "xAIの公式アカウントやブログでデータセンターの稼働や電力に関する発表が出る",
+        "dir": "kill"
+      },
+      {
+        "sign": "求人ページから該当の電力関連ポジションが削除される",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
