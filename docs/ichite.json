@@ -1,162 +1,163 @@
 {
-  "date": "2026-09-29",
+  "date": "2026-09-30",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのAPI残高アラートを設定し、月間消費上限を固定したか？",
-    "xAIのインフラ求人増大に対し、個人開発者としてどのコスト防衛策を取るか？",
-    "今動かしているWebアプリのコスト超過を防ぐ手当てをどこまで終えたか？"
+    "OpenRouterの価格引き下げを受けて、既存アプリのバックエンドAPI呼び出し先を最安モデルへ切り替えるコードを今すぐコミットするか？",
+    "浮いたAPIコストを自動テスト用トークンに全額回すための差分をiPhoneからGitHubにプッシュするか？",
+    "中国系フラッシュモデルの連動値下げに対し、出力の検証と選別を自動化するテストケースを朝の30分で作るか？"
   ],
   "moves": [
     {
-      "t": "OpenRouterのダッシュボードで月間上限を設定する",
-      "why": "API価格の急変動リスクに備え、予期せぬ全停止を防ぐための防衛措置である。",
+      "t": "GitHubのWeb画面からバックエンドのAPI呼び出し先を最安モデルに切り替えるコードをコミットする",
+      "why": "OpenRouterとZ.aiの価格破壊が進む中、APIコストを最小化し、浮いたリソースを検証プロセスの自動化に回すためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.8,
-      "success_p_max": 0.9,
-      "success_why": "ダッシュボードからの設定変更は確実に行える仕様であるため。",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 10,
-      "payback_days": 0,
-      "outcome": "月間利用上限アラートと停止閾値のスクリーンショット",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "インフラコストの急騰リスクを早期に遮断できるため。",
-      "evidence_ids": [
-        "2026-09-29-r06"
-      ],
-      "assumptions": [
-        "OpenRouterの管理画面にSafariからアクセスできること"
-      ],
-      "disconfirm": "設定画面が存在しない場合",
-      "continue_if": "予算上限の設定が正常に保存された場合",
-      "stop": "APIアカウントにアクセスできない場合"
-    },
-    {
-      "t": "API利用実績をスプレッドシートに手動で転記して集計する",
-      "why": "インフラ維持コストの再分配が個人開発に与える影響を定量的に把握するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.6,
-      "success_p_max": 0.8,
-      "success_why": "過去の利用履歴がダッシュボードに残っているため。",
-      "value_score": 3,
+      "success_p": 0.55,
+      "success_p_min": 0.4,
+      "success_p_max": 0.7,
+      "success_why": "OpenRouterのDeepSeek Pro Latest等の値下げ幅が34%に達しており、API単価削減の技術的基盤が既にあるためだ。",
+      "value_score": 4,
       "learning_value": 3,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "直近7日間のAPI消費量の推移データ",
-      "category": "research",
+      "outcome": "最安モデル経由に切り替わったコード差分のGitHubコミット",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "コスト最適化の判断基準が明確になるため。",
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "30分の作業でAPIコスト構造を直接最適化できるため。",
       "evidence_ids": [
-        "2026-09-29-r06"
+        "2026-09-30-r01"
       ],
       "assumptions": [
-        "過去データの閲覧権限があること"
+        "GitHubのWebエディタから直接コードの書き換えとコミットが可能であること"
       ],
-      "disconfirm": "データがエクスポートできない場合",
-      "continue_if": "日別の消費傾向に偏りが見つかった場合",
-      "stop": "利用履歴のログが消去されている場合"
+      "disconfirm": "モデルの仕様変更により既存のエンドポイントが完全に互換性を失うこと",
+      "continue_if": "エラー率が上がらずにレイテンシが維持されていること",
+      "stop": "API仕様の不一致によりサービスが停止した場合"
     },
     {
-      "t": "OpenRouterに10ドルを追加チャージし決済履歴を残す",
-      "why": "インフラ基盤の維持コスト転嫁が進む中でも開発を継続するための資金投下である。",
-      "cost_min": 1500,
-      "cost_max": 1600,
-      "loss_max": 1600,
-      "success_p": 0.6,
-      "success_p_min": 0.5,
-      "success_p_max": 0.7,
-      "success_why": "クレジットカード決済が正常に処理される見込みが高いため。",
-      "value_score": 4,
-      "learning_value": 2,
-      "time_minutes": 10,
-      "payback_days": 30,
-      "outcome": "決済完了画面のスクリーンショットと領収書",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "API利用の継続性が確保されるため。",
-      "evidence_ids": [
-        "2026-09-29-r06"
-      ],
-      "assumptions": [
-        "利用可能なクレジットカードが手元にあること"
-      ],
-      "disconfirm": "決済が拒否される場合",
-      "continue_if": "チャージ残高が即時反映された場合",
-      "stop": "決済システムエラーが発生した場合"
-    },
-    {
-      "t": "APIコール数を減らすためプロンプトの冗長部分を削る",
-      "why": "インフラコストの再分配による単価上昇局面に対抗するため。",
+      "t": "浮いたAPI差額を充てるための自動テスト用プロンプトのテンプレートをiPhoneのメモ帳に書き出す",
+      "why": "安価な推論に殺到する群集の足元で、出力の検証と選別を行う独自のボトルネック対策を固定化するためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.6,
-      "success_p_max": 0.8,
-      "success_why": "テキスト編集のみでトークン数を削減できるため。",
-      "value_score": 4,
+      "success_p": 0.5,
+      "success_p_min": 0.35,
+      "success_p_max": 0.65,
+      "success_why": "過去のSDK更新履歴から、モデル切り替え後の出力揺れに対するテスト需要が明確に発生しているためだ。",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "出力選別用のテストプロンプト設計書",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.04,
+      "impact_max": 0.12,
+      "impact_why": "検証プロセスの自動化に向けた最初の設計図になるため。",
+      "evidence_ids": [
+        "2026-09-30-r01"
+      ],
+      "assumptions": [
+        "出力の選別基準が現在のアプリの要件に合致していること"
+      ],
+      "disconfirm": "単なるプロンプトの調整では出力の揺れが収まらないこと",
+      "continue_if": "テストケースで異常な出力を検知できること",
+      "stop": "検証ロジックの構築に想定以上の手数がかかる場合"
+    },
+    {
+      "t": "OpenAIの最新SDK仕様の変更点をGitHubの公開リリースノートで確認し、影響範囲を1行でメモする",
+      "why": "OpenAIが上位層のブランド防衛とモデル更新を頻発させているため、SDKの改修履歴から相手の動向を先回りして把握するためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.6,
+      "success_p_min": 0.45,
+      "success_p_max": 0.75,
+      "success_why": "直近数日間でopenai Python SDK v3.22.1などのバージョンアップが連日確認されているためだ。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 10,
+      "payback_days": 0,
+      "outcome": "SDK変更点の要約メモ",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.03,
+      "impact_max": 0.1,
+      "impact_why": "大手プロバイダのアップデート頻度と破壊的変更の有無を素早くキャッチできるため。",
+      "evidence_ids": [
+        "2026-09-30-r01",
+        "2026-09-29-r01"
+      ],
+      "assumptions": [
+        "PyPI上のリリースノートがiPhoneのSafariで閲覧可能であること"
+      ],
+      "disconfirm": "SDKの変更が小規模なバグ修正のみで実質的な影響がないこと",
+      "continue_if": "APIの挙動に影響する仕様変更が含まれていること",
+      "stop": "情報量が少なく追う価値がない場合"
+    },
+    {
+      "t": "API推論単価の切り下げトレンドを前提にしたコスト削減効果の試算シートをスマホの表計算アプリで作る",
+      "why": "価格破壊の本質である資金枯渇とAPI仲介層の再統合を見据え、自前の運用コストの縮小額を正確に算出するためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.5,
+      "success_p_min": 0.35,
+      "success_p_max": 0.65,
+      "success_why": "主要プロバイダの平均単価が14日以内に15%以上下落する基準率の予測に則っているためだ。",
+      "value_score": 3,
       "learning_value": 3,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "最適化されたプロンプトのテキスト",
-      "category": "build",
+      "outcome": "月次APIコスト削減試算表",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "消費トークン数が減りコスト圧迫を緩和できるため。",
+      "impact_min": 0.04,
+      "impact_max": 0.12,
+      "impact_why": "今後の資金配分の根拠となる数字を明確にできるため。",
       "evidence_ids": [
-        "2026-09-29-r06"
+        "2026-09-30-r01"
       ],
       "assumptions": [
-        "編集対象のプロンプトが手元にあること"
+        "現在の月間リクエスト数が概算で把握できていること"
       ],
-      "disconfirm": "出力品質が著しく低下する場合",
-      "continue_if": "トークン数が削減されつつ出力精度が維持された場合",
-      "stop": "アプリのコア機能が動作しなくなった場合"
+      "disconfirm": "単価の下落幅が想定より小さく、コスト削減効果が誤差の範囲に留まること",
+      "continue_if": "15%以上のコスト圧縮効果が数値として現れること",
+      "stop": "試算に必要な前提データが不足している場合"
     },
     {
-      "t": "APIプランのアップグレードを50ドルで行い処理上限を引き上げる",
-      "why": "インフラ基盤の維持コスト上昇に対応し、開発の処理能力を確保するため。",
-      "cost_min": 7500,
-      "cost_max": 8000,
-      "loss_max": 8000,
-      "success_p": 0.5,
-      "success_p_min": 0.4,
+      "t": "小額の有料テスト環境枠を利用して新興フラッシュモデルの応答速度と精度を30分間実測する",
+      "why": "価格優位性だけでなく、実際のレイテンシと出力品質のトレードオフを自分で直に検証し、プラットフォーム側の宣伝文句の裏を暴くためだ。",
+      "cost_min": 500,
+      "cost_max": 1500,
+      "loss_max": 1500,
+      "success_p": 0.45,
+      "success_p_min": 0.3,
       "success_p_max": 0.6,
-      "success_why": "上位プランへの移行フローがプラットフォーム上で用意されているため。",
+      "success_why": "中小プロバイダのAPIは価格が低い一方でトラフィック混雑時の応答遅延が発生しやすいためだ。",
       "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 45,
-      "outcome": "アップグレード完了画面のスクリーンショット",
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 10,
+      "outcome": "新興フラッシュモデルの実測データと精度の検証ログ",
       "category": "buy",
       "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "リソース制約を大きく緩和できるため。",
+      "impact_min": 0.06,
+      "impact_max": 0.15,
+      "impact_why": "他人が体感していない実測値に基づく優位性を確保できるため。",
       "evidence_ids": [
-        "2026-09-29-r06"
+        "2026-09-30-r01"
       ],
       "assumptions": [
-        "十分な決済枠があること"
+        "少額のAPIクレジットの即時購入が可能であること"
       ],
-      "disconfirm": "上位プランで価格改定がさらに発生した場合",
-      "continue_if": "エラーなく上位プランへ移行できた場合",
-      "stop": "予算枠を超えるエラーが発生した場合"
+      "disconfirm": "応答速度が遅すぎて実用に耐えないことが判明すること",
+      "continue_if": "コスト対性能比が既存モデルを上回っていること",
+      "stop": "エラー頻発により計測不能な場合"
     }
   ],
-  "kan": "xAIは今後14日以内に、公式ニュースルームまたはブログにおいて、メンフィスの電力・インフラ施設に関する新たな拡張計画のプレスリリースを出さない。"
+  "kan": "中国系フラッシュモデルの連動値下げを起点に、今後14日以内に主要なオープンウェイト系APIプロバイダの平均単価がさらに15%以上下落する。"
 }
