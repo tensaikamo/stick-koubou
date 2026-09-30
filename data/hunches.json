@@ -2215,14 +2215,15 @@
     "resolved_at": null,
     "result": null,
     "evidence": {
-      "summary": "判定先である利用ポリシーのページを開くことができず、該当するセクションが新設されたかどうかを確認できないため。",
+      "summary": "判定先ページ（https://www.anthropic.com/legal/usage-policy）にアクセスできず、対象セクションの新設有無を確認できる十分な証拠がないため判定不能。",
       "url": ""
     },
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "judge_attempts": 2
+    "judge_attempts": 3,
+    "needs_review": true
   },
   {
     "id": "2026-09-17-h01",

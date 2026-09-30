@@ -5576,5 +5576,146 @@
       "2026-09-25-r05",
       "2026-09-23-r08"
     ]
+  },
+  {
+    "id": "2026-09-30-r01",
+    "created_at": "2026-09-30T09:42:23.582379+09:00",
+    "headline": "openai Python SDK v3.22.1 リリース",
+    "what_happened": "OpenAIはPyPIにおいて公式Python SDK「openai」のバージョン3.22.1をリリースした。本文はPyPI上のパッケージ配布ページであり、同期および非同期クライアントの利用法やOpenAPI仕様からの自動生成に関する説明が含まれている。配信されたファイルやリリース履歴のタブから過去の更新経緯を追跡できる。",
+    "background": "OpenAIのAPIを利用する開発者はPython SDKを通じてエンドポイントにアクセスしており、SDKのバージョン更新は内部スキーマや依存関係の改定を伴うことが多い。",
+    "changed": "PyPI上のopenaiパッケージにバージョン3.22.1が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.22.1/",
+      "title": "openai Python SDK v3.22.1 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-29-r01",
+      "2026-09-25-r01",
+      "2026-09-24-r01",
+      "2026-09-23-r01",
+      "2026-09-20-r01",
+      "2026-09-16-r01"
+    ]
+  },
+  {
+    "id": "2026-09-30-r02",
+    "created_at": "2026-09-30T09:42:23.582379+09:00",
+    "headline": "FurE: Efficient Instance-Specific 3D Fur Reconstruction without Animal-Fur Datasets",
+    "what_happened": "Srinjay Sarkarらによる論文「FurE」がarXivに投稿された。動物の毛皮データセットが存在しない状況下でも、人毛のデータから学習したPCAベースの decoder を活用して効率的な動物の3D毛皮再構築を行う手法を提案している。",
+    "background": "3Dコンピュータビジョン分野において、動物の毛皮は細部の複雑さやデータ不足のために再構築が困難とされてきた。",
+    "changed": "人毛データを用いたPCAベースデコーダにより動物データ不足を補う3D毛皮再構築手法がarXivに公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.35770v1",
+      "title": "FurE: Efficient Instance-Specific 3D Fur Reconstruction without Animal-Fur Datasets",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-30-r03",
+    "created_at": "2026-09-30T09:42:23.582379+09:00",
+    "headline": "Telescopic Language Models",
+    "what_happened": "Zhilin Guoらによる論文「Telescopic Language Models」がarXivに投稿された。1つの学習済みモデルであらゆる計算バジェットや深さに対応可能な、確率的プレフィックス監視を用いた入れ子容量型トランスフォーマー（TLM）のアーキテクチャが提案されている。",
+    "background": "単一のデプロイ済み言語モデルが複数の異なる計算リソース制約を効率的に処理するためのモデル圧縮や段階的推論の需要が存在する。",
+    "changed": "任意の深さで有効な言語モデルとして機能するTelescopic Language Modelの仕組みがarXivに発表された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.35769v1",
+      "title": "Telescopic Language Models",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-30-r04",
+    "created_at": "2026-09-30T09:42:23.582379+09:00",
+    "headline": "Learning Native Reflection in Unified Models with Interleaved Reinforcement Learning",
+    "what_happened": "Yijia Fanらによる論文「Learning Native Reflection in Unified Models with Interleaved Reinforcement Learning」がarXivに投稿された。視覚と描画を兼ね備えた統合マルチモーダルモデルにおいて、強化学習を用いて自己修復・内省のプロセスを直接学習させる「UMM-Reflection」手法が提案されている。",
+    "background": "マルチモーダルモデルが生成画像の誤りを自ら診断・修正する能力を獲得するためには、レンダリングとテキスト生成の双方を統合した学習ループが必要とされる。",
+    "changed": "統合モデルにおける内省能力の向上を目的としたインターリーブ強化学習手法がarXivに公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2609.35767v1",
+      "title": "Learning Native Reflection in Unified Models with Interleaved Reinforcement Learning",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-09-30-r05",
+    "created_at": "2026-09-30T09:42:23.582379+09:00",
+    "headline": "anthropic: Research Engineer / Research Scientist, RL Frontiers 求人公開",
+    "what_happened": "AnthropicはGreenhouseの求人プラットフォームにおいて「Research Engineer / Research Scientist, RL Frontiers」の募集を開始した。募集要項では、強化学習のスケーリング則、スループット、安定性、学習効率の向上に向けた次世代アーキテクチャやアルゴリズムの研究開発を担当する役割であることが記載されている。",
+    "background": "フロンティアモデルの高度化に伴い、強化学習の計算規模拡大やアルゴリズムの効率化を専門とする研究・エンジニアリング体制が継続的に拡張されている。",
+    "changed": "AnthropicのRLフロンティア領域における研究開発ポジションの求人が公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5438044008",
+      "title": "[新規求人] anthropic: Research Engineer / Research Scientist, RL Frontiers (San Francisco, CA | New York City, NY | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-29-r05",
+      "2026-09-29-r04",
+      "2026-09-29-r03",
+      "2026-09-29-r02",
+      "2026-09-28-r02",
+      "2026-09-28-r01"
+    ]
+  },
+  {
+    "id": "2026-09-30-r06",
+    "created_at": "2026-09-30T09:42:23.582379+09:00",
+    "headline": "anthropic: Research Engineer / Performance Engineer, RL Distributed Systems 求人公開",
+    "what_happened": "AnthropicはGreenhouseにおいて「Research Engineer / Performance Engineer, RL Distributed Systems」の求人を公開した。大規模なアクセラレータおよびホスト群における分散強化学習システムのスケジューリング、データ移動、分散環境の安定性向上を担うエンジニアの募集となっている。",
+    "background": "大規模な強化学習の実行は多数のノード間でのデータ同期やフォールトトレランスを要求する高度な分散システム課題を伴う。",
+    "changed": "AnthropicのRL分散システム領域におけるパフォーマンスエンジニアリングの求人が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5438030008",
+      "title": "[新規求人] anthropic: Research Engineer / Performance Engineer, RL Distributed Systems (San Francisco, CA | New York City, NY | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-29-r05",
+      "2026-09-29-r04",
+      "2026-09-29-r03",
+      "2026-09-29-r02",
+      "2026-09-28-r02",
+      "2026-09-28-r01"
+    ]
   }
 ]
