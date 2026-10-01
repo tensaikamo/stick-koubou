@@ -2260,14 +2260,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-10-01T09:49:34.494256+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "判定期限の2026年10月1日時点でAnthropicのニュースルームを確認したところ、記事タイトルに「Cowork」を含む発表記事は1件も存在しなかったため的中と判定。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-09-19-h01",

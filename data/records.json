@@ -5717,5 +5717,194 @@
       "2026-09-28-r02",
       "2026-09-28-r01"
     ]
+  },
+  {
+    "id": "2026-10-01-r01",
+    "created_at": "2026-10-01T09:46:49.064875+09:00",
+    "headline": "[新規求人] anthropic: Strategy & Operations, FDE (San Francisco, CA | New York City, NY)",
+    "what_happened": "Anthropicは、戦略顧客向けにClaudeを用いた本番AIシステムの構築を支援するForward Deployed Engineering (FDE)チーム向けに、戦略とオペレーションを担当する専任リードの求人（Job ID: 5427938008）を公開した。FDEチームへの需要がキャパシティを上回っており、価格設定や計測方法、パートナーへの業務移行などを統括する役割が求められている。",
+    "background": "FDE（Forward Deployed Engineering）は顧客企業の現場に常駐・密着し、独自のカスタム実装や導入支援を行うエンジニアリング形態。パランティアなどが多用してきた手法であり、生成AI分野でも大手顧客向けの個別対応において重要度が増している。",
+    "changed": "Anthropicが戦略顧客向けの個別実装・導入支援（FDE）の体制拡大と、パートナー経由での展開に向けた社内オペレーションの構築に着手している事実が示された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427938008",
+      "title": "[新規求人] anthropic: Strategy & Operations, FDE (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-30-r06",
+      "2026-09-30-r05",
+      "2026-09-29-r05",
+      "2026-09-29-r04",
+      "2026-09-29-r03",
+      "2026-09-29-r02"
+    ]
+  },
+  {
+    "id": "2026-10-01-r02",
+    "created_at": "2026-10-01T09:46:49.064875+09:00",
+    "headline": "[新規求人] anthropic: Applied AI Architect, International Policy (San Francisco, CA | New York City, NY | Washington, DC)",
+    "what_happened": "Anthropicは、政府機関やAI安全保障研究所（AISI）、多国間機関向けに技術アドバイザーを務める「Applied AI Architect, International Policy」の求人（Job ID: 5439830008）を公開した。フロンティアAIの評価や、各国のパブリックミッションへの適用を支援する役割が定義されている。",
+    "background": "AI安全保障や規制対応を巡り、各国のAI Safety Institute（AISI）や政府機関との連携は主要なAIラボにとって不可欠なインフラとなっている。",
+    "changed": "Anthropicが国際的な政策・政府機関向けの技術支援・評価体制を強化するため、専門人材の採用を進めていることが確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439830008",
+      "title": "[新規求人] anthropic: Applied AI Architect, International Policy (San Francisco, CA | New York City, NY | Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-30-r06",
+      "2026-09-30-r05",
+      "2026-09-29-r05",
+      "2026-09-29-r04",
+      "2026-09-29-r03",
+      "2026-09-29-r02"
+    ]
+  },
+  {
+    "id": "2026-10-01-r03",
+    "created_at": "2026-10-01T09:46:49.064875+09:00",
+    "headline": "[新規求人] anthropic: Network Deployment and Maintenance Lead - Data Center Operations (Remote-Friendly, United States)",
+    "what_happened": "Anthropicは、パートナー運用型データセンターにおけるネットワークの構築・運用を統括する「Network Deployment and Maintenance Lead - Data Center Operations」の求人（Job ID: 5439804008）を公開した。クラスターネットワークやアクセラレータチップのバックエンドネットワークなどの立ち上げや検証を担当する。",
+    "background": "大規模言語モデルの学習・推論には膨大な計算資源と高速なネットワークインフラが必要であり、自社インフラだけでなくパートナー運用型データセンターの構築管理がボトルネックとなる。",
+    "changed": "Anthropicがパートナーデータセンター内のネットワークインフラ構築・保守に関する専任リーダーの採用を開始したことが示された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439804008",
+      "title": "[新規求人] anthropic: Network Deployment and Maintenance Lead - Data Center Operations (Remote-Friendly, United States)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-30-r06",
+      "2026-09-30-r05",
+      "2026-09-29-r05",
+      "2026-09-29-r04",
+      "2026-09-29-r03",
+      "2026-09-29-r02"
+    ]
+  },
+  {
+    "id": "2026-10-01-r04",
+    "created_at": "2026-10-01T09:46:49.064875+09:00",
+    "headline": "[新規求人] xai: Sr. Sales Manager, Canada - Starlink Enterprise Sales (Canada)",
+    "what_happened": "xAI（SpaceXAI表記）は、カナダ市場におけるStarlinkの企業向け導入を推進する「Sr. Sales Manager, Canada - Starlink Enterprise Sales」の求人（Job ID: 5253566007）を公開した。大企業やフォーチュンアカウントを主なターゲットとし、SLEDや政府案件もカバーするとしている。",
+    "background": "xAIの求人情報ではSpaceXのStarlink関連の営業・事業開発ポジションが頻繁に統合・掲載されており、両社の営業・インフラ網の緊密な連携が続いている。",
+    "changed": "xAI/SpaceXがカナダ市場のエンタープライズ顧客向けにStarlinkの営業体制を拡充していることが示された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5253566007",
+      "title": "[新規求人] xai: Sr. Sales Manager, Canada - Starlink Enterprise Sales (Canada)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-29-r07",
+      "2026-09-29-r06",
+      "2026-09-27-r02",
+      "2026-09-27-r01",
+      "2026-09-26-r03",
+      "2026-09-25-r06"
+    ]
+  },
+  {
+    "id": "2026-10-01-r05",
+    "created_at": "2026-10-01T09:46:49.064875+09:00",
+    "headline": "[新規求人] xai: Application Security Engineer (X Money)",
+    "what_happened": "xAIは、決済機能等に関わるアプリケーションセキュリティエンジニアの求人（Job ID: 5253534007）を公開した。本文取得は失敗したものの、タイトルからX Money関連のセキュリティ人材募集であることが確認できる。",
+    "background": "ボディフェッチが失敗したためタイトル情報のみに基づく。",
+    "changed": "xAIがX Money関連のアプリケーションセキュリティ人材の募集を行っていることが示された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5253534007",
+      "title": "[新規求人] xai: Application Security Engineer (X Money) ( Palo Alto, CA; Austin, TX; New York, NY; Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": false,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-29-r07",
+      "2026-09-29-r06",
+      "2026-09-27-r02",
+      "2026-09-27-r01",
+      "2026-09-26-r03",
+      "2026-09-25-r06"
+    ]
+  },
+  {
+    "id": "2026-10-01-r06",
+    "created_at": "2026-10-01T09:46:49.064875+09:00",
+    "headline": "[新規求人] xai: Project Manager, Facilities Operations - Memphis (Memphis, TN)",
+    "what_happened": "xAIは、メンフィスのサウスヘイブンおよびメンフィスサイトにおけるミッションクリティカルな施設運用を統括する「Project Manager, Facilities Operations - Memphis」の求人（Job ID: 5249882007）を公開した。稼働中の先進的施設におけるベンダー管理やサイト改善プロジェクトを主導する。",
+    "background": "xAIはメンフィス（テネシー州）に大規模なAIデータセンター群（Colossus等）を急ピッチで構築・拡張しており、現地での施設管理・プロジェクトマネジメント体制の維持・強化が不可欠となっている。",
+    "changed": "xAIがメンフィスのデータセンター施設運用において現場のプロジェクトマネージャーの採用を進めていることが確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5249882007",
+      "title": "[新規求人] xai: Project Manager, Facilities Operations - Memphis (Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-29-r07",
+      "2026-09-29-r06",
+      "2026-09-27-r02",
+      "2026-09-27-r01",
+      "2026-09-26-r03",
+      "2026-09-25-r06"
+    ]
+  },
+  {
+    "id": "2026-10-01-r07",
+    "created_at": "2026-10-01T09:46:49.064875+09:00",
+    "headline": "anthropic Python SDK v1.11.0 リリース",
+    "what_happened": "AnthropicはClaude API用公式Python SDKのバージョン1.11.0をPyPIにリリースした。PythonアプリケーションからClaude APIへアクセスするための機能や型定義を提供している。",
+    "background": "Anthropicの公式Python SDKも、API機能の拡張やバグ修正に伴い継続的にバージョンアップが実施されている。",
+    "changed": "anthropic Python SDKのバージョンが1.11.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.11.0/",
+      "title": "anthropic Python SDK v1.11.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-30-r06",
+      "2026-09-30-r05",
+      "2026-09-29-r05",
+      "2026-09-29-r04",
+      "2026-09-29-r03",
+      "2026-09-29-r02"
+    ]
   }
 ]
