@@ -1,24 +1,38 @@
 {
-  "updated_at": "2026-09-30 09:48",
+  "updated_at": "2026-10-01 09:49",
   "score": {
-    "hit": 11,
+    "hit": 12,
     "miss": 24,
-    "total": 35,
-    "rate": 0.3142857142857143,
-    "pending": 7,
-    "brier": 0.3982733142857144,
-    "brier_n": 35,
-    "brier_initial": 0.4104428571428573,
+    "total": 36,
+    "rate": 0.3333333333333333,
+    "pending": 6,
+    "brier": 0.38761016666666676,
+    "brier_n": 36,
+    "brier_initial": 0.3994416666666668,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-10-01",
-    "days": 1
+    "date": "2026-10-03",
+    "days": 2
   },
   "decided": [
+    {
+      "id": "2026-09-17-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて「Cowork」をタイトルに含む新機能・新製品の単独発表記事を公開しない",
+      "subject": "Anthropic",
+      "deadline": "2026-10-01",
+      "confidence": 0.88,
+      "initial_confidence": null,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "すでに特定の大手顧客との先行検証が完了しており、Claude Enterpriseプランの大型アップデートの一環として即座に公式発表を控えている場合。",
+      "evidence": "判定期限の2026年10月1日時点でAnthropicのニュースルームを確認したところ、記事タイトルに「Cowork」を含む発表記事は1件も存在しなかったため的中と判定。",
+      "signals": []
+    },
     {
       "id": "2026-09-11-h01",
       "claim": "Anthropicは今後14日以内に、公式ニュースルームまたはパートナー向けページにおいて、主要SIerとの具体的なリセラー契約締結や共同販売プログラムの本格稼働を発表しない",
@@ -234,20 +248,6 @@
       "counter": "Anthropicがすでに「Claude Tag」のプライベートベータを終了させており、求人公開と連動した即時GA発表を準備している場合。",
       "evidence": "公式ドキュメント（platform.claude.com/docs/en/build-with-claude）の内容を確認したところ、「Claude Tag」に関する独立したドキュメントページや見出しセクションは掲載されておらず、予測通り公開されなかったことが確認された。",
       "signals": []
-    },
-    {
-      "id": "2026-08-06-h01",
-      "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社設計ハードウェアまたは独自カスタムチップに関する公式発表を行わない。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-20",
-      "confidence": 0.91,
-      "initial_confidence": null,
-      "result": "hit",
-      "status": "resolved",
-      "alert": false,
-      "counter": "求人公開にあわせてクラウドパートナー（AWS等）との提携による共同設計チップの概念発表が電撃的に行われる可能性がある。",
-      "evidence": "2026年8月20日時点のAnthropic公式ニュースルームの記事一覧において、自社設計ハードウェアや独自カスタムチップに関するプレスリリースは確認されなかったため的中。",
-      "signals": []
     }
   ],
   "pending": [
@@ -263,20 +263,6 @@
       "alert": false,
       "counter": "求人の公開前に既に主要クラウド3社との規約すり合わせが完了しており、告知と連動して法務文書の公開が即座に行われるケース",
       "evidence": "判定先ページ（https://www.anthropic.com/legal/usage-policy）にアクセスできず、対象セクションの新設有無を確認できる十分な証拠がないため判定不能。",
-      "signals": []
-    },
-    {
-      "id": "2026-09-17-h01",
-      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて「Cowork」をタイトルに含む新機能・新製品の単独発表記事を公開しない",
-      "subject": "Anthropic",
-      "deadline": "2026-10-01",
-      "confidence": 0.88,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "すでに特定の大手顧客との先行検証が完了しており、Claude Enterpriseプランの大型アップデートの一環として即座に公式発表を控えている場合。",
-      "evidence": "",
       "signals": []
     },
     {
@@ -352,14 +338,14 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-09-29",
-          "dir": "confirm",
-          "why": "google-genai Python SDKの新たな2.x系マイナー版であるv2.25.0がリリースされたため。"
-        },
-        {
           "date": "2026-09-30",
           "dir": "confirm",
           "why": "PyPI上でgoogle-genaiの新たなバージョン（v2.25.0）がリリースされ、2.x系が継続しているため確認指標が点灯した。"
+        },
+        {
+          "date": "2026-10-01",
+          "dir": "confirm",
+          "why": "google-genai Python SDK v2.26.0のリリースが確認されたため。"
         }
       ]
     },
@@ -383,24 +369,24 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-09-29",
-          "headline": "[新規求人] anthropic: State and Local Affairs Lead, West",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5436615008"
+          "date": "2026-10-01",
+          "headline": "[新規求人] anthropic: Applied AI Architect, International Policy (San Francisco, CA | New York City, NY | Washington, DC)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439830008"
         },
         {
-          "date": "2026-09-29",
-          "headline": "anthropic Python SDK v1.9.0 リリース",
-          "url": "https://pypi.org/project/anthropic/1.9.0/"
+          "date": "2026-10-01",
+          "headline": "[新規求人] anthropic: Network Deployment and Maintenance Lead - Data Center Operations (Remote-Friendly, United States)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439804008"
         },
         {
-          "date": "2026-09-30",
-          "headline": "anthropic: Research Engineer / Performance Engineer, RL Distributed Systems 求人公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5438030008"
+          "date": "2026-10-01",
+          "headline": "[新規求人] anthropic: Strategy & Operations, FDE (San Francisco, CA | New York City, NY)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427938008"
         },
         {
-          "date": "2026-09-30",
-          "headline": "anthropic: Research Engineer / Research Scientist, RL Frontiers 求人公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5438044008"
+          "date": "2026-10-01",
+          "headline": "anthropic Python SDK v1.11.0 リリース",
+          "url": "https://pypi.org/project/anthropic/1.11.0/"
         }
       ]
     },
@@ -408,24 +394,24 @@
       "subject": "xAI",
       "events": [
         {
-          "date": "2026-09-27",
-          "headline": "xAIがエンジニアリング領域のAIチューター統括リーダー求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5249795007"
-        },
-        {
-          "date": "2026-09-27",
-          "headline": "xAIがメンフィスのデータセンター建設現場向けに鉄骨工の直接雇用を開始",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5248860007"
-        },
-        {
-          "date": "2026-09-29",
-          "headline": "[新規求人] xai: Infrastructure Security Engineer - London",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5241280007"
-        },
-        {
           "date": "2026-09-29",
           "headline": "[新規求人] xai: Lead Technician (Power Generation) - Memphis",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5250443007"
+        },
+        {
+          "date": "2026-10-01",
+          "headline": "[新規求人] xai: Application Security Engineer (X Money)",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5253534007"
+        },
+        {
+          "date": "2026-10-01",
+          "headline": "[新規求人] xai: Project Manager, Facilities Operations - Memphis (Memphis, TN)",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5249882007"
+        },
+        {
+          "date": "2026-10-01",
+          "headline": "[新規求人] xai: Sr. Sales Manager, Canada - Starlink Enterprise Sales (Canada)",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5253566007"
         }
       ]
     },
@@ -512,6 +498,55 @@
   ],
   "records": [
     {
+      "id": "2026-10-01-r07",
+      "date": "2026-10-01",
+      "headline": "anthropic Python SDK v1.11.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/1.11.0/"
+    },
+    {
+      "id": "2026-10-01-r06",
+      "date": "2026-10-01",
+      "headline": "[新規求人] xai: Project Manager, Facilities Operations - Memphis (Memphis, TN)",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5249882007"
+    },
+    {
+      "id": "2026-10-01-r05",
+      "date": "2026-10-01",
+      "headline": "[新規求人] xai: Application Security Engineer (X Money)",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5253534007"
+    },
+    {
+      "id": "2026-10-01-r04",
+      "date": "2026-10-01",
+      "headline": "[新規求人] xai: Sr. Sales Manager, Canada - Starlink Enterprise Sales (Canada)",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5253566007"
+    },
+    {
+      "id": "2026-10-01-r03",
+      "date": "2026-10-01",
+      "headline": "[新規求人] anthropic: Network Deployment and Maintenance Lead - Data Center Operations (Remote-Friendly, United States)",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439804008"
+    },
+    {
+      "id": "2026-10-01-r02",
+      "date": "2026-10-01",
+      "headline": "[新規求人] anthropic: Applied AI Architect, International Policy (San Francisco, CA | New York City, NY | Washington, DC)",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439830008"
+    },
+    {
+      "id": "2026-10-01-r01",
+      "date": "2026-10-01",
+      "headline": "[新規求人] anthropic: Strategy & Operations, FDE (San Francisco, CA | New York City, NY)",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427938008"
+    },
+    {
       "id": "2026-09-30-r06",
       "date": "2026-09-30",
       "headline": "anthropic: Research Engineer / Performance Engineer, RL Distributed Systems 求人公開",
@@ -545,56 +580,7 @@
       "headline": "FurE: Efficient Instance-Specific 3D Fur Reconstruction without Animal-Fur Datasets",
       "certainty": "confirmed",
       "url": "https://arxiv.org/abs/2609.35770v1"
-    },
-    {
-      "id": "2026-09-30-r01",
-      "date": "2026-09-30",
-      "headline": "openai Python SDK v3.22.1 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.22.1/"
-    },
-    {
-      "id": "2026-09-29-r07",
-      "date": "2026-09-29",
-      "headline": "[新規求人] xai: Infrastructure Security Engineer - London",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5241280007"
-    },
-    {
-      "id": "2026-09-29-r06",
-      "date": "2026-09-29",
-      "headline": "[新規求人] xai: Lead Technician (Power Generation) - Memphis",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5250443007"
-    },
-    {
-      "id": "2026-09-29-r05",
-      "date": "2026-09-29",
-      "headline": "[新規求人] anthropic: Staff+ Software Engineer, Account Abuse (Machine Learning)",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5436293008"
-    },
-    {
-      "id": "2026-09-29-r04",
-      "date": "2026-09-29",
-      "headline": "[新規求人] anthropic: Product Designer, Claude Developer Platform",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5397654008"
-    },
-    {
-      "id": "2026-09-29-r03",
-      "date": "2026-09-29",
-      "headline": "[新規求人] anthropic: State and Local Affairs Lead, West",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5436615008"
-    },
-    {
-      "id": "2026-09-29-r02",
-      "date": "2026-09-29",
-      "headline": "anthropic Python SDK v1.9.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/1.9.0/"
     }
   ],
-  "record_count": 205
+  "record_count": 212
 }

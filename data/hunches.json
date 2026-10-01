@@ -2501,6 +2501,14 @@
         "why": "PyPI上でgoogle-genaiの新たなバージョン（v2.25.0）がリリースされ、2.x系が継続しているため確認指標が点灯した。",
         "conf_before": 0.942,
         "conf_after": 0.95
+      },
+      {
+        "date": "2026-10-01",
+        "sign": "PyPI上でgoogle-genai 2.26.0など2.x系の新たなマイナー版がリリースされる",
+        "dir": "confirm",
+        "why": "google-genai Python SDK v2.26.0のリリースが確認されたため。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
       }
     ],
     "status": "pending",
