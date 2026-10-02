@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-01 09:49",
+  "updated_at": "2026-10-02 10:05",
   "score": {
     "hit": 12,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-10-03",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -338,14 +338,14 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-09-30",
-          "dir": "confirm",
-          "why": "PyPI上でgoogle-genaiの新たなバージョン（v2.25.0）がリリースされ、2.x系が継続しているため確認指標が点灯した。"
-        },
-        {
           "date": "2026-10-01",
           "dir": "confirm",
           "why": "google-genai Python SDK v2.26.0のリリースが確認されたため。"
+        },
+        {
+          "date": "2026-10-02",
+          "dir": "confirm",
+          "why": "google-genai Python SDK v2.27.0がリリースされ、2.x系の新たなマイナー版が公開されたため。"
         }
       ]
     },
@@ -370,34 +370,29 @@
       "events": [
         {
           "date": "2026-10-01",
-          "headline": "[新規求人] anthropic: Applied AI Architect, International Policy (San Francisco, CA | New York City, NY | Washington, DC)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439830008"
-        },
-        {
-          "date": "2026-10-01",
-          "headline": "[新規求人] anthropic: Network Deployment and Maintenance Lead - Data Center Operations (Remote-Friendly, United States)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439804008"
-        },
-        {
-          "date": "2026-10-01",
-          "headline": "[新規求人] anthropic: Strategy & Operations, FDE (San Francisco, CA | New York City, NY)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427938008"
-        },
-        {
-          "date": "2026-10-01",
           "headline": "anthropic Python SDK v1.11.0 リリース",
           "url": "https://pypi.org/project/anthropic/1.11.0/"
+        },
+        {
+          "date": "2026-10-02",
+          "headline": "[新規求人] anthropic: Channel Partner Manager, Public Sector",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5441387008"
+        },
+        {
+          "date": "2026-10-02",
+          "headline": "[新規求人] anthropic: Political Programs Lead",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440122008"
+        },
+        {
+          "date": "2026-10-02",
+          "headline": "[新規求人] anthropic: Software Engineer, Sandboxing",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440427008"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-09-29",
-          "headline": "[新規求人] xai: Lead Technician (Power Generation) - Memphis",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5250443007"
-        },
         {
           "date": "2026-10-01",
           "headline": "[新規求人] xai: Application Security Engineer (X Money)",
@@ -412,17 +407,17 @@
           "date": "2026-10-01",
           "headline": "[新規求人] xai: Sr. Sales Manager, Canada - Starlink Enterprise Sales (Canada)",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5253566007"
+        },
+        {
+          "date": "2026-10-02",
+          "headline": "[新規求人] xai: Counsel, Telecommunications (Starlink)",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5254365007"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-09-24",
-          "headline": "openai Python SDK v3.19.1 リリース",
-          "url": "https://pypi.org/project/openai/3.19.1/"
-        },
         {
           "date": "2026-09-25",
           "headline": "openai Python SDK v3.19.2 リリース",
@@ -437,17 +432,17 @@
           "date": "2026-09-30",
           "headline": "openai Python SDK v3.22.1 リリース",
           "url": "https://pypi.org/project/openai/3.22.1/"
+        },
+        {
+          "date": "2026-10-02",
+          "headline": "openai Python SDK v3.23.0 リリース",
+          "url": "https://pypi.org/project/openai/3.23.0/"
         }
       ]
     },
     {
       "subject": "Google",
       "events": [
-        {
-          "date": "2026-09-03",
-          "headline": "google-genai Python SDK v2.22.0 リリースとAutomatic Function Callingの警告",
-          "url": "https://pypi.org/project/google-genai/2.22.0/"
-        },
         {
           "date": "2026-09-12",
           "headline": "google-genai Python SDK v2.23.0 リリース",
@@ -462,6 +457,11 @@
           "date": "2026-09-23",
           "headline": "google-genai Python SDK v2.25.0 リリース",
           "url": "https://pypi.org/project/google-genai/2.25.0/"
+        },
+        {
+          "date": "2026-10-02",
+          "headline": "google-genai Python SDK v2.27.0 リリース",
+          "url": "https://pypi.org/project/google-genai/2.27.0/"
         }
       ]
     },
@@ -497,6 +497,48 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-10-02-r06",
+      "date": "2026-10-02",
+      "headline": "[新規求人] xai: Counsel, Telecommunications (Starlink)",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5254365007"
+    },
+    {
+      "id": "2026-10-02-r05",
+      "date": "2026-10-02",
+      "headline": "[新規求人] anthropic: Software Engineer, Sandboxing",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440427008"
+    },
+    {
+      "id": "2026-10-02-r04",
+      "date": "2026-10-02",
+      "headline": "[新規求人] anthropic: Political Programs Lead",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440122008"
+    },
+    {
+      "id": "2026-10-02-r03",
+      "date": "2026-10-02",
+      "headline": "[新規求人] anthropic: Channel Partner Manager, Public Sector",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5441387008"
+    },
+    {
+      "id": "2026-10-02-r02",
+      "date": "2026-10-02",
+      "headline": "google-genai Python SDK v2.27.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/2.27.0/"
+    },
+    {
+      "id": "2026-10-02-r01",
+      "date": "2026-10-02",
+      "headline": "openai Python SDK v3.23.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.23.0/"
+    },
     {
       "id": "2026-10-01-r07",
       "date": "2026-10-01",
@@ -538,49 +580,7 @@
       "headline": "[新規求人] anthropic: Applied AI Architect, International Policy (San Francisco, CA | New York City, NY | Washington, DC)",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439830008"
-    },
-    {
-      "id": "2026-10-01-r01",
-      "date": "2026-10-01",
-      "headline": "[新規求人] anthropic: Strategy & Operations, FDE (San Francisco, CA | New York City, NY)",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5427938008"
-    },
-    {
-      "id": "2026-09-30-r06",
-      "date": "2026-09-30",
-      "headline": "anthropic: Research Engineer / Performance Engineer, RL Distributed Systems 求人公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5438030008"
-    },
-    {
-      "id": "2026-09-30-r05",
-      "date": "2026-09-30",
-      "headline": "anthropic: Research Engineer / Research Scientist, RL Frontiers 求人公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5438044008"
-    },
-    {
-      "id": "2026-09-30-r04",
-      "date": "2026-09-30",
-      "headline": "Learning Native Reflection in Unified Models with Interleaved Reinforcement Learning",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2609.35767v1"
-    },
-    {
-      "id": "2026-09-30-r03",
-      "date": "2026-09-30",
-      "headline": "Telescopic Language Models",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2609.35769v1"
-    },
-    {
-      "id": "2026-09-30-r02",
-      "date": "2026-09-30",
-      "headline": "FurE: Efficient Instance-Specific 3D Fur Reconstruction without Animal-Fur Datasets",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2609.35770v1"
     }
   ],
-  "record_count": 212
+  "record_count": 218
 }

@@ -1,163 +1,164 @@
 {
-  "date": "2026-10-01",
+  "date": "2026-10-02",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "DeepSeekの94%引き下げによるAPI単価下落に対抗し、自身の動的プロンプトスクリプトの課金設計をどう変えるか？",
-    "OpenAIの蒸留遮断強化を回避して他社モデルへ即座に乗り換えるためのAPIルーティングを、GitHub上でどう実装するか？",
-    "既存ツールから溢れた特化型エージェントの受皿となるサービス設計を、今日の段階でどのリポジトリに組み込むか？"
+    "OpenRouterのAPI利用履歴を確認し、値上げ対象モデルのコスト増を許容するかと見るか？",
+    "月数ドルしか払わないニッチ層を狙う軽量プロンプトツールの設計に今日着手するか？",
+    "別プロバイダの安価な同等モデルへのエンドポイント書き換えを1時間以内に完了させるか？"
   ],
   "moves": [
     {
-      "t": "GitHubの動的プロンプトスクリプトに無料APIキーを接続して動作テストを1件完結させろ",
-      "why": "DeepSeekの極端な価格破壊によりAPIの限界費用勝負が進む中、既存のスクリプトを止めることなく動作確認を急ぐ必要があるため",
+      "t": "値上げされたDeepSeekモデルの呼び出し元スクリプトを特定する",
+      "why": "API価格改定の影響範囲を絞り込み、無駄なコストが発生している箇所を洗い出すため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.4,
-      "success_p_max": 0.6,
-      "success_why": "無料枠の利用実績とSafariからの直接操作が可能なため",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "SafariのGitHub画面上でAPI接続テストの成功ログが1件残る",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "30分の作業によるプロジェクト全体の基礎固めのため",
-      "evidence_ids": [
-        "2026-09-30-r01"
-      ],
-      "assumptions": [
-        "GitHubのWebエディタが正常に動作すること",
-        "無料枠のAPIキーが有効であること"
-      ],
-      "disconfirm": "API接続でエラーが連続して解消しない場合",
-      "continue_if": "テストログが正常に出力された場合",
-      "stop": "API仕様の変更により無料枠での実行が完全に不可能になった場合"
-    },
-    {
-      "t": "有料プランのAPIフォールバック機能をGitHubリポジトリに追加実装しろ",
-      "why": "価格再引き上げや利用回数制限のリスクヘッジとして、複数プロバイダへの切り替えロジックが必要だから",
-      "cost_min": 500,
-      "cost_max": 2000,
-      "loss_max": 2000,
-      "success_p": 0.4,
-      "success_p_min": 0.3,
-      "success_p_max": 0.5,
-      "success_why": "小額課金プランの導入でAPIの切り替え耐性が向上するため",
+      "success_p": 0.85,
+      "success_p_min": 0.8,
+      "success_p_max": 0.9,
+      "success_why": "GitHubのWeb画面からリポジトリ内のエンドポイント設定を直接確認できるため",
       "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 14,
-      "outcome": "複数APIの切り替え処理が記述されたコードがコミットされる",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "インフラの耐久性を高めるための実質的な進捗となるため",
-      "evidence_ids": [
-        "2026-09-30-r01"
-      ],
-      "assumptions": [
-        "対象のプロバイダが従量課金の小額決済に対応していること"
-      ],
-      "disconfirm": "決済手段のエラーにより課金枠の確保ができない場合",
-      "continue_if": "小額課金によるAPI疎通が確認できた場合",
-      "stop": "コストが想定上限を超えた場合"
-    },
-    {
-      "t": "特化型エージェントの受皿となるプロンプトテンプレートをGitHubに登録しろ",
-      "why": "既存ツールから溢れたエージェントの流入を受け止める受け皿を事前に用意するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.35,
-      "success_p_max": 0.55,
-      "success_why": "過去のプロンプト資産をそのまま転用できるため",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "受皿用のテンプレートファイルがリポジトリに追加される",
-      "category": "publish",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "次段階の機能拡張の土台となるため",
-      "evidence_ids": [
-        "2026-09-30-r01"
-      ],
-      "assumptions": [
-        "既存のリポジトリに新規ファイルを追加する権限があること"
-      ],
-      "disconfirm": "リポジトリの構造がテンプレート追加を受け付けない場合",
-      "continue_if": "ファイルのコミットが成功した場合",
-      "stop": "方針の変更が必要になった場合"
-    },
-    {
-      "t": "API利用コストの限界値を計算してGitHubのドキュメントに記録しろ",
-      "why": "価格引き下げ競争の中でも利益を確保できる運用ラインを明確にするため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.55,
-      "success_p_min": 0.45,
-      "success_p_max": 0.65,
-      "success_why": "公開されている価格データに基づき算出可能なため",
-      "value_score": 3,
       "learning_value": 3,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "コスト試算を記したマークダウンファイルが更新される",
-      "category": "publish",
+      "outcome": "値上げ対象モデルを使用しているコード箇所のリスト",
+      "category": "review",
       "terminal": false,
       "impact_min": 0.1,
-      "impact_max": 0.15,
-      "impact_why": "今後の予算配分の基準が明確になるため",
+      "impact_max": 0.2,
+      "impact_why": "コスト最適化の直接のターゲットを特定できるため",
       "evidence_ids": [
-        "2026-09-30-r01"
+        "2026-10-01-r01"
       ],
       "assumptions": [
-        "各社のAPI価格情報が正確に入手できること"
+        "GitHubにコードがアップロードされていること"
       ],
-      "disconfirm": "価格体系が複雑で計算根拠が崩れる場合",
-      "continue_if": "損益分岐点の算出が完了した場合",
-      "stop": "価格データの信頼性が低い場合"
+      "disconfirm": "コードの管理場所が特定できない場合",
+      "continue_if": "対象スクリプトが特定できた場合",
+      "stop": "該当するコードが存在しない場合"
     },
     {
-      "t": "月額制のプロフェッショナルAPI枠を一時契約して負荷テストを実施しろ",
-      "why": "制限強化が起きた際にも優先的にリソースを確保できるルートを実証するため",
-      "cost_min": 3000,
-      "cost_max": 8000,
-      "loss_max": 8000,
-      "success_p": 0.35,
-      "success_p_min": 0.25,
-      "success_p_max": 0.45,
-      "success_why": "有料プラン導入によりレートリミットが緩和されるため",
-      "value_score": 4,
+      "t": "別プロバイダの安価な同等モデルへエンドポイントを書き換える",
+      "why": "APIの単価上昇による利益削りを防ぎ、ランニングコストを月5ドル以内に収めるため",
+      "cost_min": 0,
+      "cost_max": 500,
+      "loss_max": 500,
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "GitHubのWebエディタからエンドポイントのURL文字列を置換してコミットできるため",
+      "value_score": 5,
       "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 30,
-      "outcome": "高負荷時の応答速度データが記録されたログファイル",
-      "category": "buy",
+      "time_minutes": 20,
+      "payback_days": 1,
+      "outcome": "安価なモデルへのエンドポイント変更が反映されたコード",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.2,
       "impact_max": 0.3,
-      "impact_why": "実運用に耐えうるインフラの強度が確認できるため",
+      "impact_why": "ランニングコストを直接引き下げる決定的な一手であるため",
       "evidence_ids": [
-        "2026-09-30-r01"
+        "2026-10-01-r01"
       ],
       "assumptions": [
-        "決済が即時反映されAPIキーの権限が即座に切り替わること"
+        "他社の代替モデルが提供されていること"
       ],
-      "disconfirm": "有料プランでもレートリミットの制限が厳しすぎる場合",
-      "continue_if": "高負荷テストでエラー率が5%未満に収まった場合",
-      "stop": "費用対効果が見合わないと判断した場合"
+      "disconfirm": "代替モデルのレスポンス形式が異なる場合",
+      "continue_if": "エラーなく代替モデルが動作した場合",
+      "stop": "代替モデルの精度が許容できないほど低い場合"
+    },
+    {
+      "t": "google-genai v2.27.0の新機能をテストスクリプトで試す",
+      "why": "Googleのエコシステム側の価格や仕様変更の波及効果を実機で確かめるため",
+      "cost_min": 0,
+      "cost_max": 1000,
+      "loss_max": 1000,
+      "success_p": 0.65,
+      "success_p_min": 0.55,
+      "success_p_max": 0.75,
+      "success_why": "公開されている公式SDKのバージョンと仕様に基づいているため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 7,
+      "outcome": "新SDKを使ったAPIコールの成功ログ",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "マルチプラットフォームでのリスクヘッジになるため",
+      "evidence_ids": [
+        "2026-10-02-r02"
+      ],
+      "assumptions": [
+        "APIキーが有効であること"
+      ],
+      "disconfirm": "SDKの仕様が大きく変わっており既存コードが動かない場合",
+      "continue_if": "テスト実行が成功した場合",
+      "stop": "コスト対効果が見合わない場合"
+    },
+    {
+      "t": "Anthropicのネットワーク運用関連の新規求人要件を分析する",
+      "why": "大手がインフラのどこに投資を集中させているかの実利を読み解くため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.6,
+      "success_p_min": 0.5,
+      "success_p_max": 0.7,
+      "success_why": "求人ページに公開されている業務内容の記述が具体的であるため",
+      "value_score": 2,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "インフラ投資のボトルネックに関する分析メモ",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.1,
+      "impact_why": "業界のコスト構造の変化を裏から読む材料になるため",
+      "evidence_ids": [
+        "2026-10-01-r03"
+      ],
+      "assumptions": [
+        "求人情報が公開状態を維持していること"
+      ],
+      "disconfirm": "募集ページが削除された場合",
+      "continue_if": "インフラ面の特定の投資領域が読み取れた場合",
+      "stop": "一般的な定型業務の募集のみである場合"
+    },
+    {
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "次に直す内容がIssueとして1件残る",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "Issueが次の実装に使われる"
+      ],
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
     }
   ],
-  "kan": "今後14日以内に、主要なサードパーティAPIプロバイダがDeepSeek系Flashモデルの利用回数制限か、実質的な価格の再引き上げに踏み切ると見る。理由：94%の値下げによるサーバーの赤字維持が構造的に不可能であるため。"
+  "kan": "今後14日以内に、OpenAIまたはAnthropicのいずれかが、APIのライトユーザー向けプランの廃止か実質的なミニマムチャージ（最低利用料金）の導入に踏み切ると見る。過去の価格改定サイクルと今回のDeepSeekの急騰を重ね合わせると、この種のコスト転嫁ドミノが起きる確率は42%程度と算出できる。"
 }
