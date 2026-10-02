@@ -5906,5 +5906,167 @@
       "2026-09-29-r03",
       "2026-09-29-r02"
     ]
+  },
+  {
+    "id": "2026-10-02-r01",
+    "created_at": "2026-10-02T10:02:33.146807+09:00",
+    "headline": "openai Python SDK v3.23.0 リリース",
+    "what_happened": "OpenAIはPyPIにおいて、公式Python SDKの新バージョンである「openai v3.23.0」を公開した。本パッケージはOpenAIのREST APIへアクセスするための同期・非同期クライアントを提供する。OpenAPI仕様から自動生成されている点が特徴である。",
+    "background": "OpenAIはPython向け公式SDKのマイナーアップデートやパッチリリースを頻繁に行っている。",
+    "changed": "openaiライブラリのバージョンが3.23.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.23.0/",
+      "title": "openai Python SDK v3.23.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-30-r01",
+      "2026-09-29-r01",
+      "2026-09-25-r01",
+      "2026-09-24-r01",
+      "2026-09-23-r01",
+      "2026-09-20-r01"
+    ]
+  },
+  {
+    "id": "2026-10-02-r02",
+    "created_at": "2026-10-02T10:02:33.146807+09:00",
+    "headline": "google-genai Python SDK v2.27.0 リリース",
+    "what_happened": "GoogleはPyPIにおいて、GenAI Python SDKの新バージョンである「google-genai v2.27.0」を公開した。 Gemini Developer APIやGemini Enterprise Agent PlatformのAPIを統合するインターフェースを提供する。次期バージョンでの自動関数呼び出し（AFC）の挙動変更に関する警告が含まれている。",
+    "background": "GoogleはGemini関連のSDKの更新を継続的に行い、機能の追加や仕様変更を進めている。",
+    "changed": "google-genaiライブラリのバージョンが2.27.0に更新され、次期バージョンに向けた警告が記載された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/2.27.0/",
+      "title": "google-genai Python SDK v2.27.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-09-23-r03",
+      "2026-09-18-r02",
+      "2026-09-12-r01",
+      "2026-09-03-r03",
+      "2026-09-01-r01",
+      "2026-08-26-r01"
+    ]
+  },
+  {
+    "id": "2026-10-02-r03",
+    "created_at": "2026-10-02T10:02:33.146807+09:00",
+    "headline": "[新規求人] anthropic: Channel Partner Manager, Public Sector",
+    "what_happened": "AnthropicはワシントンD.C.を勤務地とする「Channel Partner Manager, Public Sector」の求人を公開した。米国連邦・州・地方政府における代理店やディストリビューターとの関係構築およびチャネル運営を担当する。パブリックセクターにおける販売体制の強化を目的としている。",
+    "background": "Anthropicは政府機関や公共部門への販路を拡大するため、パートナーシップ担当者の採用を進めている。",
+    "changed": "パブリックセクター向けのチャネルパートナー管理職の募集が開始された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5441387008",
+      "title": "[新規求人] anthropic: Channel Partner Manager, Public Sector (Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-01-r07",
+      "2026-10-01-r03",
+      "2026-10-01-r02",
+      "2026-10-01-r01",
+      "2026-09-30-r06",
+      "2026-09-30-r05"
+    ]
+  },
+  {
+    "id": "2026-10-02-r04",
+    "created_at": "2026-10-02T10:02:33.146807+09:00",
+    "headline": "[新規求人] anthropic: Political Programs Lead",
+    "what_happened": "AnthropicはワシントンD.C.を勤務地とする「Political Programs Lead」の求人を公開した。政治プロセスへの関与や政治行動委員会（PAC）、候補者・団体とのエンゲージメントプログラムの構築・運営を担当する。党派を超えた関与を行うための専任ポジションとなる。",
+    "background": "AI企業による政策提言や政治的プロセスへの関与が増加しており、組織的な対応が求められている。",
+    "changed": "政治プログラムを統括するリーダーの募集が開始された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440122008",
+      "title": "[新規求人] anthropic: Political Programs Lead (Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-01-r07",
+      "2026-10-01-r03",
+      "2026-10-01-r02",
+      "2026-10-01-r01",
+      "2026-09-30-r06",
+      "2026-09-30-r05"
+    ]
+  },
+  {
+    "id": "2026-10-02-r05",
+    "created_at": "2026-10-02T10:02:33.146807+09:00",
+    "headline": "[新規求人] anthropic: Software Engineer, Sandboxing",
+    "what_happened": "Anthropicはサンフランシスコおよびニューヨークを勤務地とする「Software Engineer, Sandboxing」の求人を公開した。Claudeがコードを実行したりエージェントとして動作したりする際の、分離レイヤーとなるサンドボックスインフラストラクチャの開発・運用を担当する。",
+    "background": "AIモデルが自律的にコードを実行する環境において、セキュリティと実行速度を両立させるサンドボックス技術の重要性が高まっている。",
+    "changed": "サンドボックス基盤を担当するソフトウェアエンジニアの募集が開始された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440427008",
+      "title": "[新規求人] anthropic: Software Engineer, Sandboxing (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-01-r07",
+      "2026-10-01-r03",
+      "2026-10-01-r02",
+      "2026-10-01-r01",
+      "2026-09-30-r06",
+      "2026-09-30-r05"
+    ]
+  },
+  {
+    "id": "2026-10-02-r06",
+    "created_at": "2026-10-02T10:02:33.146807+09:00",
+    "headline": "[新規求人] xai: Counsel, Telecommunications (Starlink)",
+    "what_happened": "xAI（SpaceXAI表記）はロンドンを勤務地とする「Counsel, Telecommunications (Starlink)」の求人を公開した。欧州およびアフリカにおける電気通信やインターネットサービス関連の法規制に関する助言や法的リスクの分析を担当する。",
+    "background": "xAIはStarlink事業に関連するグローバルな法規制対応のための法務人材の採用を行っている。",
+    "changed": "スターリンク事業の法務を担当するテレコムカウンセルの募集が開始された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5254365007",
+      "title": "[新規求人] xai: Counsel, Telecommunications (Starlink) (London, England, United Kingdom)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-01-r06",
+      "2026-10-01-r05",
+      "2026-10-01-r04",
+      "2026-09-29-r07",
+      "2026-09-29-r06",
+      "2026-09-27-r02"
+    ]
   }
 ]
