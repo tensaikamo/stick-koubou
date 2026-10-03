@@ -2325,15 +2325,19 @@
         "conf_after": 0.918
       }
     ],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-10-03T09:40:35.867329+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "公式ニュースルーム（anthropic.com/news）の記事一覧を確認したところ、「Claude for Government」をタイトルに含む記事は存在しなかったため的中条件を満たしている。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "initial_confidence": 0.82
+    "initial_confidence": 0.82,
+    "needs_review": false
   },
   {
     "id": "2026-09-22-h01",

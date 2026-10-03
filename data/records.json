@@ -6068,5 +6068,106 @@
       "2026-09-29-r06",
       "2026-09-27-r02"
     ]
+  },
+  {
+    "id": "2026-10-03-r01",
+    "created_at": "2026-10-03T09:39:51.275200+09:00",
+    "headline": "Googleがgoogle-genai SDK v2.28.0を公開し次期メジャーでのAFC仕様変更を予告",
+    "what_happened": "Googleは公式Python SDK「google-genai」のバージョン2.28.0をPyPIに公開した。パッケージ概要欄において、次期メジャーバージョンでAutomatic Function Calling（AFC）の動作仕様を変更する旨の事前警告が明記された。現行のv2系列において今後の破壊的変更に向けた開発者周知を開始している。",
+    "background": "google-genaiはGoogleがGemini APIやEnterprise Agent Platform向けに提供する公式クライアントライブラリである。AFC（自動関数呼び出し）はモデルがツールを順次呼び出す中核機能であり、仕様変更は既存エージェント実装の互換性に直接影響する。",
+    "changed": "google-genaiのPyPI最新版が2.28.0へ更新され、パッケージ説明欄にAFCの動作変更を伴う次期メジャーバージョンアップの事前告知が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/2.28.0/",
+      "title": "google-genai Python SDK v2.28.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-02-r02",
+      "2026-09-23-r03",
+      "2026-09-18-r02",
+      "2026-09-12-r01",
+      "2026-09-03-r03",
+      "2026-09-01-r01"
+    ]
+  },
+  {
+    "id": "2026-10-03-r02",
+    "created_at": "2026-10-03T09:39:51.275200+09:00",
+    "headline": "OpenAIがopenai Python SDK v3.24.0をPyPIで公開",
+    "what_happened": "OpenAIは公式Python SDK「openai」のバージョン3.24.0をPyPIに公開した。直近のv3.23.0リリースに続く小刻みなマイナー・パッチ更新である。ライブラリはOpenAPI仕様から自動生成されるREST APIクライアントとして保守されている。",
+    "background": "OpenAIは公式SDKの更新頻度を高く保っており、エンドポイント追加や細かな型定義の修正に合わせて連日新規バージョンを公開する運用を続けている。",
+    "changed": "PyPIにおけるopenaiパッケージの最新バージョンが3.24.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.24.0/",
+      "title": "openai Python SDK v3.24.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-02-r01",
+      "2026-09-30-r01",
+      "2026-09-29-r01",
+      "2026-09-25-r01",
+      "2026-09-24-r01",
+      "2026-09-23-r01"
+    ]
+  },
+  {
+    "id": "2026-10-03-r03",
+    "created_at": "2026-10-03T09:39:51.275200+09:00",
+    "headline": "Kali Linux上のセキュリティツール操作を評価するベンチマークKaliBenchが発表",
+    "what_happened": "研究者チームはKali LinuxにおけるサイバーセキュリティツールのCLIコマンド生成能力を評価するベンチマーク「KaliBench」をarXivで公開した。1,642種のツールにまたがる8,504件の自然言語・コマンド対で構成される。実行時環境を消費せずに検証可能な報酬設計を導入している。",
+    "background": "LLMをサイバーセキュリティ業務に適用する研究が進む一方、コマンドラインの厳密な構文や引数の順序を正確に生成できるかを網羅的に測る標準的評価セットが不足していた。",
+    "changed": "Kali Linux環境のセキュリティツール利用に特化した8,000件規模のコマンド生成評価データセットが研究コミュニティに提供された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.02206v1",
+      "title": "KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": []
+  },
+  {
+    "id": "2026-10-03-r04",
+    "created_at": "2026-10-03T09:39:51.275200+09:00",
+    "headline": "AnthropicがセキュリティGRCおよび統制評価の担当者を募集",
+    "what_happened": "Anthropicは採用管理システムGreenhouseにおいて、「Security Audit & Controls, Security GRC」職の募集を開始した。勤務地はサンフランシスコまたはニューヨークである。Common Control Frameworkの運用や、Claudeを活用した統制証跡の継続的検証プロセスの構築を担う人材を求めている。",
+    "background": "フロンティアAI企業では法人顧客向けAPIやエンタープライズ製品の拡大に伴い、SOC2やISOなどの各種セキュリティ認証およびガバナンス体制の継続的順守が重要度を増している。",
+    "changed": "AnthropicのセキュリティGRCチームにおいて、統合監査フレームワーク統括とAIによる統制自動化を推進する専任職の採用枠が新設された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439224008",
+      "title": "[新規求人] anthropic: Security Audit & Controls, Security GRC (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-02-r05",
+      "2026-10-02-r04",
+      "2026-10-02-r03",
+      "2026-10-01-r07",
+      "2026-10-01-r03",
+      "2026-10-01-r02"
+    ]
   }
 ]
