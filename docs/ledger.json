@@ -1,24 +1,49 @@
 {
-  "updated_at": "2026-10-02 10:05",
+  "updated_at": "2026-10-03 09:41",
   "score": {
-    "hit": 12,
+    "hit": 13,
     "miss": 24,
-    "total": 36,
-    "rate": 0.3333333333333333,
-    "pending": 6,
-    "brier": 0.38761016666666676,
-    "brier_n": 36,
-    "brier_initial": 0.3994416666666668,
+    "total": 37,
+    "rate": 0.35135135135135137,
+    "pending": 5,
+    "brier": 0.37731594594594603,
+    "brier_n": 37,
+    "brier_initial": 0.3895216216216218,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-10-03",
-    "days": 1
+    "date": "2026-10-06",
+    "days": 3
   },
   "decided": [
+    {
+      "id": "2026-09-19-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルーム（anthropic.com/news）において「Claude for Government」をタイトルに含む公式発表記事を公開しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-10-03",
+      "confidence": 0.918,
+      "initial_confidence": 0.82,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "OpenAIやMicrosoftの公共調達先行に対抗するため、実働配備の完了を待たずにブランド認知確立を狙ったプレアナウンスを急遽実施するケース",
+      "evidence": "公式ニュースルーム（anthropic.com/news）の記事一覧を確認したところ、「Claude for Government」をタイトルに含む記事は存在しなかったため的中条件を満たしている。",
+      "signals": [
+        {
+          "date": "2026-09-19",
+          "dir": "confirm",
+          "why": "Anthropicの求人一覧においてCustomer Success Manager, Public Sectorの募集が確認されたため。"
+        },
+        {
+          "date": "2026-09-21",
+          "dir": "confirm",
+          "why": "本日の事象としてCustomer Success Manager, Public Sectorの新規求人掲載が確認されたため、募集が継続掲載されていることの指標に該当する。"
+        }
+      ]
+    },
     {
       "id": "2026-09-17-h01",
       "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて「Cowork」をタイトルに含む新機能・新製品の単独発表記事を公開しない",
@@ -234,20 +259,6 @@
       "counter": "政府機関やハイパースケーラーとの提携交渉が既に完了しており、採用公開と連動してプレスリリースが近日中に前倒し発信される可能性がある。",
       "evidence": "2026年8月26日時点のAnthropic公式ニュースルームを確認したところ、自社データセンター開設や500億ドル規模のインフラ投資に関する単体プレスリリースは掲載されておらず、的中条件を満たしている。",
       "signals": []
-    },
-    {
-      "id": "2026-08-11-h01",
-      "claim": "Anthropicは14日以内に、公式APIドキュメント（platform.claude.com）において「Claude Tag」に関する独立したドキュメントページを公開しない。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-25",
-      "confidence": 0.88,
-      "initial_confidence": null,
-      "result": "hit",
-      "status": "resolved",
-      "alert": false,
-      "counter": "Anthropicがすでに「Claude Tag」のプライベートベータを終了させており、求人公開と連動した即時GA発表を準備している場合。",
-      "evidence": "公式ドキュメント（platform.claude.com/docs/en/build-with-claude）の内容を確認したところ、「Claude Tag」に関する独立したドキュメントページや見出しセクションは掲載されておらず、予測通り公開されなかったことが確認された。",
-      "signals": []
     }
   ],
   "pending": [
@@ -264,31 +275,6 @@
       "counter": "求人の公開前に既に主要クラウド3社との規約すり合わせが完了しており、告知と連動して法務文書の公開が即座に行われるケース",
       "evidence": "判定先ページ（https://www.anthropic.com/legal/usage-policy）にアクセスできず、対象セクションの新設有無を確認できる十分な証拠がないため判定不能。",
       "signals": []
-    },
-    {
-      "id": "2026-09-19-h01",
-      "claim": "Anthropicは今後14日以内に、公式ニュースルーム（anthropic.com/news）において「Claude for Government」をタイトルに含む公式発表記事を公開しない。",
-      "subject": "Anthropic",
-      "deadline": "2026-10-03",
-      "confidence": 0.918,
-      "initial_confidence": 0.82,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "OpenAIやMicrosoftの公共調達先行に対抗するため、実働配備の完了を待たずにブランド認知確立を狙ったプレアナウンスを急遽実施するケース",
-      "evidence": "",
-      "signals": [
-        {
-          "date": "2026-09-19",
-          "dir": "confirm",
-          "why": "Anthropicの求人一覧においてCustomer Success Manager, Public Sectorの募集が確認されたため。"
-        },
-        {
-          "date": "2026-09-21",
-          "dir": "confirm",
-          "why": "本日の事象としてCustomer Success Manager, Public Sectorの新規求人掲載が確認されたため、募集が継続掲載されていることの指標に該当する。"
-        }
-      ]
     },
     {
       "id": "2026-09-22-h01",
@@ -338,14 +324,14 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-10-01",
-          "dir": "confirm",
-          "why": "google-genai Python SDK v2.26.0のリリースが確認されたため。"
-        },
-        {
           "date": "2026-10-02",
           "dir": "confirm",
           "why": "google-genai Python SDK v2.27.0がリリースされ、2.x系の新たなマイナー版が公開されたため。"
+        },
+        {
+          "date": "2026-10-03",
+          "dir": "confirm",
+          "why": "google-genai Python SDKの2.x系マイナー版であるv2.28.0がリリースされたため。"
         }
       ]
     },
@@ -369,11 +355,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-10-01",
-          "headline": "anthropic Python SDK v1.11.0 リリース",
-          "url": "https://pypi.org/project/anthropic/1.11.0/"
-        },
-        {
           "date": "2026-10-02",
           "headline": "[新規求人] anthropic: Channel Partner Manager, Public Sector",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5441387008"
@@ -387,6 +368,11 @@
           "date": "2026-10-02",
           "headline": "[新規求人] anthropic: Software Engineer, Sandboxing",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440427008"
+        },
+        {
+          "date": "2026-10-03",
+          "headline": "AnthropicがセキュリティGRCおよび統制評価の担当者を募集",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439224008"
         }
       ]
     },
@@ -419,11 +405,6 @@
       "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-09-25",
-          "headline": "openai Python SDK v3.19.2 リリース",
-          "url": "https://pypi.org/project/openai/3.19.2/"
-        },
-        {
           "date": "2026-09-29",
           "headline": "openai Python SDK v3.20.0 リリース",
           "url": "https://pypi.org/project/openai/3.20.0/"
@@ -437,17 +418,17 @@
           "date": "2026-10-02",
           "headline": "openai Python SDK v3.23.0 リリース",
           "url": "https://pypi.org/project/openai/3.23.0/"
+        },
+        {
+          "date": "2026-10-03",
+          "headline": "OpenAIがopenai Python SDK v3.24.0をPyPIで公開",
+          "url": "https://pypi.org/project/openai/3.24.0/"
         }
       ]
     },
     {
       "subject": "Google",
       "events": [
-        {
-          "date": "2026-09-12",
-          "headline": "google-genai Python SDK v2.23.0 リリース",
-          "url": "https://pypi.org/project/google-genai/2.23.0/"
-        },
         {
           "date": "2026-09-18",
           "headline": "Googleがgoogle-genai SDK v2.24.0を公開し次期メジャーでのAFC仕様変更を予告",
@@ -462,6 +443,11 @@
           "date": "2026-10-02",
           "headline": "google-genai Python SDK v2.27.0 リリース",
           "url": "https://pypi.org/project/google-genai/2.27.0/"
+        },
+        {
+          "date": "2026-10-03",
+          "headline": "Googleがgoogle-genai SDK v2.28.0を公開し次期メジャーでのAFC仕様変更を予告",
+          "url": "https://pypi.org/project/google-genai/2.28.0/"
         }
       ]
     },
@@ -497,6 +483,34 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-10-03-r04",
+      "date": "2026-10-03",
+      "headline": "AnthropicがセキュリティGRCおよび統制評価の担当者を募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439224008"
+    },
+    {
+      "id": "2026-10-03-r03",
+      "date": "2026-10-03",
+      "headline": "Kali Linux上のセキュリティツール操作を評価するベンチマークKaliBenchが発表",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2610.02206v1"
+    },
+    {
+      "id": "2026-10-03-r02",
+      "date": "2026-10-03",
+      "headline": "OpenAIがopenai Python SDK v3.24.0をPyPIで公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.24.0/"
+    },
+    {
+      "id": "2026-10-03-r01",
+      "date": "2026-10-03",
+      "headline": "Googleがgoogle-genai SDK v2.28.0を公開し次期メジャーでのAFC仕様変更を予告",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/2.28.0/"
+    },
     {
       "id": "2026-10-02-r06",
       "date": "2026-10-02",
@@ -552,35 +566,7 @@
       "headline": "[新規求人] xai: Project Manager, Facilities Operations - Memphis (Memphis, TN)",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/xai/jobs/5249882007"
-    },
-    {
-      "id": "2026-10-01-r05",
-      "date": "2026-10-01",
-      "headline": "[新規求人] xai: Application Security Engineer (X Money)",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5253534007"
-    },
-    {
-      "id": "2026-10-01-r04",
-      "date": "2026-10-01",
-      "headline": "[新規求人] xai: Sr. Sales Manager, Canada - Starlink Enterprise Sales (Canada)",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5253566007"
-    },
-    {
-      "id": "2026-10-01-r03",
-      "date": "2026-10-01",
-      "headline": "[新規求人] anthropic: Network Deployment and Maintenance Lead - Data Center Operations (Remote-Friendly, United States)",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439804008"
-    },
-    {
-      "id": "2026-10-01-r02",
-      "date": "2026-10-01",
-      "headline": "[新規求人] anthropic: Applied AI Architect, International Policy (San Francisco, CA | New York City, NY | Washington, DC)",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439830008"
     }
   ],
-  "record_count": 218
+  "record_count": 222
 }
