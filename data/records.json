@@ -6169,5 +6169,32 @@
       "2026-10-01-r03",
       "2026-10-01-r02"
     ]
+  },
+  {
+    "id": "2026-10-04-r01",
+    "created_at": "2026-10-04T08:59:22.113799+09:00",
+    "headline": "anthropic: Program Manager, Safeguards Policy, Enforcement, and Threat Intelligence の求人公開",
+    "what_happened": "Anthropicは、サンフランシスコを勤務地とする「Program Manager, Safeguards Policy, Enforcement, and Threat Intelligence」の新規求人をGreenhouse上で公開した。セーフガード組織におけるポリシー設計、検知・執行システム、脅威インテリジェンスの連携を管理する役割を担う。",
+    "background": "AIの安全性確保やポリシー執行の複雑化に伴い、関連部門のオペレーションを統括するプログラムマネージャーの採用が進められている。",
+    "changed": "セーフガード部門の横断的な進行管理を行う専門職の募集が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440535008",
+      "title": "[新規求人] anthropic: Program Manager, Safeguards Policy, Enforcement, and Threat Intelligence (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-03-r04",
+      "2026-10-02-r05",
+      "2026-10-02-r04",
+      "2026-10-02-r03",
+      "2026-10-01-r07",
+      "2026-10-01-r03"
+    ]
   }
 ]
