@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03 09:41",
+  "updated_at": "2026-10-04 09:03",
   "score": {
     "hit": 13,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-10-06",
-    "days": 3
+    "days": 2
   },
   "decided": [
     {
@@ -324,14 +324,14 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-10-02",
-          "dir": "confirm",
-          "why": "google-genai Python SDK v2.27.0がリリースされ、2.x系の新たなマイナー版が公開されたため。"
-        },
-        {
           "date": "2026-10-03",
           "dir": "confirm",
           "why": "google-genai Python SDKの2.x系マイナー版であるv2.28.0がリリースされたため。"
+        },
+        {
+          "date": "2026-10-04",
+          "dir": "confirm",
+          "why": "google-genai Python SDK v2.28.0がリリースされ、2.x系の新たなマイナー版のリリースが確認されたため。"
         }
       ]
     },
@@ -356,11 +356,6 @@
       "events": [
         {
           "date": "2026-10-02",
-          "headline": "[新規求人] anthropic: Channel Partner Manager, Public Sector",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5441387008"
-        },
-        {
-          "date": "2026-10-02",
           "headline": "[新規求人] anthropic: Political Programs Lead",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440122008"
         },
@@ -373,6 +368,11 @@
           "date": "2026-10-03",
           "headline": "AnthropicがセキュリティGRCおよび統制評価の担当者を募集",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439224008"
+        },
+        {
+          "date": "2026-10-04",
+          "headline": "anthropic: Program Manager, Safeguards Policy, Enforcement, and Threat Intelligence の求人公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440535008"
         }
       ]
     },
@@ -484,6 +484,13 @@
   ],
   "records": [
     {
+      "id": "2026-10-04-r01",
+      "date": "2026-10-04",
+      "headline": "anthropic: Program Manager, Safeguards Policy, Enforcement, and Threat Intelligence の求人公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440535008"
+    },
+    {
       "id": "2026-10-03-r04",
       "date": "2026-10-03",
       "headline": "AnthropicがセキュリティGRCおよび統制評価の担当者を募集",
@@ -559,14 +566,7 @@
       "headline": "anthropic Python SDK v1.11.0 リリース",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/anthropic/1.11.0/"
-    },
-    {
-      "id": "2026-10-01-r06",
-      "date": "2026-10-01",
-      "headline": "[新規求人] xai: Project Manager, Facilities Operations - Memphis (Memphis, TN)",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5249882007"
     }
   ],
-  "record_count": 222
+  "record_count": 223
 }

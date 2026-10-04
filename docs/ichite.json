@@ -1,135 +1,131 @@
 {
-  "date": "2026-10-03",
+  "date": "2026-10-04",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのスロットリング発生時に手元のWebアプリはどの別プロバイダーに接続を切り替えるか",
-    "現在稼働中の既存WebアプリのAPI呼び出し部分に動的フォールバックの1行をどう書き込むか",
-    "仲介プラットフォームの価格競争激化の中で、今日の20分でどのファイルのコミットを完了させるか"
+    "OpenRouterのAPI価格表を開き現在使っているモデルの単価変動を確認したか",
+    "バックエンドのモデル呼び出しルーティングを低価格モデルへ即座に書き換えたか",
+    "値上げされたProモデルに依存している箇所のフォールバック先実装を今夜までに終わらせるか"
   ],
   "moves": [
     {
-      "t": "iPhoneのSafariからGitHubを開き既存WebアプリのAPI呼び出し部にフォールバック用エンドポイントを1行追加してコミットしろ",
-      "why": "OpenRouterの価格破壊とスロットリングの頻発という今日のブリーフィングの現実に対応し、既存Webアプリの耐障害性を高めるためだ",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.55,
-      "success_p_min": 0.4,
-      "success_p_max": 0.7,
-      "success_why": "GitHubのWebエディタで直接1行書き換えるだけで完結するため技術的な難易度が低い",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "GitHub上の既存リポジトリにフォールバック処理を追加するコミットが完了していること",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "インフラ障害時の自動切り替えという実用的な耐性が1つのコミットで直ちに実装されるため",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "iPhoneのSafariからGitHubのリポジトリ編集画面に直接アクセスできること",
-        "既存のコードにAPIエンドポイントを指定している箇所が存在すること"
-      ],
-      "disconfirm": "コミット後にビルドエラーが発生し、iPhone単体では修正が困難な場合",
-      "continue_if": "エラーなくコミットが反映され、APIのフォールバック動作の構文が正常であること",
-      "stop": "GitHubのWebエディタでの編集・コミットが仕様上制限されている場合"
-    },
-    {
-      "t": "Qwen3Guardの仕様書とパラメータ構造をSafariで読み込み、検知ロジックの抜け穴を1つメモに書き留めろ",
-      "why": "リアルタイム安全ガードレールの導入によって開発者が直面する制限と、そこに発生する新たな回避・適応の隙を特定するためだ",
+      "t": "アプリのバックエンド設定でモデルを低価格版へ切り替える",
+      "why": "Flash Latestの大幅値下げの恩恵を即座に受けるため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.45,
       "success_p_min": 0.3,
       "success_p_max": 0.6,
-      "success_why": "公開された技術ドキュメントの該当セクションを短時間で斜め読みできるため",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "Qwen3Guardのガードルールにおける具体的な除外条件がテキストメモに残っていること",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "大手が安全性を強化する裏でどのようなプロンプトの工夫が求められるかの洞察が得られるため",
-      "evidence_ids": [
-        "2026-07-28-r04"
-      ],
-      "assumptions": [
-        "公式の公開資料にガードレールの具体的な動作条件が記載されていること",
-        "英語または日本語の技術文書をiPhoneで直読できること"
-      ],
-      "disconfirm": "ドキュメントが抽象的な宣伝文句だけで具体的な仕様が一切書かれていない場合",
-      "continue_if": "具体的なフィルター条件や拒否コードの定義が確認できたこと",
-      "stop": "PDFなどの重いファイルをダウンロードしなければ閲覧できない場合"
-    },
-    {
-      "t": "OpenRouter経由での応答速度と価格変動を追跡する専門サイトの数値をiPhoneのブラウザでスクショ保存し前回分と比較しろ",
-      "why": "仲介プラットフォームの価格破壊と負荷の限界点がいまどの水準にあるかを定量的に把握するためだ",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.65,
-      "success_p_min": 0.5,
-      "success_p_max": 0.8,
-      "success_why": "既存の公開ベンチマークサイトにアクセスして比較するだけで完了するため",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 10,
-      "payback_days": 0,
-      "outcome": "前週と比較した価格下落幅とレイテンシの変化を示すスクリーンショットが保存されていること",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "市場の崩壊タイミングを正確に予測するための定点観測データが揃うため",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "Artificial Analysisなどの追跡サイトが継続的にデータを更新していること",
-        "iPhoneの画面キャプチャで必要なデータが収まること"
-      ],
-      "disconfirm": "前週から数値に一切の変化がなくデータの更新が止まっている場合",
-      "continue_if": "前回測定時よりも価格がさらに下がり、トラフィック指標に偏りが見えること",
-      "stop": "サイトが有料会員限定に切り替わり無料での閲覧ができなくなっている場合"
-    },
-    {
-      "t": "API障害時の自動リトライとプロバイダー切替を行うJavaScriptの関数スニペットをiPhoneのメモアプリで執筆しろ",
-      "why": "万が一メインの接続先がエラーを返した際に、ユーザー体験を損なわずに別経路へ流す実装を準備するためだ",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.35,
-      "success_p_max": 0.65,
-      "success_why": "過去に作成したAPI呼び出しコードの構造を流用して短時間で書き下ろせるため",
+      "success_why": "設定変更により直ちにAPIのランニングコストを削減できるため",
       "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
+      "learning_value": 3,
+      "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "try-catch構文を用いたフォールバック実装のコードブロックがメモに完成していること",
+      "outcome": "バックエンドのルーティング設定の書き換え完了",
       "category": "build",
       "terminal": false,
       "impact_min": 0.15,
       "impact_max": 0.25,
-      "impact_why": "次のコミットですぐに適用できる実戦的なコードの部品が手に入るため",
+      "impact_why": "コスト圧縮に直接寄与するため",
       "evidence_ids": [
         "2026-08-01-r02"
       ],
       "assumptions": [
-        "JavaScriptの基本構文だけでエラーハンドリングが記述できること",
-        "iPhoneのフリック入力でも必要十分な分量を書ききれること"
+        "GitHubのWeb画面からソースコードの簡易編集ができること"
       ],
-      "disconfirm": "複雑な非同期処理が必要となりスマホのメモでは正確な記述が困難な場合",
-      "continue_if": "エラー判定と切り替え先のURL指定を含むコードが論理矛盾なく書けたこと",
-      "stop": "外部の巨大なライブラリやフレームワークの導入が必須であることが判明した場合"
+      "disconfirm": "コードの該当箇所をiPhoneから正しく編集できないこと",
+      "continue_if": "ルーティング変更後の動作テストが成功した場合",
+      "stop": "モデル変更によってアプリの出力品質が著しく低下した場合"
+    },
+    {
+      "t": "軽量モデルへのフォールバック処理をコードに追加する",
+      "why": "高単価モデル依存を排除し兵站戦での生存確率を高めるため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.4,
+      "success_p_min": 0.25,
+      "success_p_max": 0.55,
+      "success_why": "API障害や価格変動に対する耐性が向上するため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "フォールバック処理の実装完了",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "システム運用の堅牢性が直接高まるため",
+      "evidence_ids": [
+        "2026-08-01-r02"
+      ],
+      "assumptions": [
+        "エラーハンドリングの基本的な書き方が把握できていること"
+      ],
+      "disconfirm": "iPhoneからの編集では複雑な条件分岐の記述が困難であること",
+      "continue_if": "エラー時の切り替え挙動がシミュレーションできる場合",
+      "stop": "フォールバック実装によりコードベースが複雑化しすぎた場合"
+    },
+    {
+      "t": "低価格モデルでのアプリの出力結果を検証する",
+      "why": "コスト削減に伴う品質低下の有無を早期に検知するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.45,
+      "success_p_min": 0.3,
+      "success_p_max": 0.6,
+      "success_why": "実際にプロンプトを投げて挙動を確認することで実用性を担保できるため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "出力品質の検証ログの保存完了",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "ユーザー体験の維持に不可欠であるため",
+      "evidence_ids": [
+        "2026-08-01-r02"
+      ],
+      "assumptions": [
+        "Webアプリのプレビュー画面がスマホから閲覧できること"
+      ],
+      "disconfirm": "低価格モデルの出力精度が実用ラインを大きく下回ること",
+      "continue_if": "出力結果に致命的な欠損が見られない場合",
+      "stop": "モデル変更によって全く意図しない挙動が頻発する場合"
+    },
+    {
+      "t": "競合プラットフォームの価格改定動向をリサーチする",
+      "why": "OpenRouter以外の選択肢の有無を常に把握しておくため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.4,
+      "success_p_min": 0.25,
+      "success_p_max": 0.55,
+      "success_why": "市場全体の価格破壊の波に先回りして対応できるため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "競合他社の価格表の比較メモ作成完了",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "プラットフォーム依存のリスクヘッジにつながるため",
+      "evidence_ids": [
+        "2026-08-01-r02"
+      ],
+      "assumptions": [
+        "主要な競合サービスの価格ページにアクセスできること"
+      ],
+      "disconfirm": "競合他社が価格情報を非公開にしていること",
+      "continue_if": "自社より優位な価格設定の代替案が見つかった場合",
+      "stop": "全ての競合が同時に値上げに踏み切った場合"
     },
     {
       "t": "GitHubの改善候補を1件Issueに書く",
@@ -164,5 +160,5 @@
       "fallback": true
     }
   ],
-  "kan": "今後14日以内に、仲介プラットフォーム側が低価格APIの接続制限または強制的なレートリミットを導入し、開発者の移行混乱が起きると見る。"
+  "kan": "DeepSeekは今後30日以内に、特定の大規模開発者向けにさらなる破格の専用スループット枠を水面下で直営業し、米大手クラウドのAPI顧客を直接奪いに行くと見る。直近の価格二極化の傾向から判断する。"
 }

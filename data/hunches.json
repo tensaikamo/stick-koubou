@@ -2529,6 +2529,14 @@
         "why": "google-genai Python SDKの2.x系マイナー版であるv2.28.0がリリースされたため。",
         "conf_before": 0.95,
         "conf_after": 0.95
+      },
+      {
+        "date": "2026-10-04",
+        "sign": "PyPI上でgoogle-genai 2.26.0など2.x系の新たなマイナー版がリリースされる",
+        "dir": "confirm",
+        "why": "google-genai Python SDK v2.28.0がリリースされ、2.x系の新たなマイナー版のリリースが確認されたため。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
       }
     ],
     "status": "pending",
