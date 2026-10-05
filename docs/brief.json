@@ -1,53 +1,50 @@
 {
-  "date": "2026-10-04",
-  "updated_at": "2026-10-04 09:04",
+  "date": "2026-10-05",
+  "updated_at": "2026-10-05 09:12",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouterにおいてDeepSeek Pro Latestが33%値上げされた一方、Flash Latestは80%、V4 Pro 0813は67%の大幅値下げが同時に実施された。",
-  "ura": "単なる値上げではなく、高単価モデルの利益で安価モデルのインフラコストを完全に相殺し、個人開発者を自社エコシステム以外の選択肢が存在しない状態に追い込む兵站戦と見る。APIの選択肢を奪うことで、開発者が他のプラットフォームへ逃げるためのプロキシ設定を変える手間すらコストに見せかける囲い込みの構造のはずだ。",
-  "ura_taikou": "単なるモデルの世代交代に伴う一律のコスト再計算であり、市場シェアの奪略という戦略的意図はないという仮説は、ProとFlashで増減が真逆になっている事実を説明できないため退けた。",
-  "dousuru": "iPhoneのSafariからOpenRouterのAPI価格表を開き、現在動かしているWebアプリのバックエンドで使っているモデルの単価変動を確認しろ。もし対象がFlashや旧V4 Proなら、プロンプトのルーティングを即座に低価格モデルへ書き換えてコストを圧縮しろ。値上げされたProモデルに依存している箇所があれば、今日の夜までにフォールバック先の軽量モデルへの切り替え実装を終わらせておけ。",
-  "kan": "DeepSeekは今後30日以内に、特定の大規模開発者向けにさらなる破格の専用スループット枠を水面下で直営業し、米大手クラウドのAPI顧客を直接奪いに行くと見る。直近の価格二極化の傾向から判断する。",
-  "kan_konkyo": "OpenRouter上でのProモデルの33%値上げとFlashモデルの80%値下げという極端な価格差の同時発生から来ている。",
-  "kan_hantai": "競合である米国の大手プラットフォーマーが即座に追随して同等以上の価格破壊を行い、DeepSeekのシェア拡大を完全に封じ込めること。",
-  "kan_conf": 0.35,
-  "ippan": "AIサービスの料金やプランが頻繁に変わる時期なので、普段使っているチャットアプリやAIツールの月額料金やトークン消費量が値上がりしていないかを今すぐ確認しろ。知らぬ間に高いモデルに誘導されて無駄な出費をしないよう、設定画面でデフォルトのモデルが安価なものになっているかを自分の目で確かめておけ。",
+  "omote": "OpenRouterにおいてDeepSeek V4.1 Flashの価格が99%引き下げられ、API提供側が利益を削って囲い込みを急ぐ消耗戦に入った。",
+  "ura": "インフラ層での価格崩壊が極限に達しており、大手が手を出さない超ニッチな情報収集網を個人が構築するコストの壁が完全に消滅したと見る。",
+  "ura_taikou": "単なる価格競争の枠を超えないという見方は、コスト低下が個人の自動化の可能性を広げる現実を説明できないため退けた。",
+  "dousuru": "OpenRouterの管理画面を開き、APIキーの残高と利用モデルをDeepSeek V4.1 Flashに切り替えろ。次に、その低価格APIを組み込んで海外の未翻訳テック情報を自動回収するスクリプトの作成をiPhoneからGitHub経由で着手しろ。",
+  "kan": "今後14日以内にDeepSeekがFlash系モデルのさらなる無料化または常時定額プランを公式発表する目があると見る。",
+  "kan_konkyo": "DeepSeek V4.1 Flashが99%という前例のない水準で価格を引き下げた事実から推測した。",
+  "kan_hantai": "価格競争が収束しAPI単価が再び引き上げられる場合、予測は外れる。",
+  "kan_conf": 0.12,
+  "ippan": "AIサービスの価格競争が激化しているため、高額な月額サブスクリプションを安易に契約せず、使った分だけ支払うAPI利用への切り替えを検討せよ。",
   "votes": [
-    0.22,
-    0.38,
-    0.35
+    0.12,
+    0.15,
+    0.12
   ],
   "mijoriku": [
     {
-      "title": "Qwen3Guard: Real-time Safety for Your Token Stream",
-      "desc": "リアルタイムのトークン生成に対応したオープンな安全性ガードレールモデルの公開。",
-      "why": "APIの安全性を自前で安価に構築できるため、日本の開発者が独自の安全なチャットサービスを低コストで立ち上げる隙になるからだ。"
+      "title": "MemFold: Learning Compact Soft Memory for Long-Context Personalization via On-Policy Optimization",
+      "desc": "長文脈の個人化をコンパクトなソフトメモリで実現する手法。",
+      "why": "APIのトークンコストを劇的に下げる技術であり、日本語圏ではまだ全く議論されていないため。"
+    },
+    {
+      "title": "Replacing Large Language Models with Jev Decision Models for Low-Latency Edge Service Orchestration",
+      "desc": "エッジ処理でLLMを軽量な決定モデルに置き換える検証。",
+      "why": "低レイテンシ化の設計思想は個人開発のアプリ応答速度に直結するが、国内の認知は皆無であるため。"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 33%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 80%",
-    "[差分] 価格が動いた: Tencent: Hy4 preview 値下げ 10%",
-    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値下げ 9%",
-    "[差分] 価格が動いた: Z.ai: GLM Latest 値下げ 50%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値下げ 67%"
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 8%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値下げ 99%",
+    "[差分] 価格が動いた: Tencent: Hy4 preview 値上げ 11%",
+    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 47%",
+    "[差分] 価格が動いた: Z.ai: GLM Latest 値上げ 33%",
+    "[差分] 価格が動いた: Qwen: Qwen3.8 27B 値上げ 1%"
   ],
   "evidence": [
     {
-      "claim": "DeepSeekは高単価モデルを値上げする一方で軽量モデルを大幅に値下げし、API市場のシェア奪略とコスト最適化を同時に進めている。",
-      "confidence": 0.65,
-      "disconfirm": "全モデルが一斉に値上げまたは値下げに転換し、戦略的な価格の二極化が見られなくなること。",
+      "claim": "DeepSeek V4.1 Flashが99%価格を引き下げたことで個人の情報収集自動化コストが消滅した",
+      "confidence": 0.8,
+      "disconfirm": "OpenRouter側が短期間で価格改定を差し戻した場合",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 33%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 80%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値下げ 67%",
-          "url": "https://openrouter.ai/models"
+          "title": "Gemini 4 Argon: our next era of frontier intelligence",
+          "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/"
         }
       ]
     }

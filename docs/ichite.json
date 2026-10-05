@@ -1,131 +1,101 @@
 {
-  "date": "2026-10-04",
+  "date": "2026-10-05",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのAPI価格表を開き現在使っているモデルの単価変動を確認したか",
-    "バックエンドのモデル呼び出しルーティングを低価格モデルへ即座に書き換えたか",
-    "値上げされたProモデルに依存している箇所のフォールバック先実装を今夜までに終わらせるか"
+    "OpenRouterの残高をDeepSeek V4.1 Flashに切り替えるか？",
+    "自動翻訳スクリプトのAPI呼び出し部分をiPhoneからGitHub経由で書き換えるか？",
+    "14日以内のFlash系常時定額プラン発表に備えて今日の作業を固定するか？"
   ],
   "moves": [
     {
-      "t": "アプリのバックエンド設定でモデルを低価格版へ切り替える",
-      "why": "Flash Latestの大幅値下げの恩恵を即座に受けるため",
+      "t": "OpenRouter設定画面を開きモデルをDeepSeek V4.1 Flashに切り替える",
+      "why": "価格が99%引き下げられたインフラの崩壊に即座に乗るため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.45,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "設定変更により直ちにAPIのランニングコストを削減できるため",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "バックエンドのルーティング設定の書き換え完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "コスト圧縮に直接寄与するため",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "GitHubのWeb画面からソースコードの簡易編集ができること"
-      ],
-      "disconfirm": "コードの該当箇所をiPhoneから正しく編集できないこと",
-      "continue_if": "ルーティング変更後の動作テストが成功した場合",
-      "stop": "モデル変更によってアプリの出力品質が著しく低下した場合"
-    },
-    {
-      "t": "軽量モデルへのフォールバック処理をコードに追加する",
-      "why": "高単価モデル依存を排除し兵站戦での生存確率を高めるため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.25,
+      "success_p_min": 0.35,
       "success_p_max": 0.55,
-      "success_why": "API障害や価格変動に対する耐性が向上するため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "フォールバック処理の実装完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "システム運用の堅牢性が直接高まるため",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "エラーハンドリングの基本的な書き方が把握できていること"
-      ],
-      "disconfirm": "iPhoneからの編集では複雑な条件分岐の記述が困難であること",
-      "continue_if": "エラー時の切り替え挙動がシミュレーションできる場合",
-      "stop": "フォールバック実装によりコードベースが複雑化しすぎた場合"
-    },
-    {
-      "t": "低価格モデルでのアプリの出力結果を検証する",
-      "why": "コスト削減に伴う品質低下の有無を早期に検知するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "実際にプロンプトを投げて挙動を確認することで実用性を担保できるため",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "出力品質の検証ログの保存完了",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "ユーザー体験の維持に不可欠であるため",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "Webアプリのプレビュー画面がスマホから閲覧できること"
-      ],
-      "disconfirm": "低価格モデルの出力精度が実用ラインを大きく下回ること",
-      "continue_if": "出力結果に致命的な欠損が見られない場合",
-      "stop": "モデル変更によって全く意図しない挙動が頻発する場合"
-    },
-    {
-      "t": "競合プラットフォームの価格改定動向をリサーチする",
-      "why": "OpenRouter以外の選択肢の有無を常に把握しておくため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.25,
-      "success_p_max": 0.55,
-      "success_why": "市場全体の価格破壊の波に先回りして対応できるため",
+      "success_why": "Artificial Analysisのベンチマークデータと価格改定の事実に基づく",
       "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 15,
+      "learning_value": 3,
+      "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "競合他社の価格表の比較メモ作成完了",
+      "outcome": "OpenRouter上のデフォルトモデルがDeepSeek V4.1 Flashに変更されている",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "プラットフォーム依存のリスクヘッジにつながるため",
+      "impact_why": "低コストAPIへの切り替えはインフラ基盤の準備に留まるため",
       "evidence_ids": [
         "2026-08-01-r02"
       ],
       "assumptions": [
-        "主要な競合サービスの価格ページにアクセスできること"
+        "OpenRouterのAPI仕様に変更がないこと"
       ],
-      "disconfirm": "競合他社が価格情報を非公開にしていること",
-      "continue_if": "自社より優位な価格設定の代替案が見つかった場合",
-      "stop": "全ての競合が同時に値上げに踏み切った場合"
+      "disconfirm": "モデルの価格設定が元の水準に戻ること",
+      "continue_if": "エラーなくモデル切り替えが完了すること",
+      "stop": "API側で該当モデルの提供が停止している場合"
+    },
+    {
+      "t": "iPhoneのGitHub上でスクリプトのAPIエンドポイントを書き換える",
+      "why": "低価格化されたモデルを既存の情報収集網に組み込むため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.4,
+      "success_p_min": 0.3,
+      "success_p_max": 0.5,
+      "success_why": "過去の継続スレッドにおける開発の続きであるため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "GitHub上のコードベースのAPI呼び出し部分が更新されている",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "自動化の基盤コードが更新されるため",
+      "evidence_ids": [
+        "2026-08-01-r02"
+      ],
+      "assumptions": [
+        "GitHubのWebエディタが正常に機能すること"
+      ],
+      "disconfirm": "コードの構文エラーが解消しないこと",
+      "continue_if": "コミットが正常に反映されること",
+      "stop": "リポジトリの構造上iPhoneからの編集が困難な場合"
+    },
+    {
+      "t": "回収した海外テック情報を元にした要約記事をGitHubにコミットする",
+      "why": "仕入れた情報を成果物として形にし個人で先回りする優位を作るため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.45,
+      "success_p_min": 0.35,
+      "success_p_max": 0.55,
+      "success_why": "過去の継続スレッドの成果物作成パターンに基づく",
+      "value_score": 5,
+      "learning_value": 5,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "未翻訳情報の要約Markdownファイルがリポジトリに追加されている",
+      "category": "publish",
+      "terminal": true,
+      "impact_min": 0.25,
+      "impact_max": 0.35,
+      "impact_why": "一連のパイプラインの最終成果物であるため",
+      "evidence_ids": [
+        "2026-08-01-r02"
+      ],
+      "assumptions": [
+        "Markdownのフォーマットが正しく表示されること"
+      ],
+      "disconfirm": "内容が既知の一般論に終始すること",
+      "continue_if": "誰も書いていない視点が言語化できていること",
+      "stop": "情報自体の価値が失われた場合"
     },
     {
       "t": "GitHubの改善候補を1件Issueに書く",
@@ -158,7 +128,39 @@
       "continue_if": "実装対象と完了条件を1文で書けた",
       "stop": "Issueを1件作成したら終了",
       "fallback": true
+    },
+    {
+      "t": "今日の一次情報を1本選び要点を3行残す",
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "value_score": 2,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "一次情報の要点メモが3行残る",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "読む情報が現在の目標に関係する"
+      ],
+      "disconfirm": "要点が次の行動を一つも変えない",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了",
+      "fallback": true
     }
   ],
-  "kan": "DeepSeekは今後30日以内に、特定の大規模開発者向けにさらなる破格の専用スループット枠を水面下で直営業し、米大手クラウドのAPI顧客を直接奪いに行くと見る。直近の価格二極化の傾向から判断する。"
+  "kan": "今後14日以内にDeepSeekがFlash系モデルのさらなる無料化または常時定額プランを公式発表する目があると見る。"
 }

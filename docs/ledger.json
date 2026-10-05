@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-04 09:03",
+  "updated_at": "2026-10-05 09:09",
   "score": {
     "hit": 13,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-10-06",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -267,14 +267,20 @@
       "claim": "Anthropicは今後14日以内に、公式利用ポリシー（Usage Policy）ページにおいてクラウドパートナー向けの執行条項を独立セクションとして新設しない",
       "subject": "Anthropic",
       "deadline": "2026-09-28",
-      "confidence": 0.91,
-      "initial_confidence": null,
+      "confidence": 0.941,
+      "initial_confidence": 0.91,
       "result": null,
       "status": "pending",
       "alert": false,
       "counter": "求人の公開前に既に主要クラウド3社との規約すり合わせが完了しており、告知と連動して法務文書の公開が即座に行われるケース",
       "evidence": "判定先ページ（https://www.anthropic.com/legal/usage-policy）にアクセスできず、対象セクションの新設有無を確認できる十分な証拠がないため判定不能。",
-      "signals": []
+      "signals": [
+        {
+          "date": "2026-10-05",
+          "dir": "confirm",
+          "why": "Greenhouse上でのEnforcement Operations Lead求人に関する直接的な削除は確認されず、関連する新規のポリシー・エンフォースメント系求人が掲載されたため、求人が引き続き募集中として維持されている状態に合致する。"
+        }
+      ]
     },
     {
       "id": "2026-09-22-h01",
@@ -324,14 +330,14 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-10-03",
-          "dir": "confirm",
-          "why": "google-genai Python SDKの2.x系マイナー版であるv2.28.0がリリースされたため。"
-        },
-        {
           "date": "2026-10-04",
           "dir": "confirm",
           "why": "google-genai Python SDK v2.28.0がリリースされ、2.x系の新たなマイナー版のリリースが確認されたため。"
+        },
+        {
+          "date": "2026-10-05",
+          "dir": "confirm",
+          "why": "PyPIにおいてgoogle-genaiのバージョン3.0.0ではなく、2.x系の新たなバージョン（v2.28.0）がリリースされたため。"
         }
       ]
     },

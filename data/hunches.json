@@ -2195,7 +2195,7 @@
       "decider": "期日時点で https://www.anthropic.com/legal/usage-policy を確認し、クラウドパートナー（Amazon Bedrock、Google Cloud、Microsoft Foundry等）を通じた利用に関する独立した新セクションまたは見出しが追加されていない場合を的中とする"
     },
     "deadline": "2026-09-28",
-    "confidence": 0.91,
+    "confidence": 0.941,
     "base_rate": 0.92,
     "base_rate_class": "大手AI企業が特定領域のリード職求人を公開してから14日以内に該当領域の公式公開規約を改定しない頻度",
     "confidence_why": "募集開始直後であり実務担当者が未着任である可能性が高く、短期に規約改定が一般公開されるとは考えにくいため、高めの基準率（0.92）をほぼ維持し0.91とする",
@@ -2210,7 +2210,16 @@
         "dir": "confirm"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-10-05",
+        "sign": "該当のEnforcement Operations Lead求人がGreenhouse上で引き続き募集中として維持される",
+        "dir": "confirm",
+        "why": "Greenhouse上でのEnforcement Operations Lead求人に関する直接的な削除は確認されず、関連する新規のポリシー・エンフォースメント系求人が掲載されたため、求人が引き続き募集中として維持されている状態に合致する。",
+        "conf_before": 0.91,
+        "conf_after": 0.941
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -2223,7 +2232,8 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "judge_attempts": 3,
-    "needs_review": true
+    "needs_review": true,
+    "initial_confidence": 0.91
   },
   {
     "id": "2026-09-17-h01",
@@ -2535,6 +2545,14 @@
         "sign": "PyPI上でgoogle-genai 2.26.0など2.x系の新たなマイナー版がリリースされる",
         "dir": "confirm",
         "why": "google-genai Python SDK v2.28.0がリリースされ、2.x系の新たなマイナー版のリリースが確認されたため。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
+      },
+      {
+        "date": "2026-10-05",
+        "sign": "PyPI上でgoogle-genai 2.26.0など2.x系の新たなマイナー版がリリースされる",
+        "dir": "confirm",
+        "why": "PyPIにおいてgoogle-genaiのバージョン3.0.0ではなく、2.x系の新たなバージョン（v2.28.0）がリリースされたため。",
         "conf_before": 0.95,
         "conf_after": 0.95
       }
