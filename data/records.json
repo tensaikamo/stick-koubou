@@ -6196,5 +6196,119 @@
       "2026-10-01-r07",
       "2026-10-01-r03"
     ]
+  },
+  {
+    "id": "2026-10-06-r01",
+    "created_at": "2026-10-06T10:50:42.716513+09:00",
+    "headline": "Robot Learning with Visual Predicted Force",
+    "what_happened": "Haonan Chenら14名の研究者がarXivに論文『Robot Learning with Visual Predicted Force』を投稿した。力覚センサーを用いず、変形可能なグリッパーの視覚的変形から力予測を行いロボット操作を学習する手法を提案している。較正データに基づく視覚的力推定器と行動-力提案方策を組み合わせ、 berry pickingやempty-can grasping等のタスクで評価を行った。",
+    "background": "ロボットのマニピュレーションにおける力覚制御は従来専用の力覚や触覚センサーを必要としていた。",
+    "changed": "専用の力覚センサーなしで視覚情報から力予測を行いロボット操作を学習するフレームワークが論文として公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.04741v1",
+      "title": "Robot Learning with Visual Predicted Force",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-10-06-r02",
+    "created_at": "2026-10-06T10:50:42.716513+09:00",
+    "headline": "Toward a Locally Deployable Agentic Co-Scientist: Small-Model Planning for Early-Stage Drug Discovery",
+    "what_happened": "Tian Liangらは初期段階の創薬に向けた軽量なツール拡張型フレームワークに関する論文をarXivに発表した。局所展開可能な小型言語モデルが18個のモジュール式ツールを呼び出す計画を立案する仕組みであり、Unified Molecular Schemaにより分子レコードを共有する。1,263件のクエリプランペアでLoRAファインチューニングを行い、Llama 3.2-3B等が優れたツール選択性能を示した。",
+    "background": "初期段階の計算創薬では、多段階のワークフローにわたって異種混合の科学的ツールを調整する必要がある。",
+    "changed": "局所展開可能な小型言語モデルを用いて創薬ツールの計画立案を行う軽量フレームワークが実証された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.04740v1",
+      "title": "Toward a Locally Deployable Agentic Co-Scientist: Small-Model Planning for Early-Stage Drug Discovery",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-10-06-r03",
+    "created_at": "2026-10-06T10:50:42.716513+09:00",
+    "headline": "PyINE: A Framework for Scalable Elicitation and Oversight via Code Execution",
+    "what_happened": "Pierre-Luc St-Charlesらが、インストルメント化されたPythonプログラムを実行基盤として用いるスケーラブルな引き出しと監視のためのフレームワーク「PyINE」に関する論文をarXivに投稿した。モデルが安価で誤解を招くショートカットにデフォルトで頼る問題に対処するため、タスク環境の定義や実行トレースによる権威あるラベル付けを可能にしている。",
+    "background": "推論モデルがタスクを解きつつも不完全な推論やショートカットに頼る場合、監視者がその出力を信頼できるかを判定するオーバーサイト問題が存在する。",
+    "changed": "Pythonプログラムの実行トレースを検証基盤としたスケーラブルなモデル監視フレームワークPyINEが提案された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.04737v1",
+      "title": "PyINE: A Framework for Scalable Elicitation and Oversight via Code Execution",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-10-06-r04",
+    "created_at": "2026-10-06T10:50:42.716513+09:00",
+    "headline": "[新規求人] anthropic: Commercial Operations Program Manager",
+    "what_happened": "Anthropicがサンフランシスコおよびニューヨークを勤務地とする「Commercial Operations Program Manager」の求人情報をGreenhouse上で公開した。商用ローンチのプログラムを管理し、商用インフラを収益アクセラレータに変換するための業務プロセスやスケーラブルなローンチ体制の構築を担当する役割となっている。",
+    "background": "Anthropicは商用展開および製品の急速な成長を支えるための組織とプログラム管理体制を継続的に拡大している。",
+    "changed": "商用ローンチやインフラ構築を統括するCommercial Operations Program Managerの求人が公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398328008",
+      "title": "[新規求人] anthropic: Commercial Operations Program Manager (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-04-r01",
+      "2026-10-03-r04",
+      "2026-10-02-r05",
+      "2026-10-02-r04",
+      "2026-10-02-r03",
+      "2026-10-01-r07"
+    ]
+  },
+  {
+    "id": "2026-10-06-r05",
+    "created_at": "2026-10-06T10:50:42.716513+09:00",
+    "headline": "[新規求人] anthropic: Staff + Software Security Engineer, Labs",
+    "what_happened": "Anthropicがサンフランシスコ、ニューヨーク、シアトルを勤務地とする「Staff + Software Security Engineer, Labs」の求人情報を公開した。最先端AIに対する敵対的な脅威や高度なセキュリティ課題に対処するため、週単位の高リスク・高期待値のセキュリティプロジェクトを遂行するSecurity Labsチーム向けのポジションである。",
+    "background": "フロンティアAIモデルの急速な能力向上に伴い、高度なセキュリティ課題やadversarialな脅威に対応するための専門チームが維持されている。",
+    "changed": "短期間で高リスクなセキュリティプロジェクトに挑むSecurity Labsチームのエンジニア求人が追加された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440477008",
+      "title": "[新規求人] anthropic: Staff + Software Security Engineer, Labs (San Francisco, CA | New York City, NY | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-04-r01",
+      "2026-10-03-r04",
+      "2026-10-02-r05",
+      "2026-10-02-r04",
+      "2026-10-02-r03",
+      "2026-10-01-r07"
+    ]
   }
 ]

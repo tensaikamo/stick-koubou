@@ -2394,15 +2394,19 @@
         "conf_after": 0.825
       }
     ],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-10-06T10:52:41.341206+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "公式ニュースルーム（2026年9月22日〜10月6日）に企業買収やM&A成立に関するプレスリリースは掲載されておらず、的中条件を満たしている。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1",
-    "initial_confidence": 0.75
+    "initial_confidence": 0.75,
+    "needs_review": false
   },
   {
     "id": "2026-09-25-h01",
