@@ -1,24 +1,44 @@
 {
-  "updated_at": "2026-10-05 09:09",
+  "updated_at": "2026-10-06 10:52",
   "score": {
-    "hit": 13,
+    "hit": 14,
     "miss": 24,
-    "total": 37,
-    "rate": 0.35135135135135137,
-    "pending": 5,
-    "brier": 0.37731594594594603,
-    "brier_n": 37,
-    "brier_initial": 0.3895216216216218,
+    "total": 38,
+    "rate": 0.3684210526315789,
+    "pending": 4,
+    "brier": 0.3681925000000001,
+    "brier_n": 38,
+    "brier_initial": 0.3809157894736844,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-10-06",
-    "days": 1
+    "date": "2026-10-09",
+    "days": 3
   },
   "decided": [
+    {
+      "id": "2026-09-22-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて企業買収またはM&Aに関する合意を発表しない",
+      "subject": "Anthropic",
+      "deadline": "2026-10-06",
+      "confidence": 0.825,
+      "initial_confidence": 0.75,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "水面下で進んでいた大型買収交渉が予定通り期日内に合意に達し、即座に公表される場合",
+      "evidence": "公式ニュースルーム（2026年9月22日〜10月6日）に企業買収やM&A成立に関するプレスリリースは掲載されておらず、的中条件を満たしている。",
+      "signals": [
+        {
+          "date": "2026-09-22",
+          "dir": "confirm",
+          "why": "Anthropicが新たにM&A・戦略的取引関連の職種である「Corporate Finance & Strategy, Strategic Transactions」の求人を掲載したため。"
+        }
+      ]
+    },
     {
       "id": "2026-09-19-h01",
       "claim": "Anthropicは今後14日以内に、公式ニュースルーム（anthropic.com/news）において「Claude for Government」をタイトルに含む公式発表記事を公開しない。",
@@ -245,20 +265,6 @@
       "counter": "既に外部パートナーと共同開発した認証プログラムが完成しており、求人は運用・拡張体制のためのものである場合。",
       "evidence": "期日である2026年8月28日までのAnthropic公式ニュースルームにおいて、公式資格認証プログラム（Certification/Credentialing）のローンチ発表は確認されなかったため。",
       "signals": []
-    },
-    {
-      "id": "2026-08-12-h01",
-      "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において自社データセンターの開設または500億ドル規模インフラ投資に関する独立したプレスリリースを公開しない。",
-      "subject": "Anthropic",
-      "deadline": "2026-08-26",
-      "confidence": 0.88,
-      "initial_confidence": null,
-      "result": "hit",
-      "status": "resolved",
-      "alert": false,
-      "counter": "政府機関やハイパースケーラーとの提携交渉が既に完了しており、採用公開と連動してプレスリリースが近日中に前倒し発信される可能性がある。",
-      "evidence": "2026年8月26日時点のAnthropic公式ニュースルームを確認したところ、自社データセンター開設や500億ドル規模のインフラ投資に関する単体プレスリリースは掲載されておらず、的中条件を満たしている。",
-      "signals": []
     }
   ],
   "pending": [
@@ -279,26 +285,6 @@
           "date": "2026-10-05",
           "dir": "confirm",
           "why": "Greenhouse上でのEnforcement Operations Lead求人に関する直接的な削除は確認されず、関連する新規のポリシー・エンフォースメント系求人が掲載されたため、求人が引き続き募集中として維持されている状態に合致する。"
-        }
-      ]
-    },
-    {
-      "id": "2026-09-22-h01",
-      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて企業買収またはM&Aに関する合意を発表しない",
-      "subject": "Anthropic",
-      "deadline": "2026-10-06",
-      "confidence": 0.825,
-      "initial_confidence": 0.75,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "水面下で進んでいた大型買収交渉が予定通り期日内に合意に達し、即座に公表される場合",
-      "evidence": "",
-      "signals": [
-        {
-          "date": "2026-09-22",
-          "dir": "confirm",
-          "why": "Anthropicが新たにM&A・戦略的取引関連の職種である「Corporate Finance & Strategy, Strategic Transactions」の求人を掲載したため。"
         }
       ]
     },
@@ -330,14 +316,14 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-10-04",
-          "dir": "confirm",
-          "why": "google-genai Python SDK v2.28.0がリリースされ、2.x系の新たなマイナー版のリリースが確認されたため。"
-        },
-        {
           "date": "2026-10-05",
           "dir": "confirm",
           "why": "PyPIにおいてgoogle-genaiのバージョン3.0.0ではなく、2.x系の新たなバージョン（v2.28.0）がリリースされたため。"
+        },
+        {
+          "date": "2026-10-06",
+          "dir": "confirm",
+          "why": "google-genai Python SDK v2.28.0がリリースされ、2.x系の新たなマイナー版がリリースされたため。"
         }
       ]
     },
@@ -361,16 +347,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-10-02",
-          "headline": "[新規求人] anthropic: Political Programs Lead",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440122008"
-        },
-        {
-          "date": "2026-10-02",
-          "headline": "[新規求人] anthropic: Software Engineer, Sandboxing",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440427008"
-        },
-        {
           "date": "2026-10-03",
           "headline": "AnthropicがセキュリティGRCおよび統制評価の担当者を募集",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439224008"
@@ -379,6 +355,16 @@
           "date": "2026-10-04",
           "headline": "anthropic: Program Manager, Safeguards Policy, Enforcement, and Threat Intelligence の求人公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440535008"
+        },
+        {
+          "date": "2026-10-06",
+          "headline": "[新規求人] anthropic: Commercial Operations Program Manager",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398328008"
+        },
+        {
+          "date": "2026-10-06",
+          "headline": "[新規求人] anthropic: Staff + Software Security Engineer, Labs",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440477008"
         }
       ]
     },
@@ -490,6 +476,41 @@
   ],
   "records": [
     {
+      "id": "2026-10-06-r05",
+      "date": "2026-10-06",
+      "headline": "[新規求人] anthropic: Staff + Software Security Engineer, Labs",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440477008"
+    },
+    {
+      "id": "2026-10-06-r04",
+      "date": "2026-10-06",
+      "headline": "[新規求人] anthropic: Commercial Operations Program Manager",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398328008"
+    },
+    {
+      "id": "2026-10-06-r03",
+      "date": "2026-10-06",
+      "headline": "PyINE: A Framework for Scalable Elicitation and Oversight via Code Execution",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2610.04737v1"
+    },
+    {
+      "id": "2026-10-06-r02",
+      "date": "2026-10-06",
+      "headline": "Toward a Locally Deployable Agentic Co-Scientist: Small-Model Planning for Early-Stage Drug Discovery",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2610.04740v1"
+    },
+    {
+      "id": "2026-10-06-r01",
+      "date": "2026-10-06",
+      "headline": "Robot Learning with Visual Predicted Force",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2610.04741v1"
+    },
+    {
       "id": "2026-10-04-r01",
       "date": "2026-10-04",
       "headline": "anthropic: Program Manager, Safeguards Policy, Enforcement, and Threat Intelligence の求人公開",
@@ -537,42 +558,7 @@
       "headline": "[新規求人] anthropic: Software Engineer, Sandboxing",
       "certainty": "reported",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440427008"
-    },
-    {
-      "id": "2026-10-02-r04",
-      "date": "2026-10-02",
-      "headline": "[新規求人] anthropic: Political Programs Lead",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440122008"
-    },
-    {
-      "id": "2026-10-02-r03",
-      "date": "2026-10-02",
-      "headline": "[新規求人] anthropic: Channel Partner Manager, Public Sector",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5441387008"
-    },
-    {
-      "id": "2026-10-02-r02",
-      "date": "2026-10-02",
-      "headline": "google-genai Python SDK v2.27.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/2.27.0/"
-    },
-    {
-      "id": "2026-10-02-r01",
-      "date": "2026-10-02",
-      "headline": "openai Python SDK v3.23.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.23.0/"
-    },
-    {
-      "id": "2026-10-01-r07",
-      "date": "2026-10-01",
-      "headline": "anthropic Python SDK v1.11.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/1.11.0/"
     }
   ],
-  "record_count": 223
+  "record_count": 228
 }

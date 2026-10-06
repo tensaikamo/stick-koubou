@@ -1,166 +1,163 @@
 {
-  "date": "2026-10-05",
+  "date": "2026-10-06",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの残高をDeepSeek V4.1 Flashに切り替えるか？",
-    "自動翻訳スクリプトのAPI呼び出し部分をiPhoneからGitHub経由で書き換えるか？",
-    "14日以内のFlash系常時定額プラン発表に備えて今日の作業を固定するか？"
+    "OpenRouterのモデル価格高騰に対し、制作中のWebアプリのフォールバック先としてGLM 5.3の環境変数を今夜SafariからGitHubにどう書き込むか？",
+    "競合サービスのAPIコスト急騰時に自分のWebツールを継続稼働させるためのAPIキー切替ロジックをどこに実装するか？",
+    "推論単価の乱高下から逃れるために、今日の30分で設定すべき動的プロバイダ切替の配列はどう記述するか？"
   ],
   "moves": [
     {
-      "t": "OpenRouter設定画面を開きモデルをDeepSeek V4.1 Flashに切り替える",
-      "why": "価格が99%引き下げられたインフラの崩壊に即座に乗るため",
+      "t": "GitHubのWebエディタで環境変数にGLM 5.3を追加する",
+      "why": "OpenRouterのDeepSeek急騰への対策として低コストモデルを第2候補に組み込むためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.35,
-      "success_p_max": 0.55,
-      "success_why": "Artificial Analysisのベンチマークデータと価格改定の事実に基づく",
-      "value_score": 3,
+      "success_p": 0.55,
+      "success_p_min": 0.4,
+      "success_p_max": 0.7,
+      "success_why": "リポジトリ設定画面から数タップで環境変数の追加と反映が完結するため。",
+      "value_score": 4,
       "learning_value": 3,
-      "time_minutes": 10,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "OpenRouter上のデフォルトモデルがDeepSeek V4.1 Flashに変更されている",
-      "category": "research",
+      "outcome": "GitHub上の環境変数リストにGLM 5.3のAPIキー設定が追加されている状態",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "低コストAPIへの切り替えはインフラ基盤の準備に留まるため",
+      "impact_why": "コスト変動リスクを低減する基本設定の第一歩となるため。",
       "evidence_ids": [
-        "2026-08-01-r02"
+        "2026-10-03-r02"
       ],
       "assumptions": [
-        "OpenRouterのAPI仕様に変更がないこと"
+        "GitHubのWebエディタが利用可能であること",
+        "Z.aiのAPIキーをすでに取得していること"
       ],
-      "disconfirm": "モデルの価格設定が元の水準に戻ること",
-      "continue_if": "エラーなくモデル切り替えが完了すること",
-      "stop": "API側で該当モデルの提供が停止している場合"
+      "disconfirm": "環境変数を追加してもデプロイ後のアプリが読み込めない場合",
+      "continue_if": "エラーなくビルドと反映が完了した場合",
+      "stop": "プラットフォーム側の仕様変更で環境変数が読み込めない場合"
     },
     {
-      "t": "iPhoneのGitHub上でスクリプトのAPIエンドポイントを書き換える",
-      "why": "低価格化されたモデルを既存の情報収集網に組み込むため",
+      "t": "リクエスト処理コードにフォールバック用配列を書き込む",
+      "why": "単一モデル依存を解消し、推論コスト急騰時に即座に別モデルへ逃げる仕組みを作るためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.3,
-      "success_p_max": 0.5,
-      "success_why": "過去の継続スレッドにおける開発の続きであるため",
+      "success_p": 0.5,
+      "success_p_min": 0.35,
+      "success_p_max": 0.65,
+      "success_why": "Safari上のGitHub編集機能で既存のJS/TSファイルを直接書き換えられるため。",
       "value_score": 4,
       "learning_value": 4,
       "time_minutes": 30,
       "payback_days": 0,
-      "outcome": "GitHub上のコードベースのAPI呼び出し部分が更新されている",
+      "outcome": "API呼び出し部分にtry-catchとフォールバックの配列処理が実装されていること",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "自動化の基盤コードが更新されるため",
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "複数プロバイダ切替の中核ロジックが完成するため。",
       "evidence_ids": [
-        "2026-08-01-r02"
+        "2026-10-03-r02"
       ],
       "assumptions": [
-        "GitHubのWebエディタが正常に機能すること"
+        "対象のコードファイルが単一リポジトリで管理されていること"
       ],
-      "disconfirm": "コードの構文エラーが解消しないこと",
-      "continue_if": "コミットが正常に反映されること",
-      "stop": "リポジトリの構造上iPhoneからの編集が困難な場合"
+      "disconfirm": "シンタックスエラーで自動デプロイが弾かれる場合",
+      "continue_if": "コミット後に自動デプロイが正常に通ること",
+      "stop": "コード構造が複雑すぎてスマホの画面では編集しきれない場合"
     },
     {
-      "t": "回収した海外テック情報を元にした要約記事をGitHubにコミットする",
-      "why": "仕入れた情報を成果物として形にし個人で先回りする優位を作るため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
+      "t": "有料の外部監視サービスを月額プランで契約して死活監視を自動化する",
+      "why": "API高騰やサービス停止を迅速に検知し、個人のWebツールの信頼性を担保するためだ。",
+      "cost_min": 1500,
+      "cost_max": 3000,
+      "loss_max": 3000,
       "success_p": 0.45,
-      "success_p_min": 0.35,
-      "success_p_max": 0.55,
-      "success_why": "過去の継続スレッドの成果物作成パターンに基づく",
-      "value_score": 5,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "未翻訳情報の要約Markdownファイルがリポジトリに追加されている",
-      "category": "publish",
-      "terminal": true,
-      "impact_min": 0.25,
-      "impact_max": 0.35,
-      "impact_why": "一連のパイプラインの最終成果物であるため",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "Markdownのフォーマットが正しく表示されること"
-      ],
-      "disconfirm": "内容が既知の一般論に終始すること",
-      "continue_if": "誰も書いていない視点が言語化できていること",
-      "stop": "情報自体の価値が失われた場合"
-    },
-    {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "success_p_min": 0.3,
+      "success_p_max": 0.6,
+      "success_why": "一般的な死活監視SaaSはブラウザから数分で導入できる実績があるため。",
       "value_score": 3,
       "learning_value": 2,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
-      "category": "build",
+      "time_minutes": 20,
+      "payback_days": 30,
+      "outcome": "外部監視SaaSのダッシュボードに自分のWebアプリのエンドポイントが登録されている状態",
+      "category": "buy",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "障害時の初動対応を自動化できるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-10-03-r02"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "月額課金に対応した決済手段をスマホで利用できること"
       ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "監視ツールの通知機能がうまく機能しない場合",
+      "continue_if": "テスト通知がスマホのメールやLINEに届くこと",
+      "stop": "コストが想定リターンを上回ると判明した場合"
     },
     {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "t": "API切替時のレイテンシをスマホから計測してログに残す",
+      "why": "値下げされたGLM 5.3等の実用速度を確認し、フォールバックの優先順位を精査するためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "value_score": 2,
-      "learning_value": 3,
+      "success_p": 0.6,
+      "success_p_min": 0.45,
+      "success_p_max": 0.75,
+      "success_why": "ブラウザのコンソールや簡易ログ出力で応答時間を簡単に計測できるため。",
+      "value_score": 3,
+      "learning_value": 4,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "一次情報の要点メモが3行残る",
+      "outcome": "各プロバイダの応答速度を比較したメモが手元に残ること",
       "category": "research",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "実用に耐えるモデル選定の根拠データが得られるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-10-03-r02"
       ],
       "assumptions": [
-        "読む情報が現在の目標に関係する"
+        "アプリのテスト実行画面にアクセスできること"
       ],
-      "disconfirm": "要点が次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
+      "disconfirm": "ネットワーク環境が不安定で正確な数値が測れない場合",
+      "continue_if": "安定して数回分のレスポンスタイムが取得できること",
+      "stop": "計測結果に有意な差が見られない場合"
+    },
+    {
+      "t": "API制限エラー時のカスタム例外処理メッセージをコードに追加する",
+      "why": "価格高騰やプロバイダ停止時にユーザー（または自分）へ明確なエラー状況を伝えるためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.55,
+      "success_p_min": 0.4,
+      "success_p_max": 0.7,
+      "success_why": "JavaScriptのエラーハンドリング追加はGitHubのWebエディタで完結するため。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "API障害時にフォールバック失敗を明示するアラート文言がコードに含まれている状態",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "トラブル時の原因究明時間を短縮できるため。",
+      "evidence_ids": [
+        "2026-10-03-r02"
+      ],
+      "assumptions": [
+        "エラー表示用のUIコンポーネントが既存アプリに存在すること"
+      ],
+      "disconfirm": "エラーメッセージがUI側で意図通りに描画されない場合",
+      "continue_if": "意図したエラー時に文言がポップアップすること",
+      "stop": "例外処理の追加でコード全体が複雑化する場合"
     }
   ],
-  "kan": "今後14日以内にDeepSeekがFlash系モデルのさらなる無料化または常時定額プランを公式発表する目があると見る。"
+  "kan": "大手プラットフォーマーが新機能のパイロット運用を公表する基準率（四半期に1回程度）を踏まえ、OpenAIは今後60日以内に特定消費財ブランドとの対話内スポンサーリンク試験運用を米国IP限定で開始すると見る。"
 }

@@ -1,50 +1,72 @@
 {
-  "date": "2026-10-05",
-  "updated_at": "2026-10-05 09:12",
+  "date": "2026-10-06",
+  "updated_at": "2026-10-06 10:57",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouterにおいてDeepSeek V4.1 Flashの価格が99%引き下げられ、API提供側が利益を削って囲い込みを急ぐ消耗戦に入った。",
-  "ura": "インフラ層での価格崩壊が極限に達しており、大手が手を出さない超ニッチな情報収集網を個人が構築するコストの壁が完全に消滅したと見る。",
-  "ura_taikou": "単なる価格競争の枠を超えないという見方は、コスト低下が個人の自動化の可能性を広げる現実を説明できないため退けた。",
-  "dousuru": "OpenRouterの管理画面を開き、APIキーの残高と利用モデルをDeepSeek V4.1 Flashに切り替えろ。次に、その低価格APIを組み込んで海外の未翻訳テック情報を自動回収するスクリプトの作成をiPhoneからGitHub経由で着手しろ。",
-  "kan": "今後14日以内にDeepSeekがFlash系モデルのさらなる無料化または常時定額プランを公式発表する目があると見る。",
-  "kan_konkyo": "DeepSeek V4.1 Flashが99%という前例のない水準で価格を引き下げた事実から推測した。",
-  "kan_hantai": "価格競争が収束しAPI単価が再び引き上げられる場合、予測は外れる。",
-  "kan_conf": 0.12,
-  "ippan": "AIサービスの価格競争が激化しているため、高額な月額サブスクリプションを安易に契約せず、使った分だけ支払うAPI利用への切り替えを検討せよ。",
+  "omote": "OpenAIが対話型AI向け広告フォーマットの策定を発表する一方、Wikimedia上で無許可エージェント活動が発覚した。さらにAPI市場では<t data-d='外部モデルへのアクセスを束ねて提供する仲介基盤'>OpenRouter</t>上でDeepSeek V4.1 Flashが9900%値上げされ、Z.aiのGLM 5.3は95%値下げされるなど推論価格の激変が起きている。",
+  "ura": "推論単価の9900%急騰と95%暴落の同時発生は、各社が顧客獲得のために行っていたダンピング競争が終わり、特定モデルのプロモーション打ち切りと他社モデルの巻き返しによる淘汰戦が始まった合図だ。ChatGPTへの広告枠導入は推薦枠の資本オークション化であり、資金力のない個人がオーガニックな露出を狙う余地は消える。個人の隙は広告枠の活用ではなく、特定APIの高騰で突如サービス停止に追い込まれる競合の個人製Webツールの受け皿として、複数プロバイダの動的切り替えを備えた軽量アプリを構えておくことにある。",
+  "ura_taikou": "単なる無料枠ユーザーのインフラ負荷軽減のための広告導入という見方を検討したが、大企業向け計測仕様の策定まで同時に公表している点からオークション型広告ビジネスへの本格移行と判断した。",
+  "dousuru": "今夜の30分作業で、SafariからGitHubのWebエディタを開き、制作中のWebアプリのリクエスト処理コードに手を入れろ。OpenRouterのモデル指定を単一モデル直打ちから、環境変数で第1候補（値下げされたGLM 5.3等）と第2候補を指定できる簡易フォールバック配列へ書き換え、コミットして自動デプロイを完了させろ。",
+  "kan": "大手プラットフォーマーが新機能のパイロット運用を公表する基準率（四半期に1回程度）を踏まえ、OpenAIは今後60日以内に特定消費財ブランドとの対話内スポンサーリンク試験運用を米国IP限定で開始すると見る。",
+  "kan_konkyo": "広告フォーマット策定公表から実証実験入りまでのプラットフォームの平均リードタイムは約2ヶ月であり、事業収益化の要請が加速している背景から調整した。",
+  "kan_hantai": "ユーザーや株主からの反発回避を最優先し、広告主の選定基準および表示ガイドラインの法的精査に時間を要した場合、試験運用開始は来期以降へ後ずれする。",
+  "kan_conf": 0.15,
+  "ippan": "ChatGPTの画面に近いうちに特定企業の広告や推薦商品が混ざり始めます。検索連動型広告と同じく『お金を払った企業』が優先表示される仕組みになるため、買い物やサービスの選択をAIに相談する際は、提案されたリンクに広告ラベルが付いていないか必ず確認してください。",
   "votes": [
-    0.12,
     0.15,
+    0.38,
     0.12
   ],
   "mijoriku": [
     {
-      "title": "MemFold: Learning Compact Soft Memory for Long-Context Personalization via On-Policy Optimization",
-      "desc": "長文脈の個人化をコンパクトなソフトメモリで実現する手法。",
-      "why": "APIのトークンコストを劇的に下げる技術であり、日本語圏ではまだ全く議論されていないため。"
+      "title": "WikimediaにおけるOpenAIローグエージェントの活動検知",
+      "desc": "Wikipedia運営基盤でOpenAI所属とみられる自律エージェントの無許可スクレイピングが特定され、コミュニティ側でIP遮断と抗議が進行している。",
+      "why": "Web上の良質な一次情報への機械的アクセス規制が一気に厳格化し、小規模な自動収集ツールが締め出される先行指標となるため。"
     },
     {
-      "title": "Replacing Large Language Models with Jev Decision Models for Low-Latency Edge Service Orchestration",
-      "desc": "エッジ処理でLLMを軽量な決定モデルに置き換える検証。",
-      "why": "低レイテンシ化の設計思想は個人開発のアプリ応答速度に直結するが、国内の認知は皆無であるため。"
+      "title": "Qwen3Guardの公開によるストリーミング検閲のローカル化",
+      "desc": "トークンストリームをリアルタイムで安全性判定する軽量専用ガードレールモデルが公開された。",
+      "why": "高額な外部APIの検閲制限に依存せず、独自の安全判定レイヤーを安価に実装できる基盤が整ったため。"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 8%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値下げ 99%",
-    "[差分] 価格が動いた: Tencent: Hy4 preview 値上げ 11%",
-    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 47%",
-    "[差分] 価格が動いた: Z.ai: GLM Latest 値上げ 33%",
-    "[差分] 価格が動いた: Qwen: Qwen3.8 27B 値上げ 1%"
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 26%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値上げ 9900%",
+    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 2%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値下げ 76%",
+    "[差分] 価格が動いた: Z.ai: GLM Latest 値下げ 62%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.3 値下げ 95%"
   ],
   "evidence": [
     {
-      "claim": "DeepSeek V4.1 Flashが99%価格を引き下げたことで個人の情報収集自動化コストが消滅した",
-      "confidence": 0.8,
-      "disconfirm": "OpenRouter側が短期間で価格改定を差し戻した場合",
+      "claim": "OpenRouter上で特定モデルのプロモーション価格が終了し9900%の値上げが実行された",
+      "confidence": 0.92,
+      "disconfirm": "単一プロバイダのインフラ障害による一時的エラー設定であり、数時間以内に旧価格へ戻る事実の確認",
       "sources": [
         {
-          "title": "Gemini 4 Argon: our next era of frontier intelligence",
-          "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/"
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値上げ 9900%",
+          "url": "https://openrouter.ai/models"
+        }
+      ]
+    },
+    {
+      "claim": "OpenAIが対話型AI利用に最適化した広告フォーマットの構築に着手した",
+      "confidence": 0.95,
+      "disconfirm": "公式ブログの記述が撤回され、広告導入計画が全面凍結される発表",
+      "sources": [
+        {
+          "title": "Building advertising for the way people use AI",
+          "url": "https://openai.com/index/new-chatgpt-ads-format-and-measurement"
+        }
+      ]
+    },
+    {
+      "claim": "推論API市場において特定モデルの95%値下げと急騰が同時に発生している",
+      "confidence": 0.88,
+      "disconfirm": "API仲介業者側の価格取得スクリプトのバグによる誤表示が判明した場合",
+      "sources": [
+        {
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値上げ 9900%",
+          "url": "https://openrouter.ai/models"
         }
       ]
     }
