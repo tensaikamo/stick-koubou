@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-06 10:52",
+  "updated_at": "2026-10-07 10:04",
   "score": {
     "hit": 14,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-10-09",
-    "days": 3
+    "days": 2
   },
   "decided": [
     {
@@ -316,14 +316,14 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-10-05",
-          "dir": "confirm",
-          "why": "PyPIにおいてgoogle-genaiのバージョン3.0.0ではなく、2.x系の新たなバージョン（v2.28.0）がリリースされたため。"
-        },
-        {
           "date": "2026-10-06",
           "dir": "confirm",
           "why": "google-genai Python SDK v2.28.0がリリースされ、2.x系の新たなマイナー版がリリースされたため。"
+        },
+        {
+          "date": "2026-10-07",
+          "dir": "confirm",
+          "why": "google-genai Python SDK v2.28.0がリリースされ、2.x系の新たなマイナー版がリリースされる条件を満たしたため。"
         }
       ]
     },
@@ -397,11 +397,6 @@
       "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-09-29",
-          "headline": "openai Python SDK v3.20.0 リリース",
-          "url": "https://pypi.org/project/openai/3.20.0/"
-        },
-        {
           "date": "2026-09-30",
           "headline": "openai Python SDK v3.22.1 リリース",
           "url": "https://pypi.org/project/openai/3.22.1/"
@@ -415,6 +410,11 @@
           "date": "2026-10-03",
           "headline": "OpenAIがopenai Python SDK v3.24.0をPyPIで公開",
           "url": "https://pypi.org/project/openai/3.24.0/"
+        },
+        {
+          "date": "2026-10-07",
+          "headline": "openai Python SDK v3.26.0 リリース",
+          "url": "https://pypi.org/project/openai/3.26.0/"
         }
       ]
     },
@@ -476,6 +476,34 @@
   ],
   "records": [
     {
+      "id": "2026-10-07-r04",
+      "date": "2026-10-07",
+      "headline": "openai Python SDK v3.26.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.26.0/"
+    },
+    {
+      "id": "2026-10-07-r03",
+      "date": "2026-10-07",
+      "headline": "BiasFlow: Geometric Monitoring and Backbone Regularization for Spurious Feature Reliance",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2610.06846v1"
+    },
+    {
+      "id": "2026-10-07-r02",
+      "date": "2026-10-07",
+      "headline": "Base Models Can Reason By Taking a Cue From Training Data",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2610.06851v1"
+    },
+    {
+      "id": "2026-10-07-r01",
+      "date": "2026-10-07",
+      "headline": "One Figure, Every Canvas: Editable Flowchart Relayout via Agentic Pipeline",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2610.06852v1"
+    },
+    {
       "id": "2026-10-06-r05",
       "date": "2026-10-06",
       "headline": "[新規求人] anthropic: Staff + Software Security Engineer, Labs",
@@ -530,35 +558,7 @@
       "headline": "Kali Linux上のセキュリティツール操作を評価するベンチマークKaliBenchが発表",
       "certainty": "reported",
       "url": "https://arxiv.org/abs/2610.02206v1"
-    },
-    {
-      "id": "2026-10-03-r02",
-      "date": "2026-10-03",
-      "headline": "OpenAIがopenai Python SDK v3.24.0をPyPIで公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.24.0/"
-    },
-    {
-      "id": "2026-10-03-r01",
-      "date": "2026-10-03",
-      "headline": "Googleがgoogle-genai SDK v2.28.0を公開し次期メジャーでのAFC仕様変更を予告",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/2.28.0/"
-    },
-    {
-      "id": "2026-10-02-r06",
-      "date": "2026-10-02",
-      "headline": "[新規求人] xai: Counsel, Telecommunications (Starlink)",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5254365007"
-    },
-    {
-      "id": "2026-10-02-r05",
-      "date": "2026-10-02",
-      "headline": "[新規求人] anthropic: Software Engineer, Sandboxing",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440427008"
     }
   ],
-  "record_count": 228
+  "record_count": 232
 }

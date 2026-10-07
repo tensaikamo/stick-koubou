@@ -1,163 +1,166 @@
 {
-  "date": "2026-10-06",
+  "date": "2026-10-07",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのモデル価格高騰に対し、制作中のWebアプリのフォールバック先としてGLM 5.3の環境変数を今夜SafariからGitHubにどう書き込むか？",
-    "競合サービスのAPIコスト急騰時に自分のWebツールを継続稼働させるためのAPIキー切替ロジックをどこに実装するか？",
-    "推論単価の乱高下から逃れるために、今日の30分で設定すべき動的プロバイダ切替の配列はどう記述するか？"
+    "OpenRouterのAPI設定画面を開き、Flash系モデルのエンドポイントを別モデルへ書き換えたか？",
+    "Anthropicの国際政策・セキュリティ関連の求人急増から、どのAPIルートの規制強化を先読みしてコードを絞るか？",
+    "現在のiPhone単体運用におけるAPI管理コストの月額上限をいくらに設定したか？"
   ],
   "moves": [
     {
-      "t": "GitHubのWebエディタで環境変数にGLM 5.3を追加する",
-      "why": "OpenRouterのDeepSeek急騰への対策として低コストモデルを第2候補に組み込むためだ。",
+      "t": "OpenRouterの管理画面で単価変動を確認しエンドポイントを切り替える",
+      "why": "DeepSeekの極端な価格再編とFlash系値上げの直撃を防ぐためAPIルーティングを変更する",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.55,
-      "success_p_min": 0.4,
-      "success_p_max": 0.7,
-      "success_why": "リポジトリ設定画面から数タップで環境変数の追加と反映が完結するため。",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "GitHub上の環境変数リストにGLM 5.3のAPIキー設定が追加されている状態",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "コスト変動リスクを低減する基本設定の第一歩となるため。",
-      "evidence_ids": [
-        "2026-10-03-r02"
-      ],
-      "assumptions": [
-        "GitHubのWebエディタが利用可能であること",
-        "Z.aiのAPIキーをすでに取得していること"
-      ],
-      "disconfirm": "環境変数を追加してもデプロイ後のアプリが読み込めない場合",
-      "continue_if": "エラーなくビルドと反映が完了した場合",
-      "stop": "プラットフォーム側の仕様変更で環境変数が読み込めない場合"
-    },
-    {
-      "t": "リクエスト処理コードにフォールバック用配列を書き込む",
-      "why": "単一モデル依存を解消し、推論コスト急騰時に即座に別モデルへ逃げる仕組みを作るためだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.35,
-      "success_p_max": 0.65,
-      "success_why": "Safari上のGitHub編集機能で既存のJS/TSファイルを直接書き換えられるため。",
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "OpenRouterのダッシュボードで直接かつ即座にモデル単価の確認と切り替えが可能であるため",
       "value_score": 4,
       "learning_value": 4,
-      "time_minutes": 30,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "API呼び出し部分にtry-catchとフォールバックの配列処理が実装されていること",
+      "outcome": "コード側のエンドポイントが安価な代替モデルへ切り替わり運用コストの爆発が回避されている状態",
       "category": "build",
       "terminal": false,
       "impact_min": 0.2,
       "impact_max": 0.3,
-      "impact_why": "複数プロバイダ切替の中核ロジックが完成するため。",
+      "impact_why": "インフラコストの急激な悪化を直ちに防ぎAPI破産を回避するため",
       "evidence_ids": [
-        "2026-10-03-r02"
+        "2026-10-06-r04"
       ],
       "assumptions": [
-        "対象のコードファイルが単一リポジトリで管理されていること"
+        "OpenRouterアカウントにアクセス可能であること",
+        "代替モデルのAPI仕様に互換性があること"
       ],
-      "disconfirm": "シンタックスエラーで自動デプロイが弾かれる場合",
-      "continue_if": "コミット後に自動デプロイが正常に通ること",
-      "stop": "コード構造が複雑すぎてスマホの画面では編集しきれない場合"
+      "disconfirm": "代替モデルへの切り替え後もAPIエラーやコスト急増が止まらない場合",
+      "continue_if": "コスト増加のトレンドが完全に逆転または平準化したとき",
+      "stop": "代替モデルの精度が実用に耐えないと判明したとき"
     },
     {
-      "t": "有料の外部監視サービスを月額プランで契約して死活監視を自動化する",
-      "why": "API高騰やサービス停止を迅速に検知し、個人のWebツールの信頼性を担保するためだ。",
+      "t": "API利用枠のプリペイド残高を補充しコスト枯渇を防ぐ",
+      "why": "モデルの価格再編期においてAPIの突然の停止を防ぐため少額の資金を投じてリソースを確保する",
       "cost_min": 1500,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.45,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "一般的な死活監視SaaSはブラウザから数分で導入できる実績があるため。",
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.6,
+      "success_p_min": 0.5,
+      "success_p_max": 0.7,
+      "success_why": "価格変動の激しい時期にはサーチャージや急な単価変更による残高不足が発生しやすいため",
       "value_score": 3,
       "learning_value": 2,
-      "time_minutes": 20,
-      "payback_days": 30,
-      "outcome": "外部監視SaaSのダッシュボードに自分のWebアプリのエンドポイントが登録されている状態",
+      "time_minutes": 5,
+      "payback_days": 14,
+      "outcome": "APIプラットフォームのクレジット残高が安全水準まで引き上げられている状態",
       "category": "buy",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "障害時の初動対応を自動化できるため。",
+      "impact_why": "価格再編の混乱期でもシステムが停止せず競合に先駆けて稼働し続けられるため",
       "evidence_ids": [
-        "2026-10-03-r02"
+        "2026-10-06-r04"
       ],
       "assumptions": [
-        "月額課金に対応した決済手段をスマホで利用できること"
+        "決済用のクレジットカードがiPhoneのブラウザに登録されていること"
       ],
-      "disconfirm": "監視ツールの通知機能がうまく機能しない場合",
-      "continue_if": "テスト通知がスマホのメールやLINEに届くこと",
-      "stop": "コストが想定リターンを上回ると判明した場合"
+      "disconfirm": "価格再編が落ち着き、APIコストが完全に安定したと確認できた場合",
+      "continue_if": "APIの呼び出し量が想定通りに維持されているとき",
+      "stop": "プロジェクト自体の開発を一時停止すると判断したとき"
     },
     {
-      "t": "API切替時のレイテンシをスマホから計測してログに残す",
-      "why": "値下げされたGLM 5.3等の実用速度を確認し、フォールバックの優先順位を精査するためだ。",
+      "t": "AnthropicのFDEおよび国際政策関連の求人要件から次の公共セクター向けAPIプランの仕様を予測しメモに書き下す",
+      "why": "Anthropicが公共セクターや国際政策対応のFDEを積極採用しており、次に投入される特化型APIの仕様を先回りして把握するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "ブラウザのコンソールや簡易ログ出力で応答時間を簡単に計測できるため。",
+      "success_p": 0.5,
+      "success_p_min": 0.4,
+      "success_p_max": 0.6,
+      "success_why": "公開された求人票に記載されている必須スキルから開発現場が直面する規制要件が逆算できるため",
       "value_score": 3,
-      "learning_value": 4,
+      "learning_value": 5,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "各プロバイダの応答速度を比較したメモが手元に残ること",
+      "outcome": "公共セクター向けAPIの登場を前提とした個人アプリ側の対応方針案がテキストで残っている状態",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "実用に耐えるモデル選定の根拠データが得られるため。",
+      "impact_why": "大手資本が囲い込む手前の規制隙間を個人開発者が突くための布石になるため",
       "evidence_ids": [
-        "2026-10-03-r02"
+        "2026-10-01-r01",
+        "2026-10-02-r02"
       ],
       "assumptions": [
-        "アプリのテスト実行画面にアクセスできること"
+        "求人要件の拡大が特化型APIのリリースに直結すること"
       ],
-      "disconfirm": "ネットワーク環境が不安定で正確な数値が測れない場合",
-      "continue_if": "安定して数回分のレスポンスタイムが取得できること",
-      "stop": "計測結果に有意な差が見られない場合"
+      "disconfirm": "採用動向が単なる国内法務対応であり外部向けAPIに影響しないことが判明した場合",
+      "continue_if": "関連する公式発表が実際に行われたとき",
+      "stop": "採用活動が縮小に転じたとき"
     },
     {
-      "t": "API制限エラー時のカスタム例外処理メッセージをコードに追加する",
-      "why": "価格高騰やプロバイダ停止時にユーザー（または自分）へ明確なエラー状況を伝えるためだ。",
+      "t": "商用運用向けのOpenAI/Anthropic代替プロキシ機能を持つSaaSプランに申し込む",
+      "why": "価格変動リスクを分散するため複数LLMのフェイルオーバー環境を月額制の安定したサービスで構築する",
+      "cost_min": 3000,
+      "cost_max": 10000,
+      "loss_max": 10000,
+      "success_p": 0.4,
+      "success_p_min": 0.3,
+      "success_p_max": 0.5,
+      "success_why": "単一プロバイダの価格変動や仕様変更に対してフェイルオーバーを持たせることで個人開発の停止リスクを最小化できるため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 30,
+      "outcome": "マルチLLM対応のプロキシサービス有料プランの契約と初期ルーティング設定が完了している状態",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "一社の価格改定やAPI障害に依存しない堅牢なインフラが手に入るため",
+      "evidence_ids": [
+        "2026-10-06-r04"
+      ],
+      "assumptions": [
+        "月額の固定費を回収できるだけのAPI利用量が発生すること"
+      ],
+      "disconfirm": "単一の安価なAPIプロバイダに固定しても十分運用可能であると判明した場合",
+      "continue_if": "フェイルオーバー機能によってAPI停止時間がゼロに抑えられているとき",
+      "stop": "月額費用がコストパフォーマンスに見合わないと判断したとき"
+    },
+    {
+      "t": "主要AI企業の最新求人データから読み取れる戦略変化のメモをGitHubのプライベートリポジトリに保存する",
+      "why": "連日続く求人公開の背後にある資本の移動方向を記録し、次の構造変化を先回りするための判断基準を固定する",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.55,
-      "success_p_min": 0.4,
-      "success_p_max": 0.7,
-      "success_why": "JavaScriptのエラーハンドリング追加はGitHubのWebエディタで完結するため。",
+      "success_p": 0.9,
+      "success_p_min": 0.8,
+      "success_p_max": 0.95,
+      "success_why": "テキストファイルの作成と保存はiPhoneのGitHub上で完結させられる確実な作業であるため",
       "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 25,
+      "learning_value": 4,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "API障害時にフォールバック失敗を明示するアラート文言がコードに含まれている状態",
-      "category": "build",
-      "terminal": false,
+      "outcome": "今後の市場予測と個人の立ち回りをまとめた戦略ノートがリポジトリにコミットされている状態",
+      "category": "publish",
+      "terminal": true,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "トラブル時の原因究明時間を短縮できるため。",
+      "impact_why": "感情的なブレをなくし、データに基づいた一手を継続するための羅針盤になるため",
       "evidence_ids": [
-        "2026-10-03-r02"
+        "2026-10-06-r04",
+        "2026-10-06-r05",
+        "2026-10-04-r01"
       ],
       "assumptions": [
-        "エラー表示用のUIコンポーネントが既存アプリに存在すること"
+        "記録を振り返る習慣が維持されること"
       ],
-      "disconfirm": "エラーメッセージがUI側で意図通りに描画されない場合",
-      "continue_if": "意図したエラー時に文言がポップアップすること",
-      "stop": "例外処理の追加でコード全体が複雑化する場合"
+      "disconfirm": "市場の動きが予測モデルと完全に乖離し、記録の前提が崩れた場合",
+      "continue_if": "過去の予測と実際の市場の動きに整合性が見られるとき",
+      "stop": "情報収集手法を完全に別のシステムへ移行するとき"
     }
   ],
-  "kan": "大手プラットフォーマーが新機能のパイロット運用を公表する基準率（四半期に1回程度）を踏まえ、OpenAIは今後60日以内に特定消費財ブランドとの対話内スポンサーリンク試験運用を米国IP限定で開始すると見る。"
+  "kan": "Anthropicが今後14日以内に公共セクター向けの特化型APIプランを公式発表する目がある。"
 }
