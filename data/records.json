@@ -6310,5 +6310,92 @@
       "2026-10-02-r03",
       "2026-10-01-r07"
     ]
+  },
+  {
+    "id": "2026-10-07-r01",
+    "created_at": "2026-10-07T09:57:17.081185+09:00",
+    "headline": "One Figure, Every Canvas: Editable Flowchart Relayout via Agentic Pipeline",
+    "what_happened": "Shih-Chen Tsengらの研究グループが、機械学習論文のパイプライン図を様々なアスペクト比（論文の段組、16:9スライド、縦長ポスター、1:1や9:16のSNSプレビューなど）へ適応させるアスペクト比適応型フローチャート再レイアウト手法をarXivに投稿した。既存の画像変換モデル、テキスト画像生成エージェント、パース・レンダリング分離システムがそれぞれ抱える、ブロックの引き伸ばしやハルシネーション、エージの誤配線といった課題を指摘している。本論文では、Parse、Style、Layoutの各ステージに要素分解したエージェント型パイプラインを提案している。本文はarXivのHTMLプレビューおよびPDF抽象ページから取得された。",
+    "background": "学術論文や技術ドキュメントの図解は複数の異なるレイアウト形式への再利用が頻繁に求められるが、単なる自動リサイズでは接続線の誤認や内容の欠損が生じやすい。",
+    "changed": "アスペクト比適応型のフローチャート再レイアウトに関するエージェント型パイプラインのアプローチがarXiv上で公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.06852v1",
+      "title": "One Figure, Every Canvas: Editable Flowchart Relayout via Agentic Pipeline",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-10-07-r02",
+    "created_at": "2026-10-07T09:57:17.081185+09:00",
+    "headline": "Base Models Can Reason By Taking a Cue From Training Data",
+    "what_happened": "Sophie L. Wangらの研究グループが、ベースモデルの応答冒頭のトークンキューがその後の推論行動に与える影響を分析した論文をarXivに投稿した。特定の開始トークンキューを設定することで、強化学習（RL）訓練を受けていないベースモデルが数学やコーディングにおいてRL訓練済みモデルと同等の性能を発揮することを示している。例えば「.\\n\\nOkay」というキューがOlmo-3-7BのMATH-500での精度を向上させ、RL訓練がそのようなキューを自然に発生させやすくしていることを因果的データ介入により実証している。本文はarXivの抽象ページから取得された。",
+    "background": "LLMの推論能力は主に強化学習やファインチューニングによって高められるとされてきたが、ベースモデル自体の内部表現とプロンプト・トークン間の相関関係については未解明な点が多い。",
+    "changed": "ベースモデルの初期トークンキューが推論性能に及ぼす影響と因果関係に関する研究成果が公表された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.06851v1",
+      "title": "Base Models Can Reason By Taking a Cue From Training Data",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-10-07-r03",
+    "created_at": "2026-10-07T09:57:17.081185+09:00",
+    "headline": "BiasFlow: Geometric Monitoring and Backbone Regularization for Spurious Feature Reliance",
+    "what_happened": "Haojin Dengらの研究グループが、最悪グループ精度（WGA）の評価におけるバックボーンの挙動や、偽の特徴量への依存（Spurious Feature Reliance）を監視・正則化するツールキット「BiasFlow」に関する論文をarXivに投稿した。クラス属性の重心アライメント（IBMI）やクラス内重心分離（W-IBMI）などの監視機能と、教師ありの正則化ペナルティ（BFR）を組み合わせることで、小規模ベンチマークにおけるWGAの改善を確認している。本文はarXivの抽象ページから取得された。",
+    "background": "画像認識などのモデルにおいて、特定の背景や不要な相関関係に過剰適合する現象（Spurious Feature Reliance）の検出と抑制は信頼性向上の課題である。",
+    "changed": "偽の特徴量依存を幾何学的に監視・正則化するためのフレームワークが提案され公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.06846v1",
+      "title": "BiasFlow: Geometric Monitoring and Backbone Regularization for Spurious Feature Reliance",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-10-07-r04",
+    "created_at": "2026-10-07T09:57:17.081185+09:00",
+    "headline": "openai Python SDK v3.26.0 リリース",
+    "what_happened": "PyPI上の公式リポジトリにて、openai Python SDKのバージョン3.26.0が公開された。OpenAIのREST APIへアクセスするための公式ライブラリであり、すべてのリクエストパラメータやレスポンスフィールドに対する型定義を含んでいる。HTTPXベースの同期および非同期クライアントを提供し、OpenAPI仕様から生成されている。本文はPyPIのパッケージ情報ページから取得された。",
+    "background": "OpenAIの公式PythonライブラリはAPIの仕様変更や機能追加に伴い頻繁にバージョン更新が行われている。",
+    "changed": "openai Python SDKがv3.26.0へアップデートされた。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.26.0/",
+      "title": "openai Python SDK v3.26.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-03-r02",
+      "2026-10-02-r01",
+      "2026-09-30-r01",
+      "2026-09-29-r01",
+      "2026-09-25-r01",
+      "2026-09-24-r01"
+    ]
   }
 ]
