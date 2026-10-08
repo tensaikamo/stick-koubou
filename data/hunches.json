@@ -2481,14 +2481,6 @@
     ],
     "signals": [
       {
-        "date": "2026-09-28",
-        "sign": "PyPI上でgoogle-genai 2.26.0など2.x系の新たなマイナー版がリリースされる",
-        "dir": "confirm",
-        "why": "google-genai Python SDKの新たな2.x系マイナー版であるv2.25.0がリリースされたため。",
-        "conf_before": 0.869,
-        "conf_after": 0.912
-      },
-      {
         "date": "2026-09-29",
         "sign": "PyPI上でgoogle-genai 2.26.0など2.x系の新たなマイナー版がリリースされる",
         "dir": "confirm",
@@ -2557,6 +2549,14 @@
         "sign": "PyPI上でgoogle-genai 2.26.0など2.x系の新たなマイナー版がリリースされる",
         "dir": "confirm",
         "why": "google-genai Python SDK v2.28.0がリリースされ、2.x系の新たなマイナー版がリリースされる条件を満たしたため。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
+      },
+      {
+        "date": "2026-10-08",
+        "sign": "PyPI上でgoogle-genai 2.26.0など2.x系の新たなマイナー版がリリースされる",
+        "dir": "confirm",
+        "why": "google-genai Python SDKの2.x系マイナーバージョンであるv2.29.0がリリースされたため。",
         "conf_before": 0.95,
         "conf_after": 0.95
       }

@@ -1,166 +1,162 @@
 {
-  "date": "2026-10-07",
+  "date": "2026-10-08",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのAPI設定画面を開き、Flash系モデルのエンドポイントを別モデルへ書き換えたか？",
-    "Anthropicの国際政策・セキュリティ関連の求人急増から、どのAPIルートの規制強化を先読みしてコードを絞るか？",
-    "現在のiPhone単体運用におけるAPI管理コストの月額上限をいくらに設定したか？"
+    "APIインフラの価格変動に対して、手元の検証でどのプラットフォームの価格差を確認するか？",
+    "動的プライシングのアルゴリズムの癖を暴くために、どのプロファイルをiPhoneで手動入力するか？",
+    "動的価格設定の隙間を突くために、次に作成する検証スクリプトの仕様をどう固定するか？"
   ],
   "moves": [
     {
-      "t": "OpenRouterの管理画面で単価変動を確認しエンドポイントを切り替える",
-      "why": "DeepSeekの極端な価格再編とFlash系値上げの直撃を防ぐためAPIルーティングを変更する",
+      "t": "Safariを使い同一の買い物プロンプトで異なるプロファイル条件を与えた場合の価格差をメモ帳に手動で3件記録する",
+      "why": "APIインフラの価格転嫁とAIボットによる動的プライシングの実態をiPhoneから直接観測し、資本の土俵の癖を暴くため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "OpenRouterのダッシュボードで直接かつ即座にモデル単価の確認と切り替えが可能であるため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "コード側のエンドポイントが安価な代替モデルへ切り替わり運用コストの爆発が回避されている状態",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "インフラコストの急激な悪化を直ちに防ぎAPI破産を回避するため",
-      "evidence_ids": [
-        "2026-10-06-r04"
-      ],
-      "assumptions": [
-        "OpenRouterアカウントにアクセス可能であること",
-        "代替モデルのAPI仕様に互換性があること"
-      ],
-      "disconfirm": "代替モデルへの切り替え後もAPIエラーやコスト急増が止まらない場合",
-      "continue_if": "コスト増加のトレンドが完全に逆転または平準化したとき",
-      "stop": "代替モデルの精度が実用に耐えないと判明したとき"
-    },
-    {
-      "t": "API利用枠のプリペイド残高を補充しコスト枯渇を防ぐ",
-      "why": "モデルの価格再編期においてAPIの突然の停止を防ぐため少額の資金を投じてリソースを確保する",
-      "cost_min": 1500,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.6,
-      "success_p_min": 0.5,
-      "success_p_max": 0.7,
-      "success_why": "価格変動の激しい時期にはサーチャージや急な単価変更による残高不足が発生しやすいため",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 5,
-      "payback_days": 14,
-      "outcome": "APIプラットフォームのクレジット残高が安全水準まで引き上げられている状態",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "価格再編の混乱期でもシステムが停止せず競合に先駆けて稼働し続けられるため",
-      "evidence_ids": [
-        "2026-10-06-r04"
-      ],
-      "assumptions": [
-        "決済用のクレジットカードがiPhoneのブラウザに登録されていること"
-      ],
-      "disconfirm": "価格再編が落ち着き、APIコストが完全に安定したと確認できた場合",
-      "continue_if": "APIの呼び出し量が想定通りに維持されているとき",
-      "stop": "プロジェクト自体の開発を一時停止すると判断したとき"
-    },
-    {
-      "t": "AnthropicのFDEおよび国際政策関連の求人要件から次の公共セクター向けAPIプランの仕様を予測しメモに書き下す",
-      "why": "Anthropicが公共セクターや国際政策対応のFDEを積極採用しており、次に投入される特化型APIの仕様を先回りして把握するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.4,
+      "success_p": 0.45,
+      "success_p_min": 0.3,
       "success_p_max": 0.6,
-      "success_why": "公開された求人票に記載されている必須スキルから開発現場が直面する規制要件が逆算できるため",
+      "success_why": "過去のBrierスコアと過剰な確度を補正した現実的な観測可能性に基づく",
       "value_score": 3,
-      "learning_value": 5,
-      "time_minutes": 20,
+      "learning_value": 4,
+      "time_minutes": 30,
       "payback_days": 0,
-      "outcome": "公共セクター向けAPIの登場を前提とした個人アプリ側の対応方針案がテキストで残っている状態",
+      "outcome": "異なるプロファイル条件での価格差を記録したメモ",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "大手資本が囲い込む手前の規制隙間を個人開発者が突くための布石になるため",
+      "impact_why": "30分の単発の価格比較では網羅的なアルゴリズム解明には至らないため",
       "evidence_ids": [
-        "2026-10-01-r01",
-        "2026-10-02-r02"
+        "2026-10-03-r01"
       ],
       "assumptions": [
-        "求人要件の拡大が特化型APIのリリースに直結すること"
+        "iPhoneのSafariだけで異なる価格提示プロファイルが再現できること"
       ],
-      "disconfirm": "採用動向が単なる国内法務対応であり外部向けAPIに影響しないことが判明した場合",
-      "continue_if": "関連する公式発表が実際に行われたとき",
-      "stop": "採用活動が縮小に転じたとき"
+      "disconfirm": "どのプロファイルでも全く同一の価格しか返されない場合",
+      "continue_if": "価格差が5パーセント以上の変動を示す場合",
+      "stop": "プラットフォーム側がアクセス制限やCAPTCHAで入力を完全に弾く場合"
     },
     {
-      "t": "商用運用向けのOpenAI/Anthropic代替プロキシ機能を持つSaaSプランに申し込む",
-      "why": "価格変動リスクを分散するため複数LLMのフェイルオーバー環境を月額制の安定したサービスで構築する",
-      "cost_min": 3000,
-      "cost_max": 10000,
-      "loss_max": 10000,
+      "t": "OpenRouter上の主力モデル値下げとFlash系モデル値上げの実態を比較したスプレッドシートを作成する",
+      "why": "APIインフラの維持コストと価格転嫁の構造を数値で把握し、個人のコスト配分を最適化するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
       "success_p": 0.4,
-      "success_p_min": 0.3,
-      "success_p_max": 0.5,
-      "success_why": "単一プロバイダの価格変動や仕様変更に対してフェイルオーバーを持たせることで個人開発の停止リスクを最小化できるため",
-      "value_score": 4,
+      "success_p_min": 0.25,
+      "success_p_max": 0.55,
+      "success_why": "公開されている価格変動データを整理するだけの作業であるため",
+      "value_score": 3,
       "learning_value": 3,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "モデル別の価格変動率をまとめたスプレッドシート",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "個人のAPI運用コスト直結の分析となるため",
+      "evidence_ids": [
+        "2026-10-03-r01"
+      ],
+      "assumptions": [
+        "主要プロバイダの価格表がWebブラウザで確認できること"
+      ],
+      "disconfirm": "価格データの一部しか公開されておらず比較が不可能な場合",
+      "continue_if": "特定のFlash系モデルの急激な値上げ傾向に規則性が見つかった場合",
+      "stop": "価格改定のソースがフェイクまたは確認不能な場合"
+    },
+    {
+      "t": "動的価格設定プラットフォームの決済API検証用として月額1500円のプレミアム分析ツールに申し込む",
+      "why": "無料枠では隠蔽されているプラットフォーム側の動的プライシングの裏側を正確に観測するため",
+      "cost_min": 1500,
+      "cost_max": 1500,
+      "loss_max": 1500,
+      "success_p": 0.35,
+      "success_p_min": 0.2,
+      "success_p_max": 0.5,
+      "success_why": "有料ツールならではの詳細なトラフィックデータにアクセスできるため",
+      "value_score": 4,
+      "learning_value": 4,
       "time_minutes": 15,
       "payback_days": 30,
-      "outcome": "マルチLLM対応のプロキシサービス有料プランの契約と初期ルーティング設定が完了している状態",
+      "outcome": "有料分析ツールの検証アカウントと初期データ抽出",
       "category": "buy",
       "terminal": false,
       "impact_min": 0.2,
       "impact_max": 0.3,
-      "impact_why": "一社の価格改定やAPI障害に依存しない堅牢なインフラが手に入るため",
+      "impact_why": "有料の一次データにアクセスすることで他の個人との差別化が生じるため",
       "evidence_ids": [
-        "2026-10-06-r04"
+        "2026-10-03-r01"
       ],
       "assumptions": [
-        "月額の固定費を回収できるだけのAPI利用量が発生すること"
+        "iPhoneのブラウザから問題なく決済とツール利用が完了すること"
       ],
-      "disconfirm": "単一の安価なAPIプロバイダに固定しても十分運用可能であると判明した場合",
-      "continue_if": "フェイルオーバー機能によってAPI停止時間がゼロに抑えられているとき",
-      "stop": "月額費用がコストパフォーマンスに見合わないと判断したとき"
+      "disconfirm": "ツールから動的価格に関する具体的なデータが一切得られない場合",
+      "continue_if": "価格提示の変動ログがAPI経由で取得できることが確認できた場合",
+      "stop": "利用規約で価格情報のスクレイピングや分析が厳しく禁止されている場合"
     },
     {
-      "t": "主要AI企業の最新求人データから読み取れる戦略変化のメモをGitHubのプライベートリポジトリに保存する",
-      "why": "連日続く求人公開の背後にある資本の移動方向を記録し、次の構造変化を先回りするための判断基準を固定する",
+      "t": "動的価格差の検証結果とプラットフォームの癖をまとめた検証レポートをGitHubのGistにパブリッシュする",
+      "why": "観測した事実を外部に成果物として残し、個人の情報優位の足がかりとするため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.9,
-      "success_p_min": 0.8,
-      "success_p_max": 0.95,
-      "success_why": "テキストファイルの作成と保存はiPhoneのGitHub上で完結させられる確実な作業であるため",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 15,
+      "success_p": 0.45,
+      "success_p_min": 0.3,
+      "success_p_max": 0.6,
+      "success_why": "GitHubアカウントとiPhoneのSafariだけで公開が完結するため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "今後の市場予測と個人の立ち回りをまとめた戦略ノートがリポジトリにコミットされている状態",
+      "outcome": "公開された検証レポートのURL",
       "category": "publish",
-      "terminal": true,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "感情的なブレをなくし、データに基づいた一手を継続するための羅針盤になるため",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "情報の外部発信により独自の視点と検証結果を固定化できるため",
       "evidence_ids": [
-        "2026-10-06-r04",
-        "2026-10-06-r05",
-        "2026-10-04-r01"
+        "2026-10-08-r02"
       ],
       "assumptions": [
-        "記録を振り返る習慣が維持されること"
+        "iPhoneからGitHub Gistに正常にMarkdownが投稿できること"
       ],
-      "disconfirm": "市場の動きが予測モデルと完全に乖離し、記録の前提が崩れた場合",
-      "continue_if": "過去の予測と実際の市場の動きに整合性が見られるとき",
-      "stop": "情報収集手法を完全に別のシステムへ移行するとき"
+      "disconfirm": "検証データが不十分でレポートとしての価値がないと判断した場合",
+      "continue_if": "公開したレポートに対して有益なフィードバックや接触がある場合",
+      "stop": "プラットフォームの規約違反を指摘された場合"
+    },
+    {
+      "t": "AIボットによる価格操作を防ぐための個人向け自動価格監視スクリプトのプロトタイプをGitHubのWebエディタで書く",
+      "why": "動的プライシングの隙間を突き、不利な高価格提示を回避する仕組みを自分で実装するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.3,
+      "success_p_min": 0.15,
+      "success_p_max": 0.45,
+      "success_why": "iPhoneのGitHub Webエディタでのコーディングは複雑なテストが困難なため",
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "GitHubリポジトリに保存された価格監視スクリプトの初期コード",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "個人の自動化ツールとして直接機能し得るプロトタイプとなるため",
+      "evidence_ids": [
+        "2026-10-03-r01"
+      ],
+      "assumptions": [
+        "GitHubのWebエディタだけでコードの記述と保存が完結すること"
+      ],
+      "disconfirm": "APIの仕様変更によりスクリプトのロジックが根底から破綻する場合",
+      "continue_if": "モック環境で価格取得のエンドポイントが正常に動作した場合",
+      "stop": "実行環境の制約によりコードの構文エラーが修正できない場合"
     }
   ],
-  "kan": "Anthropicが今後14日以内に公共セクター向けの特化型APIプランを公式発表する目がある。"
+  "kan": "Googleは今後14日以内に、公式ブログまたはGitHubリポジトリにおいて「google-genai」の新たなメジャーバージョンをリリースすることを見送る。"
 }

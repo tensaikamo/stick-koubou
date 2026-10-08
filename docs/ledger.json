@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-07 10:04",
+  "updated_at": "2026-10-08 10:15",
   "score": {
     "hit": 14,
     "miss": 24,
     "total": 38,
     "rate": 0.3684210526315789,
-    "pending": 4,
+    "pending": 5,
     "brier": 0.3681925000000001,
     "brier_n": 38,
     "brier_initial": 0.3809157894736844,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-10-09",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -316,14 +316,14 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-10-06",
-          "dir": "confirm",
-          "why": "google-genai Python SDK v2.28.0がリリースされ、2.x系の新たなマイナー版がリリースされたため。"
-        },
-        {
           "date": "2026-10-07",
           "dir": "confirm",
           "why": "google-genai Python SDK v2.28.0がリリースされ、2.x系の新たなマイナー版がリリースされる条件を満たしたため。"
+        },
+        {
+          "date": "2026-10-08",
+          "dir": "confirm",
+          "why": "google-genai Python SDKの2.x系マイナーバージョンであるv2.29.0がリリースされたため。"
         }
       ]
     },
@@ -340,6 +340,20 @@
       "counter": "データセンターの電力網接続や大型設備の搬入に関する発表が突発的に行われる可能性",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-10-08-h01",
+      "claim": "Googleは今後14日以内に、公式ブログまたはGitHubリポジトリにおいて「google-genai」の新たなメジャーバージョンをリリースすることを見送る。",
+      "subject": "Google",
+      "deadline": "2026-10-22",
+      "confidence": 0.62,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "予告から急遽フィードバックを受けて想定以上に早い段階でメジャーバージョンが切られる可能性",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
@@ -347,24 +361,24 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-10-03",
-          "headline": "AnthropicがセキュリティGRCおよび統制評価の担当者を募集",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439224008"
-        },
-        {
-          "date": "2026-10-04",
-          "headline": "anthropic: Program Manager, Safeguards Policy, Enforcement, and Threat Intelligence の求人公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440535008"
-        },
-        {
-          "date": "2026-10-06",
-          "headline": "[新規求人] anthropic: Commercial Operations Program Manager",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398328008"
-        },
-        {
           "date": "2026-10-06",
           "headline": "[新規求人] anthropic: Staff + Software Security Engineer, Labs",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440477008"
+        },
+        {
+          "date": "2026-10-08",
+          "headline": "[新規求人] anthropic: Data Center Capacity Delivery, Canada",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5446290008"
+        },
+        {
+          "date": "2026-10-08",
+          "headline": "[新規求人] anthropic: Manager of Applied AI Architecture, Startups",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5446029008"
+        },
+        {
+          "date": "2026-10-08",
+          "headline": "anthropic Python SDK v1.12.0 リリース",
+          "url": "https://pypi.org/project/anthropic/1.12.0/"
         }
       ]
     },
@@ -422,11 +436,6 @@
       "subject": "Google",
       "events": [
         {
-          "date": "2026-09-18",
-          "headline": "Googleがgoogle-genai SDK v2.24.0を公開し次期メジャーでのAFC仕様変更を予告",
-          "url": "https://pypi.org/project/google-genai/2.24.0/"
-        },
-        {
           "date": "2026-09-23",
           "headline": "google-genai Python SDK v2.25.0 リリース",
           "url": "https://pypi.org/project/google-genai/2.25.0/"
@@ -440,6 +449,11 @@
           "date": "2026-10-03",
           "headline": "Googleがgoogle-genai SDK v2.28.0を公開し次期メジャーでのAFC仕様変更を予告",
           "url": "https://pypi.org/project/google-genai/2.28.0/"
+        },
+        {
+          "date": "2026-10-08",
+          "headline": "google-genai Python SDK v2.29.0 リリースと次期バージョンの変更予告",
+          "url": "https://pypi.org/project/google-genai/2.29.0/"
         }
       ]
     },
@@ -475,6 +489,34 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-10-08-r04",
+      "date": "2026-10-08",
+      "headline": "[新規求人] anthropic: Data Center Capacity Delivery, Canada",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5446290008"
+    },
+    {
+      "id": "2026-10-08-r03",
+      "date": "2026-10-08",
+      "headline": "[新規求人] anthropic: Manager of Applied AI Architecture, Startups",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5446029008"
+    },
+    {
+      "id": "2026-10-08-r02",
+      "date": "2026-10-08",
+      "headline": "google-genai Python SDK v2.29.0 リリースと次期バージョンの変更予告",
+      "certainty": "reported",
+      "url": "https://pypi.org/project/google-genai/2.29.0/"
+    },
+    {
+      "id": "2026-10-08-r01",
+      "date": "2026-10-08",
+      "headline": "anthropic Python SDK v1.12.0 リリース",
+      "certainty": "reported",
+      "url": "https://pypi.org/project/anthropic/1.12.0/"
+    },
     {
       "id": "2026-10-07-r04",
       "date": "2026-10-07",
@@ -530,35 +572,7 @@
       "headline": "Toward a Locally Deployable Agentic Co-Scientist: Small-Model Planning for Early-Stage Drug Discovery",
       "certainty": "reported",
       "url": "https://arxiv.org/abs/2610.04740v1"
-    },
-    {
-      "id": "2026-10-06-r01",
-      "date": "2026-10-06",
-      "headline": "Robot Learning with Visual Predicted Force",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2610.04741v1"
-    },
-    {
-      "id": "2026-10-04-r01",
-      "date": "2026-10-04",
-      "headline": "anthropic: Program Manager, Safeguards Policy, Enforcement, and Threat Intelligence の求人公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440535008"
-    },
-    {
-      "id": "2026-10-03-r04",
-      "date": "2026-10-03",
-      "headline": "AnthropicがセキュリティGRCおよび統制評価の担当者を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439224008"
-    },
-    {
-      "id": "2026-10-03-r03",
-      "date": "2026-10-03",
-      "headline": "Kali Linux上のセキュリティツール操作を評価するベンチマークKaliBenchが発表",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2610.02206v1"
     }
   ],
-  "record_count": 232
+  "record_count": 236
 }
