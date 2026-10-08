@@ -2610,5 +2610,45 @@
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-10-08-h01",
+    "created_at": "2026-10-08T10:13:24.796723+09:00",
+    "based_on": [
+      "2026-10-08-r02"
+    ],
+    "prose": "Googleはgoogle-genai SDKのリリースに伴いAFCの挙動変更を予告したが、短期的に破壊的変更を含むメジャーアップデートの公式ブログ発表が行われる基準率は低い。過去の観測でも予告から実際のメジャー版投入までは一定の期間を要する傾向があり、直近14日以内の実施には慎重にならざるを得ない。",
+    "claim": "Googleは今後14日以内に、公式ブログまたはGitHubリポジトリにおいて「google-genai」の新たなメジャーバージョンをリリースすることを見送る。",
+    "subject": "Google",
+    "resolution": {
+      "source": "https://github.com/googleapis/python-genai/releases",
+      "check_query": "google-genai releases v3",
+      "decider": "GitHubのreleasesページにおいて、v3.0.0などの新しいメジャーバージョンタグが公開されていないこと"
+    },
+    "deadline": "2026-10-22",
+    "confidence": 0.62,
+    "base_rate": 0.65,
+    "base_rate_class": "メジャーAI企業のSDKが予告から14日以内にメジャーバージョンを発行する頻度",
+    "confidence_why": "AFCの変更予告はあるものの、過去の標準的な移行期間を考慮すると14日以内のメジャー版投入は基準率を下回ると判断し、確度をやや下げた。",
+    "counter": "予告から急遽フィードバックを受けて想定以上に早い段階でメジャーバージョンが切られる可能性",
+    "indicators": [
+      {
+        "sign": "GitHubリポジトリのpull requestsやissuesでメジャーバージョン準備の完了が報告される",
+        "dir": "kill"
+      },
+      {
+        "sign": "PyPIのリリース履歴に週間単位でパッチバージョン以外の更新が一切現れない",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]

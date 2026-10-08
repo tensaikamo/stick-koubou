@@ -6397,5 +6397,113 @@
       "2026-09-25-r01",
       "2026-09-24-r01"
     ]
+  },
+  {
+    "id": "2026-10-08-r01",
+    "created_at": "2026-10-08T10:13:24.796723+09:00",
+    "headline": "anthropic Python SDK v1.12.0 リリース",
+    "what_happened": "PyPIにおいてanthropic Python SDKのバージョン1.12.0が公開された。公式のPythonライブラリとしてClaude APIへのアクセス手段を提供する。",
+    "background": "Anthropicが提供する公式Python SDKであり、ツール機能やコンピュータ操作ツールセット等のガイドを含む。",
+    "changed": "PyPI上のパッケージバージョンが1.12.0へ更新された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.12.0/",
+      "title": "anthropic Python SDK v1.12.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-06-r05",
+      "2026-10-06-r04",
+      "2026-10-04-r01",
+      "2026-10-03-r04",
+      "2026-10-02-r05",
+      "2026-10-02-r04"
+    ]
+  },
+  {
+    "id": "2026-10-08-r02",
+    "created_at": "2026-10-08T10:13:24.796723+09:00",
+    "headline": "google-genai Python SDK v2.29.0 リリースと次期バージョンの変更予告",
+    "what_happened": "PyPIにおいてgoogle-genai Python SDKのバージョン2.29.0が公開された。説明文では、次期メジャーバージョンにおいてAutomatic Function Calling (AFC) の挙動を変更する予定であることが警告されている。",
+    "background": "GoogleのGenerative AIモデルをPythonから統合するための公式SDKであり、Gemini Developer API等をサポートする。",
+    "changed": "SDKのバージョンが更新され、次期メジャーバージョンでのAFC挙動変更が事前に通知された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/2.29.0/",
+      "title": "google-genai Python SDK v2.29.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-03-r01",
+      "2026-10-02-r02",
+      "2026-09-23-r03",
+      "2026-09-18-r02",
+      "2026-09-12-r01",
+      "2026-09-03-r03"
+    ]
+  },
+  {
+    "id": "2026-10-08-r03",
+    "created_at": "2026-10-08T10:13:24.796723+09:00",
+    "headline": "[新規求人] anthropic: Manager of Applied AI Architecture, Startups",
+    "what_happened": "Anthropicがスタートアップ向けApplied AI Architectureのマネージャー職の求人をGreenhouse上で公開した。サンフランシスコおよびニューヨークシティを勤務地とし、スタートアップ企業におけるClaude Developer Platformの導入推進を担当する。",
+    "background": "大手AI企業は、初期段階の企業や開発者エコシステムを取り込むための専門的なGo-to-Marketチームや技術支援組織を継続的に拡張している。",
+    "changed": "スタートアップ向けの技術的Go-to-Marketを統括する人材の採用が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5446029008",
+      "title": "[新規求人] anthropic: Manager of Applied AI Architecture, Startups (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-06-r05",
+      "2026-10-06-r04",
+      "2026-10-04-r01",
+      "2026-10-03-r04",
+      "2026-10-02-r05",
+      "2026-10-02-r04"
+    ]
+  },
+  {
+    "id": "2026-10-08-r04",
+    "created_at": "2026-10-08T10:13:24.796723+09:00",
+    "headline": "[新規求人] anthropic: Data Center Capacity Delivery, Canada",
+    "what_happened": "Anthropicが、カナダ向けのデータセンター容量デリバリーを担当するシニアマネージャー職の求人をGreenhouse上で公開した。ボストンを拠点とし、リースおよびパートナーシップによるデータセンター構築プロジェクトの推進を担う。",
+    "background": "フロンティアAIモデルの学習とデプロイに必要な膨大な計算インフラを確保するため、不動産や建設、インフラ調達に関わる専門人材の採用がグローバルに進められている。",
+    "changed": "カナダ地域におけるデータセンターインフラの調達・搬送を専門とするポジションが新設された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5446290008",
+      "title": "[新規求人] anthropic: Data Center Capacity Delivery, Canada (Boston, MA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-06-r05",
+      "2026-10-06-r04",
+      "2026-10-04-r01",
+      "2026-10-03-r04",
+      "2026-10-02-r05",
+      "2026-10-02-r04"
+    ]
   }
 ]
