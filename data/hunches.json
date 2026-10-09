@@ -2440,14 +2440,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-10-09T10:23:40.950880+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "指定期間内(2026-09-25〜2026-10-09)のAnthropicニュースルームにおいて、東南アジア地域を主眼とした新規の事業提携や顧客導入事例に関する発表は確認されないため。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-09-26-h01",
@@ -2638,6 +2642,47 @@
       },
       {
         "sign": "PyPIのリリース履歴に週間単位でパッチバージョン以外の更新が一切現れない",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-10-09-h01",
+    "created_at": "2026-10-09T10:20:51.422440+09:00",
+    "based_on": [
+      "2026-10-09-r07",
+      "2026-10-09-r08"
+    ],
+    "prose": "xAIのメンフィス発電施設に関する求人は連続しているものの、短期の14日窓という基準率に照らせば、公式ニュースルームでの電力契約やインフラ稼働に関する具体的なプレスリリースがこの期間内に出る頻度は高くない。過去の同種予測の過信を反省し、基準率に引き戻して見送る方に賭ける。",
+    "claim": "xAIは今後14日以内に、公式ニュースルームまたはブログにおいて、メンフィスの電力プラント建設完了や電力会社との具体的な送電契約に関する公式発表を行わない",
+    "subject": "xAI",
+    "resolution": {
+      "source": "https://x.ai/news",
+      "check_query": "xai news power plant memphis",
+      "decider": "xAIの公式ニュースルームページにおいて、メンフィスの発電プラント稼働または電力契約に関する新しい公式声明が期間内に掲載されないこと"
+    },
+    "deadline": "2026-10-23",
+    "confidence": 0.55,
+    "base_rate": 0.7,
+    "base_rate_class": "AI企業がインフラ求人を出した後に14日以内で発電完了や電力契約を公式発表する頻度",
+    "confidence_why": "過去の過信による外れ実績と、短期間でインフラの公式進捗発表が行われる確率の低さを考慮し、基準率に近づけて引き下げた",
+    "counter": "突発的な電力供給に関する規制当局の承認や大規模な提携発表が急遽行われる場合",
+    "indicators": [
+      {
+        "sign": "https://x.ai/news に新着記事が掲載される",
+        "dir": "kill"
+      },
+      {
+        "sign": "追加の発電関連の求人が停止・削除される",
         "dir": "confirm"
       }
     ],

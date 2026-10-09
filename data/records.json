@@ -6505,5 +6505,200 @@
       "2026-10-02-r05",
       "2026-10-02-r04"
     ]
+  },
+  {
+    "id": "2026-10-09-r01",
+    "created_at": "2026-10-09T10:20:51.422440+09:00",
+    "headline": "Never Look Back: Understanding Persistence in 3D Object Memory from Egocentric Videos",
+    "what_happened": "Shravan Chaudhariらによる論文がarXivに投稿された。本論文では、一人称視点動画からオブジェクトの位置、履歴、文脈的記述を組み合わせて持続的な3Dオブジェクトメモリを構築する手法「Ledger」が提案されている。視界から外れたオブジェクトの追跡や、移動の記録を効率的に行う仕組みが示されている。",
+    "background": "ロボティクスやAIエージェントが、人間の日常活動の動画から長期間にわたり物体位置や状態を記憶し続けるための空間メモリ技術に関する研究領域。",
+    "changed": "一人称視点動画からの3Dオブジェクト記憶と永続化に関する新しいアーキテクチャの評価基準が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.10538v1",
+      "title": "Never Look Back: Understanding Persistence in 3D Object Memory from Egocentric Videos",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-10-09-r02",
+    "created_at": "2026-10-09T10:20:51.422440+09:00",
+    "headline": "Decoupling Exploration from Optimization in RLVR",
+    "what_happened": "Saif PunjwaniとMicah Goldblumによる論文がarXivに投稿された。言語モデルの検証可能報酬付き強化学習（RLVR）において、探索と最適化を分離するフレームワーク「Exploration-Distillation (ExpDis)」が提案されている。ノイズボーナスを用いた探索ポリシーの訓練と、それを学生ポリシーへ蒸留するプロセスを繰り返す手法である。",
+    "background": "大規模言語モデルの推論能力向上において、報酬ハッキングを防ぎながら新規の思考プロセスを発見するための強化学習手法の改善。",
+    "changed": "RLVRにおける探索と最適化の分離によるモデル品質低下抑制手法が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.10536v1",
+      "title": "Decoupling Exploration from Optimization in RLVR",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-10-09-r03",
+    "created_at": "2026-10-09T10:20:51.422440+09:00",
+    "headline": "EngramEdit: Decoupled Knowledge Updates in LLMs through Conditional Memory",
+    "what_happened": "Hongru Caiらによる論文がarXivに投稿された。条件付きメモリ構造を利用してLLMの事実知識を切り離して更新する手法「EngramEdit」が提案されている。共有埋め込みの予期せぬ変化を防ぎながら、特定の事実知識のみを選択的に編集するアプローチを示している。",
+    "background": "Transformerバックボーンを固定したまま、大規模言語モデルが持つ事実的知識を効率的かつ局所的に更新するメモリ編集技術。",
+    "changed": "条件付きメモリを用いたLLMの個別知識更新手法と評価結果が公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.10533v1",
+      "title": "EngramEdit: Decoupled Knowledge Updates in LLMs through Conditional Memory",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-10-09-r04",
+    "created_at": "2026-10-09T10:20:51.422440+09:00",
+    "headline": "Anthropicが Product Manager, App Foundations の求人を公開",
+    "what_happened": "Anthropic社は公式求人ページにおいて、Claudeのコア体験、メモリ、音声モード、アーティファクトなどのプリミティブを担当するプロダクトマネージャーの求人情報を掲載した。本記事はGreenhouse上の求人情報に基づいている。",
+    "background": "AIアシスタントの機能拡張や基盤構築におけるプロダクト開発体制の強化。",
+    "changed": "Anthropicにおけるアプリ基盤および機能拡張のプロダクト開発体制拡大に関する求人事実が確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5448167008",
+      "title": "[新規求人] anthropic: Product Manager, App Foundations (San Francisco, CA | New York City, NY | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-08-r04",
+      "2026-10-08-r03",
+      "2026-10-08-r01",
+      "2026-10-06-r05",
+      "2026-10-06-r04",
+      "2026-10-04-r01"
+    ]
+  },
+  {
+    "id": "2026-10-09-r05",
+    "created_at": "2026-10-09T10:20:51.422440+09:00",
+    "headline": "Anthropicが Senior Analyst, Travel & Expense の求人を公開",
+    "what_happened": "Anthropic社は公式求人ページにおいて、T&E（出張・経費）機能の財務統制やSOXコンプライアンスを担当するシニアアナリストの求人を掲載した。 NavanやBrexを用いた経費管理システムの拡張を目的としている。",
+    "background": "急速に規模を拡大するAI企業の内部統制および財務プロセスの標準化。",
+    "changed": "Anthropicにおける財務統制・経費管理部門の管理体制強化に向けた採用活動が確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5445989008",
+      "title": "[新規求人] anthropic: Senior Analyst, Travel & Expense (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-08-r04",
+      "2026-10-08-r03",
+      "2026-10-08-r01",
+      "2026-10-06-r05",
+      "2026-10-06-r04",
+      "2026-10-04-r01"
+    ]
+  },
+  {
+    "id": "2026-10-09-r06",
+    "created_at": "2026-10-09T10:20:51.422440+09:00",
+    "headline": "Anthropicが Applied AI Architect (Delhi, India) の求人を公開",
+    "what_happened": "Anthropic社はインド・デリーを勤務地とするプリセールス向けアーキテクトの求人情報を公開した。アジア太平洋地域の企業顧客向けにClaudeの導入支援を行う技術的アドバイザーを求めている。",
+    "background": "インドおよびAPAC地域におけるエンタープライズ向けAIソリューションの販売体制と技術支援の構築。",
+    "changed": "Anthropicによるインド市場でのエンタープライズ顧客向け技術サポート体制の拡大が確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5443882008",
+      "title": "[新規求人] anthropic: Applied AI Architect (Delhi, India)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-08-r04",
+      "2026-10-08-r03",
+      "2026-10-08-r01",
+      "2026-10-06-r05",
+      "2026-10-06-r04",
+      "2026-10-04-r01"
+    ]
+  },
+  {
+    "id": "2026-10-09-r07",
+    "created_at": "2026-10-09T10:20:51.422440+09:00",
+    "headline": "xAIが Construction Manager, Power Generation - Memphis の求人を公開",
+    "what_happened": "xAI社はメンフィス（サウスヘイブン）地域におけるオンサイト発電プラントの建設プロジェクトを率いる建設マネージャーの求人情報を公開した。ガスタービン発電設備やインフラ構築の現場リーダーを求めている。",
+    "background": "大規模AIスーパーコンピューターの電力需要を支えるための自社発電インフラの現場建設体制。",
+    "changed": "xAIによるメンフィス地域の電力インフラ構築に向けた現場マネジメント採用の事実が確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5261595007",
+      "title": "[新規求人] xai: Construction Manager, Power Generation - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-02-r06",
+      "2026-10-01-r06",
+      "2026-10-01-r05",
+      "2026-10-01-r04",
+      "2026-09-29-r07",
+      "2026-09-29-r06"
+    ]
+  },
+  {
+    "id": "2026-10-09-r08",
+    "created_at": "2026-10-09T10:20:51.422440+09:00",
+    "headline": "xAIが Construction Superintendent, Power Generation - Memphis の求人を公開",
+    "what_happened": "xAI社はメンフィス地域でのオンサイト発電プラント建設において、ガスタービンや燃料配管、冷却システムなどの現場施工を監督するスーパーインテンの求人情報を公開した。",
+    "background": "AIスーパークラスター向け電力供給設備の機械・電気インフラの現場施工管理。",
+    "changed": "xAIのメンフィス発電インフラ建設における施工監督体制の強化が確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5261602007",
+      "title": "[新規求人] xai: Construction Superintendent, Power Generation - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-02-r06",
+      "2026-10-01-r06",
+      "2026-10-01-r05",
+      "2026-10-01-r04",
+      "2026-09-29-r07",
+      "2026-09-29-r06"
+    ]
   }
 ]
