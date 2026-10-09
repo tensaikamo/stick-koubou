@@ -1,24 +1,38 @@
 {
-  "updated_at": "2026-10-08 10:15",
+  "updated_at": "2026-10-09 10:32",
   "score": {
-    "hit": 14,
+    "hit": 15,
     "miss": 24,
-    "total": 38,
-    "rate": 0.3684210526315789,
+    "total": 39,
+    "rate": 0.38461538461538464,
     "pending": 5,
-    "brier": 0.3681925000000001,
-    "brier_n": 38,
-    "brier_initial": 0.3809157894736844,
+    "brier": 0.36189269230769244,
+    "brier_n": 39,
+    "brier_initial": 0.37428974358974376,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-10-09",
+    "date": "2026-10-10",
     "days": 1
   },
   "decided": [
+    {
+      "id": "2026-09-25-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて東南アジア地域を主眼とした新規の事業提携や顧客導入事例を発表しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-10-09",
+      "confidence": 0.65,
+      "initial_confidence": null,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "すでに水面下で進んでいた大型の地域提携が、現地オフィスの本格稼働に合わせて今まさに矢継ぎ早に発表される可能性。",
+      "evidence": "指定期間内(2026-09-25〜2026-10-09)のAnthropicニュースルームにおいて、東南アジア地域を主眼とした新規の事業提携や顧客導入事例に関する発表は確認されないため。",
+      "signals": []
+    },
     {
       "id": "2026-09-22-h01",
       "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて企業買収またはM&Aに関する合意を発表しない",
@@ -251,20 +265,6 @@
           "why": "google-genai Python SDK v2.20.0がリリースされ、v2系のマイナー更新が確認されたため。"
         }
       ]
-    },
-    {
-      "id": "2026-08-14-h01",
-      "claim": "Anthropicは14日以内に、公式ニュースルーム（https://www.anthropic.com/news）において公式教育認定・資格プログラム（Certification / Credentialing）の一般提供開始を発表しない",
-      "subject": "Anthropic",
-      "deadline": "2026-08-28",
-      "confidence": 0.91,
-      "initial_confidence": null,
-      "result": "hit",
-      "status": "resolved",
-      "alert": false,
-      "counter": "既に外部パートナーと共同開発した認証プログラムが完成しており、求人は運用・拡張体制のためのものである場合。",
-      "evidence": "期日である2026年8月28日までのAnthropic公式ニュースルームにおいて、公式資格認証プログラム（Certification/Credentialing）のローンチ発表は確認されなかったため。",
-      "signals": []
     }
   ],
   "pending": [
@@ -289,20 +289,6 @@
       ]
     },
     {
-      "id": "2026-09-25-h01",
-      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて東南アジア地域を主眼とした新規の事業提携や顧客導入事例を発表しない。",
-      "subject": "Anthropic",
-      "deadline": "2026-10-09",
-      "confidence": 0.65,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "すでに水面下で進んでいた大型の地域提携が、現地オフィスの本格稼働に合わせて今まさに矢継ぎ早に発表される可能性。",
-      "evidence": "",
-      "signals": []
-    },
-    {
       "id": "2026-09-26-h01",
       "claim": "Googleは今後14日以内に、PyPIにおいて「google-genai」のバージョン3.0.0以上をリリースしない",
       "subject": "Google",
@@ -316,12 +302,12 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-10-07",
+          "date": "2026-10-08",
           "dir": "confirm",
-          "why": "google-genai Python SDK v2.28.0がリリースされ、2.x系の新たなマイナー版がリリースされる条件を満たしたため。"
+          "why": "google-genai Python SDKの2.x系マイナーバージョンであるv2.29.0がリリースされたため。"
         },
         {
-          "date": "2026-10-08",
+          "date": "2026-10-09",
           "dir": "confirm",
           "why": "google-genai Python SDKの2.x系マイナーバージョンであるv2.29.0がリリースされたため。"
         }
@@ -354,6 +340,20 @@
       "counter": "予告から急遽フィードバックを受けて想定以上に早い段階でメジャーバージョンが切られる可能性",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-10-09-h01",
+      "claim": "xAIは今後14日以内に、公式ニュースルームまたはブログにおいて、メンフィスの電力プラント建設完了や電力会社との具体的な送電契約に関する公式発表を行わない",
+      "subject": "xAI",
+      "deadline": "2026-10-23",
+      "confidence": 0.55,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "突発的な電力供給に関する規制当局の承認や大規模な提携発表が急遽行われる場合",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
@@ -361,40 +361,30 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-10-06",
-          "headline": "[新規求人] anthropic: Staff + Software Security Engineer, Labs",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440477008"
-        },
-        {
-          "date": "2026-10-08",
-          "headline": "[新規求人] anthropic: Data Center Capacity Delivery, Canada",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5446290008"
-        },
-        {
-          "date": "2026-10-08",
-          "headline": "[新規求人] anthropic: Manager of Applied AI Architecture, Startups",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5446029008"
-        },
-        {
           "date": "2026-10-08",
           "headline": "anthropic Python SDK v1.12.0 リリース",
           "url": "https://pypi.org/project/anthropic/1.12.0/"
+        },
+        {
+          "date": "2026-10-09",
+          "headline": "Anthropicが Applied AI Architect (Delhi, India) の求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5443882008"
+        },
+        {
+          "date": "2026-10-09",
+          "headline": "Anthropicが Product Manager, App Foundations の求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5448167008"
+        },
+        {
+          "date": "2026-10-09",
+          "headline": "Anthropicが Senior Analyst, Travel & Expense の求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5445989008"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-10-01",
-          "headline": "[新規求人] xai: Application Security Engineer (X Money)",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5253534007"
-        },
-        {
-          "date": "2026-10-01",
-          "headline": "[新規求人] xai: Project Manager, Facilities Operations - Memphis (Memphis, TN)",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5249882007"
-        },
         {
           "date": "2026-10-01",
           "headline": "[新規求人] xai: Sr. Sales Manager, Canada - Starlink Enterprise Sales (Canada)",
@@ -404,6 +394,16 @@
           "date": "2026-10-02",
           "headline": "[新規求人] xai: Counsel, Telecommunications (Starlink)",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5254365007"
+        },
+        {
+          "date": "2026-10-09",
+          "headline": "xAIが Construction Manager, Power Generation - Memphis の求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5261595007"
+        },
+        {
+          "date": "2026-10-09",
+          "headline": "xAIが Construction Superintendent, Power Generation - Memphis の求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5261602007"
         }
       ]
     },
@@ -490,6 +490,62 @@
   ],
   "records": [
     {
+      "id": "2026-10-09-r08",
+      "date": "2026-10-09",
+      "headline": "xAIが Construction Superintendent, Power Generation - Memphis の求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5261602007"
+    },
+    {
+      "id": "2026-10-09-r07",
+      "date": "2026-10-09",
+      "headline": "xAIが Construction Manager, Power Generation - Memphis の求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5261595007"
+    },
+    {
+      "id": "2026-10-09-r06",
+      "date": "2026-10-09",
+      "headline": "Anthropicが Applied AI Architect (Delhi, India) の求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5443882008"
+    },
+    {
+      "id": "2026-10-09-r05",
+      "date": "2026-10-09",
+      "headline": "Anthropicが Senior Analyst, Travel & Expense の求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5445989008"
+    },
+    {
+      "id": "2026-10-09-r04",
+      "date": "2026-10-09",
+      "headline": "Anthropicが Product Manager, App Foundations の求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5448167008"
+    },
+    {
+      "id": "2026-10-09-r03",
+      "date": "2026-10-09",
+      "headline": "EngramEdit: Decoupled Knowledge Updates in LLMs through Conditional Memory",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2610.10533v1"
+    },
+    {
+      "id": "2026-10-09-r02",
+      "date": "2026-10-09",
+      "headline": "Decoupling Exploration from Optimization in RLVR",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2610.10536v1"
+    },
+    {
+      "id": "2026-10-09-r01",
+      "date": "2026-10-09",
+      "headline": "Never Look Back: Understanding Persistence in 3D Object Memory from Egocentric Videos",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2610.10538v1"
+    },
+    {
       "id": "2026-10-08-r04",
       "date": "2026-10-08",
       "headline": "[新規求人] anthropic: Data Center Capacity Delivery, Canada",
@@ -516,63 +572,7 @@
       "headline": "anthropic Python SDK v1.12.0 リリース",
       "certainty": "reported",
       "url": "https://pypi.org/project/anthropic/1.12.0/"
-    },
-    {
-      "id": "2026-10-07-r04",
-      "date": "2026-10-07",
-      "headline": "openai Python SDK v3.26.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.26.0/"
-    },
-    {
-      "id": "2026-10-07-r03",
-      "date": "2026-10-07",
-      "headline": "BiasFlow: Geometric Monitoring and Backbone Regularization for Spurious Feature Reliance",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2610.06846v1"
-    },
-    {
-      "id": "2026-10-07-r02",
-      "date": "2026-10-07",
-      "headline": "Base Models Can Reason By Taking a Cue From Training Data",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2610.06851v1"
-    },
-    {
-      "id": "2026-10-07-r01",
-      "date": "2026-10-07",
-      "headline": "One Figure, Every Canvas: Editable Flowchart Relayout via Agentic Pipeline",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2610.06852v1"
-    },
-    {
-      "id": "2026-10-06-r05",
-      "date": "2026-10-06",
-      "headline": "[新規求人] anthropic: Staff + Software Security Engineer, Labs",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5440477008"
-    },
-    {
-      "id": "2026-10-06-r04",
-      "date": "2026-10-06",
-      "headline": "[新規求人] anthropic: Commercial Operations Program Manager",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5398328008"
-    },
-    {
-      "id": "2026-10-06-r03",
-      "date": "2026-10-06",
-      "headline": "PyINE: A Framework for Scalable Elicitation and Oversight via Code Execution",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2610.04737v1"
-    },
-    {
-      "id": "2026-10-06-r02",
-      "date": "2026-10-06",
-      "headline": "Toward a Locally Deployable Agentic Co-Scientist: Small-Model Planning for Early-Stage Drug Discovery",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2610.04740v1"
     }
   ],
-  "record_count": 236
+  "record_count": 244
 }

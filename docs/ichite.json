@@ -1,162 +1,163 @@
 {
-  "date": "2026-10-08",
+  "date": "2026-10-09",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "APIインフラの価格変動に対して、手元の検証でどのプラットフォームの価格差を確認するか？",
-    "動的プライシングのアルゴリズムの癖を暴くために、どのプロファイルをiPhoneで手動入力するか？",
-    "動的価格設定の隙間を突くために、次に作成する検証スクリプトの仕様をどう固定するか？"
+    "OpenRouterの価格引き下げを受けて、APIの月間予算枠を今すぐいくらに設定するか？",
+    "DeepSeek V4 FlashモデルのAPIキーをiPhoneのメモ帳にどう保存するか？",
+    "OpenRouterのダッシュボードで現在の利用量ログを今すぐどう確認するか？"
   ],
   "moves": [
     {
-      "t": "Safariを使い同一の買い物プロンプトで異なるプロファイル条件を与えた場合の価格差をメモ帳に手動で3件記録する",
-      "why": "APIインフラの価格転嫁とAIボットによる動的プライシングの実態をiPhoneから直接観測し、資本の土俵の癖を暴くため",
+      "t": "OpenRouterでDeepSeek V4 FlashのAPIキーを発行しiPhoneのブラウザに保存する",
+      "why": "価格破壊が進むインフラの最安レイヤーに接続し、自前の自動化の土台を固めるため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "過去のBrierスコアと過剰な確度を補正した現実的な観測可能性に基づく",
+      "success_p": 0.85,
+      "success_p_min": 0.8,
+      "success_p_max": 0.9,
+      "success_why": "登録とAPIキー発行はWeb画面から3分で完了できるため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 10,
+      "payback_days": 0,
+      "outcome": "OpenRouterの有効なAPIキー",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "API接続の基盤が整うため",
+      "evidence_ids": [
+        "2026-10-09-r07"
+      ],
+      "assumptions": [
+        "OpenRouterアカウントが作成済みであること"
+      ],
+      "disconfirm": "APIキーの発行画面にアクセスできない場合",
+      "continue_if": "キーが正常に発行できた場合",
+      "stop": "サービスにログインできない場合"
+    },
+    {
+      "t": "OpenRouterに小額の5ドルを入金してAPI残高を有効化する",
+      "why": "無料枠の制限を外し、実戦で軽量モデルの常時稼働テストを行うため",
+      "cost_min": 750,
+      "cost_max": 750,
+      "loss_max": 750,
+      "success_p": 0.8,
+      "success_p_min": 0.75,
+      "success_p_max": 0.85,
+      "success_why": "クレジットカード決済が即座に完了する仕様のため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 5,
+      "payback_days": 14,
+      "outcome": "APIの利用可能残高5ドル",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "実際のAPIリクエストが実行可能になるため",
+      "evidence_ids": [
+        "2026-10-09-r07"
+      ],
+      "assumptions": [
+        "iPhoneのApple Payまたは海外利用可能なカードがあること"
+      ],
+      "disconfirm": "決済エラーが連続する場合",
+      "continue_if": "残高がダッシュボードに反映された場合",
+      "stop": "決済手段が拒否された場合"
+    },
+    {
+      "t": "OpenRouterのAPIを叩いてDeepSeek V4 Flashの応答速度をiPhoneから測定する",
+      "why": "価格破壊モデルの実際のレイテンシと実用性を自分で確認するため",
+      "cost_min": 0,
+      "cost_max": 10,
+      "loss_max": 10,
+      "success_p": 0.65,
+      "success_p_min": 0.55,
+      "success_p_max": 0.75,
+      "success_why": "簡易的なブラウザ上のAPIクライアントツールで検証可能なため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 15,
+      "payback_days": 7,
+      "outcome": "APIの応答速度とログの記録",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "モデルの品質を直接数値で把握できるため",
+      "evidence_ids": [
+        "2026-10-09-r07"
+      ],
+      "assumptions": [
+        "APIキーが正常に機能すること"
+      ],
+      "disconfirm": "タイムアウトエラーが多発する場合",
+      "continue_if": "安定して応答が返る場合",
+      "stop": "モデル自体が利用停止の場合"
+    },
+    {
+      "t": "OpenRouterで月間利用上限を20ドルに設定して予算アラートを有効化する",
+      "why": "コストの暴走を防ぎつつ、自動化の実験を安全に継続するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.9,
+      "success_p_min": 0.85,
+      "success_p_max": 0.95,
+      "success_why": "ダッシュボードの制限設定項目から数タップで完了するため",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 5,
+      "payback_days": 0,
+      "outcome": "月間利用上限の設定完了",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "予期せぬ課金事故を防ぐ防壁になるため",
+      "evidence_ids": [
+        "2026-10-09-r07"
+      ],
+      "assumptions": [
+        "ダッシュボードの設定画面にアクセスできること"
+      ],
+      "disconfirm": "設定項目が消失している場合",
+      "continue_if": "上限値が保存された場合",
+      "stop": "アカウントが制限された場合"
+    },
+    {
+      "t": "xAIの最新の求人情報からインフラ拡張の方向性を1行の仮説としてiPhoneのメモに書き留める",
+      "why": "競合の動向から次のインフラ変化の予兆を捉えるため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.6,
+      "success_p_max": 0.8,
+      "success_why": "公開されている求人ページから直接事実を読み取れるため",
       "value_score": 3,
       "learning_value": 4,
-      "time_minutes": 30,
+      "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "異なるプロファイル条件での価格差を記録したメモ",
+      "outcome": "インフラ動向に関する1行のメモ",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "30分の単発の価格比較では網羅的なアルゴリズム解明には至らないため",
+      "impact_why": "巨額資本の動きに対する解釈の精度が上がるため",
       "evidence_ids": [
-        "2026-10-03-r01"
+        "2026-10-09-r07",
+        "2026-10-09-r08"
       ],
       "assumptions": [
-        "iPhoneのSafariだけで異なる価格提示プロファイルが再現できること"
+        "求人ページが閲覧可能であること"
       ],
-      "disconfirm": "どのプロファイルでも全く同一の価格しか返されない場合",
-      "continue_if": "価格差が5パーセント以上の変動を示す場合",
-      "stop": "プラットフォーム側がアクセス制限やCAPTCHAで入力を完全に弾く場合"
-    },
-    {
-      "t": "OpenRouter上の主力モデル値下げとFlash系モデル値上げの実態を比較したスプレッドシートを作成する",
-      "why": "APIインフラの維持コストと価格転嫁の構造を数値で把握し、個人のコスト配分を最適化するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.25,
-      "success_p_max": 0.55,
-      "success_why": "公開されている価格変動データを整理するだけの作業であるため",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "モデル別の価格変動率をまとめたスプレッドシート",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "個人のAPI運用コスト直結の分析となるため",
-      "evidence_ids": [
-        "2026-10-03-r01"
-      ],
-      "assumptions": [
-        "主要プロバイダの価格表がWebブラウザで確認できること"
-      ],
-      "disconfirm": "価格データの一部しか公開されておらず比較が不可能な場合",
-      "continue_if": "特定のFlash系モデルの急激な値上げ傾向に規則性が見つかった場合",
-      "stop": "価格改定のソースがフェイクまたは確認不能な場合"
-    },
-    {
-      "t": "動的価格設定プラットフォームの決済API検証用として月額1500円のプレミアム分析ツールに申し込む",
-      "why": "無料枠では隠蔽されているプラットフォーム側の動的プライシングの裏側を正確に観測するため",
-      "cost_min": 1500,
-      "cost_max": 1500,
-      "loss_max": 1500,
-      "success_p": 0.35,
-      "success_p_min": 0.2,
-      "success_p_max": 0.5,
-      "success_why": "有料ツールならではの詳細なトラフィックデータにアクセスできるため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 30,
-      "outcome": "有料分析ツールの検証アカウントと初期データ抽出",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "有料の一次データにアクセスすることで他の個人との差別化が生じるため",
-      "evidence_ids": [
-        "2026-10-03-r01"
-      ],
-      "assumptions": [
-        "iPhoneのブラウザから問題なく決済とツール利用が完了すること"
-      ],
-      "disconfirm": "ツールから動的価格に関する具体的なデータが一切得られない場合",
-      "continue_if": "価格提示の変動ログがAPI経由で取得できることが確認できた場合",
-      "stop": "利用規約で価格情報のスクレイピングや分析が厳しく禁止されている場合"
-    },
-    {
-      "t": "動的価格差の検証結果とプラットフォームの癖をまとめた検証レポートをGitHubのGistにパブリッシュする",
-      "why": "観測した事実を外部に成果物として残し、個人の情報優位の足がかりとするため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "GitHubアカウントとiPhoneのSafariだけで公開が完結するため",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "公開された検証レポートのURL",
-      "category": "publish",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "情報の外部発信により独自の視点と検証結果を固定化できるため",
-      "evidence_ids": [
-        "2026-10-08-r02"
-      ],
-      "assumptions": [
-        "iPhoneからGitHub Gistに正常にMarkdownが投稿できること"
-      ],
-      "disconfirm": "検証データが不十分でレポートとしての価値がないと判断した場合",
-      "continue_if": "公開したレポートに対して有益なフィードバックや接触がある場合",
-      "stop": "プラットフォームの規約違反を指摘された場合"
-    },
-    {
-      "t": "AIボットによる価格操作を防ぐための個人向け自動価格監視スクリプトのプロトタイプをGitHubのWebエディタで書く",
-      "why": "動的プライシングの隙間を突き、不利な高価格提示を回避する仕組みを自分で実装するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.3,
-      "success_p_min": 0.15,
-      "success_p_max": 0.45,
-      "success_why": "iPhoneのGitHub Webエディタでのコーディングは複雑なテストが困難なため",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "GitHubリポジトリに保存された価格監視スクリプトの初期コード",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "個人の自動化ツールとして直接機能し得るプロトタイプとなるため",
-      "evidence_ids": [
-        "2026-10-03-r01"
-      ],
-      "assumptions": [
-        "GitHubのWebエディタだけでコードの記述と保存が完結すること"
-      ],
-      "disconfirm": "APIの仕様変更によりスクリプトのロジックが根底から破綻する場合",
-      "continue_if": "モック環境で価格取得のエンドポイントが正常に動作した場合",
-      "stop": "実行環境の制約によりコードの構文エラーが修正できない場合"
+      "disconfirm": "求人情報が削除されている場合",
+      "continue_if": "新規の電力関連求人が確認できた場合",
+      "stop": "情報が更新されない場合"
     }
   ],
-  "kan": "Googleは今後14日以内に、公式ブログまたはGitHubリポジトリにおいて「google-genai」の新たなメジャーバージョンをリリースすることを見送る。"
+  "kan": "xAIは今後14日以内に、公式ニュースルームまたはブログにおいて、メンフィスの電力プラント建設完了や電力会社との具体的な送電契約に関する公式発表を行わない"
 }
