@@ -2565,15 +2565,19 @@
         "conf_after": 0.95
       }
     ],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-10-10T10:13:21.272888+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "判定期限日である2026年10月10日時点で、PyPIにおけるgoogle-genaiの最新バージョンは2.29.0であり、バージョン3.0.0以上はリリースされていないことが確認できるため。",
+      "url": "https://pypi.org/project/google-genai/#history"
+    },
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "initial_confidence": 0.73
+    "initial_confidence": 0.73,
+    "needs_review": false
   },
   {
     "id": "2026-09-29-h01",
