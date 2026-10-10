@@ -1,24 +1,49 @@
 {
-  "updated_at": "2026-10-09 10:32",
+  "updated_at": "2026-10-10 10:13",
   "score": {
-    "hit": 15,
+    "hit": 16,
     "miss": 24,
-    "total": 39,
-    "rate": 0.38461538461538464,
-    "pending": 5,
-    "brier": 0.36189269230769244,
-    "brier_n": 39,
-    "brier_initial": 0.37428974358974376,
+    "total": 40,
+    "rate": 0.4,
+    "pending": 4,
+    "brier": 0.3529078750000001,
+    "brier_n": 40,
+    "brier_initial": 0.36675500000000016,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-10-10",
-    "days": 1
+    "date": "2026-10-13",
+    "days": 3
   },
   "decided": [
+    {
+      "id": "2026-09-26-h01",
+      "claim": "Googleは今後14日以内に、PyPIにおいて「google-genai」のバージョン3.0.0以上をリリースしない",
+      "subject": "Google",
+      "deadline": "2026-10-10",
+      "confidence": 0.95,
+      "initial_confidence": 0.73,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "Googleがエージェントプラットフォーム統合を最優先し、移行猶予を置かずにv3.0.0を先行投入して旧インターフェースを即時切り捨てる展開",
+      "evidence": "判定期限日である2026年10月10日時点で、PyPIにおけるgoogle-genaiの最新バージョンは2.29.0であり、バージョン3.0.0以上はリリースされていないことが確認できるため。",
+      "signals": [
+        {
+          "date": "2026-10-08",
+          "dir": "confirm",
+          "why": "google-genai Python SDKの2.x系マイナーバージョンであるv2.29.0がリリースされたため。"
+        },
+        {
+          "date": "2026-10-09",
+          "dir": "confirm",
+          "why": "google-genai Python SDKの2.x系マイナーバージョンであるv2.29.0がリリースされたため。"
+        }
+      ]
+    },
     {
       "id": "2026-09-25-h01",
       "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて東南アジア地域を主眼とした新規の事業提携や顧客導入事例を発表しない。",
@@ -240,31 +265,6 @@
           "why": "本日の事象においてopenai Python SDK v3.3.1がリリースされたため、openaiの3.3.x系のマイナー・パッチリリース継続の指標に合致する。"
         }
       ]
-    },
-    {
-      "id": "2026-08-15-h01",
-      "claim": "Googleは14日以内に、PyPIにおけるgoogle-genaiのメジャーバージョン（v3.0.0以上）を公開せず、最新版をv2系に維持する。",
-      "subject": "Google",
-      "deadline": "2026-08-29",
-      "confidence": 0.95,
-      "initial_confidence": 0.89,
-      "result": "hit",
-      "status": "resolved",
-      "alert": false,
-      "counter": "Geminiの新規モデル発表やAPI側の仕様更新に合わせてSDKの大型刷新を前倒しで強行リリースした場合は外れる。",
-      "evidence": "判定期限（2026-08-29）時点でPyPIにおけるgoogle-genaiの最新バージョンが2.20.0であり、3.0.0未満（v2系）に維持されていることが確認されたため。",
-      "signals": [
-        {
-          "date": "2026-08-25",
-          "dir": "confirm",
-          "why": "本日の事象に「google-genai Python SDK v2.19.0 リリース」が含まれており、PyPIにv2系のマイナー更新が追加されたため。"
-        },
-        {
-          "date": "2026-08-27",
-          "dir": "confirm",
-          "why": "google-genai Python SDK v2.20.0がリリースされ、v2系のマイナー更新が確認されたため。"
-        }
-      ]
     }
   ],
   "pending": [
@@ -285,31 +285,6 @@
           "date": "2026-10-05",
           "dir": "confirm",
           "why": "Greenhouse上でのEnforcement Operations Lead求人に関する直接的な削除は確認されず、関連する新規のポリシー・エンフォースメント系求人が掲載されたため、求人が引き続き募集中として維持されている状態に合致する。"
-        }
-      ]
-    },
-    {
-      "id": "2026-09-26-h01",
-      "claim": "Googleは今後14日以内に、PyPIにおいて「google-genai」のバージョン3.0.0以上をリリースしない",
-      "subject": "Google",
-      "deadline": "2026-10-10",
-      "confidence": 0.95,
-      "initial_confidence": 0.73,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "Googleがエージェントプラットフォーム統合を最優先し、移行猶予を置かずにv3.0.0を先行投入して旧インターフェースを即時切り捨てる展開",
-      "evidence": "",
-      "signals": [
-        {
-          "date": "2026-10-08",
-          "dir": "confirm",
-          "why": "google-genai Python SDKの2.x系マイナーバージョンであるv2.29.0がリリースされたため。"
-        },
-        {
-          "date": "2026-10-09",
-          "dir": "confirm",
-          "why": "google-genai Python SDKの2.x系マイナーバージョンであるv2.29.0がリリースされたため。"
         }
       ]
     },

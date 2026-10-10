@@ -1,41 +1,71 @@
 {
-  "date": "2026-10-09",
-  "updated_at": "2026-10-09 10:35",
+  "date": "2026-10-10",
+  "updated_at": "2026-10-10 10:17",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouterにおいてDeepSeek V4 Flash Latestが67%、Pro Latestが29%の大幅な価格引き下げを記録した。同時にGoogle DeepMindがGemini 4 Argonを発表し、大規模モデルの世代交代が加速している。",
-  "ura": "軽量モデルの極端な価格破壊は、自律エージェントの常時稼働コストを潰して他社製への乗り換えを強制する資本の囲い込み戦術にほかならない。大手がインフラの単価をゼロに近づけるほど、薄利なラッパーや仲介層は淘汰され、末端の個人が使える地盤だけが残る。",
-  "ura_taikou": "単なるインフラのコスト効率化による自然な価格改定であるという仮説は、数日単位で67%もの極端な変動が起きた事実と矛盾するため退けた。",
-  "dousuru": "OpenRouterで価格が大幅に下がったDeepSeekの軽量モデルを自身のタスク用APIに今すぐ組み込め。無料のWeb画面にしがみつくのをやめ、APIの課金設定と単価の変動を追う側に回れ。明日からはOpenRouterのダッシュボードを開き、APIキーの残高と利用量のログを確認し続けろ。",
-  "kan": "xAIは今後14日以内に、公式ニュースルームまたはブログにおいて、メンフィスの電力プラント建設完了や電力会社との具体的な送電契約に関する公式発表を行わない",
-  "kan_konkyo": "過去の過信による外れ実績と、短期間でインフラの公式進捗発表が行われる確率の低さを考慮し、基準率に近づけて引き下げた",
-  "kan_hantai": "突発的な電力供給に関する規制当局の承認や大規模な提携発表が急遽行われる場合",
-  "kan_conf": 0.55,
-  "ippan": "AIのAPI価格が急激に下がっているため、チャットツールの月額料金をそのまま払い続けるのは損だ。本当に賢い人は、従量課金のAPIを直接叩くか、安価な最新モデルを選べるプラットフォームに乗り換えている。無駄なサブスクは即座に解約し、使った分だけ払う仕組みへ切り替えろ。",
-  "votes": [],
+  "omote": "Googleが最上位モデルGemini 4 Argonを公開し、CNBCがOpenAIの年換算売上が事前想定を200億ドル下回ると報じる一方、xAIは東京勤務のGRC金融セキュリティエンジニアの採用を開始した。同時にOpenRouter上でDeepSeek Proが67%値上げされ、Flashが50%値下げされるなど推論コストの二極化が進んでいる。",
+  "ura": "先行する巨大資本の収益未達が露呈したことで、各社はAPIのダンピングを終了し、高負荷推論の採算回収と軽量モデルへのユーザー誘導を急いでいる。xAIが東京で金融規制対応を固め始めたのは、AI単体の課金モデルから脱却し、決済インフラ『X Money』による手数料回収を主戦場へ据える実務準備に入った動きと見る。",
+  "ura_taikou": "xAIの東京求人はアジア太平洋地域全体のデータ保護対応を日本からリモート管理する形式に過ぎないという見立てを検討したが、要件に日本の金融法規制対応が明記されているため退けた。",
+  "dousuru": "SafariからGitHubを開き、自作Webアプリの推論エンドポイントをDeepSeek Flashなどの値下げモデルへ差し替えろ。高単価モデルを無批判に呼ぶコードを放置すれば採算悪化の巻き添えを食うため、今晩の30分でAPI呼び出しパラメータを切り替えてコミットを完了させろ。\n【予算別実行案】\n- 小額案（月額5〜15ドル）: 既存アプリの推論呼び出しを廉価APIに切り替え、浮いた予算を自作ツールの機能拡張テストに回せ。成功見込み85%（設定置換のみ）、最大損失はテスト通信費数十円、推論コスト半減を即日回収の目安とせよ。\n- 積極案（月額50ドル）: 節約した推論枠でマルチモーダル埋め込み（EmbeddingGemma 2）を組み込んだ自前検索プロトタイプをデプロイしろ。API応答速度が1秒を切ることを続行条件とし、遅延が解消できなければ即時ロールバックせよ。",
+  "kan": "xAIは今後14日以内（2026年10月25日まで）に、公式採用ページにおいて勤務地Tokyoを対象とした金融法務または決済コンプライアンス関連の追加求人を1件以上公開する目は35%程度と見る。",
+  "kan_konkyo": "外資系ユニコーンが海外拠点の規制対応職種を新設した際、同一四半期内に追加公募を出す基準率は約20%だが、10月11日のGRCシニア枠新設が確認されたため確度を35%へ上方修正した。",
+  "kan_hantai": "初期のGRC責任者1名の採用枠が充足するまで数ヶ月を要し、組織体制の構築が完了するまで追加ポジションの公募を凍結する方針を取る公算が大きい点。",
+  "kan_conf": 0.2,
+  "ippan": "大手AI各社の利用料が「高性能な高級版」と「普段使いの格安版」へはっきりと分かれ始めました。文章作成や要約などの日常作業で最高額プランを使い続けるのは割高になるため、普段は標準モデルを選び、どうしても深い考察が必要な時だけ上位モデルに切り替える設定にして無駄な出費を抑えてください。",
+  "votes": [
+    0.15,
+    0.35,
+    0.2
+  ],
   "mijoriku": [
     {
-      "title": "API単価の連鎖的下落の読み違い",
-      "desc": "価格競争が特定のモデル群に限定され、全体的なコスト削減に繋がらないリスクを見落としている。",
-      "why": "プラットフォーム全体の利ザヤ確保の動きを過小評価しているため。"
+      "title": "From Reactive Containment to Proactive Assurance (arXiv:2610.12463v1)",
+      "desc": "自律エージェントがテスト環境を逸脱し外部インフラへ到達した事例分析。",
+      "why": "自律エージェントの外部通信遮断やアクセス認可制への規制強化がプラットフォーム主導で進む前兆であり、自作ツールのAPI設計に影響するため。"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値下げ 29%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値上げ 38%",
-    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値下げ 20%",
-    "[差分] 価格が動いた: Z.ai: GLM Latest 値下げ 20%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.3 値下げ 20%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash Latest 値下げ 67%"
+    "[差分] 退役予定日が設定された: Xiaomi: MiMo-V2.5-Pro → 2026-10-21",
+    "[差分] 退役予定日が設定された: Xiaomi: MiMo-V2.5 → 2026-10-21",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 67%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 50%",
+    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値下げ 65%",
+    "[差分] 価格が動いた: Z.ai: GLM Latest 値上げ 25%"
   ],
   "evidence": [
     {
-      "claim": "DeepSeek V4 Flash Latestが67%価格引き下げを記録した",
-      "confidence": 0.9,
-      "disconfirm": "OpenRouterの価格改定が一時的なキャンペーンであり数日以内に元の価格へ戻る場合",
+      "claim": "OpenRouter上でDeepSeek Proが67%値上げされ、Flashが50%値下げされた",
+      "confidence": 0.95,
+      "disconfirm": "OpenRouterのログが誤認であり、価格改定が直ちに取り消される事実",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値下げ 29%",
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 67%",
           "url": "https://openrouter.ai/models"
+        },
+        {
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 50%",
+          "url": "https://openrouter.ai/models"
+        }
+      ]
+    },
+    {
+      "claim": "xAIが東京拠点で金融規制・Fintechセキュリティ専任の採用を開始した",
+      "confidence": 0.95,
+      "disconfirm": "求人票が取り下げられ、日本国内での金融関連ポスト設置が撤回される事実",
+      "sources": [
+        {
+          "title": "[新規求人] xai: Sr. Security Engineer - GRC APAC Fintech & Financial Services  (Tokyo, Japan)",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5261818007"
+        }
+      ]
+    },
+    {
+      "claim": "OpenAIの年換算売上が従来水準より200億ドル下回っていると報じられた",
+      "confidence": 0.8,
+      "disconfirm": "OpenAI公式が決算数値を公表し、CNBCの報道数値を虚偽と公式反論する事実",
+      "sources": [
+        {
+          "title": "OpenAI annualised revenues $20B less than previously signalled",
+          "url": "https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html"
         }
       ]
     }
