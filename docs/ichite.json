@@ -1,166 +1,162 @@
 {
-  "date": "2026-10-10",
+  "date": "2026-10-11",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "自作Webアプリで無駄に高単価モデルを呼んでいるエンドポイントはどこか？",
-    "OpenRouter値下げモデルへ差し替えた場合、1推論あたりのコストは何割減るか？",
-    "SDK更新とモデル切替をiPhoneのGitHub画面上で今夜中にコミットできるか？"
+    "値下げされた格安APIを自作アプリに今夜差し替えるか？",
+    "xAIの決済進出前に自前アプリへ決済リンクを貼るか？",
+    "API原価が10分の1になった差額をどこに再投資するか？"
   ],
   "moves": [
     {
-      "t": "API設定をFlashへ差し替える",
-      "why": "DeepSeek値上げと値下げの二極化を受け、自作Webアプリの無駄な推論コストを即座に半減させるため。",
+      "t": "API設定を格安モデルに書き換える",
+      "why": "推論コスト9割減の恩恵を自作アプリへ即座に取り込み、月間運用コストを底値に抑えるため。",
       "cost_min": 0,
-      "cost_max": 150,
-      "loss_max": 150,
+      "cost_max": 0,
+      "loss_max": 0,
       "success_p": 0.85,
       "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "GitHubのWebエディタから環境変数とモデル指定文字列を1箇所書き換えるだけの差分で完結するため。",
+      "success_p_max": 0.95,
+      "success_why": "GitHubのWebエディタ上で環境変数またはエンドポイント文字列を書き換えるだけで完結するため。",
       "value_score": 4,
       "learning_value": 3,
       "time_minutes": 15,
-      "payback_days": 1,
-      "outcome": "値下げモデルへ切り替えたコミットログとAPI通信テストの成功レスポンス",
+      "payback_days": 0,
+      "outcome": "GitHub上でQwen等の格安モデル向け設定変更がコミットされデプロイが完了した状態",
       "category": "build",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.25,
-      "impact_why": "運用コストの恒久削減が完了し、次期機能の検証原資を確保できるため。",
+      "impact_why": "運用原価の劇的削減により、今後の機能追加やユーザー獲得時の赤字リスクを排除できるため。",
       "evidence_ids": [
-        "2026-10-07-r04",
-        "action-history"
+        "2026-10-11-r07"
       ],
       "assumptions": [
-        "自作WebアプリのリポジトリがGitHub上で編集可能であること",
-        "OpenRouterまたは対象APIキーの残高が存在すること"
+        "GitHubリポジトリにiPhoneのSafariからアクセス可能であること"
       ],
-      "disconfirm": "Flashモデルの日本語出力精度が要件を満たさずアプリが破綻する",
-      "continue_if": "推論レイテンシが2秒以内でエラー率が1%未満の場合",
-      "stop": "レスポンス品質の劣化が顕著でユーザー体験を損なう場合"
+      "disconfirm": "格安モデルの日本語出力品質が既存モデルに比べ著しく劣化し実用に耐えない場合",
+      "continue_if": "デプロイ後の動作確認でエラーが出ず応答時間が許容範囲内であること",
+      "stop": "レスポンスエラー率が5%を超えロールバックが必要になった場合"
     },
     {
-      "t": "openai依存をv3.26へ更新する",
-      "why": "v3.26.0への更新により通信最適化を取り込み、旧版依存による非推奨エラーを未然に防ぐため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.65,
-      "success_p_max": 0.9,
-      "success_why": "requirements.txtまたはpackage.jsonのバージョン指定書き換えのみでテスト可能なため。",
-      "value_score": 3,
-      "learning_value": 3,
+      "t": "OpenRouterに小額チャージする",
+      "why": "無料枠制限を回避し、9割値下げされた高速モデルの実リクエスト耐性を実測検証するため。",
+      "cost_min": 750,
+      "cost_max": 1500,
+      "loss_max": 1500,
+      "success_p": 0.9,
+      "success_p_min": 0.8,
+      "success_p_max": 0.95,
+      "success_why": "Safari上でカード決済とAPIキー有効化を行う定型フローであり不確実性が極めて低いため。",
+      "value_score": 4,
+      "learning_value": 4,
       "time_minutes": 10,
-      "payback_days": 0,
-      "outcome": "依存関係定義ファイルの更新コミットとCIビルド通過の確認",
-      "category": "build",
+      "payback_days": 14,
+      "outcome": "OpenRouterアカウントに残高が反映され有料エンドポイントへの疎通確認が取れた状態",
+      "category": "buy",
       "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "最新クライアントでの安定動作が担保され、推論基盤の負債が解消するため。",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "極小コストでの推論基盤が手に入り今後の機能開発を予算制約なしで進められるため。",
       "evidence_ids": [
-        "2026-10-07-r04"
+        "2026-10-11-r07"
       ],
       "assumptions": [
-        "SDK更新で破壊的変更が自作機能に影響しないこと"
+        "iPhone上で決済可能なクレジットカードまたはデビットカードが利用できること"
       ],
-      "disconfirm": "SDKアップデートにより既存の呼び出しコードが構文エラーを起こす",
-      "continue_if": "デプロイプレビュー環境でエラーなく起動する場合",
-      "stop": "メジャー非互換による広範な書き直しが必要と判明した場合"
+      "disconfirm": "チャージ後に該当格安モデルの価格改定やサービス停止が即時発表された場合",
+      "continue_if": "1リクエストあたりのコストが従来モデル比で80%以上削減されていることが確認できた時",
+      "stop": "チャージ処理で決済エラーが頻発しアカウントロックのリスクが生じた場合"
     },
     {
-      "t": "Gemini接続設定を事前作成する",
-      "why": "google-genai SDK v2.28.0の予告を踏まえ、仕様変更前に代替モデル呼出の別ブランチを準備するため。",
+      "t": "アプリ内にStripe決済導線を貼る",
+      "why": "xAIが決済網を敷く前に、特定用途向けWebアプリで直接少額決済を受け取る最小動線を確保するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.75,
       "success_p_min": 0.6,
       "success_p_max": 0.85,
-      "success_why": "GitHub上で新規テストブランチを作成しラッパー関数を追加するだけでリスクがないため。",
-      "value_score": 3,
+      "success_why": "Stripe Payment Linksを用いればノーコードでURL発行でき、HTMLリンク追加のみで完結するため。",
+      "value_score": 5,
       "learning_value": 4,
       "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "新SDK仕様に対応したフォールバック用ブランチのプルリクエスト作成",
+      "payback_days": 7,
+      "outcome": "Webアプリの画面上に決済リンクが配置されテスト決済が通過した状態",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.2,
-      "impact_why": "単一プロバイダー依存から脱却し、価格改定時の迅速な切り替えが可能になるため。",
+      "impact_min": 0.15,
+      "impact_max": 0.3,
+      "impact_why": "アクセスを直接マネタイズする導線が確立し単なる無料ツールから収益装置へ脱却できるため。",
       "evidence_ids": [
-        "2026-10-03-r01"
+        "2026-10-11-r07"
       ],
       "assumptions": [
-        "Gemini APIキーをすでに取得済みであること"
+        "Stripeアカウントが開設済みでSafari上でリンク生成ができること"
       ],
-      "disconfirm": "SDKのAFC変更仕様が現在のアーキテクチャと完全に不整合である",
-      "continue_if": "テスト呼び出しで正常にJSONレスポンスが返る場合",
-      "stop": "認証方式の変更によりiPhoneからの設定が不可能な場合"
+      "disconfirm": "決済導線を配置してもターゲット層からの課金動機が完全に欠落していると判明した場合",
+      "continue_if": "テスト決済が正常に完了しサンクスページへのリダイレクトが動作すること",
+      "stop": "利用規約違反の疑い等で決済アカウントの審査が通過しない場合"
     },
     {
-      "t": "推論レスポンス速度を実測する",
-      "why": "モデル切り替え後のレイテンシを計測し、UI表示の遅延ボトルネックを即座に特定するため。",
+      "t": "新旧モデルの応答速度を比較測定する",
+      "why": "価格破壊されたモデルの実用性を客観的数値で把握し、本番投入可能か即決するため。",
       "cost_min": 0,
-      "cost_max": 50,
-      "loss_max": 50,
-      "success_p": 0.85,
-      "success_p_min": 0.7,
+      "cost_max": 100,
+      "loss_max": 100,
+      "success_p": 0.8,
+      "success_p_min": 0.65,
       "success_p_max": 0.9,
-      "success_why": "Safariの開発者機能またはテストリクエストのログ記録コードを挟んで数値を確認するだけのため。",
+      "success_why": "Safari上で各モデルへ同一プロンプトを投げて所要秒数とトークン単価を記録するだけの手順なため。",
       "value_score": 3,
       "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 1,
-      "outcome": "主要モデル3種の応答速度と消費トークン数の比較メモ",
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "プロンプト3件に対する新旧モデルの出力速度とコスト差分を記録したメモが残った状態",
       "category": "review",
       "terminal": false,
       "impact_min": 0.05,
       "impact_max": 0.15,
-      "impact_why": "体感速度の改善により自作Webツールの実用継続率が向上するため。",
+      "impact_why": "体感ではなくデータに基づき本番API切り替えの妥当性を証明できるため。",
       "evidence_ids": [
-        "2026-10-07-r04",
-        "action-history"
+        "2026-10-11-r07"
       ],
       "assumptions": [
-        "ログ出力がVercelまたはRenderなどのダッシュボードから閲覧可能なこと"
+        "テスト用の定型プロンプトが手元に3パターン以上用意されていること"
       ],
-      "disconfirm": "モデル差による速度差がミリ秒単位で実用差がない",
-      "continue_if": "軽量モデルの応答が従来より30%以上速い場合",
-      "stop": "ネットワーク環境の乱れで測定値が安定しない場合"
+      "disconfirm": "新モデルのレスポンスタイムが旧モデルの3倍以上かかりUXを破壊すると判明した場合",
+      "continue_if": "新モデルが速度同等以上かつコスト9割減の数値を実測で満たした場合",
+      "stop": "レスポンス生成時の文字化けや日本語構文崩壊が半数以上のテストで発生した場合"
     },
     {
-      "t": "埋め込み検索モジュールを試作する",
-      "why": "推論コスト削減で浮いた枠を活用し、標準予算でベクトル検索のミニマム実装を組み込むため。",
-      "cost_min": 3000,
-      "cost_max": 4500,
-      "loss_max": 4500,
-      "success_p": 0.65,
-      "success_p_min": 0.5,
-      "success_p_max": 0.75,
-      "success_why": "EmbeddingGemma等の軽量APIを呼ぶ単一スクリプトをGitHub Webエディタで作成・検証可能なため。",
+      "t": "カスタムドメインを設定し信頼性を高める",
+      "why": "金融・決済機能の組み込みに備え、無料サブドメインの怪しさを排除して成約率を底上げするため。",
+      "cost_min": 1500,
+      "cost_max": 3000,
+      "loss_max": 3000,
+      "success_p": 0.7,
+      "success_p_min": 0.55,
+      "success_p_max": 0.8,
+      "success_why": "Cloudflare等のドメイン取得とホスティング連携はSafari上でも30分以内にDNS設定可能なため。",
       "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 14,
-      "outcome": "自作Webアプリ上で動作するベクトル検索エンドポイントのコード",
-      "category": "build",
+      "learning_value": 3,
+      "time_minutes": 25,
+      "payback_days": 30,
+      "outcome": "独自ドメインでWebアプリへHTTPSアクセス可能になった状態",
+      "category": "publish",
       "terminal": false,
       "impact_min": 0.1,
-      "impact_max": 0.3,
-      "impact_why": "単純なプロンプト投げから検索連動型（RAG）へとアプリの性能階層が上がるため。",
+      "impact_max": 0.25,
+      "impact_why": "ユーザーの決済入力心理的障壁が下がり有料化時のCVRが確実に改善するため。",
       "evidence_ids": [
-        "2026-10-02-r02",
-        "action-history"
+        "2026-10-11-r07"
       ],
       "assumptions": [
-        "対象データのテキスト断片がリポジトリ内に用意されていること"
+        "ホスティングサービス側でカスタムドメイン追加が許可されている構成であること"
       ],
-      "disconfirm": "小規模データではベクトル検索の精度向上が体感できない",
-      "continue_if": "検索一致率が既存のキーワードマッチを上回る場合",
-      "stop": "API呼び出しコストが月次予算枠をオーバーする場合"
+      "disconfirm": "ドメイン取得後もブランド毀損やターゲット不適合でドメイン名が無駄になると判断した場合",
+      "continue_if": "SSL証明書が正常に発行されブラウザの警告なく表示された場合",
+      "stop": "DNS反映エラーが解決せずホスティング側でルーティングが確立できない場合"
     }
   ],
-  "kan": "xAIは今後14日以内（2026年10月25日まで）に、公式採用ページにおいて勤務地Tokyoを対象とした金融法務または決済コンプライアンス関連の追加求人を1件以上公開する目は35%程度と見る。"
+  "kan": "xAIは今後30日以内に、公式ブログにおいて日本市場向けX Moneyまたは決済サービスの提供開始を発表しない"
 }

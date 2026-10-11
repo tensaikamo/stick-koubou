@@ -2715,7 +2715,7 @@
       "decider": "期日時点で https://x.ai/blog に日本国内向けの送金・決済サービス提供開始（ローンチ）を告知する記事が掲載されていない場合に的中"
     },
     "deadline": "2026-11-10",
-    "confidence": 0.92,
+    "confidence": 0.947,
     "base_rate": 0.02,
     "base_rate_class": "外資系テック企業が現地コンプライアンス職の求人公開から30日以内に該当国での金融サービス提供開始を発表する頻度",
     "confidence_why": "base_rateの事象非発生確率（0.98）を出発点とし、イーロン・マスク主導の電撃的な先行ベータ表明等の突発的広報リスクを考慮してやや下げた0.92に設定した。",
@@ -2730,7 +2730,16 @@
         "dir": "confirm"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-10-11",
+        "sign": "xAIの東京拠点における法務・コンプライアンス関連求人が追加掲載される",
+        "dir": "confirm",
+        "why": "xAIが東京拠点で「Sr. Security Engineer - GRC APAC Fintech & Financial Services」の新規求人を掲載し、法務・コンプライアンス（GRC）関連求人の追加が確認されたため。",
+        "conf_before": 0.92,
+        "conf_after": 0.947
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -2738,6 +2747,7 @@
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.92
   }
 ]
