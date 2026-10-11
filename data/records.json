@@ -6700,5 +6700,194 @@
       "2026-09-29-r07",
       "2026-09-29-r06"
     ]
+  },
+  {
+    "id": "2026-10-11-r01",
+    "created_at": "2026-10-11T09:23:21.792693+09:00",
+    "headline": "OpenAIがPython SDKのバージョン3.28.0をPyPIで公開",
+    "what_happened": "OpenAIは公式Pythonライブラリ「openai」のバージョン3.28.0をPyPIにリリースした。HTTPXを利用した同期・非同期クライアントおよび最新のOpenAPI仕様に基づく型定義の更新が含まれる。Python 3.10以降をサポート対象としている。",
+    "background": "OpenAIの公式Python SDKは、REST APIの更新やパラメータ追加に追従するため高頻度でパッチおよびマイナーアップデートが行われている。",
+    "changed": "開発環境において最新のAPI仕様に沿った型定義とクライアント実装が利用可能になった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.28.0/",
+      "title": "openai Python SDK v3.28.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-07-r04",
+      "2026-10-03-r02",
+      "2026-10-02-r01",
+      "2026-09-30-r01",
+      "2026-09-29-r01",
+      "2026-09-25-r01"
+    ]
+  },
+  {
+    "id": "2026-10-11-r02",
+    "created_at": "2026-10-11T09:23:21.792693+09:00",
+    "headline": "AnthropicがPython SDKのバージョン1.13.0をPyPIで公開",
+    "what_happened": "AnthropicはClaude API向け公式Pythonライブラリ「anthropic」のバージョン1.13.0をPyPIにリリースした。ドキュメントにはツール実行ヘルパーやブラウザ/コンピュータ操作向けツールセットの利用ガイドへの参照が含まれている。",
+    "background": "AnthropicはClaude 3.5 Sonnet以降、Computer Useや高度なツール利用機能をSDK側で順次拡充している。",
+    "changed": "Claude APIを利用する開発者が最新のSDK機能および更新されたツールセット群を利用可能になった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.13.0/",
+      "title": "anthropic Python SDK v1.13.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-09-r06",
+      "2026-10-09-r05",
+      "2026-10-09-r04",
+      "2026-10-08-r04",
+      "2026-10-08-r03",
+      "2026-10-08-r01"
+    ]
+  },
+  {
+    "id": "2026-10-11-r03",
+    "created_at": "2026-10-11T09:23:21.792693+09:00",
+    "headline": "Anthropicがプログラマティック・カスタマーサクセス責任者の募集を開始",
+    "what_happened": "Anthropicはサンフランシスコおよびニューヨーク勤務の「Head of Programmatic Customer Success」職の募集を開始した。専任担当がつかない広範な顧客層に対し、デジタルジャーニーやAIを活用した施策を通じてClaudeの定着利用を促す新機能の立ち上げを担う。",
+    "background": "エンタープライズ営業の初期開拓から、セルフサーブおよび中小規模を含むロングテール顧客の自動化された定着化支援へと組織体制を拡張している。",
+    "changed": "大口顧客特化の手厚い支援だけでなく、プロダクト主導型のスケールするCS運用体制の構築が着手された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5446607008",
+      "title": "[新規求人] anthropic: Head of Programmatic Customer Success (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-09-r06",
+      "2026-10-09-r05",
+      "2026-10-09-r04",
+      "2026-10-08-r04",
+      "2026-10-08-r03",
+      "2026-10-08-r01"
+    ]
+  },
+  {
+    "id": "2026-10-11-r04",
+    "created_at": "2026-10-11T09:23:21.792693+09:00",
+    "headline": "Anthropicが法学・哲学等の専門家を対象とする4ヶ月間のフェローシップ募集を開始",
+    "what_happened": "Anthropicは「Conceptual Reasoning Fellow」の募集を開始した。哲学、認知科学、経済学、政策、法学の研究者や実務家を4ヶ月間受け入れ、Claudeの推論能力の評価・改善・応用に共同で取り組むプログラムである。",
+    "background": "単一の正解が存在しない高次推論領域において、フロンティアモデルの評価と安全性検証に外部専門知識を取り込む試みの一環である。",
+    "changed": "人文社会科学・法制度の高度専門家を研究チームに直接招聘する評価スキームが制度化された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5447080008",
+      "title": "[新規求人] anthropic: Conceptual Reasoning Fellow (Remote-Friendly, United States; San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-09-r06",
+      "2026-10-09-r05",
+      "2026-10-09-r04",
+      "2026-10-08-r04",
+      "2026-10-08-r03",
+      "2026-10-08-r01"
+    ]
+  },
+  {
+    "id": "2026-10-11-r05",
+    "created_at": "2026-10-11T09:23:21.792693+09:00",
+    "headline": "Anthropicがサイバーセキュリティ専任の営業スペシャリスト募集を開始",
+    "what_happened": "Anthropicは金融、ヘルスケア、テクノロジー等の業界向けに「Cybersecurity Sales Specialist」の採用を開始した。コードの脆弱性発見・修正におけるClaudeの優位性を背景に、CISO向け戦略の主導とセキュリティ案件の獲得を目的としている。",
+    "background": "Claudeのコード解析・脆弱性検知能力を汎用API利用にとどめず、防衛側セキュリティ用途に特化した商談機会として収益化を図る狙いがある。",
+    "changed": "セキュリティ領域を独立したセールス柱として位置づけ、特化型エンタープライズ開拓体制の整備が始まった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5449091008",
+      "title": "[新規求人] anthropic: Cybersecurity Sales Specialist (New York City, NY; San Francisco, CA | New York City, NY; Seattle, WA; Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-09-r06",
+      "2026-10-09-r05",
+      "2026-10-09-r04",
+      "2026-10-08-r04",
+      "2026-10-08-r03",
+      "2026-10-08-r01"
+    ]
+  },
+  {
+    "id": "2026-10-11-r06",
+    "created_at": "2026-10-11T09:23:21.792693+09:00",
+    "headline": "xAIがベアメタルおよび基盤プラットフォーム担当インフラセキュリティエンジニアを募集",
+    "what_happened": "xAI（SpaceXAI表記）はパロアルト、オースティン等で「Infrastructure Security Engineer (Bare Metal & Platform)」の求人を公開した。物理サーバー、プライベートクラウド、データセンター基盤からコンテナ層に至るセキュリティ設計と堅牢化を担う。",
+    "background": "メンフィス等の大規模自社データセンター構築に伴い、物理層・ベアメタルインフラの独自運用と防衛が急務となっている。",
+    "changed": "パブリッククラウド依存から自社データセンターのベアメタル層直接運用への移行に伴うセキュリティ専門要員の増強が確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5262880007",
+      "title": "[新規求人] xai: Infrastructure Security Engineer (Bare Metal & Platform) ( Palo Alto, CA; Austin, TX; New York, NY; Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-09-r08",
+      "2026-10-09-r07",
+      "2026-10-02-r06",
+      "2026-10-01-r06",
+      "2026-10-01-r05",
+      "2026-10-01-r04"
+    ]
+  },
+  {
+    "id": "2026-10-11-r07",
+    "created_at": "2026-10-11T09:23:21.792693+09:00",
+    "headline": "xAIが東京勤務の金融・Fintech特化GRCシニアセキュリティエンジニアを募集",
+    "what_happened": "xAI（SpaceXAI表記）は東京拠点の「Sr. Security Engineer - GRC APAC Fintech & Financial Services」の求人を公開した。業務内容としてSpaceXAIおよびX Moneyの日本における情報セキュリティおよび金融規制対応・コンプライアンス体制のスケーリングが明記されている。",
+    "background": "Xプラットフォームにおける金融・決済機能「X Money」の構想について、米国でのライセンス取得に続き日本市場での規制対応準備に着手したことが示唆される。",
+    "changed": "日本国内の金融サービス規制（資金決済法等）を見据えた法規・セキュリティ準拠の実務担当者採用が具体化した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5261818007",
+      "title": "[新規求人] xai: Sr. Security Engineer - GRC APAC Fintech & Financial Services  (Tokyo, Japan)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-09-r08",
+      "2026-10-09-r07",
+      "2026-10-02-r06",
+      "2026-10-01-r06",
+      "2026-10-01-r05",
+      "2026-10-01-r04"
+    ]
   }
 ]

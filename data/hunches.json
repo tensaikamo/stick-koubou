@@ -2699,5 +2699,45 @@
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-10-11-h01",
+    "created_at": "2026-10-11T09:23:21.792693+09:00",
+    "based_on": [
+      "2026-10-11-r07"
+    ],
+    "prose": "xAIが東京勤務のGRCエンジニア募集を開始し、X Moneyの日本市場における金融規制対応の布石を打った。ただし規制産業における初期求人公開は体制構築の着手点に過ぎず、資金移動業者登録等の法的手続きには通常半年以上の実務期間を要する。したがって、短期間で日本国内向けサービス提供が公式に開始・発表される事象は見送られる公算が大きい。",
+    "claim": "xAIは今後30日以内に、公式ブログにおいて日本市場向けX Moneyまたは決済サービスの提供開始を発表しない",
+    "subject": "xAI",
+    "resolution": {
+      "source": "https://x.ai/blog",
+      "check_query": "X Money Japan",
+      "decider": "期日時点で https://x.ai/blog に日本国内向けの送金・決済サービス提供開始（ローンチ）を告知する記事が掲載されていない場合に的中"
+    },
+    "deadline": "2026-11-10",
+    "confidence": 0.92,
+    "base_rate": 0.02,
+    "base_rate_class": "外資系テック企業が現地コンプライアンス職の求人公開から30日以内に該当国での金融サービス提供開始を発表する頻度",
+    "confidence_why": "base_rateの事象非発生確率（0.98）を出発点とし、イーロン・マスク主導の電撃的な先行ベータ表明等の突発的広報リスクを考慮してやや下げた0.92に設定した。",
+    "counter": "規制対応完了を待たずに機能プレビューや日本市場向けロードマップの告知記事が先行公開される場合、この読みは外れる。",
+    "indicators": [
+      {
+        "sign": "金融庁の資金移動業者または暗号資産交換業者登録一覧にX/xAI関連法人が掲載される",
+        "dir": "kill"
+      },
+      {
+        "sign": "xAIの東京拠点における法務・コンプライアンス関連求人が追加掲載される",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.8-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
