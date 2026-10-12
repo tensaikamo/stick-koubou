@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-11 09:24",
+  "updated_at": "2026-10-12 09:43",
   "score": {
     "hit": 16,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-10-13",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -335,7 +335,7 @@
       "claim": "xAIは今後30日以内に、公式ブログにおいて日本市場向けX Moneyまたは決済サービスの提供開始を発表しない",
       "subject": "xAI",
       "deadline": "2026-11-10",
-      "confidence": 0.947,
+      "confidence": 0.95,
       "initial_confidence": 0.92,
       "result": null,
       "status": "pending",
@@ -347,6 +347,11 @@
           "date": "2026-10-11",
           "dir": "confirm",
           "why": "xAIが東京拠点で「Sr. Security Engineer - GRC APAC Fintech & Financial Services」の新規求人を掲載し、法務・コンプライアンス（GRC）関連求人の追加が確認されたため。"
+        },
+        {
+          "date": "2026-10-12",
+          "dir": "confirm",
+          "why": "xAIの東京拠点向けにFintech/金融サービス領域のGRC（ガバナンス・リスク・コンプライアンス）求人が新規掲載されたため。"
         }
       ]
     }
@@ -355,11 +360,6 @@
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-10-11",
-          "headline": "AnthropicがPython SDKのバージョン1.13.0をPyPIで公開",
-          "url": "https://pypi.org/project/anthropic/1.13.0/"
-        },
         {
           "date": "2026-10-11",
           "headline": "Anthropicがサイバーセキュリティ専任の営業スペシャリスト募集を開始",
@@ -374,6 +374,11 @@
           "date": "2026-10-11",
           "headline": "Anthropicが法学・哲学等の専門家を対象とする4ヶ月間のフェローシップ募集を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5447080008"
+        },
+        {
+          "date": "2026-10-12",
+          "headline": "OpenAI・Anthropic・Google製エージェントの境界外アクセス事例を比較した論文が公開",
+          "url": "https://arxiv.org/abs/2610.12463v1"
         }
       ]
     },
@@ -406,11 +411,6 @@
       "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-10-02",
-          "headline": "openai Python SDK v3.23.0 リリース",
-          "url": "https://pypi.org/project/openai/3.23.0/"
-        },
-        {
           "date": "2026-10-03",
           "headline": "OpenAIがopenai Python SDK v3.24.0をPyPIで公開",
           "url": "https://pypi.org/project/openai/3.24.0/"
@@ -424,17 +424,17 @@
           "date": "2026-10-11",
           "headline": "OpenAIがPython SDKのバージョン3.28.0をPyPIで公開",
           "url": "https://pypi.org/project/openai/3.28.0/"
+        },
+        {
+          "date": "2026-10-12",
+          "headline": "OpenAI・Anthropic・Google製エージェントの境界外アクセス事例を比較した論文が公開",
+          "url": "https://arxiv.org/abs/2610.12463v1"
         }
       ]
     },
     {
       "subject": "Google",
       "events": [
-        {
-          "date": "2026-09-23",
-          "headline": "google-genai Python SDK v2.25.0 リリース",
-          "url": "https://pypi.org/project/google-genai/2.25.0/"
-        },
         {
           "date": "2026-10-02",
           "headline": "google-genai Python SDK v2.27.0 リリース",
@@ -449,6 +449,11 @@
           "date": "2026-10-08",
           "headline": "google-genai Python SDK v2.29.0 リリースと次期バージョンの変更予告",
           "url": "https://pypi.org/project/google-genai/2.29.0/"
+        },
+        {
+          "date": "2026-10-12",
+          "headline": "OpenAI・Anthropic・Google製エージェントの境界外アクセス事例を比較した論文が公開",
+          "url": "https://arxiv.org/abs/2610.12463v1"
         }
       ]
     },
@@ -484,6 +489,27 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-10-12-r03",
+      "date": "2026-10-12",
+      "headline": "物理制約を伴う組立設計を評価するエージェント向けベンチマークBrickBenchが公開",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2610.12452v1"
+    },
+    {
+      "id": "2026-10-12-r02",
+      "date": "2026-10-12",
+      "headline": "OpenAI・Anthropic・Google製エージェントの境界外アクセス事例を比較した論文が公開",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2610.12463v1"
+    },
+    {
+      "id": "2026-10-12-r01",
+      "date": "2026-10-12",
+      "headline": "METRのAIタスク所要時間指標の非線形性を示す統計的検証論文が公開",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2610.12466v1"
+    },
     {
       "id": "2026-10-11-r07",
       "date": "2026-10-11",
@@ -546,28 +572,7 @@
       "headline": "xAIが Construction Manager, Power Generation - Memphis の求人を公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/xai/jobs/5261595007"
-    },
-    {
-      "id": "2026-10-09-r06",
-      "date": "2026-10-09",
-      "headline": "Anthropicが Applied AI Architect (Delhi, India) の求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5443882008"
-    },
-    {
-      "id": "2026-10-09-r05",
-      "date": "2026-10-09",
-      "headline": "Anthropicが Senior Analyst, Travel & Expense の求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5445989008"
-    },
-    {
-      "id": "2026-10-09-r04",
-      "date": "2026-10-09",
-      "headline": "Anthropicが Product Manager, App Foundations の求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5448167008"
     }
   ],
-  "record_count": 251
+  "record_count": 254
 }
