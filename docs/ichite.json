@@ -1,162 +1,163 @@
 {
-  "date": "2026-10-11",
+  "date": "2026-10-13",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "値下げされた格安APIを自作アプリに今夜差し替えるか？",
-    "xAIの決済進出前に自前アプリへ決済リンクを貼るか？",
-    "API原価が10分の1になった差額をどこに再投資するか？"
+    "GLM値下げを受け今夜アプリのAPI接続をOpenRouter経由に切り替えるか？",
+    "OpenAIのCLI常駐化を警戒しアプリ設定でローカル依存を排除できているか？",
+    "Anthropicの課金改定に備え複数モデルの自動切替配列を即座に組めるか？"
   ],
   "moves": [
     {
-      "t": "API設定を格安モデルに書き換える",
-      "why": "推論コスト9割減の恩恵を自作アプリへ即座に取り込み、月間運用コストを底値に抑えるため。",
+      "t": "API設定にGLMとフォールバックを追記する",
+      "why": "GLM大幅値下げとDeepSeek値上げに対応し、アプリのトークン原価を即座に引き下げるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.85,
       "success_p_min": 0.7,
       "success_p_max": 0.95,
-      "success_why": "GitHubのWebエディタ上で環境変数またはエンドポイント文字列を書き換えるだけで完結するため。",
+      "success_why": "iPhoneのSafariからGitHubリポジトリの設定ファイルを直接編集・コミットするだけで完結する作業のため。",
       "value_score": 4,
       "learning_value": 3,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "GitHub上でQwen等の格安モデル向け設定変更がコミットされデプロイが完了した状態",
+      "outcome": "GLM優先かつDeepSeekへのフォールバック設定を含むコミット履歴",
       "category": "build",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.25,
-      "impact_why": "運用原価の劇的削減により、今後の機能追加やユーザー獲得時の赤字リスクを排除できるため。",
+      "impact_why": "API利用コストの抑制と障害耐性が1回の設定更新で恒久的に確立されるため。",
       "evidence_ids": [
-        "2026-10-11-r07"
+        "2026-10-13-r02"
       ],
       "assumptions": [
-        "GitHubリポジトリにiPhoneのSafariからアクセス可能であること"
+        "既存WebアプリがOpenRouter等のマルチモデル中継APIに対応した記述構成になっていること"
       ],
-      "disconfirm": "格安モデルの日本語出力品質が既存モデルに比べ著しく劣化し実用に耐えない場合",
-      "continue_if": "デプロイ後の動作確認でエラーが出ず応答時間が許容範囲内であること",
-      "stop": "レスポンスエラー率が5%を超えロールバックが必要になった場合"
+      "disconfirm": "OpenRouter経由でGLM 5.3 Flashのエンドポイント疎通が取れず404エラーを返す場合",
+      "continue_if": "コミット後にテストリクエストが通りコスト削減が数値で確認できること",
+      "stop": "設定ファイルの構文エラーで現行アプリの稼働が停止した場合"
     },
     {
-      "t": "OpenRouterに小額チャージする",
-      "why": "無料枠制限を回避し、9割値下げされた高速モデルの実リクエスト耐性を実測検証するため。",
-      "cost_min": 750,
-      "cost_max": 1500,
-      "loss_max": 1500,
-      "success_p": 0.9,
-      "success_p_min": 0.8,
-      "success_p_max": 0.95,
-      "success_why": "Safari上でカード決済とAPIキー有効化を行う定型フローであり不確実性が極めて低いため。",
+      "t": "OpenRouterに少額入金し新キーを発行する",
+      "why": "API価格破壊の恩恵を自作アプリに直接注入し、大手単一依存の価格転嫁リスクを回避するため。",
+      "cost_min": 800,
+      "cost_max": 1600,
+      "loss_max": 1600,
+      "success_p": 0.8,
+      "success_p_min": 0.65,
+      "success_p_max": 0.9,
+      "success_why": "Webブラウザ上でクレジットカード決済とAPIキー生成が数分で完了する仕様であるため。",
       "value_score": 4,
-      "learning_value": 4,
+      "learning_value": 3,
       "time_minutes": 10,
-      "payback_days": 14,
-      "outcome": "OpenRouterアカウントに残高が反映され有料エンドポイントへの疎通確認が取れた状態",
+      "payback_days": 7,
+      "outcome": "安価な推論枠を確保したAPIキーと環境変数への組み込み完了",
       "category": "buy",
       "terminal": false,
-      "impact_min": 0.1,
+      "impact_min": 0.08,
       "impact_max": 0.2,
-      "impact_why": "極小コストでの推論基盤が手に入り今後の機能開発を予算制約なしで進められるため。",
+      "impact_why": "モデル選定の主導権を確保し、プロバイダ価格改定への追従基盤が整うため。",
       "evidence_ids": [
-        "2026-10-11-r07"
+        "2026-10-13-r02"
       ],
       "assumptions": [
-        "iPhone上で決済可能なクレジットカードまたはデビットカードが利用できること"
+        "iPhone上のSafariで海外決済が通るプリペイドまたはクレジットカードを所持していること"
       ],
-      "disconfirm": "チャージ後に該当格安モデルの価格改定やサービス停止が即時発表された場合",
-      "continue_if": "1リクエストあたりのコストが従来モデル比で80%以上削減されていることが確認できた時",
-      "stop": "チャージ処理で決済エラーが頻発しアカウントロックのリスクが生じた場合"
+      "disconfirm": "決済完了後もAPIキーの発行制限がかかり即時利用が拒絶された場合",
+      "continue_if": "少額テストでGLMモデルの推論レスポンスが規定時間内に返ること",
+      "stop": "決済失敗が連続してアカウントロックの兆候が出た場合"
     },
     {
-      "t": "アプリ内にStripe決済導線を貼る",
-      "why": "xAIが決済網を敷く前に、特定用途向けWebアプリで直接少額決済を受け取る最小動線を確保するため。",
+      "t": "OpenAI新SDKの変更点をSafariで点検する",
+      "why": "CLI常駐デーモンの挙動やクライアント側コンテキスト収集仕様が自作コードに及ぼす影響を特定するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.75,
       "success_p_min": 0.6,
       "success_p_max": 0.85,
-      "success_why": "Stripe Payment Linksを用いればノーコードでURL発行でき、HTMLリンク追加のみで完結するため。",
-      "value_score": 5,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 7,
-      "outcome": "Webアプリの画面上に決済リンクが配置されテスト決済が通過した状態",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.3,
-      "impact_why": "アクセスを直接マネタイズする導線が確立し単なる無料ツールから収益装置へ脱却できるため。",
-      "evidence_ids": [
-        "2026-10-11-r07"
-      ],
-      "assumptions": [
-        "Stripeアカウントが開設済みでSafari上でリンク生成ができること"
-      ],
-      "disconfirm": "決済導線を配置してもターゲット層からの課金動機が完全に欠落していると判明した場合",
-      "continue_if": "テスト決済が正常に完了しサンクスページへのリダイレクトが動作すること",
-      "stop": "利用規約違反の疑い等で決済アカウントの審査が通過しない場合"
-    },
-    {
-      "t": "新旧モデルの応答速度を比較測定する",
-      "why": "価格破壊されたモデルの実用性を客観的数値で把握し、本番投入可能か即決するため。",
-      "cost_min": 0,
-      "cost_max": 100,
-      "loss_max": 100,
-      "success_p": 0.8,
-      "success_p_min": 0.65,
-      "success_p_max": 0.9,
-      "success_why": "Safari上で各モデルへ同一プロンプトを投げて所要秒数とトークン単価を記録するだけの手順なため。",
+      "success_why": "PyPIのリリースノートおよびリポジトリのdiff閲覧はモバイルSafariで容易に行えるため。",
       "value_score": 3,
       "learning_value": 4,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "プロンプト3件に対する新旧モデルの出力速度とコスト差分を記録したメモが残った状態",
+      "outcome": "新SDK 3.29.0で追加されたデーモン仕様・常駐プロセスの有無を整理したメモ",
       "category": "review",
       "terminal": false,
       "impact_min": 0.05,
       "impact_max": 0.15,
-      "impact_why": "体感ではなくデータに基づき本番API切り替えの妥当性を証明できるため。",
+      "impact_why": "不要なベンダーロックインやOS裏の監視挙動を未然に遮断できるため。",
       "evidence_ids": [
-        "2026-10-11-r07"
+        "2026-10-13-r02"
       ],
       "assumptions": [
-        "テスト用の定型プロンプトが手元に3パターン以上用意されていること"
+        "PyPIに掲載された変更ログおよびコミットログから差分ファイルが特定可能であること"
       ],
-      "disconfirm": "新モデルのレスポンスタイムが旧モデルの3倍以上かかりUXを破壊すると判明した場合",
-      "continue_if": "新モデルが速度同等以上かつコスト9割減の数値を実測で満たした場合",
-      "stop": "レスポンス生成時の文字化けや日本語構文崩壊が半数以上のテストで発生した場合"
+      "disconfirm": "新バージョンが軽微なドキュメント修正のみで実装変更を含まない場合",
+      "continue_if": "自作アプリの通信処理に影響する破壊的変更または新規常駐フラグが発見された場合",
+      "stop": "SDKの依存関係更新が不要と判断され現行バージョン維持で十分と分かった場合"
     },
     {
-      "t": "カスタムドメインを設定し信頼性を高める",
-      "why": "金融・決済機能の組み込みに備え、無料サブドメインの怪しさを排除して成約率を底上げするため。",
-      "cost_min": 1500,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "Cloudflare等のドメイン取得とホスティング連携はSafari上でも30分以内にDNS設定可能なため。",
-      "value_score": 4,
+      "t": "Anthropic用クレジットを充填し枠を確保する",
+      "why": "エンタープライズ営業強化と課金基盤再編に伴う将来のAPI仕様改変に先立ち検証枠を押さえるため。",
+      "cost_min": 3000,
+      "cost_max": 4500,
+      "loss_max": 4500,
+      "success_p": 0.6,
+      "success_p_min": 0.45,
+      "success_p_max": 0.75,
+      "success_why": "Console画面からの前払いクレジット追加はiPhoneから即時実行可能であるため。",
+      "value_score": 3,
       "learning_value": 3,
-      "time_minutes": 25,
+      "time_minutes": 15,
       "payback_days": 30,
-      "outcome": "独自ドメインでWebアプリへHTTPSアクセス可能になった状態",
-      "category": "publish",
+      "outcome": "残高チャージ完了画面と次期課金モデル検証用トークン残高",
+      "category": "buy",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "ユーザーの決済入力心理的障壁が下がり有料化時のCVRが確実に改善するため。",
+      "impact_min": 0.05,
+      "impact_max": 0.18,
+      "impact_why": "API側の急なプラン改編時にもテスト実行を中断させない防壁となるため。",
       "evidence_ids": [
-        "2026-10-11-r07"
+        "2026-10-13-r03",
+        "2026-10-11-r02"
       ],
       "assumptions": [
-        "ホスティングサービス側でカスタムドメイン追加が許可されている構成であること"
+        "Anthropic開発者コンソールのアカウントをすでに有効化していること"
       ],
-      "disconfirm": "ドメイン取得後もブランド毀損やターゲット不適合でドメイン名が無駄になると判断した場合",
-      "continue_if": "SSL証明書が正常に発行されブラウザの警告なく表示された場合",
-      "stop": "DNS反映エラーが解決せずホスティング側でルーティングが確立できない場合"
+      "disconfirm": "個人枠のAPIキー発行ルールが変更され新規チャージが凍結された場合",
+      "continue_if": "チャージしたクレジットを用いてSDK 1.13.0経由のリクエストが安定稼働すること",
+      "stop": "利用規約改定で個人開発者の従量利用に厳しい最低利用料が課された場合"
+    },
+    {
+      "t": "境界外アクセス防止策をアプリのコードに書く",
+      "why": "自律エージェントの意図せぬ権限逸脱論文を踏まえ、自作Webアプリ側の呼び出しガードを固めるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.55,
+      "success_p_max": 0.85,
+      "success_why": "プロンプトおよびAPIリクエストペイロード内の許可ドメイン制限はGitHub上で直接編集できるため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "エージェントのアクセス先URLをホワイトリスト化するバリデーション関数の追加コミット",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.08,
+      "impact_max": 0.22,
+      "impact_why": "外部APIの暴走やプラットフォーム側の仕様逸脱による事故を個人側で物理的に防げるため。",
+      "evidence_ids": [
+        "2026-10-12-r02"
+      ],
+      "assumptions": [
+        "アプリコード内にAPI出力結果をそのまま外部フェッチする処理が存在すること"
+      ],
+      "disconfirm": "論文の指摘事例が自作アプリで扱わない特定プロトコルに限定されていた場合",
+      "continue_if": "バリデーション実装後も正常なAPIレスポンスの処理フローが阻害されないこと",
+      "stop": "厳格化によってアプリ本来の主要機能がエラーで停止した場合"
     }
   ],
-  "kan": "xAIは今後30日以内に、公式ブログにおいて日本市場向けX Moneyまたは決済サービスの提供開始を発表しない"
+  "kan": "Anthropicは今後60日以内（2026年12月12日まで）に、Claude APIにおいて従来のトークン従量課金とは異なるエージェント単位の新課金枠や成果連動プランを正式発表する確度は35%にとどまると見る。"
 }
