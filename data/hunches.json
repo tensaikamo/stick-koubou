@@ -2220,7 +2220,7 @@
         "conf_after": 0.941
       }
     ],
-    "status": "pending",
+    "status": "unscorable",
     "resolved_at": null,
     "result": null,
     "evidence": {
@@ -2232,7 +2232,7 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "judge_attempts": 3,
-    "needs_review": true,
+    "needs_review": false,
     "initial_confidence": 0.91
   },
   {
@@ -2613,11 +2613,15 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "xAIの公式サイトを確認できなかったため、期間内に該当する発表が行われたか否かを検証するための十分な証拠が存在しない。",
+      "url": ""
+    },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "judge_attempts": 1
   },
   {
     "id": "2026-10-08-h01",
