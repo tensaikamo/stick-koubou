@@ -1,163 +1,163 @@
 {
-  "date": "2026-10-13",
+  "date": "2026-10-14",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "GLM値下げを受け今夜アプリのAPI接続をOpenRouter経由に切り替えるか？",
-    "OpenAIのCLI常駐化を警戒しアプリ設定でローカル依存を排除できているか？",
-    "Anthropicの課金改定に備え複数モデルの自動切替配列を即座に組めるか？"
+    "自作アプリでAnthropic障害時にDeepSeekへ切り替える分岐はあるか",
+    "大手代理店が相手にしない月額数千円層に向けた単機能ラッパーを即答できるか",
+    "OpenRouterの最安APIに差し替えて浮く推論マージンを今夜計算したか"
   ],
   "moves": [
     {
-      "t": "API設定にGLMとフォールバックを追記する",
-      "why": "GLM大幅値下げとDeepSeek値上げに対応し、アプリのトークン原価を即座に引き下げるため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.7,
-      "success_p_max": 0.95,
-      "success_why": "iPhoneのSafariからGitHubリポジトリの設定ファイルを直接編集・コミットするだけで完結する作業のため。",
+      "t": "WebのAPI設定に代替先を追加する",
+      "why": "Character.aiの破綻とDeepSeek値下げが示す通り単一プロバイダ依存は即死リスクになるため",
+      "cost_min": 1500,
+      "cost_max": 3000,
+      "loss_max": 3000,
+      "success_p": 0.7,
+      "success_p_min": 0.55,
+      "success_p_max": 0.8,
+      "success_why": "ChatGPTで生成したOpenRouter呼び出しコードをGitHubのWeb編集画面から直接貼り付けるだけで検証可能なため",
       "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "GLM優先かつDeepSeekへのフォールバック設定を含むコミット履歴",
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 14,
+      "outcome": "OpenRouter経由でDeepSeekを主系障害時の予備推論先とするコードのコミット完了",
       "category": "build",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.25,
-      "impact_why": "API利用コストの抑制と障害耐性が1回の設定更新で恒久的に確立されるため。",
+      "impact_why": "推論コスト削減とサービス停止回避を同時に満たしアプリの稼働安定性を底上げするため",
       "evidence_ids": [
-        "2026-10-13-r02"
+        "2026-10-14-r02"
       ],
       "assumptions": [
-        "既存WebアプリがOpenRouter等のマルチモデル中継APIに対応した記述構成になっていること"
+        "OpenRouterアカウントを所持し残高チャージが可能であること",
+        "既存リポジトリがGitHub上で直接コミット可能な構成であること"
       ],
-      "disconfirm": "OpenRouter経由でGLM 5.3 Flashのエンドポイント疎通が取れず404エラーを返す場合",
-      "continue_if": "コミット後にテストリクエストが通りコスト削減が数値で確認できること",
-      "stop": "設定ファイルの構文エラーで現行アプリの稼働が停止した場合"
+      "disconfirm": "DeepSeek APIのレイテンシが通常時でも5秒を超え実用に耐えない場合",
+      "continue_if": "エラー率1%未満かつレスポンス速度が3秒以内に収まる場合",
+      "stop": "レスポンス遅延が3秒を超えフォールバックによるUX劣化が顕著な場合"
     },
     {
-      "t": "OpenRouterに少額入金し新キーを発行する",
-      "why": "API価格破壊の恩恵を自作アプリに直接注入し、大手単一依存の価格転嫁リスクを回避するため。",
-      "cost_min": 800,
-      "cost_max": 1600,
-      "loss_max": 1600,
+      "t": "最新SDK仕様に例外処理を書き換える",
+      "why": "AnthropicがPython SDK 1.13.0をリリースし接続断時のエラー型定義が更新されているため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
       "success_p": 0.8,
       "success_p_min": 0.65,
       "success_p_max": 0.9,
-      "success_why": "Webブラウザ上でクレジットカード決済とAPIキー生成が数分で完了する仕様であるため。",
-      "value_score": 4,
+      "success_why": "PyPIのリリースノートから変更差分を取得しSafari上でコード修正を完結できるため",
+      "value_score": 3,
       "learning_value": 3,
-      "time_minutes": 10,
-      "payback_days": 7,
-      "outcome": "安価な推論枠を確保したAPIキーと環境変数への組み込み完了",
-      "category": "buy",
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "SDK 1.13.0仕様に適合したAPI例外ハンドリングのコミット完了",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.08,
-      "impact_max": 0.2,
-      "impact_why": "モデル選定の主導権を確保し、プロバイダ価格改定への追従基盤が整うため。",
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "プロバイダ側アップデートによる不意のクラッシュを未然に防ぐため",
       "evidence_ids": [
-        "2026-10-13-r02"
+        "2026-10-11-r02"
       ],
       "assumptions": [
-        "iPhone上のSafariで海外決済が通るプリペイドまたはクレジットカードを所持していること"
+        "リポジトリ内の依存関係管理ファイルでSDKバージョンを指定していること"
       ],
-      "disconfirm": "決済完了後もAPIキーの発行制限がかかり即時利用が拒絶された場合",
-      "continue_if": "少額テストでGLMモデルの推論レスポンスが規定時間内に返ること",
-      "stop": "決済失敗が連続してアカウントロックの兆候が出た場合"
+      "disconfirm": "利用中の既存コードで新例外ハンドリングを組み込んでも動作差分が生じない場合",
+      "continue_if": "例外発生時に期待通りフェイルオーバー処理へ移行できる場合",
+      "stop": "APIコールの互換性破壊により全体コードの大規模リファクタリングが必要と判明した場合"
     },
     {
-      "t": "OpenAI新SDKの変更点をSafariで点検する",
-      "why": "CLI常駐デーモンの挙動やクライアント側コンテキスト収集仕様が自作コードに及ぼす影響を特定するため。",
+      "t": "OpenAIフォールバック用関数を作る",
+      "why": "OpenAI公式SDK 3.29.0の型安全性を活かした予備パイプラインを事前に組むため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.75,
       "success_p_min": 0.6,
       "success_p_max": 0.85,
-      "success_why": "PyPIのリリースノートおよびリポジトリのdiff閲覧はモバイルSafariで容易に行えるため。",
+      "success_why": "ChatGPTでPython関数の差分を作成しWeb版GitHubで即座に追記できるため",
       "value_score": 3,
-      "learning_value": 4,
+      "learning_value": 3,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "新SDK 3.29.0で追加されたデーモン仕様・常駐プロセスの有無を整理したメモ",
-      "category": "review",
+      "outcome": "OpenAI SDK 3.29.0仕様に準拠したフェイルオーバー関数の実装コミット",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "不要なベンダーロックインやOS裏の監視挙動を未然に遮断できるため。",
+      "impact_max": 0.2,
+      "impact_why": "複数LLMを冗長化して個人開発アプリのサービス継続率を担保するため",
       "evidence_ids": [
         "2026-10-13-r02"
       ],
       "assumptions": [
-        "PyPIに掲載された変更ログおよびコミットログから差分ファイルが特定可能であること"
+        "OpenAI APIキーを保持していること"
       ],
-      "disconfirm": "新バージョンが軽微なドキュメント修正のみで実装変更を含まない場合",
-      "continue_if": "自作アプリの通信処理に影響する破壊的変更または新規常駐フラグが発見された場合",
-      "stop": "SDKの依存関係更新が不要と判断され現行バージョン維持で十分と分かった場合"
+      "disconfirm": "OpenAIへの切り替えコストが月間許容コストの上限を超える場合",
+      "continue_if": "切り替えテストで正常応答が1秒以内に返ってくる場合",
+      "stop": "API呼び出し制限（レートリミット）により即座にブロックされる場合"
     },
     {
-      "t": "Anthropic用クレジットを充填し枠を確保する",
-      "why": "エンタープライズ営業強化と課金基盤再編に伴う将来のAPI仕様改変に先立ち検証枠を押さえるため。",
-      "cost_min": 3000,
-      "cost_max": 4500,
-      "loss_max": 4500,
+      "t": "推論遅延を計測しログを記録する",
+      "why": "低価格APIの価格破壊に乗る前に実効応答速度を実測しフォールバック品質を担保するため",
+      "cost_min": 1000,
+      "cost_max": 2000,
+      "loss_max": 2000,
+      "success_p": 0.65,
+      "success_p_min": 0.5,
+      "success_p_max": 0.8,
+      "success_why": "iPhoneのSafariからOpenRouterのテストエンドポイントへプロンプトを投げて計測可能なため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 15,
+      "payback_days": 7,
+      "outcome": "DeepSeekとClaudeの応答時間とトークン単価の比較ログ（Markdownメモ）",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "本番運用のルーティング閾値を客観的データに基づいて設定できるため",
+      "evidence_ids": [
+        "2026-10-14-r02"
+      ],
+      "assumptions": [
+        "SafariからOpenRouterコンソールにアクセスできること"
+      ],
+      "disconfirm": "推論速度にプロバイダ間で有意な差が検出されない場合",
+      "continue_if": "DeepSeekのレイテンシがClaudeの1.5倍以内に収まっている場合",
+      "stop": "DeepSeekのエラー率が5%を超え商用利用の基準に達しない場合"
+    },
+    {
+      "t": "入力ガードレール処理を追加する",
+      "why": "エージェントの境界外アクセス論文が示す通り個人アプリでもプロンプト注入対策が急務なため",
+      "cost_min": 4000,
+      "cost_max": 8000,
+      "loss_max": 8000,
       "success_p": 0.6,
       "success_p_min": 0.45,
       "success_p_max": 0.75,
-      "success_why": "Console画面からの前払いクレジット追加はiPhoneから即時実行可能であるため。",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 30,
-      "outcome": "残高チャージ完了画面と次期課金モデル検証用トークン残高",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.18,
-      "impact_why": "API側の急なプラン改編時にもテスト実行を中断させない防壁となるため。",
-      "evidence_ids": [
-        "2026-10-13-r03",
-        "2026-10-11-r02"
-      ],
-      "assumptions": [
-        "Anthropic開発者コンソールのアカウントをすでに有効化していること"
-      ],
-      "disconfirm": "個人枠のAPIキー発行ルールが変更され新規チャージが凍結された場合",
-      "continue_if": "チャージしたクレジットを用いてSDK 1.13.0経由のリクエストが安定稼働すること",
-      "stop": "利用規約改定で個人開発者の従量利用に厳しい最低利用料が課された場合"
-    },
-    {
-      "t": "境界外アクセス防止策をアプリのコードに書く",
-      "why": "自律エージェントの意図せぬ権限逸脱論文を踏まえ、自作Webアプリ側の呼び出しガードを固めるため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.85,
-      "success_why": "プロンプトおよびAPIリクエストペイロード内の許可ドメイン制限はGitHub上で直接編集できるため。",
+      "success_why": "論文で指摘された攻撃パターンをChatGPTに要約させ正規表現および軽量フィルタとしてコミット可能なため",
       "value_score": 4,
       "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "エージェントのアクセス先URLをホワイトリスト化するバリデーション関数の追加コミット",
+      "time_minutes": 30,
+      "payback_days": 30,
+      "outcome": "境界外アクセスを弾く入力サニタイズ用モジュールのコード追加",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.08,
-      "impact_max": 0.22,
-      "impact_why": "外部APIの暴走やプラットフォーム側の仕様逸脱による事故を個人側で物理的に防げるため。",
+      "impact_min": 0.1,
+      "impact_max": 0.25,
+      "impact_why": "想定外のトークン消費や情報漏洩をブロックし運用損失を未然に防ぐため",
       "evidence_ids": [
         "2026-10-12-r02"
       ],
       "assumptions": [
-        "アプリコード内にAPI出力結果をそのまま外部フェッチする処理が存在すること"
+        "入力文字列をAPI送信前にインターセプトする設計になっていること"
       ],
-      "disconfirm": "論文の指摘事例が自作アプリで扱わない特定プロトコルに限定されていた場合",
-      "continue_if": "バリデーション実装後も正常なAPIレスポンスの処理フローが阻害されないこと",
-      "stop": "厳格化によってアプリ本来の主要機能がエラーで停止した場合"
+      "disconfirm": "フィルター導入により通常入力の誤検知率が10%を超える場合",
+      "continue_if": "正常なプロンプトの通過率が95%以上を維持できている場合",
+      "stop": "誤検知により主要機能の実行が阻害される場合"
     }
   ],
-  "kan": "Anthropicは今後60日以内（2026年12月12日まで）に、Claude APIにおいて従来のトークン従量課金とは異なるエージェント単位の新課金枠や成果連動プランを正式発表する確度は35%にとどまると見る。"
+  "kan": "Anthropicが今後14日以内（2026年10月29日まで）に、公式ブログにおいて公認リセラー制度の参加要件と料率体系を正式発表する確率は、企業向け制度発表の基準率（年2〜3回程度）を踏まえれば35%と見る。"
 }

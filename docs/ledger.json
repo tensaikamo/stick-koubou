@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13 11:44",
+  "updated_at": "2026-10-14 09:35",
   "score": {
     "hit": 16,
     "miss": 24,
@@ -15,8 +15,8 @@
     }
   },
   "next_due": {
-    "date": "2026-10-13",
-    "days": 0
+    "date": "2026-10-22",
+    "days": 8
   },
   "decided": [
     {
@@ -279,7 +279,7 @@
       "status": "pending",
       "alert": false,
       "counter": "データセンターの電力網接続や大型設備の搬入に関する発表が突発的に行われる可能性",
-      "evidence": "xAIの公式サイトを確認できなかったため、期間内に該当する発表が行われたか否かを検証するための十分な証拠が存在しない。",
+      "evidence": "判定対象であるxAIの公式ウェブサイトを開くことができず、発表の有無を確認できないため。",
       "signals": []
     },
     {
@@ -342,11 +342,6 @@
       "events": [
         {
           "date": "2026-10-11",
-          "headline": "Anthropicがプログラマティック・カスタマーサクセス責任者の募集を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5446607008"
-        },
-        {
-          "date": "2026-10-11",
           "headline": "Anthropicが法学・哲学等の専門家を対象とする4ヶ月間のフェローシップ募集を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5447080008"
         },
@@ -359,17 +354,17 @@
           "date": "2026-10-13",
           "headline": "Anthropicがロンドン拠点の銀行業界特化エンタープライズ営業職を募集",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5426602008"
+        },
+        {
+          "date": "2026-10-14",
+          "headline": "AnthropicがClaude Partner Networkのリセラー部門マーケティング責任者の採用を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5451134008"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-10-09",
-          "headline": "xAIが Construction Superintendent, Power Generation - Memphis の求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5261602007"
-        },
         {
           "date": "2026-10-11",
           "headline": "xAIがベアメタルおよび基盤プラットフォーム担当インフラセキュリティエンジニアを募集",
@@ -384,6 +379,11 @@
           "date": "2026-10-13",
           "headline": "xAIがダブリン勤務のEMEA担当規制法務カウンセル求人を公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5263377007"
+        },
+        {
+          "date": "2026-10-14",
+          "headline": "xAIがメンフィスColossusデータセンターの施設運用スーパーバイザー求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5265155007"
         }
       ]
     },
@@ -416,11 +416,6 @@
       "subject": "Google",
       "events": [
         {
-          "date": "2026-10-02",
-          "headline": "google-genai Python SDK v2.27.0 リリース",
-          "url": "https://pypi.org/project/google-genai/2.27.0/"
-        },
-        {
           "date": "2026-10-03",
           "headline": "Googleがgoogle-genai SDK v2.28.0を公開し次期メジャーでのAFC仕様変更を予告",
           "url": "https://pypi.org/project/google-genai/2.28.0/"
@@ -434,6 +429,11 @@
           "date": "2026-10-12",
           "headline": "OpenAI・Anthropic・Google製エージェントの境界外アクセス事例を比較した論文が公開",
           "url": "https://arxiv.org/abs/2610.12463v1"
+        },
+        {
+          "date": "2026-10-14",
+          "headline": "Googleがgoogle-genai Python SDK v2.30.1をリリースし次期メジャーでの自動関数呼び出し仕様変更を予告",
+          "url": "https://pypi.org/project/google-genai/2.30.1/"
         }
       ]
     },
@@ -469,6 +469,27 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-10-14-r03",
+      "date": "2026-10-14",
+      "headline": "xAIがメンフィスColossusデータセンターの施設運用スーパーバイザー求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5265155007"
+    },
+    {
+      "id": "2026-10-14-r02",
+      "date": "2026-10-14",
+      "headline": "AnthropicがClaude Partner Networkのリセラー部門マーケティング責任者の採用を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5451134008"
+    },
+    {
+      "id": "2026-10-14-r01",
+      "date": "2026-10-14",
+      "headline": "Googleがgoogle-genai Python SDK v2.30.1をリリースし次期メジャーでの自動関数呼び出し仕様変更を予告",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/2.30.1/"
+    },
     {
       "id": "2026-10-13-r03",
       "date": "2026-10-13",
@@ -531,28 +552,7 @@
       "headline": "Anthropicがサイバーセキュリティ専任の営業スペシャリスト募集を開始",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5449091008"
-    },
-    {
-      "id": "2026-10-11-r04",
-      "date": "2026-10-11",
-      "headline": "Anthropicが法学・哲学等の専門家を対象とする4ヶ月間のフェローシップ募集を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5447080008"
-    },
-    {
-      "id": "2026-10-11-r03",
-      "date": "2026-10-11",
-      "headline": "Anthropicがプログラマティック・カスタマーサクセス責任者の募集を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5446607008"
-    },
-    {
-      "id": "2026-10-11-r02",
-      "date": "2026-10-11",
-      "headline": "AnthropicがPython SDKのバージョン1.13.0をPyPIで公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/1.13.0/"
     }
   ],
-  "record_count": 257
+  "record_count": 260
 }
