@@ -1,162 +1,163 @@
 {
-  "date": "2026-10-15",
+  "date": "2026-10-16",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "API価格の乱高下から身を守るために今日OpenRouterのキーを追加するか？",
-    "自作アプリの単一プロバイダ直結を今夜フォールバック構成に書き換えるか？",
-    "推論単価の激変に備えて複数モデルの切り替えコードをリポジトリへコミットするか？"
+    "固定APIが847%高騰した時アプリを止めない切替配列は書けているか？",
+    "GLM等の格安モデルへ自動退避するコードを今夜コミットできるか？",
+    "大手APIの価格乱高下を逆手に取り運用コスト半減を狙う準備はあるか？"
   ],
   "moves": [
     {
-      "t": "OpenRouterのアカウントを開設して無料枠のキーを発行する",
-      "why": "API価格の変動リスクを回避するための共通ゲートウェイ接続を今夜確立するため",
+      "t": "API退避配列をWebに実装する",
+      "why": "特定モデルの価格急騰で利益が消し飛ぶリスクをフォールバック設定で即時遮断するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.85,
-      "success_p_min": 0.75,
+      "success_p_min": 0.7,
       "success_p_max": 0.95,
-      "success_why": "メールアドレスとiPhoneのブラウザだけで5分以内に発行可能であるため",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 10,
-      "payback_days": 0,
-      "outcome": "OpenRouterのAPIキー文字列をiPhoneのメモ帳に保存完了",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "複数プロバイダ経由のフォールバック構成の土台になるため",
-      "evidence_ids": [
-        "2026-10-14-r02"
-      ],
-      "assumptions": [
-        "iPhoneのSafariからOpenRouterの登録画面にアクセスできること"
-      ],
-      "disconfirm": "アカウント作成時の認証メールが受信できない場合",
-      "continue_if": "APIキーが正常に発行された場合",
-      "stop": "サービスが有料化され無料枠が消滅した場合"
-    },
-    {
-      "t": "GitHubのリポジトリ設定に中継キーの環境変数を追加する",
-      "why": "ソースコード内に直接APIキーを露出させずに外部ルーティングを切り替えるため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.5,
-      "success_p_max": 0.85,
-      "success_why": "GitHubのWeb画面からシークレット変数の追加が直接行えるため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "GitHub ActionsまたはリポジトリSecretsにAPIキーが登録される",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "コード改変なしでAPIプロバイダの切り替えが可能になるため",
-      "evidence_ids": [
-        "2026-10-15-r02"
-      ],
-      "assumptions": [
-        "対象のリポジトリがGitHub上で管理されていること"
-      ],
-      "disconfirm": "リポジトリの権限が不足している場合",
-      "continue_if": "シークレットの保存がエラーなく完了した場合",
-      "stop": "リポジトリがプライベートからパブリックに変更できない場合"
-    },
-    {
-      "t": "API呼び出し部分をOpenRouter経由に書き換えてコミットする",
-      "why": "1社直結の依存を断ち、単価乱高下時のサービス停止を防ぐため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.4,
-      "success_p_max": 0.75,
-      "success_why": "iPhoneのGitHub内蔵エディタで直接コードを修正できるため",
+      "success_why": "GitHubのWebエディタ上でJSONや配列定義を書き換えるだけの単一コミットで完結するため。",
       "value_score": 5,
-      "learning_value": 5,
+      "learning_value": 4,
       "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "モデル呼び出しのエンドポイントがOpenRouter経由に変更されたコミット履歴",
+      "outcome": "優先順位付きフォールバック呼び出しコードのGitHubコミット履歴",
       "category": "build",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "プロバイダの価格変動に対する耐性が実装されるため",
-      "evidence_ids": [
-        "2026-10-15-r02"
-      ],
-      "assumptions": [
-        "エンドポイントのURL変更だけでルーティングが機能すること"
-      ],
-      "disconfirm": "SDKのバージョン差異によりルーティングエラーが発生する場合",
-      "continue_if": "コミットが正常にメインブランチに反映された場合",
-      "stop": "コードの構文エラーが修正不能な場合"
-    },
-    {
-      "t": "OpenRouterに1000円分を入金してAPIクレジットを確保する",
-      "why": "無料枠を超えた価格変動時にもサービスを止まらせない実弾を投じるため",
-      "cost_min": 1000,
-      "cost_max": 1000,
-      "loss_max": 1000,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "一般的なクレジットカードやデビットカードで即時決済が可能なため",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 10,
-      "payback_days": 14,
-      "outcome": "OpenRouterアカウントに有料クレジットが残高として反映される",
-      "category": "buy",
       "terminal": false,
       "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "レートリミットの上昇と安定稼働の裏付けになるため",
-      "evidence_ids": [
-        "2026-10-14-r02"
-      ],
-      "assumptions": [
-        "iPhoneで利用可能な決済手段が手元にあること"
-      ],
-      "disconfirm": "決済システムが日本のカードを拒絶する場合",
-      "continue_if": "残高反映が確認できテストリクエストが通る場合",
-      "stop": "決済時に予期せぬ追加手数料が発覚した場合"
-    },
-    {
-      "t": "Claude Sonnet向けフォールバックのフォールトトレスタスクを書く",
-      "why": "特定モデルの急な仕様変更や価格改定時に自動で他モデルへ逃げる仕組みを作るため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.3,
-      "success_p_max": 0.65,
-      "success_why": "例外処理の追加だけで実装できるシンプルな構造であるため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "エラーハンドリングと代替モデル指定のコードがリポジトリに追加される",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "API障害や価格高騰時の単一障害点を完全に排除できるため",
+      "impact_max": 0.28,
+      "impact_why": "API利用費の急激なスパイクによるアプリ停止リスクを恒久的に排除できるため。",
       "evidence_ids": [
         "2026-10-15-r02"
       ],
       "assumptions": [
-        "例外発生時のステータスコードを捕捉できること"
+        "GitHubリポジトリにSafariからアクセス可能であること"
       ],
-      "disconfirm": "フォールバック先のモデルでも同時にエラーが発生する場合",
-      "continue_if": "テスト実行でフォールバックが正しく動作した場合",
-      "stop": "コードが複雑化してiPhoneのブラウザエディタで扱えなくなった場合"
+      "disconfirm": "OpenRouter等のプロキシ層でフォールバック機能が完全自動化されクライアント側設定が不要になること",
+      "continue_if": "コミット後にエラーなく第一候補と第二候補の切り替え疎通が確認できた場合",
+      "stop": "利用中の全プロバイダが単一固定価格制を保証する規約を明記した場合"
+    },
+    {
+      "t": "Z.aiクレジットを小額購入する",
+      "why": "87%値下げされた格安枠を自作アプリの第一候補として即座に疎通検証するため。",
+      "cost_min": 500,
+      "cost_max": 1500,
+      "loss_max": 1500,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "公式WebコンソールからiPhoneのSafari経由でカード決済とキー発行が数分で完了するため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 14,
+      "outcome": "発行された有効なAPIキーとテスト呼び出し成功ログ",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.22,
+      "impact_why": "最安推論枠を確保することで運用トークン原価を劇的に圧縮できるため。",
+      "evidence_ids": [
+        "2026-10-15-r02"
+      ],
+      "assumptions": [
+        "日本のクレジットカードで海外トークン決済が承認されること"
+      ],
+      "disconfirm": "日本のIPアドレスまたはカード発行国が理由で即座にアカウントが凍結されること",
+      "continue_if": "テストリクエストでレイテンシと出力品質が要件を満たし原価が半減すること",
+      "stop": "リクエスト失敗率が20%を超えフォールバック先への依存が解消しない場合"
+    },
+    {
+      "t": "監視スクリプトをWebで組む",
+      "why": "トークン単価の不意な急騰をトリガーにして通知を飛ばす仕組みを無料枠で作るため。",
+      "cost_min": 0,
+      "cost_max": 800,
+      "loss_max": 800,
+      "success_p": 0.7,
+      "success_p_min": 0.55,
+      "success_p_max": 0.8,
+      "success_why": "GitHub Actionsの定期実行とDiscord等のWebhook連携はSafari上で編集完結するため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 30,
+      "outcome": "API価格エンドポイントを監視し閾値超過で通知するワークフローファイル",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.12,
+      "impact_max": 0.25,
+      "impact_why": "価格改定に受動的にならず即日コード修正へ動ける体制が整うため。",
+      "evidence_ids": [
+        "2026-10-15-r02"
+      ],
+      "assumptions": [
+        "アグリゲータがモデル価格情報をJSONで常時返送していること"
+      ],
+      "disconfirm": "モデル価格情報APIが廃止されスクレイピング対策が導入された場合",
+      "continue_if": "日次の価格クロールが正常に動作し異常値の検知テストに成功した場合",
+      "stop": "GitHub Actionsの無料枠制限または仕様変更で外部定期通信が遮断された場合"
+    },
+    {
+      "t": "OpenRouter枠を補充する",
+      "why": "急激な価格改定下でもフォールバック先の推論パイプラインを枯渇させないため。",
+      "cost_min": 3000,
+      "cost_max": 7500,
+      "loss_max": 7500,
+      "success_p": 0.8,
+      "success_p_min": 0.65,
+      "success_p_max": 0.9,
+      "success_why": "既存アカウントへの残高チャージでありSafariから数クリックで完了するため。",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 10,
+      "payback_days": 45,
+      "outcome": "チャージ完了画面と引き落とし上限設定済みのコンソール",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.08,
+      "impact_max": 0.18,
+      "impact_why": "自作サービスが推論不能になるダウンタイムをゼロに抑えられるため。",
+      "evidence_ids": [
+        "2026-10-15-r02"
+      ],
+      "assumptions": [
+        "アグリゲータのクレジット残高に利用期限が即座に設定されないこと"
+      ],
+      "disconfirm": "アグリゲータの手数料率が大幅改定され直契約より割高になること",
+      "continue_if": "月間推論回数が安定して伸びており停止コストの方が大きい場合",
+      "stop": "主要モデルの直契約APIのほうが月額トータルで30%以上安価になった場合"
+    },
+    {
+      "t": "境界外アクセス保護を設定する",
+      "why": "エージェントの暴走や外部アクセス違反による損害賠償リスクを遮断するため。",
+      "cost_min": 5000,
+      "cost_max": 15000,
+      "loss_max": 15000,
+      "success_p": 0.6,
+      "success_p_min": 0.45,
+      "success_p_max": 0.75,
+      "success_why": "論文で指摘された逸脱パターンのブラックリストをプロンプト防御層に反映できるため。",
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 30,
+      "payback_days": 60,
+      "outcome": "外部ツール呼び出し制限と入出力検証バリデータの適用コミット",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.24,
+      "impact_why": "事故発生時の法的・金銭的責任から個人開発環境を完全に隔離できるため。",
+      "evidence_ids": [
+        "2026-10-12-r02",
+        "2026-10-13-r03"
+      ],
+      "assumptions": [
+        "アプリ側でツール実行前の認可フック処理が挟める構造になっていること"
+      ],
+      "disconfirm": "利用フレームワーク側でサンドボックス機能が完全強制実装されること",
+      "continue_if": "疑似攻撃リクエストを投げた際にバリデータが正しく遮断を記録した場合",
+      "stop": "バリデータ導入によりアプリの正常レスポンスが30%以上誤判定ブロックされた場合"
     }
   ],
-  "kan": "Anthropicは今後45日以内に、小規模インテグレーター向けに推論クレジットのボリュームディスカウントを伴う認定ビルダー制度のパイロット枠を限定公開する。"
+  "kan": "Anthropicが今後60日以内に対顧客のAIエージェント事故賠償スキームや保険パッケージを発表する確度は15%と見る。主要AIラボが顧客賠償枠を新設した過去の基準率は年0件（皆無）であり、基本確度は5%以下だが、財務部門での保険専門職採用という具体的予兆を加味して15%まで引き上げる。"
 }
