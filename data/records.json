@@ -7118,5 +7118,200 @@
       "2026-10-09-r07",
       "2026-10-02-r06"
     ]
+  },
+  {
+    "id": "2026-10-15-r01",
+    "created_at": "2026-10-15T09:01:45.657810+09:00",
+    "headline": "openai Python SDK v3.31.0 リリース",
+    "what_happened": "PyPIにおいてopenai Python SDKのバージョン3.31.0が公開された。本体はPython 3.10+向けのREST APIアクセスを提供する。公式のOpenAPIスペックから生成されている。",
+    "background": "OpenAIが提供する公式Pythonライブラリのバージョン更新であり、API連携における標準的なメンテナンスサイクルの一環である。",
+    "changed": "openai Python SDKのバージョンが3.31.0に更新された点のみが変わった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.31.0/",
+      "title": "openai Python SDK v3.31.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-13-r02",
+      "2026-10-12-r02",
+      "2026-10-11-r01",
+      "2026-10-07-r04",
+      "2026-10-03-r02",
+      "2026-10-02-r01"
+    ]
+  },
+  {
+    "id": "2026-10-15-r02",
+    "created_at": "2026-10-15T09:01:45.657810+09:00",
+    "headline": "anthropic Python SDK v1.14.0 リリース",
+    "what_happened": "PyPIにおいてanthropic Python SDKのバージョン1.14.0が公開された。Claude APIへのアクセス手段やツールヘルパー等のドキュメントが含まれている。",
+    "background": "Anthropicが提供する公式Pythonクライアントライブラリの更新であり、開発者向けツールの継続的な改修である。",
+    "changed": "anthropic Python SDKのバージョンが1.14.0に更新された点のみが変わった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.14.0/",
+      "title": "anthropic Python SDK v1.14.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-14-r02",
+      "2026-10-13-r03",
+      "2026-10-12-r02",
+      "2026-10-11-r05",
+      "2026-10-11-r04",
+      "2026-10-11-r03"
+    ]
+  },
+  {
+    "id": "2026-10-15-r03",
+    "created_at": "2026-10-15T09:01:45.657810+09:00",
+    "headline": "google-genai Python SDK v2.31.0 リリース",
+    "what_happened": "PyPIにおいてgoogle-genai Python SDKのバージョン2.31.0が公開された。記事の本文はブラウザ拡張やネットワーク制約により直接取得できず、タイトル情報のみに基づく。",
+    "background": "Googleの生成AI向け公式Python SDKのリリース情報であり、パッケージのバージョンインクリメントを示している。",
+    "changed": "google-genai Python SDKのバージョンが2.31.0に更新された点のみが変わった。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/2.31.0/",
+      "title": "google-genai Python SDK v2.31.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-14-r01",
+      "2026-10-12-r02",
+      "2026-10-08-r02",
+      "2026-10-03-r01",
+      "2026-10-02-r02",
+      "2026-09-23-r03"
+    ]
+  },
+  {
+    "id": "2026-10-15-r04",
+    "created_at": "2026-10-15T09:01:45.657810+09:00",
+    "headline": "論文: ChunkAct: Action Chunking for Agentic Robotics",
+    "what_happened": "ロボット制御ループにLLMエージェントを組み込む際の効率化手法として、アクションチャンキングを導入する「ChunkAct」に関する論文がarXivに投稿された。オンラインで一回の呼び出しにより一連のプリミティブを実行し、メモリフリーでの実行を実現するとしている。",
+    "background": "エージェント型ロボットにおけるLLM推論コストの削減と効率的なタスク実行に関する学術的研究の発表。",
+    "changed": "エージェント型ロボットの効率化に関する新しい手法の論文が公開された点が変わった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.18874v1",
+      "title": "ChunkAct: Action Chunking for Agentic Robotics",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-10-15-r05",
+    "created_at": "2026-10-15T09:01:45.657810+09:00",
+    "headline": "論文: What Matters in Quality-Aware VLA Pretraining: A Benchmark and Empirical Study",
+    "what_happened": "ビジョン・言語・行動(VLA)モデルの事前学習において、デモデータの品質がターゲットタスクのファインチューニング後の性能に与える影響を比較・検証した論文がarXivに投稿された。",
+    "background": "VLAモデルの事前学習におけるデータ品質の扱いやベンチマーク構築に関する学術的研究の発表。",
+    "changed": "VLA事前学習の品質評価に関するベンチマーク研究が公開された点が変わった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.18869v1",
+      "title": "What Matters in Quality-Aware VLA Pretraining: A Benchmark and Empirical Study",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-10-15-r06",
+    "created_at": "2026-10-15T09:01:45.657810+09:00",
+    "headline": "論文: Tev: Scaling Long-Horizon Agentic Environments with Dense Progress Rewards",
+    "what_happened": "検証可能で密な進捗報酬を持つ長期エージェント訓練データセット「Tev-Gym」の導入について述べた論文がarXivに投稿された。長期タスクにおけるオープンソースモデルの課題に対処する試みである。",
+    "background": "長期ホライズンを持つAIエージェントの訓練環境と評価データセットに関する学術的研究の発表。",
+    "changed": "長期エージェント向け環境とデータセットに関する論文が公開された点が変わった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.18868v1",
+      "title": "Tev: Scaling Long-Horizon Agentic Environments with Dense Progress Rewards",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-10-15-r07",
+    "created_at": "2026-10-15T09:01:45.657810+09:00",
+    "headline": "AnthropicがPartner Account Managerの求人を公開",
+    "what_happened": "Anthropicは、AIネイティブおよびブティック系システムインテグレーター（SI）パートナー向けのパートナーアカウントマネージャー職の求人をGreenhouse上で公開した。サンフランシスコおよびニューヨークを拠点とし、企業向けClaude導入の共同ビジネスプランやパイプライン管理を担当する役割とされる。",
+    "background": "Anthropicによるエンタープライズ市場およびSIパートナーエコシステム拡大に向けた営業・提携体制の強化の一環である。",
+    "changed": "AnthropicのSIパートナー担当の新規求人が公開された点が変わった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5452909008",
+      "title": "[新規求人] anthropic: Partner Account Manager, AI-Native/Boutique SI Partners (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-14-r02",
+      "2026-10-13-r03",
+      "2026-10-12-r02",
+      "2026-10-11-r05",
+      "2026-10-11-r04",
+      "2026-10-11-r03"
+    ]
+  },
+  {
+    "id": "2026-10-15-r08",
+    "created_at": "2026-10-15T09:01:45.657810+09:00",
+    "headline": "AnthropicがAnthropic STEM Fellowの求人を公開",
+    "what_happened": "Anthropicは、科学やエンジニアリングの最前線の専門家を4ヶ月間迎え入れ、Claudeを活用して各分野の困難な課題に取り組む「Anthropic STEM Fellows Program」の募集求人をGreenhouse上で公開した。勤務地は米国リモートフレンドリーおよびサンフランシスコ。",
+    "background": "科学技術分野におけるAI活用の可能性を広げ、高度な専門知識を持つ人材と協力して長期推論や科学的発見に向けたAIの検証を進める試みである。",
+    "changed": "AnthropicのSTEMフェロープログラムに関する新規求人が公開された点が変わった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5452403008",
+      "title": "[新規求人] anthropic: Anthropic STEM Fellow (Remote-Friendly, United States; San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-14-r02",
+      "2026-10-13-r03",
+      "2026-10-12-r02",
+      "2026-10-11-r05",
+      "2026-10-11-r04",
+      "2026-10-11-r03"
+    ]
   }
 ]
