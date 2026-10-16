@@ -1,163 +1,168 @@
 {
-  "date": "2026-10-16",
+  "date": "2026-10-17",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "固定APIが847%高騰した時アプリを止めない切替配列は書けているか？",
-    "GLM等の格安モデルへ自動退避するコードを今夜コミットできるか？",
-    "大手APIの価格乱高下を逆手に取り運用コスト半減を狙う準備はあるか？"
+    "固定版DeepSeekへの切替で浮くAPI予算をどの機能改善に回すか？",
+    "最新追従をやめて固定版を叩く場合、壊れた際のフォールバック先はどこか？",
+    "SDK更新やDC拡張の動きから見て、自作アプリに今すぐ足すべき分岐は何か？"
   ],
   "moves": [
     {
-      "t": "API退避配列をWebに実装する",
-      "why": "特定モデルの価格急騰で利益が消し飛ぶリスクをフォールバック設定で即時遮断するため。",
+      "t": "SDK差分を確認しIssueを作成する",
+      "why": "v1.14.0で追加された機能を取り込む準備をiPhone上で行うため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.85,
+      "success_p": 0.8,
       "success_p_min": 0.7,
-      "success_p_max": 0.95,
-      "success_why": "GitHubのWebエディタ上でJSONや配列定義を書き換えるだけの単一コミットで完結するため。",
-      "value_score": 5,
+      "success_p_max": 0.9,
+      "success_why": "PyPIのリリースノートとGitHubのコミット差分はSafariで即座に閲覧・記録できるため",
+      "value_score": 3,
       "learning_value": 4,
-      "time_minutes": 25,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "優先順位付きフォールバック呼び出しコードのGitHubコミット履歴",
-      "category": "build",
+      "outcome": "自作Webアプリのリポジトリに起票されたSDK更新対応Issue",
+      "category": "review",
       "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.28,
-      "impact_why": "API利用費の急激なスパイクによるアプリ停止リスクを恒久的に排除できるため。",
+      "impact_min": 0.03,
+      "impact_max": 0.1,
+      "impact_why": "依存ライブラリの陳腐化を防ぎ次期アップデートの着手障壁を下げるため",
       "evidence_ids": [
         "2026-10-15-r02"
       ],
       "assumptions": [
-        "GitHubリポジトリにSafariからアクセス可能であること"
+        "自作アプリでAnthropic製SDKまたは互換インターフェースを利用していること"
       ],
-      "disconfirm": "OpenRouter等のプロキシ層でフォールバック機能が完全自動化されクライアント側設定が不要になること",
-      "continue_if": "コミット後にエラーなく第一候補と第二候補の切り替え疎通が確認できた場合",
-      "stop": "利用中の全プロバイダが単一固定価格制を保証する規約を明記した場合"
+      "disconfirm": "v1.14.0の変更点が自作アプリの稼働レイヤーに一切影響しない軽微修正のみである観測",
+      "continue_if": "Issue内に記載した新機能または修正点が自作アプリのコード行に直接対応していること",
+      "stop": "新バージョンに重大な破壊的変更が含まれアプリ全面刷新が必要と判明した時"
     },
     {
-      "t": "Z.aiクレジットを小額購入する",
-      "why": "87%値下げされた格安枠を自作アプリの第一候補として即座に疎通検証するため。",
-      "cost_min": 500,
-      "cost_max": 1500,
-      "loss_max": 1500,
+      "t": "境界外アクセス防御プロンプトを試す",
+      "why": "エージェントの境界外アクセス脆弱性を防ぐ安全弁を自作アプリの入力部に組み込むため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.6,
+      "success_p_max": 0.8,
+      "success_why": "ChatGPT上でシステムプロンプトの攻撃耐性テストケースを生成し即時検証できるため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "境界外アクセスを弾くガードレール用システムプロンプトのテスト通過ログ",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.04,
+      "impact_max": 0.12,
+      "impact_why": "外部API実行を伴うエージェント機能の暴走リスクを未然に排除できるため",
+      "evidence_ids": [
+        "2026-10-12-r02"
+      ],
+      "assumptions": [
+        "自作アプリがユーザー入力を受け取って外部ツールや推論APIに渡すフローを持つこと"
+      ],
+      "disconfirm": "追加した防御プロンプトによって正常な推論応答の9割が拒絶される観測",
+      "continue_if": "テスト入力5パターンのうち境界外攻撃プロンプトのみが正確に拒絶されること",
+      "stop": "防御ルール追加によりプロンプトのトークン消費が許容枠の2倍を超えた時"
+    },
+    {
+      "t": "求人動向の比較メモを公開する",
+      "why": "Anthropicの法人営業・地域対策・科学特化職の連続求人からインフラ投資の先回り論点を言語化するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.65,
+      "success_p_max": 0.85,
+      "success_why": "公開求人票の職務要件は明文化されており要点抽出と考察の記録が容易であるため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "GitHubリポジトリまたはGistに公開保存された採用動向とインフラ先回り分析メモ",
+      "category": "publish",
+      "terminal": false,
+      "impact_min": 0.02,
+      "impact_max": 0.06,
+      "impact_why": "自身の思考整理に加え後から参照できる公開実績データとして蓄積されるため",
+      "evidence_ids": [
+        "2026-10-14-r02",
+        "2026-10-17-r01",
+        "2026-10-17-r03"
+      ],
+      "assumptions": [
+        "Greenhouse上の公開求人情報から事業戦略の転換点を読み取る分析枠組みがあること"
+      ],
+      "disconfirm": "公開した考察内容が大手テック系メディアの既報ニュースと完全に重複する観測",
+      "continue_if": "メモ作成から24時間以内に自身が読み返して次の開発機能の選定根拠として機能すること",
+      "stop": "求人情報の内容が一般的な要件定義にとどまり独自仮説の導出が困難と判断した時"
+    },
+    {
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "次に直す内容がIssueとして1件残る",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "Issueが次の実装に使われる"
+      ],
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
+    },
+    {
+      "t": "今日の一次情報を1本選び要点を3行残す",
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
       "success_p": 0.75,
       "success_p_min": 0.6,
       "success_p_max": 0.85,
-      "success_why": "公式WebコンソールからiPhoneのSafari経由でカード決済とキー発行が数分で完了するため。",
-      "value_score": 4,
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "value_score": 2,
       "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 14,
-      "outcome": "発行された有効なAPIキーとテスト呼び出し成功ログ",
-      "category": "buy",
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "一次情報の要点メモが3行残る",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.22,
-      "impact_why": "最安推論枠を確保することで運用トークン原価を劇的に圧縮できるため。",
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "意思決定へ使えた時だけ価値になる",
       "evidence_ids": [
-        "2026-10-15-r02"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "日本のクレジットカードで海外トークン決済が承認されること"
+        "読む情報が現在の目標に関係する"
       ],
-      "disconfirm": "日本のIPアドレスまたはカード発行国が理由で即座にアカウントが凍結されること",
-      "continue_if": "テストリクエストでレイテンシと出力品質が要件を満たし原価が半減すること",
-      "stop": "リクエスト失敗率が20%を超えフォールバック先への依存が解消しない場合"
-    },
-    {
-      "t": "監視スクリプトをWebで組む",
-      "why": "トークン単価の不意な急騰をトリガーにして通知を飛ばす仕組みを無料枠で作るため。",
-      "cost_min": 0,
-      "cost_max": 800,
-      "loss_max": 800,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "GitHub Actionsの定期実行とDiscord等のWebhook連携はSafari上で編集完結するため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 30,
-      "outcome": "API価格エンドポイントを監視し閾値超過で通知するワークフローファイル",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.12,
-      "impact_max": 0.25,
-      "impact_why": "価格改定に受動的にならず即日コード修正へ動ける体制が整うため。",
-      "evidence_ids": [
-        "2026-10-15-r02"
-      ],
-      "assumptions": [
-        "アグリゲータがモデル価格情報をJSONで常時返送していること"
-      ],
-      "disconfirm": "モデル価格情報APIが廃止されスクレイピング対策が導入された場合",
-      "continue_if": "日次の価格クロールが正常に動作し異常値の検知テストに成功した場合",
-      "stop": "GitHub Actionsの無料枠制限または仕様変更で外部定期通信が遮断された場合"
-    },
-    {
-      "t": "OpenRouter枠を補充する",
-      "why": "急激な価格改定下でもフォールバック先の推論パイプラインを枯渇させないため。",
-      "cost_min": 3000,
-      "cost_max": 7500,
-      "loss_max": 7500,
-      "success_p": 0.8,
-      "success_p_min": 0.65,
-      "success_p_max": 0.9,
-      "success_why": "既存アカウントへの残高チャージでありSafariから数クリックで完了するため。",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 10,
-      "payback_days": 45,
-      "outcome": "チャージ完了画面と引き落とし上限設定済みのコンソール",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.08,
-      "impact_max": 0.18,
-      "impact_why": "自作サービスが推論不能になるダウンタイムをゼロに抑えられるため。",
-      "evidence_ids": [
-        "2026-10-15-r02"
-      ],
-      "assumptions": [
-        "アグリゲータのクレジット残高に利用期限が即座に設定されないこと"
-      ],
-      "disconfirm": "アグリゲータの手数料率が大幅改定され直契約より割高になること",
-      "continue_if": "月間推論回数が安定して伸びており停止コストの方が大きい場合",
-      "stop": "主要モデルの直契約APIのほうが月額トータルで30%以上安価になった場合"
-    },
-    {
-      "t": "境界外アクセス保護を設定する",
-      "why": "エージェントの暴走や外部アクセス違反による損害賠償リスクを遮断するため。",
-      "cost_min": 5000,
-      "cost_max": 15000,
-      "loss_max": 15000,
-      "success_p": 0.6,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "論文で指摘された逸脱パターンのブラックリストをプロンプト防御層に反映できるため。",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 60,
-      "outcome": "外部ツール呼び出し制限と入出力検証バリデータの適用コミット",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.24,
-      "impact_why": "事故発生時の法的・金銭的責任から個人開発環境を完全に隔離できるため。",
-      "evidence_ids": [
-        "2026-10-12-r02",
-        "2026-10-13-r03"
-      ],
-      "assumptions": [
-        "アプリ側でツール実行前の認可フック処理が挟める構造になっていること"
-      ],
-      "disconfirm": "利用フレームワーク側でサンドボックス機能が完全強制実装されること",
-      "continue_if": "疑似攻撃リクエストを投げた際にバリデータが正しく遮断を記録した場合",
-      "stop": "バリデータ導入によりアプリの正常レスポンスが30%以上誤判定ブロックされた場合"
+      "disconfirm": "要点が次の行動を一つも変えない",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了",
+      "fallback": true
     }
   ],
-  "kan": "Anthropicが今後60日以内に対顧客のAIエージェント事故賠償スキームや保険パッケージを発表する確度は15%と見る。主要AIラボが顧客賠償枠を新設した過去の基準率は年0件（皆無）であり、基本確度は5%以下だが、財務部門での保険専門職採用という具体的予兆を加味して15%まで引き上げる。"
+  "kan": "Anthropicは今後14日以内に、公式採用ページにおいてモンタナ州・ユタ州に続く第3の特定州名を明記したデータセンター地域対策職の求人を1件以上追加公開すると見る。"
 }

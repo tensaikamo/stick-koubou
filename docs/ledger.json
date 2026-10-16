@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16 08:52",
+  "updated_at": "2026-10-17 08:49",
   "score": {
     "hit": 16,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-10-22",
-    "days": 6
+    "days": 5
   },
   "decided": [
     {
@@ -341,16 +341,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-10-14",
-          "headline": "AnthropicがClaude Partner Networkのリセラー部門マーケティング責任者の採用を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5451134008"
-        },
-        {
-          "date": "2026-10-15",
-          "headline": "AnthropicがAnthropic STEM Fellowの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5452403008"
-        },
-        {
           "date": "2026-10-15",
           "headline": "AnthropicがPartner Account Managerの求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5452909008"
@@ -359,6 +349,16 @@
           "date": "2026-10-15",
           "headline": "anthropic Python SDK v1.14.0 リリース",
           "url": "https://pypi.org/project/anthropic/1.14.0/"
+        },
+        {
+          "date": "2026-10-17",
+          "headline": "Anthropicが戦略顧客向けエグゼクティブ・ブリーフィング責任者の求人を開設",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5449415008"
+        },
+        {
+          "date": "2026-10-17",
+          "headline": "Anthropicが科学戦略・広報担当TPMの求人を公開、科学特化ブログ新設を示唆",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5455454008"
         }
       ]
     },
@@ -391,11 +391,6 @@
       "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-10-11",
-          "headline": "OpenAIがPython SDKのバージョン3.28.0をPyPIで公開",
-          "url": "https://pypi.org/project/openai/3.28.0/"
-        },
-        {
           "date": "2026-10-12",
           "headline": "OpenAI・Anthropic・Google製エージェントの境界外アクセス事例を比較した論文が公開",
           "url": "https://arxiv.org/abs/2610.12463v1"
@@ -409,6 +404,11 @@
           "date": "2026-10-15",
           "headline": "openai Python SDK v3.31.0 リリース",
           "url": "https://pypi.org/project/openai/3.31.0/"
+        },
+        {
+          "date": "2026-10-17",
+          "headline": "OpenAIが公式Python SDK v3.32.0をリリース",
+          "url": "https://pypi.org/project/openai/3.32.0/"
         }
       ]
     },
@@ -469,6 +469,27 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-10-17-r03",
+      "date": "2026-10-17",
+      "headline": "Anthropicが戦略顧客向けエグゼクティブ・ブリーフィング責任者の求人を開設",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5449415008"
+    },
+    {
+      "id": "2026-10-17-r02",
+      "date": "2026-10-17",
+      "headline": "OpenAIが公式Python SDK v3.32.0をリリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.32.0/"
+    },
+    {
+      "id": "2026-10-17-r01",
+      "date": "2026-10-17",
+      "headline": "Anthropicが科学戦略・広報担当TPMの求人を公開、科学特化ブログ新設を示唆",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5455454008"
+    },
     {
       "id": "2026-10-15-r08",
       "date": "2026-10-15",
@@ -531,28 +552,7 @@
       "headline": "xAIがメンフィスColossusデータセンターの施設運用スーパーバイザー求人を公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/xai/jobs/5265155007"
-    },
-    {
-      "id": "2026-10-14-r02",
-      "date": "2026-10-14",
-      "headline": "AnthropicがClaude Partner Networkのリセラー部門マーケティング責任者の採用を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5451134008"
-    },
-    {
-      "id": "2026-10-14-r01",
-      "date": "2026-10-14",
-      "headline": "Googleがgoogle-genai Python SDK v2.30.1をリリースし次期メジャーでの自動関数呼び出し仕様変更を予告",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/2.30.1/"
-    },
-    {
-      "id": "2026-10-13-r03",
-      "date": "2026-10-13",
-      "headline": "Anthropicがロンドン拠点の銀行業界特化エンタープライズ営業職を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5426602008"
     }
   ],
-  "record_count": 268
+  "record_count": 271
 }
