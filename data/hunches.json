@@ -2594,7 +2594,7 @@
       "decider": "xAIの公式ウェブサイトのニュースまたはブログセクションにおいて、メンフィスの電力設備やデータセンター拡張に関する公式発表が掲載されないこと"
     },
     "deadline": "2026-10-13",
-    "confidence": 0.55,
+    "confidence": 0.657,
     "base_rate": 0.7,
     "base_rate_class": "AI企業がインフラ求人を出した後に14日以内で追加の拡張プレスリリースを出す頻度",
     "confidence_why": "求人の存在はインフラ投資の継続を示すが、短期でのプレスリリース発出の基準率は低いため、高すぎる確度を避けて基準率に引き戻した。",
@@ -2609,7 +2609,16 @@
         "dir": "confirm"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-10-18",
+        "sign": "求人ページから該当の電力関連ポジションが削除される",
+        "dir": "confirm",
+        "why": "本日の求人情報にxAIのメンフィスにおける電力・インフラ施設関連（Certified Weld InspectorやIT Network Engineerなど）が含まれているため、指標の成立状況を確認できる。",
+        "conf_before": 0.55,
+        "conf_after": 0.657
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -2622,7 +2631,8 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "judge_attempts": 3,
-    "needs_review": true
+    "needs_review": true,
+    "initial_confidence": 0.55
   },
   {
     "id": "2026-10-08-h01",
@@ -2680,7 +2690,7 @@
       "decider": "xAIの公式ニュースルームページにおいて、メンフィスの発電プラント稼働または電力契約に関する新しい公式声明が期間内に掲載されないこと"
     },
     "deadline": "2026-10-23",
-    "confidence": 0.55,
+    "confidence": 0.657,
     "base_rate": 0.7,
     "base_rate_class": "AI企業がインフラ求人を出した後に14日以内で発電完了や電力契約を公式発表する頻度",
     "confidence_why": "過去の過信による外れ実績と、短期間でインフラの公式進捗発表が行われる確率の低さを考慮し、基準率に近づけて引き下げた",
@@ -2695,7 +2705,16 @@
         "dir": "confirm"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-10-18",
+        "sign": "追加の発電関連の求人が停止・削除される",
+        "dir": "confirm",
+        "why": "本日の新規求人としてxAIのメンフィスにおけるインフラ関連のポジションが追加されており、発電関連の動きに関連する求人状況の確認ができるため。",
+        "conf_before": 0.55,
+        "conf_after": 0.657
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -2703,7 +2722,8 @@
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.55
   },
   {
     "id": "2026-10-11-h01",

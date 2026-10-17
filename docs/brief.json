@@ -1,60 +1,54 @@
 {
-  "date": "2026-10-17",
-  "updated_at": "2026-10-17 08:55",
+  "date": "2026-10-18",
+  "updated_at": "2026-10-18 08:23",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouter上で最新版を自動参照する動的エイリアスであるDeepSeek Flash Latestが94%値上げされた一方、バージョン固定のDeepSeek V4.1 Flashは81%値下げされた。Googleは推論難問特化のGemini 4 Argonを投入し、Anthropicはモンタナ州およびユタ州で自前のデータセンター地域対策担当の公募を開始した。",
-  "ura": "インフラ負荷が限界に達したルーティング事業者が、自動追従エイリアスにペナルティ価格を課して漫然と最新版を叩くユーザーのトラフィックを意図的にふるい落としている。Anthropicが特定州で地域対策職の自社直接雇用に踏み切った動きと合わせると、上位プレイヤーの戦場はクラウドAPIの機能競争から電力網と自治体交渉を握る物理インフラ囲い込みへ移行したと見る。",
-  "ura_taikou": "OpenRouterの値上げは特定プロバイダーの一時的なキャパシティ逼迫に伴う個別スプレッド拡大に過ぎないという説を検証したが、固定版V4.1 Flashの大幅値下げが同日設定されている点から、プロバイダー側の意図的な負荷分散誘導であると判断し退けた。",
-  "dousuru": "SafariでGitHubを開き、自作WebアプリのAPIリクエスト先を動的エイリアスから81%安い固定タグ『DeepSeek V4.1 Flash』へ書き換えろ。作業時間は10分、費用はゼロで、API消費原価を即座に約5分の1へ圧縮できる。浮いた予算枠を小型モデルと推論モデルを分岐させる二段階処理ロジックの実装に充て、固定版の安定稼働を検証結果として残せ。",
-  "kan": "Anthropicは今後14日以内に、公式採用ページにおいてモンタナ州・ユタ州に続く第3の特定州名を明記したデータセンター地域対策職の求人を1件以上追加公開すると見る。",
-  "kan_konkyo": "AIフロンティア企業が特定州の拠点専任職を新規公募する平常時の基準率は月1回未満（約20%）だが、複数州の同時立ち上げ初期には同職種の波状公募が集中する傾向があるため、基準率を42%まで上方修正して設定した。",
-  "kan_hantai": "自治体との電力・用地交渉は四半期単位の秘密保持契約先行で進むため、14日という短期間では次期候補地の求人公開まで至らない公算がある。",
-  "kan_conf": 0.28,
-  "ippan": "AIサービスを利用する際は、常に最新版へ自動更新される設定を避け、動作検証済みの特定バージョン番号を指定して運用するのが鉄則です。事業者は最新版の利便性と引き換えに価格を引き上げる傾向があるため、固定版を指定し続けるだけで同一の処理性能を大幅に低いコストで維持できます。",
+  "omote": "OpenRouterにおいてNVIDIA Nemotron 3.5 Super VLが50%値上げされ、DeepSeek V4.1 Flashも103%の大幅な値上げが実行された。",
+  "ura": "API仲介プラットフォームが特定の低価格モデルの買い占めやリクエスト集中を弾くため、意図的に手数料率のティア構造を引き上げた動きと見る。中間マージンを抜く側が特定の過密スロットを絞り込みに来ている。",
+  "ura_taikou": "単なるライセンス費用やクラウド基盤の維持コスト増によるもので、戦略的な意図はないという説は、50%から103%という急激な変動幅の大きさから棄却した。",
+  "dousuru": "OpenRouter上の各モデルの価格変動データを今夜確認し、価格が急騰している軽量モデル群を外して、直近で単価が据え置かれている代替モデルへのAPIルーティング設定をiPhoneのブラウザから書き換えろ。",
+  "kan": "本命ではないが、今月中に主要なAPIプロバイダが特定モデルの提供を突如停止し、完全従量課金から月額固定の専有枠制へ強制移行させる目がある。",
+  "kan_konkyo": "OpenRouterにおけるNemotronの50%値上げとDeepSeek V4.1 Flashの103%値上げという急激な価格改定の数字から来ている。",
+  "kan_hantai": "クラウドプロバイダのGPU供給量が急回復し、価格競争によるさらなる値下げ合戦が再燃する場合は外れる。",
+  "kan_conf": 0.08,
+  "ippan": "AIのAPI価格が裏で急激に乱高下しているため、無料だと思って使っていたツールやアプリが突然有料化したり動作しなくなったりするリスクがある。信頼しているAIサービス以外の代替手段も事前に調べておけ。",
   "votes": [
-    0.18,
-    0.42,
-    0.28
+    0.08,
+    0.12,
+    0.04
   ],
   "mijoriku": [
     {
-      "title": "LEASH: Uncertainty-Aware Weak-to-Strong Escalation",
-      "desc": "通常処理を小型AIで高速に処理し、不確実性スコアが閾値を超えた例外処理のみ大型推論AIへ委譲・監視させるアーキテクチャ設計。",
-      "why": "高額な推論モデルを常時稼働させる実装はAPI原価で即死するため、個人開発者が低コストで高精度アプリを組むための必須防壁になるから。"
+      "title": "Qwen3Guard: Real-time Safety for Your Token Stream",
+      "desc": "リアルタイム・トークンストリーム安全管理モデル",
+      "why": "日本語圏では安全性モデルの概念すら議論されておらず、企業導入の裏側でどう使われるかの先回りになるため"
+    },
+    {
+      "title": "LEASH: Uncertainty-Aware Weak-to-Strong Escalation and Oversight for Computer-Use Agents",
+      "desc": "コンピュータ操作エージェント向け不確実性認識型エスカレーション手法",
+      "why": "エージェントの暴走リスクを監視する最新手法であり、国内で実践している個人がまだ誰もいないため"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: NVIDIA: Nemotron 3.5 Super VL 値下げ 33%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 11%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値上げ 94%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値下げ 81%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash (batch) 値下げ 55%",
-    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値下げ 45%"
+    "[差分] 価格が動いた: NVIDIA: Nemotron 3.5 Super VL 値上げ 50%",
+    "[差分] 価格が動いた: Pareto Latest 値下げ 68%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値下げ 52%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値上げ 186%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値上げ 103%",
+    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 340%"
   ],
   "evidence": [
     {
-      "claim": "OpenRouterにおいて動的エイリアスが大幅値上げされ固定タグが81%値下げされた",
-      "confidence": 0.95,
-      "disconfirm": "DeepSeek公式ベースモデルの直接提供価格自体が一律で引き上げられている事実の判明",
+      "claim": "APIプロバイダ側での計算リソース逼迫とモデル維持費の転嫁",
+      "confidence": 0.65,
+      "disconfirm": "価格変動がインフラコストではなく単なるプロバイダの実験的価格テストに過ぎないことが証明された場合",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値上げ 94%",
+          "title": "[差分] 価格が動いた: NVIDIA: Nemotron 3.5 Super VL 値上げ 50%",
           "url": "https://openrouter.ai/models"
         },
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値下げ 81%",
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値上げ 103%",
           "url": "https://openrouter.ai/models"
-        }
-      ]
-    },
-    {
-      "claim": "Anthropicがモンタナ州およびユタ州で自社データセンター地域対策担当の採用を開始した",
-      "confidence": 0.9,
-      "disconfirm": "当該職種が自社拠点ではなく既存クラウドアライアンスの渉外窓口に留まる雇用契約の判明",
-      "sources": [
-        {
-          "title": "[新規求人] anthropic: Community Engagement Manager, Data Centers (Montana & Utah) (Remote-Friendly, United States)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5454315008"
         }
       ]
     }

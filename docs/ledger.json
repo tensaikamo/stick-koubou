@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17 08:49",
+  "updated_at": "2026-10-18 08:22",
   "score": {
     "hit": 16,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-10-22",
-    "days": 5
+    "days": 4
   },
   "decided": [
     {
@@ -273,14 +273,20 @@
       "claim": "xAIは今後14日以内に、公式ニュースルームまたはブログにおいて、メンフィスの電力・インフラ施設に関する新たな拡張計画のプレスリリースを出さない。",
       "subject": "xAI",
       "deadline": "2026-10-13",
-      "confidence": 0.55,
-      "initial_confidence": null,
+      "confidence": 0.657,
+      "initial_confidence": 0.55,
       "result": null,
       "status": "pending",
       "alert": false,
       "counter": "データセンターの電力網接続や大型設備の搬入に関する発表が突発的に行われる可能性",
       "evidence": "判定対象であるxAIの公式ページを開くことができず、発表の有無を確認できる十分な情報が得られないため。",
-      "signals": []
+      "signals": [
+        {
+          "date": "2026-10-18",
+          "dir": "confirm",
+          "why": "本日の求人情報にxAIのメンフィスにおける電力・インフラ施設関連（Certified Weld InspectorやIT Network Engineerなど）が含まれているため、指標の成立状況を確認できる。"
+        }
+      ]
     },
     {
       "id": "2026-10-08-h01",
@@ -301,14 +307,20 @@
       "claim": "xAIは今後14日以内に、公式ニュースルームまたはブログにおいて、メンフィスの電力プラント建設完了や電力会社との具体的な送電契約に関する公式発表を行わない",
       "subject": "xAI",
       "deadline": "2026-10-23",
-      "confidence": 0.55,
-      "initial_confidence": null,
+      "confidence": 0.657,
+      "initial_confidence": 0.55,
       "result": null,
       "status": "pending",
       "alert": false,
       "counter": "突発的な電力供給に関する規制当局の承認や大規模な提携発表が急遽行われる場合",
       "evidence": "",
-      "signals": []
+      "signals": [
+        {
+          "date": "2026-10-18",
+          "dir": "confirm",
+          "why": "本日の新規求人としてxAIのメンフィスにおけるインフラ関連のポジションが追加されており、発電関連の動きに関連する求人状況の確認ができるため。"
+        }
+      ]
     },
     {
       "id": "2026-10-11-h01",
@@ -341,24 +353,24 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-10-15",
-          "headline": "AnthropicがPartner Account Managerの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5452909008"
-        },
-        {
-          "date": "2026-10-15",
-          "headline": "anthropic Python SDK v1.14.0 リリース",
-          "url": "https://pypi.org/project/anthropic/1.14.0/"
-        },
-        {
-          "date": "2026-10-17",
-          "headline": "Anthropicが戦略顧客向けエグゼクティブ・ブリーフィング責任者の求人を開設",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5449415008"
-        },
-        {
           "date": "2026-10-17",
           "headline": "Anthropicが科学戦略・広報担当TPMの求人を公開、科学特化ブログ新設を示唆",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5455454008"
+        },
+        {
+          "date": "2026-10-18",
+          "headline": "[新規求人] anthropic: Customer Success Manager, Enterprise Tech",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5454800008"
+        },
+        {
+          "date": "2026-10-18",
+          "headline": "[新規求人] anthropic: Policy Design Manager, Integrity and Authenticity",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453573008"
+        },
+        {
+          "date": "2026-10-18",
+          "headline": "anthropic Python SDK v1.15.0 リリース",
+          "url": "https://pypi.org/project/anthropic/1.15.0/"
         }
       ]
     },
@@ -391,11 +403,6 @@
       "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-10-12",
-          "headline": "OpenAI・Anthropic・Google製エージェントの境界外アクセス事例を比較した論文が公開",
-          "url": "https://arxiv.org/abs/2610.12463v1"
-        },
-        {
           "date": "2026-10-13",
           "headline": "OpenAIが公式Python SDKのバージョン3.29.0をPyPIに公開",
           "url": "https://pypi.org/project/openai/3.29.0/"
@@ -409,6 +416,11 @@
           "date": "2026-10-17",
           "headline": "OpenAIが公式Python SDK v3.32.0をリリース",
           "url": "https://pypi.org/project/openai/3.32.0/"
+        },
+        {
+          "date": "2026-10-18",
+          "headline": "openai Python SDK v3.35.0 リリース",
+          "url": "https://pypi.org/project/openai/3.35.0/"
         }
       ]
     },
@@ -470,6 +482,34 @@
   ],
   "records": [
     {
+      "id": "2026-10-18-r04",
+      "date": "2026-10-18",
+      "headline": "[新規求人] anthropic: Customer Success Manager, Enterprise Tech",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5454800008"
+    },
+    {
+      "id": "2026-10-18-r03",
+      "date": "2026-10-18",
+      "headline": "[新規求人] anthropic: Policy Design Manager, Integrity and Authenticity",
+      "certainty": "reported",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453573008"
+    },
+    {
+      "id": "2026-10-18-r02",
+      "date": "2026-10-18",
+      "headline": "anthropic Python SDK v1.15.0 リリース",
+      "certainty": "reported",
+      "url": "https://pypi.org/project/anthropic/1.15.0/"
+    },
+    {
+      "id": "2026-10-18-r01",
+      "date": "2026-10-18",
+      "headline": "openai Python SDK v3.35.0 リリース",
+      "certainty": "reported",
+      "url": "https://pypi.org/project/openai/3.35.0/"
+    },
+    {
       "id": "2026-10-17-r03",
       "date": "2026-10-17",
       "headline": "Anthropicが戦略顧客向けエグゼクティブ・ブリーフィング責任者の求人を開設",
@@ -524,35 +564,7 @@
       "headline": "論文: ChunkAct: Action Chunking for Agentic Robotics",
       "certainty": "confirmed",
       "url": "https://arxiv.org/abs/2610.18874v1"
-    },
-    {
-      "id": "2026-10-15-r03",
-      "date": "2026-10-15",
-      "headline": "google-genai Python SDK v2.31.0 リリース",
-      "certainty": "reported",
-      "url": "https://pypi.org/project/google-genai/2.31.0/"
-    },
-    {
-      "id": "2026-10-15-r02",
-      "date": "2026-10-15",
-      "headline": "anthropic Python SDK v1.14.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/1.14.0/"
-    },
-    {
-      "id": "2026-10-15-r01",
-      "date": "2026-10-15",
-      "headline": "openai Python SDK v3.31.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.31.0/"
-    },
-    {
-      "id": "2026-10-14-r03",
-      "date": "2026-10-14",
-      "headline": "xAIがメンフィスColossusデータセンターの施設運用スーパーバイザー求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5265155007"
     }
   ],
-  "record_count": 271
+  "record_count": 275
 }

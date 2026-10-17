@@ -1,104 +1,12 @@
 {
-  "date": "2026-10-17",
+  "date": "2026-10-18",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "固定版DeepSeekへの切替で浮くAPI予算をどの機能改善に回すか？",
-    "最新追従をやめて固定版を叩く場合、壊れた際のフォールバック先はどこか？",
-    "SDK更新やDC拡張の動きから見て、自作アプリに今すぐ足すべき分岐は何か？"
+    "OpenRouterの価格変動を受け、ルーティング設定からDeepSeek系を外してどの代替モデルへ切り替えるか？",
+    "iPhoneのブラウザからOpenRouterの設定画面を開き、今夜中にどのAPIキーのルーティングを書き換えるか？",
+    "マージン防衛のため軽量モデルが急騰する中、定額モデルへの移行判断をいつまでに下すか？"
   ],
   "moves": [
-    {
-      "t": "SDK差分を確認しIssueを作成する",
-      "why": "v1.14.0で追加された機能を取り込む準備をiPhone上で行うため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "PyPIのリリースノートとGitHubのコミット差分はSafariで即座に閲覧・記録できるため",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "自作Webアプリのリポジトリに起票されたSDK更新対応Issue",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.03,
-      "impact_max": 0.1,
-      "impact_why": "依存ライブラリの陳腐化を防ぎ次期アップデートの着手障壁を下げるため",
-      "evidence_ids": [
-        "2026-10-15-r02"
-      ],
-      "assumptions": [
-        "自作アプリでAnthropic製SDKまたは互換インターフェースを利用していること"
-      ],
-      "disconfirm": "v1.14.0の変更点が自作アプリの稼働レイヤーに一切影響しない軽微修正のみである観測",
-      "continue_if": "Issue内に記載した新機能または修正点が自作アプリのコード行に直接対応していること",
-      "stop": "新バージョンに重大な破壊的変更が含まれアプリ全面刷新が必要と判明した時"
-    },
-    {
-      "t": "境界外アクセス防御プロンプトを試す",
-      "why": "エージェントの境界外アクセス脆弱性を防ぐ安全弁を自作アプリの入力部に組み込むため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.6,
-      "success_p_max": 0.8,
-      "success_why": "ChatGPT上でシステムプロンプトの攻撃耐性テストケースを生成し即時検証できるため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "境界外アクセスを弾くガードレール用システムプロンプトのテスト通過ログ",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.04,
-      "impact_max": 0.12,
-      "impact_why": "外部API実行を伴うエージェント機能の暴走リスクを未然に排除できるため",
-      "evidence_ids": [
-        "2026-10-12-r02"
-      ],
-      "assumptions": [
-        "自作アプリがユーザー入力を受け取って外部ツールや推論APIに渡すフローを持つこと"
-      ],
-      "disconfirm": "追加した防御プロンプトによって正常な推論応答の9割が拒絶される観測",
-      "continue_if": "テスト入力5パターンのうち境界外攻撃プロンプトのみが正確に拒絶されること",
-      "stop": "防御ルール追加によりプロンプトのトークン消費が許容枠の2倍を超えた時"
-    },
-    {
-      "t": "求人動向の比較メモを公開する",
-      "why": "Anthropicの法人営業・地域対策・科学特化職の連続求人からインフラ投資の先回り論点を言語化するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.65,
-      "success_p_max": 0.85,
-      "success_why": "公開求人票の職務要件は明文化されており要点抽出と考察の記録が容易であるため",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "GitHubリポジトリまたはGistに公開保存された採用動向とインフラ先回り分析メモ",
-      "category": "publish",
-      "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.06,
-      "impact_why": "自身の思考整理に加え後から参照できる公開実績データとして蓄積されるため",
-      "evidence_ids": [
-        "2026-10-14-r02",
-        "2026-10-17-r01",
-        "2026-10-17-r03"
-      ],
-      "assumptions": [
-        "Greenhouse上の公開求人情報から事業戦略の転換点を読み取る分析枠組みがあること"
-      ],
-      "disconfirm": "公開した考察内容が大手テック系メディアの既報ニュースと完全に重複する観測",
-      "continue_if": "メモ作成から24時間以内に自身が読み返して次の開発機能の選定根拠として機能すること",
-      "stop": "求人情報の内容が一般的な要件定義にとどまり独自仮説の導出が困難と判断した時"
-    },
     {
       "t": "GitHubの改善候補を1件Issueに書く",
       "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
@@ -162,7 +70,102 @@
       "continue_if": "次の判断に使える差分が1つ見つかった",
       "stop": "3行書いたら終了",
       "fallback": true
+    },
+    {
+      "t": "予測を1件確認し確度メモを1行更新する",
+      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.55,
+      "success_p_max": 0.8,
+      "success_why": "既存予測の更新なので新規企画より着地しやすい",
+      "value_score": 2,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "追跡中予測の確度メモが更新される",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "誤った前提で投資する損失を減らす",
+      "evidence_ids": [
+        "action-history"
+      ],
+      "assumptions": [
+        "予測が現在の投資判断に関係する"
+      ],
+      "disconfirm": "確度更新が次の行動や支出を変えない",
+      "continue_if": "確度を動かす一次根拠が見つかった",
+      "stop": "根拠URLを1本確認したら終了",
+      "fallback": true
+    },
+    {
+      "t": "独自ドメイン候補を決め購入画面まで進める",
+      "why": "公開先を固定し、他人へ渡せる形へ近づけるため。",
+      "cost_min": 1000,
+      "cost_max": 4000,
+      "loss_max": 4000,
+      "success_p": 0.65,
+      "success_p_min": 0.45,
+      "success_p_max": 0.75,
+      "success_why": "価格と空きを確認できるが、名前の決定で迷う余地がある",
+      "value_score": 4,
+      "learning_value": 2,
+      "time_minutes": 30,
+      "payback_days": 180,
+      "outcome": "候補ドメインと年間費用が確定する",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.02,
+      "impact_max": 0.08,
+      "impact_why": "公開と共有の摩擦を下げるが、ドメインだけでは成果にならない",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "90日以内に公開する"
+      ],
+      "disconfirm": "公開日や見せる相手が決まっていない",
+      "continue_if": "公開予定日と最初に見せる相手が決まっている",
+      "stop": "年間4000円を超えたら購入しない",
+      "fallback": true
+    },
+    {
+      "t": "有料AI機能を1か月だけ比較検証する",
+      "why": "無料制約で実装速度を落とさず、支払う価値を測るため。",
+      "cost_min": 3000,
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.55,
+      "success_p_min": 0.35,
+      "success_p_max": 0.7,
+      "success_why": "短縮効果はあり得るが、成果との相関は未計測",
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 30,
+      "payback_days": 30,
+      "outcome": "無料版との比較メモが1件残る",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.02,
+      "impact_max": 0.12,
+      "impact_why": "実装速度を上げる可能性はあるが成果増加は未確認",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "週2回以上使う"
+      ],
+      "disconfirm": "無料版と完成件数が変わらない",
+      "continue_if": "無料版より月2件以上多く成果物が完成する",
+      "stop": "30日で成果物が2件増えなければ解約する",
+      "fallback": true
     }
   ],
-  "kan": "Anthropicは今後14日以内に、公式採用ページにおいてモンタナ州・ユタ州に続く第3の特定州名を明記したデータセンター地域対策職の求人を1件以上追加公開すると見る。"
+  "kan": "本命ではないが、今月中に主要なAPIプロバイダが特定モデルの提供を突如停止し、完全従量課金から月額固定の専有枠制へ強制移行させる目がある。"
 }
