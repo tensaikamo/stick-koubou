@@ -7394,5 +7394,113 @@
       "2026-10-13-r03",
       "2026-10-12-r02"
     ]
+  },
+  {
+    "id": "2026-10-18-r01",
+    "created_at": "2026-10-18T08:19:40.895498+09:00",
+    "headline": "openai Python SDK v3.35.0 リリース",
+    "what_happened": "PyPIにおいてopenai Python SDKのバージョン3.35.0がリリースされた。body_fetched=falseのため詳細な変更履歴はタイトルおよびパッケージの存在のみに基づいている。",
+    "background": "OpenAI公式のPython向けクライアントライブラリであり、API利用時の標準的なインターフェースを提供する。",
+    "changed": "openai Python SDKのバージョン番号が3.35.0に更新された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.35.0/",
+      "title": "openai Python SDK v3.35.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-17-r02",
+      "2026-10-15-r01",
+      "2026-10-13-r02",
+      "2026-10-12-r02",
+      "2026-10-11-r01",
+      "2026-10-07-r04"
+    ]
+  },
+  {
+    "id": "2026-10-18-r02",
+    "created_at": "2026-10-18T08:19:40.895498+09:00",
+    "headline": "anthropic Python SDK v1.15.0 リリース",
+    "what_happened": "PyPIにおいてanthropic Python SDKのバージョン1.15.0がリリースされた。body_fetched=falseのため詳細な変更履歴はタイトルおよびパッケージの存在のみに基づいている。",
+    "background": "Anthropic公式のPython向けクライアントライブラリであり、API利用時の標準的なインターフェースを提供する。",
+    "changed": "anthropic Python SDKのバージョン番号が1.15.0に更新された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.15.0/",
+      "title": "anthropic Python SDK v1.15.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-17-r03",
+      "2026-10-17-r01",
+      "2026-10-15-r08",
+      "2026-10-15-r07",
+      "2026-10-15-r02",
+      "2026-10-14-r02"
+    ]
+  },
+  {
+    "id": "2026-10-18-r03",
+    "created_at": "2026-10-18T08:19:40.895498+09:00",
+    "headline": "[新規求人] anthropic: Policy Design Manager, Integrity and Authenticity",
+    "what_happened": "Anthropicはサンフランシスコ、ニューヨーク、ワシントンD.C.を勤務地とする「Policy Design Manager, Integrity and Authenticity」の求人を公開した。不正利用や操作、無許可の監視などを防止するためのポリシー策定およびリスクフレームワークの運用を担当する役割が求められている。",
+    "background": "AIの安全性や利用規約の遵守、悪用防止に関するポリシー設計は、モデルの機能拡張に伴い組織的な強化が進められている領域である。",
+    "changed": "インテグリティおよび信頼性に関するポリシー設計を専門とするポジションの採用が開始された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453573008",
+      "title": "[新規求人] anthropic: Policy Design Manager, Integrity and Authenticity (San Francisco, CA | New York City, NY | Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-17-r03",
+      "2026-10-17-r01",
+      "2026-10-15-r08",
+      "2026-10-15-r07",
+      "2026-10-15-r02",
+      "2026-10-14-r02"
+    ]
+  },
+  {
+    "id": "2026-10-18-r04",
+    "created_at": "2026-10-18T08:19:40.895498+09:00",
+    "headline": "[新規求人] anthropic: Customer Success Manager, Enterprise Tech",
+    "what_happened": "Anthropicはサンフランシスコおよびニューヨークを勤務地とする「Customer Success Manager, Enterprise Tech」の求人を公開した。APIやClaude Code、Coworkなどの機能を活用するテクノロジー系エンタープライズ顧客の導入支援を担当する。",
+    "background": "エンタープライズ向けの導入支援やカスタマーサクセス機能は、法人顧客の利用拡大に伴い継続的に拡張されている。",
+    "changed": "エンタープライズ顧客向けの導入支援を強化するためのカスタマーサクセス担当の求人が追加された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5454800008",
+      "title": "[新規求人] anthropic: Customer Success Manager, Enterprise Tech (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-17-r03",
+      "2026-10-17-r01",
+      "2026-10-15-r08",
+      "2026-10-15-r07",
+      "2026-10-15-r02",
+      "2026-10-14-r02"
+    ]
   }
 ]
