@@ -1,171 +1,163 @@
 {
-  "date": "2026-10-18",
+  "date": "2026-10-19",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの価格変動を受け、ルーティング設定からDeepSeek系を外してどの代替モデルへ切り替えるか？",
-    "iPhoneのブラウザからOpenRouterの設定画面を開き、今夜中にどのAPIキーのルーティングを書き換えるか？",
-    "マージン防衛のため軽量モデルが急騰する中、定額モデルへの移行判断をいつまでに下すか？"
+    "自作ツールの推論先をGLMへ切替時、利ざやは月何円増えるか？",
+    "大手が直販で囲う顧客層から零れ落ちる個人需要をどう拾うか？",
+    "OpenRouterの値下げモデルを今夜どの機能に充当するか？"
   ],
   "moves": [
     {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "t": "GitHubでAPI先をGLMへ変更する",
+      "why": "OpenRouter上のGLM 5.3が71%値下げされたため、既存WebツールのAPI呼び出し原価を今夜即座に圧縮できる。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.8,
+      "success_p": 0.85,
       "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
-      "value_score": 3,
-      "learning_value": 2,
+      "success_p_max": 0.95,
+      "success_why": "Safari上のGitHub Webエディタから環境変数または設定ファイルを1行書き換えるだけで完結するため。",
+      "value_score": 4,
+      "learning_value": 3,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
+      "outcome": "自作WebツールでGLM 5.3を呼び出すコミット1本",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.1,
+      "impact_max": 0.25,
+      "impact_why": "ツール運用粗利を直接引き上げる基盤改修だから。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-10-19-r02"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "GitHubリポジトリにiPhoneのSafariからログイン可能であること"
       ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "GLM 5.3のレスポンス形式が既存パーサーと互換性を欠く場合",
+      "continue_if": "コミット後にエラーなく応答が返り粗利が改善すること",
+      "stop": "レスポンス遅延が3秒を超えて使い物にならない場合"
     },
     {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "value_score": 2,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "一次情報の要点メモが3行残る",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
-      "evidence_ids": [
-        "user-goal",
-        "action-history"
-      ],
-      "assumptions": [
-        "読む情報が現在の目標に関係する"
-      ],
-      "disconfirm": "要点が次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
-    },
-    {
-      "t": "予測を1件確認し確度メモを1行更新する",
-      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "既存予測の更新なので新規企画より着地しやすい",
-      "value_score": 2,
+      "t": "OpenRouterに千円課金し速度を測る",
+      "why": "71%値下げされたGLM 5.3の実測レイテンシを把握し、自作ツールの主系統に耐えうるか判定する。",
+      "cost_min": 800,
+      "cost_max": 1500,
+      "loss_max": 1500,
+      "success_p": 0.8,
+      "success_p_min": 0.65,
+      "success_p_max": 0.9,
+      "success_why": "クレカ決済とWebコンソールからのテストリクエスト実行のみで確実に数値が取れるため。",
+      "value_score": 3,
       "learning_value": 4,
       "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "追跡中予測の確度メモが更新される",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "誤った前提で投資する損失を減らす",
-      "evidence_ids": [
-        "action-history"
-      ],
-      "assumptions": [
-        "予測が現在の投資判断に関係する"
-      ],
-      "disconfirm": "確度更新が次の行動や支出を変えない",
-      "continue_if": "確度を動かす一次根拠が見つかった",
-      "stop": "根拠URLを1本確認したら終了",
-      "fallback": true
-    },
-    {
-      "t": "独自ドメイン候補を決め購入画面まで進める",
-      "why": "公開先を固定し、他人へ渡せる形へ近づけるため。",
-      "cost_min": 1000,
-      "cost_max": 4000,
-      "loss_max": 4000,
-      "success_p": 0.65,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "価格と空きを確認できるが、名前の決定で迷う余地がある",
-      "value_score": 4,
-      "learning_value": 2,
-      "time_minutes": 30,
-      "payback_days": 180,
-      "outcome": "候補ドメインと年間費用が確定する",
+      "payback_days": 14,
+      "outcome": "GLM 5.3の日本語生成速度とトークン単価の実測メモ",
       "category": "buy",
       "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.08,
-      "impact_why": "公開と共有の摩擦を下げるが、ドメインだけでは成果にならない",
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "モデル選定の数値的根拠が揃い無駄な原価流出を止められるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-10-19-r03"
       ],
       "assumptions": [
-        "90日以内に公開する"
+        "OpenRouterアカウントにクレジットカードで残高チャージができること"
       ],
-      "disconfirm": "公開日や見せる相手が決まっていない",
-      "continue_if": "公開予定日と最初に見せる相手が決まっている",
-      "stop": "年間4000円を超えたら購入しない",
-      "fallback": true
+      "disconfirm": "東京リージョンからのRTTが長すぎて実用に耐えない場合",
+      "continue_if": "1秒あたりの出力トークン数がClaude 3.5 Haikuと同等以上を維持する場合",
+      "stop": "テストコール5回中2回以上タイムアウトが発生した場合"
     },
     {
-      "t": "有料AI機能を1か月だけ比較検証する",
-      "why": "無料制約で実装速度を落とさず、支払う価値を測るため。",
+      "t": "HaikuとGLMの精度差をAB測定する",
+      "why": "Anthropicが直販強化で高価格帯を狙う裏で、個人開発ツールは格安モデルで品質が維持できるか確かめる。",
       "cost_min": 3000,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.55,
-      "success_p_min": 0.35,
-      "success_p_max": 0.7,
-      "success_why": "短縮効果はあり得るが、成果との相関は未計測",
+      "cost_max": 4500,
+      "loss_max": 4500,
+      "success_p": 0.6,
+      "success_p_min": 0.45,
+      "success_p_max": 0.75,
+      "success_why": "Web画面上で同一プロンプトを10件流し、出力品質の差を直接比較できるため。",
       "value_score": 4,
       "learning_value": 5,
       "time_minutes": 30,
       "payback_days": 30,
-      "outcome": "無料版との比較メモが1件残る",
-      "category": "buy",
+      "outcome": "主要ユースケース10件の出力比較スプレッドシート",
+      "category": "review",
       "terminal": false,
-      "impact_min": 0.02,
-      "impact_max": 0.12,
-      "impact_why": "実装速度を上げる可能性はあるが成果増加は未確認",
+      "impact_min": 0.08,
+      "impact_max": 0.2,
+      "impact_why": "乗り換えによるユーザー離脱リスクを事前に排除できるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-10-15-r02",
+        "2026-10-19-r02"
       ],
       "assumptions": [
-        "週2回以上使う"
+        "自作ツールの典型的な入力プロンプトが手元に10件以上あること"
       ],
-      "disconfirm": "無料版と完成件数が変わらない",
-      "continue_if": "無料版より月2件以上多く成果物が完成する",
-      "stop": "30日で成果物が2件増えなければ解約する",
-      "fallback": true
+      "disconfirm": "GLMの日本語文脈理解が著しく低く要約タスクが破綻する場合",
+      "continue_if": "10問中8問以上でHaikuと遜色ない品質が確認できる場合",
+      "stop": "破綻率が30%を超えプロンプト調整でも解決しない場合"
+    },
+    {
+      "t": "推論コスト7割削減の実測値を公開する",
+      "why": "API転売が崩壊する中で、原価低減と個人開発の粗利改善ノウハウを発信し情報優位の足場を作る。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.5,
+      "success_p_max": 0.85,
+      "success_why": "実測データに基づくポストは技術関心層に閲覧されやすい基準率があるため。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "Xに投稿したGLM 5.3切り替え前後のコスト比較ポスト1件",
+      "category": "publish",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "自作ツールの認知獲得と先行事例としてのポジション確保に直結するため。",
+      "evidence_ids": [
+        "2026-10-19-r02"
+      ],
+      "assumptions": [
+        "XアカウントをiPhoneから操作できること"
+      ],
+      "disconfirm": "投稿へのエンゲージメントがゼロで全く認知が広がらない場合",
+      "continue_if": "インプレッションが過去平均の1.5倍以上伸びる場合",
+      "stop": "ネガティブな反応のみが集中し運用の阻害になる場合"
+    },
+    {
+      "t": "ツールのモデル障害時自動切替を書く",
+      "why": "ダンピング合戦中の格安推論APIは停止リスクが高いため、主系GLM障害時にAnthropicへ逃がす冗長化を仕込む。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.65,
+      "success_p_min": 0.5,
+      "success_p_max": 0.8,
+      "success_why": "try-catchブロックでフォールバックAPIを呼び出す軽量コード追加で済むため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "プライマリ失敗時にフォールバックする例外処理コードの反映",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "安価な中国勢モデルを使いつつサービス停止を防ぎ稼働率を担保できるため。",
+      "evidence_ids": [
+        "2026-10-15-r02"
+      ],
+      "assumptions": [
+        "GitHub上で直接WebツールのAPIハンドラーファイルを編集できること"
+      ],
+      "disconfirm": "OpenRouterのエラーレスポンスが200番台で返り例外捕捉できない場合",
+      "continue_if": "擬似エラーテストで正常にフォールバックが機能すること",
+      "stop": "二重呼び出しでレイテンシが許容値を超過する場合"
     }
   ],
-  "kan": "本命ではないが、今月中に主要なAPIプロバイダが特定モデルの提供を突如停止し、完全従量課金から月額固定の専有枠制へ強制移行させる目がある。"
+  "kan": "Anthropicは今後21日以内に、公式ニュースルームにおいて、インディアナ州またはケンタッキー州でのデータセンター施設計画に関する発表を行わない"
 }

@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-18 08:22",
+  "updated_at": "2026-10-19 08:34",
   "score": {
     "hit": 16,
     "miss": 24,
     "total": 40,
     "rate": 0.4,
-    "pending": 4,
+    "pending": 5,
     "brier": 0.3529078750000001,
     "brier_n": 40,
     "brier_initial": 0.36675500000000016,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-10-22",
-    "days": 4
+    "days": 3
   },
   "decided": [
     {
@@ -323,6 +323,26 @@
       ]
     },
     {
+      "id": "2026-10-19-h01",
+      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、インディアナ州またはケンタッキー州でのデータセンター施設計画に関する発表を行わない",
+      "subject": "Anthropic",
+      "deadline": "2026-11-09",
+      "confidence": 0.848,
+      "initial_confidence": 0.78,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "求人公開を発端として地元紙や環境団体からの問い合わせが急増し、透明性確保を名目に協調声明を前倒しでニュースルームに掲載する事態。",
+      "evidence": "",
+      "signals": [
+        {
+          "date": "2026-10-19",
+          "dir": "confirm",
+          "why": "Anthropicの公式求人一覧にインディアナ州およびケンタッキー州を対象とするデータセンター地域連携マネージャー職（Community Engagement Manager, Data Centers）の募集が確認されたため。"
+        }
+      ]
+    },
+    {
       "id": "2026-10-11-h01",
       "claim": "xAIは今後30日以内に、公式ブログにおいて日本市場向けX Moneyまたは決済サービスの提供開始を発表しない",
       "subject": "xAI",
@@ -353,35 +373,30 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-10-17",
-          "headline": "Anthropicが科学戦略・広報担当TPMの求人を公開、科学特化ブログ新設を示唆",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5455454008"
-        },
-        {
-          "date": "2026-10-18",
-          "headline": "[新規求人] anthropic: Customer Success Manager, Enterprise Tech",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5454800008"
-        },
-        {
-          "date": "2026-10-18",
-          "headline": "[新規求人] anthropic: Policy Design Manager, Integrity and Authenticity",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453573008"
-        },
-        {
           "date": "2026-10-18",
           "headline": "anthropic Python SDK v1.15.0 リリース",
           "url": "https://pypi.org/project/anthropic/1.15.0/"
+        },
+        {
+          "date": "2026-10-19",
+          "headline": "Anthropicがインディアナ・ケンタッキー州でのデータセンター地域連携マネージャーを募集",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5454535008"
+        },
+        {
+          "date": "2026-10-19",
+          "headline": "Anthropicが東京拠点のエンタープライズ営業チームマネージャーを募集",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391356008"
+        },
+        {
+          "date": "2026-10-19",
+          "headline": "Anthropicが計算資源フリートの利用効率を統括するプリンシパルエンジニアを募集",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5456039008"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-10-11",
-          "headline": "xAIがベアメタルおよび基盤プラットフォーム担当インフラセキュリティエンジニアを募集",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5262880007"
-        },
         {
           "date": "2026-10-11",
           "headline": "xAIが東京勤務の金融・Fintech特化GRCシニアセキュリティエンジニアを募集",
@@ -396,6 +411,11 @@
           "date": "2026-10-14",
           "headline": "xAIがメンフィスColossusデータセンターの施設運用スーパーバイザー求人を公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5265155007"
+        },
+        {
+          "date": "2026-10-19",
+          "headline": "xAIがメンフィス拠点で工業配管・鋼構造の溶接検査員を募集",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5267635007"
         }
       ]
     },
@@ -482,6 +502,34 @@
   ],
   "records": [
     {
+      "id": "2026-10-19-r04",
+      "date": "2026-10-19",
+      "headline": "xAIがメンフィス拠点で工業配管・鋼構造の溶接検査員を募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5267635007"
+    },
+    {
+      "id": "2026-10-19-r03",
+      "date": "2026-10-19",
+      "headline": "Anthropicが計算資源フリートの利用効率を統括するプリンシパルエンジニアを募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5456039008"
+    },
+    {
+      "id": "2026-10-19-r02",
+      "date": "2026-10-19",
+      "headline": "Anthropicが東京拠点のエンタープライズ営業チームマネージャーを募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391356008"
+    },
+    {
+      "id": "2026-10-19-r01",
+      "date": "2026-10-19",
+      "headline": "Anthropicがインディアナ・ケンタッキー州でのデータセンター地域連携マネージャーを募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5454535008"
+    },
+    {
       "id": "2026-10-18-r04",
       "date": "2026-10-18",
       "headline": "[新規求人] anthropic: Customer Success Manager, Enterprise Tech",
@@ -536,35 +584,7 @@
       "headline": "AnthropicがAnthropic STEM Fellowの求人を公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5452403008"
-    },
-    {
-      "id": "2026-10-15-r07",
-      "date": "2026-10-15",
-      "headline": "AnthropicがPartner Account Managerの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5452909008"
-    },
-    {
-      "id": "2026-10-15-r06",
-      "date": "2026-10-15",
-      "headline": "論文: Tev: Scaling Long-Horizon Agentic Environments with Dense Progress Rewards",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2610.18868v1"
-    },
-    {
-      "id": "2026-10-15-r05",
-      "date": "2026-10-15",
-      "headline": "論文: What Matters in Quality-Aware VLA Pretraining: A Benchmark and Empirical Study",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2610.18869v1"
-    },
-    {
-      "id": "2026-10-15-r04",
-      "date": "2026-10-15",
-      "headline": "論文: ChunkAct: Action Chunking for Agentic Robotics",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2610.18874v1"
     }
   ],
-  "record_count": 275
+  "record_count": 279
 }

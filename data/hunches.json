@@ -2798,7 +2798,7 @@
       "decider": "判定期限日時点でanthropic.com/newsに掲載されている記事一覧および記事本文に「Indiana」または「Kentucky」を含み、データセンター施設計画やインフラ投資を公表する記事が存在しない場合に的中。1件でも存在した場合は不的中。"
     },
     "deadline": "2026-11-09",
-    "confidence": 0.78,
+    "confidence": 0.848,
     "base_rate": 0.85,
     "base_rate_class": "先端AI企業が求人票でインフラ立地地域を公開してから21日以内に公式プレスリリースを発表しない頻度",
     "confidence_why": "自治体との許認可や電力契約締結前に計画を公表するインセンティブは極めて低いが、求人票公開に気づいた地元メディアの報道に対応して追認発表を行うリスクが一定程度存在するため、基準率(0.85)からやや引き下げて設定する。",
@@ -2817,7 +2817,16 @@
         "dir": "confirm"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-10-19",
+        "sign": "Anthropic公式求人一覧から当該地域連携マネージャー職の募集が継続掲載される",
+        "dir": "confirm",
+        "why": "Anthropicの公式求人一覧にインディアナ州およびケンタッキー州を対象とするデータセンター地域連携マネージャー職（Community Engagement Manager, Data Centers）の募集が確認されたため。",
+        "conf_before": 0.78,
+        "conf_after": 0.848
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -2825,6 +2834,7 @@
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.78
   }
 ]
