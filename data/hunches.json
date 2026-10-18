@@ -2782,5 +2782,49 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.92
+  },
+  {
+    "id": "2026-10-19-h01",
+    "created_at": "2026-10-19T08:33:40.046361+09:00",
+    "based_on": [
+      "2026-10-19-r04"
+    ],
+    "prose": "Anthropicがインディアナ州とケンタッキー州に特化したデータセンター地域連携職の求人を開始したが、この種のインフラ選地が求人票に露出してから短期間で公式発表に至るケースは稀である。電力会社との系統接続契約や自治体の減税承認が完了する前に立地を公式化する動機は薄く、外部発表はしばらく抑制される。21日以内に公式ニュースルームで当該地域での施設建設計画が公表されることはない。",
+    "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、インディアナ州またはケンタッキー州でのデータセンター施設計画に関する発表を行わない",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Indiana Kentucky datacenter",
+      "decider": "判定期限日時点でanthropic.com/newsに掲載されている記事一覧および記事本文に「Indiana」または「Kentucky」を含み、データセンター施設計画やインフラ投資を公表する記事が存在しない場合に的中。1件でも存在した場合は不的中。"
+    },
+    "deadline": "2026-11-09",
+    "confidence": 0.78,
+    "base_rate": 0.85,
+    "base_rate_class": "先端AI企業が求人票でインフラ立地地域を公開してから21日以内に公式プレスリリースを発表しない頻度",
+    "confidence_why": "自治体との許認可や電力契約締結前に計画を公表するインセンティブは極めて低いが、求人票公開に気づいた地元メディアの報道に対応して追認発表を行うリスクが一定程度存在するため、基準率(0.85)からやや引き下げて設定する。",
+    "counter": "求人公開を発端として地元紙や環境団体からの問い合わせが急増し、透明性確保を名目に協調声明を前倒しでニュースルームに掲載する事態。",
+    "indicators": [
+      {
+        "sign": "インディアナ州またはケンタッキー州の地元経済開発公社がAnthropic誘致に関する公式リリースを発行する",
+        "dir": "kill"
+      },
+      {
+        "sign": "Anthropic公式求人一覧から当該地域連携マネージャー職の募集が継続掲載される",
+        "dir": "confirm"
+      },
+      {
+        "sign": "PJMまたはMISO管内の系統接続待機キューにAnthropic名義の大規模受電申請が追加される",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.8-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]

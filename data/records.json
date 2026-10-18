@@ -7502,5 +7502,113 @@
       "2026-10-15-r02",
       "2026-10-14-r02"
     ]
+  },
+  {
+    "id": "2026-10-19-r01",
+    "created_at": "2026-10-19T08:33:40.046361+09:00",
+    "headline": "Anthropicがインディアナ・ケンタッキー州でのデータセンター地域連携マネージャーを募集",
+    "what_happened": "Anthropicはインディアナ州およびケンタッキー州を担当地域とするデータセンター向けコミュニティ・エンゲージメント・マネージャーの求人を公開した。職務内容にはデータセンター選地から建設、長期運用にわたる地元コミュニティとの関係構築が含まれている。公共政策チームとインフラチームの連携役として現地に常駐する形態を想定している。",
+    "background": "大手AIラボは従来AWSやGoogle Cloud等のパブリッククラウドのデータセンターを間接利用する形態が中心だったが、電力・敷地確保の逼迫に伴い自社主導の専用インフラ立地交渉を進める動きが加速している。",
+    "changed": "Anthropicがインディアナ州およびケンタッキー州を自社インフラの候補地または建設拠点として具体的に位置づけていることが求人情報上で確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5454535008",
+      "title": "[新規求人] anthropic: Community Engagement Manager, Data Centers (Indiana & Kentucky) (Remote-Friendly, United States)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-18-r04",
+      "2026-10-18-r03",
+      "2026-10-18-r02",
+      "2026-10-17-r03",
+      "2026-10-17-r01",
+      "2026-10-15-r08"
+    ]
+  },
+  {
+    "id": "2026-10-19-r02",
+    "created_at": "2026-10-19T08:33:40.046361+09:00",
+    "headline": "Anthropicが東京拠点のエンタープライズ営業チームマネージャーを募集",
+    "what_happened": "Anthropicは東京勤務のアカウント・エグゼクティブ・マネージャーの求人を公開した。国内大手企業向けに安全なフロンティアAI導入を統括する営業チームの組成と指導を担当する。Applied AI Engineeringやプロダクトチームと協調し、日本特有の調達サイクルに即した戦略策定を担うとされている。",
+    "background": "Anthropicは直近でアジア太平洋・東南アジア地域への展開を進めており、日本国内での専任営業組織の立ち上げを本格化させている。",
+    "changed": "日本市場における個別案件対応から、チーム体制を率いるマネジメント層の直接採用フェーズへと移行した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391356008",
+      "title": "[新規求人] anthropic: Manager, Account Executive (Tokyo, Japan)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-18-r04",
+      "2026-10-18-r03",
+      "2026-10-18-r02",
+      "2026-10-17-r03",
+      "2026-10-17-r01",
+      "2026-10-15-r08"
+    ]
+  },
+  {
+    "id": "2026-10-19-r03",
+    "created_at": "2026-10-19T08:33:40.046361+09:00",
+    "headline": "Anthropicが計算資源フリートの利用効率を統括するプリンシパルエンジニアを募集",
+    "what_happened": "Anthropicはサンフランシスコ勤務のCapacity/Compute担当プリンシパルエンジニアの募集を開始した。複数のアクセラレータ、CPUアーキテクチャ、マルチクラウドにまたがるインフラ資源の計測と割り当て最適化基盤の設計を担う。Kubernetesネイティブの大規模環境でテレメトリ収集と利用効率計測ツールを実装する役割である。",
+    "background": "AIフロンティアモデルの学習および推論には膨大な計算資源が必要であり、異種ハードウェア間でのリソース配分最適化が運用コストとモデル開発速度を直結する課題となっている。",
+    "changed": "第一者・第三者コンピュートを横断したハードウェア利用効率の可視化と最適化基盤の開発を専任の統括エンジニア主導へ強化する動きが明確になった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5456039008",
+      "title": "[新規求人] anthropic: Principal Engineer Capacity/Compute (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-18-r04",
+      "2026-10-18-r03",
+      "2026-10-18-r02",
+      "2026-10-17-r03",
+      "2026-10-17-r01",
+      "2026-10-15-r08"
+    ]
+  },
+  {
+    "id": "2026-10-19-r04",
+    "created_at": "2026-10-19T08:33:40.046361+09:00",
+    "headline": "xAIがメンフィス拠点で工業配管・鋼構造の溶接検査員を募集",
+    "what_happened": "xAI（求人表記はSpaceXSI）はテネシー州メンフィスおよびミシシッピ州サウスヘイブン勤務の認定溶接検査員（CWI）の求人を公開した。Colossusスーパーコンピュータ施設における工業配管や構造用鋼材の溶接品質検査、機械・構造・運用チームとの調整を担う。建設段階から引き渡しまでの品質担保を目的としている。",
+    "background": "xAIはメンフィスに10万基規模のGPUデータセンターColossusを稼働させており、さらなる設備増設や冷却・受変電インフラの自前施工を進めている。",
+    "changed": "メンフィス拠点のインフラ拡張工事において、物理的配管や建屋構造の品質管理を直接雇用体制で内製・強化する段階に入った。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5267635007",
+      "title": "[新規求人] xai: Certified Weld Inspector (CWI) - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-14-r03",
+      "2026-10-13-r01",
+      "2026-10-11-r07",
+      "2026-10-11-r06",
+      "2026-10-09-r08",
+      "2026-10-09-r07"
+    ]
   }
 ]
