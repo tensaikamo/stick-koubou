@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19 08:34",
+  "updated_at": "2026-10-20 09:33",
   "score": {
     "hit": 16,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-10-22",
-    "days": 3
+    "days": 2
   },
   "decided": [
     {
@@ -423,11 +423,6 @@
       "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-10-13",
-          "headline": "OpenAIが公式Python SDKのバージョン3.29.0をPyPIに公開",
-          "url": "https://pypi.org/project/openai/3.29.0/"
-        },
-        {
           "date": "2026-10-15",
           "headline": "openai Python SDK v3.31.0 リリース",
           "url": "https://pypi.org/project/openai/3.31.0/"
@@ -441,6 +436,11 @@
           "date": "2026-10-18",
           "headline": "openai Python SDK v3.35.0 リリース",
           "url": "https://pypi.org/project/openai/3.35.0/"
+        },
+        {
+          "date": "2026-10-20",
+          "headline": "OpenAIが公式Python SDK「openai」v3.35.1をリリース",
+          "url": "https://pypi.org/project/openai/3.35.1/"
         }
       ]
     },
@@ -501,6 +501,20 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-10-20-r02",
+      "date": "2026-10-20",
+      "headline": "LLMのファインチューニングに伴う意図せぬ行動誘発現象「行動結合」に関する研究が公開",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2610.23847v1"
+    },
+    {
+      "id": "2026-10-20-r01",
+      "date": "2026-10-20",
+      "headline": "OpenAIが公式Python SDK「openai」v3.35.1をリリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.35.1/"
+    },
     {
       "id": "2026-10-19-r04",
       "date": "2026-10-19",
@@ -570,21 +584,7 @@
       "headline": "OpenAIが公式Python SDK v3.32.0をリリース",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/openai/3.32.0/"
-    },
-    {
-      "id": "2026-10-17-r01",
-      "date": "2026-10-17",
-      "headline": "Anthropicが科学戦略・広報担当TPMの求人を公開、科学特化ブログ新設を示唆",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5455454008"
-    },
-    {
-      "id": "2026-10-15-r08",
-      "date": "2026-10-15",
-      "headline": "AnthropicがAnthropic STEM Fellowの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5452403008"
     }
   ],
-  "record_count": 279
+  "record_count": 281
 }

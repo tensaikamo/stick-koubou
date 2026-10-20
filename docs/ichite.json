@@ -1,163 +1,163 @@
 {
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "自作ツールの推論先をGLMへ切替時、利ざやは月何円増えるか？",
-    "大手が直販で囲う顧客層から零れ落ちる個人需要をどう拾うか？",
-    "OpenRouterの値下げモデルを今夜どの機能に充当するか？"
+    "Hermes退役で他社が止まる中、自作アプリはどの予備モデルへ即時切替させるか？",
+    "OpenRouter値上げでも粗利割れを防ぐため、自作アプリの提供価格をどう直すか？",
+    "主系APIが429を返した瞬間、顧客を逃がさず繋ぐフォールバック先はどこか？"
   ],
   "moves": [
     {
-      "t": "GitHubでAPI先をGLMへ変更する",
-      "why": "OpenRouter上のGLM 5.3が71%値下げされたため、既存WebツールのAPI呼び出し原価を今夜即座に圧縮できる。",
+      "t": "API障害時の自動切替コードをGitHubに追加する",
+      "why": "Hermes退役や価格改定による競合停止時に自作ツールの稼働継続を担保するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.85,
-      "success_p_min": 0.7,
-      "success_p_max": 0.95,
-      "success_why": "Safari上のGitHub Webエディタから環境変数または設定ファイルを1行書き換えるだけで完結するため。",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "自作WebツールでGLM 5.3を呼び出すコミット1本",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "ツール運用粗利を直接引き上げる基盤改修だから。",
-      "evidence_ids": [
-        "2026-10-19-r02"
-      ],
-      "assumptions": [
-        "GitHubリポジトリにiPhoneのSafariからログイン可能であること"
-      ],
-      "disconfirm": "GLM 5.3のレスポンス形式が既存パーサーと互換性を欠く場合",
-      "continue_if": "コミット後にエラーなく応答が返り粗利が改善すること",
-      "stop": "レスポンス遅延が3秒を超えて使い物にならない場合"
-    },
-    {
-      "t": "OpenRouterに千円課金し速度を測る",
-      "why": "71%値下げされたGLM 5.3の実測レイテンシを把握し、自作ツールの主系統に耐えうるか判定する。",
-      "cost_min": 800,
-      "cost_max": 1500,
-      "loss_max": 1500,
-      "success_p": 0.8,
-      "success_p_min": 0.65,
+      "success_p_min": 0.75,
       "success_p_max": 0.9,
-      "success_why": "クレカ決済とWebコンソールからのテストリクエスト実行のみで確実に数値が取れるため。",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 14,
-      "outcome": "GLM 5.3の日本語生成速度とトークン単価の実測メモ",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "モデル選定の数値的根拠が揃い無駄な原価流出を止められるため。",
-      "evidence_ids": [
-        "2026-10-19-r03"
-      ],
-      "assumptions": [
-        "OpenRouterアカウントにクレジットカードで残高チャージができること"
-      ],
-      "disconfirm": "東京リージョンからのRTTが長すぎて実用に耐えない場合",
-      "continue_if": "1秒あたりの出力トークン数がClaude 3.5 Haikuと同等以上を維持する場合",
-      "stop": "テストコール5回中2回以上タイムアウトが発生した場合"
-    },
-    {
-      "t": "HaikuとGLMの精度差をAB測定する",
-      "why": "Anthropicが直販強化で高価格帯を狙う裏で、個人開発ツールは格安モデルで品質が維持できるか確かめる。",
-      "cost_min": 3000,
-      "cost_max": 4500,
-      "loss_max": 4500,
-      "success_p": 0.6,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "Web画面上で同一プロンプトを10件流し、出力品質の差を直接比較できるため。",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 30,
-      "outcome": "主要ユースケース10件の出力比較スプレッドシート",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.08,
-      "impact_max": 0.2,
-      "impact_why": "乗り換えによるユーザー離脱リスクを事前に排除できるため。",
-      "evidence_ids": [
-        "2026-10-15-r02",
-        "2026-10-19-r02"
-      ],
-      "assumptions": [
-        "自作ツールの典型的な入力プロンプトが手元に10件以上あること"
-      ],
-      "disconfirm": "GLMの日本語文脈理解が著しく低く要約タスクが破綻する場合",
-      "continue_if": "10問中8問以上でHaikuと遜色ない品質が確認できる場合",
-      "stop": "破綻率が30%を超えプロンプト調整でも解決しない場合"
-    },
-    {
-      "t": "推論コスト7割削減の実測値を公開する",
-      "why": "API転売が崩壊する中で、原価低減と個人開発の粗利改善ノウハウを発信し情報優位の足場を作る。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.5,
-      "success_p_max": 0.85,
-      "success_why": "実測データに基づくポストは技術関心層に閲覧されやすい基準率があるため。",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "Xに投稿したGLM 5.3切り替え前後のコスト比較ポスト1件",
-      "category": "publish",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "自作ツールの認知獲得と先行事例としてのポジション確保に直結するため。",
-      "evidence_ids": [
-        "2026-10-19-r02"
-      ],
-      "assumptions": [
-        "XアカウントをiPhoneから操作できること"
-      ],
-      "disconfirm": "投稿へのエンゲージメントがゼロで全く認知が広がらない場合",
-      "continue_if": "インプレッションが過去平均の1.5倍以上伸びる場合",
-      "stop": "ネガティブな反応のみが集中し運用の阻害になる場合"
-    },
-    {
-      "t": "ツールのモデル障害時自動切替を書く",
-      "why": "ダンピング合戦中の格安推論APIは停止リスクが高いため、主系GLM障害時にAnthropicへ逃がす冗長化を仕込む。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.65,
-      "success_p_min": 0.5,
-      "success_p_max": 0.8,
-      "success_why": "try-catchブロックでフォールバックAPIを呼び出す軽量コード追加で済むため。",
+      "success_why": "Web画面上で既存のfetch処理にtry-catchと次点モデル呼び出しを追記するだけで完了するから。",
       "value_score": 4,
       "learning_value": 4,
       "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "プライマリ失敗時にフォールバックする例外処理コードの反映",
+      "outcome": "フェイルオーバー条件分岐が反映されたGitHubリポジトリのコミット差分",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "単一プロバイダ依存のダウンタイムをゼロにし、競合脱落時の受け皿を作れるため。",
+      "evidence_ids": [
+        "2026-10-19-r03"
+      ],
+      "assumptions": [
+        "GitHubリポジトリのWeb編集権限があり、ブラウザからコミットできること"
+      ],
+      "disconfirm": "OpenRouterが恒久的に全モデルの無停止稼働と価格固定を保証する声明を出した場合",
+      "continue_if": "コミット後にテストリクエストでフォールバックが正常発動すること",
+      "stop": "主系と副系の両方でAPIキー認証エラーが解消できない場合"
+    },
+    {
+      "t": "11月2日退役のHermes指定を別モデルIDへ書き換える",
+      "why": "期日到来による本番エラーを未然に排除し、運用保守コストを最小化するため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.9,
+      "success_p_min": 0.8,
+      "success_p_max": 0.95,
+      "success_why": "環境変数または設定配列内のモデル文字列を置換してコミットするだけの作業であるため。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "退役予定モデル名が除外され代替モデル名に更新された設定ファイル",
       "category": "build",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "安価な中国勢モデルを使いつつサービス停止を防ぎ稼働率を担保できるため。",
+      "impact_why": "期日当日の突発的エラー停止を回避し、サービス信頼性を保てるため。",
       "evidence_ids": [
-        "2026-10-15-r02"
+        "2026-10-19-r03"
       ],
       "assumptions": [
-        "GitHub上で直接WebツールのAPIハンドラーファイルを編集できること"
+        "代替に指定するオープンモデルのコンテキスト長が同等以上であること"
       ],
-      "disconfirm": "OpenRouterのエラーレスポンスが200番台で返り例外捕捉できない場合",
-      "continue_if": "擬似エラーテストで正常にフォールバックが機能すること",
-      "stop": "二重呼び出しでレイテンシが許容値を超過する場合"
+      "disconfirm": "プロバイダ側が退役日を撤回しHermesの無期限サポートを告知した場合",
+      "continue_if": "変更後のモデル呼び出しでレスポンス遅延が許容値内に収まること",
+      "stop": "代替モデルのトークン単価が採算ラインを超過する場合"
+    },
+    {
+      "t": "Safariで擬似429エラーを送り切替動作を検証する",
+      "why": "実障害発生時に想定通りフォールバックが機能するかiPhone上で確かめるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "ダミー無効エンドポイントを設定してアプリ画面から送信テストを行えば結果がすぐ出るため。",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "主系遮断時に副系から正常応答が返ったことを示す動作確認ログ",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "本番環境でのサイレントエラーを防ぎ、可用性の担保を証明できるため。",
+      "evidence_ids": [
+        "2026-10-19-r03"
+      ],
+      "assumptions": [
+        "WebアプリがiPhone Safari上で正常にUI操作できること"
+      ],
+      "disconfirm": "エラー時に画面全体がクラッシュし、ブラウザのリロードが必須になる場合",
+      "continue_if": "エラー検出から予備モデル呼び出し完了までが3秒以内に収まること",
+      "stop": "ブラウザのCORS制限等で予備プロバイダへの直接切替が遮断される場合"
+    },
+    {
+      "t": "Groqの無料枠キーを取得し予備プロバイダに設定する",
+      "why": "OpenRouterの値上げと障害から逃れる完全別系統の高速退避先を確保するため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.85,
+      "success_p_min": 0.75,
+      "success_p_max": 0.95,
+      "success_why": "Groqの管理画面からSafari完結でAPIキー発行とベースURL取得が可能なため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "GitHub環境変数または設定ファイルに保存されたGroq APIキー",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "超高速推論プロバイダを予備に据えることで体感遅延を悪化させずに済むため。",
+      "evidence_ids": [
+        "2026-10-19-r03"
+      ],
+      "assumptions": [
+        "Groqの無料枠制限内で自作アプリのフェイルオーバー呼出が収まること"
+      ],
+      "disconfirm": "Groqが無料枠の即時撤廃または日本IPからの登録遮断を実施した場合",
+      "continue_if": "テストリクエストで初回トークン生成が1秒未満で返ること",
+      "stop": "登録時にSMS認証等で拒絶されキー発行が完了しない場合"
+    },
+    {
+      "t": "Claudeの有料クレジットを補充し高品質副系を整える",
+      "why": "オープンモデル群の価格破壊が破綻した際の最高品質フォールバック先を固めるため。",
+      "cost_min": 1500,
+      "cost_max": 3000,
+      "loss_max": 3000,
+      "success_p": 0.75,
+      "success_p_min": 0.65,
+      "success_p_max": 0.85,
+      "success_why": "AnthropicコンソールはSafariからクレジットカードで即時デポジット可能なため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 14,
+      "outcome": "Anthropicコンソールにおける残高チャージ完了と有効なAPIキー",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "格安モデル全滅時でもClaude 3.5 Sonnetへ逃がして顧客離脱を絶対阻止できるため。",
+      "evidence_ids": [
+        "2026-10-19-r02",
+        "2026-10-19-r03"
+      ],
+      "assumptions": [
+        "月間利用頻度が予備系としての低頻度呼び出しに限定されること"
+      ],
+      "disconfirm": "Anthropicが個人デポジット枠を廃止し法人年間契約のみに限定した場合",
+      "continue_if": "主系障害時のみ起動し、月額利用料が3000円枠内で収まること",
+      "stop": "チャージ完了後もアカウントが即座に審査保留となる場合"
     }
   ],
-  "kan": "Anthropicは今後21日以内に、公式ニュースルームにおいて、インディアナ州またはケンタッキー州でのデータセンター施設計画に関する発表を行わない"
+  "kan": "AnthropicとNscaleによる450億ドル規模の調達交渉について、今後30日以内に拘束力のある正式契約が公表される確度は35%と見る。巨大データセンターの電力枠・GPU調達を巡る複数年契約交渉が1ヶ月以内に妥結・発表される業界基準率は年に1〜2件程度と極めて低く、条件調整が長期化する公算が高い。"
 }
