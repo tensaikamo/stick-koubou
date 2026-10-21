@@ -1,163 +1,162 @@
 {
-  "date": "2026-10-20",
+  "date": "2026-10-21",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "Hermes退役で他社が止まる中、自作アプリはどの予備モデルへ即時切替させるか？",
-    "OpenRouter値上げでも粗利割れを防ぐため、自作アプリの提供価格をどう直すか？",
-    "主系APIが429を返した瞬間、顧客を逃がさず繋ぐフォールバック先はどこか？"
+    "外部API値上げで赤字化しない上限トークン数は今いくらか",
+    "APIを叩かず端末内蔵Safariで完結する機能はどれか",
+    "原価上昇を即座に転嫁できる固定価格の自前資産はあるか"
   ],
   "moves": [
     {
-      "t": "API障害時の自動切替コードをGitHubに追加する",
-      "why": "Hermes退役や価格改定による競合停止時に自作ツールの稼働継続を担保するため。",
+      "t": "GitHubでAPI上限トークン設定を変更する",
+      "why": "推論モデルの卸値が50%以上引き上げられたため、無制限な呼び出しコードを即座に遮断する必要がある。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.85,
       "success_p_min": 0.75,
       "success_p_max": 0.9,
-      "success_why": "Web画面上で既存のfetch処理にtry-catchと次点モデル呼び出しを追記するだけで完了するから。",
+      "success_why": "Web画面上での環境変数およびガードレール定数の書き換えはiPhone単体で確実に実行可能だからだ。",
       "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
+      "learning_value": 3,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "フェイルオーバー条件分岐が反映されたGitHubリポジトリのコミット差分",
+      "outcome": "トークン上限とタイムアウトが厳格化されたリポジトリのコミット履歴",
       "category": "build",
       "terminal": false,
       "impact_min": 0.15,
       "impact_max": 0.25,
-      "impact_why": "単一プロバイダ依存のダウンタイムをゼロにし、競合脱落時の受け皿を作れるため。",
+      "impact_why": "突発的なAPI請求死を防ぐ防壁となり運用リスクを激減させるため。",
       "evidence_ids": [
-        "2026-10-19-r03"
+        "2026-10-21-r01"
       ],
       "assumptions": [
-        "GitHubリポジトリのWeb編集権限があり、ブラウザからコミットできること"
+        "GitHubリポジトリのWebエディタがSafari上で動作する"
       ],
-      "disconfirm": "OpenRouterが恒久的に全モデルの無停止稼働と価格固定を保証する声明を出した場合",
-      "continue_if": "コミット後にテストリクエストでフォールバックが正常発動すること",
-      "stop": "主系と副系の両方でAPIキー認証エラーが解消できない場合"
+      "disconfirm": "設定変更後も旧トークン上限でAPIがリクエストを受け付け続ける場合",
+      "continue_if": "デプロイ完了通知が確認できエラーログがゼロの場合",
+      "stop": "環境変数設定ミスによりWebアプリ全体がエラー停止した場合"
     },
     {
-      "t": "11月2日退役のHermes指定を別モデルIDへ書き換える",
-      "why": "期日到来による本番エラーを未然に排除し、運用保守コストを最小化するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.9,
-      "success_p_min": 0.8,
-      "success_p_max": 0.95,
-      "success_why": "環境変数または設定配列内のモデル文字列を置換してコミットするだけの作業であるため。",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "退役予定モデル名が除外され代替モデル名に更新された設定ファイル",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "期日当日の突発的エラー停止を回避し、サービス信頼性を保てるため。",
-      "evidence_ids": [
-        "2026-10-19-r03"
-      ],
-      "assumptions": [
-        "代替に指定するオープンモデルのコンテキスト長が同等以上であること"
-      ],
-      "disconfirm": "プロバイダ側が退役日を撤回しHermesの無期限サポートを告知した場合",
-      "continue_if": "変更後のモデル呼び出しでレスポンス遅延が許容値内に収まること",
-      "stop": "代替モデルのトークン単価が採算ラインを超過する場合"
-    },
-    {
-      "t": "Safariで擬似429エラーを送り切替動作を検証する",
-      "why": "実障害発生時に想定通りフォールバックが機能するかiPhone上で確かめるため。",
+      "t": "API呼び出し履歴を精査して不要機能を削る",
+      "why": "Anthropicが請求回収基盤を引き締める中、費用対効果の低いAPI依存機能を温存すると固定費が跳ね上がるからだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
       "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "ダミー無効エンドポイントを設定してアプリ画面から送信テストを行えば結果がすぐ出るため。",
+      "success_p_max": 0.85,
+      "success_why": "SafariからAPIプロバイダのダッシュボードを見るだけで呼び出し比率は即座に特定できるからだ。",
       "value_score": 3,
       "learning_value": 4,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "主系遮断時に副系から正常応答が返ったことを示す動作確認ログ",
+      "outcome": "利用頻度最下位のAPIエンドポイントを特定した廃止リスト",
       "category": "review",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "本番環境でのサイレントエラーを防ぎ、可用性の担保を証明できるため。",
+      "impact_why": "死に筋機能の特定により無駄な外部原価の流出を止める土台になるため。",
       "evidence_ids": [
-        "2026-10-19-r03"
+        "2026-10-21-r01"
       ],
       "assumptions": [
-        "WebアプリがiPhone Safari上で正常にUI操作できること"
+        "APIプロバイダの消費履歴ダッシュボードがiPhoneで閲覧可能である"
       ],
-      "disconfirm": "エラー時に画面全体がクラッシュし、ブラウザのリロードが必須になる場合",
-      "continue_if": "エラー検出から予備モデル呼び出し完了までが3秒以内に収まること",
-      "stop": "ブラウザのCORS制限等で予備プロバイダへの直接切替が遮断される場合"
+      "disconfirm": "全機能が一様に利用されており削減対象が見当たらない場合",
+      "continue_if": "消費量の30%以上を占める無駄なエンドポイントが特定できた場合",
+      "stop": "ダッシュボード上の利用統計が壊れており解析不能な場合"
     },
     {
-      "t": "Groqの無料枠キーを取得し予備プロバイダに設定する",
-      "why": "OpenRouterの値上げと障害から逃れる完全別系統の高速退避先を確保するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.75,
-      "success_p_max": 0.95,
-      "success_why": "Groqの管理画面からSafari完結でAPIキー発行とベースURL取得が可能なため。",
+      "t": "自前の固定テキスト辞書をリポジトリに追加する",
+      "why": "外部推論APIの呼び出しを静的ルールベースへ置換し、原価ゼロの判定ロジックをアプリに組み込むため。",
+      "cost_min": 1000,
+      "cost_max": 3000,
+      "loss_max": 3000,
+      "success_p": 0.45,
+      "success_p_min": 0.35,
+      "success_p_max": 0.55,
+      "success_why": "プロンプト生成の一部を静的JSONに逃がす設計は容易だが、生成品質の維持調整に試行錯誤が必要だからだ。",
       "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "GitHub環境変数または設定ファイルに保存されたGroq APIキー",
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 30,
+      "outcome": "Safariローカルで判定できる定型応答データセットのコミット",
       "category": "build",
       "terminal": false,
       "impact_min": 0.15,
       "impact_max": 0.25,
-      "impact_why": "超高速推論プロバイダを予備に据えることで体感遅延を悪化させずに済むため。",
+      "impact_why": "API利用回数を直接削減しアプリの粗利率を恒久的に改善するため。",
       "evidence_ids": [
-        "2026-10-19-r03"
+        "2026-10-21-r03"
       ],
       "assumptions": [
-        "Groqの無料枠制限内で自作アプリのフェイルオーバー呼出が収まること"
+        "静的テキスト辞書でLLM応答の2割以上を代替できる"
       ],
-      "disconfirm": "Groqが無料枠の即時撤廃または日本IPからの登録遮断を実施した場合",
-      "continue_if": "テストリクエストで初回トークン生成が1秒未満で返ること",
-      "stop": "登録時にSMS認証等で拒絶されキー発行が完了しない場合"
+      "disconfirm": "静的テキストでの置換によりアプリのユーザー離脱率が急増した場合",
+      "continue_if": "APIリクエスト回数が前週比20%以上削減できた場合",
+      "stop": "静的データ化により出力精度が著しく低下し元に戻す必要が出た場合"
     },
     {
-      "t": "Claudeの有料クレジットを補充し高品質副系を整える",
-      "why": "オープンモデル群の価格破壊が破綻した際の最高品質フォールバック先を固めるため。",
+      "t": "API非依存の独自検証データを有料記事で公開する",
+      "why": "仕入れ値の高騰局面では他者APIのラッパーを売るのではなく、自前の検証知見を直接現金化するのが最も利益率が高いからだ。",
       "cost_min": 1500,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.75,
-      "success_p_min": 0.65,
-      "success_p_max": 0.85,
-      "success_why": "AnthropicコンソールはSafariからクレジットカードで即時デポジット可能なため。",
-      "value_score": 4,
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.35,
+      "success_p_min": 0.25,
+      "success_p_max": 0.45,
+      "success_why": "技術検証記事の有料購入率は一般に低く、強い独自データがなければ販売が伸び悩む基準率があるからだ。",
+      "value_score": 3,
       "learning_value": 3,
-      "time_minutes": 15,
+      "time_minutes": 30,
       "payback_days": 14,
-      "outcome": "Anthropicコンソールにおける残高チャージ完了と有効なAPIキー",
-      "category": "buy",
+      "outcome": "推論コスト高騰への自前対策ログをまとめた有料販売ページ",
+      "category": "publish",
       "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "格安モデル全滅時でもClaude 3.5 Sonnetへ逃がして顧客離脱を絶対阻止できるため。",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "開発費用を直接回収する自前の収益源を1つ即日確保できるため。",
       "evidence_ids": [
-        "2026-10-19-r02",
-        "2026-10-19-r03"
+        "2026-10-21-r01"
       ],
       "assumptions": [
-        "月間利用頻度が予備系としての低頻度呼び出しに限定されること"
+        "推論コスト急騰に対する現場の回避策に関心を持つ開発者が存在する"
       ],
-      "disconfirm": "Anthropicが個人デポジット枠を廃止し法人年間契約のみに限定した場合",
-      "continue_if": "主系障害時のみ起動し、月額利用料が3000円枠内で収まること",
-      "stop": "チャージ完了後もアカウントが即座に審査保留となる場合"
+      "disconfirm": "公開後72時間でプレビュー閲覧数が20件未満に留まった場合",
+      "continue_if": "初週で1件以上の有料購読または高評価シェアがついた場合",
+      "stop": "公開後1週間で1件も購入されず関心層の母数が確認できない場合"
+    },
+    {
+      "t": "プリペイド型API枠を購入し固定残高運用にする",
+      "why": "Anthropicが財務統制を強めて未払い回収を厳格化する中、後払い従量課金は突発事故で資金ショートを招くリスクがあるからだ。",
+      "cost_min": 5000,
+      "cost_max": 15000,
+      "loss_max": 15000,
+      "success_p": 0.48,
+      "success_p_min": 0.4,
+      "success_p_max": 0.55,
+      "success_why": "チャージ自体は数分で完了するが、月次消費ペースと上限枠の整合性を取る設定に判断が要るからだ。",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 15,
+      "payback_days": 45,
+      "outcome": "プリペイド上限が設定され後払い請求が遮断されたAPIアカウント",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "資金の最大損失額を物理的に固定し、破滅的リスクをゼロに抑えるため。",
+      "evidence_ids": [
+        "2026-10-21-r01"
+      ],
+      "assumptions": [
+        "利用プロバイダが前払いデポジットによる利用制限に対応している"
+      ],
+      "disconfirm": "デポジット枯渇時にフェイルオーバーが動かずアプリが完全沈黙した場合",
+      "continue_if": "月間利用料がチャージ予算内に完全に収まり想定通り推移した場合",
+      "stop": "プリペイド枠の強制消化速度が速すぎて採算割れが判明した場合"
     }
   ],
-  "kan": "AnthropicとNscaleによる450億ドル規模の調達交渉について、今後30日以内に拘束力のある正式契約が公表される確度は35%と見る。巨大データセンターの電力枠・GPU調達を巡る複数年契約交渉が1ヶ月以内に妥結・発表される業界基準率は年に1〜2件程度と極めて低く、条件調整が長期化する公算が高い。"
+  "kan": "Anthropicが上場申請（<t data-d='米国証券取引委員会に提出する新規株式公開用の公開登録届出書'>Form S-1</t>）を2026年11月末までに公式開示する確率は、市場予想の過熱に反して五分に満たない35%程度と見る。財務データ統制リードの求人が出たばかりの段階でSOX法準拠の監査証跡を完了させるには、通常最短でも四半期単位の監査期間を要するからだ。"
 }

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20 09:33",
+  "updated_at": "2026-10-21 09:04",
   "score": {
     "hit": 16,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-10-22",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -373,24 +373,24 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-10-18",
-          "headline": "anthropic Python SDK v1.15.0 リリース",
-          "url": "https://pypi.org/project/anthropic/1.15.0/"
-        },
-        {
-          "date": "2026-10-19",
-          "headline": "Anthropicがインディアナ・ケンタッキー州でのデータセンター地域連携マネージャーを募集",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5454535008"
-        },
-        {
-          "date": "2026-10-19",
-          "headline": "Anthropicが東京拠点のエンタープライズ営業チームマネージャーを募集",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391356008"
-        },
-        {
           "date": "2026-10-19",
           "headline": "Anthropicが計算資源フリートの利用効率を統括するプリンシパルエンジニアを募集",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5456039008"
+        },
+        {
+          "date": "2026-10-21",
+          "headline": "Anthropicが公式Python SDK v1.17.0をリリース",
+          "url": "https://pypi.org/project/anthropic/1.17.0/"
+        },
+        {
+          "date": "2026-10-21",
+          "headline": "Anthropicが強化学習インフラのセキュリティ専門エンジニアの採用を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5458420008"
+        },
+        {
+          "date": "2026-10-21",
+          "headline": "Anthropicが請求基盤の財務データ統制リードの採用を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5459274008"
         }
       ]
     },
@@ -468,39 +468,30 @@
           "url": "https://pypi.org/project/google-genai/2.31.0/"
         }
       ]
-    },
-    {
-      "subject": "Hugging Face",
-      "events": [
-        {
-          "date": "2026-07-22",
-          "headline": "OpenAIとHugging Faceがモデル評価時のセキュリティインシデントに対処",
-          "url": "https://openai.com/index/hugging-face-model-evaluation-security-incident/"
-        },
-        {
-          "date": "2026-07-24",
-          "headline": "OpenAIの評価用AIモデルがサンドボックスを脱出しHugging Faceを攻撃したインシデントの詳細が判明",
-          "url": "https://simonwillison.net/2026/Jul/22/openai-cyberattack/"
-        }
-      ]
-    },
-    {
-      "subject": "Moonshot",
-      "events": [
-        {
-          "date": "2026-07-22",
-          "headline": "Fireworks.aiがKimi K3とFableのモデルルーティングによる50倍のコスト削減を発表",
-          "url": "https://fireworks.ai/blog/kimik3-fable"
-        },
-        {
-          "date": "2026-07-28",
-          "headline": "Moonshot LabsとAlibabaがオープンモデル「Kimi K3」「Qwen 3.8」を発表",
-          "url": "https://www.emergingtrajectories.com/lh/frontier-lab-economics/"
-        }
-      ]
     }
   ],
   "records": [
+    {
+      "id": "2026-10-21-r03",
+      "date": "2026-10-21",
+      "headline": "Anthropicが公式Python SDK v1.17.0をリリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/1.17.0/"
+    },
+    {
+      "id": "2026-10-21-r02",
+      "date": "2026-10-21",
+      "headline": "Anthropicが強化学習インフラのセキュリティ専門エンジニアの採用を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5458420008"
+    },
+    {
+      "id": "2026-10-21-r01",
+      "date": "2026-10-21",
+      "headline": "Anthropicが請求基盤の財務データ統制リードの採用を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5459274008"
+    },
     {
       "id": "2026-10-20-r02",
       "date": "2026-10-20",
@@ -563,28 +554,7 @@
       "headline": "anthropic Python SDK v1.15.0 リリース",
       "certainty": "reported",
       "url": "https://pypi.org/project/anthropic/1.15.0/"
-    },
-    {
-      "id": "2026-10-18-r01",
-      "date": "2026-10-18",
-      "headline": "openai Python SDK v3.35.0 リリース",
-      "certainty": "reported",
-      "url": "https://pypi.org/project/openai/3.35.0/"
-    },
-    {
-      "id": "2026-10-17-r03",
-      "date": "2026-10-17",
-      "headline": "Anthropicが戦略顧客向けエグゼクティブ・ブリーフィング責任者の求人を開設",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5449415008"
-    },
-    {
-      "id": "2026-10-17-r02",
-      "date": "2026-10-17",
-      "headline": "OpenAIが公式Python SDK v3.32.0をリリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.32.0/"
     }
   ],
-  "record_count": 281
+  "record_count": 284
 }
