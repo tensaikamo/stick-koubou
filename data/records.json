@@ -7657,5 +7657,86 @@
     "body_fetched": true,
     "model": "gemini-3.8-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-10-21-r01",
+    "created_at": "2026-10-21T09:03:17.621402+09:00",
+    "headline": "Anthropicが請求基盤の財務データ統制リードの採用を開始",
+    "what_happened": "Anthropicは請求プラットフォームチームに所属する「Financial Data and Controls Lead」の新規求人を公開した。サブスクリプション、従量課金、見積もりから回収までのフローにおいて、SOX法（サーベンス・オクスリー法）要件を満たす財務統制と監査証跡の構築を担う初期メンバーとしての募集である。",
+    "background": "急成長するAIスタートアップが事業規模を拡大しIPOや厳格な財務監査に耐えうる体制を整備する際、請求・課金データの正確性と内部統制の確立が不可欠となる。",
+    "changed": "Anthropicがエンタープライズ課金および財務監査耐性を強化するための専任統制ポジションを初めて新設した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5459274008",
+      "title": "[新規求人] anthropic: Financial Data and Controls Lead, Billing Platform (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-19-r03",
+      "2026-10-19-r02",
+      "2026-10-19-r01",
+      "2026-10-18-r04",
+      "2026-10-18-r03",
+      "2026-10-18-r02"
+    ]
+  },
+  {
+    "id": "2026-10-21-r02",
+    "created_at": "2026-10-21T09:03:17.621402+09:00",
+    "headline": "Anthropicが強化学習インフラのセキュリティ専門エンジニアの採用を開始",
+    "what_happened": "Anthropicは「Security Engineer / Research Engineer, RL Security」の新規求人をサンフランシスコ、ニューヨーク、シアトルで公開した。大規模な計算機フリート上で並列実行される強化学習（RL）の訓練・サンプリング・環境実行パイプラインのセキュリティ確保を担う。",
+    "background": "フロンティアモデルの推論・コーディング能力向上には大規模な強化学習が不可欠であり、モデルが外部環境と対話しながら自律行動する際の実行環境の分離や機密保護が技術的課題となっている。",
+    "changed": "強化学習の大規模実行環境に特化したセキュリティ・研究エンジニア枠が新設された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5458420008",
+      "title": "[新規求人] anthropic: Security Engineer / Research Engineer, RL Security (San Francisco, CA | New York City, NY | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-19-r03",
+      "2026-10-19-r02",
+      "2026-10-19-r01",
+      "2026-10-18-r04",
+      "2026-10-18-r03",
+      "2026-10-18-r02"
+    ]
+  },
+  {
+    "id": "2026-10-21-r03",
+    "created_at": "2026-10-21T09:03:17.621402+09:00",
+    "headline": "Anthropicが公式Python SDK v1.17.0をリリース",
+    "what_happened": "AnthropicはPyPIにおいてClaude向け公式Pythonライブラリ「anthropic」のバージョン1.17.0を公開した。ツール実行支援機能やブラウザ・コンピュータ操作向けツールセットの機能群を含む構成となっている。",
+    "background": "Claude APIでは自律的なコンピュータ操作やブラウザ操作を支援するツール利用機能が順次展開されており、SDK側での対応が進行している。",
+    "changed": "anthropic SDKのバージョンが1.17.0へ引き上げられた。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/1.17.0/",
+      "title": "anthropic Python SDK v1.17.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-19-r03",
+      "2026-10-19-r02",
+      "2026-10-19-r01",
+      "2026-10-18-r04",
+      "2026-10-18-r03",
+      "2026-10-18-r02"
+    ]
   }
 ]
