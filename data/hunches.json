@@ -2665,14 +2665,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-10-22T09:11:20.032343+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "GitHubのreleasesページにおいて、2026年10月8日から22日までの最新リリースはv2.32.0であり、v3.0.0等の新しいメジャーバージョンタグは公開されなかった。",
+      "url": "https://github.com/googleapis/python-genai/releases"
+    },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-10-09-h01",
@@ -2836,5 +2840,49 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.78
+  },
+  {
+    "id": "2026-10-22-h01",
+    "created_at": "2026-10-22T09:08:43.476993+09:00",
+    "based_on": [
+      "2026-10-22-r01"
+    ],
+    "prose": "Anthropicの求人票から『Claude Fable 5.1』および『Claude Opus 5.5』という未公表モデルの存在が判明した。強化学習チームの実績として言及されていることから社内検証は進んでいるが、チップ設計RLなどの特定応用分野のエンジニア募集が開始されたばかりの段階にある。フロンティアモデルの公開サイクルにおいて、求人票での内部コードネーム露出から21日以内に公式リリースへ至る頻度は極めて低く、期日までの一般提供は見送られる。",
+    "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて『Claude Fable 5.1』または『Claude Opus 5.5』と明記した新モデルの一般提供またはAPI公開を発表しない。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Fable Opus",
+      "decider": "2026年11月12日までに、anthropic.com/newsにおいて記事タイトルまたは本文中に『Claude Fable 5.1』または『Claude Opus 5.5』の一般提供（GA）もしくはAPI公開を含む公式発表が1件も掲載されないこと。掲載された場合は外れ。"
+    },
+    "deadline": "2026-11-12",
+    "confidence": 0.77,
+    "base_rate": 0.82,
+    "base_rate_class": "大手AI研究所が求人票で言及した開発中モデル名称が求人公開から21日以内に一般提供/API公開されない頻度",
+    "confidence_why": "base_rate（0.82）から、求人票で過去形（have contributed）として成果が記述され内部評価の完了が示唆されている点を考慮し、不発生の確度を5ポイント下方修正した。",
+    "counter": "競合の次世代モデル発表に対抗するため、すでに評価を終えているClaude Fable 5.1またはOpus 5.5が21日以内に前倒しでプレビュー公開されること。",
+    "indicators": [
+      {
+        "sign": "Anthropic公式ドキュメント（docs.anthropic.com）のモデル一覧にfableまたはopus-5-5のモデルIDが追加される",
+        "dir": "kill"
+      },
+      {
+        "sign": "PyPIのanthropic Python SDKリリースノートに新モデル識別子への参照がコミットされる",
+        "dir": "kill"
+      },
+      {
+        "sign": "当該求人ページからFable 5.1およびOpus 5.5の文言が削除または伏せ字に修正される",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.8-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]

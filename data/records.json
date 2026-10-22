@@ -7738,5 +7738,86 @@
       "2026-10-18-r03",
       "2026-10-18-r02"
     ]
+  },
+  {
+    "id": "2026-10-22-r01",
+    "created_at": "2026-10-22T09:08:43.476993+09:00",
+    "headline": "Anthropicが半導体チップ設計RLエンジニア求人を公開し未発表モデル名に言及",
+    "what_happened": "Anthropicは半導体チップ設計向け強化学習（RL）を担当するリサーチエンジニアの求人募集を開始した。同募集要項内で、強化学習チームが全Claudeモデルに貢献しており、特に「Claude Fable 5.1」および「Claude Opus 5.5」の自律性とコーディング機能に影響を与えたと明記した。RLを用いたモデル推論能力の向上や自律的PC操作基盤の開発を担う研究者を求めている。",
+    "background": "Anthropicの公表済み主力モデル系列はClaude 3.5 Sonnet等であり、「Claude Fable」という命名系列や「Opus 5.5」というバージョンは未公表である。AIを用いた半導体回路設計や配置配線の自動化は、コンピュート効率化を狙う大手研究所で研究が進む分野である。",
+    "changed": "Anthropicがチップ設計特化の強化学習研究へリソースを投入している事実、および社内で「Fable 5.1」「Opus 5.5」と呼称される次世代・派生モデルが開発・検証段階にあることが公になった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5459098008",
+      "title": "[新規求人] anthropic: Research Engineer, Chip Design RL (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-21-r03",
+      "2026-10-21-r02",
+      "2026-10-21-r01",
+      "2026-10-19-r03",
+      "2026-10-19-r02",
+      "2026-10-19-r01"
+    ]
+  },
+  {
+    "id": "2026-10-22-r02",
+    "created_at": "2026-10-22T09:08:43.476993+09:00",
+    "headline": "xAIが連邦政府認証（FedRAMP・IL4/IL5）担当セキュリティ技術者の求人を公開",
+    "what_happened": "xAI（SpaceXSI）は、米連邦政府の規制・認証フレームワークに対応するセキュリティエンジニア（GRC Federal Frameworks）の募集を開始した。職務内容には、NIST RMF、FedRAMP、および米国防総省のインパクトレベル4/5（IL4/IL5）の認証取得・運用の専門知識を提供することが明記されている。Colossusクラスタ上で動作するGrokモデルや各種アプリケーションスタックを対象にガバナンス体制を拡張する。",
+    "background": "FedRAMPやDoD IL4/IL5は、米連邦政府機関や国防総省が商用クラウド・AIサービスを調達・導入する際に必須となる厳格なセキュリティ認証基準である。先行するOpenAIやAnthropicはAWS GovCloudやMicrosoft Azureの政府専用環境を通じてこれらの認証取得を進めている。",
+    "changed": "xAIが民間向けチャットボットやAPI提供にとどまらず、米国政府・防衛調達市場への参入を前提とした認証取得体制の構築に着手したことが確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5271634007",
+      "title": "[新規求人] xai: Security Engineer - GRC Federal Frameworks ( Palo Alto, CA; Austin, TX; New York, NY; Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-19-r04",
+      "2026-10-14-r03",
+      "2026-10-13-r01",
+      "2026-10-11-r07",
+      "2026-10-11-r06",
+      "2026-10-09-r08"
+    ]
+  },
+  {
+    "id": "2026-10-22-r03",
+    "created_at": "2026-10-22T09:08:43.476993+09:00",
+    "headline": "AnthropicがAIエージェントの多層防御展開を担うテクニカルプログラムマネージャーを募集",
+    "what_happened": "Anthropicは、AIエージェントの安全性とセキュリティを統括するテクニカルプログラムマネージャー（TPM）の募集を開始した。同職は、エージェントに対する多層防御プログラムの全社ロードマップを維持し、社内開発された安全機能を顧客やパートナーへ展開する責任を持つ。経営陣や技術リードとの調整を行い、エージェントの安全な利用環境を外部へ提供するための指標策定と実行を主導する。",
+    "background": "Anthropicはモデルが直接PCを操作する「Computer use」機能など自律的エージェント技術の展開を先行させているが、プロンプトインジェクションや不正実行などのセキュリティリスクが課題となっている。",
+    "changed": "エージェント向けセキュリティ対策が研究段階から、顧客向け製品および全社プログラムとして標準化・製品化されるフェーズに移行した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5460216008",
+      "title": "[新規求人] anthropic: Technical Program Manager, Agent Safety & Security  (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-21-r03",
+      "2026-10-21-r02",
+      "2026-10-21-r01",
+      "2026-10-19-r03",
+      "2026-10-19-r02",
+      "2026-10-19-r01"
+    ]
   }
 ]
