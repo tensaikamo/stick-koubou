@@ -1,162 +1,162 @@
 {
-  "date": "2026-10-21",
+  "date": "2026-10-22",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "外部API値上げで赤字化しない上限トークン数は今いくらか",
-    "APIを叩かず端末内蔵Safariで完結する機能はどれか",
-    "原価上昇を即座に転嫁できる固定価格の自前資産はあるか"
+    "OpenRouterの価格改定データから、直結型別プロバイダへの乗り換え設定を今夜30分以内で終わらせるか？",
+    "Hugging Face上の軽量モデルの量子化済み重みファイルにアクセスし、スマホからAPIエンドポイントを直接叩く設定に切り替えるか？",
+    "Anthropicの求人動向から、従来の薄利多売API構成を完全に捨てて独自のプロンプト設計に移行するか？"
   ],
   "moves": [
     {
-      "t": "GitHubでAPI上限トークン設定を変更する",
-      "why": "推論モデルの卸値が50%以上引き上げられたため、無制限な呼び出しコードを即座に遮断する必要がある。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.75,
-      "success_p_max": 0.9,
-      "success_why": "Web画面上での環境変数およびガードレール定数の書き換えはiPhone単体で確実に実行可能だからだ。",
+      "t": "既存の定額APIから別プロバイダの直結型エンドポイントへ切り替え設定を行う",
+      "why": "DeepSeek系モデルの急激な価格改定による利ざや消失を防ぐためだ。",
+      "cost_min": 500,
+      "cost_max": 2000,
+      "loss_max": 2000,
+      "success_p": 0.45,
+      "success_p_min": 0.3,
+      "success_p_max": 0.6,
+      "success_why": "新興プロバイダの低価格枠が一時的に開放されているため。",
       "value_score": 4,
       "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "トークン上限とタイムアウトが厳格化されたリポジトリのコミット履歴",
+      "time_minutes": 25,
+      "payback_days": 14,
+      "outcome": "新プロバイダへのAPI接続切り替え完了",
       "category": "build",
       "terminal": false,
       "impact_min": 0.15,
       "impact_max": 0.25,
-      "impact_why": "突発的なAPI請求死を防ぐ防壁となり運用リスクを激減させるため。",
+      "impact_why": "ランニングコスト直結の部分だから。",
       "evidence_ids": [
-        "2026-10-21-r01"
+        "2026-10-22-r01"
       ],
       "assumptions": [
-        "GitHubリポジトリのWebエディタがSafari上で動作する"
+        "新プロバイダのAPIキーが即時発行されること"
       ],
-      "disconfirm": "設定変更後も旧トークン上限でAPIがリクエストを受け付け続ける場合",
-      "continue_if": "デプロイ完了通知が確認できエラーログがゼロの場合",
-      "stop": "環境変数設定ミスによりWebアプリ全体がエラー停止した場合"
+      "disconfirm": "切り替え先でも同様の値上げが発生した場合",
+      "continue_if": "APIレスポンスの遅延が許容範囲内である場合",
+      "stop": "決済エラー等で接続が確立できない場合"
     },
     {
-      "t": "API呼び出し履歴を精査して不要機能を削る",
-      "why": "Anthropicが請求回収基盤を引き締める中、費用対効果の低いAPI依存機能を温存すると固定費が跳ね上がるからだ。",
+      "t": "Anthropicの最新SDK v1.17.0のドキュメントをSafariで読破する",
+      "why": "価格改定が進む中での公式SDKの仕様変更点を正確に把握するためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.85,
-      "success_why": "SafariからAPIプロバイダのダッシュボードを見るだけで呼び出し比率は即座に特定できるからだ。",
+      "success_p": 0.65,
+      "success_p_min": 0.5,
+      "success_p_max": 0.8,
+      "success_why": "PyPIの公式ページに仕様変更履歴が明記されているため。",
       "value_score": 3,
       "learning_value": 4,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "利用頻度最下位のAPIエンドポイントを特定した廃止リスト",
+      "outcome": "SDK変更点メモの作成",
       "category": "review",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "死に筋機能の特定により無駄な外部原価の流出を止める土台になるため。",
-      "evidence_ids": [
-        "2026-10-21-r01"
-      ],
-      "assumptions": [
-        "APIプロバイダの消費履歴ダッシュボードがiPhoneで閲覧可能である"
-      ],
-      "disconfirm": "全機能が一様に利用されており削減対象が見当たらない場合",
-      "continue_if": "消費量の30%以上を占める無駄なエンドポイントが特定できた場合",
-      "stop": "ダッシュボード上の利用統計が壊れており解析不能な場合"
-    },
-    {
-      "t": "自前の固定テキスト辞書をリポジトリに追加する",
-      "why": "外部推論APIの呼び出しを静的ルールベースへ置換し、原価ゼロの判定ロジックをアプリに組み込むため。",
-      "cost_min": 1000,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.45,
-      "success_p_min": 0.35,
-      "success_p_max": 0.55,
-      "success_why": "プロンプト生成の一部を静的JSONに逃がす設計は容易だが、生成品質の維持調整に試行錯誤が必要だからだ。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 30,
-      "outcome": "Safariローカルで判定できる定型応答データセットのコミット",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "API利用回数を直接削減しアプリの粗利率を恒久的に改善するため。",
+      "impact_why": "基盤技術のアップデートに追従するため。",
       "evidence_ids": [
         "2026-10-21-r03"
       ],
       "assumptions": [
-        "静的テキスト辞書でLLM応答の2割以上を代替できる"
+        "PyPIのリリースノートに十分な情報があること"
       ],
-      "disconfirm": "静的テキストでの置換によりアプリのユーザー離脱率が急増した場合",
-      "continue_if": "APIリクエスト回数が前週比20%以上削減できた場合",
-      "stop": "静的データ化により出力精度が著しく低下し元に戻す必要が出た場合"
+      "disconfirm": "実際の仕様変更が軽微である場合",
+      "continue_if": "コスト削減に直結する変更点が見つかった場合",
+      "stop": "ドキュメントが英語のみで理解が困難な場合"
     },
     {
-      "t": "API非依存の独自検証データを有料記事で公開する",
-      "why": "仕入れ値の高騰局面では他者APIのラッパーを売るのではなく、自前の検証知見を直接現金化するのが最も利益率が高いからだ。",
-      "cost_min": 1500,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.35,
-      "success_p_min": 0.25,
-      "success_p_max": 0.45,
-      "success_why": "技術検証記事の有料購入率は一般に低く、強い独自データがなければ販売が伸び悩む基準率があるからだ。",
-      "value_score": 3,
-      "learning_value": 3,
+      "t": "スマホブラウザで動く軽量プロンプト設計の検証用テンプレートを作成する",
+      "why": "APIコスト高騰下において、トークン消費量を最小限に抑える仕組みが必要なためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.5,
+      "success_p_min": 0.35,
+      "success_p_max": 0.65,
+      "success_why": "過去のプロンプト圧縮手法の知見をそのまま転用できるため。",
+      "value_score": 4,
+      "learning_value": 4,
       "time_minutes": 30,
-      "payback_days": 14,
-      "outcome": "推論コスト高騰への自前対策ログをまとめた有料販売ページ",
-      "category": "publish",
+      "payback_days": 0,
+      "outcome": "軽量プロンプトテンプレートの完成",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "個人の運用コストを直接引き下げる施策であるため。",
+      "evidence_ids": [
+        "2026-10-22-r03"
+      ],
+      "assumptions": [
+        "ブラウザ上のテキストエディタで十分に編集可能であること"
+      ],
+      "disconfirm": "圧縮によってモデルの出力品質が著しく低下する場合",
+      "continue_if": "品質を保ったままトークン数を20%以上削減できた場合",
+      "stop": "テンプレート作成に30分以上かかり終わらない場合"
+    },
+    {
+      "t": "Anthropicの求人ページに記載された未発表モデルの記述を精査する",
+      "why": "次期モデルの仕様を事前に察知し、個人開発の方向性を先回りさせるためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.6,
+      "success_p_min": 0.45,
+      "success_p_max": 0.75,
+      "success_why": "募集要項の業務内容に具体的な技術スタックが記載されているため。",
+      "value_score": 3,
+      "learning_value": 5,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "未発表モデルに関する予測メモの作成",
+      "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "開発費用を直接回収する自前の収益源を1つ即日確保できるため。",
+      "impact_why": "トレンドの先行把握に寄与するため。",
       "evidence_ids": [
-        "2026-10-21-r01"
+        "2026-10-22-r01"
       ],
       "assumptions": [
-        "推論コスト急騰に対する現場の回避策に関心を持つ開発者が存在する"
+        "Greenhouseの求人情報が公開状態を維持していること"
       ],
-      "disconfirm": "公開後72時間でプレビュー閲覧数が20件未満に留まった場合",
-      "continue_if": "初週で1件以上の有料購読または高評価シェアがついた場合",
-      "stop": "公開後1週間で1件も購入されず関心層の母数が確認できない場合"
+      "disconfirm": "求人ページが削除または非公開になった場合",
+      "continue_if": "具体的なアーキテクチャのヒントが得られた場合",
+      "stop": "一般的な定型文のみで新しい情報がない場合"
     },
     {
-      "t": "プリペイド型API枠を購入し固定残高運用にする",
-      "why": "Anthropicが財務統制を強めて未払い回収を厳格化する中、後払い従量課金は突発事故で資金ショートを招くリスクがあるからだ。",
-      "cost_min": 5000,
-      "cost_max": 15000,
-      "loss_max": 15000,
-      "success_p": 0.48,
-      "success_p_min": 0.4,
+      "t": "インフラコスト管理の自動化ツールに月額プレミアムプランを申し込む",
+      "why": "API使用料の急変動をリアルタイムで検知し、予算超過を防ぐ防衛策を講じるためだ。",
+      "cost_min": 3000,
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.4,
+      "success_p_min": 0.25,
       "success_p_max": 0.55,
-      "success_why": "チャージ自体は数分で完了するが、月次消費ペースと上限枠の整合性を取る設定に判断が要るからだ。",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 15,
-      "payback_days": 45,
-      "outcome": "プリペイド上限が設定され後払い請求が遮断されたAPIアカウント",
+      "success_why": "価格改定の激しい市場環境において監視ツールの重要性が増しているため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 10,
+      "payback_days": 30,
+      "outcome": "監視ツールのプレミアム機能有効化",
       "category": "buy",
       "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "資金の最大損失額を物理的に固定し、破滅的リスクをゼロに抑えるため。",
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "予期せぬ損失を防ぐためのリスクヘッジとなるため。",
       "evidence_ids": [
         "2026-10-21-r01"
       ],
       "assumptions": [
-        "利用プロバイダが前払いデポジットによる利用制限に対応している"
+        "対応する監視ツールが存在しiPhoneから契約できること"
       ],
-      "disconfirm": "デポジット枯渇時にフェイルオーバーが動かずアプリが完全沈黙した場合",
-      "continue_if": "月間利用料がチャージ予算内に完全に収まり想定通り推移した場合",
-      "stop": "プリペイド枠の強制消化速度が速すぎて採算割れが判明した場合"
+      "disconfirm": "通知機能が価格急変に追いつかない場合",
+      "continue_if": "初月でAPIの無駄な支出を検出できた場合",
+      "stop": "月額費用が削減額を上回る場合"
     }
   ],
-  "kan": "Anthropicが上場申請（<t data-d='米国証券取引委員会に提出する新規株式公開用の公開登録届出書'>Form S-1</t>）を2026年11月末までに公式開示する確率は、市場予想の過熱に反して五分に満たない35%程度と見る。財務データ統制リードの求人が出たばかりの段階でSOX法準拠の監査証跡を完了させるには、通常最短でも四半期単位の監査期間を要するからだ。"
+  "kan": "Anthropicは今後21日以内に、公式ニュースルームにおいて『Claude Fable 5.1』または『Claude Opus 5.5』と明記した新モデルの一般提供またはAPI公開を発表しない。"
 }

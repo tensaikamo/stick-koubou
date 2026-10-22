@@ -1,24 +1,38 @@
 {
-  "updated_at": "2026-10-21 09:04",
+  "updated_at": "2026-10-22 09:11",
   "score": {
-    "hit": 16,
+    "hit": 17,
     "miss": 24,
-    "total": 40,
-    "rate": 0.4,
+    "total": 41,
+    "rate": 0.4146341463414634,
     "pending": 5,
-    "brier": 0.3529078750000001,
-    "brier_n": 40,
-    "brier_initial": 0.36675500000000016,
+    "brier": 0.3478223170731708,
+    "brier_n": 41,
+    "brier_initial": 0.3613317073170733,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-10-22",
+    "date": "2026-10-23",
     "days": 1
   },
   "decided": [
+    {
+      "id": "2026-10-08-h01",
+      "claim": "Googleは今後14日以内に、公式ブログまたはGitHubリポジトリにおいて「google-genai」の新たなメジャーバージョンをリリースすることを見送る。",
+      "subject": "Google",
+      "deadline": "2026-10-22",
+      "confidence": 0.62,
+      "initial_confidence": null,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "予告から急遽フィードバックを受けて想定以上に早い段階でメジャーバージョンが切られる可能性",
+      "evidence": "GitHubのreleasesページにおいて、2026年10月8日から22日までの最新リリースはv2.32.0であり、v3.0.0等の新しいメジャーバージョンタグは公開されなかった。",
+      "signals": []
+    },
     {
       "id": "2026-09-26-h01",
       "claim": "Googleは今後14日以内に、PyPIにおいて「google-genai」のバージョン3.0.0以上をリリースしない",
@@ -240,31 +254,6 @@
           "why": "本日の新規求人一覧にAccount Executive - Public Sector (ASEAN) (Singapore)などのシンガポール勤務ポジションが追加されたためconfirm指標が点灯する。"
         }
       ]
-    },
-    {
-      "id": "2026-08-18-h01",
-      "claim": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」のメジャーバージョン「4.0.0」（プレリリース版を除く）をリリースしない。",
-      "subject": "OpenAI",
-      "deadline": "2026-09-01",
-      "confidence": 0.95,
-      "initial_confidence": 0.93,
-      "result": "hit",
-      "status": "resolved",
-      "alert": false,
-      "counter": "v3系の設計に回復不能な重大な欠陥が発覚し、即時の再度の破壊的API変更を伴うv4.0.0リリースが強制される場合。",
-      "evidence": "PyPIの公式ページにおけるopenaiのバージョンは3.6.0であり、2026年9月1日時点でメジャーバージョン「4.0.0」は存在しないため、予測は的中した。",
-      "signals": [
-        {
-          "date": "2026-08-24",
-          "dir": "confirm",
-          "why": "openai Python SDK v3.3.1がリリースされ、3.3.x系のパッチリリースが確認されたため。"
-        },
-        {
-          "date": "2026-08-26",
-          "dir": "confirm",
-          "why": "本日の事象においてopenai Python SDK v3.3.1がリリースされたため、openaiの3.3.x系のマイナー・パッチリリース継続の指標に合致する。"
-        }
-      ]
     }
   ],
   "pending": [
@@ -287,20 +276,6 @@
           "why": "本日の求人情報にxAIのメンフィスにおける電力・インフラ施設関連（Certified Weld InspectorやIT Network Engineerなど）が含まれているため、指標の成立状況を確認できる。"
         }
       ]
-    },
-    {
-      "id": "2026-10-08-h01",
-      "claim": "Googleは今後14日以内に、公式ブログまたはGitHubリポジトリにおいて「google-genai」の新たなメジャーバージョンをリリースすることを見送る。",
-      "subject": "Google",
-      "deadline": "2026-10-22",
-      "confidence": 0.62,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "予告から急遽フィードバックを受けて想定以上に早い段階でメジャーバージョンが切られる可能性",
-      "evidence": "",
-      "signals": []
     },
     {
       "id": "2026-10-09-h01",
@@ -366,22 +341,26 @@
           "why": "xAIの東京拠点向けにFintech/金融サービス領域のGRC（ガバナンス・リスク・コンプライアンス）求人が新規掲載されたため。"
         }
       ]
+    },
+    {
+      "id": "2026-10-22-h01",
+      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて『Claude Fable 5.1』または『Claude Opus 5.5』と明記した新モデルの一般提供またはAPI公開を発表しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-11-12",
+      "confidence": 0.77,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "競合の次世代モデル発表に対抗するため、すでに評価を終えているClaude Fable 5.1またはOpus 5.5が21日以内に前倒しでプレビュー公開されること。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-10-19",
-          "headline": "Anthropicが計算資源フリートの利用効率を統括するプリンシパルエンジニアを募集",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5456039008"
-        },
-        {
-          "date": "2026-10-21",
-          "headline": "Anthropicが公式Python SDK v1.17.0をリリース",
-          "url": "https://pypi.org/project/anthropic/1.17.0/"
-        },
         {
           "date": "2026-10-21",
           "headline": "Anthropicが強化学習インフラのセキュリティ専門エンジニアの採用を開始",
@@ -391,17 +370,22 @@
           "date": "2026-10-21",
           "headline": "Anthropicが請求基盤の財務データ統制リードの採用を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5459274008"
+        },
+        {
+          "date": "2026-10-22",
+          "headline": "AnthropicがAIエージェントの多層防御展開を担うテクニカルプログラムマネージャーを募集",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5460216008"
+        },
+        {
+          "date": "2026-10-22",
+          "headline": "Anthropicが半導体チップ設計RLエンジニア求人を公開し未発表モデル名に言及",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5459098008"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-10-11",
-          "headline": "xAIが東京勤務の金融・Fintech特化GRCシニアセキュリティエンジニアを募集",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5261818007"
-        },
         {
           "date": "2026-10-13",
           "headline": "xAIがダブリン勤務のEMEA担当規制法務カウンセル求人を公開",
@@ -416,6 +400,11 @@
           "date": "2026-10-19",
           "headline": "xAIがメンフィス拠点で工業配管・鋼構造の溶接検査員を募集",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5267635007"
+        },
+        {
+          "date": "2026-10-22",
+          "headline": "xAIが連邦政府認証（FedRAMP・IL4/IL5）担当セキュリティ技術者の求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5271634007"
         }
       ]
     },
@@ -471,6 +460,27 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-10-22-r03",
+      "date": "2026-10-22",
+      "headline": "AnthropicがAIエージェントの多層防御展開を担うテクニカルプログラムマネージャーを募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5460216008"
+    },
+    {
+      "id": "2026-10-22-r02",
+      "date": "2026-10-22",
+      "headline": "xAIが連邦政府認証（FedRAMP・IL4/IL5）担当セキュリティ技術者の求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5271634007"
+    },
+    {
+      "id": "2026-10-22-r01",
+      "date": "2026-10-22",
+      "headline": "Anthropicが半導体チップ設計RLエンジニア求人を公開し未発表モデル名に言及",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5459098008"
+    },
     {
       "id": "2026-10-21-r03",
       "date": "2026-10-21",
@@ -533,28 +543,7 @@
       "headline": "Anthropicがインディアナ・ケンタッキー州でのデータセンター地域連携マネージャーを募集",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5454535008"
-    },
-    {
-      "id": "2026-10-18-r04",
-      "date": "2026-10-18",
-      "headline": "[新規求人] anthropic: Customer Success Manager, Enterprise Tech",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5454800008"
-    },
-    {
-      "id": "2026-10-18-r03",
-      "date": "2026-10-18",
-      "headline": "[新規求人] anthropic: Policy Design Manager, Integrity and Authenticity",
-      "certainty": "reported",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453573008"
-    },
-    {
-      "id": "2026-10-18-r02",
-      "date": "2026-10-18",
-      "headline": "anthropic Python SDK v1.15.0 リリース",
-      "certainty": "reported",
-      "url": "https://pypi.org/project/anthropic/1.15.0/"
     }
   ],
-  "record_count": 284
+  "record_count": 287
 }
