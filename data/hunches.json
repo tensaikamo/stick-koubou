@@ -2904,7 +2904,7 @@
       "decider": "期日までにAnthropic公式ニュースルーム（anthropic.com/news）において、タイトルまたは本文に『Claude for Nonprofits』を含み、その一般提供・公式受付開始を告げる記事が掲載されなかった場合に的中（掲載された場合は外れ）"
     },
     "deadline": "2026-11-13",
-    "confidence": 0.86,
+    "confidence": 0.906,
     "base_rate": 0.91,
     "base_rate_class": "AI開発企業が特定セクター向けイネーブルメント職の公募を開始してから21日以内に、当該プログラムの正式提供が公式発表されない頻度",
     "confidence_why": "求人票にプログラム骨子が具体化されているため先行PRの例外シナリオをわずかに織り込み、基準率（0.91）から引き下げた",
@@ -2919,7 +2919,16 @@
         "dir": "kill"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-10-23",
+        "sign": "Anthropicの採用サイト上でPartner Enablement Lead（Beneficial Deployments）の募集が継続掲載されている",
+        "dir": "confirm",
+        "why": "Anthropicの採用情報に「Partner Enablement Lead, Beneficial Deployments」の募集が掲載されたことが確認されたため。",
+        "conf_before": 0.86,
+        "conf_after": 0.906
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -2927,6 +2936,7 @@
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.86
   }
 ]

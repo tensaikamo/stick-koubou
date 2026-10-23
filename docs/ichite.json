@@ -1,162 +1,162 @@
 {
-  "date": "2026-10-22",
+  "date": "2026-10-23",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの価格改定データから、直結型別プロバイダへの乗り換え設定を今夜30分以内で終わらせるか？",
-    "Hugging Face上の軽量モデルの量子化済み重みファイルにアクセスし、スマホからAPIエンドポイントを直接叩く設定に切り替えるか？",
-    "Anthropicの求人動向から、従来の薄利多売API構成を完全に捨てて独自のプロンプト設計に移行するか？"
+    "Omnaraのリポジトリ構成から、Claude Managed Agents依存を剥がすためのキーとなる設定ファイルをiPhoneのGitHub画面で特定したか？",
+    "DeepSeek V4.1 Flashの価格引き下げに対抗し、自身の構築するWebアプリのAPIコスト構造をどう再設計するか？",
+    "Otariの基盤コードを参照し、エージェントの検索先制御においてプラットフォーマーに依存しないための代替ルーティングを書き出したか？"
   ],
   "moves": [
     {
-      "t": "既存の定額APIから別プロバイダの直結型エンドポイントへ切り替え設定を行う",
-      "why": "DeepSeek系モデルの急激な価格改定による利ざや消失を防ぐためだ。",
-      "cost_min": 500,
-      "cost_max": 2000,
-      "loss_max": 2000,
-      "success_p": 0.45,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "新興プロバイダの低価格枠が一時的に開放されているため。",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 25,
-      "payback_days": 14,
-      "outcome": "新プロバイダへのAPI接続切り替え完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "ランニングコスト直結の部分だから。",
-      "evidence_ids": [
-        "2026-10-22-r01"
-      ],
-      "assumptions": [
-        "新プロバイダのAPIキーが即時発行されること"
-      ],
-      "disconfirm": "切り替え先でも同様の値上げが発生した場合",
-      "continue_if": "APIレスポンスの遅延が許容範囲内である場合",
-      "stop": "決済エラー等で接続が確立できない場合"
-    },
-    {
-      "t": "Anthropicの最新SDK v1.17.0のドキュメントをSafariで読破する",
-      "why": "価格改定が進む中での公式SDKの仕様変更点を正確に把握するためだ。",
+      "t": "iPhoneのGitHubでOmnaraのリポジトリを閲覧し設定ファイル構造をメモする",
+      "why": "Anthropicのマネージド環境依存から逃れるための設定記述方式を把握し、自前エージェント移行の布石とするため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.65,
-      "success_p_min": 0.5,
-      "success_p_max": 0.8,
-      "success_why": "PyPIの公式ページに仕様変更履歴が明記されているため。",
+      "success_p": 0.55,
+      "success_p_min": 0.4,
+      "success_p_max": 0.7,
+      "success_why": "公開リポジトリの構造確認はGitHubのWeb画面のみで完遂できるため",
       "value_score": 3,
       "learning_value": 4,
-      "time_minutes": 20,
+      "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "SDK変更点メモの作成",
-      "category": "review",
+      "outcome": "Omnaraの構成要点に関するメモの作成",
+      "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "基盤技術のアップデートに追従するため。",
+      "impact_why": "自前エージェント移行のアーキテクチャ理解が進むため",
       "evidence_ids": [
-        "2026-10-21-r03"
+        "2026-10-23-r01"
       ],
       "assumptions": [
-        "PyPIのリリースノートに十分な情報があること"
+        "iPhoneのSafariからGitHubリポジトリの全コードが閲覧可能であること"
       ],
-      "disconfirm": "実際の仕様変更が軽微である場合",
-      "continue_if": "コスト削減に直結する変更点が見つかった場合",
-      "stop": "ドキュメントが英語のみで理解が困難な場合"
+      "disconfirm": "リポジトリが非公開化または削除されている場合",
+      "continue_if": "主要な設定ファイル構造が判明した場合",
+      "stop": "コード構造の閲覧自体がモバイル端末で困難な場合"
     },
     {
-      "t": "スマホブラウザで動く軽量プロンプト設計の検証用テンプレートを作成する",
-      "why": "APIコスト高騰下において、トークン消費量を最小限に抑える仕組みが必要なためだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
+      "t": "OpenRouter上のDeepSeek V4.1 FlashのAPI利用枠を少額でテスト購入する",
+      "why": "45%の価格引き下げが行われた軽量トークンインフラの実用性と応答速度を自ら検証するため",
+      "cost_min": 500,
+      "cost_max": 1500,
+      "loss_max": 1500,
       "success_p": 0.5,
       "success_p_min": 0.35,
       "success_p_max": 0.65,
-      "success_why": "過去のプロンプト圧縮手法の知見をそのまま転用できるため。",
+      "success_why": "OpenRouterのWebダッシュボード経由でAPIキー発行と残高チャージが即時完了するため",
       "value_score": 4,
       "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "軽量プロンプトテンプレートの完成",
-      "category": "build",
+      "time_minutes": 20,
+      "payback_days": 14,
+      "outcome": "APIキーの発行と疎通確認完了のログ",
+      "category": "buy",
       "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "個人の運用コストを直接引き下げる施策であるため。",
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "低コストな代替APIの選定がアプリの持続性に直結するため",
       "evidence_ids": [
-        "2026-10-22-r03"
+        "2026-10-23-r01"
       ],
       "assumptions": [
-        "ブラウザ上のテキストエディタで十分に編集可能であること"
+        "OpenRouterのWeb決済がiPhoneのブラウザから正常に行えること"
       ],
-      "disconfirm": "圧縮によってモデルの出力品質が著しく低下する場合",
-      "continue_if": "品質を保ったままトークン数を20%以上削減できた場合",
-      "stop": "テンプレート作成に30分以上かかり終わらない場合"
+      "disconfirm": "APIのレイテンシが実用に耐えないほど高い場合",
+      "continue_if": "応答速度が許容範囲内に収まる場合",
+      "stop": "決済システムエラーが発生した場合"
     },
     {
-      "t": "Anthropicの求人ページに記載された未発表モデルの記述を精査する",
-      "why": "次期モデルの仕様を事前に察知し、個人開発の方向性を先回りさせるためだ。",
+      "t": "Otariの公開ドキュメントを読み検索先制御の仕組みをiPhoneで比較検証する",
+      "why": "プラットフォーマーに依存しない検索先ルーティングの設計思想を抽出するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.45,
+      "success_p_min": 0.3,
+      "success_p_max": 0.6,
+      "success_why": "Mozilla.aiが公開している仕様書や解説記事にWebから直接アクセスできるため",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "Otariの検索制御における優位点と制約のまとめ",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "エージェントの外部接続制御手法の引き出しが増えるため",
+      "evidence_ids": [
+        "2026-10-23-r03"
+      ],
+      "assumptions": [
+        "対象ドキュメントが英語のままでもモバイル翻訳等で読解可能なこと"
+      ],
+      "disconfirm": "ドキュメントの内容が抽象的で実装の参考にならない場合",
+      "continue_if": "具体的な制御パラメータの記述が見つかった場合",
+      "stop": "情報源へのアクセスが制限されている場合"
+    },
+    {
+      "t": "Anthropic公式SDK v2.1.0の更新履歴をGitHubで確認し変更点を網羅する",
+      "why": "最新のSDK仕様変更が自前の構築物に与える影響を先回りして把握するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.6,
       "success_p_min": 0.45,
       "success_p_max": 0.75,
-      "success_why": "募集要項の業務内容に具体的な技術スタックが記載されているため。",
+      "success_why": "PyPIおよび公式リポジトリのリリースノートが公開されているため",
       "value_score": 3,
-      "learning_value": 5,
+      "learning_value": 4,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "未発表モデルに関する予測メモの作成",
-      "category": "research",
+      "outcome": "v2.1.0における破壊的変更や新機能の箇条書きメモ",
+      "category": "review",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "トレンドの先行把握に寄与するため。",
+      "impact_why": "既存コードのバージョン不整合を防ぐため",
       "evidence_ids": [
-        "2026-10-22-r01"
+        "2026-10-23-r01"
       ],
       "assumptions": [
-        "Greenhouseの求人情報が公開状態を維持していること"
+        "PyPI上のリリースノートに主要な変更が記載されていること"
       ],
-      "disconfirm": "求人ページが削除または非公開になった場合",
-      "continue_if": "具体的なアーキテクチャのヒントが得られた場合",
-      "stop": "一般的な定型文のみで新しい情報がない場合"
+      "disconfirm": "バージョンアップの内容が軽微なバグ修正のみである場合",
+      "continue_if": "エージェント連携に関わるインターフェースの変更がある場合",
+      "stop": "ドキュメントが不十分で変更意図が読み取れない場合"
     },
     {
-      "t": "インフラコスト管理の自動化ツールに月額プレミアムプランを申し込む",
-      "why": "API使用料の急変動をリアルタイムで検知し、予算超過を防ぐ防衛策を講じるためだ。",
-      "cost_min": 3000,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.4,
-      "success_p_min": 0.25,
-      "success_p_max": 0.55,
-      "success_why": "価格改定の激しい市場環境において監視ツールの重要性が増しているため。",
-      "value_score": 4,
+      "t": "商用AIエージェントの多層防御に関するAnthropicの求人要件を読み解く",
+      "why": "企業側が想定しているセキュリティの急所と弱点領域を逆算するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.5,
+      "success_p_min": 0.35,
+      "success_p_max": 0.65,
+      "success_why": "Greenhouse上の求人情報が詳細に公開されているため",
+      "value_score": 2,
       "learning_value": 3,
-      "time_minutes": 10,
-      "payback_days": 30,
-      "outcome": "監視ツールのプレミアム機能有効化",
-      "category": "buy",
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "求人票から読み取れるセキュリティ要件の要約メモ",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "予期せぬ損失を防ぐためのリスクヘッジとなるため。",
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "大手が警戒している脆弱性の方向性が把握できるため",
       "evidence_ids": [
-        "2026-10-21-r01"
+        "2026-10-22-r03"
       ],
       "assumptions": [
-        "対応する監視ツールが存在しiPhoneから契約できること"
+        "求人情報の職務記述書に具体的な技術要件が含まれていること"
       ],
-      "disconfirm": "通知機能が価格急変に追いつかない場合",
-      "continue_if": "初月でAPIの無駄な支出を検出できた場合",
-      "stop": "月額費用が削減額を上回る場合"
+      "disconfirm": "一般的な定型文のみで具体的な技術言及がない場合",
+      "continue_if": "具体的な防御レイヤーやツール名が記載されている場合",
+      "stop": "採用ページへのアクセスが途絶えた場合"
     }
   ],
-  "kan": "Anthropicは今後21日以内に、公式ニュースルームにおいて『Claude Fable 5.1』または『Claude Opus 5.5』と明記した新モデルの一般提供またはAPI公開を発表しない。"
+  "kan": "Anthropicは今後21日以内に、公式ニュースルームにおいて、非営利組織向け支援プログラム『Claude for Nonprofits』の正式提供または一般受付の開始を発表しない。"
 }

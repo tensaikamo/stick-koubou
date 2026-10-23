@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-22 09:11",
+  "updated_at": "2026-10-23 09:10",
   "score": {
     "hit": 17,
     "miss": 24,
     "total": 41,
     "rate": 0.4146341463414634,
-    "pending": 5,
+    "pending": 6,
     "brier": 0.3478223170731708,
     "brier_n": 41,
     "brier_initial": 0.3613317073170733,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-10-23",
-    "days": 1
+    "days": 0
   },
   "decided": [
     {
@@ -288,7 +288,7 @@
       "status": "pending",
       "alert": false,
       "counter": "突発的な電力供給に関する規制当局の承認や大規模な提携発表が急遽行われる場合",
-      "evidence": "",
+      "evidence": "公式ニュースルームページにアクセスできなかったため、期間内に該当する公式発表が掲載されたか確認できない。",
       "signals": [
         {
           "date": "2026-10-18",
@@ -355,6 +355,26 @@
       "counter": "競合の次世代モデル発表に対抗するため、すでに評価を終えているClaude Fable 5.1またはOpus 5.5が21日以内に前倒しでプレビュー公開されること。",
       "evidence": "",
       "signals": []
+    },
+    {
+      "id": "2026-10-23-h01",
+      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、非営利組織向け支援プログラム『Claude for Nonprofits』の正式提供または一般受付の開始を発表しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-11-13",
+      "confidence": 0.906,
+      "initial_confidence": 0.86,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "採用決定を待たず、既存のGTMチーム主導で事前登録やパートナー募集の告知をニュースルームで先行公開するケース",
+      "evidence": "",
+      "signals": [
+        {
+          "date": "2026-10-23",
+          "dir": "confirm",
+          "why": "Anthropicの採用情報に「Partner Enablement Lead, Beneficial Deployments」の募集が掲載されたことが確認されたため。"
+        }
+      ]
     }
   ],
   "threads": [
@@ -362,24 +382,24 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-10-21",
-          "headline": "Anthropicが強化学習インフラのセキュリティ専門エンジニアの採用を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5458420008"
-        },
-        {
-          "date": "2026-10-21",
-          "headline": "Anthropicが請求基盤の財務データ統制リードの採用を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5459274008"
-        },
-        {
-          "date": "2026-10-22",
-          "headline": "AnthropicがAIエージェントの多層防御展開を担うテクニカルプログラムマネージャーを募集",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5460216008"
-        },
-        {
           "date": "2026-10-22",
           "headline": "Anthropicが半導体チップ設計RLエンジニア求人を公開し未発表モデル名に言及",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5459098008"
+        },
+        {
+          "date": "2026-10-23",
+          "headline": "Anthropicが公式Python SDK v2.1.0を公開",
+          "url": "https://pypi.org/project/anthropic/2.1.0/"
+        },
+        {
+          "date": "2026-10-23",
+          "headline": "Anthropicが米連邦政府財務機関向け営業責任者の求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5461663008"
+        },
+        {
+          "date": "2026-10-23",
+          "headline": "Anthropicが非営利・教育分野向けパートナー推進リードの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5456939008"
         }
       ]
     },
@@ -437,11 +457,6 @@
       "subject": "Google",
       "events": [
         {
-          "date": "2026-10-08",
-          "headline": "google-genai Python SDK v2.29.0 リリースと次期バージョンの変更予告",
-          "url": "https://pypi.org/project/google-genai/2.29.0/"
-        },
-        {
           "date": "2026-10-12",
           "headline": "OpenAI・Anthropic・Google製エージェントの境界外アクセス事例を比較した論文が公開",
           "url": "https://arxiv.org/abs/2610.12463v1"
@@ -455,11 +470,44 @@
           "date": "2026-10-15",
           "headline": "google-genai Python SDK v2.31.0 リリース",
           "url": "https://pypi.org/project/google-genai/2.31.0/"
+        },
+        {
+          "date": "2026-10-23",
+          "headline": "Googleがgoogle-genai Python SDK v2.32.0を公開",
+          "url": "https://pypi.org/project/google-genai/2.32.0/"
         }
       ]
     }
   ],
   "records": [
+    {
+      "id": "2026-10-23-r04",
+      "date": "2026-10-23",
+      "headline": "Anthropicが米連邦政府財務機関向け営業責任者の求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5461663008"
+    },
+    {
+      "id": "2026-10-23-r03",
+      "date": "2026-10-23",
+      "headline": "Anthropicが非営利・教育分野向けパートナー推進リードの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5456939008"
+    },
+    {
+      "id": "2026-10-23-r02",
+      "date": "2026-10-23",
+      "headline": "Googleがgoogle-genai Python SDK v2.32.0を公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/2.32.0/"
+    },
+    {
+      "id": "2026-10-23-r01",
+      "date": "2026-10-23",
+      "headline": "Anthropicが公式Python SDK v2.1.0を公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/2.1.0/"
+    },
     {
       "id": "2026-10-22-r03",
       "date": "2026-10-22",
@@ -515,35 +563,7 @@
       "headline": "OpenAIが公式Python SDK「openai」v3.35.1をリリース",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/openai/3.35.1/"
-    },
-    {
-      "id": "2026-10-19-r04",
-      "date": "2026-10-19",
-      "headline": "xAIがメンフィス拠点で工業配管・鋼構造の溶接検査員を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5267635007"
-    },
-    {
-      "id": "2026-10-19-r03",
-      "date": "2026-10-19",
-      "headline": "Anthropicが計算資源フリートの利用効率を統括するプリンシパルエンジニアを募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5456039008"
-    },
-    {
-      "id": "2026-10-19-r02",
-      "date": "2026-10-19",
-      "headline": "Anthropicが東京拠点のエンタープライズ営業チームマネージャーを募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5391356008"
-    },
-    {
-      "id": "2026-10-19-r01",
-      "date": "2026-10-19",
-      "headline": "Anthropicがインディアナ・ケンタッキー州でのデータセンター地域連携マネージャーを募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5454535008"
     }
   ],
-  "record_count": 287
+  "record_count": 291
 }

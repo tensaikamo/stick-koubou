@@ -1,60 +1,57 @@
 {
-  "date": "2026-10-22",
-  "updated_at": "2026-10-22 09:13",
+  "date": "2026-10-23",
+  "updated_at": "2026-10-23 09:12",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouter経由のDeepSeek系モデルで最大436%の急激な価格改定が実施され、Hugging Faceでは小規模言語モデルの語彙特化で推論コストを77%削る手法が公開されている。",
-  "ura": "API仲介で利ざやを抜いてきた層が一斉に干上がる転換点と見る。単なる値上げではなく、プラットフォーム側が個人開発者の囲い込みを諦め、インフラコストの全額転嫁へ舵を切った証拠だ。APIをそのまま叩くだけの薄利多売モデルが物理的に消滅する一方、スマホ単体で軽量モデルのAPI直叩きや、独自の軽量プロンプト設計に切り替える個人だけが利益を抜ける。",
-  "ura_taikou": "単なる一時的なサーバー負荷の調整や一時的なマージン調整に過ぎず、すぐに元の低価格に戻るという仮説を、改定幅の大きさと複数モデルへの広がりを根拠に退けた。",
-  "dousuru": "SafariからHugging Faceの語彙特化リポジトリにアクセスし、スマホのブラウザ上で動く軽量モデルの量子化済み重みファイルとAPIエンドポイントの提供状況を確認しろ。PCやローカル環境でのPython実行は一切不要だ。既存の定額APIから、コストが跳ね上がらない直結型の別プロバイダや無料枠への乗り換え設定を今すぐiPhoneだけで完了させ、プラットフォームの価格改定に利益を削られる構造から脱却しろ。",
-  "kan": "Anthropicは今後21日以内に、公式ニュースルームにおいて『Claude Fable 5.1』または『Claude Opus 5.5』と明記した新モデルの一般提供またはAPI公開を発表しない。",
-  "kan_konkyo": "base_rate（0.82）から、求人票で過去形（have contributed）として成果が記述され内部評価の完了が示唆されている点を考慮し、不発生の確度を5ポイント下方修正した。",
-  "kan_hantai": "競合の次世代モデル発表に対抗するため、すでに評価を終えているClaude Fable 5.1またはOpus 5.5が21日以内に前倒しでプレビュー公開されること。",
-  "kan_conf": 0.77,
-  "ippan": "AIの利用料金が値上がりする傾向にあるため、不要なサブスクリプションを整理し、自分にとって本当に必要なツールを見極めましょう。コストを抑えながら賢くAIを活用するための工夫が大切です。",
+  "omote": "DeepSeekはOpenRouter上での『DeepSeek V4.1 Flash』の価格を45%引き下げた。Mozilla.aiはエージェントのWeb検索先を制御する基盤『Otari』を公開し、オープンソース界隈ではClaude Managed Agentsの代替を謳う『Omnara』が急浮上している。",
+  "ura": "価格破壊による軽量トークンの囲い込みと、プラットフォーマーに依存しないエージェント実行環境の脱ロックイン化が水面下で激化している。大手によるインフラの独占に対し、個人や小規模開発者が自前ホスト型ツールで自衛・離脱する隙を虎視眈々と探っている構図だ。",
+  "ura_taikou": "Anthropicがオープンソース側を無視して自社エコシステムの閉じた進化だけで開発者を満足させられるという仮説は、エコシステム離反のリスクを過小評価しているため退けた。",
+  "dousuru": "iPhoneからGitHubのWeb画面を開き、Hacker Newsで公開された『Omnara』のリポジトリ構造を確認しろ。Anthropicのマネージド環境依存から逃れるための設定ファイルやコードの記述方式を今すぐ読め。今日明日中にそのアーキテクチャの要点をメモし、将来の自前エージェント移行に向けた検証の布石を打て。",
+  "kan": "Anthropicは今後21日以内に、公式ニュースルームにおいて、非営利組織向け支援プログラム『Claude for Nonprofits』の正式提供または一般受付の開始を発表しない。",
+  "kan_konkyo": "求人票にプログラム骨子が具体化されているため先行PRの例外シナリオをわずかに織り込み、基準率（0.91）から引き下げた",
+  "kan_hantai": "採用決定を待たず、既存のGTMチーム主導で事前登録やパートナー募集の告知をニュースルームで先行公開するケース",
+  "kan_conf": 0.906,
+  "ippan": "AIの安全性や検索機能の裏側で、どの企業にデータが流れているかを意識することが自分の身を守る。無料だからと安易に標準APIへ機密を投げず、使うツールのデータ送信先を確認する習慣をつけよ。",
   "votes": [],
   "mijoriku": [
     {
-      "title": "vocabx-slm-specialization",
-      "desc": "SLMの語彙特化による推論コストの77%削減手法",
-      "why": "API依存の高コスト構造から抜け出すための具体的な切り口が日本語圏でまだ誰も言語化していないため"
+      "title": "Omnara – Open-source alternative to Claude Managed Agents",
+      "desc": "Claude Managed Agentsのオープンソース代替を掲げる実行基盤",
+      "why": "国内ではマネージド機能の利便性ばかりが語られ、ベンダーロックイン回避のためのOSS代替に張る個人がほぼ皆無だから"
+    },
+    {
+      "title": "Who searches the web for your agent?",
+      "desc": "Mozilla.aiによるエージェント検索先制御基盤",
+      "why": "エージェントの検索クエリ漏洩リスクに言及する視点が日本国内の開発議論から完全に抜け落ちているから"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 71%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値上げ 436%",
-    "[差分] 価格が動いた: Tencent: Hy4 preview 値上げ 11%",
-    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値下げ 21%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値下げ 21%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash Latest 値上げ 183%"
+    "[差分] 退役予定日が設定された: Arcee AI: Trinity Large Thinking → 2026-10-26",
+    "[差分] 価格が動いた: Reflection: Beam 1.0 501B A23B 値下げ 17%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値下げ 45%",
+    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値下げ 86%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値下げ 86%",
+    "[差分] 価格が動いた: MoonshotAI: Kimi Latest 値下げ 33%"
   ],
   "evidence": [
     {
-      "claim": "OpenRouterでのDeepSeek系モデルの大幅値上げはAPI転売・仲介層の維持限界を示している",
-      "confidence": 0.7,
-      "disconfirm": "インフラ効率の急改善により、主要プロバイダが再び大規模な価格引き下げ競争へ回帰する動き",
+      "claim": "OpenRouter上のDeepSeek V4.1 Flashの45%値下げは、軽量モデルの呼び出し頻度を奪うための先制ディスカウントである。",
+      "confidence": 0.85,
+      "disconfirm": "値下げがプロバイダ側のマージン調整のみに起因し、モデル自体の利用単価に波及しない場合。",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 71%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値上げ 436%",
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値下げ 45%",
           "url": "https://openrouter.ai/models"
         }
       ]
     },
     {
-      "claim": "語彙特化による推論コスト77%削減手法はAPI依存から逃れる個人の武器になる",
-      "confidence": 0.65,
-      "disconfirm": "該当の軽量化手法の適用にPCのローカル環境や専用のGPUが必須でありiPhone単体では検証すらできないと判明すること",
+      "claim": "Omnaraの登場は、Claude Managed Agentsへのロックインを危惧する開発者層による脱出基盤の先取りである。",
+      "confidence": 0.7,
+      "disconfirm": "プロジェクトが単なる一時的な個人のおもちゃであり、継続的なアップデートや実用的な互換性を持たない場合。",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash Latest 値上げ 183%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "[新規求人] anthropic: Research Engineer, Chip Design RL (San Francisco, CA)",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5459098008"
+          "title": "Show HN: Omnara – Open-source alternative to Claude Managed Agents",
+          "url": "https://github.com/omnara-ai/omnara"
         }
       ]
     }
