@@ -2722,12 +2722,16 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "公式ニュースルームページにアクセスできなかったため、期間内に該当する公式発表が掲載されたか確認できない。",
+      "url": ""
+    },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1",
-    "initial_confidence": 0.55
+    "initial_confidence": 0.55,
+    "judge_attempts": 1
   },
   {
     "id": "2026-10-11-h01",
@@ -2873,6 +2877,46 @@
       {
         "sign": "当該求人ページからFable 5.1およびOpus 5.5の文言が削除または伏せ字に修正される",
         "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.8-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-10-23-h01",
+    "created_at": "2026-10-23T09:06:00.054547+09:00",
+    "based_on": [
+      "2026-10-23-r03"
+    ],
+    "prose": "Anthropicが求人票内で「Claude for Nonprofits」の存在を初めて露出させた。中間組織を通じた指導者育成プログラムの骨子は見えているが、専任担当者の採用公募を開始した直後であり、運用体制の確立には一定の期間を要する。したがって、今後21日以内に公式ニュースルームで非営利向けプログラムの一般提供が発表される可能性は低く、発表は見送られる見通しである。非営利組織向けAI導入支援を狙う個人事業主は、公式ディスカウント枠の開始を待たず、既存プランをベースにしたワークフロー設計支援を先行提案できる期間が続く。",
+    "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、非営利組織向け支援プログラム『Claude for Nonprofits』の正式提供または一般受付の開始を発表しない。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Claude for Nonprofits",
+      "decider": "期日までにAnthropic公式ニュースルーム（anthropic.com/news）において、タイトルまたは本文に『Claude for Nonprofits』を含み、その一般提供・公式受付開始を告げる記事が掲載されなかった場合に的中（掲載された場合は外れ）"
+    },
+    "deadline": "2026-11-13",
+    "confidence": 0.86,
+    "base_rate": 0.91,
+    "base_rate_class": "AI開発企業が特定セクター向けイネーブルメント職の公募を開始してから21日以内に、当該プログラムの正式提供が公式発表されない頻度",
+    "confidence_why": "求人票にプログラム骨子が具体化されているため先行PRの例外シナリオをわずかに織り込み、基準率（0.91）から引き下げた",
+    "counter": "採用決定を待たず、既存のGTMチーム主導で事前登録やパートナー募集の告知をニュースルームで先行公開するケース",
+    "indicators": [
+      {
+        "sign": "Anthropicの採用サイト上でPartner Enablement Lead（Beneficial Deployments）の募集が継続掲載されている",
+        "dir": "confirm"
+      },
+      {
+        "sign": "Anthropic公式Xアカウント（@AnthropicAI）が非営利組織向け特別プログラムの受付開始をアナウンスする",
+        "dir": "kill"
       }
     ],
     "signals": [],
