@@ -2723,15 +2723,16 @@
     "resolved_at": null,
     "result": null,
     "evidence": {
-      "summary": "判定先ページにアクセスできず、公式発表の有無を確認するための十分な証拠が得られないため。",
-      "url": "https://x.ai/news"
+      "summary": "判定先であるxAIの公式ニュースルームページを確認できなかったため、発表の有無を判断する証拠が不足している。",
+      "url": ""
     },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.55,
-    "judge_attempts": 2
+    "judge_attempts": 3,
+    "needs_review": true
   },
   {
     "id": "2026-10-11-h01",
@@ -2938,5 +2939,49 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.86
+  },
+  {
+    "id": "2026-10-25-h01",
+    "created_at": "2026-10-25T08:34:04.989152+09:00",
+    "based_on": [
+      "2026-10-25-r01"
+    ],
+    "prose": "Anthropicが台湾製造業向けのエンタープライズ営業職の募集を開始したが、勤務地は台湾現地ではなくシンガポール拠点からの遠隔カバーに留まる。海外テック企業が遠隔営業ポストを1名募集した初期段階で、短期間のうちに現地法人設立や包括提携といった大々的な公式広報を打つ基準率は低い。パイプライン構築には数ヶ月を要するため、今後3週間以内に台湾を主題とした公式発表が出る公算は小さく、公式発表の見送り側に傾斜して予測を置く。",
+    "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいてタイトルまたは本文に台湾（Taiwan）を主題とする記事を公開しない。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Taiwan news",
+      "decider": "2026-10-25から21日後の期日時点で https://www.anthropic.com/news を確認し、2026-10-25以降に公開された記事の見出しまたは本文に「Taiwan」が含まれる記事が存在しない場合的中、1件以上存在する場合は外れ"
+    },
+    "deadline": "2026-11-15",
+    "confidence": 0.89,
+    "base_rate": 0.92,
+    "base_rate_class": "大手AI企業が遠隔営業求人を公開してから21日以内にその地域名を冠した独立の公式発表を行わない頻度",
+    "confidence_why": "シンガポールから台湾を兼任する単一ポジションであり現地法人開設等のマイルストーンではないため基準率(0.92)に近いが、半導体大手との水面下提携が即座に公表される例外リスクを織り込み0.89へ調整",
+    "counter": "TSMC等の主要半導体企業との戦略的提携がすでに内定しており、営業求人の公開と連動して近日中に公式パートナーシップ発表が行われる可能性",
+    "indicators": [
+      {
+        "sign": "Anthropicの採用ページに台湾現地（Taipei等）を勤務地とする法務・技術支援等の追加求人が掲載される",
+        "dir": "kill"
+      },
+      {
+        "sign": "台湾経済部や地元メディアからAnthropicの現地オフィス設立計画が報じられる",
+        "dir": "kill"
+      },
+      {
+        "sign": "Anthropicのニュースルーム更新がモデル安全評価や米国本社の機能アップデートのみに終始する",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.8-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
