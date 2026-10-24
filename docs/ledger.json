@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-24 09:03",
+  "updated_at": "2026-10-25 08:38",
   "score": {
     "hit": 17,
     "miss": 24,
     "total": 41,
     "rate": 0.4146341463414634,
-    "pending": 6,
+    "pending": 7,
     "brier": 0.3478223170731708,
     "brier_n": 41,
     "brier_initial": 0.3613317073170733,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-11-09",
-    "days": 16
+    "days": 15
   },
   "decided": [
     {
@@ -288,7 +288,7 @@
       "status": "pending",
       "alert": false,
       "counter": "突発的な電力供給に関する規制当局の承認や大規模な提携発表が急遽行われる場合",
-      "evidence": "判定先ページにアクセスできず、公式発表の有無を確認するための十分な証拠が得られないため。",
+      "evidence": "判定先であるxAIの公式ニュースルームページを確認できなかったため、発表の有無を判断する証拠が不足している。",
       "signals": [
         {
           "date": "2026-10-18",
@@ -375,17 +375,26 @@
           "why": "Anthropicの採用情報に「Partner Enablement Lead, Beneficial Deployments」の募集が掲載されたことが確認されたため。"
         }
       ]
+    },
+    {
+      "id": "2026-10-25-h01",
+      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいてタイトルまたは本文に台湾（Taiwan）を主題とする記事を公開しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-11-15",
+      "confidence": 0.89,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "TSMC等の主要半導体企業との戦略的提携がすでに内定しており、営業求人の公開と連動して近日中に公式パートナーシップ発表が行われる可能性",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-10-23",
-          "headline": "Anthropicが公式Python SDK v2.1.0を公開",
-          "url": "https://pypi.org/project/anthropic/2.1.0/"
-        },
         {
           "date": "2026-10-23",
           "headline": "Anthropicが米連邦政府財務機関向け営業責任者の求人を公開",
@@ -400,22 +409,17 @@
           "date": "2026-10-24",
           "headline": "Anthropicが公式Python SDK「anthropic」v2.3.0を公開",
           "url": "https://pypi.org/project/anthropic/2.3.0/"
+        },
+        {
+          "date": "2026-10-25",
+          "headline": "Anthropicがシンガポール拠点で台湾ハイテク製造業向け営業責任者の求人を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5448366008"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-10-13",
-          "headline": "xAIがダブリン勤務のEMEA担当規制法務カウンセル求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5263377007"
-        },
-        {
-          "date": "2026-10-14",
-          "headline": "xAIがメンフィスColossusデータセンターの施設運用スーパーバイザー求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5265155007"
-        },
         {
           "date": "2026-10-19",
           "headline": "xAIがメンフィス拠点で工業配管・鋼構造の溶接検査員を募集",
@@ -425,6 +429,16 @@
           "date": "2026-10-22",
           "headline": "xAIが連邦政府認証（FedRAMP・IL4/IL5）担当セキュリティ技術者の求人を公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5271634007"
+        },
+        {
+          "date": "2026-10-25",
+          "headline": "xAIがメンフィスColossus向け専任ガスタービン発電所運用のシニアマネージャー求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5273297007"
+        },
+        {
+          "date": "2026-10-25",
+          "headline": "xAIが欧州規制対応を担当するダブリン拠点の法務カウンセル求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5274048007"
         }
       ]
     },
@@ -480,6 +494,27 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-10-25-r03",
+      "date": "2026-10-25",
+      "headline": "xAIが欧州規制対応を担当するダブリン拠点の法務カウンセル求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5274048007"
+    },
+    {
+      "id": "2026-10-25-r02",
+      "date": "2026-10-25",
+      "headline": "xAIがメンフィスColossus向け専任ガスタービン発電所運用のシニアマネージャー求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5273297007"
+    },
+    {
+      "id": "2026-10-25-r01",
+      "date": "2026-10-25",
+      "headline": "Anthropicがシンガポール拠点で台湾ハイテク製造業向け営業責任者の求人を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5448366008"
+    },
     {
       "id": "2026-10-24-r03",
       "date": "2026-10-24",
@@ -542,28 +577,7 @@
       "headline": "xAIが連邦政府認証（FedRAMP・IL4/IL5）担当セキュリティ技術者の求人を公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/xai/jobs/5271634007"
-    },
-    {
-      "id": "2026-10-22-r01",
-      "date": "2026-10-22",
-      "headline": "Anthropicが半導体チップ設計RLエンジニア求人を公開し未発表モデル名に言及",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5459098008"
-    },
-    {
-      "id": "2026-10-21-r03",
-      "date": "2026-10-21",
-      "headline": "Anthropicが公式Python SDK v1.17.0をリリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/1.17.0/"
-    },
-    {
-      "id": "2026-10-21-r02",
-      "date": "2026-10-21",
-      "headline": "Anthropicが強化学習インフラのセキュリティ専門エンジニアの採用を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5458420008"
     }
   ],
-  "record_count": 294
+  "record_count": 297
 }

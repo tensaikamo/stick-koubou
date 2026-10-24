@@ -1,163 +1,163 @@
 {
-  "date": "2026-10-24",
+  "date": "2026-10-25",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "xAIの求人データとDeepSeekの価格改定を照らし、今夜どのAPIの差し替えを行うか？",
-    "既存のWebアプリに組み込める無料枠と有料枠のAPIコスト試算をどこまで終えるか？",
-    "iPhoneからブラウザ経由でAPIキーを差し替える作業を何時30分枠で実行するか？"
+    "OpenRouterの値下げ枠へAPIを切替えるか？",
+    "既存アプリに3並列推論を組み込み差別化するか？",
+    "月額千円以内の推論費で出力密度を底上げするか？"
   ],
   "moves": [
     {
-      "t": "iPhoneからGitHubのWeb画面でAPIキー設定ファイルを直接編集する",
-      "why": "余計なローカル環境を作らずブラウザ経由でバックエンドを切り替えるため",
+      "t": "OpenRouter接続先を更新する",
+      "why": "GLMやDeepSeekの大幅値下げを反映し、推論コストを7割削減してアプリの採算性を底上げするため。",
+      "cost_min": 750,
+      "cost_max": 750,
+      "loss_max": 750,
+      "success_p": 0.85,
+      "success_p_min": 0.75,
+      "success_p_max": 0.9,
+      "success_why": "SafariからGitHub上のconfigファイルを書き換えるだけで完結する作業であるため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 7,
+      "outcome": "OpenRouter経由でGLM 5.3 Flashを叩くコミット済みコード",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.25,
+      "impact_why": "アプリのランニングコストを即座に下げ、以後の機能拡張余力を生むため。",
+      "evidence_ids": [
+        "2026-10-25-r02"
+      ],
+      "assumptions": [
+        "GitHubリポジトリのWeb編集権限があること",
+        "OpenRouterアカウントに5ドルチャージ可能であること"
+      ],
+      "disconfirm": "OpenRouterでのGLM/DeepSeekのAPIエラー率が平常時で10%を超える場合",
+      "continue_if": "エラー率が5%未満かつ推論速度が2秒以内で返ってくる場合",
+      "stop": "連続10回以上のAPI呼び出し失敗またはタイムアウトが発生した場合"
+    },
+    {
+      "t": "3並列プロンプトをWeb追加する",
+      "why": "値下げ分の原価余力を使い、単発回答から思考・反論・統合の並列パイプラインへ深化させるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.7,
       "success_p_min": 0.6,
       "success_p_max": 0.8,
-      "success_why": "過去のプロジェクトリポジトリがすでにGitHub上で管理されているため",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "APIキーの環境変数更新とリポジトリへのコミット完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "基盤モデルの切り替えを即座に反映させる実作業だから",
-      "evidence_ids": [
-        "2026-10-22-r02"
-      ],
-      "assumptions": [
-        "GitHubのWebエディタから直接コードの修正とコミットが行えること"
-      ],
-      "disconfirm": "ブラウザからの編集機能がリポジトリの保護ルールで制限されている場合",
-      "continue_if": "コミット後に自動ビルドやデプロイが正常にトリガーされること",
-      "stop": "Web画面からの編集では対応できない複雑な設定変更が必要な場合"
-    },
-    {
-      "t": "xAIの最新求人ページにアクセスしセキュリティ関連の要件を精読する",
-      "why": "インフラ垂直統合と求人動向から次のプラットフォームの隙を特定するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.9,
-      "success_p_min": 0.85,
-      "success_p_max": 0.95,
-      "success_why": "Greenhouseの公式求人リンクが直接公開されているため",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "xAIが求めるインフラおよびセキュリティ要件のメモ",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "大手が押さえている物理・セキュリティのレイヤーを把握できるため",
-      "evidence_ids": [
-        "2026-10-22-r02",
-        "2026-10-11-r06"
-      ],
-      "assumptions": [
-        "指定されたGreenhouseの求人URLにiPhoneからアクセスできること"
-      ],
-      "disconfirm": "募集ページがすでに削除または非公開に切り替わっている場合",
-      "continue_if": "求人要件から具体的なインフラ投資の方向性が読み取れること",
-      "stop": "求人内容が定型的な文面のみで新しい技術的示唆がない場合"
-    },
-    {
-      "t": "APIプロバイダーの有料プランを小額決済でテスト契約する",
-      "why": "無料枠の制限を突破し高速な推論環境を自前アプリに直結させるため",
-      "cost_min": 1500,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.6,
-      "success_p_min": 0.5,
-      "success_p_max": 0.7,
-      "success_why": "主要プロバイダーの最小課金額がこのレンジに設定されているため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 14,
-      "outcome": "有料APIキーの発行とクレジット残高の反映確認",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "処理速度と安定性が向上し個人開発のボトルネックが解消されるため",
-      "evidence_ids": [
-        "2026-10-22-r02"
-      ],
-      "assumptions": [
-        "iPhoneのApple Payまたは登録済みカードで即時決済が通ること"
-      ],
-      "disconfirm": "決済システムが日本のカードを弾く、または追加の本人確認を要求する場合",
-      "continue_if": "有料クレジット反映後に対象モデルの応答速度が体感で改善すること",
-      "stop": "課金直後にレートリミットや利用制限のエラーが解消されない場合"
-    },
-    {
-      "t": "切り替えたAPIバックエンドを持つWebアプリの動作テストを行う",
-      "why": "価格改定されたモデルが実際のアプリケーションで破綻なく動くか検証するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.65,
-      "success_p_min": 0.55,
-      "success_p_max": 0.75,
-      "success_why": "APIの互換性がある前提だがレスポンス構造の微小な差異があり得るため",
+      "success_why": "既存のプロンプト定義ファイルに並列リクエスト構造をWeb上で追記するだけでテスト可能なため。",
       "value_score": 4,
       "learning_value": 4,
       "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "アプリの画面上での正常な推論結果の出力確認",
-      "category": "review",
+      "outcome": "反論・再検証ステップを含む更新版プロンプトファイル",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "バックエンド変更の成否を直接判定する重要なステップだから",
+      "impact_min": 0.08,
+      "impact_max": 0.2,
+      "impact_why": "出力品質の跳ね上がりにより他社無料ツールとの決定的な差別化になるため。",
       "evidence_ids": [
-        "2026-10-22-r02"
+        "2026-10-25-r02"
       ],
       "assumptions": [
-        "デプロイ済みのWebアプリがスマホのブラウザから正常に表示・操作できること"
+        "アプリ側で非同期または順次プロンプト実行の仕組みが記述可能であること"
       ],
-      "disconfirm": "モデルの仕様変更によりJSONのパースエラーが頻発する場合",
-      "continue_if": "テスト入力に対して意図した通りの出力が返ってくること",
-      "stop": "根本的なAPI仕様の非互換によりコードの大幅な書き直しが必要な場合"
+      "disconfirm": "3並列化しても単発出力と内容の深度に有意差が出ない場合",
+      "continue_if": "検証用プロンプトの比較で情報の具体性が明らかに向上した場合",
+      "stop": "レスポンス遅延が30秒を超えて実用に耐えないと判明した場合"
     },
     {
-      "t": "Webアプリの更新版を公開し外部ユーザー向けに告知文を配信する",
-      "why": "コスト削減と高速化の成果を最速で形にして市場の反応を試すため",
+      "t": "OpenRouter上限を設定する",
+      "why": "低価格モデル切り替えに伴い想定外のループ課金を防ぎ、損失を最小限に制御するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.65,
-      "success_p_max": 0.85,
-      "success_why": "デプロイ環境と配信チャネルがすでに整っているため",
-      "value_score": 5,
-      "learning_value": 3,
-      "time_minutes": 20,
+      "success_p": 0.95,
+      "success_p_min": 0.9,
+      "success_p_max": 0.95,
+      "success_why": "Safariで管理画面を開き、Monthly Limitを5ドルに固定するだけの単純設定のため。",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "公開URLとSNS向け告知テキストの完成",
-      "category": "publish",
-      "terminal": true,
-      "impact_min": 0.3,
-      "impact_max": 0.4,
-      "impact_why": "一連の改善プロセスを完結させ外の世界に成果物を残す最終行動だから",
+      "outcome": "月額利用枠が5ドルに固定されたAPIキー設定画面",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.1,
+      "impact_why": "資本防衛ルールを確定させ心理的負荷を排除するため。",
       "evidence_ids": [
-        "2026-10-22-r02"
+        "2026-10-25-r02"
       ],
       "assumptions": [
-        "テストを通過したWebアプリのビルドが正常に公開状態になること"
+        "OpenRouterのBilling設定にアクセスできること"
       ],
-      "disconfirm": "公開プラットフォーム側で予期せぬデプロイエラーが発生する場合",
-      "continue_if": "外部からのアクセスと初期の反応が観測できること",
-      "stop": "重大なバグが見つかり即座にロールバックが必要になった場合"
+      "disconfirm": "予算リミット機能が動作せず上限超過が請求される仕様だった場合",
+      "continue_if": "月額予算枠の通知メールが正しく有効化された場合",
+      "stop": "強制前払い以外で予期せぬ月額固定維持費が請求される場合"
+    },
+    {
+      "t": "推論レイテンシを測定する",
+      "why": "価格破壊されたモデルの実用性を検証し、本番投入可能か数値で確認するため。",
+      "cost_min": 150,
+      "cost_max": 300,
+      "loss_max": 300,
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "SafariからOpenRouterのPlayground上でテストプロンプトを5回叩くだけで測定できるため。",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 15,
+      "payback_days": 3,
+      "outcome": "GLMとDeepSeekのTTFTおよび生成秒数を記録したメモ",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "粗悪なホスティングを排除し、ユーザー体験の崩壊を防ぐ根拠になるため。",
+      "evidence_ids": [
+        "2026-10-25-r02"
+      ],
+      "assumptions": [
+        "OpenRouter上で該当モデルが即時実行可能であること"
+      ],
+      "disconfirm": "トークン生成速度が毎秒5トークン以下で実用に耐えない場合",
+      "continue_if": "平均生成速度が毎秒30トークン以上を維持している場合",
+      "stop": "連続してサーバーエラー（502/503）が返ってくる場合"
+    },
+    {
+      "t": "SDK依存バージョンを上げる",
+      "why": "Anthropic公式SDKの最新更新に追従し、破壊的変更への耐性と新APIの受入体制を整えるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.85,
+      "success_p_min": 0.75,
+      "success_p_max": 0.95,
+      "success_why": "GitHubのWebエディタでrequirements.txtまたはpackage.jsonのバージョンを書き換えるだけであるため。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "anthropic SDKバージョンをv2.3.0に指定したコミット履歴",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.12,
+      "impact_why": "ライブラリ乖離による将来のビルドエラーを未然に防ぐため。",
+      "evidence_ids": [
+        "2026-10-24-r02"
+      ],
+      "assumptions": [
+        "WebアプリのリポジトリがCI環境またはVercel等の自動デプロイと連動していること"
+      ],
+      "disconfirm": "新SDKへの書き換えによってビルドパイプラインが即座にクラッシュした場合",
+      "continue_if": "自動デプロイが正常終了し、既存機能の稼働が確認できた場合",
+      "stop": "依存関係の競合が多発しiPhoneのWeb画面だけで解消できない場合"
     }
   ],
-  "kan": "今後14日以内に主要なオープンウェイト系APIプロバイダーのいずれかが、推論の定額アンリミテッドプランを突如投入すると見る。基準率としてこの種の価格破壊的プランの投入頻度は四半期に1回程度だが、競合の88%値下げという今日の異常な下落圧力を考慮すると、通常より早い周期での実装が不可避な水準まで来ていると調整した。"
+  "kan": "Anthropicは今後21日以内に、公式ニュースルームにおいてタイトルまたは本文に台湾（Taiwan）を主題とする記事を公開しない。"
 }
