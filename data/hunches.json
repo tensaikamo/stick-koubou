@@ -2723,15 +2723,15 @@
     "resolved_at": null,
     "result": null,
     "evidence": {
-      "summary": "公式ニュースルームページにアクセスできなかったため、期間内に該当する公式発表が掲載されたか確認できない。",
-      "url": ""
+      "summary": "判定先ページにアクセスできず、公式発表の有無を確認するための十分な証拠が得られないため。",
+      "url": "https://x.ai/news"
     },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.55,
-    "judge_attempts": 1
+    "judge_attempts": 2
   },
   {
     "id": "2026-10-11-h01",
