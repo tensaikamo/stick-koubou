@@ -1,162 +1,163 @@
 {
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "Omnaraのリポジトリ構成から、Claude Managed Agents依存を剥がすためのキーとなる設定ファイルをiPhoneのGitHub画面で特定したか？",
-    "DeepSeek V4.1 Flashの価格引き下げに対抗し、自身の構築するWebアプリのAPIコスト構造をどう再設計するか？",
-    "Otariの基盤コードを参照し、エージェントの検索先制御においてプラットフォーマーに依存しないための代替ルーティングを書き出したか？"
+    "xAIの求人データとDeepSeekの価格改定を照らし、今夜どのAPIの差し替えを行うか？",
+    "既存のWebアプリに組み込める無料枠と有料枠のAPIコスト試算をどこまで終えるか？",
+    "iPhoneからブラウザ経由でAPIキーを差し替える作業を何時30分枠で実行するか？"
   ],
   "moves": [
     {
-      "t": "iPhoneのGitHubでOmnaraのリポジトリを閲覧し設定ファイル構造をメモする",
-      "why": "Anthropicのマネージド環境依存から逃れるための設定記述方式を把握し、自前エージェント移行の布石とするため",
+      "t": "iPhoneからGitHubのWeb画面でAPIキー設定ファイルを直接編集する",
+      "why": "余計なローカル環境を作らずブラウザ経由でバックエンドを切り替えるため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.55,
-      "success_p_min": 0.4,
-      "success_p_max": 0.7,
-      "success_why": "公開リポジトリの構造確認はGitHubのWeb画面のみで完遂できるため",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "Omnaraの構成要点に関するメモの作成",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "自前エージェント移行のアーキテクチャ理解が進むため",
-      "evidence_ids": [
-        "2026-10-23-r01"
-      ],
-      "assumptions": [
-        "iPhoneのSafariからGitHubリポジトリの全コードが閲覧可能であること"
-      ],
-      "disconfirm": "リポジトリが非公開化または削除されている場合",
-      "continue_if": "主要な設定ファイル構造が判明した場合",
-      "stop": "コード構造の閲覧自体がモバイル端末で困難な場合"
-    },
-    {
-      "t": "OpenRouter上のDeepSeek V4.1 FlashのAPI利用枠を少額でテスト購入する",
-      "why": "45%の価格引き下げが行われた軽量トークンインフラの実用性と応答速度を自ら検証するため",
-      "cost_min": 500,
-      "cost_max": 1500,
-      "loss_max": 1500,
-      "success_p": 0.5,
-      "success_p_min": 0.35,
-      "success_p_max": 0.65,
-      "success_why": "OpenRouterのWebダッシュボード経由でAPIキー発行と残高チャージが即時完了するため",
+      "success_p": 0.7,
+      "success_p_min": 0.6,
+      "success_p_max": 0.8,
+      "success_why": "過去のプロジェクトリポジトリがすでにGitHub上で管理されているため",
       "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 14,
-      "outcome": "APIキーの発行と疎通確認完了のログ",
-      "category": "buy",
+      "learning_value": 3,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "APIキーの環境変数更新とリポジトリへのコミット完了",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.15,
       "impact_max": 0.25,
-      "impact_why": "低コストな代替APIの選定がアプリの持続性に直結するため",
+      "impact_why": "基盤モデルの切り替えを即座に反映させる実作業だから",
       "evidence_ids": [
-        "2026-10-23-r01"
+        "2026-10-22-r02"
       ],
       "assumptions": [
-        "OpenRouterのWeb決済がiPhoneのブラウザから正常に行えること"
+        "GitHubのWebエディタから直接コードの修正とコミットが行えること"
       ],
-      "disconfirm": "APIのレイテンシが実用に耐えないほど高い場合",
-      "continue_if": "応答速度が許容範囲内に収まる場合",
-      "stop": "決済システムエラーが発生した場合"
+      "disconfirm": "ブラウザからの編集機能がリポジトリの保護ルールで制限されている場合",
+      "continue_if": "コミット後に自動ビルドやデプロイが正常にトリガーされること",
+      "stop": "Web画面からの編集では対応できない複雑な設定変更が必要な場合"
     },
     {
-      "t": "Otariの公開ドキュメントを読み検索先制御の仕組みをiPhoneで比較検証する",
-      "why": "プラットフォーマーに依存しない検索先ルーティングの設計思想を抽出するため",
+      "t": "xAIの最新求人ページにアクセスしセキュリティ関連の要件を精読する",
+      "why": "インフラ垂直統合と求人動向から次のプラットフォームの隙を特定するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "Mozilla.aiが公開している仕様書や解説記事にWebから直接アクセスできるため",
+      "success_p": 0.9,
+      "success_p_min": 0.85,
+      "success_p_max": 0.95,
+      "success_why": "Greenhouseの公式求人リンクが直接公開されているため",
       "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 25,
+      "learning_value": 4,
+      "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "Otariの検索制御における優位点と制約のまとめ",
+      "outcome": "xAIが求めるインフラおよびセキュリティ要件のメモ",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "エージェントの外部接続制御手法の引き出しが増えるため",
+      "impact_why": "大手が押さえている物理・セキュリティのレイヤーを把握できるため",
       "evidence_ids": [
-        "2026-10-23-r03"
+        "2026-10-22-r02",
+        "2026-10-11-r06"
       ],
       "assumptions": [
-        "対象ドキュメントが英語のままでもモバイル翻訳等で読解可能なこと"
+        "指定されたGreenhouseの求人URLにiPhoneからアクセスできること"
       ],
-      "disconfirm": "ドキュメントの内容が抽象的で実装の参考にならない場合",
-      "continue_if": "具体的な制御パラメータの記述が見つかった場合",
-      "stop": "情報源へのアクセスが制限されている場合"
+      "disconfirm": "募集ページがすでに削除または非公開に切り替わっている場合",
+      "continue_if": "求人要件から具体的なインフラ投資の方向性が読み取れること",
+      "stop": "求人内容が定型的な文面のみで新しい技術的示唆がない場合"
     },
     {
-      "t": "Anthropic公式SDK v2.1.0の更新履歴をGitHubで確認し変更点を網羅する",
-      "why": "最新のSDK仕様変更が自前の構築物に与える影響を先回りして把握するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
+      "t": "APIプロバイダーの有料プランを小額決済でテスト契約する",
+      "why": "無料枠の制限を突破し高速な推論環境を自前アプリに直結させるため",
+      "cost_min": 1500,
+      "cost_max": 3000,
+      "loss_max": 3000,
       "success_p": 0.6,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "PyPIおよび公式リポジトリのリリースノートが公開されているため",
-      "value_score": 3,
+      "success_p_min": 0.5,
+      "success_p_max": 0.7,
+      "success_why": "主要プロバイダーの最小課金額がこのレンジに設定されているため",
+      "value_score": 4,
       "learning_value": 4,
       "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "v2.1.0における破壊的変更や新機能の箇条書きメモ",
-      "category": "review",
+      "payback_days": 14,
+      "outcome": "有料APIキーの発行とクレジット残高の反映確認",
+      "category": "buy",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "既存コードのバージョン不整合を防ぐため",
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "処理速度と安定性が向上し個人開発のボトルネックが解消されるため",
       "evidence_ids": [
-        "2026-10-23-r01"
+        "2026-10-22-r02"
       ],
       "assumptions": [
-        "PyPI上のリリースノートに主要な変更が記載されていること"
+        "iPhoneのApple Payまたは登録済みカードで即時決済が通ること"
       ],
-      "disconfirm": "バージョンアップの内容が軽微なバグ修正のみである場合",
-      "continue_if": "エージェント連携に関わるインターフェースの変更がある場合",
-      "stop": "ドキュメントが不十分で変更意図が読み取れない場合"
+      "disconfirm": "決済システムが日本のカードを弾く、または追加の本人確認を要求する場合",
+      "continue_if": "有料クレジット反映後に対象モデルの応答速度が体感で改善すること",
+      "stop": "課金直後にレートリミットや利用制限のエラーが解消されない場合"
     },
     {
-      "t": "商用AIエージェントの多層防御に関するAnthropicの求人要件を読み解く",
-      "why": "企業側が想定しているセキュリティの急所と弱点領域を逆算するため",
+      "t": "切り替えたAPIバックエンドを持つWebアプリの動作テストを行う",
+      "why": "価格改定されたモデルが実際のアプリケーションで破綻なく動くか検証するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.35,
-      "success_p_max": 0.65,
-      "success_why": "Greenhouse上の求人情報が詳細に公開されているため",
-      "value_score": 2,
+      "success_p": 0.65,
+      "success_p_min": 0.55,
+      "success_p_max": 0.75,
+      "success_why": "APIの互換性がある前提だがレスポンス構造の微小な差異があり得るため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "アプリの画面上での正常な推論結果の出力確認",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "バックエンド変更の成否を直接判定する重要なステップだから",
+      "evidence_ids": [
+        "2026-10-22-r02"
+      ],
+      "assumptions": [
+        "デプロイ済みのWebアプリがスマホのブラウザから正常に表示・操作できること"
+      ],
+      "disconfirm": "モデルの仕様変更によりJSONのパースエラーが頻発する場合",
+      "continue_if": "テスト入力に対して意図した通りの出力が返ってくること",
+      "stop": "根本的なAPI仕様の非互換によりコードの大幅な書き直しが必要な場合"
+    },
+    {
+      "t": "Webアプリの更新版を公開し外部ユーザー向けに告知文を配信する",
+      "why": "コスト削減と高速化の成果を最速で形にして市場の反応を試すため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.65,
+      "success_p_max": 0.85,
+      "success_why": "デプロイ環境と配信チャネルがすでに整っているため",
+      "value_score": 5,
       "learning_value": 3,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "求人票から読み取れるセキュリティ要件の要約メモ",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "大手が警戒している脆弱性の方向性が把握できるため",
+      "outcome": "公開URLとSNS向け告知テキストの完成",
+      "category": "publish",
+      "terminal": true,
+      "impact_min": 0.3,
+      "impact_max": 0.4,
+      "impact_why": "一連の改善プロセスを完結させ外の世界に成果物を残す最終行動だから",
       "evidence_ids": [
-        "2026-10-22-r03"
+        "2026-10-22-r02"
       ],
       "assumptions": [
-        "求人情報の職務記述書に具体的な技術要件が含まれていること"
+        "テストを通過したWebアプリのビルドが正常に公開状態になること"
       ],
-      "disconfirm": "一般的な定型文のみで具体的な技術言及がない場合",
-      "continue_if": "具体的な防御レイヤーやツール名が記載されている場合",
-      "stop": "採用ページへのアクセスが途絶えた場合"
+      "disconfirm": "公開プラットフォーム側で予期せぬデプロイエラーが発生する場合",
+      "continue_if": "外部からのアクセスと初期の反応が観測できること",
+      "stop": "重大なバグが見つかり即座にロールバックが必要になった場合"
     }
   ],
-  "kan": "Anthropicは今後21日以内に、公式ニュースルームにおいて、非営利組織向け支援プログラム『Claude for Nonprofits』の正式提供または一般受付の開始を発表しない。"
+  "kan": "今後14日以内に主要なオープンウェイト系APIプロバイダーのいずれかが、推論の定額アンリミテッドプランを突如投入すると見る。基準率としてこの種の価格破壊的プランの投入頻度は四半期に1回程度だが、競合の88%値下げという今日の異常な下落圧力を考慮すると、通常より早い周期での実装が不可避な水準まで来ていると調整した。"
 }
