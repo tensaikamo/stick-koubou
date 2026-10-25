@@ -8089,5 +8089,52 @@
       "2026-10-11-r07",
       "2026-10-11-r06"
     ]
+  },
+  {
+    "id": "2026-10-26-r01",
+    "created_at": "2026-10-26T08:29:05.535098+09:00",
+    "headline": "Anthropicが自律エージェントの安全性監視を担う専門アナリストの募集を開始",
+    "what_happened": "Anthropicは「Enforcement Analyst, Agentic Alignment」の求人募集を公開した。勤務地はボストン、サンフランシスコ、シアトル、ニューヨーク、ワシントンDCなどが対象となっている。Claudeの自律的タスク実行拡大に伴い、モデルの予期せぬ挙動や有害な振る舞いを調査・特定し、セーフガードの執行判断を下す役割を担う。",
+    "background": "AIモデルが単なるチャット応答からPC操作やコード実行などの自律エージェント型タスクへ移行するにつれ、実行段階での暴走や悪用を防ぐリアルタイム監視および規約執行の重要性が増している。",
+    "changed": "Anthropic組織内において、エージェント特化の安全アライメントおよびポリシー執行を行う専門体制の拡充が着手された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5462893008",
+      "title": "[新規求人] anthropic: Enforcement Analyst, Agentic Alignment (Boston, MA; San Francisco, CA | Seattle, WA | New York City, NY | Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-25-r01",
+      "2026-10-24-r02",
+      "2026-10-23-r04",
+      "2026-10-23-r03",
+      "2026-10-23-r01",
+      "2026-10-22-r03"
+    ]
+  },
+  {
+    "id": "2026-10-26-r02",
+    "created_at": "2026-10-26T08:29:05.535098+09:00",
+    "headline": "推論時スケーリングにおける思考刈り込み手法「Direct Pass@k」に関する論文がarXivに公開",
+    "what_happened": "南カリフォルニア大学などの研究チームは、推論モデルのテスト時計算量（Test-Time Scaling）を最適化する手法に関する論文をarXivで発表した。候補解の初期トークン生成段階で刈り込み（thought pruning）を行い、品質と解の多様性を両立させながらPass@k指標を最大化するアルゴリズムを提案している。全候補を完走させるアプローチに比べて計算資源を抑えつつ推論精度を維持することを示した。",
+    "background": "OpenAI o1など推論時に思考プロセス（CoT）を大量生成・探索するモデルが主流となる中、全探索に伴う計算コストの急増をいかに抑えるかが実務上の焦点となっている。",
+    "changed": "推論時サンプリングの候補枝刈りにおいて、従来のスコア上位抽出だけでなく多様性を直接最適化する定式化が提示された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.31667v1",
+      "title": "Direct Pass@$k$ Optimization for Thought Pruning: Balancing Quality and Diversity in Test-Time Reasoning",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": []
   }
 ]
