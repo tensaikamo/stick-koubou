@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-25 08:38",
+  "updated_at": "2026-10-26 08:33",
   "score": {
     "hit": 17,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-11-09",
-    "days": 15
+    "days": 14
   },
   "decided": [
     {
@@ -397,11 +397,6 @@
       "events": [
         {
           "date": "2026-10-23",
-          "headline": "Anthropicが米連邦政府財務機関向け営業責任者の求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5461663008"
-        },
-        {
-          "date": "2026-10-23",
           "headline": "Anthropicが非営利・教育分野向けパートナー推進リードの求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5456939008"
         },
@@ -414,6 +409,11 @@
           "date": "2026-10-25",
           "headline": "Anthropicがシンガポール拠点で台湾ハイテク製造業向け営業責任者の求人を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5448366008"
+        },
+        {
+          "date": "2026-10-26",
+          "headline": "Anthropicが自律エージェントの安全性監視を担う専門アナリストの募集を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5462893008"
         }
       ]
     },
@@ -495,6 +495,20 @@
   ],
   "records": [
     {
+      "id": "2026-10-26-r02",
+      "date": "2026-10-26",
+      "headline": "推論時スケーリングにおける思考刈り込み手法「Direct Pass@k」に関する論文がarXivに公開",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2610.31667v1"
+    },
+    {
+      "id": "2026-10-26-r01",
+      "date": "2026-10-26",
+      "headline": "Anthropicが自律エージェントの安全性監視を担う専門アナリストの募集を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5462893008"
+    },
+    {
       "id": "2026-10-25-r03",
       "date": "2026-10-25",
       "headline": "xAIが欧州規制対応を担当するダブリン拠点の法務カウンセル求人を公開",
@@ -563,21 +577,7 @@
       "headline": "Anthropicが公式Python SDK v2.1.0を公開",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/anthropic/2.1.0/"
-    },
-    {
-      "id": "2026-10-22-r03",
-      "date": "2026-10-22",
-      "headline": "AnthropicがAIエージェントの多層防御展開を担うテクニカルプログラムマネージャーを募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5460216008"
-    },
-    {
-      "id": "2026-10-22-r02",
-      "date": "2026-10-22",
-      "headline": "xAIが連邦政府認証（FedRAMP・IL4/IL5）担当セキュリティ技術者の求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5271634007"
     }
   ],
-  "record_count": 297
+  "record_count": 299
 }
