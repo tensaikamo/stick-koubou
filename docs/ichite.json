@@ -1,163 +1,164 @@
 {
-  "date": "2026-10-25",
+  "date": "2026-10-27",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの値下げ枠へAPIを切替えるか？",
-    "既存アプリに3並列推論を組み込み差別化するか？",
-    "月額千円以内の推論費で出力密度を底上げするか？"
+    "OpenRouterのDeepSeek値上げに対応し、現在利用中のモデルのルーティング先を今すぐLlama 3系や無料枠へ切り替えるか？",
+    "自動化フローのAPI消費上限を現在の設定値からどれだけの金額に引き下げるか？",
+    "14日以内の主要プロバイダによる月額固定課金移行を見据え、自走スクリプトの依存先をどこに分散させるか？"
   ],
   "moves": [
     {
-      "t": "OpenRouter接続先を更新する",
-      "why": "GLMやDeepSeekの大幅値下げを反映し、推論コストを7割削減してアプリの採算性を底上げするため。",
-      "cost_min": 750,
-      "cost_max": 750,
-      "loss_max": 750,
-      "success_p": 0.85,
-      "success_p_min": 0.75,
-      "success_p_max": 0.9,
-      "success_why": "SafariからGitHub上のconfigファイルを書き換えるだけで完結する作業であるため。",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 7,
-      "outcome": "OpenRouter経由でGLM 5.3 Flashを叩くコミット済みコード",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "アプリのランニングコストを即座に下げ、以後の機能拡張余力を生むため。",
-      "evidence_ids": [
-        "2026-10-25-r02"
-      ],
-      "assumptions": [
-        "GitHubリポジトリのWeb編集権限があること",
-        "OpenRouterアカウントに5ドルチャージ可能であること"
-      ],
-      "disconfirm": "OpenRouterでのGLM/DeepSeekのAPIエラー率が平常時で10%を超える場合",
-      "continue_if": "エラー率が5%未満かつ推論速度が2秒以内で返ってくる場合",
-      "stop": "連続10回以上のAPI呼び出し失敗またはタイムアウトが発生した場合"
-    },
-    {
-      "t": "3並列プロンプトをWeb追加する",
-      "why": "値下げ分の原価余力を使い、単発回答から思考・反論・統合の並列パイプラインへ深化させるため。",
+      "t": "無料枠のある軽量モデルへルーティング設定を書き換える",
+      "why": "高騰したAPIルートを切り離し、資本力の乏しい個人でも耐えられる代替パスへ即座に逃がすため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.7,
-      "success_p_min": 0.6,
+      "success_p_min": 0.55,
       "success_p_max": 0.8,
-      "success_why": "既存のプロンプト定義ファイルに並列リクエスト構造をWeb上で追記するだけでテスト可能なため。",
+      "success_why": "OpenRouter内のモデル切り替えは設定変更のみでコード修正が不要なため",
       "value_score": 4,
       "learning_value": 4,
-      "time_minutes": 25,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "反論・再検証ステップを含む更新版プロンプトファイル",
+      "outcome": "コストゼロまたは低価格の代替ルートへの完全移行",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.08,
-      "impact_max": 0.2,
-      "impact_why": "出力品質の跳ね上がりにより他社無料ツールとの決定的な差別化になるため。",
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "自動化フローを停止させずに延命できるため",
       "evidence_ids": [
-        "2026-10-25-r02"
+        "2026-07-25-r06"
       ],
       "assumptions": [
-        "アプリ側で非同期または順次プロンプト実行の仕組みが記述可能であること"
+        "代替の軽量モデルが現在のプロンプト仕様に追従すること"
       ],
-      "disconfirm": "3並列化しても単発出力と内容の深度に有意差が出ない場合",
-      "continue_if": "検証用プロンプトの比較で情報の具体性が明らかに向上した場合",
-      "stop": "レスポンス遅延が30秒を超えて実用に耐えないと判明した場合"
+      "disconfirm": "代替モデルの出力精度が低すぎてタスクが成立しない場合",
+      "continue_if": "代替ルートでも一定のタスク成功率が維持される場合",
+      "stop": "全モデルが有料化され無料枠が消滅した場合"
     },
     {
-      "t": "OpenRouter上限を設定する",
-      "why": "低価格モデル切り替えに伴い想定外のループ課金を防ぎ、損失を最小限に制御するため。",
+      "t": "GitHub上の個人リポジトリへ代替APIのエンドポイント設定をコミットする",
+      "why": "環境の変化に合わせていつでも自動化ボットの接続先を切り替えられる状態をコード側で固定するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.95,
-      "success_p_min": 0.9,
-      "success_p_max": 0.95,
-      "success_why": "Safariで管理画面を開き、Monthly Limitを5ドルに固定するだけの単純設定のため。",
-      "value_score": 3,
-      "learning_value": 2,
+      "success_p": 0.75,
+      "success_p_min": 0.65,
+      "success_p_max": 0.85,
+      "success_why": "スマホのGitHub Webエディタから直接ファイル修正とコミットが行えるため",
+      "value_score": 4,
+      "learning_value": 3,
       "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "月額利用枠が5ドルに固定されたAPIキー設定画面",
-      "category": "buy",
+      "outcome": "設定変更のバージョン管理と即時デプロイの準備完了",
+      "category": "publish",
       "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.1,
-      "impact_why": "資本防衛ルールを確定させ心理的負荷を排除するため。",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "運用環境の再現性と変更履歴が担保されるため",
       "evidence_ids": [
-        "2026-10-25-r02"
+        "2026-07-25-r06"
       ],
       "assumptions": [
-        "OpenRouterのBilling設定にアクセスできること"
+        "GitHubのWebインターフェースのみで編集が完結すること"
       ],
-      "disconfirm": "予算リミット機能が動作せず上限超過が請求される仕様だった場合",
-      "continue_if": "月額予算枠の通知メールが正しく有効化された場合",
-      "stop": "強制前払い以外で予期せぬ月額固定維持費が請求される場合"
+      "disconfirm": "Webエディタでの直接編集に制限がかかる場合",
+      "continue_if": "コミットが正常に反映され自動ビルドが走る場合",
+      "stop": "リポジトリの構造を全面的に刷新する必要が生じた場合"
     },
     {
-      "t": "推論レイテンシを測定する",
-      "why": "価格破壊されたモデルの実用性を検証し、本番投入可能か数値で確認するため。",
-      "cost_min": 150,
-      "cost_max": 300,
-      "loss_max": 300,
+      "t": "月額10000円の事業者向け優先API枠を申し込んでスループットを測定する",
+      "why": "個人開発者が締め出される価格帯において、あえて資本の土俵の端に食い込み優位性を確保するため。",
+      "cost_min": 9000,
+      "cost_max": 12000,
+      "loss_max": 12000,
+      "success_p": 0.45,
+      "success_p_min": 0.3,
+      "success_p_max": 0.6,
+      "success_why": "高額なプランであるため審査や追加の本人確認が挟まる可能性があるため",
+      "value_score": 3,
+      "learning_value": 5,
+      "time_minutes": 20,
+      "payback_days": 60,
+      "outcome": "優先枠でのレイテンシ改善率と収益化の損益分岐点テスト",
+      "category": "apply",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "大手が囲い込む高速な実行環境の利ザヤの一部を個人が横取りできるため",
+      "evidence_ids": [
+        "2026-08-06-r02"
+      ],
+      "assumptions": [
+        "個人名義の決済カードで事業者向けプランの契約が通ること"
+      ],
+      "disconfirm": "高額な費用対効果が見込めず赤字が拡大する場合",
+      "continue_if": "優先枠のスピードにより自動化の処理件数が2倍以上に跳ね上がった場合",
+      "stop": "予算の回収期間が2ヶ月を超えると判明した場合"
+    },
+    {
+      "t": "別プロバイダのオープンウェイトモデル検証用WebhookをSafariでテスト発火させる",
+      "why": "一極集中のリスクを排除し、14日以内の月額固定移行前に予備の逃げ道を完全に開通させるため。",
+      "cost_min": 0,
+      "cost_max": 500,
+      "loss_max": 500,
       "success_p": 0.8,
       "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "SafariからOpenRouterのPlayground上でテストプロンプトを5回叩くだけで測定できるため。",
-      "value_score": 3,
+      "success_why": "APIテストツールや簡易Webhooksサービスをブラウザから直接叩けるため",
+      "value_score": 4,
       "learning_value": 4,
       "time_minutes": 15,
-      "payback_days": 3,
-      "outcome": "GLMとDeepSeekのTTFTおよび生成秒数を記録したメモ",
+      "payback_days": 0,
+      "outcome": "予備プロバイダを経由した疎通確認の成功ログ",
       "category": "review",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "粗悪なホスティングを排除し、ユーザー体験の崩壊を防ぐ根拠になるため。",
+      "terminal": true,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "インフラ障害や突然の値上げに対する生存確率を最大化できるため",
       "evidence_ids": [
-        "2026-10-25-r02"
+        "2026-07-25-r06"
       ],
       "assumptions": [
-        "OpenRouter上で該当モデルが即時実行可能であること"
+        "スマホのブラウザからAPIのリクエストテストツールが正常に動くこと"
       ],
-      "disconfirm": "トークン生成速度が毎秒5トークン以下で実用に耐えない場合",
-      "continue_if": "平均生成速度が毎秒30トークン以上を維持している場合",
-      "stop": "連続してサーバーエラー（502/503）が返ってくる場合"
+      "disconfirm": "予備プロバイダ側のAPI仕様が現在のコードと互換性がない場合",
+      "continue_if": "予備経路を通じたリクエストがエラーなく返ってくる場合",
+      "stop": "すべてのオープンウェイト系APIが一斉に閉鎖された場合"
     },
     {
-      "t": "SDK依存バージョンを上げる",
-      "why": "Anthropic公式SDKの最新更新に追従し、破壊的変更への耐性と新APIの受入体制を整えるため。",
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.75,
-      "success_p_max": 0.95,
-      "success_why": "GitHubのWebエディタでrequirements.txtまたはpackage.jsonのバージョンを書き換えるだけであるため。",
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
       "value_score": 3,
-      "learning_value": 3,
+      "learning_value": 2,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "anthropic SDKバージョンをv2.3.0に指定したコミット履歴",
+      "outcome": "次に直す内容がIssueとして1件残る",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.12,
-      "impact_why": "ライブラリ乖離による将来のビルドエラーを未然に防ぐため。",
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
       "evidence_ids": [
-        "2026-10-24-r02"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "WebアプリのリポジトリがCI環境またはVercel等の自動デプロイと連動していること"
+        "Issueが次の実装に使われる"
       ],
-      "disconfirm": "新SDKへの書き換えによってビルドパイプラインが即座にクラッシュした場合",
-      "continue_if": "自動デプロイが正常終了し、既存機能の稼働が確認できた場合",
-      "stop": "依存関係の競合が多発しiPhoneのWeb画面だけで解消できない場合"
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
     }
   ],
-  "kan": "Anthropicは今後21日以内に、公式ニュースルームにおいてタイトルまたは本文に台湾（Taiwan）を主題とする記事を公開しない。"
+  "kan": "今後14日以内に主要なオープンウェイトモデルのプロバイダが一斉にAPIの無料枠を縮小し、実質的な月額固定課金制へ移行する目がある。"
 }

@@ -1,63 +1,49 @@
 {
-  "date": "2026-10-25",
-  "updated_at": "2026-10-25 08:42",
+  "date": "2026-10-27",
+  "updated_at": "2026-10-27 09:48",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouter上でZ.aiのGLM 5.3 Flashが73%値下げされ、DeepSeek V4 Pro 0423も68%引き下げられた。さらにxAIはメンフィス拠点でガスタービン発電所専任の運用責任者求人を追加した。",
-  "ura": "Z.aiとDeepSeekがOpenRouterで断行した約7割の値下げは、開発者囲い込みではなくTogetherやFireworksなど推論専業ホスティング事業者のマージンを破壊する窒息戦だ。アグリゲータ上で原価割れの卸値をぶつけることで、自前の大型電力網を持たない中間クラウドの利鞘を潰しにかかっている。xAIが送電網待ちを嫌ってガスタービン発電の専任責任者を直雇いした動きと表裏一体であり、計算資源の主戦場がモデル性能から自前電力とハードウェア直結の価格ダンピングへ完全に移ったと見る。",
-  "ura_taikou": "単なる一時的な余剰GPU在庫処分という見方を検討したが、複数プロバイダが同時に7割級の恒久改定を実施している事実から、中間ホスティング業者を兵糧攻めにする戦略的ダンピングと判断して退けた。",
-  "dousuru": "現在運用中のWebアプリのAPI接続先を、SafariからGitHubを開いてOpenRouter経由のGLM 5.3 FlashまたはDeepSeek V4 Proへ今晩20分で書き換えてコミットしろ。費用は小額枠でOpenRouterの月額上限を5ドルに設定する。推論原価が7割落ちるため、単発回答のプロンプトを思考・反論・再検証の3並行実行パイプラインへ拡張し、同一コストで大手ツール以上の深度を持つ回答を吐き出す仕様へ更新しろ。得る成果は原価据え置きでの出力密度向上、最大損失はチャージ分の5ドルのみ、API応答エラー率が5%を超えた場合のみ旧モデルへ即時ロールバックしろ。",
-  "kan": "Anthropicは今後21日以内に、公式ニュースルームにおいてタイトルまたは本文に台湾（Taiwan）を主題とする記事を公開しない。",
-  "kan_konkyo": "シンガポールから台湾を兼任する単一ポジションであり現地法人開設等のマイルストーンではないため基準率(0.92)に近いが、半導体大手との水面下提携が即座に公表される例外リスクを織り込み0.89へ調整",
-  "kan_hantai": "TSMC等の主要半導体企業との戦略的提携がすでに内定しており、営業求人の公開と連動して近日中に公式パートナーシップ発表が行われる可能性",
-  "kan_conf": 0.89,
-  "ippan": "AIモデルの利用料金が急速に値下がりしています。現在使っているサービスのバックエンドを高機能かつ低価格な最新オープン系モデルに切り替えるだけで、同じ月額費用のままでも出力の品質を大幅に引き上げられる環境が整いつつあります。",
-  "votes": [],
+  "omote": "OpenRouter上のDeepSeek Pro Latestが116%、DeepSeek V4.1 Flashが600%という急激な値上げを実施した。",
+  "ura": "安価なAPIを前提に組まれた個人開発の自動化フローやボットの利ザヤが潰され、プラットフォーム側が収益化の主導権を完全に握り直した。資本のない個人は低価格路線からの撤退を余儀なくされ、別の生存領域へ逃げざるを得なくなっている。",
+  "ura_taikou": "単なるプラットフォーム側の一時的な手数料改定に過ぎないという仮説は、値上げ率が複数モデルで同時にかつ高倍率で起きている点から退けた。",
+  "dousuru": "OpenRouterで設定しているDeepSeek系モデルのAPI料金上限と消費クレジットの残高を今すぐSafariから確認しろ。値上げの影響を受けるルートを切り離し、無料枠や別の軽量モデルへのルーティング切り替えテストを朝のうちに終わらせておけ。",
+  "kan": "今後14日以内に主要なオープンウェイトモデルのプロバイダが一斉にAPIの無料枠を縮小し、実質的な月額固定課金制へ移行する目がある。",
+  "kan_konkyo": "OpenRouter上でのDeepSeek Pro Latestが116%、Flashが600%という記録的な急騰幅を見せたデータから。",
+  "kan_hantai": "クラウド各社のGPU供給量やハードウェア効率が急激に改善し、価格競争が再燃して逆に値下げ圧力が強まる場合。",
+  "kan_conf": 0.12,
+  "ippan": "AIのAPI料金やサービス利用料が予告なく急に値上がりすることが増えているので、毎月の自動引き落としや従量課金の限度額を事前に設定しておきましょう。",
+  "votes": [
+    0.12,
+    0.12,
+    0.12
+  ],
   "mijoriku": [
     {
-      "title": "Mozilla.aiがエージェント検索基盤Otariを公開",
-      "desc": "商用検索APIをバイパスし、AIエージェントのWeb探索ログを自前管理できるオープンソースの検索仲介基盤。",
-      "why": "検索APIのログ囲い込みと高額課金を嫌う開発者向けに、クエリ匿名化とセルフホストの代替需要が急伸するため。"
+      "title": "Who searches the web for your agent?",
+      "desc": "AIエージェントのウェブ検索バックエンドの選択肢に関するMozilla.aiの議論",
+      "why": "エージェントのトラフィックと検索データがどのインフラに吸い上げられるかの構造変化を日本で最初に掴めるため。"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 32%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値下げ 73%",
-    "[差分] 価格が動いた: Z.ai: GLM Latest 値下げ 5%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash Latest 値上げ 2%",
-    "[差分] 価格が動いた: MoonshotAI: Kimi Latest 値下げ 20%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値下げ 68%"
+    "[差分] 退役予定日が設定された: Upstage: Solar Pro 3 → 2026-10-30",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 116%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値上げ 100%",
+    "[差分] 価格が動いた: OpenAI: GPT Terra Latest 値下げ 50%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値上げ 600%",
+    "[差分] 価格が動いた: Tencent: Hy4 preview 値上げ 11%"
   ],
   "evidence": [
     {
-      "claim": "OpenRouterにおいてZ.aiのGLM 5.3 Flashが73%値下げされた",
-      "confidence": 0.9,
-      "disconfirm": "OpenRouterの価格テーブル更新の誤表記であり、実際のAPI請求額が旧単価のままであること",
+      "claim": "DeepSeekの急速な値上げは初期のシェア獲得フェーズが終わり、インフラコストの転嫁と収益化へ舵を切った証拠である。",
+      "confidence": 0.65,
+      "disconfirm": "主要な他社APIが同時期に一斉値下げや価格据え置きに踏み切り、DeepSeekの単なる価格設定ミスであることが判明した場合。",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値下げ 73%",
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 116%",
           "url": "https://openrouter.ai/models"
-        }
-      ]
-    },
-    {
-      "claim": "DeepSeek V4 Pro 0423の価格が68%値下げされた",
-      "confidence": 0.9,
-      "disconfirm": "短日限定のプロモーションであり1週間以内に旧単価へ戻ること",
-      "sources": [
+        },
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0423 値下げ 68%",
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値上げ 600%",
           "url": "https://openrouter.ai/models"
-        }
-      ]
-    },
-    {
-      "claim": "xAIがメンフィスでガスタービン発電所の運用責任者求人を公開した",
-      "confidence": 0.95,
-      "disconfirm": "募集要項が削除され、現地電力会社TVAからの受電増枠のみで運用が決定されること",
-      "sources": [
-        {
-          "title": "[新規求人] xai: Sr. Manager, Power Plant Operations - Memphis ( Southaven, MS; Memphis, TN)",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5273297007"
         }
       ]
     }

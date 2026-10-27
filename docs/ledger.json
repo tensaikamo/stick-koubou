@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26 08:33",
+  "updated_at": "2026-10-27 09:45",
   "score": {
     "hit": 17,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-11-09",
-    "days": 14
+    "days": 13
   },
   "decided": [
     {
@@ -396,16 +396,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-10-23",
-          "headline": "Anthropicが非営利・教育分野向けパートナー推進リードの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5456939008"
-        },
-        {
-          "date": "2026-10-24",
-          "headline": "Anthropicが公式Python SDK「anthropic」v2.3.0を公開",
-          "url": "https://pypi.org/project/anthropic/2.3.0/"
-        },
-        {
           "date": "2026-10-25",
           "headline": "Anthropicがシンガポール拠点で台湾ハイテク製造業向け営業責任者の求人を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5448366008"
@@ -414,17 +404,22 @@
           "date": "2026-10-26",
           "headline": "Anthropicが自律エージェントの安全性監視を担う専門アナリストの募集を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5462893008"
+        },
+        {
+          "date": "2026-10-27",
+          "headline": "Anthropic、データセンター向けハードウェアのサプライチェーンと監査を担うセキュリティエンジニアを募集",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5462966008"
+        },
+        {
+          "date": "2026-10-27",
+          "headline": "Anthropic、創薬・反応合成向け強化学習環境を構築する計算化学専門の研究員を募集",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5461863008"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-10-19",
-          "headline": "xAIがメンフィス拠点で工業配管・鋼構造の溶接検査員を募集",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5267635007"
-        },
         {
           "date": "2026-10-22",
           "headline": "xAIが連邦政府認証（FedRAMP・IL4/IL5）担当セキュリティ技術者の求人を公開",
@@ -439,6 +434,11 @@
           "date": "2026-10-25",
           "headline": "xAIが欧州規制対応を担当するダブリン拠点の法務カウンセル求人を公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5274048007"
+        },
+        {
+          "date": "2026-10-27",
+          "headline": "xAI、メンフィス現地でガスタービン発電設備の運用・保守を統括する専任マネージャーの募集を開始",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5275197007"
         }
       ]
     },
@@ -494,6 +494,27 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-10-27-r03",
+      "date": "2026-10-27",
+      "headline": "Anthropic、データセンター向けハードウェアのサプライチェーンと監査を担うセキュリティエンジニアを募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5462966008"
+    },
+    {
+      "id": "2026-10-27-r02",
+      "date": "2026-10-27",
+      "headline": "Anthropic、創薬・反応合成向け強化学習環境を構築する計算化学専門の研究員を募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5461863008"
+    },
+    {
+      "id": "2026-10-27-r01",
+      "date": "2026-10-27",
+      "headline": "xAI、メンフィス現地でガスタービン発電設備の運用・保守を統括する専任マネージャーの募集を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5275197007"
+    },
     {
       "id": "2026-10-26-r02",
       "date": "2026-10-26",
@@ -556,28 +577,7 @@
       "headline": "Anthropicが米連邦政府財務機関向け営業責任者の求人を公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5461663008"
-    },
-    {
-      "id": "2026-10-23-r03",
-      "date": "2026-10-23",
-      "headline": "Anthropicが非営利・教育分野向けパートナー推進リードの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5456939008"
-    },
-    {
-      "id": "2026-10-23-r02",
-      "date": "2026-10-23",
-      "headline": "Googleがgoogle-genai Python SDK v2.32.0を公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/2.32.0/"
-    },
-    {
-      "id": "2026-10-23-r01",
-      "date": "2026-10-23",
-      "headline": "Anthropicが公式Python SDK v2.1.0を公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/2.1.0/"
     }
   ],
-  "record_count": 299
+  "record_count": 302
 }
