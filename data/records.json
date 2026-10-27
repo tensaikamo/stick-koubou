@@ -8136,5 +8136,86 @@
     "body_fetched": true,
     "model": "gemini-3.8-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-10-27-r01",
+    "created_at": "2026-10-27T09:42:21.093102+09:00",
+    "headline": "xAI、メンフィス現地でガスタービン発電設備の運用・保守を統括する専任マネージャーの募集を開始",
+    "what_happened": "xAI（SpaceXSI）は、テネシー州メンフィスおよびミシシッピ州サウスヘイブンの高密度AIデータセンター「Colossus」に電力を供給するオンサイト発電所の運用・保守マネージャー（Manager, Operation & Maintenance - Power Plant）の募集を開始した。採用された人材は、ガスタービン発電設備、プラント電気システム、プロセス・流体システムの保守監督を担当する。AIコンピュートの安定稼働を維持するための現地発電インフラ内製化に向けた直接雇用である。",
+    "background": "xAIがメンフィスに構築したスーパーコンピュータ「Colossus」は膨大な電力を消費するため、地域の電力網負荷や大気汚染に関する地元環境団体・規制当局からの懸念が報じられており、可搬式ガスタービン発電機による自家発電の運用実態が注目されている。",
+    "changed": "外部の発電事業者や請負業者任せではなく、xAI自社が発電プラントの現場運用・保守体制を直接雇用・管理する段階へ移行した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5275197007",
+      "title": "[新規求人] xai: Manager, Operation & Maintenance (Power Plant) - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-25-r03",
+      "2026-10-25-r02",
+      "2026-10-22-r02",
+      "2026-10-19-r04",
+      "2026-10-14-r03",
+      "2026-10-13-r01"
+    ]
+  },
+  {
+    "id": "2026-10-27-r02",
+    "created_at": "2026-10-27T09:42:21.093102+09:00",
+    "headline": "Anthropic、創薬・反応合成向け強化学習環境を構築する計算化学専門の研究員を募集",
+    "what_happened": "Anthropicは、ライフサイエンスチームにおいて計算化学（Computational Chemistry）を専門とする研究員（Research Scientist）の募集を開始した。職務内容は、化学反応、有機合成、創薬化学の知見と機械学習を融合させ、Claudeに化学を学習させるための強化学習（RL）環境、データセット、評価系の開発を行うこととされている。サンフランシスコでのオンサイト勤務が必須要件となっている。",
+    "background": "フロンティアAI各社はプログラミングや数学に続き、生物学・創薬・材料科学といった自然科学領域へのAIエージェント適用を進めており、ウェットラボのデータと連携可能なドメイン特化RL環境の構築が競争軸となっている。",
+    "changed": "Anthropicのライフサイエンスチームが、従来の生物学中心の取り組みから有機合成や創薬化学に特化したRL学習環境の開発へ踏み込んだ。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5461863008",
+      "title": "[新規求人] anthropic: Research Scientist, Life Sciences (Computational Chemistry) (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-26-r01",
+      "2026-10-25-r01",
+      "2026-10-24-r02",
+      "2026-10-23-r04",
+      "2026-10-23-r03",
+      "2026-10-23-r01"
+    ]
+  },
+  {
+    "id": "2026-10-27-r03",
+    "created_at": "2026-10-27T09:42:21.093102+09:00",
+    "headline": "Anthropic、データセンター向けハードウェアのサプライチェーンと監査を担うセキュリティエンジニアを募集",
+    "what_happened": "Anthropicは、データセンターセキュリティエンジニアリング（DCSE）チームにおいて、Security Data Engineerの募集を開始した。Anthropicおよびパートナーが運営するデータセンター内のコンポーネント単位のハードウェア台帳、保管経路（Chain of Custody）、継続的な統制監視システムのパイプライン構築を担当する。AIエージェントを活用した証拠レビューと監査の自動化を目指している。",
+    "background": "フロンティアAIモデルのウェイト流出や不正アクセスを防ぐため、ソフトウェア上の防御だけでなく、GPUクラスタが物理的に設置・運搬される過程でのサプライチェーン改ざん防止が国家安全保障水準で求められている。",
+    "changed": "物理データセンター内のハードウェア追跡とアクセス監査を、AIエージェントを用いた自動計算基盤として構築する方針を明確にした。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5462966008",
+      "title": "[新規求人] anthropic: Security Data Engineer (Remote-Friendly (Travel Required) | San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-26-r01",
+      "2026-10-25-r01",
+      "2026-10-24-r02",
+      "2026-10-23-r04",
+      "2026-10-23-r03",
+      "2026-10-23-r01"
+    ]
   }
 ]
