@@ -8217,5 +8217,167 @@
       "2026-10-23-r03",
       "2026-10-23-r01"
     ]
+  },
+  {
+    "id": "2026-10-28-r01",
+    "created_at": "2026-10-28T09:40:24.738058+09:00",
+    "headline": "openai Python SDK v3.40.0 リリース",
+    "what_happened": "OpenAIはPyPIにおいて、公式Python SDKのバージョン3.40.0を公開した。本ライブラリは任意のPython 3.10以降のアプリケーションからOpenAI REST APIへアクセスする機能を提供する。型定義や同期・非同期クライアントを含んでいる。",
+    "background": "OpenAIのAPIを利用する開発者向けの公式Pythonライブラリの更新管理に関する前提知識。",
+    "changed": "openai Python SDKのバージョンが3.40.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.40.0/",
+      "title": "openai Python SDK v3.40.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-24-r01",
+      "2026-10-20-r01",
+      "2026-10-18-r01",
+      "2026-10-17-r02",
+      "2026-10-15-r01",
+      "2026-10-13-r02"
+    ]
+  },
+  {
+    "id": "2026-10-28-r02",
+    "created_at": "2026-10-28T09:40:24.738058+09:00",
+    "headline": "AnthropicがTech Lead Manager, Core Apps Data Scientist職を募集",
+    "what_happened": "AnthropicはGreenhouseの求人ページにおいて、Core Apps製品チーム向けシニアデータサイエンスリーダー（Tech Lead Manager, Core Apps Data Scientist）の求人を公開した。Claude Codeやその他のCore Appsの新展開における製品方向性の設定、データ駆動型の意思決定を担うポジションである。",
+    "background": "AI企業における応用製品群（Claude Code等）の開発体制拡大に関する前提知識。",
+    "changed": "AnthropicがCore Apps向けデータサイエンス部門のテックリードマネージャーの募集を開始した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5464493008",
+      "title": "[新規求人] anthropic: Tech Lead Manager, Core Apps Data Scientist (New York City, NY; San Francisco, CA | New York City, NY; Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-27-r03",
+      "2026-10-27-r02",
+      "2026-10-26-r01",
+      "2026-10-25-r01",
+      "2026-10-24-r02",
+      "2026-10-23-r04"
+    ]
+  },
+  {
+    "id": "2026-10-28-r03",
+    "created_at": "2026-10-28T09:40:24.738058+09:00",
+    "headline": "AnthropicがAutonomous Systems Security Engineer職を募集",
+    "what_happened": "AnthropicはGreenhouseの求人ページにおいて、データセンター等の自営・パートナー拠点における物理セキュリティおよび自律システム（ドローン、地上ロボット、自動運転車）のセキュリティを担当するエンジニアの求人を公開した。運用モデルの策定からベンダー要件の定義までを担う。",
+    "background": "大規模AIデータセンターの物理的・自律的な保安管理体制構築に関する前提知識。",
+    "changed": "Anthropicがデータセンター等の自律システム向けセキュリティエンジニアの募集を開始した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5462972008",
+      "title": "[新規求人] anthropic: Autonomous Systems Security Engineer (Remote-Friendly (Travel Required) | San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-27-r03",
+      "2026-10-27-r02",
+      "2026-10-26-r01",
+      "2026-10-25-r01",
+      "2026-10-24-r02",
+      "2026-10-23-r04"
+    ]
+  },
+  {
+    "id": "2026-10-28-r04",
+    "created_at": "2026-10-28T09:40:24.738058+09:00",
+    "headline": "AnthropicがIP Counsel, Life Sciences Patents職を募集",
+    "what_happened": "AnthropicはGreenhouseの求人ページにおいて、ライフサイエンス特許担当のインハウス弁護士（IP Counsel, Life Sciences Patents）の求人を公開した。生命科学研究チームがウェットラボ実験を行う中で、AIを研究ツールとして活用する際の特許戦略や出願の管理を担う。",
+    "background": "AI企業によるライフサイエンス分野での実験活動および知的財産戦略の構築に関する前提知識。",
+    "changed": "Anthropicがライフサイエンス特許に特化した法務人材の募集を開始した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453569008",
+      "title": "[新規求人] anthropic: IP Counsel, Life Sciences Patents (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-27-r03",
+      "2026-10-27-r02",
+      "2026-10-26-r01",
+      "2026-10-25-r01",
+      "2026-10-24-r02",
+      "2026-10-23-r04"
+    ]
+  },
+  {
+    "id": "2026-10-28-r05",
+    "created_at": "2026-10-28T09:40:24.738058+09:00",
+    "headline": "xAIがSr. Manager, Materials Management - Memphis職を募集",
+    "what_happened": "xAIはGreenhouseの求人ページにおいて、メンフィス（サウスヘイブン等）のデータセンター運用を支える資材管理シニアマネージャーの求人を公開した。世界最大規模のスーパーコンピュータークラスター構築に向けた重要資材の在庫・フルフィルメント管理を担う。",
+    "background": "xAIによるメンフィス拠点での大規模計算基盤拡張とサプライチェーン管理に関する前提知識。",
+    "changed": "xAIがメンフィス拠点の資材管理責任者の募集を開始した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5275741007",
+      "title": "[新規求人] xai: Sr. Manager, Materials Management - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-27-r01",
+      "2026-10-25-r03",
+      "2026-10-25-r02",
+      "2026-10-22-r02",
+      "2026-10-19-r04",
+      "2026-10-14-r03"
+    ]
+  },
+  {
+    "id": "2026-10-28-r06",
+    "created_at": "2026-10-28T09:40:24.738058+09:00",
+    "headline": "xAIがSenior Product Manager, Commerce Platform職を募集",
+    "what_happened": "xAIはGreenhouseの求人ページにおいて、Grok、X、Grok Bot、Cursorなどの有料製品を支える課金システム・購買フローの製品方向性を所有する商用プラットフォームシニアプロダクトマネージャーの求人を公開した。大規模な課金システムの構築・保守・トリアージをハンズオンで主導する。",
+    "background": "xAIが提供する複数の有料AIプロダクトおよびXプラットフォームにおける共通決済インフラ整備に関する前提知識。",
+    "changed": "xAIが商用プラットフォーム（課金・決済システム）のシニアプロダクトマネージャーの募集を開始した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5277343007",
+      "title": "[新規求人] xai: Senior Product Manager, Commerce Platform ( Palo Alto, CA)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-10-27-r01",
+      "2026-10-25-r03",
+      "2026-10-25-r02",
+      "2026-10-22-r02",
+      "2026-10-19-r04",
+      "2026-10-14-r03"
+    ]
   }
 ]

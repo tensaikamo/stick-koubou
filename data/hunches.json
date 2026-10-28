@@ -2619,7 +2619,7 @@
         "conf_after": 0.657
       }
     ],
-    "status": "pending",
+    "status": "unscorable",
     "resolved_at": null,
     "result": null,
     "evidence": {
@@ -2631,7 +2631,7 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "judge_attempts": 3,
-    "needs_review": true,
+    "needs_review": false,
     "initial_confidence": 0.55
   },
   {
@@ -2981,6 +2981,46 @@
     "evidence": null,
     "rejected": [],
     "model": "gemini-3.8-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-10-28-h01",
+    "created_at": "2026-10-28T09:40:24.738058+09:00",
+    "based_on": [
+      "2026-10-28-r06"
+    ],
+    "prose": "xAIが商用プラットフォームのシニアプロダクトマネージャーを募集し、GrokやX、Cursor等の有料製品をまたぐ課金システムを統括する動きを見せている。短期的な窓口において、この決済基盤統合や新規の横断的課金プランが公式ブログ等で明文化される可能性は低い。",
+    "claim": "xAIは今後14日以内に、公式ブログまたは公式ニュースルームにおいて、Grok等の有料製品群を統合する新しい課金プランや商用プラットフォームの刷新に関する詳細を発表しない。",
+    "subject": "xAI",
+    "resolution": {
+      "source": "https://x.ai/blog",
+      "check_query": "billing commerce platform subscription grok",
+      "decider": "x.aiの公式ブログまたはニュースルームにおいて、課金プラットフォームや新プランに関する統合発表のテキストが掲載された場合のみ的中。"
+    },
+    "deadline": "2026-11-11",
+    "confidence": 0.7,
+    "base_rate": 0.8,
+    "base_rate_class": "AI企業がインフラや内部組織の採用発表から14日以内に商用プラットフォームの刷新を公式発表する頻度",
+    "confidence_why": "求人の段階ではインフラの垂直統合や内製化が先決であり、顧客向けの詳細な発表は短期間内には行われない確率が高いが、過去の較正実績で高確率の帯が過信であったことを踏まえ、基準率からやや慎重に見積もった。",
+    "counter": "採用と同時にプロダクトの外部発表が既に準備されており、突発的に新しい課金体系が露出する可能性。",
+    "indicators": [
+      {
+        "sign": "x.aiの公式ブログに商用プラットフォームや決済刷新に関する記事が掲載される",
+        "dir": "kill"
+      },
+      {
+        "sign": "Grokのアプリ内課金画面に新しい統合プランの選択肢が追加される",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1"
   }
