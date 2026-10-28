@@ -1,164 +1,163 @@
 {
-  "date": "2026-10-27",
+  "date": "2026-10-28",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのDeepSeek値上げに対応し、現在利用中のモデルのルーティング先を今すぐLlama 3系や無料枠へ切り替えるか？",
-    "自動化フローのAPI消費上限を現在の設定値からどれだけの金額に引き下げるか？",
-    "14日以内の主要プロバイダによる月額固定課金移行を見据え、自走スクリプトの依存先をどこに分散させるか？"
+    "OpenRouterの値下げに伴い、生API直結スクリプトでのプロンプト単価を今日いくらに再計算したか？",
+    "xAIの商用プラットフォーム刷新を見越し、Grok有料プランの統合に備えて手元の検証環境をどう変更したか？",
+    "仲介層を排除した直販エコシステムの中で、個人開発者が生き残るための原価管理の数値を即答できるか？"
   ],
   "moves": [
     {
-      "t": "無料枠のある軽量モデルへルーティング設定を書き換える",
-      "why": "高騰したAPIルートを切り離し、資本力の乏しい個人でも耐えられる代替パスへ即座に逃がすため。",
+      "t": "OpenRouter経由の1回あたりのプロンプト実行原価を円単位で計算しスプレッドシートに記録する",
+      "why": "DeepSeek V4 Flashの73%値下げ後の単価を正確に把握し、泥沼のコスト競争での生存ラインを明確にするため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "OpenRouter内のモデル切り替えは設定変更のみでコード修正が不要なため",
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "公開された値下げ率とトークン単価を元に手元のシミュレーション値で計算できるため",
       "value_score": 4,
-      "learning_value": 4,
+      "learning_value": 3,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "コストゼロまたは低価格の代替ルートへの完全移行",
-      "category": "build",
+      "outcome": "1プロンプト実行あたりの正確な円単位の原価表の作成",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "自動化フローを停止させずに延命できるため",
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "個人開発における利益率の限界値を数字で直視できるため",
       "evidence_ids": [
-        "2026-07-25-r06"
+        "2026-10-28-r05"
       ],
       "assumptions": [
-        "代替の軽量モデルが現在のプロンプト仕様に追従すること"
+        "対象となるトークン単価の数値データが入手可能であること"
       ],
-      "disconfirm": "代替モデルの出力精度が低すぎてタスクが成立しない場合",
-      "continue_if": "代替ルートでも一定のタスク成功率が維持される場合",
-      "stop": "全モデルが有料化され無料枠が消滅した場合"
+      "disconfirm": "実際の課金単価が公開数値と異なり、計算モデルが完全に崩れた場合",
+      "continue_if": "算出した原価が許容範囲内であり、次回の実行計画に反映できる場合",
+      "stop": "価格体系が複雑化しすぎて個人レベルでの原価算出が無意味になった場合"
     },
     {
-      "t": "GitHub上の個人リポジトリへ代替APIのエンドポイント設定をコミットする",
-      "why": "環境の変化に合わせていつでも自動化ボットの接続先を切り替えられる状態をコード側で固定するため。",
+      "t": "xAIのメンフィス発電設備および商用プラットフォーム求人情報をiPhoneから再確認して依存リスクを洗い出す",
+      "why": "xAIの直販エコシステム強化が個人のインフラコストに与える影響を構造的に見極めるため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.75,
       "success_p_min": 0.65,
       "success_p_max": 0.85,
-      "success_why": "スマホのGitHub Webエディタから直接ファイル修正とコミットが行えるため",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 10,
+      "success_why": "公式の求人ページが公開されており、募集要項から投資の向かう先が明確に読み取れるため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "設定変更のバージョン管理と即時デプロイの準備完了",
-      "category": "publish",
+      "outcome": "xAIの基盤投資動向に基づくリスク分析メモの作成",
+      "category": "review",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "運用環境の再現性と変更履歴が担保されるため",
+      "impact_why": "プラットフォーム側の動向に先回りするための前提知識を固めるため",
       "evidence_ids": [
-        "2026-07-25-r06"
+        "2026-10-27-r01",
+        "2026-10-28-r06"
       ],
       "assumptions": [
-        "GitHubのWebインターフェースのみで編集が完結すること"
+        "Greenhouseの求人ページに常時アクセス可能であること"
       ],
-      "disconfirm": "Webエディタでの直接編集に制限がかかる場合",
-      "continue_if": "コミットが正常に反映され自動ビルドが走る場合",
-      "stop": "リポジトリの構造を全面的に刷新する必要が生じた場合"
+      "disconfirm": "求人情報の更新が止まり、実際のインフラ投資方針が不透明になった場合",
+      "continue_if": "インフラ投資と商用プラットフォームの連動性が確認できた場合",
+      "stop": "公開情報の裏付けが取れず、単なる憶測にとどまる場合"
     },
     {
-      "t": "月額10000円の事業者向け優先API枠を申し込んでスループットを測定する",
-      "why": "個人開発者が締め出される価格帯において、あえて資本の土俵の端に食い込み優位性を確保するため。",
-      "cost_min": 9000,
-      "cost_max": 12000,
-      "loss_max": 12000,
-      "success_p": 0.45,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "高額なプランであるため審査や追加の本人確認が挟まる可能性があるため",
-      "value_score": 3,
-      "learning_value": 5,
+      "t": "小額API有料プランのテスト運用として500円分のクレジットを追加して応答速度を実測する",
+      "why": "無料枠や仲介なしの直結環境において、実際のレスポンスとレイテンシの劣化がないかを身体で覚えるため",
+      "cost_min": 500,
+      "cost_max": 1000,
+      "loss_max": 1000,
+      "success_p": 0.7,
+      "success_p_min": 0.6,
+      "success_p_max": 0.8,
+      "success_why": "クレジットカード決済とAPIクレジットの即時反映がスムーズに行えるため",
+      "value_score": 4,
+      "learning_value": 4,
       "time_minutes": 20,
-      "payback_days": 60,
-      "outcome": "優先枠でのレイテンシ改善率と収益化の損益分岐点テスト",
-      "category": "apply",
+      "payback_days": 7,
+      "outcome": "実測レイテンシと実費データの記録完了",
+      "category": "buy",
       "terminal": false,
       "impact_min": 0.2,
       "impact_max": 0.3,
-      "impact_why": "大手が囲い込む高速な実行環境の利ザヤの一部を個人が横取りできるため",
+      "impact_why": "実際の商用直結環境でのボトルネックを直接手元で検証できるため",
       "evidence_ids": [
-        "2026-08-06-r02"
+        "2026-10-28-r06"
       ],
       "assumptions": [
-        "個人名義の決済カードで事業者向けプランの契約が通ること"
+        "iPhoneの決済機能が問題なく動作すること"
       ],
-      "disconfirm": "高額な費用対効果が見込めず赤字が拡大する場合",
-      "continue_if": "優先枠のスピードにより自動化の処理件数が2倍以上に跳ね上がった場合",
-      "stop": "予算の回収期間が2ヶ月を超えると判明した場合"
+      "disconfirm": "決済システムのエラーによりクレジットがチャージできない場合",
+      "continue_if": "チャージ後直ちにAPIレスポンスの計測が成功した場合",
+      "stop": "想定以上のレイテンシが発生し実用に耐えないと判明した場合"
     },
     {
-      "t": "別プロバイダのオープンウェイトモデル検証用WebhookをSafariでテスト発火させる",
-      "why": "一極集中のリスクを排除し、14日以内の月額固定移行前に予備の逃げ道を完全に開通させるため。",
-      "cost_min": 0,
-      "cost_max": 500,
-      "loss_max": 500,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "APIテストツールや簡易Webhooksサービスをブラウザから直接叩けるため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "予備プロバイダを経由した疎通確認の成功ログ",
-      "category": "review",
-      "terminal": true,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "インフラ障害や突然の値上げに対する生存確率を最大化できるため",
-      "evidence_ids": [
-        "2026-07-25-r06"
-      ],
-      "assumptions": [
-        "スマホのブラウザからAPIのリクエストテストツールが正常に動くこと"
-      ],
-      "disconfirm": "予備プロバイダ側のAPI仕様が現在のコードと互換性がない場合",
-      "continue_if": "予備経路を通じたリクエストがエラーなく返ってくる場合",
-      "stop": "すべてのオープンウェイト系APIが一斉に閉鎖された場合"
-    },
-    {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "t": "OpenRouter経由で叩くプロンプトの文字数を極限まで削るリファクタリングを1件実施する",
+      "why": "価格崩壊の中でもトークン消費量を減らして実質的な泥沼のコスト競争から抜け出すため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
       "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 15,
+      "success_why": "手元のテキストエディタとSafariだけでプロンプトの冗長な表現を削ぎ落とせるため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
+      "outcome": "トークン数を20%削減した軽量プロンプトの完成",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "単価下落の環境下でも直ちにコストパフォーマンスを高められるため",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-10-28-r05"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "プロンプトを短縮しても出力の品質が維持できること"
       ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "プロンプトを削ったことでモデルの出力精度が著しく低下した場合",
+      "continue_if": "短縮後も期待通りの出力が得られ、トークン消費が減った場合",
+      "stop": "短縮による品質低下が大きすぎて実用に支障をきたす場合"
+    },
+    {
+      "t": "商用プラットフォーム刷新に備えた個人開発の撤退ラインを定めたチェックリストをGitHubのREADMEに記述する",
+      "why": "大手が直接エコシステムを掌握する中で、個人が深追いして損害を拡大させないための防衛線を引くため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.85,
+      "success_p_min": 0.75,
+      "success_p_max": 0.95,
+      "success_why": "iPhoneのGitHub Web画面から直接READMEの編集とコミットが行えるため",
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "GitHub上のリポジトリに撤退条件チェックリストが公開された状態",
+      "category": "publish",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "無駄な資金投下を防ぎ、次の機敏な動きへ切り替える基準が明確になるため",
+      "evidence_ids": [
+        "2026-10-28-r06"
+      ],
+      "assumptions": [
+        "GitHubのWebインターフェースにiPhoneからログインして編集できること"
+      ],
+      "disconfirm": "GitHubのWebエディタが一時的に利用できない状態である場合",
+      "continue_if": "コミットが正常に反映され、いつでも確認できる状態になった場合",
+      "stop": "プラットフォームの動向が激変し、チェックリストの前提が通用しなくなった場合"
     }
   ],
-  "kan": "今後14日以内に主要なオープンウェイトモデルのプロバイダが一斉にAPIの無料枠を縮小し、実質的な月額固定課金制へ移行する目がある。"
+  "kan": "xAIは今後14日以内に、公式ブログまたは公式ニュースルームにおいて、Grok等の有料製品群を統合する新しい課金プランや商用プラットフォームの刷新に関する詳細を発表しない。"
 }
