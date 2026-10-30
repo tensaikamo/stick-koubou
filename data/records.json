@@ -8379,5 +8379,113 @@
       "2026-10-19-r04",
       "2026-10-14-r03"
     ]
+  },
+  {
+    "id": "2026-10-30-r01",
+    "created_at": "2026-10-30T10:17:34.285470+09:00",
+    "headline": "Anthropic、大分子プロセス開発担当の生命科学研究職を公募",
+    "what_happened": "Anthropicはサンフランシスコ本社勤務の『Research Scientist, Life Sciences (Large Molecules, Process Development)』の求人を公開した。抗体作製、発現、精製、特性評価、製剤化の知見を持ち、IND申請準備段階までの実験を担当する研究者を求めている。AIが設計した配列からタンパク質を製造し、発現性や安定性の予測精度を検証する役割を担う。",
+    "background": "基盤モデル企業は計算機シミュレーションだけでなく、実験室での物理検証（ウェットラボ）データをモデルにフィードバックする体制構築を強化している。",
+    "changed": "Anthropicの生命科学領域における取り組みが、計算上のモデル開発だけでなく実際の実験プロセスの内製化・密連携段階へ移行しつつあることが求人要件から確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5467099008",
+      "title": "[新規求人] anthropic: Research Scientist, Life Sciences (Large Molecules, Process Development)  (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-28-r04",
+      "2026-10-28-r03",
+      "2026-10-28-r02",
+      "2026-10-27-r03",
+      "2026-10-27-r02",
+      "2026-10-26-r01"
+    ]
+  },
+  {
+    "id": "2026-10-30-r02",
+    "created_at": "2026-10-30T10:17:34.285470+09:00",
+    "headline": "Anthropic、抗体設計担当の生命科学研究職を公募",
+    "what_happened": "Anthropicはサンフランシスコ本社勤務の『Research Scientist, Life Sciences (Large Molecules, Antibody Design)』の求人を公開した。標的選定からリード最適化、候補選択、IND準備研究に至る抗体設計経験者を募集している。AI生成仮説と実験データを循環させ、実際の創薬候補基準でAI設計抗体を検証する職務内容となっている。",
+    "background": "2026年10月28日には生命科学領域専任の知的財産カウンセル（IP Counsel, Life Sciences）の求人も確認されており、バイオ分野のチーム組成が進んでいる。",
+    "changed": "計算モデルの出力結果を臨床水準の抗体設計へ耐えうるものにするため、抗体設計専門のシニア研究者の採用枠が新設された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5467092008",
+      "title": "[新規求人] anthropic: Research Scientist, Life Sciences (Large Molecules, Antibody Design)  (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-28-r04",
+      "2026-10-28-r03",
+      "2026-10-28-r02",
+      "2026-10-27-r03",
+      "2026-10-27-r02",
+      "2026-10-26-r01"
+    ]
+  },
+  {
+    "id": "2026-10-30-r03",
+    "created_at": "2026-10-30T10:17:34.285470+09:00",
+    "headline": "xAI、収益化オペレーション担当シニアアナリストを募集",
+    "what_happened": "xAIはオースティン勤務の『Sr. Analyst, Monetization Operations』の求人を公開した。求人票内ではSpaceXSIの呼称を用い、Xプラットフォーム上の広告および収益化に関する複雑なエスカレーション対応とポリシー執行を担うと記載されている。AI自動化を活用しながら運用の安全性を担保する設計となっている。",
+    "background": "xAIはColossusスパコンやGrokの開発と並行して、X連携を含むプロダクトスイートの商業化と広告運用の最適化を進めている。",
+    "changed": "Xプラットフォームの広告・マネタイズ関連の運用をAIベースの自動化と連携させつつ専門的に管理する要員枠が募集された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5278701007",
+      "title": "[新規求人] xai: Sr. Analyst, Monetization Operations (Austin, TX)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-28-r06",
+      "2026-10-28-r05",
+      "2026-10-27-r01",
+      "2026-10-25-r03",
+      "2026-10-25-r02",
+      "2026-10-22-r02"
+    ]
+  },
+  {
+    "id": "2026-10-30-r04",
+    "created_at": "2026-10-30T10:17:34.285470+09:00",
+    "headline": "xAI、メンフィスデータセンター向けシニア機械エンジニアを募集",
+    "what_happened": "xAIはテネシー州メンフィスおよびミシシッピ州サウスヘイブン勤務の『Sr. Mechanical Engineer - Memphis』の求人を公開した。データセンター設備における熱管理、冷却水ポンプ、流量制御、HVAC等の流体システムの設計・構築・稼働を主導する職務内容となっている。",
+    "background": "xAIはメンフィスにColossusスーパーコンピュータを構築・拡張しており、電力および水冷設備の増強を急ピッチで進めている。",
+    "changed": "メンフィスのデータセンター拠点において、高負荷コンピュートを維持するための冷却インフラ専任ハードウェアエンジニアの採用が継続されている。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5278993007",
+      "title": "[新規求人] xai: Sr. Mechanical Engineer - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-28-r06",
+      "2026-10-28-r05",
+      "2026-10-27-r01",
+      "2026-10-25-r03",
+      "2026-10-25-r02",
+      "2026-10-22-r02"
+    ]
   }
 ]

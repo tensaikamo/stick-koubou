@@ -3023,5 +3023,45 @@
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-10-30-h01",
+    "created_at": "2026-10-30T10:17:34.285470+09:00",
+    "based_on": [
+      "2026-10-30-r04"
+    ],
+    "prose": "Anthropicは知的財産カウンセルに続き、抗体設計およびプロセス開発のウェットラボ実験研究者の求人を開始した。しかし、物理的な実験設備と研究員を揃えて検証サイクルを回すには数ヶ月単位の立ち上げ期間を要する。採用開始直後の短期間で対外的なバイオ研究成果や新組織の立ち上げが公式発表される公算は低く、当面は水面下の体制構築にとどまる。",
+    "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、生命科学（Life Sciences）または抗体・創薬研究に関する公式アナウンスを行わない",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "life sciences antibody",
+      "decider": "判定日時点でAnthropic公式ニュースルーム（https://www.anthropic.com/news）の記事一覧において、タイトルまたは本文に『Life Sciences』または『Antibody』を含む記事が1件も公開されていなければ的中（1件でも公開されていれば外れ）。"
+    },
+    "deadline": "2026-11-20",
+    "confidence": 0.83,
+    "base_rate": 0.86,
+    "base_rate_class": "大手AI企業が特定専門職（ウェットラボ系研究職）の初期公募開始から21日以内に該当ドメインの公式対外発表を行わない頻度",
+    "confidence_why": "ウェットラボを伴う実証には物理的なリードタイムが必要で発表見送りとなる確率が高い一方、採用目的の予告的な取り組み紹介PRが出るリスクを考慮して基準率より3ポイント引き下げた。",
+    "counter": "研究者採用を有利に進めるための採用ブランディング目的で、成果公表前に『生命科学研究チームの発足』そのものを告知する記事を公開した場合は外れる。",
+    "indicators": [
+      {
+        "sign": "Anthropic公式ニュースルームにバイオ・ヘルスケア分野のミッションを示す予告記事が掲載される",
+        "dir": "kill"
+      },
+      {
+        "sign": "Greenhouse上で生命科学研究室のラボマネージャーや追加の研究員求人が新設される",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.8-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
