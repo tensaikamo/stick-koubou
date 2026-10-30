@@ -3039,7 +3039,7 @@
       "decider": "判定日時点でAnthropic公式ニュースルーム（https://www.anthropic.com/news）の記事一覧において、タイトルまたは本文に『Life Sciences』または『Antibody』を含む記事が1件も公開されていなければ的中（1件でも公開されていれば外れ）。"
     },
     "deadline": "2026-11-20",
-    "confidence": 0.83,
+    "confidence": 0.884,
     "base_rate": 0.86,
     "base_rate_class": "大手AI企業が特定専門職（ウェットラボ系研究職）の初期公募開始から21日以内に該当ドメインの公式対外発表を行わない頻度",
     "confidence_why": "ウェットラボを伴う実証には物理的なリードタイムが必要で発表見送りとなる確率が高い一方、採用目的の予告的な取り組み紹介PRが出るリスクを考慮して基準率より3ポイント引き下げた。",
@@ -3054,7 +3054,16 @@
         "dir": "confirm"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-10-30",
+        "sign": "Greenhouse上で生命科学研究室のラボマネージャーや追加の研究員求人が新設される",
+        "dir": "confirm",
+        "why": "Anthropicにおいて生命科学分野の研究員求人（Research Scientist, Life Sciences）が新たに掲載されたため。",
+        "conf_before": 0.83,
+        "conf_after": 0.884
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -3062,6 +3071,7 @@
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.83
   }
 ]
