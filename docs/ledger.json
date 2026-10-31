@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-30 10:19",
+  "updated_at": "2026-10-31 10:00",
   "score": {
     "hit": 17,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-11-09",
-    "days": 10
+    "days": 9
   },
   "decided": [
     {
@@ -411,11 +411,6 @@
       "events": [
         {
           "date": "2026-10-28",
-          "headline": "AnthropicがIP Counsel, Life Sciences Patents職を募集",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453569008"
-        },
-        {
-          "date": "2026-10-28",
           "headline": "AnthropicがTech Lead Manager, Core Apps Data Scientist職を募集",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5464493008"
         },
@@ -428,17 +423,17 @@
           "date": "2026-10-30",
           "headline": "Anthropic、抗体設計担当の生命科学研究職を公募",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5467092008"
+        },
+        {
+          "date": "2026-10-31",
+          "headline": "Anthropic、ハードウェアからモデル重みまで暗号検証する完全性保証チームの責任者を募集",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394403008"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-10-28",
-          "headline": "xAIがSenior Product Manager, Commerce Platform職を募集",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5277343007"
-        },
         {
           "date": "2026-10-28",
           "headline": "xAIがSr. Manager, Materials Management - Memphis職を募集",
@@ -453,6 +448,11 @@
           "date": "2026-10-30",
           "headline": "xAI、収益化オペレーション担当シニアアナリストを募集",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5278701007"
+        },
+        {
+          "date": "2026-10-31",
+          "headline": "xAI、メンフィスDC向けオンサイト発電所（ガスタービン）の計装制御技術者を募集",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5280433007"
         }
       ]
     },
@@ -508,6 +508,27 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-10-31-r03",
+      "date": "2026-10-31",
+      "headline": "研究チーム、LLMの重み摂動による性能向上説を再検証しロジット操作と投票による代替解釈を提示",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2610.40649v1"
+    },
+    {
+      "id": "2026-10-31-r02",
+      "date": "2026-10-31",
+      "headline": "Anthropic、ハードウェアからモデル重みまで暗号検証する完全性保証チームの責任者を募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394403008"
+    },
+    {
+      "id": "2026-10-31-r01",
+      "date": "2026-10-31",
+      "headline": "xAI、メンフィスDC向けオンサイト発電所（ガスタービン）の計装制御技術者を募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5280433007"
+    },
     {
       "id": "2026-10-30-r04",
       "date": "2026-10-30",
@@ -570,28 +591,7 @@
       "headline": "AnthropicがTech Lead Manager, Core Apps Data Scientist職を募集",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5464493008"
-    },
-    {
-      "id": "2026-10-28-r01",
-      "date": "2026-10-28",
-      "headline": "openai Python SDK v3.40.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.40.0/"
-    },
-    {
-      "id": "2026-10-27-r03",
-      "date": "2026-10-27",
-      "headline": "Anthropic、データセンター向けハードウェアのサプライチェーンと監査を担うセキュリティエンジニアを募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5462966008"
-    },
-    {
-      "id": "2026-10-27-r02",
-      "date": "2026-10-27",
-      "headline": "Anthropic、創薬・反応合成向け強化学習環境を構築する計算化学専門の研究員を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5461863008"
     }
   ],
-  "record_count": 312
+  "record_count": 315
 }
