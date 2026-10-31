@@ -8487,5 +8487,79 @@
       "2026-10-25-r02",
       "2026-10-22-r02"
     ]
+  },
+  {
+    "id": "2026-10-31-r01",
+    "created_at": "2026-10-31T09:58:35.784783+09:00",
+    "headline": "xAI、メンフィスDC向けオンサイト発電所（ガスタービン）の計装制御技術者を募集",
+    "what_happened": "xAIはメンフィスおよびサウスヘイブン地域の大規模AIスパコン施設向けオンサイト発電所（power plant）を運用するため、計装制御技術者（Instrumentation & Controls Technician）の採用を開始した。求人票によると、この発電所は24時間365日常時稼働が求められ、ガスタービン、発電機、プロセス計装の校正・保守を担当する。求人元表記はSpaceXSI名義となっている。",
+    "background": "xAIがメンフィスに構築したColossusスーパーコンピューターは数万基規模のGPUを擁し、極めて巨大な電力を消費するため、地元電力網の容量制約を補う目的で天然ガス燃焼タービンによるオンサイト発電設備の導入を進めている。",
+    "changed": "xAIが外部電力網への依存だけでなく、自前のガスタービン発電プラントの維持・運用体制を内製化し常設体制に入ったことが求人仕様から確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5280433007",
+      "title": "[新規求人] xai: Instrumentation & Controls Technician (Power Plant) - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-30-r04",
+      "2026-10-30-r03",
+      "2026-10-28-r06",
+      "2026-10-28-r05",
+      "2026-10-27-r01",
+      "2026-10-25-r03"
+    ]
+  },
+  {
+    "id": "2026-10-31-r02",
+    "created_at": "2026-10-31T09:58:35.784783+09:00",
+    "headline": "Anthropic、ハードウェアからモデル重みまで暗号検証する完全性保証チームの責任者を募集",
+    "what_happened": "Anthropicは「Integrity and Attestation」チームのエンジニアリングマネージャーの募集を開始した。同チームは、ハードウェアのRoot of Trustからファームウェア、ブートプロセス、作業負荷へのクレデンシャル付与に至るまで暗号学的に検証し、モデル重みと実行コードの真正性を保証するシステムを構築する。対象にはパートナー企業が運用するベアメタルAIデータセンターも含まれる。",
+    "background": "最先端フロンティアモデルの重み（weights）は国家アクターや競合による窃取の標的となっており、クラウド事業者や提携データセンター環境下でも改ざんや不正アクセスを防ぐアテステーション（真正性証明）技術の重要性が急増している。",
+    "changed": "Anthropicが社内開発環境のみならず、提携先データセンター上のモデル重みと管理プレーン保護をハードウェア階層から暗号技術で統制する専門体制の構築に着手した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394403008",
+      "title": "[新規求人] anthropic: Engineering Manager, Integrity and Attestation (San Francisco, CA | Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-30-r02",
+      "2026-10-30-r01",
+      "2026-10-28-r04",
+      "2026-10-28-r03",
+      "2026-10-28-r02",
+      "2026-10-27-r03"
+    ]
+  },
+  {
+    "id": "2026-10-31-r03",
+    "created_at": "2026-10-31T09:58:35.784783+09:00",
+    "headline": "研究チーム、LLMの重み摂動による性能向上説を再検証しロジット操作と投票による代替解釈を提示",
+    "what_happened": "Nicolas Dufourらの研究チームは、事前学習済み言語モデルの重み空間にガウス摂動を与えることで専門モデル群を探索できるとする「Neural Thickets仮説」を検証する論文を公開した。研究では、モデル重みを完全に凍結したまま出力ロジットにランダムバイアスを付与し、検証セットでの選択と多数決（Perturb-Select-Vote）を行うだけで、重み全体への摂動と同等以上の推論精度向上が得られることを実証した。",
+    "background": "近年、ファインチューニングを行わずに重みに微小ノイズを加えるだけで特定タスクの性能が向上するという現象が報告され、重み空間の幾何構造に関する議論を呼んでいた。",
+    "changed": "重み空間の特殊な専門家集合という幾何学的仮説を採らずとも、出力の多様性確保と選択的アンサンブルという標準的な推論時処理で現象を十分に説明・再現できることが示された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2610.40649v1",
+      "title": "Rethinking Neural Thickets Without Weight Perturbations",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": []
   }
 ]
