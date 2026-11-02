@@ -8561,5 +8561,59 @@
     "body_fetched": true,
     "model": "gemini-3.8-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-11-02-r01",
+    "created_at": "2026-11-02T09:59:01.068459+09:00",
+    "headline": "xAI、メンフィスColossus拠点向けに構造・躯体担当の直営施工管理者を採用開始",
+    "what_happened": "xAI（求人表記はSpaceXSI）が、テネシー州メンフィスおよびミシシッピ州サウスヘイブン地域において「Construction Superintendent, Structural」の求人を公開した。Colossusスーパーコンピュータ群のデータセンター構築において外部請負業者への全面依存を脱し、発注元が直接現場の躯体・構造施工チームを恒久的に管理する体制を構築する方針を明記している。",
+    "background": "xAIはメンフィスにColossusデータセンターを急ピッチで構築しているが、一般に大規模ハイパースケールDCの建設は外部ゼネコンに一括発注されることが多い。イーロン・マスク傘下の組織ではSpaceXのロケット発射場建設と同様に建設部隊を内製化し工期短縮と規格統制を図る傾向がある。",
+    "changed": "Colossusの施設拡張工事を一時的な外部委託ではなく、社内直営の常設建設チームによって継続的に施工・拡張する体制へ移行した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5280765007",
+      "title": "[新規求人] xai: Construction Superintendent, Structural - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-31-r01",
+      "2026-10-30-r04",
+      "2026-10-30-r03",
+      "2026-10-28-r06",
+      "2026-10-28-r05",
+      "2026-10-27-r01"
+    ]
+  },
+  {
+    "id": "2026-11-02-r02",
+    "created_at": "2026-11-02T09:59:01.068459+09:00",
+    "headline": "xAI、メンフィスの冷却・流体機械設備を直営管理する施工管理者を募集",
+    "what_happened": "xAI（SpaceXSI）がメンフィス拠点向けに「Construction Superintendent, Fluid/Mechanical」の求人を開始した。冷却配管、水冷設備、オンサイト流体インフラの施工現場を自社エンジニアリング基準で直接指揮・統括する現場責任者を募集している。",
+    "background": "高密度AIクラスタ（10万基規模のGPU）の運用には膨大な液冷・流体配管インフラが不可欠であり、既存グリッド電力の不足を補う自家発電設備や冷却塔の配管工事が常時発生している。",
+    "changed": "液冷・機械インフラの現場監督職を自社直接雇用に切り替え、メンフィス拠点の冷却系・配管系の拡張工事の内製管理を本格化させた。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5280771007",
+      "title": "[新規求人] xai: Construction Superintendent, Fluid/Mechanical - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-10-31-r01",
+      "2026-10-30-r04",
+      "2026-10-30-r03",
+      "2026-10-28-r06",
+      "2026-10-28-r05",
+      "2026-10-27-r01"
+    ]
   }
 ]
