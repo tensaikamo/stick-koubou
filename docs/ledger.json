@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-01 09:24",
+  "updated_at": "2026-11-02 10:01",
   "score": {
     "hit": 17,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-11-09",
-    "days": 8
+    "days": 7
   },
   "decided": [
     {
@@ -435,16 +435,6 @@
       "subject": "xAI",
       "events": [
         {
-          "date": "2026-10-28",
-          "headline": "xAIがSr. Manager, Materials Management - Memphis職を募集",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5275741007"
-        },
-        {
-          "date": "2026-10-30",
-          "headline": "xAI、メンフィスデータセンター向けシニア機械エンジニアを募集",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5278993007"
-        },
-        {
           "date": "2026-10-30",
           "headline": "xAI、収益化オペレーション担当シニアアナリストを募集",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5278701007"
@@ -453,6 +443,16 @@
           "date": "2026-10-31",
           "headline": "xAI、メンフィスDC向けオンサイト発電所（ガスタービン）の計装制御技術者を募集",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5280433007"
+        },
+        {
+          "date": "2026-11-02",
+          "headline": "xAI、メンフィスColossus拠点向けに構造・躯体担当の直営施工管理者を採用開始",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5280765007"
+        },
+        {
+          "date": "2026-11-02",
+          "headline": "xAI、メンフィスの冷却・流体機械設備を直営管理する施工管理者を募集",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5280771007"
         }
       ]
     },
@@ -508,6 +508,20 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-11-02-r02",
+      "date": "2026-11-02",
+      "headline": "xAI、メンフィスの冷却・流体機械設備を直営管理する施工管理者を募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5280771007"
+    },
+    {
+      "id": "2026-11-02-r01",
+      "date": "2026-11-02",
+      "headline": "xAI、メンフィスColossus拠点向けに構造・躯体担当の直営施工管理者を採用開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5280765007"
+    },
     {
       "id": "2026-10-31-r03",
       "date": "2026-10-31",
@@ -577,21 +591,7 @@
       "headline": "AnthropicがIP Counsel, Life Sciences Patents職を募集",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453569008"
-    },
-    {
-      "id": "2026-10-28-r03",
-      "date": "2026-10-28",
-      "headline": "AnthropicがAutonomous Systems Security Engineer職を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5462972008"
-    },
-    {
-      "id": "2026-10-28-r02",
-      "date": "2026-10-28",
-      "headline": "AnthropicがTech Lead Manager, Core Apps Data Scientist職を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5464493008"
     }
   ],
-  "record_count": 315
+  "record_count": 317
 }
