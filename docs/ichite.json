@@ -1,162 +1,162 @@
 {
-  "date": "2026-10-30",
+  "date": "2026-11-03",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "稼働中アプリの呼出モデルを今夜値下げモデルへ即日差替えるか？",
-    "旧モデル値上げによる利益圧迫を何日以内に解消できるか？",
-    "推論費半減で浮く月間予算をどの新機能の検証へ再投資するか？"
+    "Anthropicのインフラ求人から逆算し、個人が構築すべき代替防衛網の定義を書け。",
+    "Claude Frontier Academyの募集要項から、他者がまだ気付いていない参入障壁を挙げよ。",
+    "電力直営化の動きが、あなたの使うAPIのコスト構造へ与える影響を数値で示せ。"
   ],
   "moves": [
     {
-      "t": "GitHubでモデル環境変数を書換える",
-      "why": "旧世代値上げを回避し49%安くなったMistral Large 4へ即時移行するため",
+      "t": "GreenhouseのAnthropic求人ページを開き、Data Center Asset Management職の必須要件をiPhoneでスクショ保存しろ",
+      "why": "資本が物理インフラの独占へ向かう実態を、公式募集要項の一次データから直接確認するためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.9,
+      "success_p_min": 0.85,
+      "success_p_max": 0.95,
+      "success_why": "公式のGreenhouseページに直接アクセスするため確実性が極めて高い。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 10,
+      "payback_days": 0,
+      "outcome": "インフラ調達要件のスクリーンショット画像",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "物理インフラのボトルネック構造を把握するための基礎情報となるため。",
+      "evidence_ids": [
+        "2026-11-03-r08"
+      ],
+      "assumptions": [
+        "iPhoneのブラウザからGreenhouseの求人ページにアクセスできること"
+      ],
+      "disconfirm": "該当の求人ページがすでに削除されている場合",
+      "continue_if": "具体的なスキル要件や勤務地が記載されている場合",
+      "stop": "ページが存在しないか閲覧制限がかかっている場合"
+    },
+    {
+      "t": "Marketing Lead, Claude Frontier Academyの求人要件から対象顧客の絞り込み条件をメモせよ",
+      "why": "アカデミー施策が狙うターゲット層と、個人が巻き込まれないための隙を特定するためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.85,
-      "success_p_min": 0.7,
-      "success_p_max": 0.95,
-      "success_why": "SafariからGitHubのRepo Settingsで変数文字列を書き換えて保存するだけで完了するため",
-      "value_score": 4,
+      "success_p_min": 0.8,
+      "success_p_max": 0.9,
+      "success_why": "公式の募集要項に直接記載されている客観的データだから。",
+      "value_score": 3,
       "learning_value": 3,
       "time_minutes": 10,
-      "payback_days": 1,
-      "outcome": "本番Webアプリの推論先が最新廉価モデルへ更新完了",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "月次のAPIコストを半減させアプリの存続期間を直接延ばすため",
-      "evidence_ids": [
-        "2026-10-28-r02"
-      ],
-      "assumptions": [
-        "既存コードがOpenRouterのモデルIDを環境変数から参照していること"
-      ],
-      "disconfirm": "環境変数変更後にAPIリクエストがエラーを返し応答不能になる",
-      "continue_if": "デプロイ後に正常なレスポンスが返りエラーログが出ない場合",
-      "stop": "新モデルのAPI仕様不適合でエラーが頻発し解消に30分以上かかる場合"
-    },
-    {
-      "t": "同一プロンプトで新旧出力を比較検証する",
-      "why": "モデル置換による出力品質の劣化がないかを同一入力で即座に測定するため",
-      "cost_min": 10,
-      "cost_max": 50,
-      "loss_max": 50,
-      "success_p": 0.8,
-      "success_p_min": 0.65,
-      "success_p_max": 0.9,
-      "success_why": "Webアプリの入力フォームからテスト文を3回送信して出力差分を見るだけだから",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 2,
-      "outcome": "新旧モデルの応答速度と回答精度の比較メモが残る",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.08,
-      "impact_max": 0.18,
-      "impact_why": "性能劣化に伴うユーザー離脱リスクを事前遮断できるため",
-      "evidence_ids": [
-        "2026-10-28-r02"
-      ],
-      "assumptions": [
-        "評価用の定型プロンプトが手元に3パターン以上用意されていること"
-      ],
-      "disconfirm": "新モデルの出力が破綻しており実用に耐えないと判明する",
-      "continue_if": "新モデルの回答品質が旧モデルと同等以上を維持している場合",
-      "stop": "3回連続で期待と異なるフォーマット崩れが発生した場合"
-    },
-    {
-      "t": "OpenRouterに5ドル追加入金する",
-      "why": "値下げされたMistralやDeepSeek V4の試行枠を確保し検証を止めないため",
-      "cost_min": 800,
-      "cost_max": 900,
-      "loss_max": 900,
-      "success_p": 0.9,
-      "success_p_min": 0.8,
-      "success_p_max": 0.95,
-      "success_why": "iPhoneのSafariからクレカ決済で残高チャージが1分で完了するため",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 5,
-      "payback_days": 14,
-      "outcome": "OpenRouterアカウントに5ドルのテスト用クレジットが反映される",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.12,
-      "impact_why": "残高不足による開発中断を排除し連続検証を可能にするため",
-      "evidence_ids": [
-        "2026-10-28-r02"
-      ],
-      "assumptions": [
-        "海外決済可能なクレジットカードが手元にあること"
-      ],
-      "disconfirm": "チャージ完了後もAPIキーの有効残高ステータスが更新されない",
-      "continue_if": "クレジットが正常チャージされAPI疎通が確認できる場合",
-      "stop": "決済エラーが発生しカード会社の海外承認が通らない場合"
-    },
-    {
-      "t": "アプリのシステムプロンプトを短縮改修する",
-      "why": "新MoEモデルの推論特性に合わせ余計な指示を削りトークン消費をさらに減らすため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "GitHubのWebエディタでプロンプト文字列を200文字削減しコミットするだけだから",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 3,
-      "outcome": "プロンプトトークン数を削減した新バージョンのコードがコミットされる",
-      "category": "build",
+      "payback_days": 0,
+      "outcome": "ターゲット層とプログラムの狙いをまとめたメモ",
+      "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "値下げとトークン削減の相乗効果でリクエスト単価を極小化できるため",
+      "impact_why": "大手が囲い込む教育・マーケティングの枠外を特定するため。",
       "evidence_ids": [
-        "2026-10-28-r02"
+        "2026-11-03-r07"
       ],
       "assumptions": [
-        "モデルの指示追従性が旧Flashより向上していること"
+        "求人情報にアカデミーの具体的な対象顧客が記載されていること"
       ],
-      "disconfirm": "短縮した結果、前提指示が抜け落ちて回答精度が著しく低下する",
-      "continue_if": "短縮後も必要な出力形式を崩さず維持できている場合",
-      "stop": "指示を削ると必須のJSON出力フォーマットが崩れる場合"
+      "disconfirm": "単なる抽象的なマーケティング職の募集であり詳細がない場合",
+      "continue_if": "具体的なターゲットセグメントの記載がある場合",
+      "stop": "詳細な業務内容が非公開の場合"
     },
     {
-      "t": "APIエラー時のフォールバック先を追記する",
-      "why": "旧モデル強制停止やレート制限によるサービス停止を回避するため",
+      "t": "暗号検証チーム責任者の求人要件からモデル完全性保証の要求水準を書き出せ",
+      "why": "ハードウェアからモデル重みまでのセキュリティ制約が個人の検証環境にどう影響するか測るためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "フェイルオーバー先のモデルID配列をGitHub上で1行追加する作業で済むため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 7,
-      "outcome": "第一候補モデル失敗時に第二候補へ切り替わる耐障害コードの反映",
-      "category": "build",
+      "success_p": 0.8,
+      "success_p_min": 0.75,
+      "success_p_max": 0.85,
+      "success_why": "公式の求人詳細に記述されているため確認可能である。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "セキュリティ要件の要約テキスト",
+      "category": "research",
       "terminal": false,
       "impact_min": 0.1,
-      "impact_max": 0.22,
-      "impact_why": "インフラ側の強制移行に伴うダウンタイムをゼロ化できるため",
+      "impact_max": 0.2,
+      "impact_why": "プラットフォーム側の統制強化の方向性を知るため。",
       "evidence_ids": [
-        "2026-10-27-r03"
+        "2026-10-31-r02"
       ],
       "assumptions": [
-        "呼び出しコード側でリスト形式のモデルフォールバックを解釈できること"
+        "求人情報に技術的要件が含まれていること"
       ],
-      "disconfirm": "フォールバック処理を入れると呼び出しタイムアウトが倍化する",
-      "continue_if": "主系エラー時の副系切替テストが正常に完走する場合",
-      "stop": "コード構文エラーが発生しiPhone上の修正では対処が難航する場合"
+      "disconfirm": "要件が抽象的で具体的な検証内容が分からない場合",
+      "continue_if": "具体的な暗号化や検証手法の指定がある場合",
+      "stop": "求人ページが閉鎖されている場合"
+    },
+    {
+      "t": "生命科学分野のIP Counsel求人から特許出願の注力領域を抽出せよ",
+      "why": "資本がどの技術領域の独占権を固めているかを確認し、個人の避難先を決めるためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.85,
+      "success_p_min": 0.8,
+      "success_p_max": 0.9,
+      "success_why": "Greenhouseの公式求人テキストに明確な業務記述があるため。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "特許出願の注力領域のリスト",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "大手が法的に囲い込んでいる領域を避ける判断材料になるため。",
+      "evidence_ids": [
+        "2026-10-28-r04"
+      ],
+      "assumptions": [
+        "知的財産の対象領域が求人内容に明記されていること"
+      ],
+      "disconfirm": "業務内容が定型的な法律業務のみで特許領域が不明な場合",
+      "continue_if": "特定の分子や抗体設計に関する記載がある場合",
+      "stop": "ページにアクセスできない場合"
+    },
+    {
+      "t": "有料APIの利用枠とコスト効率を最適化するためのカスタムプロンプトをiPhoneのメモ帳に作成し保存しろ",
+      "why": "インフラの価格高騰を見据え、API消費量を最小化する検証プロトコルを今すぐ手元に固定するためだ。",
+      "cost_min": 1000,
+      "cost_max": 3000,
+      "loss_max": 3000,
+      "success_p": 0.75,
+      "success_p_min": 0.65,
+      "success_p_max": 0.85,
+      "success_why": "過去のAPI利用実績に基づき、コスト削減の定型化が可能であるため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 14,
+      "outcome": "iPhoneメモ帳内の最適化プロンプトテンプレート",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "APIコストの無駄を削り、継続的な検証基盤を維持できるため。",
+      "evidence_ids": [
+        "2026-11-03-r05"
+      ],
+      "assumptions": [
+        "APIのトークン単価が現状維持または値上げされること"
+      ],
+      "disconfirm": "APIの仕様変更により既存のプロンプト構造が使えなくなる場合",
+      "continue_if": "コスト削減効果が数値として確認できる場合",
+      "stop": "API料金が個人の予算上限を超えた場合"
     }
   ],
-  "kan": "Anthropicは今後21日以内に、公式ニュースルームにおいて、生命科学（Life Sciences）または抗体・創薬研究に関する公式アナウンスを行わない"
+  "kan": "Anthropicは今後14日以内に、公式ニュースルームまたは公式ブログにおいて「Claude Frontier Academy」の第一期生募集またはプログラム詳細に関する発表を行う"
 }

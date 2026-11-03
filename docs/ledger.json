@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-02 10:01",
+  "updated_at": "2026-11-03 12:04",
   "score": {
     "hit": 17,
     "miss": 24,
     "total": 41,
     "rate": 0.4146341463414634,
-    "pending": 8,
+    "pending": 9,
     "brier": 0.3478223170731708,
     "brier_n": 41,
     "brier_initial": 0.3613317073170733,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-11-09",
-    "days": 7
+    "days": 6
   },
   "decided": [
     {
@@ -385,6 +385,20 @@
       "signals": []
     },
     {
+      "id": "2026-11-03-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームまたは公式ブログにおいて「Claude Frontier Academy」の第一期生募集またはプログラム詳細に関する発表を行う",
+      "subject": "Anthropic",
+      "deadline": "2026-11-17",
+      "confidence": 0.35,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "マーケティングリードの採用が始まったばかりであり、実際の外部向け発表は数週間から数ヶ月先になる。",
+      "evidence": "",
+      "signals": []
+    },
+    {
       "id": "2026-10-30-h01",
       "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、生命科学（Life Sciences）または抗体・創薬研究に関する公式アナウンスを行わない",
       "subject": "Anthropic",
@@ -410,24 +424,24 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-10-28",
-          "headline": "AnthropicがTech Lead Manager, Core Apps Data Scientist職を募集",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5464493008"
-        },
-        {
-          "date": "2026-10-30",
-          "headline": "Anthropic、大分子プロセス開発担当の生命科学研究職を公募",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5467099008"
-        },
-        {
-          "date": "2026-10-30",
-          "headline": "Anthropic、抗体設計担当の生命科学研究職を公募",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5467092008"
-        },
-        {
           "date": "2026-10-31",
           "headline": "Anthropic、ハードウェアからモデル重みまで暗号検証する完全性保証チームの責任者を募集",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394403008"
+        },
+        {
+          "date": "2026-11-03",
+          "headline": "Anthropicが「Data Center Asset Management, Commercial Associate」の求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5468352008"
+        },
+        {
+          "date": "2026-11-03",
+          "headline": "Anthropicが「Marketing Lead, Claude Frontier Academy」の求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5467561008"
+        },
+        {
+          "date": "2026-11-03",
+          "headline": "anthropic Python SDK v2.4.0 リリース",
+          "url": "https://pypi.org/project/anthropic/2.4.0/"
         }
       ]
     },
@@ -460,11 +474,6 @@
       "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-10-18",
-          "headline": "openai Python SDK v3.35.0 リリース",
-          "url": "https://pypi.org/project/openai/3.35.0/"
-        },
-        {
           "date": "2026-10-20",
           "headline": "OpenAIが公式Python SDK「openai」v3.35.1をリリース",
           "url": "https://pypi.org/project/openai/3.35.1/"
@@ -478,17 +487,17 @@
           "date": "2026-10-28",
           "headline": "openai Python SDK v3.40.0 リリース",
           "url": "https://pypi.org/project/openai/3.40.0/"
+        },
+        {
+          "date": "2026-11-03",
+          "headline": "openai Python SDK v3.42.1 リリース",
+          "url": "https://pypi.org/project/openai/3.42.1/"
         }
       ]
     },
     {
       "subject": "Google",
       "events": [
-        {
-          "date": "2026-10-14",
-          "headline": "Googleがgoogle-genai Python SDK v2.30.1をリリースし次期メジャーでの自動関数呼び出し仕様変更を予告",
-          "url": "https://pypi.org/project/google-genai/2.30.1/"
-        },
         {
           "date": "2026-10-15",
           "headline": "google-genai Python SDK v2.31.0 リリース",
@@ -503,11 +512,72 @@
           "date": "2026-10-24",
           "headline": "GoogleがGemini向け「google-genai」Python SDK v2.33.0を公開",
           "url": "https://pypi.org/project/google-genai/2.33.0/"
+        },
+        {
+          "date": "2026-11-03",
+          "headline": "google-genai Python SDK v2.34.0 リリース",
+          "url": "https://pypi.org/project/google-genai/2.34.0/"
         }
       ]
     }
   ],
   "records": [
+    {
+      "id": "2026-11-03-r08",
+      "date": "2026-11-03",
+      "headline": "Anthropicが「Data Center Asset Management, Commercial Associate」の求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5468352008"
+    },
+    {
+      "id": "2026-11-03-r07",
+      "date": "2026-11-03",
+      "headline": "Anthropicが「Marketing Lead, Claude Frontier Academy」の求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5467561008"
+    },
+    {
+      "id": "2026-11-03-r06",
+      "date": "2026-11-03",
+      "headline": "google-genai Python SDK v2.34.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/2.34.0/"
+    },
+    {
+      "id": "2026-11-03-r05",
+      "date": "2026-11-03",
+      "headline": "anthropic Python SDK v2.4.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/2.4.0/"
+    },
+    {
+      "id": "2026-11-03-r04",
+      "date": "2026-11-03",
+      "headline": "openai Python SDK v3.42.1 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.42.1/"
+    },
+    {
+      "id": "2026-11-03-r03",
+      "date": "2026-11-03",
+      "headline": "Autonomous Analysis of Thermoelectric Materials Big Data by Multi-Agentic AI and Construction of a Knowledge Base and Sp",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2611.00627v1"
+    },
+    {
+      "id": "2026-11-03-r02",
+      "date": "2026-11-03",
+      "headline": "TopoQuant: Topological Framework to Characterize Behavioral Shifts in Quantized Large Language Models",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2611.00631v1"
+    },
+    {
+      "id": "2026-11-03-r01",
+      "date": "2026-11-03",
+      "headline": "Evidence-grounded large language models guide perovskite solar cell design and optimization",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2611.00633v1"
+    },
     {
       "id": "2026-11-02-r02",
       "date": "2026-11-02",
@@ -535,63 +605,7 @@
       "headline": "Anthropic、ハードウェアからモデル重みまで暗号検証する完全性保証チームの責任者を募集",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394403008"
-    },
-    {
-      "id": "2026-10-31-r01",
-      "date": "2026-10-31",
-      "headline": "xAI、メンフィスDC向けオンサイト発電所（ガスタービン）の計装制御技術者を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5280433007"
-    },
-    {
-      "id": "2026-10-30-r04",
-      "date": "2026-10-30",
-      "headline": "xAI、メンフィスデータセンター向けシニア機械エンジニアを募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5278993007"
-    },
-    {
-      "id": "2026-10-30-r03",
-      "date": "2026-10-30",
-      "headline": "xAI、収益化オペレーション担当シニアアナリストを募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5278701007"
-    },
-    {
-      "id": "2026-10-30-r02",
-      "date": "2026-10-30",
-      "headline": "Anthropic、抗体設計担当の生命科学研究職を公募",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5467092008"
-    },
-    {
-      "id": "2026-10-30-r01",
-      "date": "2026-10-30",
-      "headline": "Anthropic、大分子プロセス開発担当の生命科学研究職を公募",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5467099008"
-    },
-    {
-      "id": "2026-10-28-r06",
-      "date": "2026-10-28",
-      "headline": "xAIがSenior Product Manager, Commerce Platform職を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5277343007"
-    },
-    {
-      "id": "2026-10-28-r05",
-      "date": "2026-10-28",
-      "headline": "xAIがSr. Manager, Materials Management - Memphis職を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5275741007"
-    },
-    {
-      "id": "2026-10-28-r04",
-      "date": "2026-10-28",
-      "headline": "AnthropicがIP Counsel, Life Sciences Patents職を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453569008"
     }
   ],
-  "record_count": 317
+  "record_count": 325
 }

@@ -1,90 +1,50 @@
 {
-  "date": "2026-11-02",
-  "updated_at": "2026-11-02 10:12",
+  "date": "2026-11-03",
+  "updated_at": "2026-11-03 12:08",
   "build_id": "truthful-ui-v1",
-  "omote": "<t data-d='複数プロバイダのモデルを単一APIで仲介する中継所'>OpenRouter</t>において、DeepSeekのFlashモデルが197%増、Z.aiのGLM Flash系モデルが91%増と中国系有力モデルの急激な値上げが検知された。一方でGoogleのGemmaモデルは70%の値下げを記録した。中継拠点における極端な中国発ダンピング相場が突如反転している。",
-  "ura": "推論プロバイダ各社が赤字覚悟のシェア争奪を打ち切り、急増したAPIトラフィックのサーバー維持費を回収する防衛フェーズへ突入したと見る。特定中国系モデルの極端な安さに依存して構築された個人ツールやボットは、今日を境に採算分岐点が崩壊する。勝機は格安モデル単体に乗ることではなく、中継所での価格変動差を監視し、70%値下げされたGemma等の割安モデルへ即座に迂回させるスイッチ構造を先に敷く側にあるはずだ。",
-  "ura_taikou": "中国系各社による技術的優位を理由としたブランドプレミアムの上乗せと解釈する見方もあったが、モデル本体のメジャーアップデートがないまま突如Flash系のみが90〜197%引き上げられた点から、過負荷抑制とインフラ実費回収を主目論見とした価格改定と判断して退けた。",
-  "dousuru": "iPhoneのSafariでGitHubを開き、稼働中の自作Webアプリのコード編集画面（リポジトリ設定またはapi/generateエンドポイント）へ入れ。APIリクエストのモデル名が特定モデルで固定されている箇所を、優先モデル（Gemma等）からフェイルオーバーする配列変数に書き換え、30分以内にコミットしてデプロイを完了させろ。",
-  "kan": "アグリゲーターにおける主要モデルの30%超の値上げ頻度は四半期に1回程度が通例だが、今回のインフラ回収の波を受け、今後14日以内にOpenRouter上でQwen系を含む中国系主要モデルのいずれかが30%以上の追加値上げを実施する確率は40%と見る。",
-  "kan_konkyo": "DeepSeek Flash（197%増）とGLM Flash（91%増）が同一タイミングで大幅値上げされたデータ事実に基づき、単独の実験ではなくプロバイダ群の推論コスト回収圧力が一斉に顕在化したと判断される点。",
-  "kan_hantai": "競合ホスティング業者が顧客奪取のために赤字覚悟で価格据え置きを継続し、他社モデルへの値上げ波及を抑え込むこと。",
-  "kan_conf": 0.25,
-  "ippan": "海外で格安と宣伝されていたAIサービスの仕入れ価格が約2〜3倍へ急騰しています。格安APIに依存した非公式アプリやまとめツールは採算割れによる突然の停止や値上げが予想されるため、特定ツールへの一本足打法を避け、予備の手段を確保してください。",
-  "votes": [
-    0.25,
-    0.25
-  ],
-  "mijoriku": [
-    {
-      "title": "中国系Flashモデル群の一斉値上げとGemmaの急激な値下げ",
-      "desc": "OpenRouterにおいてDeepSeekやGLMが約2〜3倍へ値上げされる一方、Gemmaが70%値下げされた単価逆転現象。",
-      "why": "格安API依存ツールの原価が急上昇するため、割安になったGemma系への動的切り替えを仕込んだ個人だけがコスト優位を維持できるため。"
-    }
-  ],
+  "omote": "AnthropicがIPOを控え、データセンターの資産管理や電力供給を直営するための専門人材の求人を相次いで公開した。また、メディア報道では同社が9,000億ドル規模のAI支出コミットメントを掲げていることが伝えられた。",
+  "ura": "単なるクラウド調達の枠を超え、州の電力会社や規制委員会との直接交渉を内製化するフェーズに入った。資本力のあるメガプレイヤーが自前で物理インフラの独占的利権を確保しにかかっており、APIの価格競争から外れた場所でインフラのボトルネックによる勝敗が決まる構造が急速に固まりつつある。",
+  "ura_taikou": "Anthropicは単に将来の監査や規制当局向けのコンプライアンス体制を整えているだけであり、短期的な実務としての電力・インフラ契約の発表には踏み切らないという仮説は、求人が「商業アソシエイト」や「電力供給リード」という実行部隊の責任者募集である点に矛盾するため退けた。",
+  "dousuru": "Anthropicの公式求人ページを開き、今回募集されている電力供給と資産管理のポジションが求める具体的な要件と勤務地を確認しろ。そこで示されているインフラ調達のボトルネックが自社のウォッチしているAI領域にどう波及するかをメモに残しておけ。無駄な無料ツールへの乗り換えを即座に止め、このインフラ側の資本と物理制約の動きを追うことだけに集中しろ。",
+  "kan": "Anthropicは今後14日以内に、公式ニュースルームまたは公式ブログにおいて「Claude Frontier Academy」の第一期生募集またはプログラム詳細に関する発表を行う",
+  "kan_konkyo": "求人が公開されたことでプログラムの広報フェーズが近づいているものの、短期14日以内での公式アナウンスはまだ準備期間に入る可能性が高いため、基準率からわずかに引き上げるにとどめる。",
+  "kan_hantai": "マーケティングリードの採用が始まったばかりであり、実際の外部向け発表は数週間から数ヶ月先になる。",
+  "kan_conf": 0.35,
+  "ippan": "AIサービスの月額料金の値上げやモデルの終了が相次いでいますが、今使っているツールがいきなり使えなくなるリスクに備えておきましょう。仕事で依存しているプロンプトやデータは必ず手元にバックアップを取り、特定の運営会社に依存しすぎない環境を作っておくのが安全です。急な仕様変更や値上げに振り回されないよう、複数の無料枠や代替手段を把握しておきましょう。",
+  "votes": [],
+  "mijoriku": [],
   "diffs": [
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値上げ 197%",
-    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 91%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 91%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.3 値上げ 14%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash Latest 値上げ 36%",
-    "[差分] 価格が動いた: Google: Gemma 4 26B A4B  値下げ 70%"
+    "[差分] 退役予定日が設定された: Thinking Machines: Inkling Small (free) → 2026-11-04",
+    "[差分] 退役予定日が設定された: Thinking Machines: Inkling (free) → 2026-11-04",
+    "[差分] 価格が動いた: MiniMax: MiniMax M3.1 Flash 値上げ 100%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 1017 値上げ 100%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash 0731 値下げ 50%",
+    "[差分] 価格が動いた: MoonshotAI: Kimi Latest 値上げ 22%"
   ],
   "evidence": [
     {
-      "claim": "OpenRouter上でDeepSeek Flashが197%、GLM Flash系が91%値上げされた",
-      "confidence": 0.95,
-      "disconfirm": "中継プラットフォーム側の価格表示不具合による誤表示であり元の単価へロールバックされること",
+      "claim": "Anthropicはデータセンターの資産管理と電力供給（PPA）を直営するための専門求人を開示し、インフラの調達・交渉能力を急ピッチで内製化している。",
+      "confidence": 0.65,
+      "disconfirm": "求人が形式的なものであり、外部のクラウドベンダーや既存パートナーへの委託路線に回帰する事実が判明すること",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値上げ 197%",
-          "url": "https://openrouter.ai/models"
+          "title": "[新規求人] anthropic: Data Center Asset Management, Commercial Associate  (San Francisco, CA | New York City, NY)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5468352008"
         },
         {
-          "title": "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 91%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 91%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "[差分] 価格が動いた: Z.ai: GLM 5.3 値上げ 14%",
-          "url": "https://openrouter.ai/models"
+          "title": "[新規求人] anthropic: Energy Supply  Lead - Power Supply and PPA  (San Francisco, CA | New York City, NY)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5469341008"
         }
       ]
     },
     {
-      "claim": "GoogleのGemmaモデルの利用単価が70%値下げされた",
-      "confidence": 0.9,
-      "disconfirm": "値下げ設定がプロモーション期間限定の試行で即座に旧価格へ戻ること",
+      "claim": "AnthropicのIPOに向けた9,000億ドル規模の支出コミットメントは、実需を無視した圧倒的な資本の囲い込みを市場に誇示する戦略である。",
+      "confidence": 0.6,
+      "disconfirm": "実際の支出計画が大幅に下方修正され、投資家向けのアピールに留まらず物理的なインフラ契約が凍結されること",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: Google: Gemma 4 26B A4B  値下げ 70%",
-          "url": "https://openrouter.ai/models"
-        }
-      ]
-    },
-    {
-      "claim": "API中継拠点でのインフラ維持費回収が始まり単一モデル依存の採算性が悪化する",
-      "confidence": 0.85,
-      "disconfirm": "新規の競合プロバイダが同等モデルの超低価格提供を即座に開始して価格が再下落すること",
-      "sources": [
-        {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値上げ 197%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 91%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 91%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "[差分] 価格が動いた: Z.ai: GLM 5.3 値上げ 14%",
-          "url": "https://openrouter.ai/models"
+          "title": "Anthropic reveals $900B AI spending commitments ahead of IPO",
+          "url": "https://www.ft.com/content/4d91dbab-6fe4-45ab-beee-d77e091cb37f"
         }
       ]
     }
