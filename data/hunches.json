@@ -3073,5 +3073,45 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.83
+  },
+  {
+    "id": "2026-11-03-h01",
+    "created_at": "2026-11-03T12:01:19.641078+09:00",
+    "based_on": [
+      "2026-11-03-r07"
+    ],
+    "prose": "Anthropicが「Claude Frontier Academy」の専任マーケティングリードの採用に動いたことは、同プログラムの一般向けあるいはパートナー企業向け本格展開が迫っている兆候である。ただし短期的な14日という窓口では、大規模な一般公開イベントやカリキュラムの全面ローンチではなく、求人の応募受付や初期パートナー選定の段階にとどまる可能性も高い。過去の較正実績を踏まえ、基準率から過度な上乗せを避け、慎重に確率を見積もる。",
+    "claim": "Anthropicは今後14日以内に、公式ニュースルームまたは公式ブログにおいて「Claude Frontier Academy」の第一期生募集またはプログラム詳細に関する発表を行う",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Claude Frontier Academy",
+      "decider": "Anthropicの公式ニュースルームにClaude Frontier Academyに関する発表記事が掲載されること"
+    },
+    "deadline": "2026-11-17",
+    "confidence": 0.35,
+    "base_rate": 0.2,
+    "base_rate_class": "AI企業が新設アカデミーや教育プログラムの本格展開を14日以内に発表する頻度",
+    "confidence_why": "求人が公開されたことでプログラムの広報フェーズが近づいているものの、短期14日以内での公式アナウンスはまだ準備期間に入る可能性が高いため、基準率からわずかに引き上げるにとどめる。",
+    "counter": "マーケティングリードの採用が始まったばかりであり、実際の外部向け発表は数週間から数ヶ月先になる。",
+    "indicators": [
+      {
+        "sign": "Anthropicの採用ページで該当職種の募集が終了する",
+        "dir": "confirm"
+      },
+      {
+        "sign": "公式ニュースルームで別のプロダクト発表が連続して優先される",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
