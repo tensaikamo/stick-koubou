@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-03 12:04",
+  "updated_at": "2026-11-04 10:43",
   "score": {
     "hit": 17,
     "miss": 24,
     "total": 41,
     "rate": 0.4146341463414634,
-    "pending": 9,
+    "pending": 10,
     "brier": 0.3478223170731708,
     "brier_n": 41,
     "brier_initial": 0.3613317073170733,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-11-09",
-    "days": 6
+    "days": 5
   },
   "decided": [
     {
@@ -311,14 +311,14 @@
       "evidence": "",
       "signals": [
         {
-          "date": "2026-10-11",
-          "dir": "confirm",
-          "why": "xAIが東京拠点で「Sr. Security Engineer - GRC APAC Fintech & Financial Services」の新規求人を掲載し、法務・コンプライアンス（GRC）関連求人の追加が確認されたため。"
-        },
-        {
           "date": "2026-10-12",
           "dir": "confirm",
           "why": "xAIの東京拠点向けにFintech/金融サービス領域のGRC（ガバナンス・リスク・コンプライアンス）求人が新規掲載されたため。"
+        },
+        {
+          "date": "2026-11-04",
+          "dir": "confirm",
+          "why": "本日の事象においてxaiの東京拠点における法務・コンプライアンス関連に類する「Sr. Business Operations Manager (Tokyo, Japan)」の求人が新たに追加掲載されたため。"
         }
       ]
     },
@@ -399,6 +399,26 @@
       "signals": []
     },
     {
+      "id": "2026-11-04-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいてASEAN地域での新拠点開設または現地法人設立に関する公式発表を行わない。",
+      "subject": "Anthropic",
+      "deadline": "2026-11-18",
+      "confidence": 0.785,
+      "initial_confidence": 0.7,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "既に水面下で進められていた現地法人の登記が完了しており、採用の発表に合わせて即座にプレスリリースが打たれる可能性。",
+      "evidence": "",
+      "signals": [
+        {
+          "date": "2026-11-04",
+          "dir": "confirm",
+          "why": "本日の事象においてASEAN地域（シンガポール）の新拠点に関連する「Head of ASEAN, Applied AI (Singapore)」の求人が掲載されており、求人ページ関連の動向として一致するため。"
+        }
+      ]
+    },
+    {
       "id": "2026-10-30-h01",
       "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、生命科学（Life Sciences）または抗体・創薬研究に関する公式アナウンスを行わない",
       "subject": "Anthropic",
@@ -424,16 +444,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-10-31",
-          "headline": "Anthropic、ハードウェアからモデル重みまで暗号検証する完全性保証チームの責任者を募集",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394403008"
-        },
-        {
-          "date": "2026-11-03",
-          "headline": "Anthropicが「Data Center Asset Management, Commercial Associate」の求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5468352008"
-        },
-        {
           "date": "2026-11-03",
           "headline": "Anthropicが「Marketing Lead, Claude Frontier Academy」の求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5467561008"
@@ -442,6 +452,16 @@
           "date": "2026-11-03",
           "headline": "anthropic Python SDK v2.4.0 リリース",
           "url": "https://pypi.org/project/anthropic/2.4.0/"
+        },
+        {
+          "date": "2026-11-04",
+          "headline": "AnthropicがPartner Specializations Leadの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5464485008"
+        },
+        {
+          "date": "2026-11-04",
+          "headline": "Anthropicがシンガポール拠点でのHead of ASEAN, Applied AIの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424312008"
         }
       ]
     },
@@ -474,11 +494,6 @@
       "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-10-20",
-          "headline": "OpenAIが公式Python SDK「openai」v3.35.1をリリース",
-          "url": "https://pypi.org/project/openai/3.35.1/"
-        },
-        {
           "date": "2026-10-24",
           "headline": "OpenAIが公式Python SDK「openai」v3.37.0を公開",
           "url": "https://pypi.org/project/openai/3.37.0/"
@@ -492,6 +507,11 @@
           "date": "2026-11-03",
           "headline": "openai Python SDK v3.42.1 リリース",
           "url": "https://pypi.org/project/openai/3.42.1/"
+        },
+        {
+          "date": "2026-11-04",
+          "headline": "openai Python SDK v3.44.0 リリース",
+          "url": "https://pypi.org/project/openai/3.44.0/"
         }
       ]
     },
@@ -522,6 +542,48 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-11-04-r06",
+      "date": "2026-11-04",
+      "headline": "Anthropicがシンガポール拠点でのHead of ASEAN, Applied AIの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424312008"
+    },
+    {
+      "id": "2026-11-04-r05",
+      "date": "2026-11-04",
+      "headline": "AnthropicがPartner Specializations Leadの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5464485008"
+    },
+    {
+      "id": "2026-11-04-r04",
+      "date": "2026-11-04",
+      "headline": "From Natural Language to Exact Cover: 脳記号的アプローチによるシマウマパズル解法に関する論文の公開",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2611.03641v1"
+    },
+    {
+      "id": "2026-11-04-r03",
+      "date": "2026-11-04",
+      "headline": "Pixel: 汎用モバイルマニピュレーション学習のためのコデザイン型フルスタックロボットシステムの発表",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2611.03648v1"
+    },
+    {
+      "id": "2026-11-04-r02",
+      "date": "2026-11-04",
+      "headline": "Pixel-UMI: センサー付き人間の実演に基づく環境認識型全身マニピュレーション学習手法の提案",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2611.03647v1"
+    },
+    {
+      "id": "2026-11-04-r01",
+      "date": "2026-11-04",
+      "headline": "openai Python SDK v3.44.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.44.0/"
+    },
     {
       "id": "2026-11-03-r08",
       "date": "2026-11-03",
@@ -563,49 +625,7 @@
       "headline": "Autonomous Analysis of Thermoelectric Materials Big Data by Multi-Agentic AI and Construction of a Knowledge Base and Sp",
       "certainty": "reported",
       "url": "https://arxiv.org/abs/2611.00627v1"
-    },
-    {
-      "id": "2026-11-03-r02",
-      "date": "2026-11-03",
-      "headline": "TopoQuant: Topological Framework to Characterize Behavioral Shifts in Quantized Large Language Models",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2611.00631v1"
-    },
-    {
-      "id": "2026-11-03-r01",
-      "date": "2026-11-03",
-      "headline": "Evidence-grounded large language models guide perovskite solar cell design and optimization",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2611.00633v1"
-    },
-    {
-      "id": "2026-11-02-r02",
-      "date": "2026-11-02",
-      "headline": "xAI、メンフィスの冷却・流体機械設備を直営管理する施工管理者を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5280771007"
-    },
-    {
-      "id": "2026-11-02-r01",
-      "date": "2026-11-02",
-      "headline": "xAI、メンフィスColossus拠点向けに構造・躯体担当の直営施工管理者を採用開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5280765007"
-    },
-    {
-      "id": "2026-10-31-r03",
-      "date": "2026-10-31",
-      "headline": "研究チーム、LLMの重み摂動による性能向上説を再検証しロジット操作と投票による代替解釈を提示",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2610.40649v1"
-    },
-    {
-      "id": "2026-10-31-r02",
-      "date": "2026-10-31",
-      "headline": "Anthropic、ハードウェアからモデル重みまで暗号検証する完全性保証チームの責任者を募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394403008"
     }
   ],
-  "record_count": 325
+  "record_count": 331
 }

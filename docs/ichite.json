@@ -1,162 +1,167 @@
 {
-  "date": "2026-11-03",
+  "date": "2026-11-04",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "Anthropicのインフラ求人から逆算し、個人が構築すべき代替防衛網の定義を書け。",
-    "Claude Frontier Academyの募集要項から、他者がまだ気付いていない参入障壁を挙げよ。",
-    "電力直営化の動きが、あなたの使うAPIのコスト構造へ与える影響を数値で示せ。"
+    "Anthropicの求人急増を受け、API通信を遮断するローカル監視を今夜設定するか？",
+    "xAIのインフラ直営化の動きに対抗し、自身の検証パイプラインを今日移行するか？",
+    "シンガポール拠点設立の動きを踏まえ、アジア圏向けAPIの依存先を切り替えるか？"
   ],
   "moves": [
     {
-      "t": "GreenhouseのAnthropic求人ページを開き、Data Center Asset Management職の必須要件をiPhoneでスクショ保存しろ",
-      "why": "資本が物理インフラの独占へ向かう実態を、公式募集要項の一次データから直接確認するためだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.9,
-      "success_p_min": 0.85,
-      "success_p_max": 0.95,
-      "success_why": "公式のGreenhouseページに直接アクセスするため確実性が極めて高い。",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 10,
-      "payback_days": 0,
-      "outcome": "インフラ調達要件のスクリーンショット画像",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "物理インフラのボトルネック構造を把握するための基礎情報となるため。",
-      "evidence_ids": [
-        "2026-11-03-r08"
-      ],
-      "assumptions": [
-        "iPhoneのブラウザからGreenhouseの求人ページにアクセスできること"
-      ],
-      "disconfirm": "該当の求人ページがすでに削除されている場合",
-      "continue_if": "具体的なスキル要件や勤務地が記載されている場合",
-      "stop": "ページが存在しないか閲覧制限がかかっている場合"
-    },
-    {
-      "t": "Marketing Lead, Claude Frontier Academyの求人要件から対象顧客の絞り込み条件をメモせよ",
-      "why": "アカデミー施策が狙うターゲット層と、個人が巻き込まれないための隙を特定するためだ。",
+      "t": "iPhoneのSafariで開発ツールのネットワーク設定を開き、外部バックグラウンド通信を今すぐ遮断する",
+      "why": "プラットフォーム側がAPIトラフィックや実世界のエッジデータを自動で吸い上げる動きを強めているため、まずは自端末の露出経路を塞ぐ必要がある",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.85,
-      "success_p_min": 0.8,
-      "success_p_max": 0.9,
-      "success_why": "公式の募集要項に直接記載されている客観的データだから。",
-      "value_score": 3,
+      "success_p_min": 0.7,
+      "success_p_max": 0.95,
+      "success_why": "OS標準の設定機能のみで完結し、外部依存がないため",
+      "value_score": 4,
       "learning_value": 3,
-      "time_minutes": 10,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "ターゲット層とプログラムの狙いをまとめたメモ",
-      "category": "research",
+      "outcome": "外部への意図しないバックグラウンド通信が遮断された状態の構築",
+      "category": "review",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "大手が囲い込む教育・マーケティングの枠外を特定するため。",
+      "impact_why": "データ漏洩リスクを直接ゼロに近づけるため",
       "evidence_ids": [
-        "2026-11-03-r07"
+        "2026-11-04-r06",
+        "2026-11-03-r05"
       ],
       "assumptions": [
-        "求人情報にアカデミーの具体的な対象顧客が記載されていること"
+        "iPhone一台で設定変更が完結すること"
       ],
-      "disconfirm": "単なる抽象的なマーケティング職の募集であり詳細がない場合",
-      "continue_if": "具体的なターゲットセグメントの記載がある場合",
-      "stop": "詳細な業務内容が非公開の場合"
+      "disconfirm": "設定変更後も外部への未知の通信が継続していることが確認された場合",
+      "continue_if": "通信遮断が正常に機能し、開発作業に支障がない場合",
+      "stop": "作業自体が不可能であると判明した場合"
     },
     {
-      "t": "暗号検証チーム責任者の求人要件からモデル完全性保証の要求水準を書き出せ",
-      "why": "ハードウェアからモデル重みまでのセキュリティ制約が個人の検証環境にどう影響するか測るためだ。",
+      "t": "GitHubのレポジトリ設定を開き、外部連携Webhookをすべて削除する",
+      "why": "プラットフォーム依存の環境を排し、ローカルで完結する検証パイプラインへ切り替えるため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
-      "success_p_min": 0.75,
-      "success_p_max": 0.85,
-      "success_why": "公式の求人詳細に記述されているため確認可能である。",
-      "value_score": 3,
+      "success_p_min": 0.65,
+      "success_p_max": 0.9,
+      "success_why": "ブラウザからの操作だけでWebhookの削除が即座に完了するため",
+      "value_score": 4,
       "learning_value": 3,
-      "time_minutes": 15,
+      "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "セキュリティ要件の要約テキスト",
-      "category": "research",
+      "outcome": "GitHub上の不要な外部連携がすべて削除された状態",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "プラットフォーム側の統制強化の方向性を知るため。",
+      "impact_why": "プラットフォーム側へのデータ流出経路を物理的に断つため",
       "evidence_ids": [
+        "2026-11-04-r06",
         "2026-10-31-r02"
       ],
       "assumptions": [
-        "求人情報に技術的要件が含まれていること"
+        "Webブラウザ経由でリポジトリ管理権限があること"
       ],
-      "disconfirm": "要件が抽象的で具体的な検証内容が分からない場合",
-      "continue_if": "具体的な暗号化や検証手法の指定がある場合",
-      "stop": "求人ページが閉鎖されている場合"
+      "disconfirm": "内部連携に必須な機能まで停止してしまう場合",
+      "continue_if": "安全に外部連携を排除できた場合",
+      "stop": "リポジトリへのアクセスが失われた場合"
     },
     {
-      "t": "生命科学分野のIP Counsel求人から特許出願の注力領域を抽出せよ",
-      "why": "資本がどの技術領域の独占権を固めているかを確認し、個人の避難先を決めるためだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.8,
-      "success_p_max": 0.9,
-      "success_why": "Greenhouseの公式求人テキストに明確な業務記述があるため。",
+      "t": "API利用実績を精査し、依存度の高いクラウドサービスの有料プランを解約する",
+      "why": "巨大資本がインフラ層を抑え込む中で、従属的なAPIコストを削減し独立性を高めるため",
+      "cost_min": 5000,
+      "cost_max": 15000,
+      "loss_max": 15000,
+      "success_p": 0.6,
+      "success_p_min": 0.4,
+      "success_p_max": 0.75,
+      "success_why": "既存の契約変更画面から即座に手続きが可能であるため",
       "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "特許出願の注力領域のリスト",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "大手が法的に囲い込んでいる領域を避ける判断材料になるため。",
-      "evidence_ids": [
-        "2026-10-28-r04"
-      ],
-      "assumptions": [
-        "知的財産の対象領域が求人内容に明記されていること"
-      ],
-      "disconfirm": "業務内容が定型的な法律業務のみで特許領域が不明な場合",
-      "continue_if": "特定の分子や抗体設計に関する記載がある場合",
-      "stop": "ページにアクセスできない場合"
-    },
-    {
-      "t": "有料APIの利用枠とコスト効率を最適化するためのカスタムプロンプトをiPhoneのメモ帳に作成し保存しろ",
-      "why": "インフラの価格高騰を見据え、API消費量を最小化する検証プロトコルを今すぐ手元に固定するためだ。",
-      "cost_min": 1000,
-      "cost_max": 3000,
-      "loss_max": 3000,
-      "success_p": 0.75,
-      "success_p_min": 0.65,
-      "success_p_max": 0.85,
-      "success_why": "過去のAPI利用実績に基づき、コスト削減の定型化が可能であるため。",
-      "value_score": 4,
       "learning_value": 4,
       "time_minutes": 20,
-      "payback_days": 14,
-      "outcome": "iPhoneメモ帳内の最適化プロンプトテンプレート",
-      "category": "build",
+      "payback_days": 30,
+      "outcome": "無駄なクラウドAPI費用が削減され、固定費が低下した状態",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "ランニングコストの圧縮に直結するため",
+      "evidence_ids": [
+        "2026-11-03-r08",
+        "2026-11-04-r05"
+      ],
+      "assumptions": [
+        "解約に伴う違約金が発生しないこと"
+      ],
+      "disconfirm": "主要な検証パイプラインが完全に停止してしまう場合",
+      "continue_if": "代替のローカル検証手段が確保できている場合",
+      "stop": "業務継続に致命的な影響が出る場合"
+    },
+    {
+      "t": "新しいローカル完結型検証ツールのプレミアムプランに申し込む",
+      "why": "プラットフォーム依存を脱却し、自前でデータを統制しながら高度な検証を行うため",
+      "cost_min": 30000,
+      "cost_max": 50000,
+      "loss_max": 50000,
+      "success_p": 0.5,
+      "success_p_min": 0.35,
+      "success_p_max": 0.65,
+      "success_why": "決済後すぐに高機能な検証環境の利用権が付与されるため",
+      "value_score": 5,
+      "learning_value": 5,
+      "time_minutes": 25,
+      "payback_days": 60,
+      "outcome": "独立した環境での高度な検証機能の獲得",
+      "category": "buy",
       "terminal": false,
       "impact_min": 0.2,
       "impact_max": 0.3,
-      "impact_why": "APIコストの無駄を削り、継続的な検証基盤を維持できるため。",
+      "impact_why": "外部インフラ依存から完全に脱却するための基盤となるため",
       "evidence_ids": [
+        "2026-11-02-r01",
         "2026-11-03-r05"
       ],
       "assumptions": [
-        "APIのトークン単価が現状維持または値上げされること"
+        "iPhoneのブラウザから決済および利用設定が完結すること"
       ],
-      "disconfirm": "APIの仕様変更により既存のプロンプト構造が使えなくなる場合",
-      "continue_if": "コスト削減効果が数値として確認できる場合",
-      "stop": "API料金が個人の予算上限を超えた場合"
+      "disconfirm": "期待した機能が実装されておらず、手動作業が増える場合",
+      "continue_if": "投資対効果に見合う学習と成果が得られている場合",
+      "stop": "30日以内に具体的な成果が出ない場合"
+    },
+    {
+      "t": "自作の検証レポートを特定のオープンコミュニティへ直接投稿する",
+      "why": "プラットフォーム側の集約から外れた個人同士のネットワークに情報を流し込み、先回りルートを形成するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.5,
+      "success_p_max": 0.85,
+      "success_why": "既存のアカウントとプラットフォームの投稿機能を利用するため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "独自の検証レポートがコミュニティに公開された状態",
+      "category": "publish",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "個人間の情報優位の起点を作るため",
+      "evidence_ids": [
+        "2026-11-04-r05",
+        "2026-11-03-r07"
+      ],
+      "assumptions": [
+        "投稿内容が規約に違反しないこと"
+      ],
+      "disconfirm": "アカウントのシャドウバンや投稿の即時削除が行われた場合",
+      "continue_if": "一定の反応やフォロワーの流入が確認できる場合",
+      "stop": "コミュニティ全体が閉鎖的で機能していない場合"
     }
   ],
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームまたは公式ブログにおいて「Claude Frontier Academy」の第一期生募集またはプログラム詳細に関する発表を行う"
+  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいてASEAN地域での新拠点開設または現地法人設立に関する公式発表を行わない。"
 }

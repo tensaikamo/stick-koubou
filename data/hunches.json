@@ -2780,6 +2780,14 @@
         "why": "xAIの東京拠点向けにFintech/金融サービス領域のGRC（ガバナンス・リスク・コンプライアンス）求人が新規掲載されたため。",
         "conf_before": 0.947,
         "conf_after": 0.95
+      },
+      {
+        "date": "2026-11-04",
+        "sign": "xAIの東京拠点における法務・コンプライアンス関連求人が追加掲載される",
+        "dir": "confirm",
+        "why": "本日の事象においてxaiの東京拠点における法務・コンプライアンス関連に類する「Sr. Business Operations Manager (Tokyo, Japan)」の求人が新たに追加掲載されたため。",
+        "conf_before": 0.95,
+        "conf_after": 0.95
       }
     ],
     "status": "pending",
@@ -3129,7 +3137,7 @@
       "decider": "Anthropicの公式ニュースルームにASEANまたはシンガポールでの拠点開設や現地法人設立を告げる記事が掲載されること。"
     },
     "deadline": "2026-11-18",
-    "confidence": 0.7,
+    "confidence": 0.785,
     "base_rate": 0.85,
     "base_rate_class": "AI企業が求人公開から14日以内に海外新拠点開設の公式発表を行う頻度",
     "confidence_why": "求人で採用活動が表面化しているものの、実際の拠点設立発表までは数ヶ月のタイムラグが通常存在するため、14日という短期では「起きない」方が基準率に沿うと判断し、確度を基準率付近に据えた。",
@@ -3144,7 +3152,16 @@
         "dir": "confirm"
       }
     ],
-    "signals": [],
+    "signals": [
+      {
+        "date": "2026-11-04",
+        "sign": "求人ページから該当ポジションが削除され、募集が終了する",
+        "dir": "confirm",
+        "why": "本日の事象においてASEAN地域（シンガポール）の新拠点に関連する「Head of ASEAN, Applied AI (Singapore)」の求人が掲載されており、求人ページ関連の動向として一致するため。",
+        "conf_before": 0.7,
+        "conf_after": 0.785
+      }
+    ],
     "status": "pending",
     "resolved_at": null,
     "result": null,
@@ -3152,6 +3169,7 @@
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "initial_confidence": 0.7
   }
 ]
