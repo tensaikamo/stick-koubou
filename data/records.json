@@ -8810,5 +8810,146 @@
       "2026-10-28-r03",
       "2026-10-28-r02"
     ]
+  },
+  {
+    "id": "2026-11-04-r01",
+    "created_at": "2026-11-04T10:35:52.322324+09:00",
+    "headline": "openai Python SDK v3.44.0 リリース",
+    "what_happened": "OpenAIは公式Pythonライブラリのバージョン3.44.0をPyPIにリリースした。同期および非同期クライアント、HTTPXを用いた通信、型定義を含んだAPIアクセスを提供する。開発者は通常のパッケージマネージャー経由でインストールおよびアップグレードが可能である。",
+    "background": "OpenAI APIをPythonから利用するための公式SDKであり、継続的にマイナーバージョンアップや機能追加が行われている。",
+    "changed": "openai Python SDKのバージョンが3.44.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.44.0/",
+      "title": "openai Python SDK v3.44.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-03-r04",
+      "2026-10-28-r01",
+      "2026-10-24-r01",
+      "2026-10-20-r01",
+      "2026-10-18-r01",
+      "2026-10-17-r02"
+    ]
+  },
+  {
+    "id": "2026-11-04-r02",
+    "created_at": "2026-11-04T10:35:52.322324+09:00",
+    "headline": "Pixel-UMI: センサー付き人間の実演に基づく環境認識型全身マニピュレーション学習手法の提案",
+    "what_happened": "カーネギーメロン大学等の研究チームが、モバイルマニピュレーション向けのポリシー学習パイプライン「Pixel-UMI」に関する論文をarXivに投稿した。環境認識型リターゲット手法や遅延較正済みアクション割り当て、リターゲット誤差考慮型マスキングを導入し、人間の実演から効率的なロボット制御を獲得する仕組みを論じている。",
+    "background": "ロボットの移動操作学習において、人間データの収集と異体格・異機構間のギャップを埋めるための研究領域である。",
+    "changed": "Pixel-UMIという全身マニピュレーション学習の新しいアプローチが学術的に発表された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2611.03647v1",
+      "title": "Pixel-UMI: Learning Environment-Aware Whole-Body Manipulation from Sensorized Human Demonstrations",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-11-04-r03",
+    "created_at": "2026-11-04T10:35:52.322324+09:00",
+    "headline": "Pixel: 汎用モバイルマニピュレーション学習のためのコデザイン型フルスタックロボットシステムの発表",
+    "what_happened": "研究チームが汎用モバイルマニピュレーション学習システム「Pixel」の論文をarXivに公開した。低コストな車輪付きヒューマノイドハードウェア、多様なデータ収集インターフェース、統一された全身コントローラー、階層型学習スタックを統合したシステム設計について報告している。",
+    "background": "ハードウェアとソフトウェアを同時に設計するコデザインのアプローチによるロボティクス開発の動向である。",
+    "changed": "フルスタックロボットシステム「Pixel」の設計詳細が公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2611.03648v1",
+      "title": "Pixel: A Co-Designed Full-Stack Robot System for Learning General-Purpose Mobile Manipulation",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-11-04-r04",
+    "created_at": "2026-11-04T10:35:52.322324+09:00",
+    "headline": "From Natural Language to Exact Cover: 脳記号的アプローチによるシマウマパズル解法に関する論文の公開",
+    "what_happened": "大規模言語モデルの論理推論能力を補完するため、自然言語の入力を厳密な記号的制約解決に結びつけるニューロ・シンボリックフレームワークを提案する論文がarXivに投稿された。純粋なニューラルモデルの限界を克服する手法としてシマウマパズルを用いた検証を行っている。",
+    "background": "LLMの推論における信頼性や確実性を高めるための神経・記号統合アプローチの研究が進められている。",
+    "changed": "自然言語から正確な被覆問題へ変換するニューロ・シンボリック手法が提案された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2611.03641v1",
+      "title": "From Natural Language to Exact Cover: A Neuro-Symbolic Approach to Zebra Puzzles",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-11-04-r05",
+    "created_at": "2026-11-04T10:35:52.322324+09:00",
+    "headline": "AnthropicがPartner Specializations Leadの求人を公開",
+    "what_happened": "Anthropicはサンフランシスコおよびニューヨークを勤務地とする「Partner Specializations Lead」の求人情報をGreenhouseで公開した。Claudeパートナーネットワークの要件策定、専門分野の認定プロセス構築、エコシステムの拡大を主導する役割を想定している。",
+    "background": "エンタープライズ向けの導入支援やパートナーエコシステムを組織的に拡大するフェーズにある。",
+    "changed": "パートナープログラムの専門認定を統括する専任リーダーの採用枠が新設された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5464485008",
+      "title": "[新規求人] anthropic: Partner Specializations Lead (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-03-r08",
+      "2026-11-03-r07",
+      "2026-11-03-r05",
+      "2026-10-31-r02",
+      "2026-10-30-r02",
+      "2026-10-30-r01"
+    ]
+  },
+  {
+    "id": "2026-11-04-r06",
+    "created_at": "2026-11-04T10:35:52.322324+09:00",
+    "headline": "Anthropicがシンガポール拠点でのHead of ASEAN, Applied AIの求人を公開",
+    "what_happened": "Anthropicはシンガポールにおける「Head of ASEAN, Applied AI」の求人情報を公開した。ASEAN地域でのClaude for EnterpriseやAPIの導入、ソリューションアーキテクトやプロダクトエンジニアを含む現地チームの立ち上げを担う人材を募集している。",
+    "background": "北米以外のグローバル市場、特にアジア太平洋地域におけるエンタープライズ営業と技術支援体制の構築を急いでいる。",
+    "changed": "ASEAN地域の応用AI部門を統括する責任者の募集が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424312008",
+      "title": "[新規求人] anthropic: Head of ASEAN, Applied AI (Singapore)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-03-r08",
+      "2026-11-03-r07",
+      "2026-11-03-r05",
+      "2026-10-31-r02",
+      "2026-10-30-r02",
+      "2026-10-30-r01"
+    ]
   }
 ]

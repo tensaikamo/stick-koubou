@@ -3113,5 +3113,45 @@
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1"
+  },
+  {
+    "id": "2026-11-04-h01",
+    "created_at": "2026-11-04T10:35:52.322324+09:00",
+    "based_on": [
+      "2026-11-04-r06"
+    ],
+    "prose": "過去の較正実績では確度を高く見積もった帯で過信による外しが目立っており、基準率への引き戻しが求められる。ASEAN地域向けの現地責任者ポストを新設した動きは、地域別の営業・技術支援体制を整える段階に入ったことを示すが、短期間のうちに現地法人や新たな拠点開設の公式アナウンスへ直結する基準率は低い。したがって、基盤モデル提供企業が求人公開から14日以内に新たな海外法人設立や地域統括拠点の公式発表を行う頻度は高く見積もれないため、過度な確度は置かない。",
+    "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいてASEAN地域での新拠点開設または現地法人設立に関する公式発表を行わない。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Anthropic ASEAN Singapore office news",
+      "decider": "Anthropicの公式ニュースルームにASEANまたはシンガポールでの拠点開設や現地法人設立を告げる記事が掲載されること。"
+    },
+    "deadline": "2026-11-18",
+    "confidence": 0.7,
+    "base_rate": 0.85,
+    "base_rate_class": "AI企業が求人公開から14日以内に海外新拠点開設の公式発表を行う頻度",
+    "confidence_why": "求人で採用活動が表面化しているものの、実際の拠点設立発表までは数ヶ月のタイムラグが通常存在するため、14日という短期では「起きない」方が基準率に沿うと判断し、確度を基準率付近に据えた。",
+    "counter": "既に水面下で進められていた現地法人の登記が完了しており、採用の発表に合わせて即座にプレスリリースが打たれる可能性。",
+    "indicators": [
+      {
+        "sign": "Anthropicの公式ニュースルームにシンガポール法人に関するプレスリリースが掲載される",
+        "dir": "kill"
+      },
+      {
+        "sign": "求人ページから該当ポジションが削除され、募集が終了する",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
