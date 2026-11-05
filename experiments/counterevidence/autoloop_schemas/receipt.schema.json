@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tensaikamo.github.io/stick-koubou/schemas/counterevidence-autoloop-receipt-v1.json",
+  "title": "Counterevidence AutoLoop call receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "run_id", "call_id", "provider", "model", "route",
+    "session_id", "verification", "prompt_sha256", "response_sha256", "response_utf8_bytes",
+    "status", "collected_at_utc", "time_verification", "checkpoint_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "counterevidence.autoloop.receipt.v1"},
+    "run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
+    "call_id": {"type": "string", "minLength": 1},
+    "provider": {"type": "string", "minLength": 1},
+    "model": {"type": "string", "minLength": 1},
+    "route": {"enum": ["subscription_oauth", "chatgpt_managed"]},
+    "session_id": {"type": "string", "minLength": 1},
+    "verification": {"const": "unverifiable_subscription"},
+    "prompt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "response_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "response_utf8_bytes": {"type": "integer", "minimum": 0},
+    "status": {"enum": ["complete", "invalid"]},
+    "collected_at_utc": {"type": "string", "format": "date-time"},
+    "time_verification": {"const": "unverifiable_runner_clock"},
+    "checkpoint_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "complete"}}, "required": ["status"]},
+      "then": {"properties": {"response_utf8_bytes": {"minimum": 1}}}
+    }
+  ]
+}

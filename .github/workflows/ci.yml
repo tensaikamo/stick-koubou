@@ -21,9 +21,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install deps
-        run: pip install requests pytest
+        run: pip install requests pytest jsonschema
       - name: Compile
-        run: python -m py_compile common.py memory.py recorder.py resolver.py sanbo.py brief.py panels.py preview.py decision.py
+        run: python -m py_compile common.py memory.py recorder.py resolver.py sanbo.py brief.py panels.py preview.py decision.py experiments/counterevidence/autoloop.py
       - name: Tests (offline, no API)
         run: pytest -q tests/
       - name: Counterevidence selftest (offline, no API)
