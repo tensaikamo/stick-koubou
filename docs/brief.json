@@ -1,57 +1,60 @@
 {
-  "date": "2026-11-04",
-  "updated_at": "2026-11-04 10:43",
+  "date": "2026-11-05",
+  "updated_at": "2026-11-05 10:49",
   "build_id": "truthful-ui-v1",
-  "omote": "xAIが日本法人のビジネスオペレーション責任者の求人を出した一方、Hugging FaceのコードベースにはMistralの1兆パラメータモデルが追加された。欧米の資本は物理インフラや超巨大モデルのローカル運用網をアジア圏まで拡張し始めている。",
-  "ura": "表向きのAI機能の裏で、プラットフォーム側がAPIトラフィックや実世界のエッジデータを自動で吸い上げる動きを強めていると見る。巨大資本がインフラ層を完全に抑え込むことで、個人がオーガニックに割り込める隙は急速に狭まっている。",
-  "ura_taikou": "xAIの日本求人は単なるローカルの顧客サポート窓口の設置に過ぎないという仮説は、募集要項にあるインフラ運用や容量管理の規模感から棄却した。",
-  "dousuru": "Postmanの事例のように、今使っている開発・APIツールが自動でデータを送信していないか直ちに設定を確認しろ。GitHubのIssueやレポジトリのネットワークタブを開き、外部へのバックグラウンド通信を今すぐ遮断しておけ。プラットフォーム依存の環境を捨て、ローカルで完結する検証パイプラインへ今夜中に切り替えろ。",
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいてASEAN地域での新拠点開設または現地法人設立に関する公式発表を行わない。",
-  "kan_konkyo": "求人で採用活動が表面化しているものの、実際の拠点設立発表までは数ヶ月のタイムラグが通常存在するため、14日という短期では「起きない」方が基準率に沿うと判断し、確度を基準率付近に据えた。",
-  "kan_hantai": "既に水面下で進められていた現地法人の登記が完了しており、採用の発表に合わせて即座にプレスリリースが打たれる可能性。",
-  "kan_conf": 0.785,
-  "ippan": "普段使っているアプリや開発ツールが、知らないうちにあなたのデータをAIの学習用に吸い上げているケースが急増しています。利用規約のアップデートや設定画面を確認し、データの外部共有やAIプラグインの自動有効化がオンになっていたら今すぐオフにしてください。便利さの裏で個人情報や作業データが勝手に抜かれるリスクを自衛しましょう。",
-  "votes": [],
+  "omote": "OpenRouter上のDeepSeek Flash Latestが82%値下げされ、xAIはモバイルエンジニアの求人を急拡大させている。",
+  "ura": "APIの価格破壊は仲介層を焼き払い、自前で叩く個人に全利益を残す。xAIのネイティブ採用の動きは、AppleやGoogleのOSレイヤーをバイパスして直接ユーザーのポケットを奪う布石だ。",
+  "ura_taikou": "求人拡大は単なる既存アプリのバグ修正や保守人員の補充に過ぎないという仮説は、主要都市でのシニア層の積極採用という規模感と矛盾するため退けた。",
+  "dousuru": "今すぐOpenRouterの管理画面を開き、APIキーの単価設定と直近のコスト変動ログを確認しておけ。不要なラッパーサービスや有料テンプレートの契約をすべて即座に解約し、生APIを直接叩くスクリプトの接続テストを終わらせておけ。",
+  "kan": "xAIが今後30日以内に、既存のXアプリの枠を超えたスタンドアロンの音声対話型モバイル機能について公式発表する。基準率として大手が大型アップデートの合間にマイナーな機能拡張を行う頻度は月2回程度であり、現在の求人拡大の速度を調整するとこの時期が妥当だ。",
+  "kan_konkyo": "xAIがパロアルトとニューヨークでiOSおよびAndroidのシニアエンジニアを同時に募集開始したという求人の急拡大データから推測した。",
+  "kan_hantai": "xAIのモバイル開発は既存のXアプリ内への単なる機能追加に留まり、単独の音声アプリとしてのリリースには至らない可能性が高い。",
+  "kan_conf": 0.12,
+  "ippan": "AIサービスの価格競争が激しくなっているので、毎月定額の有料プランをなんとなく払い続けるのは損だ。本当に使っている機能ごとの従量課金や無料枠で十分足りないか、一度利用状況を見直せ。",
+  "votes": [
+    0.12,
+    0.12,
+    0.18
+  ],
   "mijoriku": [
     {
-      "title": "Mistral Large 4 (Le Chonk)",
-      "desc": "Hugging Faceに追加された1兆パラメータ規模の超巨大マルチモーダルモデルの定義",
-      "why": "日本語圏ではコードの追加事実すら全く報じられておらず、オープンな超巨大モデルをどうインフラに組み込むかという先回り視点を持てるため"
-    },
-    {
-      "title": "Postman API Data Sharing Issue",
-      "desc": "開発ツールのサイレントなデータ収集とAIプラグイン自動インストールの告発",
-      "why": "国内の開発者は利便性のみでツールを使い続けており、データ収奪のリスクとそれに伴う代替ツールへの移行という個人の逃げ道に誰も気づいていないため"
+      "title": "OpenAI to acquire Pierre Computer Company, Inc.",
+      "desc": "OpenAIによるピエール・コンピュータ社の買収",
+      "why": "国内メディアや技術コミュニティでこの買収の構造的意味を報じている者は皆無であり、ハードウェア囲い込みの意図を先行して察知できるため。"
     }
   ],
   "diffs": [
-    "[差分] 退役予定日が設定された: MiniMax: MiniMax M2.7 → 2026-11-05",
-    "[差分] 退役予定日が設定された: MiniMax: MiniMax M2-her → 2026-11-05",
-    "[差分] 退役予定日が設定された: MiniMax: MiniMax M2.1 → 2026-11-05",
-    "[差分] 退役予定日が設定された: MiniMax: MiniMax M2 → 2026-11-05",
-    "[差分] 退役予定日が設定された: MiniMax: MiniMax-01 → 2026-11-05",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 5%"
+    "[差分] 退役予定日が設定された: Inception: Mercury 3 → 2026-11-08",
+    "[差分] 退役予定日が設定された: Inception: Mercury 2.5 → 2026-11-08",
+    "[差分] 退役予定日が設定された: Inception: Mercury 2 → 2026-11-08",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 82%",
+    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値下げ 9%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 379%"
   ],
   "evidence": [
     {
-      "claim": "xAIが日本国内でのインフラ網構築に向けた組織作りを水面下で進めている",
-      "confidence": 0.65,
-      "disconfirm": "日本国内の求人が数ヶ月以内に取り下げられ、事業展開が凍結される事実",
+      "claim": "OpenRouter上のDeepSeek Flash Latestが82%値下げされた",
+      "confidence": 0.85,
+      "disconfirm": "価格改定が一時的なプロモーションであり数日で旧価格に戻ること",
       "sources": [
         {
-          "title": "[新規求人] xai: Sr. Business Operations Manager (Tokyo, Japan)",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5282312007"
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 82%",
+          "url": "https://openrouter.ai/models"
         }
       ]
     },
     {
-      "claim": "開発ツールやプラットフォームがユーザーの同意なくデータを吸い上げる動きが強まっている",
-      "confidence": 0.7,
-      "disconfirm": "該当企業が即座にコードを修正し、データ送信機能が完全にオプトイン方式に変更されること",
+      "claim": "xAIがモバイルアプリのネイティブ開発に向けたエンジニアの採用を急拡大している",
+      "confidence": 0.75,
+      "disconfirm": "採用が頓挫し、外部ベンダーへの委託方針に切り替わること",
       "sources": [
         {
-          "title": "Postman silently auto-installs AI plugins and attempts to share all API data",
-          "url": "https://github.com/postmanlabs/postman-app-support/issues/14370"
+          "title": "[新規求人] xai: Sr. Mobile Android Engineer ( Palo Alto, CA; New York, NY)",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5285490007"
+        },
+        {
+          "title": "[新規求人] xai: Sr. Mobile iOS Engineer ( Palo Alto, CA; New York, NY)",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5285483007"
         }
       ]
     }

@@ -1,167 +1,164 @@
 {
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "Anthropicの求人急増を受け、API通信を遮断するローカル監視を今夜設定するか？",
-    "xAIのインフラ直営化の動きに対抗し、自身の検証パイプラインを今日移行するか？",
-    "シンガポール拠点設立の動きを踏まえ、アジア圏向けAPIの依存先を切り替えるか？"
+    "API価格破壊が進む中、直近のコスト変動ログを開いて生API接続テストを完了させたか。",
+    "不要なラッパーや有料テンプレートを即座に解約し、直叩きスクリプトへの切り替えを終えたか。",
+    "xAIのネイティブ採用の動きに対し、自前のポケットを奪う独自の音声対話型モバイル機能の検証を進めているか。"
   ],
   "moves": [
     {
-      "t": "iPhoneのSafariで開発ツールのネットワーク設定を開き、外部バックグラウンド通信を今すぐ遮断する",
-      "why": "プラットフォーム側がAPIトラフィックや実世界のエッジデータを自動で吸い上げる動きを強めているため、まずは自端末の露出経路を塞ぐ必要がある",
+      "t": "不要なラッパーサービスや有料テンプレートの契約状況をすべて一覧化し解約手続きを進める",
+      "why": "仲介層のコストを削り、生APIを直接叩く体制へ完全に移行するためだ",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.7,
-      "success_p_max": 0.95,
-      "success_why": "OS標準の設定機能のみで完結し、外部依存がないため",
+      "success_p": 0.45,
+      "success_p_min": 0.35,
+      "success_p_max": 0.55,
+      "success_why": "サブスクリプションの解約は手元で即座に実行可能なため",
       "value_score": 4,
       "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "外部への意図しないバックグラウンド通信が遮断された状態の構築",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "データ漏洩リスクを直接ゼロに近づけるため",
-      "evidence_ids": [
-        "2026-11-04-r06",
-        "2026-11-03-r05"
-      ],
-      "assumptions": [
-        "iPhone一台で設定変更が完結すること"
-      ],
-      "disconfirm": "設定変更後も外部への未知の通信が継続していることが確認された場合",
-      "continue_if": "通信遮断が正常に機能し、開発作業に支障がない場合",
-      "stop": "作業自体が不可能であると判明した場合"
-    },
-    {
-      "t": "GitHubのレポジトリ設定を開き、外部連携Webhookをすべて削除する",
-      "why": "プラットフォーム依存の環境を排し、ローカルで完結する検証パイプラインへ切り替えるため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.65,
-      "success_p_max": 0.9,
-      "success_why": "ブラウザからの操作だけでWebhookの削除が即座に完了するため",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 10,
-      "payback_days": 0,
-      "outcome": "GitHub上の不要な外部連携がすべて削除された状態",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "プラットフォーム側へのデータ流出経路を物理的に断つため",
-      "evidence_ids": [
-        "2026-11-04-r06",
-        "2026-10-31-r02"
-      ],
-      "assumptions": [
-        "Webブラウザ経由でリポジトリ管理権限があること"
-      ],
-      "disconfirm": "内部連携に必須な機能まで停止してしまう場合",
-      "continue_if": "安全に外部連携を排除できた場合",
-      "stop": "リポジトリへのアクセスが失われた場合"
-    },
-    {
-      "t": "API利用実績を精査し、依存度の高いクラウドサービスの有料プランを解約する",
-      "why": "巨大資本がインフラ層を抑え込む中で、従属的なAPIコストを削減し独立性を高めるため",
-      "cost_min": 5000,
-      "cost_max": 15000,
-      "loss_max": 15000,
-      "success_p": 0.6,
-      "success_p_min": 0.4,
-      "success_p_max": 0.75,
-      "success_why": "既存の契約変更画面から即座に手続きが可能であるため",
-      "value_score": 3,
-      "learning_value": 4,
       "time_minutes": 20,
-      "payback_days": 30,
-      "outcome": "無駄なクラウドAPI費用が削減され、固定費が低下した状態",
-      "category": "buy",
+      "payback_days": 0,
+      "outcome": "不要な有料契約の解約完了リスト",
+      "category": "review",
       "terminal": false,
       "impact_min": 0.15,
       "impact_max": 0.25,
-      "impact_why": "ランニングコストの圧縮に直結するため",
+      "impact_why": "固定費を排除することで利益率の改善に直結するため",
       "evidence_ids": [
-        "2026-11-03-r08",
-        "2026-11-04-r05"
+        "2026-11-03-r06"
       ],
       "assumptions": [
-        "解約に伴う違約金が発生しないこと"
+        "現在契約中の外部ラッパーやテンプレートが存在すること"
       ],
-      "disconfirm": "主要な検証パイプラインが完全に停止してしまう場合",
-      "continue_if": "代替のローカル検証手段が確保できている場合",
-      "stop": "業務継続に致命的な影響が出る場合"
+      "disconfirm": "解約すべき有料契約が元々存在しない場合",
+      "continue_if": "固定費の削減分を生APIのテスト予算に回せる場合",
+      "stop": "解約による業務上の重大な支障が発生する場合"
     },
     {
-      "t": "新しいローカル完結型検証ツールのプレミアムプランに申し込む",
-      "why": "プラットフォーム依存を脱却し、自前でデータを統制しながら高度な検証を行うため",
-      "cost_min": 30000,
-      "cost_max": 50000,
-      "loss_max": 50000,
-      "success_p": 0.5,
-      "success_p_min": 0.35,
-      "success_p_max": 0.65,
-      "success_why": "決済後すぐに高機能な検証環境の利用権が付与されるため",
-      "value_score": 5,
-      "learning_value": 5,
-      "time_minutes": 25,
-      "payback_days": 60,
-      "outcome": "独立した環境での高度な検証機能の獲得",
-      "category": "buy",
+      "t": "生APIを直接叩くスクリプトの接続テストコードをiPhoneのブラウザ上で記述し実行する",
+      "why": "仲介プラットフォームを介さずに直接APIを操作する基盤を確立するためだ",
+      "cost_min": 100,
+      "cost_max": 500,
+      "loss_max": 500,
+      "success_p": 0.4,
+      "success_p_min": 0.3,
+      "success_p_max": 0.5,
+      "success_why": "iPhoneのWebブラウザ開発ツールや簡易実行環境からAPIコールが可能なため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 7,
+      "outcome": "APIからの正常なレスポンスJSONの取得ログ",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.2,
       "impact_max": 0.3,
-      "impact_why": "外部インフラ依存から完全に脱却するための基盤となるため",
+      "impact_why": "自前でAPIを直接制御するコアの実装に直接寄与するため",
       "evidence_ids": [
-        "2026-11-02-r01",
-        "2026-11-03-r05"
+        "2026-11-03-r06"
       ],
       "assumptions": [
-        "iPhoneのブラウザから決済および利用設定が完結すること"
+        "APIキーの残高とエンドポイントの仕様が手元にあること"
       ],
-      "disconfirm": "期待した機能が実装されておらず、手動作業が増える場合",
-      "continue_if": "投資対効果に見合う学習と成果が得られている場合",
-      "stop": "30日以内に具体的な成果が出ない場合"
+      "disconfirm": "ブラウザからの直接呼び出しがCORS制限等で完全にブロックされる場合",
+      "continue_if": "HTTPステータス200とともに意図したレスポンスが返る場合",
+      "stop": "API仕様が想定と異なり認証を通せない場合"
     },
     {
-      "t": "自作の検証レポートを特定のオープンコミュニティへ直接投稿する",
-      "why": "プラットフォーム側の集約から外れた個人同士のネットワークに情報を流し込み、先回りルートを形成するため",
+      "t": "xAIの最新求人ページに掲載されている直営施工管理の応募要件を読み解き分析メモを書く",
+      "why": "xAIがインフラを自前化する動きの裏にある実利と次の展開を予測するためだ",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.5,
-      "success_p_max": 0.85,
-      "success_why": "既存のアカウントとプラットフォームの投稿機能を利用するため",
-      "value_score": 4,
+      "success_p": 0.5,
+      "success_p_min": 0.4,
+      "success_p_max": 0.6,
+      "success_why": "公開されている求人情報は誰でも直接閲覧して分析できるため",
+      "value_score": 3,
       "learning_value": 3,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "独自の検証レポートがコミュニティに公開された状態",
-      "category": "publish",
+      "outcome": "xAIのインフラ直営化に関する分析メモ",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "個人間の情報優位の起点を作るため",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "巨大資本の動向から個人の隙を見つけるための前提となるため",
       "evidence_ids": [
-        "2026-11-04-r05",
-        "2026-11-03-r07"
+        "2026-11-02-r01",
+        "2026-11-02-r02"
       ],
       "assumptions": [
-        "投稿内容が規約に違反しないこと"
+        "求人ページが現在も閲覧可能であること"
       ],
-      "disconfirm": "アカウントのシャドウバンや投稿の即時削除が行われた場合",
-      "continue_if": "一定の反応やフォロワーの流入が確認できる場合",
-      "stop": "コミュニティ全体が閉鎖的で機能していない場合"
+      "disconfirm": "求人情報の内容が抽象的で具体的な示唆が得られない場合",
+      "continue_if": "求人要件から具体的な技術投資の方向性が特定できた場合",
+      "stop": "募集が終了しページが削除されている場合"
+    },
+    {
+      "t": "Googleの最新SDKのドキュメントを開き主要な変更点の差分を検証する",
+      "why": "既存プレイヤーのSDK更新が個人開発者に与える影響と隙を特定するためだ",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.5,
+      "success_p_min": 0.4,
+      "success_p_max": 0.6,
+      "success_why": "PyPIおよび公式ドキュメントで変更履歴が公開されているため",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "SDKの主要な変更点と移行リスクのまとめ",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "最新のライブラリ仕様を把握することで開発の手戻りを防げるため",
+      "evidence_ids": [
+        "2026-11-03-r06"
+      ],
+      "assumptions": [
+        "インターネット経由でドキュメントにアクセスできること"
+      ],
+      "disconfirm": "ドキュメントに実用的な変更情報が記載されていない場合",
+      "continue_if": "新しい機能を利用して効率化できる余地が見つかった場合",
+      "stop": "SDKの仕様が自身のプロジェクトに関係がない場合"
+    },
+    {
+      "t": "xAIのメンフィスDC向け発電所・冷却設備の求人からインフラ制約のボトルネックを書き出す",
+      "why": "資本集約的なインフラのどこに個人の入り込む隙があるかを見極めるためだ",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.45,
+      "success_p_min": 0.35,
+      "success_p_max": 0.55,
+      "success_why": "公開された専門職の募集要項から必要とされる技術的課題が逆算できるため",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "インフラ制約とボトルネックのリスト",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "大手が直面する物理的制約の裏側を理解するため",
+      "evidence_ids": [
+        "2026-10-31-r01",
+        "2026-10-30-r04"
+      ],
+      "assumptions": [
+        "募集要項に具体的な技術要件が含まれていること"
+      ],
+      "disconfirm": "募集要項が一般的な記述に留まり具体的な制約が読み取れない場合",
+      "continue_if": "特定のハードウェアや冷却技術に関する独自の仮説が立てられた場合",
+      "stop": "関連する求人データが十分に揃わない場合"
     }
   ],
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいてASEAN地域での新拠点開設または現地法人設立に関する公式発表を行わない。"
+  "kan": "xAIが今後30日以内に、既存のXアプリの枠を超えたスタンドアロンの音声対話型モバイル機能について公式発表する。基準率として大手が大型アップデートの合間にマイナーな機能拡張を行う頻度は月2回程度であり、現在の求人拡大の速度を調整するとこの時期が妥当だ。"
 }
