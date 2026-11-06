@@ -9059,5 +9059,187 @@
       "2026-11-03-r05",
       "2026-10-31-r02"
     ]
+  },
+  {
+    "id": "2026-11-06-r01",
+    "created_at": "2026-11-06T10:44:31.098670+09:00",
+    "headline": "anthropicがPublic Policy, Strategic Advisoryの求人を公開",
+    "what_happened": "Anthropicが公的政策チーム内のStrategic Advisory向けに、政策の文書化や外部向けチームへの展開を担うシニア職の求人情報をGreenhouse上で公開した。本文によれば、同職は外部向けチームの基盤となる証拠に基づく政策ポジションや調査、パートナーシップの構築を担当する。勤務地はサンフランシスコおよびワシントンDC。",
+    "background": "AI企業による政策対応や規制当局へのロビー活動、安全性の基準策定に関する組織体制の強化は、各社の事業展開やコンプライアンスの枠組みに影響を与える要素である。",
+    "changed": "Anthropicの政策部門において、外部発信向けの論点整理や戦略的アドバイスを専業とする人員の採用活動が表面化した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5473110008",
+      "title": "[新規求人] anthropic: Public Policy, Strategic Advisory  (San Francisco, CA; Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-05-r04",
+      "2026-11-05-r03",
+      "2026-11-05-r02",
+      "2026-11-04-r06",
+      "2026-11-04-r05",
+      "2026-11-03-r08"
+    ]
+  },
+  {
+    "id": "2026-11-06-r02",
+    "created_at": "2026-11-06T10:44:31.098670+09:00",
+    "headline": "anthropicがEquity Accounting and Reportingの求人を公開",
+    "what_happened": "Anthropicが株式報酬管理プラットフォームShareworksから元帳に至るデータや、複数管轄での会計基準を一元管理するEquity Accounting and Reporting職の求人情報をGreenhouse上で公開した。勤務地はサンフランシスコ。株式に基づく報酬（SBC）の会計処理や税務処理のオーナーシップを担う人材を募集している。",
+    "background": "急成長段階にある非上場テック企業において、従業員持株や株式報酬制度のグローバルな会計管理体制の整備は組織規模拡大に伴う必須のバックオフィス業務である。",
+    "changed": "Anthropicが複数管轄での複雑な株式報酬会計やレポーティングを単独で統括する経理人材の採用に着手した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5463197008",
+      "title": "[新規求人] anthropic: Equity Accounting and Reporting (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-05-r04",
+      "2026-11-05-r03",
+      "2026-11-05-r02",
+      "2026-11-04-r06",
+      "2026-11-04-r05",
+      "2026-11-03-r08"
+    ]
+  },
+  {
+    "id": "2026-11-06-r03",
+    "created_at": "2026-11-06T10:44:31.098670+09:00",
+    "headline": "anthropicがResearch Scientist, Discoveryの求人を公開",
+    "what_happened": "Anthropicが科学技術のフロンティアを押し進める「AI科学者」の構築を目的としたDiscoveryチーム向けに、Research Scientistの求人情報をGreenhouse上で公開した。自動化された推論や科学の加速、製造・実験技術、素材、デバイス、エネルギーシステム分野へのClaudeの適用を目指す。勤務地はサンフランシスコ。",
+    "background": "フロンティアモデルを訓練し、科学研究や工学的な発見の自動化を目指す研究開発は各社が注力している領域である。",
+    "changed": "Anthropicが科学・工学分野での問題解決に特化したフロンティアモデルの学習環境や報酬設計を進める研究人材の採用を強化している。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5468937008",
+      "title": "[新規求人] anthropic: Research Scientist, Discovery (Engineering & Applied Sciences) (San Francisco, CA)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-05-r04",
+      "2026-11-05-r03",
+      "2026-11-05-r02",
+      "2026-11-04-r06",
+      "2026-11-04-r05",
+      "2026-11-03-r08"
+    ]
+  },
+  {
+    "id": "2026-11-06-r04",
+    "created_at": "2026-11-06T10:44:31.098670+09:00",
+    "headline": "xaiがSr. Software Engineer, Training/Inference (C++)の求人を公開",
+    "what_happened": "xAI（記載上の名義はSpaceXSI）が、Grokを毎日数百万人のユーザーに提供するための大規模モデル推論プラットフォームを設計・最適化するC++シニアソフトウェアエンジニアの求人をGreenhouse上で公開した。分散インフラストラクチャや低レベル最適化を担う。勤務地はパロアルト。",
+    "background": "xAIはGrokの推論負荷増大に伴い、独自のインフラと推論サービング基盤の高速化・スケーリングを進めている。",
+    "changed": "xAIが大規模ユーザー向けの推論プラットフォームの分散インフラおよび低レベル最適化を強化するための採用を行っている。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5286879007",
+      "title": "[新規求人] xai: Sr. Software Engineer, Training/Inference (C++) (Palo Alto, CA)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-02-r02",
+      "2026-11-02-r01",
+      "2026-10-31-r01",
+      "2026-10-30-r04",
+      "2026-10-30-r03",
+      "2026-10-28-r06"
+    ]
+  },
+  {
+    "id": "2026-11-06-r05",
+    "created_at": "2026-11-06T10:44:31.098670+09:00",
+    "headline": "xaiがSr. Software Engineer, Kernels/CUDA (C++)の求人を公開",
+    "what_happened": "xAI（SpaceXSI）が、GPUスーパーコンピュータのハードウェアからプラットフォーム層までを横断して最適化を行うKernels/CUDAのシニアソフトウェアエンジニアの求人をGreenhouse上で公開した。低レベルのGPUカーネル最適化やLinuxカーネル内部、大規模オーケストレーションを担う。勤務地はパロアルト。",
+    "background": "AIスーパーコンピュータの性能を限界まで引き出すためには、ハードウェア直結の低レイヤ最適化とカスタムカーネルの開発が不可欠である。",
+    "changed": "xAIが自社スーパーコンピュータの計算効率を最大化するための低レイヤカーネル開発人材の採用を明示した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5286869007",
+      "title": "[新規求人] xai: Sr. Software Engineer, Kernels/CUDA (C++) (Palo Alto, CA)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-02-r02",
+      "2026-11-02-r01",
+      "2026-10-31-r01",
+      "2026-10-30-r04",
+      "2026-10-30-r03",
+      "2026-10-28-r06"
+    ]
+  },
+  {
+    "id": "2026-11-06-r06",
+    "created_at": "2026-11-06T10:44:31.098670+09:00",
+    "headline": "xaiがSr. Software Engineer, Linux Kernelの求人を公開",
+    "what_happened": "xAI（SpaceXSI）が、AIスーパーコンピュータの最下層ソフトウェアスタックおよびネットワークファブリックを設計・運用するLinux Kernelシニアソフトウェアエンジニアの求人をGreenhouse上で公開した。ハードウェアの能力を最大限に引き出すための基盤開発を担う。勤務地はシアトル。",
+    "background": "巨大なAIクラスターの構築において、ネットワークとハードウェアを制御するLinuxカーネルレベルのチューニングはシステムの成否を分ける基盤技術である。",
+    "changed": "xAIがスーパーコンピュータの最下層を支えるOSカーネル開発・運用体制をシアトル拠点で構築している。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5286865007",
+      "title": "[新規求人] xai: Sr. Software Engineer, Linux Kernel (Seattle, WA)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-02-r02",
+      "2026-11-02-r01",
+      "2026-10-31-r01",
+      "2026-10-30-r04",
+      "2026-10-30-r03",
+      "2026-10-28-r06"
+    ]
+  },
+  {
+    "id": "2026-11-06-r07",
+    "created_at": "2026-11-06T10:44:31.098670+09:00",
+    "headline": "RadNet, Inc.のSEC 8-K提出書類検索ページ",
+    "what_happened": "米国証券取引委員会（SEC）のEDGARシステムにおけるRadNet, Inc.（RDNT）の検索結果ページ。body_fetched=falseのためタイトル以外の本文情報は取得できていない。",
+    "background": "上場企業によるSECへの適時開示書類（8-K等）の確認は、企業の財務や事業上の重要イベントを追う上で基礎的な公的情報源である。",
+    "changed": "公開情報に基づく具体的な変更点は本URLのタイトル確認のみであり不明。",
+    "certainty": "rumor",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://www.sec.gov/edgar/search/#/q=artificial%20intelligence",
+      "title": "[SEC 8-K] RadNet, Inc.  (RDNT)  (CIK 0000790526)",
+      "hn_score": 0,
+      "name": "SEC",
+      "tier": 1
+    },
+    "body_fetched": false,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
   }
 ]
