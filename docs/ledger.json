@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-05 10:47",
+  "updated_at": "2026-11-06 10:47",
   "score": {
     "hit": 17,
     "miss": 24,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-11-09",
-    "days": 4
+    "days": 3
   },
   "decided": [
     {
@@ -444,24 +444,24 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-11-04",
-          "headline": "Anthropicがシンガポール拠点でのHead of ASEAN, Applied AIの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424312008"
-        },
-        {
-          "date": "2026-11-05",
-          "headline": "anthropic Python SDK v2.5.0 リリース",
-          "url": "https://pypi.org/project/anthropic/2.5.0/"
-        },
-        {
-          "date": "2026-11-05",
-          "headline": "anthropic: Data Center Facility Operations Lead 求人公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5386214008"
-        },
-        {
           "date": "2026-11-05",
           "headline": "anthropic: Learning & Education Specialist 求人公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5462661008"
+        },
+        {
+          "date": "2026-11-06",
+          "headline": "anthropicがEquity Accounting and Reportingの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5463197008"
+        },
+        {
+          "date": "2026-11-06",
+          "headline": "anthropicがPublic Policy, Strategic Advisoryの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5473110008"
+        },
+        {
+          "date": "2026-11-06",
+          "headline": "anthropicがResearch Scientist, Discoveryの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5468937008"
         }
       ]
     },
@@ -469,24 +469,24 @@
       "subject": "xAI",
       "events": [
         {
-          "date": "2026-10-30",
-          "headline": "xAI、収益化オペレーション担当シニアアナリストを募集",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5278701007"
-        },
-        {
-          "date": "2026-10-31",
-          "headline": "xAI、メンフィスDC向けオンサイト発電所（ガスタービン）の計装制御技術者を募集",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5280433007"
-        },
-        {
-          "date": "2026-11-02",
-          "headline": "xAI、メンフィスColossus拠点向けに構造・躯体担当の直営施工管理者を採用開始",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5280765007"
-        },
-        {
           "date": "2026-11-02",
           "headline": "xAI、メンフィスの冷却・流体機械設備を直営管理する施工管理者を募集",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5280771007"
+        },
+        {
+          "date": "2026-11-06",
+          "headline": "xaiがSr. Software Engineer, Kernels/CUDA (C++)の求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5286869007"
+        },
+        {
+          "date": "2026-11-06",
+          "headline": "xaiがSr. Software Engineer, Linux Kernelの求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5286865007"
+        },
+        {
+          "date": "2026-11-06",
+          "headline": "xaiがSr. Software Engineer, Training/Inference (C++)の求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5286879007"
         }
       ]
     },
@@ -543,6 +543,48 @@
   ],
   "records": [
     {
+      "id": "2026-11-06-r06",
+      "date": "2026-11-06",
+      "headline": "xaiがSr. Software Engineer, Linux Kernelの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5286865007"
+    },
+    {
+      "id": "2026-11-06-r05",
+      "date": "2026-11-06",
+      "headline": "xaiがSr. Software Engineer, Kernels/CUDA (C++)の求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5286869007"
+    },
+    {
+      "id": "2026-11-06-r04",
+      "date": "2026-11-06",
+      "headline": "xaiがSr. Software Engineer, Training/Inference (C++)の求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5286879007"
+    },
+    {
+      "id": "2026-11-06-r03",
+      "date": "2026-11-06",
+      "headline": "anthropicがResearch Scientist, Discoveryの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5468937008"
+    },
+    {
+      "id": "2026-11-06-r02",
+      "date": "2026-11-06",
+      "headline": "anthropicがEquity Accounting and Reportingの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5463197008"
+    },
+    {
+      "id": "2026-11-06-r01",
+      "date": "2026-11-06",
+      "headline": "anthropicがPublic Policy, Strategic Advisoryの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5473110008"
+    },
+    {
       "id": "2026-11-05-r04",
       "date": "2026-11-05",
       "headline": "anthropic: Data Center Facility Operations Lead 求人公開",
@@ -583,49 +625,7 @@
       "headline": "AnthropicがPartner Specializations Leadの求人を公開",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5464485008"
-    },
-    {
-      "id": "2026-11-04-r04",
-      "date": "2026-11-04",
-      "headline": "From Natural Language to Exact Cover: 脳記号的アプローチによるシマウマパズル解法に関する論文の公開",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2611.03641v1"
-    },
-    {
-      "id": "2026-11-04-r03",
-      "date": "2026-11-04",
-      "headline": "Pixel: 汎用モバイルマニピュレーション学習のためのコデザイン型フルスタックロボットシステムの発表",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2611.03648v1"
-    },
-    {
-      "id": "2026-11-04-r02",
-      "date": "2026-11-04",
-      "headline": "Pixel-UMI: センサー付き人間の実演に基づく環境認識型全身マニピュレーション学習手法の提案",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2611.03647v1"
-    },
-    {
-      "id": "2026-11-04-r01",
-      "date": "2026-11-04",
-      "headline": "openai Python SDK v3.44.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.44.0/"
-    },
-    {
-      "id": "2026-11-03-r08",
-      "date": "2026-11-03",
-      "headline": "Anthropicが「Data Center Asset Management, Commercial Associate」の求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5468352008"
-    },
-    {
-      "id": "2026-11-03-r07",
-      "date": "2026-11-03",
-      "headline": "Anthropicが「Marketing Lead, Claude Frontier Academy」の求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5467561008"
     }
   ],
-  "record_count": 335
+  "record_count": 341
 }

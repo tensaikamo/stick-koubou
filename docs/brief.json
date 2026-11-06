@@ -1,60 +1,49 @@
 {
-  "date": "2026-11-05",
-  "updated_at": "2026-11-05 10:49",
+  "date": "2026-11-06",
+  "updated_at": "2026-11-06 10:52",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouter上のDeepSeek Flash Latestが82%値下げされ、xAIはモバイルエンジニアの求人を急拡大させている。",
-  "ura": "APIの価格破壊は仲介層を焼き払い、自前で叩く個人に全利益を残す。xAIのネイティブ採用の動きは、AppleやGoogleのOSレイヤーをバイパスして直接ユーザーのポケットを奪う布石だ。",
-  "ura_taikou": "求人拡大は単なる既存アプリのバグ修正や保守人員の補充に過ぎないという仮説は、主要都市でのシニア層の積極採用という規模感と矛盾するため退けた。",
-  "dousuru": "今すぐOpenRouterの管理画面を開き、APIキーの単価設定と直近のコスト変動ログを確認しておけ。不要なラッパーサービスや有料テンプレートの契約をすべて即座に解約し、生APIを直接叩くスクリプトの接続テストを終わらせておけ。",
-  "kan": "xAIが今後30日以内に、既存のXアプリの枠を超えたスタンドアロンの音声対話型モバイル機能について公式発表する。基準率として大手が大型アップデートの合間にマイナーな機能拡張を行う頻度は月2回程度であり、現在の求人拡大の速度を調整するとこの時期が妥当だ。",
-  "kan_konkyo": "xAIがパロアルトとニューヨークでiOSおよびAndroidのシニアエンジニアを同時に募集開始したという求人の急拡大データから推測した。",
-  "kan_hantai": "xAIのモバイル開発は既存のXアプリ内への単なる機能追加に留まり、単独の音声アプリとしてのリリースには至らない可能性が高い。",
-  "kan_conf": 0.12,
-  "ippan": "AIサービスの価格競争が激しくなっているので、毎月定額の有料プランをなんとなく払い続けるのは損だ。本当に使っている機能ごとの従量課金や無料枠で十分足りないか、一度利用状況を見直せ。",
+  "omote": "OpenAIのモデル「GPT-5 Image Mini」の退役予定日が2026年12月1日に設定され、軽量画像生成枠の統廃合が始まった。同時にDeepSeek Pro Latestが10%値下げされ、API単価の底割れ競争が加速している。",
+  "ura": "API単価の底割れとモデル廃止の同時発生は、低単価レイヤーにしがみつく中小プロバイダの収益基盤を削り、インフラ費用の回収を急ぐ大手プラットフォーマーの囲い込み戦略と見る。この価格戦から個人が横取りできる隙は、資本の土俵であるAPI直接利用ではなく、脱落した小規模プロバイダの顧客が駆け込む『移行先の設定代行』や『ラッパー層の乗り換え自動化』の裁定取引にある。",
+  "ura_taikou": "単なる一時的なプロモーションや季節的な価格調整にすぎないという仮説は、複数のモデルで同時に退役や価格改定が起きている点から退けた。",
+  "dousuru": "iPhoneのSafariからOpenRouterの管理画面を開き、現在使っているAPIのモデルIDを直接確認しろ。14日以内に廃止対象となる軽量モデルが組み込まれていないかを今すぐ点検し、代替のオープンウェイトモデルへのルーティング切り替えスクリプトをGitHub上で書き換えろ。",
+  "kan": "今後14日以内にOpenAI以外の主要プロバイダが軽量APIの切り捨てと価格改定を連鎖的に発表すると見る。",
+  "kan_konkyo": "OpenRouter上のモデル退役予定日設定とDeepSeekの価格引き下げが同時に観測されたデータに基づく。",
+  "kan_hantai": "競合プラットフォームが価格競争に追随せず、かえって高単価な独自機能の拡充に走る場合はこの予測は外れる。",
+  "kan_conf": 0.28,
+  "ippan": "AIサービスの価格が下がっても、どれを使えばいいか迷う一般人は無理に新しい有料サービスへ飛びつかなくてよい。普段使っている無料のチャットAIの基本機能だけで十分であり、急な値上げや終了の噂に惑わされないようにしろ。",
   "votes": [
-    0.12,
-    0.12,
-    0.18
+    0.18,
+    0.28,
+    0.35
   ],
   "mijoriku": [
     {
-      "title": "OpenAI to acquire Pierre Computer Company, Inc.",
-      "desc": "OpenAIによるピエール・コンピュータ社の買収",
-      "why": "国内メディアや技術コミュニティでこの買収の構造的意味を報じている者は皆無であり、ハードウェア囲い込みの意図を先行して察知できるため。"
+      "title": "Halley: A Predictive Control Plane for Optical AI Data Center Networks",
+      "desc": "AIデータセンターの光ネットワーク向け予測制御プレーンの論文",
+      "why": "インフラのボトルネック解消に関する最新の技術的制約が示されており、日本語圏ではまだほとんど議論されていないため。"
     }
   ],
   "diffs": [
-    "[差分] 退役予定日が設定された: Inception: Mercury 3 → 2026-11-08",
-    "[差分] 退役予定日が設定された: Inception: Mercury 2.5 → 2026-11-08",
-    "[差分] 退役予定日が設定された: Inception: Mercury 2 → 2026-11-08",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 82%",
-    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値下げ 9%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 379%"
+    "[差分] 退役予定日が設定された: OpenAI: GPT-5 Image Mini → 2026-12-01",
+    "[差分] 退役予定日が設定された: Z.ai: GLM 4.5V → 2026-12-31",
+    "[差分] 退役予定日が設定された: Meta: Llama 3.2 1B Instruct → 2026-11-15",
+    "[差分] 退役予定日が設定された: Meta: Llama 3.2 3B Instruct → 2026-11-15",
+    "[差分] 価格が動いた: Reflection: Beam 1.0 501B A23B 値上げ 20%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値下げ 10%"
   ],
   "evidence": [
     {
-      "claim": "OpenRouter上のDeepSeek Flash Latestが82%値下げされた",
-      "confidence": 0.85,
-      "disconfirm": "価格改定が一時的なプロモーションであり数日で旧価格に戻ること",
+      "claim": "OpenAIの軽量モデル廃止とDeepSeekの値下げは、周辺小規模APIの淘汰とプラットフォームへの集約を進めている",
+      "confidence": 0.45,
+      "disconfirm": "中小プロバイダが独自の高収益ニッチを見つけて生き残り、価格競争とは異なるレイヤーでシェアを拡大する観測事実",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Flash Latest 値下げ 82%",
+          "title": "[差分] 退役予定日が設定された: OpenAI: GPT-5 Image Mini → 2026-12-01",
           "url": "https://openrouter.ai/models"
-        }
-      ]
-    },
-    {
-      "claim": "xAIがモバイルアプリのネイティブ開発に向けたエンジニアの採用を急拡大している",
-      "confidence": 0.75,
-      "disconfirm": "採用が頓挫し、外部ベンダーへの委託方針に切り替わること",
-      "sources": [
-        {
-          "title": "[新規求人] xai: Sr. Mobile Android Engineer ( Palo Alto, CA; New York, NY)",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5285490007"
         },
         {
-          "title": "[新規求人] xai: Sr. Mobile iOS Engineer ( Palo Alto, CA; New York, NY)",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5285483007"
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値下げ 10%",
+          "url": "https://openrouter.ai/models"
         }
       ]
     }
