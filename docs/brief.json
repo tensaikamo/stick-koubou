@@ -1,49 +1,67 @@
 {
-  "date": "2026-11-06",
-  "updated_at": "2026-11-06 10:52",
+  "date": "2026-11-07",
+  "updated_at": "2026-11-07 10:24",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenAIのモデル「GPT-5 Image Mini」の退役予定日が2026年12月1日に設定され、軽量画像生成枠の統廃合が始まった。同時にDeepSeek Pro Latestが10%値下げされ、API単価の底割れ競争が加速している。",
-  "ura": "API単価の底割れとモデル廃止の同時発生は、低単価レイヤーにしがみつく中小プロバイダの収益基盤を削り、インフラ費用の回収を急ぐ大手プラットフォーマーの囲い込み戦略と見る。この価格戦から個人が横取りできる隙は、資本の土俵であるAPI直接利用ではなく、脱落した小規模プロバイダの顧客が駆け込む『移行先の設定代行』や『ラッパー層の乗り換え自動化』の裁定取引にある。",
-  "ura_taikou": "単なる一時的なプロモーションや季節的な価格調整にすぎないという仮説は、複数のモデルで同時に退役や価格改定が起きている点から退けた。",
-  "dousuru": "iPhoneのSafariからOpenRouterの管理画面を開き、現在使っているAPIのモデルIDを直接確認しろ。14日以内に廃止対象となる軽量モデルが組み込まれていないかを今すぐ点検し、代替のオープンウェイトモデルへのルーティング切り替えスクリプトをGitHub上で書き換えろ。",
-  "kan": "今後14日以内にOpenAI以外の主要プロバイダが軽量APIの切り捨てと価格改定を連鎖的に発表すると見る。",
-  "kan_konkyo": "OpenRouter上のモデル退役予定日設定とDeepSeekの価格引き下げが同時に観測されたデータに基づく。",
-  "kan_hantai": "競合プラットフォームが価格競争に追随せず、かえって高単価な独自機能の拡充に走る場合はこの予測は外れる。",
-  "kan_conf": 0.28,
-  "ippan": "AIサービスの価格が下がっても、どれを使えばいいか迷う一般人は無理に新しい有料サービスへ飛びつかなくてよい。普段使っている無料のチャットAIの基本機能だけで十分であり、急な値上げや終了の噂に惑わされないようにしろ。",
+  "omote": "DeepSeekが軽量枠のV4.1 Flashを50%値下げし上位版を小幅値上げした一方、Googleは15秒動画解析に特化したGemini Omni 1.2 Flashを投入した。さらにMicrosoftがOracleからのAIクラウド容量レンタル契約を縮小させている事実が判明した。",
+  "ura": "外部GPUの過剰調達を解消する動きとAPI価格破壊が連動しており、計算資源の逼迫は確実に緩んでいる。各社は軽量・高速モデルの限界原価を削り落として開発者のトラフィックを囲い込み、上位モデルで利ざやを取る二極化設計へ舵を切った。個人が上位モデルを常時直接叩くのは資本に毟られる悪手であり、前処理と判定の9割を激安枠へ逃がす<t data-d='リクエストを用途に応じて最適な安価・高価モデルへ自動分岐させる仕組み'>ルーティング</t>を組む者だけがコスト優位を残せる。",
+  "ura_taikou": "DeepSeekの値下げは競合オープンソースへの単なる一時的ダンピングであるという仮説を検討したが、MicrosoftのOracle契約縮小に代表されるクラウドリソース全体の過剰感と連動しているため退けた。",
+  "dousuru": "SafariでGitHubを開き、開発中のWebアプリのリポジトリにあるAPI呼び出し設定を直ちに点検しろ。ChatGPTに既存の呼び出し関数を貼り付け、「判定の大部分を値下げされたDeepSeek V4.1 FlashまたはGemini Omni 1.2 Flashへ逃がし、最終判定のみ上位モデルを叩く条件分岐コード」を生成させろ。iPhoneのGitHub Webエディタからコミットを完了させ、今夜までに推論コストを半減させる改修を終えろ。",
+  "kan": "本命ではないが、Anthropicは今後21日以内（2026年11月28日まで）に、公式ニュースルームまたは製品画面において、Claudeシリーズのモデル階層再編または特定用途向け新サブブランドの命名を公開する目がある。",
+  "kan_konkyo": "Anthropicが製品体系と命名を統括する「Brand Strategy Lead, Brand Architecture & Naming」の新規求人（記事3）を開始し、複雑化したモデル群の整理が急務となっている点。",
+  "kan_hantai": "ブランド統括職の採用開始から実務の成果物公開までは通常数ヶ月のリードタイムを要するため、3週間以内の公式反映は時期尚早である点。",
+  "kan_conf": 0.12,
+  "ippan": "AIサービスの利用料金は、選ぶモデルによって10倍以上の差がつく局面に突入しました。日常の調べ物や下書きの作成であれば、最も高価な最上位モデルを毎回使う必要は全くなく、名前に「Flash」や「mini」が付いた最新の軽量モデルで十分に実用的な回答が得られます。普段使っているAIアプリの設定を見直し、通常時のモデルを軽量版に切り替えておくだけで、同じ課金額のまま利用可能回数を大幅に引き伸ばせます。",
   "votes": [
-    0.18,
-    0.28,
-    0.35
+    0.12
   ],
   "mijoriku": [
     {
-      "title": "Halley: A Predictive Control Plane for Optical AI Data Center Networks",
-      "desc": "AIデータセンターの光ネットワーク向け予測制御プレーンの論文",
-      "why": "インフラのボトルネック解消に関する最新の技術的制約が示されており、日本語圏ではまだほとんど議論されていないため。"
+      "title": "Qwen3Guard: Real-time Safety for Your Token Stream",
+      "desc": "生成中のトークン列をリアルタイムで検疫する独立した超軽量セーフティモデル。",
+      "why": "長大なシステムプロンプトでモデルを縛って入力枠とコストを浪費する悪手を防ぎ、安全監視を外部へ切り出して推論コストを最小化する設計パターンを先取りできるため。"
+    },
+    {
+      "title": "Gemini Omni 1.2 Flash",
+      "desc": "15秒の動画クリップ解析を低遅延・低コストで処理する特化型マルチモーダルモデル。",
+      "why": "重いサーバーサイド前処理なしに、ブラウザから直接数秒〜15秒の日常映像を投げ込んで状態判定させる軽量Webアプリを個人が最速で組めるため。"
     }
   ],
   "diffs": [
-    "[差分] 退役予定日が設定された: OpenAI: GPT-5 Image Mini → 2026-12-01",
-    "[差分] 退役予定日が設定された: Z.ai: GLM 4.5V → 2026-12-31",
-    "[差分] 退役予定日が設定された: Meta: Llama 3.2 1B Instruct → 2026-11-15",
-    "[差分] 退役予定日が設定された: Meta: Llama 3.2 3B Instruct → 2026-11-15",
-    "[差分] 価格が動いた: Reflection: Beam 1.0 501B A23B 値上げ 20%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値下げ 10%"
+    "[差分] 退役予定日が設定された: LiquidAI: LFM2.5-2.6B → 2026-11-13",
+    "[差分] 退役予定日が設定された: LiquidAI: LFM2.5-2.6B (free) → 2026-11-13",
+    "[差分] 退役予定日が設定された: Meta: Llama 3.2 1B Instruct → 2026-11-20",
+    "[差分] 退役予定日が設定された: Meta: Llama 3.2 3B Instruct → 2026-11-20",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 1017 値下げ 50%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 8%"
   ],
   "evidence": [
     {
-      "claim": "OpenAIの軽量モデル廃止とDeepSeekの値下げは、周辺小規模APIの淘汰とプラットフォームへの集約を進めている",
-      "confidence": 0.45,
-      "disconfirm": "中小プロバイダが独自の高収益ニッチを見つけて生き残り、価格競争とは異なるレイヤーでシェアを拡大する観測事実",
+      "claim": "軽量・高速モデルの急激な低価格化と上位モデルのプレミアム化による二極化が進んでいる",
+      "confidence": 0.85,
+      "disconfirm": "DeepSeekがFlashの値下げを即座に撤回するか、GoogleがGemini Omni Flashの提供単価をPro水準まで引き上げた場合",
       "sources": [
         {
-          "title": "[差分] 退役予定日が設定された: OpenAI: GPT-5 Image Mini → 2026-12-01",
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 1017 値下げ 50%",
           "url": "https://openrouter.ai/models"
         },
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値下げ 10%",
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 8%",
           "url": "https://openrouter.ai/models"
+        },
+        {
+          "title": "Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips",
+          "url": "https://deepmind.google/blog/gemini-omni-12-flash-fast-and-cost-effective-with-longer-clips/"
+        }
+      ]
+    },
+    {
+      "claim": "大手クラウドのGPU不足が充足に向かい、外部インフラのレンタル解消が始まっている",
+      "confidence": 0.75,
+      "disconfirm": "MicrosoftがAzureの計算資源不足を理由にOracle等の他社GPU枠の追加調達を発表した場合",
+      "sources": [
+        {
+          "title": "Microsoft is winding down Oracle deal to rent AI cloud capacity",
+          "url": "https://www.reuters.com/business/microsoft-is-winding-down-oracle-deal-rent-ai-cloud-capacity-bloomberg-news-2026-11-06/"
         }
       ]
     }
