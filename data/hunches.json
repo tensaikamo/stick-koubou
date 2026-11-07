@@ -2719,7 +2719,7 @@
         "conf_after": 0.657
       }
     ],
-    "status": "pending",
+    "status": "unscorable",
     "resolved_at": null,
     "result": null,
     "evidence": {
@@ -2732,7 +2732,7 @@
     "generator_ver": "v1",
     "initial_confidence": 0.55,
     "judge_attempts": 3,
-    "needs_review": true
+    "needs_review": false
   },
   {
     "id": "2026-10-11-h01",
