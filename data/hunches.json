@@ -3171,5 +3171,45 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.7
+  },
+  {
+    "id": "2026-11-08-h01",
+    "created_at": "2026-11-08T09:52:11.166893+09:00",
+    "based_on": [
+      "2026-11-08-r01"
+    ],
+    "prose": "Anthropicは法執行機関からの令状やデータ開示要請に対応する専任法務の求人を開始したが、この動きが直近での透明性レポート公表につながる可能性は低い。法執行窓口の体制構築にはポリシー策定やデータ集計基盤の整備が必要であり、求人を出した初期段階からわずか3週間程度で対外レポートを公開した前例はテック業界でもほぼ存在しない。したがって、向こう21日以内にAnthropicが法執行開示に関する透明性レポートを出すことは見送られる。",
+    "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、法執行機関からの要請に関する年次または四半期の透明性レポート（Transparency Report）を公開しない。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "transparency report enforcement",
+      "decider": "期日までにAnthropicの公式ニュースルーム（https://www.anthropic.com/news）において、タイトルまたは本文に法執行機関や政府からのユーザーデータ開示要請に関する集計レポート（Transparency Report）が公開されなかった場合に的中、公開された場合は不的中と判定する。"
+    },
+    "deadline": "2026-11-29",
+    "confidence": 0.91,
+    "base_rate": 0.95,
+    "base_rate_class": "未上場AI企業が専任法務の求人公開から21日以内に法執行透明性レポートを公開しない頻度",
+    "confidence_why": "専任担当者の採用活動とオンボーディングには通常数ヶ月を要するため出ない確率が極めて高いが、既存チームがすでに集計を完了させていて公表直前の段階にある可能性をわずかに織り込み、起きない確率（基準率0.95）から0.04下方修正した。",
+    "counter": "既に社内で法執行要請データの集計と公表準備が完了しており、採用活動の対外公表と歩調を合わせて先行してレポートをリリースする場合。",
+    "indicators": [
+      {
+        "sign": "Anthropicの公式サイトに「Transparency Report」または「Law Enforcement Guidelines」の専用ページが開設される",
+        "dir": "kill"
+      },
+      {
+        "sign": "該当のLegal Specialist求人が募集中のまま掲載され続ける",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.8-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]
