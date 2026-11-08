@@ -1,67 +1,52 @@
 {
-  "date": "2026-11-07",
-  "updated_at": "2026-11-07 10:24",
+  "date": "2026-11-08",
+  "updated_at": "2026-11-08 09:57",
   "build_id": "truthful-ui-v1",
-  "omote": "DeepSeekが軽量枠のV4.1 Flashを50%値下げし上位版を小幅値上げした一方、Googleは15秒動画解析に特化したGemini Omni 1.2 Flashを投入した。さらにMicrosoftがOracleからのAIクラウド容量レンタル契約を縮小させている事実が判明した。",
-  "ura": "外部GPUの過剰調達を解消する動きとAPI価格破壊が連動しており、計算資源の逼迫は確実に緩んでいる。各社は軽量・高速モデルの限界原価を削り落として開発者のトラフィックを囲い込み、上位モデルで利ざやを取る二極化設計へ舵を切った。個人が上位モデルを常時直接叩くのは資本に毟られる悪手であり、前処理と判定の9割を激安枠へ逃がす<t data-d='リクエストを用途に応じて最適な安価・高価モデルへ自動分岐させる仕組み'>ルーティング</t>を組む者だけがコスト優位を残せる。",
-  "ura_taikou": "DeepSeekの値下げは競合オープンソースへの単なる一時的ダンピングであるという仮説を検討したが、MicrosoftのOracle契約縮小に代表されるクラウドリソース全体の過剰感と連動しているため退けた。",
-  "dousuru": "SafariでGitHubを開き、開発中のWebアプリのリポジトリにあるAPI呼び出し設定を直ちに点検しろ。ChatGPTに既存の呼び出し関数を貼り付け、「判定の大部分を値下げされたDeepSeek V4.1 FlashまたはGemini Omni 1.2 Flashへ逃がし、最終判定のみ上位モデルを叩く条件分岐コード」を生成させろ。iPhoneのGitHub Webエディタからコミットを完了させ、今夜までに推論コストを半減させる改修を終えろ。",
-  "kan": "本命ではないが、Anthropicは今後21日以内（2026年11月28日まで）に、公式ニュースルームまたは製品画面において、Claudeシリーズのモデル階層再編または特定用途向け新サブブランドの命名を公開する目がある。",
-  "kan_konkyo": "Anthropicが製品体系と命名を統括する「Brand Strategy Lead, Brand Architecture & Naming」の新規求人（記事3）を開始し、複雑化したモデル群の整理が急務となっている点。",
-  "kan_hantai": "ブランド統括職の採用開始から実務の成果物公開までは通常数ヶ月のリードタイムを要するため、3週間以内の公式反映は時期尚早である点。",
-  "kan_conf": 0.12,
-  "ippan": "AIサービスの利用料金は、選ぶモデルによって10倍以上の差がつく局面に突入しました。日常の調べ物や下書きの作成であれば、最も高価な最上位モデルを毎回使う必要は全くなく、名前に「Flash」や「mini」が付いた最新の軽量モデルで十分に実用的な回答が得られます。普段使っているAIアプリの設定を見直し、通常時のモデルを軽量版に切り替えておくだけで、同じ課金額のまま利用可能回数を大幅に引き伸ばせます。",
-  "votes": [
-    0.12
-  ],
+  "omote": "Anthropicが<t data-d='複数製品の名称体系や階層関係を整理・統一する設計方針'>ブランドアーキテクチャ</t>と製品ネーミングを専任で統括する幹部求人を公開した。同時に推論市場ではZ.aiのGLM 5.3 Flashが78%値下げされるなど、中国勢による極端な価格破壊がAPI中継層で一斉に表面化している。米国の先端モデル企業がブランド再編へ逃げ、インフラ推論層が消耗戦へ突入した構図だ。",
+  "ura": "Anthropicはモデル開発企業から、OpenAI型の独立した商用プロダクト企業への完全移行を狙っている。過去に追跡した法執行機関専任弁護士の採用やSDK更新に続き、複雑化したClaude製品群を一般層と企業向けに分離再編する準備に入った。下位モデルの推論コストが中国勢の投げ売りで利益を生まなくなったため、上位ブランドの囲い込みで粗利を守る布戦だ。",
+  "ura_taikou": "単なる増員に伴う定常的な広報体制の拡充という説は、募集要件に明確にブランドアーキテクチャとネーミングの専門性が指定されている事実と整合しないため退けた。",
+  "dousuru": "iPhoneのSafariでGitHubを開き、開発中のWebアプリのリポジトリにあるAPI呼び出し設定を更新しろ。<t data-d='複数のAIモデルを一つの共通形式で呼び出せる中継サービス'>OpenRouter</t>経由で今回78%値下げされた超低単価モデル（GLM 5.3 Flash）を、要約や下書き用のフォールバック先として選択肢に1行追加しておけ。高額な先端モデルに依存しない構造を今夜30分で作ることで、個人開発サービスの運用原価を即座に引き下げろ。",
+  "kan": "Anthropicは今後21日以内に、公式ニュースルームにおいて、法執行機関からの要請に関する年次または四半期の透明性レポート（Transparency Report）を公開しない。",
+  "kan_konkyo": "専任担当者の採用活動とオンボーディングには通常数ヶ月を要するため出ない確率が極めて高いが、既存チームがすでに集計を完了させていて公表直前の段階にある可能性をわずかに織り込み、起きない確率（基準率0.95）から0.04下方修正した。",
+  "kan_hantai": "既に社内で法執行要請データの集計と公表準備が完了しており、採用活動の対外公表と歩調を合わせて先行してレポートをリリースする場合。",
+  "kan_conf": 0.91,
+  "ippan": "AIサービスの価格競争が激化し、裏側の処理コストは急速に安くなっています。大手サービスの有料プランを無理に何個も契約し続ける必要はありません。まずは無料枠や低価格プランで十分実用になるか見直し、固定費を削るタイミングが来ています。",
+  "votes": [],
   "mijoriku": [
     {
-      "title": "Qwen3Guard: Real-time Safety for Your Token Stream",
-      "desc": "生成中のトークン列をリアルタイムで検疫する独立した超軽量セーフティモデル。",
-      "why": "長大なシステムプロンプトでモデルを縛って入力枠とコストを浪費する悪手を防ぎ、安全監視を外部へ切り出して推論コストを最小化する設計パターンを先取りできるため。"
-    },
-    {
-      "title": "Gemini Omni 1.2 Flash",
-      "desc": "15秒の動画クリップ解析を低遅延・低コストで処理する特化型マルチモーダルモデル。",
-      "why": "重いサーバーサイド前処理なしに、ブラウザから直接数秒〜15秒の日常映像を投げ込んで状態判定させる軽量Webアプリを個人が最速で組めるため。"
+      "title": "エージェント通信における潜在コンテキスト圧縮手法（Coca-Cola）",
+      "desc": "ツール実行結果を自然言語ではなく圧縮潜在表現でモデルに戻すことで、トークン消費を70〜89%削減する技術設計。",
+      "why": "API課金モデルの前提を覆すものであり、将来的に個人が自前の軽量モデルで高度なツール連携アプリを極小コスト運用する突破口になるため。"
     }
   ],
   "diffs": [
-    "[差分] 退役予定日が設定された: LiquidAI: LFM2.5-2.6B → 2026-11-13",
-    "[差分] 退役予定日が設定された: LiquidAI: LFM2.5-2.6B (free) → 2026-11-13",
-    "[差分] 退役予定日が設定された: Meta: Llama 3.2 1B Instruct → 2026-11-20",
-    "[差分] 退役予定日が設定された: Meta: Llama 3.2 3B Instruct → 2026-11-20",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 1017 値下げ 50%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 8%"
+    "[差分] 退役予定日が設定された: MoonshotAI: Kimi K2.5 → 2026-11-18",
+    "[差分] 価格が動いた: MiniMax: MiniMax M3.1 Flash 値下げ 50%",
+    "[差分] 価格が動いた: inclusionAI: Ling 3.1 Flash 値下げ 40%",
+    "[差分] 価格が動いた: Z.ai: GLM Flash Latest 値上げ 18%",
+    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値下げ 78%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値下げ 5%"
   ],
   "evidence": [
     {
-      "claim": "軽量・高速モデルの急激な低価格化と上位モデルのプレミアム化による二極化が進んでいる",
-      "confidence": 0.85,
-      "disconfirm": "DeepSeekがFlashの値下げを即座に撤回するか、GoogleがGemini Omni Flashの提供単価をPro水準まで引き上げた場合",
+      "claim": "Anthropicが製品群の命名規則およびブランド構造の再編に向けた専任責任者の採用を開始した",
+      "confidence": 0.88,
+      "disconfirm": "求人が取り下げられ、既存のClaude単一名称体系のまま新機能が追加され続けること",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 1017 値下げ 50%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値上げ 8%",
-          "url": "https://openrouter.ai/models"
-        },
-        {
-          "title": "Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips",
-          "url": "https://deepmind.google/blog/gemini-omni-12-flash-fast-and-cost-effective-with-longer-clips/"
+          "title": "[新規求人] anthropic: Brand Strategy Lead, Brand Architecture & Naming (San Francisco, CA | New York City, NY)",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5475321008"
         }
       ]
     },
     {
-      "claim": "大手クラウドのGPU不足が充足に向かい、外部インフラのレンタル解消が始まっている",
-      "confidence": 0.75,
-      "disconfirm": "MicrosoftがAzureの計算資源不足を理由にOracle等の他社GPU枠の追加調達を発表した場合",
+      "claim": "中国系軽量モデルのAPI提供価格が7割を超える水準で引き下げられている",
+      "confidence": 0.92,
+      "disconfirm": "OpenRouter上の価格改定が誤記としてロールバックされ旧価格に戻ること",
       "sources": [
         {
-          "title": "Microsoft is winding down Oracle deal to rent AI cloud capacity",
-          "url": "https://www.reuters.com/business/microsoft-is-winding-down-oracle-deal-rent-ai-cloud-capacity-bloomberg-news-2026-11-06/"
+          "title": "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値下げ 78%",
+          "url": "https://openrouter.ai/models"
         }
       ]
     }

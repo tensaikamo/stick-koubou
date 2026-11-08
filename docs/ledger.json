@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-07 10:11",
+  "updated_at": "2026-11-08 09:52",
   "score": {
     "hit": 17,
     "miss": 24,
     "total": 41,
     "rate": 0.4146341463414634,
-    "pending": 9,
+    "pending": 10,
     "brier": 0.3478223170731708,
     "brier_n": 41,
     "brier_initial": 0.3613317073170733,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-11-09",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -417,22 +417,26 @@
           "why": "Anthropicにおいて生命科学分野の研究員求人（Research Scientist, Life Sciences）が新たに掲載されたため。"
         }
       ]
+    },
+    {
+      "id": "2026-11-08-h01",
+      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、法執行機関からの要請に関する年次または四半期の透明性レポート（Transparency Report）を公開しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-11-29",
+      "confidence": 0.91,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "既に社内で法執行要請データの集計と公表準備が完了しており、採用活動の対外公表と歩調を合わせて先行してレポートをリリースする場合。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-11-05",
-          "headline": "anthropic: Learning & Education Specialist 求人公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5462661008"
-        },
-        {
-          "date": "2026-11-06",
-          "headline": "anthropicがEquity Accounting and Reportingの求人を公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5463197008"
-        },
         {
           "date": "2026-11-06",
           "headline": "anthropicがPublic Policy, Strategic Advisoryの求人を公開",
@@ -442,6 +446,16 @@
           "date": "2026-11-06",
           "headline": "anthropicがResearch Scientist, Discoveryの求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5468937008"
+        },
+        {
+          "date": "2026-11-08",
+          "headline": "AnthropicがPython SDK v2.6.0をリリース",
+          "url": "https://pypi.org/project/anthropic/2.6.0/"
+        },
+        {
+          "date": "2026-11-08",
+          "headline": "Anthropicが法執行機関・政府要請対応の専任法務スペシャリストの募集を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5474559008"
         }
       ]
     },
@@ -499,11 +513,6 @@
       "subject": "Google",
       "events": [
         {
-          "date": "2026-10-15",
-          "headline": "google-genai Python SDK v2.31.0 リリース",
-          "url": "https://pypi.org/project/google-genai/2.31.0/"
-        },
-        {
           "date": "2026-10-23",
           "headline": "Googleがgoogle-genai Python SDK v2.32.0を公開",
           "url": "https://pypi.org/project/google-genai/2.32.0/"
@@ -517,11 +526,37 @@
           "date": "2026-11-03",
           "headline": "google-genai Python SDK v2.34.0 リリース",
           "url": "https://pypi.org/project/google-genai/2.34.0/"
+        },
+        {
+          "date": "2026-11-08",
+          "headline": "Googleがgoogle-genai Python SDK v3.0.0をリリース",
+          "url": "https://pypi.org/project/google-genai/3.0.0/"
         }
       ]
     }
   ],
   "records": [
+    {
+      "id": "2026-11-08-r03",
+      "date": "2026-11-08",
+      "headline": "AnthropicがPython SDK v2.6.0をリリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/2.6.0/"
+    },
+    {
+      "id": "2026-11-08-r02",
+      "date": "2026-11-08",
+      "headline": "Googleがgoogle-genai Python SDK v3.0.0をリリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/3.0.0/"
+    },
+    {
+      "id": "2026-11-08-r01",
+      "date": "2026-11-08",
+      "headline": "Anthropicが法執行機関・政府要請対応の専任法務スペシャリストの募集を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5474559008"
+    },
     {
       "id": "2026-11-06-r06",
       "date": "2026-11-06",
@@ -584,28 +619,7 @@
       "headline": "anthropic Python SDK v2.5.0 リリース",
       "certainty": "reported",
       "url": "https://pypi.org/project/anthropic/2.5.0/"
-    },
-    {
-      "id": "2026-11-05-r01",
-      "date": "2026-11-05",
-      "headline": "openai Python SDK v3.46.0 リリース",
-      "certainty": "reported",
-      "url": "https://pypi.org/project/openai/3.46.0/"
-    },
-    {
-      "id": "2026-11-04-r06",
-      "date": "2026-11-04",
-      "headline": "Anthropicがシンガポール拠点でのHead of ASEAN, Applied AIの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424312008"
-    },
-    {
-      "id": "2026-11-04-r05",
-      "date": "2026-11-04",
-      "headline": "AnthropicがPartner Specializations Leadの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5464485008"
     }
   ],
-  "record_count": 341
+  "record_count": 344
 }
