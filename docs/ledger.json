@@ -1,24 +1,44 @@
 {
-  "updated_at": "2026-11-08 09:52",
+  "updated_at": "2026-11-09 10:22",
   "score": {
-    "hit": 17,
+    "hit": 18,
     "miss": 24,
-    "total": 41,
-    "rate": 0.4146341463414634,
-    "pending": 10,
-    "brier": 0.3478223170731708,
-    "brier_n": 41,
-    "brier_initial": 0.3613317073170733,
+    "total": 42,
+    "rate": 0.42857142857142855,
+    "pending": 9,
+    "brier": 0.34009092857142864,
+    "brier_n": 42,
+    "brier_initial": 0.3538809523809525,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-11-09",
+    "date": "2026-11-10",
     "days": 1
   },
   "decided": [
+    {
+      "id": "2026-10-19-h01",
+      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、インディアナ州またはケンタッキー州でのデータセンター施設計画に関する発表を行わない",
+      "subject": "Anthropic",
+      "deadline": "2026-11-09",
+      "confidence": 0.848,
+      "initial_confidence": 0.78,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "求人公開を発端として地元紙や環境団体からの問い合わせが急増し、透明性確保を名目に協調声明を前倒しでニュースルームに掲載する事態。",
+      "evidence": "判定期限日時点でAnthropic公式ニュースルームにインディアナ州やケンタッキー州でのデータセンター施設計画に関する発表記事は存在しないため。",
+      "signals": [
+        {
+          "date": "2026-10-19",
+          "dir": "confirm",
+          "why": "Anthropicの公式求人一覧にインディアナ州およびケンタッキー州を対象とするデータセンター地域連携マネージャー職（Community Engagement Manager, Data Centers）の募集が確認されたため。"
+        }
+      ]
+    },
     {
       "id": "2026-10-08-h01",
       "claim": "Googleは今後14日以内に、公式ブログまたはGitHubリポジトリにおいて「google-genai」の新たなメジャーバージョンをリリースすることを見送る。",
@@ -234,49 +254,9 @@
           "why": "本日の事象においてopenai Python SDK v3.3.1がリリースされたため、v3.3.x系のパッチ追加の指標に該当する。"
         }
       ]
-    },
-    {
-      "id": "2026-08-21-h01",
-      "claim": "Anthropicは今後14日以内に、シンガポールオフィスの開設またはASEAN地域拠点設立に関する公式発表を自社ニュースルームに掲載しない。",
-      "subject": "Anthropic",
-      "deadline": "2026-09-04",
-      "confidence": 0.927,
-      "initial_confidence": 0.89,
-      "result": "hit",
-      "status": "resolved",
-      "alert": false,
-      "counter": "既に現地法人設立やオフィス契約が完了しており、求人公開と連動した対外PR施策が直近で準備されている場合。",
-      "evidence": "期日時点でAnthropicのニュースルームを確認したところ、シンガポールオフィスの開設やASEAN拠点設立に関する公式告知記事は掲載されておらず、予測通り不掲載であることが確認された。",
-      "signals": [
-        {
-          "date": "2026-08-21",
-          "dir": "confirm",
-          "why": "本日の新規求人一覧にAccount Executive - Public Sector (ASEAN) (Singapore)などのシンガポール勤務ポジションが追加されたためconfirm指標が点灯する。"
-        }
-      ]
     }
   ],
   "pending": [
-    {
-      "id": "2026-10-19-h01",
-      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、インディアナ州またはケンタッキー州でのデータセンター施設計画に関する発表を行わない",
-      "subject": "Anthropic",
-      "deadline": "2026-11-09",
-      "confidence": 0.848,
-      "initial_confidence": 0.78,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "求人公開を発端として地元紙や環境団体からの問い合わせが急増し、透明性確保を名目に協調声明を前倒しでニュースルームに掲載する事態。",
-      "evidence": "",
-      "signals": [
-        {
-          "date": "2026-10-19",
-          "dir": "confirm",
-          "why": "Anthropicの公式求人一覧にインディアナ州およびケンタッキー州を対象とするデータセンター地域連携マネージャー職（Community Engagement Manager, Data Centers）の募集が確認されたため。"
-        }
-      ]
-    },
     {
       "id": "2026-10-11-h01",
       "claim": "xAIは今後30日以内に、公式ブログにおいて日本市場向けX Moneyまたは決済サービスの提供開始を発表しない",
