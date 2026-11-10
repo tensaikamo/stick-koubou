@@ -9322,5 +9322,166 @@
       "2026-11-05-r03",
       "2026-11-05-r02"
     ]
+  },
+  {
+    "id": "2026-11-10-r01",
+    "created_at": "2026-11-10T12:44:16.900554+09:00",
+    "headline": "Alfonso Amayuelas et al.による論文「Sampling Is Not Curiosity: Why LLM Agents Should Investigate」がarXivに投稿された",
+    "what_happened": "Alfonso AmayuelasらはLLMエージェントのオープンエンドなタスク実行における探索メカニズムに関する論文をarXivに発表した。現行の推論時サンプリング手法は確率的な探索にとどまっており、環境とのインタラクションを通じてオンラインで改善される予測構造としての好奇心が欠如していると論じている。本文はarXivのHTML/PDFプレビュー機能を通じて取得された。",
+    "background": "強化学習における好奇心駆動型探索とLLMの推論時サンプリング（temperatureや木探索など）の理論的差異に関する研究文脈。",
+    "changed": "LLMエージェントの探索能力の定義と評価に関する新たな理論的枠組みが提示された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2611.10501v1",
+      "title": "Sampling Is Not Curiosity: Why LLM Agents Should Investigate",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-11-10-r02",
+    "created_at": "2026-11-10T12:44:16.900554+09:00",
+    "headline": "Jinyuan Wang et al.による論文「Safer for Whom? A Systematic Exploration of AI Safety in Eating Disorder Interactions」がarXivに投稿された",
+    "what_happened": "Jinyuan Wangらは、摂食障害に関するオンラインコミュニティから収集した質問を用いて、3つのオープンウェイトLLMの安全性評価を行った論文をarXivに発表した。臨床的基準に基づき7次元の害の分類体系を拡張してモデルの応答を評価している。本文はarXivのプレビュー機能により取得された。",
+    "background": "LLMの安全性評価において、摂食障害などの繊細なプロンプトに対するモデルの応答と脆弱性認識能力を検証する研究背景。",
+    "changed": "オープンウェイトモデルにおける摂食障害関連インタラクションの安全性評価データが公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2611.10488v1",
+      "title": "Safer for Whom? A Systematic Exploration of AI Safety in Eating Disorder Interactions",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-11-10-r03",
+    "created_at": "2026-11-10T12:44:16.900554+09:00",
+    "headline": "Bowen Zuo et al.による論文「Test-Time Scaling for Diffusion Language Models with Frequency-Aware Remasking」がarXivに投稿された",
+    "what_happened": "Bowen Zuoらは拡散言語モデル（DLM）の推論時スケーリングに関する論文をarXivに発表した。頻度に応じた再マスク（frequency-aware remasking）を用いた2段階のアプローチにより、推論computeの適応的割り当てを行う手法を提案している。本文はarXivのプレビュー機能により取得された。",
+    "background": "拡散言語モデルの反復的デノイジングプロセスにおけるトークン確定・再マスクの効率化と推論時スケーリングの最適化。",
+    "changed": "DLMの推論時計算量と出力品質を改善する新しいデノイジング・再マスク戦略が提案された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2611.10486v1",
+      "title": "Test-Time Scaling for Diffusion Language Models with Frequency-Aware Remasking",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-11-10-r04",
+    "created_at": "2026-11-10T12:44:16.900554+09:00",
+    "headline": "米連邦官報(Federal Register)へのアクセス制限に関するボットテスト画面の発生",
+    "what_happened": "FederalRegister.govへのアクセス時に自動スクレイピング対策としてのCAPTCHA認証画面が返された。プログラムによる直接的なHTML取得が制限されており、開発者向けAPIの利用が案内されている。本文はフェッチされたレスポンス内容に基づく。",
+    "background": "米国連邦官報サイトにおける機械的な大量スクレイピングに対するアクセス制御とAPI誘導の方針。",
+    "changed": "同サイトへのプログラムによる直接的なデータ取得が制限される状態となった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://www.federalregister.gov/documents/2026/11/05/2026-22593/medical-devices-hematology-and-pathology-devices-classification-of-the-digital-cervical-cytology",
+      "title": "[米規制] Medical Devices; Hematology and Pathology Devices; Classification of the Digital Cervical Cytology Slide Imaging System With Artificial Intelligence Algorithm",
+      "hn_score": 0,
+      "name": "FederalRegister",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-11-10-r05",
+    "created_at": "2026-11-10T12:44:16.900554+09:00",
+    "headline": "openai Python SDK v3.48.0がPyPIにリリースされた",
+    "what_happened": "OpenAI公式のPython用APIライブラリのバージョン3.48.0がPyPIに公開された。同期および非同期クライアント、型定義を含み、OpenAI REST APIへのアクセスを提供する。本文はPyPIの該当リリースぺージから取得された。",
+    "background": "OpenAI APIを利用するPythonアプリケーション向けの公式SDKの継続的なバージョン更新。",
+    "changed": "openai Python SDKのバージョンが3.48.0へ更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.48.0/",
+      "title": "openai Python SDK v3.48.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-05-r01",
+      "2026-11-04-r01",
+      "2026-11-03-r04",
+      "2026-10-28-r01",
+      "2026-10-24-r01",
+      "2026-10-20-r01"
+    ]
+  },
+  {
+    "id": "2026-11-10-r06",
+    "created_at": "2026-11-10T12:44:16.900554+09:00",
+    "headline": "anthropic Python SDK v2.7.0がPyPIにリリースされた",
+    "what_happened": "Anthropic公式のPython用Claude APIライブラリのバージョン2.7.0がPyPIに公開された。Anthropicのプラットフォームドキュメントに準拠したクライアント機能を提供する。本文はPyPIの該当リリースページから取得された。",
+    "background": "AnthropicのClaude APIを利用するPythonアプリケーション向けの公式SDKの継続的なバージョン更新。",
+    "changed": "anthropic Python SDKのバージョンが2.7.0へ更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/2.7.0/",
+      "title": "anthropic Python SDK v2.7.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-08-r03",
+      "2026-11-08-r01",
+      "2026-11-06-r03",
+      "2026-11-06-r02",
+      "2026-11-06-r01",
+      "2026-11-05-r04"
+    ]
+  },
+  {
+    "id": "2026-11-10-r07",
+    "created_at": "2026-11-10T12:44:16.900554+09:00",
+    "headline": "Anthropicがシドニー（豪州）でのPartner Account Manager, ANZの求人情報を公開した",
+    "what_happened": "AnthropicはGreenhouseの採用ページにおいて、オーストラリアおよびニュージーランド（ANZ）地域を対象としたパートナーアカウントマネージャーの求人情報を新たに掲載した。グローバルおよび地域のシステムインテグレーターやコンサルティングファームとの提携・共同販売体制の構築を担うポジションとなっている。本文は求人票の記載に基づく。",
+    "background": "AnthropicによるAPAC地域（特にANZ市場）でのパートナーエコシステム拡大と現地営業体制の構築。",
+    "changed": "ANZ地域におけるチャネルパートナー開拓と協業推進のための専任担当者の募集が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5475150008",
+      "title": "[新規求人] anthropic: Partner Account Manager, ANZ (Sydney, Australia)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-08-r03",
+      "2026-11-08-r01",
+      "2026-11-06-r03",
+      "2026-11-06-r02",
+      "2026-11-06-r01",
+      "2026-11-05-r04"
+    ]
   }
 ]
