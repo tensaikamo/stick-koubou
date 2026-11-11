@@ -2793,13 +2793,16 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "判定対象である公式ブログ（https://x.ai/blog）の内容を確認できなかったため、日本国内向けの決済サービス提供開始の告知有無を判定できない。",
+      "url": ""
+    },
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.92,
-    "judge_attempts": 1
+    "judge_attempts": 2
   },
   {
     "id": "2026-10-19-h01",
@@ -3035,7 +3038,8 @@
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "judge_attempts": 1
   },
   {
     "id": "2026-10-30-h01",
