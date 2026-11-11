@@ -1,162 +1,165 @@
 {
-  "date": "2026-11-06",
+  "date": "2026-11-11",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenAIのSDKバージョンアップに対応するルーティング切り替えスクリプトをiPhoneのGitHubブラウザで今すぐ書き換えるか？",
-    "低単価レイヤーから脱落するプロバイダの顧客を狙った移行設定代行の導線を自分のリポジトリに今日仕込むか？",
-    "API価格の底割れを逆手に取った自動化ラッパー層の切り替え検証を今日30分以内に完了させるか？"
+    "GLM 5.3 Flashの値下げ追従に対し、お前のWebアプリはバックエンドの切り替えを何秒で完了できるか？",
+    "オープンソースモデルのルーティング設定を、今日お前のiPhoneからGitHubのどのファイルに書き込むか？",
+    "API呼び出し単価の変動に対して、お前のアプリは月額コストのシミュレーションをどこまで落とし込んだか？"
   ],
   "moves": [
     {
-      "t": "GitHub上でルーティング切り替えスクリプトを修正する",
-      "why": "API価格の底割れとモデル廃止の波及を回避するため、代替のオープンウェイトモデルへの切り替えコードを直ちに反映する。",
+      "t": "GitHubの環境変数設定にGLM 5.3 Flashを追加して疎通テストを行う",
+      "why": "価格改定された即時応答モデルを自分のWebアプリに組み込み、コスト効率の高いバックエンドへ直結させるため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.5,
-      "success_p_max": 0.7,
-      "success_why": "iPhoneのブラウザ上でのコード編集は誤りやすいため、成功見込みを保守的に置く。",
+      "success_p": 0.85,
+      "success_p_min": 0.7,
+      "success_p_max": 0.95,
+      "success_why": "既存のOpenRouter経由の設定ファイルをiPhoneのSafariから直接書き換えるだけで完結するため",
       "value_score": 4,
       "learning_value": 4,
-      "time_minutes": 30,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "GitHub上のルーティングスクリプトの更新完了",
+      "outcome": "OpenRouter API経由でGLM 5.3 Flashからの正常なレスポンス確認",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "システムの根幹であるルーティングを直接修正するため。",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "API切り替えの基本インフラが整うだけでアプリ全体の運用コストが下がるため",
       "evidence_ids": [
-        "2026-11-04-r01"
+        "2026-07-22-r02"
       ],
       "assumptions": [
-        "GitHubのWebエディタがiPhoneのSafariで正常に動作すること"
+        "OpenRouterのAPIキーがそのまま利用できること",
+        "iPhoneのGitHub Web画面からコードの編集・コミットが可能であること"
       ],
-      "disconfirm": "スマホのブラウザでの編集時に構文エラーが多発し修正しきれない場合",
-      "continue_if": "コードの置換がスムーズに完了し、テスト呼び出しの準備が整った場合",
-      "stop": "プラットフォーム側のAPI仕様がさらに変更され、コードの全面的な書き直しが必要になった場合"
+      "disconfirm": "APIのエラーレスポンスが解消せず、モデル名指定が弾かれ続ける場合",
+      "continue_if": "正常なテキスト生成レスポンスが返り、かつ応答速度が体感で向上している場合",
+      "stop": "API仕様の不一致により接続に30分以上詰まる場合"
     },
     {
-      "t": "小規模プロバイダ移行支援のLP構成案を1ページ書く",
-      "why": "大手による価格競争で脱落する中小プロバイダの顧客を個人で受け皿とするための導線を設計するため。",
+      "t": "OpenRouterの利用枠に500円分を追加チャージして実運用の負荷テストを回す",
+      "why": "ダンピングされた軽量モデルの連打テストを行い、バッチ処理費用の跳ね上がりを事前に検知するため",
       "cost_min": 500,
-      "cost_max": 1500,
-      "loss_max": 1500,
-      "success_p": 0.4,
-      "success_p_min": 0.3,
-      "success_p_max": 0.5,
-      "success_why": "新規の移行支援需要の顕在化率が未知数であるため、確度を低く設定する。",
-      "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 30,
-      "payback_days": 14,
-      "outcome": "移行支援サービスのLPテキストと導線設計の完成",
-      "category": "publish",
+      "cost_max": 1000,
+      "loss_max": 1000,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "過去のAPI利用実績ベースで、最小限の予算追加で十分な検証リクエストが担保できるため",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 10,
+      "payback_days": 1,
+      "outcome": "実運用を想定したAPIクレジット残高の確保とテスト完了",
+      "category": "buy",
       "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "個人が収益機会を作るための具体的な営業資産となるため。",
+      "impact_min": 0.1,
+      "impact_max": 0.15,
+      "impact_why": "少額の投資で実トラフィックに近い挙動の検証が可能になるため",
       "evidence_ids": [
-        "2026-11-04-r01"
+        "2026-07-22-r02"
       ],
       "assumptions": [
-        "無料のホスティングサービスをiPhoneから利用できること"
+        "クレジットカード決済が即時反映されること",
+        "少額チャージの最低金額が500円以内であること"
       ],
-      "disconfirm": "市場において移行を検討している層からの反応が全く得られない場合",
-      "continue_if": "テスト公開したLPに一定のアクセスや関心の兆候が見られた場合",
-      "stop": "競合がすでに同様の代行サービスを大規模に展開し勝機がないと判断した場合"
+      "disconfirm": "決済システムの不具合によりチャージが正常に反映されない場合",
+      "continue_if": "チャージが即時反映され、テストスクリプトからのリクエストが正常に通過する場合",
+      "stop": "想定以上の予期せぬ課金エラーが発生した場合"
     },
     {
-      "t": "API価格比較シートを更新し裁定取引の余地を測る",
-      "why": "各社が競うAPI単価の底割れの中から、個人が代行やラッパー構築で利ざやを抜ける隙間を正確に特定するため。",
+      "t": "Fireworks.aiのAPIドキュメントを参照しルーティング設定の差分を洗い出す",
+      "why": "モデルルーティングによるコスト削減の仕組みを自作アプリのアーキテクチャに部分採用するため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.6,
-      "success_p_max": 0.8,
-      "success_why": "主要プロバイダの価格改定データが公開されているため。",
+      "success_p": 0.65,
+      "success_p_min": 0.5,
+      "success_p_max": 0.75,
+      "success_why": "公式ドキュメントにルーティング構築の基本仕様が公開されているため",
       "value_score": 3,
       "learning_value": 4,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "価格差が最大となっているモデルと移行代行のターゲット層の特定",
+      "outcome": "モデルルーティング導入に必要なエンドポイント仕様のメモ化",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "次の一手を決定するための定量的な根拠となるため。",
+      "impact_why": "高度なルーティング構造を取り入れることで長期的なAPI単価を抑えられるため",
       "evidence_ids": [
-        "2026-11-04-r01"
+        "2026-07-22-r02",
+        "2026-07-28-r04"
       ],
       "assumptions": [
-        "各社の最新価格情報がWeb上の公開データから取得できること"
+        "iPhoneのブラウザからドキュメントのコードブロックが正しく閲覧できること"
       ],
-      "disconfirm": "価格差がほとんど存在せず、裁定取引の余地がないことが判明した場合",
-      "continue_if": "特定のモデル間で明確な価格の歪みが見つかった場合",
-      "stop": "すべてのプロバイダが価格を一斉に底上げし、利ざやが消滅した場合"
+      "disconfirm": "ドキュメントの内容が古く、現在のAPI仕様と乖離している場合",
+      "continue_if": "自作アプリに流用可能な具体的なリクエストパラメータの差分が特定できた場合",
+      "stop": "ドキュメントが複雑で30分以内に要点が理解できない場合"
     },
     {
-      "t": "移行自動化ツールの検証用APIキーを購入しテストする",
-      "why": "実環境でのルーティング切り替えとレスポンス速度を検証し、移行代行の実用性を担保するため。",
-      "cost_min": 2000,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.5,
-      "success_p_min": 0.4,
-      "success_p_max": 0.6,
-      "success_why": "有料APIを用いた検証は環境依存のトラブルが起きやすいため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 30,
-      "outcome": "新API経由での自動ルーティングの成功ログ",
-      "category": "apply",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "検証の確度を実運用レベルに引き上げるため。",
-      "evidence_ids": [
-        "2026-11-04-r01"
-      ],
-      "assumptions": [
-        "クレジットカード決済がiPhoneから問題なく行えること"
-      ],
-      "disconfirm": "テスト実行時にAPIのエラーレートが想定以上に高かった場合",
-      "continue_if": "コスト内で安定した切り替えと応答が確認できた場合",
-      "stop": "予算上限を超えるコストが発生し、費用対効果が合わなくなった場合"
-    },
-    {
-      "t": "GitHubのコミット履歴を整理しリポジトリを公開する",
-      "why": "これまでの自動化スクリプトの修正成果を外部から見える形にし、移行支援の信頼性を高めるため。",
+      "t": "Kimi K3互換のプロンプト構造をテストファイルに追記して比較評価する",
+      "why": "コード生成特化型モデルの応答特性を把握し、自作アプリの生成精度を底上げするため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.9,
-      "success_p_min": 0.85,
-      "success_p_max": 0.95,
-      "success_why": "iPhoneのGitHubインターフェースからパブリック設定に変更するだけの単純作業であるため。",
+      "success_p": 0.7,
+      "success_p_min": 0.55,
+      "success_p_max": 0.8,
+      "success_why": "既存のテスト用Markdownファイルに新しいプロンプトを差し込むだけで比較可能であるため",
       "value_score": 3,
-      "learning_value": 2,
+      "learning_value": 3,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "移行スクリプトを格納した公開リポジトリの完成",
-      "category": "publish",
-      "terminal": true,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "一連の作業の成果物を外部に固定化するため。",
+      "outcome": "新旧モデル間でのコード生成精度の差分記録",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.15,
+      "impact_why": "モデルの得意不得意を早期に把握することで実装の手戻りを防げるため",
       "evidence_ids": [
-        "2026-11-04-r01"
+        "2026-07-28-r04"
       ],
       "assumptions": [
-        "リポジトリに機密情報が含まれていないこと"
+        "テスト対象のコード断片がスマートフォン画面で視認しやすい長さであること"
       ],
-      "disconfirm": "リポジトリ内にAPIキー等の機密情報が混入していることが発覚した場合",
-      "continue_if": "クリーンな状態でパブリック公開の設定が完了した場合",
-      "stop": "プラットフォームの規約変更によりコードの一般公開が制限された場合"
+      "disconfirm": "モデルごとの出力結果に有意な差が見出せない場合",
+      "continue_if": "特定のタスクにおいて応答速度または精度の明確な優劣が確認できた場合",
+      "stop": "出力フォーマットの崩れにより比較評価が不可能な場合"
+    },
+    {
+      "t": "OpenRouterのバッチ処理枠値上げに対応するコスト上限ガードを実装する",
+      "why": "バッチ処理側の40%値上げによる予期せぬ予算超過をコードレベルで確実に防ぐため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_p_min": 0.65,
+      "success_p_max": 0.9,
+      "success_why": "APIリクエスト時のパラメータに最大トークン数の制限を設けるだけで実装できるため",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "APIの最大消費トークン数を制限する設定のGitHubコミット",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "プラットフォーム側の値上げリスクから直接身を守る防衛策となるため",
+      "evidence_ids": [
+        "2026-07-22-r02"
+      ],
+      "assumptions": [
+        "環境変数または設定ファイルでmax_tokensの制限が有効に働くこと"
+      ],
+      "disconfirm": "制限をかけたことによりアプリの主要な出力まで途中で切れてしまう場合",
+      "continue_if": "適切なトークン制限下でアプリの主要機能がエラーなく動作し続ける場合",
+      "stop": "制限設定が無視されてコストが発生し続ける場合"
     }
   ],
-  "kan": "今後14日以内にOpenAI以外の主要プロバイダが軽量APIの切り捨てと価格改定を連鎖的に発表すると見る。"
+  "kan": "OpenRouter等のアグリゲーターにおいて、主要な中華系ベンダーによる軽量Flashモデルのダンピングに追従し、米系大手互換プロバイダーが今後21日以内に対抗の軽量モデル値下げを実施する可能性は、五分に満たないが40%の目があると見る。"
 }

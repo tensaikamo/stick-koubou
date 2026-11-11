@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10 12:53",
+  "updated_at": "2026-11-11 10:37",
   "score": {
     "hit": 18,
     "miss": 24,
@@ -15,7 +15,7 @@
     }
   },
   "next_due": {
-    "date": "2026-11-10",
+    "date": "2026-11-11",
     "days": 0
   },
   "decided": [
@@ -268,7 +268,7 @@
       "status": "pending",
       "alert": false,
       "counter": "規制対応完了を待たずに機能プレビューや日本市場向けロードマップの告知記事が先行公開される場合、この読みは外れる。",
-      "evidence": "",
+      "evidence": "判定対象である公式ブログ（https://x.ai/blog）の内容を確認できなかったため、日本国内向けの決済サービス提供開始の告知有無を判定できない。",
       "signals": [
         {
           "date": "2026-10-12",
@@ -432,16 +432,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-11-08",
-          "headline": "AnthropicがPython SDK v2.6.0をリリース",
-          "url": "https://pypi.org/project/anthropic/2.6.0/"
-        },
-        {
-          "date": "2026-11-08",
-          "headline": "Anthropicが法執行機関・政府要請対応の専任法務スペシャリストの募集を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5474559008"
-        },
-        {
           "date": "2026-11-10",
           "headline": "Anthropicがシドニー（豪州）でのPartner Account Manager, ANZの求人情報を公開した",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5475150008"
@@ -450,6 +440,16 @@
           "date": "2026-11-10",
           "headline": "anthropic Python SDK v2.7.0がPyPIにリリースされた",
           "url": "https://pypi.org/project/anthropic/2.7.0/"
+        },
+        {
+          "date": "2026-11-11",
+          "headline": "AnthropicがPython SDKバージョン2.8.0をPyPIに公開",
+          "url": "https://pypi.org/project/anthropic/2.8.0/"
+        },
+        {
+          "date": "2026-11-11",
+          "headline": "Anthropicがエージェントセキュリティ提携専任のエンジニアリングマネージャー求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394611008"
         }
       ]
     },
@@ -482,11 +482,6 @@
       "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-11-03",
-          "headline": "openai Python SDK v3.42.1 リリース",
-          "url": "https://pypi.org/project/openai/3.42.1/"
-        },
-        {
           "date": "2026-11-04",
           "headline": "openai Python SDK v3.44.0 リリース",
           "url": "https://pypi.org/project/openai/3.44.0/"
@@ -500,17 +495,17 @@
           "date": "2026-11-10",
           "headline": "openai Python SDK v3.48.0がPyPIにリリースされた",
           "url": "https://pypi.org/project/openai/3.48.0/"
+        },
+        {
+          "date": "2026-11-11",
+          "headline": "OpenAIがPython SDKバージョン3.49.0をPyPIに公開",
+          "url": "https://pypi.org/project/openai/3.49.0/"
         }
       ]
     },
     {
       "subject": "Google",
       "events": [
-        {
-          "date": "2026-10-23",
-          "headline": "Googleがgoogle-genai Python SDK v2.32.0を公開",
-          "url": "https://pypi.org/project/google-genai/2.32.0/"
-        },
         {
           "date": "2026-10-24",
           "headline": "GoogleがGemini向け「google-genai」Python SDK v2.33.0を公開",
@@ -525,11 +520,44 @@
           "date": "2026-11-08",
           "headline": "Googleがgoogle-genai Python SDK v3.0.0をリリース",
           "url": "https://pypi.org/project/google-genai/3.0.0/"
+        },
+        {
+          "date": "2026-11-11",
+          "headline": "GoogleがGemini向けgoogle-genai Python SDK v3.1.0を公開",
+          "url": "https://pypi.org/project/google-genai/3.1.0/"
         }
       ]
     }
   ],
   "records": [
+    {
+      "id": "2026-11-11-r04",
+      "date": "2026-11-11",
+      "headline": "Anthropicがエージェントセキュリティ提携専任のエンジニアリングマネージャー求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394611008"
+    },
+    {
+      "id": "2026-11-11-r03",
+      "date": "2026-11-11",
+      "headline": "GoogleがGemini向けgoogle-genai Python SDK v3.1.0を公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/3.1.0/"
+    },
+    {
+      "id": "2026-11-11-r02",
+      "date": "2026-11-11",
+      "headline": "AnthropicがPython SDKバージョン2.8.0をPyPIに公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/2.8.0/"
+    },
+    {
+      "id": "2026-11-11-r01",
+      "date": "2026-11-11",
+      "headline": "OpenAIがPython SDKバージョン3.49.0をPyPIに公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.49.0/"
+    },
     {
       "id": "2026-11-10-r07",
       "date": "2026-11-10",
@@ -585,35 +613,7 @@
       "headline": "AnthropicがPython SDK v2.6.0をリリース",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/anthropic/2.6.0/"
-    },
-    {
-      "id": "2026-11-08-r02",
-      "date": "2026-11-08",
-      "headline": "Googleがgoogle-genai Python SDK v3.0.0をリリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/3.0.0/"
-    },
-    {
-      "id": "2026-11-08-r01",
-      "date": "2026-11-08",
-      "headline": "Anthropicが法執行機関・政府要請対応の専任法務スペシャリストの募集を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5474559008"
-    },
-    {
-      "id": "2026-11-06-r06",
-      "date": "2026-11-06",
-      "headline": "xaiがSr. Software Engineer, Linux Kernelの求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5286865007"
-    },
-    {
-      "id": "2026-11-06-r05",
-      "date": "2026-11-06",
-      "headline": "xaiがSr. Software Engineer, Kernels/CUDA (C++)の求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5286869007"
     }
   ],
-  "record_count": 351
+  "record_count": 355
 }
