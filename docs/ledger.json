@@ -1,24 +1,38 @@
 {
-  "updated_at": "2026-11-11 10:37",
+  "updated_at": "2026-11-12 11:41",
   "score": {
     "hit": 18,
-    "miss": 24,
-    "total": 42,
-    "rate": 0.42857142857142855,
-    "pending": 10,
-    "brier": 0.34009092857142864,
-    "brier_n": 42,
-    "brier_initial": 0.3538809523809525,
+    "miss": 25,
+    "total": 43,
+    "rate": 0.4186046511627907,
+    "pending": 9,
+    "brier": 0.34597020930232564,
+    "brier_n": 43,
+    "brier_initial": 0.35943953488372105,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-11-11",
-    "days": 0
+    "date": "2026-11-13",
+    "days": 1
   },
   "decided": [
+    {
+      "id": "2026-10-22-h01",
+      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて『Claude Fable 5.1』または『Claude Opus 5.5』と明記した新モデルの一般提供またはAPI公開を発表しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-11-12",
+      "confidence": 0.77,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "競合の次世代モデル発表に対抗するため、すでに評価を終えているClaude Fable 5.1またはOpus 5.5が21日以内に前倒しでプレビュー公開されること。",
+      "evidence": "2026年9月22日に「Introducing Claude Opus 5.5」の公式発表が掲載されており、予測の「発表しない」という条件に反するため。",
+      "signals": []
+    },
     {
       "id": "2026-10-19-h01",
       "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、インディアナ州またはケンタッキー州でのデータセンター施設計画に関する発表を行わない",
@@ -229,31 +243,6 @@
           "why": "本日の求人一覧に「Head of National Security Sales (DoW/IC)」など政府・国防向けの追加求人が確認できるため。"
         }
       ]
-    },
-    {
-      "id": "2026-08-22-h01",
-      "claim": "OpenAIは今後14日以内に、PyPIにおける公式Python SDK「openai」の新たなマイナーまたはメジャーバージョン（v3.4.0以降）をリリースしない。",
-      "subject": "OpenAI",
-      "deadline": "2026-09-05",
-      "confidence": 0.43,
-      "initial_confidence": 0.65,
-      "result": "miss",
-      "status": "resolved",
-      "alert": true,
-      "counter": "緊急のバグ修正や脆弱性対応により、予期せぬパッチバージョンが数日以内に強制投入される可能性。",
-      "evidence": "PyPI上で公式SDKのバージョンがopenai 3.8.0となっていることが確認でき、期間内にv3.4.0以降のバージョンがリリースされたため。",
-      "signals": [
-        {
-          "date": "2026-08-22",
-          "dir": "kill",
-          "why": "openai Python SDK v3.3.1がリリースされ、パッチバージョンが追加されたため。"
-        },
-        {
-          "date": "2026-08-26",
-          "dir": "kill",
-          "why": "本日の事象においてopenai Python SDK v3.3.1がリリースされたため、v3.3.x系のパッチ追加の指標に該当する。"
-        }
-      ]
     }
   ],
   "pending": [
@@ -268,7 +257,7 @@
       "status": "pending",
       "alert": false,
       "counter": "規制対応完了を待たずに機能プレビューや日本市場向けロードマップの告知記事が先行公開される場合、この読みは外れる。",
-      "evidence": "判定対象である公式ブログ（https://x.ai/blog）の内容を確認できなかったため、日本国内向けの決済サービス提供開始の告知有無を判定できない。",
+      "evidence": "判定先ページにアクセスできず、公式ブログでの発表有無を確認するための十分な証拠が得られなかったため。",
       "signals": [
         {
           "date": "2026-10-12",
@@ -293,21 +282,7 @@
       "status": "pending",
       "alert": false,
       "counter": "採用と同時にプロダクトの外部発表が既に準備されており、突発的に新しい課金体系が露出する可能性。",
-      "evidence": "",
-      "signals": []
-    },
-    {
-      "id": "2026-10-22-h01",
-      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて『Claude Fable 5.1』または『Claude Opus 5.5』と明記した新モデルの一般提供またはAPI公開を発表しない。",
-      "subject": "Anthropic",
-      "deadline": "2026-11-12",
-      "confidence": 0.77,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "競合の次世代モデル発表に対抗するため、すでに評価を終えているClaude Fable 5.1またはOpus 5.5が21日以内に前倒しでプレビュー公開されること。",
-      "evidence": "",
+      "evidence": "判定先ページを開くことができず、公式ブログ等の情報を確認できなかったため。",
       "signals": []
     },
     {

@@ -1,165 +1,166 @@
 {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "GLM 5.3 Flashの値下げ追従に対し、お前のWebアプリはバックエンドの切り替えを何秒で完了できるか？",
-    "オープンソースモデルのルーティング設定を、今日お前のiPhoneからGitHubのどのファイルに書き込むか？",
-    "API呼び出し単価の変動に対して、お前のアプリは月額コストのシミュレーションをどこまで落とし込んだか？"
+    "Gemini Decisions APIのドキュメントを開き、スマホのSafariだけで日本語の審査業務プロンプトを3行構築してテストせよ",
+    "Anthropicの日本向けパートナー求人に出ているSIer名を検索し、彼らが拾いきれないニッチ領域を1つ特定せよ",
+    "iPhoneからAnthropic Python SDK v2.8.0のリリースノートを確認し、既存エージェントのコードに適用できる変更点を洗い出せ"
   ],
   "moves": [
     {
-      "t": "GitHubの環境変数設定にGLM 5.3 Flashを追加して疎通テストを行う",
-      "why": "価格改定された即時応答モデルを自分のWebアプリに組み込み、コスト効率の高いバックエンドへ直結させるため",
+      "t": "Gemini Decisions APIのドキュメントをSafariで読み込み日本語審査テンプレートを1つ作成する",
+      "why": "GoogleのAPI公開に乗じて、中小企業が求める自動化の隙を拾うため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.7,
-      "success_p_max": 0.95,
-      "success_why": "既存のOpenRouter経由の設定ファイルをiPhoneのSafariから直接書き換えるだけで完結するため",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "OpenRouter API経由でGLM 5.3 Flashからの正常なレスポンス確認",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "API切り替えの基本インフラが整うだけでアプリ全体の運用コストが下がるため",
-      "evidence_ids": [
-        "2026-07-22-r02"
-      ],
-      "assumptions": [
-        "OpenRouterのAPIキーがそのまま利用できること",
-        "iPhoneのGitHub Web画面からコードの編集・コミットが可能であること"
-      ],
-      "disconfirm": "APIのエラーレスポンスが解消せず、モデル名指定が弾かれ続ける場合",
-      "continue_if": "正常なテキスト生成レスポンスが返り、かつ応答速度が体感で向上している場合",
-      "stop": "API仕様の不一致により接続に30分以上詰まる場合"
-    },
-    {
-      "t": "OpenRouterの利用枠に500円分を追加チャージして実運用の負荷テストを回す",
-      "why": "ダンピングされた軽量モデルの連打テストを行い、バッチ処理費用の跳ね上がりを事前に検知するため",
-      "cost_min": 500,
-      "cost_max": 1000,
-      "loss_max": 1000,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "過去のAPI利用実績ベースで、最小限の予算追加で十分な検証リクエストが担保できるため",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 10,
-      "payback_days": 1,
-      "outcome": "実運用を想定したAPIクレジット残高の確保とテスト完了",
-      "category": "buy",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.15,
-      "impact_why": "少額の投資で実トラフィックに近い挙動の検証が可能になるため",
-      "evidence_ids": [
-        "2026-07-22-r02"
-      ],
-      "assumptions": [
-        "クレジットカード決済が即時反映されること",
-        "少額チャージの最低金額が500円以内であること"
-      ],
-      "disconfirm": "決済システムの不具合によりチャージが正常に反映されない場合",
-      "continue_if": "チャージが即時反映され、テストスクリプトからのリクエストが正常に通過する場合",
-      "stop": "想定以上の予期せぬ課金エラーが発生した場合"
-    },
-    {
-      "t": "Fireworks.aiのAPIドキュメントを参照しルーティング設定の差分を洗い出す",
-      "why": "モデルルーティングによるコスト削減の仕組みを自作アプリのアーキテクチャに部分採用するため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.65,
-      "success_p_min": 0.5,
-      "success_p_max": 0.75,
-      "success_why": "公式ドキュメントにルーティング構築の基本仕様が公開されているため",
+      "success_p": 0.5,
+      "success_p_min": 0.4,
+      "success_p_max": 0.6,
+      "success_why": "API仕様の公開実績に基づく",
       "value_score": 3,
       "learning_value": 4,
-      "time_minutes": 20,
+      "time_minutes": 30,
       "payback_days": 0,
-      "outcome": "モデルルーティング導入に必要なエンドポイント仕様のメモ化",
+      "outcome": "日本語審査用プロンプトテンプレート",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "高度なルーティング構造を取り入れることで長期的なAPI単価を抑えられるため",
+      "impact_why": "APIの基本構造を理解できるため",
       "evidence_ids": [
-        "2026-07-22-r02",
-        "2026-07-28-r04"
+        "2026-11-11-r03"
       ],
       "assumptions": [
-        "iPhoneのブラウザからドキュメントのコードブロックが正しく閲覧できること"
+        "スマホのSafariからAPIドキュメントが閲覧可能であること"
       ],
-      "disconfirm": "ドキュメントの内容が古く、現在のAPI仕様と乖離している場合",
-      "continue_if": "自作アプリに流用可能な具体的なリクエストパラメータの差分が特定できた場合",
-      "stop": "ドキュメントが複雑で30分以内に要点が理解できない場合"
+      "disconfirm": "APIが日本語の審査業務に対応していないと判明すること",
+      "continue_if": "テンプレートが想定通りに応答すること",
+      "stop": "APIの利用に有料登録が必要で検証できない場合"
     },
     {
-      "t": "Kimi K3互換のプロンプト構造をテストファイルに追記して比較評価する",
-      "why": "コード生成特化型モデルの応答特性を把握し、自作アプリの生成精度を底上げするため",
+      "t": "Anthropicの日本向けSIer求人ページを開き参加企業名を5社特定してメモに書き出す",
+      "why": "既存SIerの動向を把握し、彼らがカバーしない領域を見つけるため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "既存のテスト用Markdownファイルに新しいプロンプトを差し込むだけで比較可能であるため",
-      "value_score": 3,
+      "success_p": 0.6,
+      "success_p_min": 0.5,
+      "success_p_max": 0.7,
+      "success_why": "公開求人情報に企業名が記載されているため",
+      "value_score": 2,
       "learning_value": 3,
-      "time_minutes": 15,
+      "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "新旧モデル間でのコード生成精度の差分記録",
-      "category": "review",
+      "outcome": "競合SIerのリスト",
+      "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.15,
-      "impact_why": "モデルの得意不得意を早期に把握することで実装の手戻りを防げるため",
+      "impact_why": "市場のプレイヤーを特定できるため",
       "evidence_ids": [
-        "2026-07-28-r04"
+        "2026-11-11-r04"
       ],
       "assumptions": [
-        "テスト対象のコード断片がスマートフォン画面で視認しやすい長さであること"
+        "求人ページにパートナー企業情報が含まれていること"
       ],
-      "disconfirm": "モデルごとの出力結果に有意な差が見出せない場合",
-      "continue_if": "特定のタスクにおいて応答速度または精度の明確な優劣が確認できた場合",
-      "stop": "出力フォーマットの崩れにより比較評価が不可能な場合"
+      "disconfirm": "パートナー企業名が非公開であること",
+      "continue_if": "主要なSIer名が判明すること",
+      "stop": "求人ページが閉鎖されている場合"
     },
     {
-      "t": "OpenRouterのバッチ処理枠値上げに対応するコスト上限ガードを実装する",
-      "why": "バッチ処理側の40%値上げによる予期せぬ予算超過をコードレベルで確実に防ぐため",
+      "t": "エージェント境界外アクセスの論文概要をスマホで読み重要ポイントを1つ抽出する",
+      "why": "セキュリティリスクと対策のトレンドを把握するため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.5,
+      "success_p_min": 0.4,
+      "success_p_max": 0.6,
+      "success_why": "arXivにプレプリントが公開されているため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "セキュリティ対策の要約メモ",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "脆弱性への対策方針が立てられるため",
+      "evidence_ids": [
+        "2026-10-12-r02"
+      ],
+      "assumptions": [
+        "arXivのPDFがモバイルブラウザで閲覧可能であること"
+      ],
+      "disconfirm": "論文の内容が現在のAPI仕様と乖離していること",
+      "continue_if": "個人開発に応用できる知見が得られること",
+      "stop": "論文の閲覧制限がかかった場合"
+    },
+    {
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
-      "success_p_min": 0.65,
+      "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "APIリクエスト時のパラメータに最大トークン数の制限を設けるだけで実装できるため",
-      "value_score": 4,
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "次に直す内容がIssueとして1件残る",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
+      "evidence_ids": [
+        "user-goal",
+        "action-history"
+      ],
+      "assumptions": [
+        "Issueが次の実装に使われる"
+      ],
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
+    },
+    {
+      "t": "今日の一次情報を1本選び要点を3行残す",
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "value_score": 2,
       "learning_value": 3,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "APIの最大消費トークン数を制限する設定のGitHubコミット",
-      "category": "build",
+      "outcome": "一次情報の要点メモが3行残る",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "プラットフォーム側の値上げリスクから直接身を守る防衛策となるため",
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "意思決定へ使えた時だけ価値になる",
       "evidence_ids": [
-        "2026-07-22-r02"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "環境変数または設定ファイルでmax_tokensの制限が有効に働くこと"
+        "読む情報が現在の目標に関係する"
       ],
-      "disconfirm": "制限をかけたことによりアプリの主要な出力まで途中で切れてしまう場合",
-      "continue_if": "適切なトークン制限下でアプリの主要機能がエラーなく動作し続ける場合",
-      "stop": "制限設定が無視されてコストが発生し続ける場合"
+      "disconfirm": "要点が次の行動を一つも変えない",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了",
+      "fallback": true
     }
   ],
-  "kan": "OpenRouter等のアグリゲーターにおいて、主要な中華系ベンダーによる軽量Flashモデルのダンピングに追従し、米系大手互換プロバイダーが今後21日以内に対抗の軽量モデル値下げを実施する可能性は、五分に満たないが40%の目があると見る。"
+  "kan": "OpenAIはGPT-5の退役日である2026年12月11日を迎える前に、公式ニュースルームにおいて後継となる新型フラグシップモデルの提供スケジュールを前倒しで発表すると見る。基準率として大手AI企業が主力モデルの退役日直前に新型を公表する確率は年数回あるが、今回は競合の追撃を断つため期日より大幅に前倒しされると調整する。"
 }
