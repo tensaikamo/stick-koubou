@@ -2794,15 +2794,16 @@
     "resolved_at": null,
     "result": null,
     "evidence": {
-      "summary": "判定対象である公式ブログ（https://x.ai/blog）の内容を確認できなかったため、日本国内向けの決済サービス提供開始の告知有無を判定できない。",
-      "url": ""
+      "summary": "判定先ページにアクセスできず、公式ブログでの発表有無を確認するための十分な証拠が得られなかったため。",
+      "url": "https://x.ai/blog"
     },
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.92,
-    "judge_attempts": 2
+    "judge_attempts": 3,
+    "needs_review": true
   },
   {
     "id": "2026-10-19-h01",
@@ -2897,14 +2898,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-11-12T11:32:11.150420+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "2026年9月22日に「Introducing Claude Opus 5.5」の公式発表が掲載されており、予測の「発表しない」という条件に反するため。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-10-23-h01",
@@ -3034,12 +3039,15 @@
     "status": "pending",
     "resolved_at": null,
     "result": null,
-    "evidence": null,
+    "evidence": {
+      "summary": "判定先ページを開くことができず、公式ブログ等の情報を確認できなかったため。",
+      "url": "https://x.ai/blog"
+    },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1",
-    "judge_attempts": 1
+    "judge_attempts": 2
   },
   {
     "id": "2026-10-30-h01",
