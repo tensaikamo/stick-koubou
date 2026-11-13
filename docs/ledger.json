@@ -1,24 +1,44 @@
 {
-  "updated_at": "2026-11-12 11:41",
+  "updated_at": "2026-11-13 11:10",
   "score": {
-    "hit": 18,
+    "hit": 19,
     "miss": 25,
-    "total": 43,
-    "rate": 0.4186046511627907,
+    "total": 44,
+    "rate": 0.4318181818181818,
     "pending": 9,
-    "brier": 0.34597020930232564,
-    "brier_n": 43,
-    "brier_initial": 0.35943953488372105,
+    "brier": 0.33830806818181824,
+    "brier_n": 44,
+    "brier_initial": 0.3517159090909092,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-11-13",
-    "days": 1
+    "date": "2026-11-15",
+    "days": 2
   },
   "decided": [
+    {
+      "id": "2026-10-23-h01",
+      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、非営利組織向け支援プログラム『Claude for Nonprofits』の正式提供または一般受付の開始を発表しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-11-13",
+      "confidence": 0.906,
+      "initial_confidence": 0.86,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "採用決定を待たず、既存のGTMチーム主導で事前登録やパートナー募集の告知をニュースルームで先行公開するケース",
+      "evidence": "期日(2026-11-13)までにAnthropic公式ニュースルーム(anthropic.com/news)を確認したところ、『Claude for Nonprofits』の正式提供や一般受付の開始を告げる記事は掲載されておらず、予測は的中した。",
+      "signals": [
+        {
+          "date": "2026-10-23",
+          "dir": "confirm",
+          "why": "Anthropicの採用情報に「Partner Enablement Lead, Beneficial Deployments」の募集が掲載されたことが確認されたため。"
+        }
+      ]
+    },
     {
       "id": "2026-10-22-h01",
       "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて『Claude Fable 5.1』または『Claude Opus 5.5』と明記した新モデルの一般提供またはAPI公開を発表しない。",
@@ -223,26 +243,6 @@
           "why": "google-genai Python SDKのバージョンがv2.22.0であり、2.20.x台のマイナー修正に留まるという条件を満たしているため"
         }
       ]
-    },
-    {
-      "id": "2026-08-25-h01",
-      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて国防総省または情報機関向けの専用エンタープライズプランや専用ソリューションの正式発表を行わない。",
-      "subject": "Anthropic",
-      "deadline": "2026-09-08",
-      "confidence": 0.906,
-      "initial_confidence": 0.86,
-      "result": "hit",
-      "status": "resolved",
-      "alert": false,
-      "counter": "水面下で既に政府機関とのパイロット運用および認証手続きが完了しており、求人公開と連動してマーケティング発表を即時投入してくる可能性がある。",
-      "evidence": "指定されたニュース一覧ページにおいて、期限までに国防総省や情報機関向けの専用プランの発表に関する記事は掲載されていないため。",
-      "signals": [
-        {
-          "date": "2026-08-25",
-          "dir": "confirm",
-          "why": "本日の求人一覧に「Head of National Security Sales (DoW/IC)」など政府・国防向けの追加求人が確認できるため。"
-        }
-      ]
     }
   ],
   "pending": [
@@ -282,28 +282,8 @@
       "status": "pending",
       "alert": false,
       "counter": "採用と同時にプロダクトの外部発表が既に準備されており、突発的に新しい課金体系が露出する可能性。",
-      "evidence": "判定先ページを開くことができず、公式ブログ等の情報を確認できなかったため。",
+      "evidence": "判定先の公式ページにアクセスできず、発表の有無を確認するための十分な証拠が集められないため。",
       "signals": []
-    },
-    {
-      "id": "2026-10-23-h01",
-      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、非営利組織向け支援プログラム『Claude for Nonprofits』の正式提供または一般受付の開始を発表しない。",
-      "subject": "Anthropic",
-      "deadline": "2026-11-13",
-      "confidence": 0.906,
-      "initial_confidence": 0.86,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "採用決定を待たず、既存のGTMチーム主導で事前登録やパートナー募集の告知をニュースルームで先行公開するケース",
-      "evidence": "",
-      "signals": [
-        {
-          "date": "2026-10-23",
-          "dir": "confirm",
-          "why": "Anthropicの採用情報に「Partner Enablement Lead, Beneficial Deployments」の募集が掲載されたことが確認されたため。"
-        }
-      ]
     },
     {
       "id": "2026-10-25-h01",
@@ -388,6 +368,20 @@
       "signals": []
     },
     {
+      "id": "2026-11-13-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて新しいパートナープログラムの名称や提供地域に関する告知を掲載しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-11-27",
+      "confidence": 0.45,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "採用活動の活発化に伴い、すでに準備が進んでいたパートナー関連の大型発表が急遽前倒しで公開される可能性。",
+      "evidence": "",
+      "signals": []
+    },
+    {
       "id": "2026-11-08-h01",
       "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、法執行機関からの要請に関する年次または四半期の透明性レポート（Transparency Report）を公開しない。",
       "subject": "Anthropic",
@@ -407,40 +401,30 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-11-10",
-          "headline": "Anthropicがシドニー（豪州）でのPartner Account Manager, ANZの求人情報を公開した",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5475150008"
-        },
-        {
-          "date": "2026-11-10",
-          "headline": "anthropic Python SDK v2.7.0がPyPIにリリースされた",
-          "url": "https://pypi.org/project/anthropic/2.7.0/"
-        },
-        {
-          "date": "2026-11-11",
-          "headline": "AnthropicがPython SDKバージョン2.8.0をPyPIに公開",
-          "url": "https://pypi.org/project/anthropic/2.8.0/"
-        },
-        {
           "date": "2026-11-11",
           "headline": "Anthropicがエージェントセキュリティ提携専任のエンジニアリングマネージャー求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394611008"
+        },
+        {
+          "date": "2026-11-13",
+          "headline": "anthropic: Commercial Activation Lead 求人掲載",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5478939008"
+        },
+        {
+          "date": "2026-11-13",
+          "headline": "anthropic: Customer Marketing Lead, Startups 求人掲載",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5477150008"
+        },
+        {
+          "date": "2026-11-13",
+          "headline": "anthropic: Partner Support Operations Lead 求人掲載",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453322008"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-11-02",
-          "headline": "xAI、メンフィスの冷却・流体機械設備を直営管理する施工管理者を募集",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5280771007"
-        },
-        {
-          "date": "2026-11-06",
-          "headline": "xaiがSr. Software Engineer, Kernels/CUDA (C++)の求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5286869007"
-        },
         {
           "date": "2026-11-06",
           "headline": "xaiがSr. Software Engineer, Linux Kernelの求人を公開",
@@ -450,17 +434,22 @@
           "date": "2026-11-06",
           "headline": "xaiがSr. Software Engineer, Training/Inference (C++)の求人を公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5286879007"
+        },
+        {
+          "date": "2026-11-13",
+          "headline": "xai: Client Partner (Mexico) 求人掲載",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5293897007"
+        },
+        {
+          "date": "2026-11-13",
+          "headline": "xai: IT Services Technician 求人掲載",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5277827007"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-11-04",
-          "headline": "openai Python SDK v3.44.0 リリース",
-          "url": "https://pypi.org/project/openai/3.44.0/"
-        },
         {
           "date": "2026-11-05",
           "headline": "openai Python SDK v3.46.0 リリース",
@@ -475,17 +464,17 @@
           "date": "2026-11-11",
           "headline": "OpenAIがPython SDKバージョン3.49.0をPyPIに公開",
           "url": "https://pypi.org/project/openai/3.49.0/"
+        },
+        {
+          "date": "2026-11-13",
+          "headline": "openai Python SDK v3.50.0 リリース",
+          "url": "https://pypi.org/project/openai/3.50.0/"
         }
       ]
     },
     {
       "subject": "Google",
       "events": [
-        {
-          "date": "2026-10-24",
-          "headline": "GoogleがGemini向け「google-genai」Python SDK v2.33.0を公開",
-          "url": "https://pypi.org/project/google-genai/2.33.0/"
-        },
         {
           "date": "2026-11-03",
           "headline": "google-genai Python SDK v2.34.0 リリース",
@@ -500,11 +489,65 @@
           "date": "2026-11-11",
           "headline": "GoogleがGemini向けgoogle-genai Python SDK v3.1.0を公開",
           "url": "https://pypi.org/project/google-genai/3.1.0/"
+        },
+        {
+          "date": "2026-11-13",
+          "headline": "google-genai Python SDK v3.3.0 リリース",
+          "url": "https://pypi.org/project/google-genai/3.3.0/"
         }
       ]
     }
   ],
   "records": [
+    {
+      "id": "2026-11-13-r07",
+      "date": "2026-11-13",
+      "headline": "xai: Client Partner (Mexico) 求人掲載",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5293897007"
+    },
+    {
+      "id": "2026-11-13-r06",
+      "date": "2026-11-13",
+      "headline": "xai: IT Services Technician 求人掲載",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5277827007"
+    },
+    {
+      "id": "2026-11-13-r05",
+      "date": "2026-11-13",
+      "headline": "anthropic: Partner Support Operations Lead 求人掲載",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453322008"
+    },
+    {
+      "id": "2026-11-13-r04",
+      "date": "2026-11-13",
+      "headline": "anthropic: Customer Marketing Lead, Startups 求人掲載",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5477150008"
+    },
+    {
+      "id": "2026-11-13-r03",
+      "date": "2026-11-13",
+      "headline": "anthropic: Commercial Activation Lead 求人掲載",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5478939008"
+    },
+    {
+      "id": "2026-11-13-r02",
+      "date": "2026-11-13",
+      "headline": "google-genai Python SDK v3.3.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/3.3.0/"
+    },
+    {
+      "id": "2026-11-13-r01",
+      "date": "2026-11-13",
+      "headline": "openai Python SDK v3.50.0 リリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.50.0/"
+    },
     {
       "id": "2026-11-11-r04",
       "date": "2026-11-11",
@@ -539,56 +582,7 @@
       "headline": "Anthropicがシドニー（豪州）でのPartner Account Manager, ANZの求人情報を公開した",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5475150008"
-    },
-    {
-      "id": "2026-11-10-r06",
-      "date": "2026-11-10",
-      "headline": "anthropic Python SDK v2.7.0がPyPIにリリースされた",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/2.7.0/"
-    },
-    {
-      "id": "2026-11-10-r05",
-      "date": "2026-11-10",
-      "headline": "openai Python SDK v3.48.0がPyPIにリリースされた",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.48.0/"
-    },
-    {
-      "id": "2026-11-10-r04",
-      "date": "2026-11-10",
-      "headline": "米連邦官報(Federal Register)へのアクセス制限に関するボットテスト画面の発生",
-      "certainty": "confirmed",
-      "url": "https://www.federalregister.gov/documents/2026/11/05/2026-22593/medical-devices-hematology-and-pathology-devices-classification-of-the-digital-cervical-cytology"
-    },
-    {
-      "id": "2026-11-10-r03",
-      "date": "2026-11-10",
-      "headline": "Bowen Zuo et al.による論文「Test-Time Scaling for Diffusion Language Models with Frequency-Aware Remasking」がarXivに投稿された",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2611.10486v1"
-    },
-    {
-      "id": "2026-11-10-r02",
-      "date": "2026-11-10",
-      "headline": "Jinyuan Wang et al.による論文「Safer for Whom? A Systematic Exploration of AI Safety in Eating Disorder Interactions」がarXivに投稿",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2611.10488v1"
-    },
-    {
-      "id": "2026-11-10-r01",
-      "date": "2026-11-10",
-      "headline": "Alfonso Amayuelas et al.による論文「Sampling Is Not Curiosity: Why LLM Agents Should Investigate」がarXivに投稿された",
-      "certainty": "reported",
-      "url": "https://arxiv.org/abs/2611.10501v1"
-    },
-    {
-      "id": "2026-11-08-r03",
-      "date": "2026-11-08",
-      "headline": "AnthropicがPython SDK v2.6.0をリリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/2.6.0/"
     }
   ],
-  "record_count": 355
+  "record_count": 362
 }

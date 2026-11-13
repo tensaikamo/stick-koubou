@@ -1,101 +1,103 @@
 {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "Gemini Decisions APIのドキュメントを開き、スマホのSafariだけで日本語の審査業務プロンプトを3行構築してテストせよ",
-    "Anthropicの日本向けパートナー求人に出ているSIer名を検索し、彼らが拾いきれないニッチ領域を1つ特定せよ",
-    "iPhoneからAnthropic Python SDK v2.8.0のリリースノートを確認し、既存エージェントのコードに適用できる変更点を洗い出せ"
+    "DeepSeekの値上げを前に、API依存の処理をスマホのSafariで完結するキャッシュ機能へ今夜書き換えるか？",
+    "Anthropicのパートナープログラム拡大を見据え、既存のGitHubリポジトリに公開用設定を今夜追加するか？",
+    "API利用のコスト上限を再計算し、今日の自動化スクリプトの無駄なループを停止させるか？"
   ],
   "moves": [
     {
-      "t": "Gemini Decisions APIのドキュメントをSafariで読み込み日本語審査テンプレートを1つ作成する",
-      "why": "GoogleのAPI公開に乗じて、中小企業が求める自動化の隙を拾うため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.4,
-      "success_p_max": 0.6,
-      "success_why": "API仕様の公開実績に基づく",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "日本語審査用プロンプトテンプレート",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "APIの基本構造を理解できるため",
-      "evidence_ids": [
-        "2026-11-11-r03"
-      ],
-      "assumptions": [
-        "スマホのSafariからAPIドキュメントが閲覧可能であること"
-      ],
-      "disconfirm": "APIが日本語の審査業務に対応していないと判明すること",
-      "continue_if": "テンプレートが想定通りに応答すること",
-      "stop": "APIの利用に有料登録が必要で検証できない場合"
-    },
-    {
-      "t": "Anthropicの日本向けSIer求人ページを開き参加企業名を5社特定してメモに書き出す",
-      "why": "既存SIerの動向を把握し、彼らがカバーしない領域を見つけるため",
+      "t": "API依存の自動化スクリプトを停止し静的レスポンスの仕組みへ書き換える",
+      "why": "MoonshotやDeepSeekの価格改定に対応し、無駄なAPI呼び出しコストをゼロにするため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.6,
       "success_p_min": 0.5,
       "success_p_max": 0.7,
-      "success_why": "公開求人情報に企業名が記載されているため",
-      "value_score": 2,
-      "learning_value": 3,
-      "time_minutes": 20,
+      "success_why": "iPhoneのSafari上でコードの書き換えと静的キャッシュの動作確認を直接行えるため",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 30,
       "payback_days": 0,
-      "outcome": "競合SIerのリスト",
-      "category": "research",
+      "outcome": "API呼び出しを排除した静的レスポンス用のHTML/JSコードファイル",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.1,
-      "impact_max": 0.15,
-      "impact_why": "市場のプレイヤーを特定できるため",
+      "impact_max": 0.3,
+      "impact_why": "ランニングコストを即座に削減し、予期せぬAPI値上げリスクを防ぐ",
       "evidence_ids": [
-        "2026-11-11-r04"
+        "2026-07-28-r04"
       ],
       "assumptions": [
-        "求人ページにパートナー企業情報が含まれていること"
+        "iPhoneのSafariとGitHubのWebエディタのみでコードの修正と保存が完結すること"
       ],
-      "disconfirm": "パートナー企業名が非公開であること",
-      "continue_if": "主要なSIer名が判明すること",
-      "stop": "求人ページが閉鎖されている場合"
+      "disconfirm": "静的レスポンスでは代替できない動的な処理の割合が想定より高いと判明した場合",
+      "continue_if": "APIコストを発生させずに基本機能の検証が継続できる場合",
+      "stop": "スマホ環境でのコード編集に限界がありエラーが解消できない場合"
     },
     {
-      "t": "エージェント境界外アクセスの論文概要をスマホで読み重要ポイントを1つ抽出する",
-      "why": "セキュリティリスクと対策のトレンドを把握するため",
+      "t": "Anthropicのパートナーサポート求人ページから必要要件を抽出しスプレッドシートにまとめる",
+      "why": "プラットフォーム側のエコシステム拡大の方向性を読み解き、個人の先回り隙を見つけるため",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.4,
-      "success_p_max": 0.6,
-      "success_why": "arXivにプレプリントが公開されているため",
+      "success_p": 0.7,
+      "success_p_min": 0.6,
+      "success_p_max": 0.8,
+      "success_why": "求人情報の公開テキストから直接業務要件を読み取ることができるため",
       "value_score": 3,
-      "learning_value": 4,
+      "learning_value": 3,
       "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "セキュリティ対策の要約メモ",
+      "outcome": "求人要件から分析したプラットフォームの注力領域リスト",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "脆弱性への対策方針が立てられるため",
+      "impact_why": "大手が外部パートナーに求める実務の穴をいち早く察知できる",
       "evidence_ids": [
-        "2026-10-12-r02"
+        "2026-11-13-r05",
+        "2026-11-13-r03",
+        "2026-11-13-r04"
       ],
       "assumptions": [
-        "arXivのPDFがモバイルブラウザで閲覧可能であること"
+        "Greenhouseの求人ページにiPhoneからアクセスして全文が閲覧できること"
       ],
-      "disconfirm": "論文の内容が現在のAPI仕様と乖離していること",
-      "continue_if": "個人開発に応用できる知見が得られること",
-      "stop": "論文の閲覧制限がかかった場合"
+      "disconfirm": "募集要件が一般的な営業・マーケティング職に終始しており特異なシグナルが見つからない場合",
+      "continue_if": "特定の技術連携やAPI利用を前提とした特異な要件が見つかった場合",
+      "stop": "募集が既に終了しているかページがアクセス制限された場合"
+    },
+    {
+      "t": "エージェントセキュリティ関連のエンジニアリングマネージャー求人要件を検証する",
+      "why": "Anthropicが注力するセキュリティ体制の裏側にある監査の厳格化のトレンドを掴むため",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.65,
+      "success_p_min": 0.55,
+      "success_p_max": 0.75,
+      "success_why": "公式求人ページの記述からセキュリティ組織の重点投資先を特定できるため",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "エージェントセキュリティ分野における必須要件の構造化メモ",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "今後のプラットフォーム側の制限強化に対する事前の備えができる",
+      "evidence_ids": [
+        "2026-11-11-r04"
+      ],
+      "assumptions": [
+        "該当の求人票が公開状態を維持していること"
+      ],
+      "disconfirm": "一般的なITインフラのセキュリティ管理に関する記載以上の情報がない場合",
+      "continue_if": "特定のエージェント間通信プロトコルに関するセキュリティ要件が記載されている場合",
+      "stop": "要件の抽象度が高く具体的な技術スタックが推測できない場合"
     },
     {
       "t": "GitHubの改善候補を1件Issueに書く",
@@ -162,5 +164,5 @@
       "fallback": true
     }
   ],
-  "kan": "OpenAIはGPT-5の退役日である2026年12月11日を迎える前に、公式ニュースルームにおいて後継となる新型フラグシップモデルの提供スケジュールを前倒しで発表すると見る。基準率として大手AI企業が主力モデルの退役日直前に新型を公表する確率は年数回あるが、今回は競合の追撃を断つため期日より大幅に前倒しされると調整する。"
+  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて新しいパートナープログラムの名称や提供地域に関する告知を掲載しない。"
 }
