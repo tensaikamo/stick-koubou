@@ -2951,15 +2951,19 @@
         "conf_after": 0.906
       }
     ],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-11-13T11:06:33.275371+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "期日(2026-11-13)までにAnthropic公式ニュースルーム(anthropic.com/news)を確認したところ、『Claude for Nonprofits』の正式提供や一般受付の開始を告げる記事は掲載されておらず、予測は的中した。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "initial_confidence": 0.86
+    "initial_confidence": 0.86,
+    "needs_review": false
   },
   {
     "id": "2026-10-25-h01",
@@ -3040,14 +3044,15 @@
     "resolved_at": null,
     "result": null,
     "evidence": {
-      "summary": "判定先ページを開くことができず、公式ブログ等の情報を確認できなかったため。",
+      "summary": "判定先の公式ページにアクセスできず、発表の有無を確認するための十分な証拠が集められないため。",
       "url": "https://x.ai/blog"
     },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1",
-    "judge_attempts": 2
+    "judge_attempts": 3,
+    "needs_review": true
   },
   {
     "id": "2026-10-30-h01",
@@ -3256,6 +3261,48 @@
       },
       {
         "sign": "求人ページの募集ステータスが「Closed」に変更される",
+        "dir": "confirm"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-11-13-h01",
+    "created_at": "2026-11-13T11:03:19.385980+09:00",
+    "based_on": [
+      "2026-11-13-r03",
+      "2026-11-13-r04",
+      "2026-11-13-r05"
+    ],
+    "prose": "Anthropicはパートナープログラムやスタートアップ支援に関する専門人材の採用を進めており、これらは短期的な組織拡大フェーズを示している。しかし過去の観測では、求人公開から14日という短期間に、公式ニュースルームにおいて特定の新しい外部向け制度や地域展開が発表される基準率は低い。通算の較正実績では高確度帯での外しが目立っており、基準率へ引き戻す必要がある。したがって、この短期窓で公式ニュースルームに新たなパートナー施策のローンチ告知が出る確率は控えめに見積もるのが妥当である。",
+    "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて新しいパートナープログラムの名称や提供地域に関する告知を掲載しない。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Anthropic news partner program launch",
+      "decider": "Anthropicの公式ニュースルーム（/news）において、新たなパートナープログラムや地域展開の開始を告げるプレスリリースが期日までに掲載された場合のみ的中とする。"
+    },
+    "deadline": "2026-11-27",
+    "confidence": 0.45,
+    "base_rate": 0.65,
+    "base_rate_class": "大手AI企業が求人公開後14日以内に新たなパートナー施策を発表する頻度",
+    "confidence_why": "短期窓での公式発表の基準率は低く、過去の過信を反省して0.5未満に引き下げた。",
+    "counter": "採用活動の活発化に伴い、すでに準備が進んでいたパートナー関連の大型発表が急遽前倒しで公開される可能性。",
+    "indicators": [
+      {
+        "sign": "Anthropic公式ニュースルームに新しいプレスリリースが追加される",
+        "dir": "kill"
+      },
+      {
+        "sign": "14日間の間に新たなパートナー関連求人が追加されなくなる",
         "dir": "confirm"
       }
     ],
