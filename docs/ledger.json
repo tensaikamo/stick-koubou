@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-13 11:10",
+  "updated_at": "2026-11-14 10:45",
   "score": {
     "hit": 19,
     "miss": 25,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-11-15",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
