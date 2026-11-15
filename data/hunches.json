@@ -3007,7 +3007,8 @@
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "judge_attempts": 1
   },
   {
     "id": "2026-10-28-h01",
