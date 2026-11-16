@@ -1,168 +1,167 @@
 {
-  "date": "2026-11-13",
+  "date": "2026-11-16",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "DeepSeekの値上げを前に、API依存の処理をスマホのSafariで完結するキャッシュ機能へ今夜書き換えるか？",
-    "Anthropicのパートナープログラム拡大を見据え、既存のGitHubリポジトリに公開用設定を今夜追加するか？",
-    "API利用のコスト上限を再計算し、今日の自動化スクリプトの無駄なループを停止させるか？"
+    "アプリのAPI呼出は固定リビジョンか最新版か、今夜コードを見直せるか？",
+    "即時応答が不要な推論をバッチ処理に逃がす改修を今日着手できるか？",
+    "急激な価格改定に備えて複数プロバイダの切り替え設定を仕込んであるか？"
   ],
   "moves": [
     {
-      "t": "API依存の自動化スクリプトを停止し静的レスポンスの仕組みへ書き換える",
-      "why": "MoonshotやDeepSeekの価格改定に対応し、無駄なAPI呼び出しコストをゼロにするため",
+      "t": "API設定の固定指定を外す",
+      "why": "旧リビジョン固定への課金ペナルティを回避しAPI経費高騰を即座に遮断するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.5,
-      "success_p_max": 0.7,
-      "success_why": "iPhoneのSafari上でコードの書き換えと静的キャッシュの動作確認を直接行えるため",
+      "success_p": 0.85,
+      "success_p_min": 0.75,
+      "success_p_max": 0.95,
+      "success_why": "GitHubのWebエディタから設定ファイルの文字列を1箇所修正するだけで完結するため。",
       "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "API呼び出しを排除した静的レスポンス用のHTML/JSコードファイル",
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 1,
+      "outcome": "モデル指定を最新エイリアスへ書き換えたコミット",
       "category": "build",
       "terminal": false,
       "impact_min": 0.1,
-      "impact_max": 0.3,
-      "impact_why": "ランニングコストを即座に削減し、予期せぬAPI値上げリスクを防ぐ",
+      "impact_max": 0.25,
+      "impact_why": "APIコスト爆増による開発停止リスクを排除できるため。",
       "evidence_ids": [
-        "2026-07-28-r04"
+        "2026-11-16-r01",
+        "user-goal"
       ],
       "assumptions": [
-        "iPhoneのSafariとGitHubのWebエディタのみでコードの修正と保存が完結すること"
+        "GitHubリポジトリの設定ファイルにモデル名がハードコードまたは環境変数化されていること"
       ],
-      "disconfirm": "静的レスポンスでは代替できない動的な処理の割合が想定より高いと判明した場合",
-      "continue_if": "APIコストを発生させずに基本機能の検証が継続できる場合",
-      "stop": "スマホ環境でのコード編集に限界がありエラーが解消できない場合"
+      "disconfirm": "最新リビジョンでプロンプト出力の破壊的変更が起き動作不能になること",
+      "continue_if": "コミット後にテストリクエストが正常に返ること",
+      "stop": "最新モデルで既存プロンプトの出力フォーマットが崩れる場合"
     },
     {
-      "t": "Anthropicのパートナーサポート求人ページから必要要件を抽出しスプレッドシートにまとめる",
-      "why": "プラットフォーム側のエコシステム拡大の方向性を読み解き、個人の先回り隙を見つけるため",
+      "t": "バッチ推論切り替え関数を書く",
+      "why": "22%値下げされたバッチ処理に非同期タスクを逃がし原価率を下げるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.7,
-      "success_p_min": 0.6,
-      "success_p_max": 0.8,
-      "success_why": "求人情報の公開テキストから直接業務要件を読み取ることができるため",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "求人要件から分析したプラットフォームの注力領域リスト",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "大手が外部パートナーに求める実務の穴をいち早く察知できる",
-      "evidence_ids": [
-        "2026-11-13-r05",
-        "2026-11-13-r03",
-        "2026-11-13-r04"
-      ],
-      "assumptions": [
-        "Greenhouseの求人ページにiPhoneからアクセスして全文が閲覧できること"
-      ],
-      "disconfirm": "募集要件が一般的な営業・マーケティング職に終始しており特異なシグナルが見つからない場合",
-      "continue_if": "特定の技術連携やAPI利用を前提とした特異な要件が見つかった場合",
-      "stop": "募集が既に終了しているかページがアクセス制限された場合"
-    },
-    {
-      "t": "エージェントセキュリティ関連のエンジニアリングマネージャー求人要件を検証する",
-      "why": "Anthropicが注力するセキュリティ体制の裏側にある監査の厳格化のトレンドを掴むため",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.65,
       "success_p_min": 0.55,
-      "success_p_max": 0.75,
-      "success_why": "公式求人ページの記述からセキュリティ組織の重点投資先を特定できるため",
-      "value_score": 3,
+      "success_p_max": 0.8,
+      "success_why": "既存の非同期処理エンドポイント呼び出し構文をChatGPTに生成させて貼るだけのため。",
+      "value_score": 4,
       "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "エージェントセキュリティ分野における必須要件の構造化メモ",
-      "category": "research",
+      "time_minutes": 25,
+      "payback_days": 3,
+      "outcome": "バッチAPI呼び出し用のリクエスト送信コードファイル",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "今後のプラットフォーム側の制限強化に対する事前の備えができる",
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "推論コストを恒常的に2割以上圧縮できるため。",
       "evidence_ids": [
-        "2026-11-11-r04"
+        "2026-11-16-r01",
+        "user-goal"
       ],
       "assumptions": [
-        "該当の求人票が公開状態を維持していること"
+        "アプリ内に即時応答が不要なバックグラウンド要約や分析処理が存在すること"
       ],
-      "disconfirm": "一般的なITインフラのセキュリティ管理に関する記載以上の情報がない場合",
-      "continue_if": "特定のエージェント間通信プロトコルに関するセキュリティ要件が記載されている場合",
-      "stop": "要件の抽象度が高く具体的な技術スタックが推測できない場合"
+      "disconfirm": "バッチ処理の応答遅延が長すぎてアプリ仕様を満たさないこと",
+      "continue_if": "非同期キューへのジョブ登録がエラーなく疎通すること",
+      "stop": "非同期処理完了通知のWebhook受信処理が組めない場合"
     },
     {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "t": "推論ログの単価記録表を作る",
+      "why": "OpenRouter等のアグリゲーターによるサイレント値上げを監視し原価割れを防ぐため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
       "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "success_why": "Web管理画面の使用量ダッシュボードの数値をスプレッドシートに転記するだけのため。",
       "value_score": 3,
-      "learning_value": 2,
+      "learning_value": 3,
       "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
-      "category": "build",
+      "payback_days": 2,
+      "outcome": "モデル別実効トークン単価の記録シート",
+      "category": "review",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "不採算なAPIコールを即日発見して遮断できるため。",
       "evidence_ids": [
-        "user-goal",
+        "2026-11-16-r01",
         "action-history"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "OpenRouterのActivity画面でリクエストごとの課金ログが確認できること"
       ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "ログにモデルごとの個別単価が表示されていないこと",
+      "continue_if": "特定モデルの単価が想定レンジ内で推移していること",
+      "stop": "ダッシュボードの更新遅延が酷くリアルタイム追跡が不能な場合"
     },
     {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "t": "SDK新版対応の差分PR作成",
+      "why": "課金体系改定や新API仕様への追従遅れによる接続切断を先回りで防ぐため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.75,
       "success_p_min": 0.6,
       "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "value_score": 2,
-      "learning_value": 3,
+      "success_why": "GitHub Web画面上でrequirements.txtのバージョン表記を更新しPRを作るだけのため。",
+      "value_score": 4,
+      "learning_value": 4,
       "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "一次情報の要点メモが3行残る",
-      "category": "research",
+      "payback_days": 5,
+      "outcome": "Anthropic SDK v2.8.0指定のPull Request",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "API変更による突然の稼働停止事故を未然に防げるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-11-11-r02",
+        "2026-11-16-r01"
       ],
       "assumptions": [
-        "読む情報が現在の目標に関係する"
+        "GitHub上でブランチ作成とプルリクエスト作成操作ができること"
       ],
-      "disconfirm": "要点が次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
+      "disconfirm": "新SDKで利用中のメソッドが非推奨化され大幅なコード書き換えが必要になること",
+      "continue_if": "自動テストまたはビルドチェックがGitHub Actionsでパスすること",
+      "stop": "依存ライブラリの衝突でビルドが通らない場合"
+    },
+    {
+      "t": "APIコスト回避策を下書き",
+      "why": "激変するLLM推論コストを個人開発者がどう乗り切るかの実践知を発信資産に変えるため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.6,
+      "success_p_min": 0.45,
+      "success_p_max": 0.7,
+      "success_why": "自ら行ったモデル切り替え手順と差額の事実をメモ帳アプリに箇条書きするだけのため。",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 14,
+      "outcome": "QiitaまたはZenn向け技術知見の構成案下書き",
+      "category": "publish",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "先行検証者としてのポジションを獲得し読者層を蓄積できるため。",
+      "evidence_ids": [
+        "2026-11-16-r01",
+        "user-goal"
+      ],
+      "assumptions": [
+        "自身のアプリで実施したモデル変更の前後数値が提示できること"
+      ],
+      "disconfirm": "同様のコスト回避ノウハウが既に大手ブログで出尽くしていること",
+      "continue_if": "下書きが1000文字以上の具体的知見としてまとまること",
+      "stop": "自分独自のコスト削減数値データが揃わない場合"
     }
   ],
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて新しいパートナープログラムの名称や提供地域に関する告知を掲載しない。"
+  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて「Claude Code」専用の独立した料金体系または新有料プランの開始を公表しない"
 }
