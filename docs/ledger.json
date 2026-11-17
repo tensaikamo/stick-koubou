@@ -1,24 +1,38 @@
 {
-  "updated_at": "2026-11-16 10:31",
+  "updated_at": "2026-11-17 13:08",
   "score": {
     "hit": 20,
-    "miss": 25,
-    "total": 45,
-    "rate": 0.4444444444444444,
-    "pending": 9,
-    "brier": 0.3310590000000001,
-    "brier_n": 45,
-    "brier_initial": 0.344168888888889,
+    "miss": 26,
+    "total": 46,
+    "rate": 0.43478260869565216,
+    "pending": 8,
+    "brier": 0.32652510869565227,
+    "brier_n": 46,
+    "brier_initial": 0.33935000000000015,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-11-17",
+    "date": "2026-11-18",
     "days": 1
   },
   "decided": [
+    {
+      "id": "2026-11-03-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームまたは公式ブログにおいて「Claude Frontier Academy」の第一期生募集またはプログラム詳細に関する発表を行う",
+      "subject": "Anthropic",
+      "deadline": "2026-11-17",
+      "confidence": 0.35,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "マーケティングリードの採用が始まったばかりであり、実際の外部向け発表は数週間から数ヶ月先になる。",
+      "evidence": "期限である2026年11月17日時点でAnthropicの公式ニュースルームを確認したところ、Claude Frontier Academyに関する発表記事は掲載されていなかった。",
+      "signals": []
+    },
     {
       "id": "2026-10-25-h01",
       "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいてタイトルまたは本文に台湾（Taiwan）を主題とする記事を公開しない。",
@@ -212,26 +226,6 @@
       "counter": "すでに水面下で大口SIerとの交渉が完了しており、求人公開と同時にパートナーシップ発表が行われる場合",
       "evidence": "Anthropicの公式ニュースルームにおいて、期間内にAccentureとの評価に関する提携発表はあるものの、主要SIerとのリセラープログラムの本格稼働や契約締結に関する発表は掲載されていない。",
       "signals": []
-    },
-    {
-      "id": "2026-09-10-h01",
-      "claim": "OpenAIは今後7日以内に、PyPIにおける公式Python SDK「openai」の新バージョン（v3.12.0以上）をリリースする。",
-      "subject": "OpenAI",
-      "deadline": "2026-09-17",
-      "confidence": 0.801,
-      "initial_confidence": 0.72,
-      "result": "hit",
-      "status": "resolved",
-      "alert": false,
-      "counter": "リリースパイプラインの一時停止やCIトラブル、または機能固定期間に入ることで更新が1週間以上途切れること",
-      "evidence": "PyPIのopenaiパッケージページでバージョン3.14.1（3.12.0以上）の公開が確認できたため。",
-      "signals": [
-        {
-          "date": "2026-09-10",
-          "dir": "confirm",
-          "why": "openai Python SDK v3.11.0 のリリースが確認されたため。"
-        }
-      ]
     }
   ],
   "pending": [
@@ -272,20 +266,6 @@
       "alert": false,
       "counter": "採用と同時にプロダクトの外部発表が既に準備されており、突発的に新しい課金体系が露出する可能性。",
       "evidence": "判定先の公式ページにアクセスできず、発表の有無を確認するための十分な証拠が集められないため。",
-      "signals": []
-    },
-    {
-      "id": "2026-11-03-h01",
-      "claim": "Anthropicは今後14日以内に、公式ニュースルームまたは公式ブログにおいて「Claude Frontier Academy」の第一期生募集またはプログラム詳細に関する発表を行う",
-      "subject": "Anthropic",
-      "deadline": "2026-11-17",
-      "confidence": 0.35,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "マーケティングリードの採用が始まったばかりであり、実際の外部向け発表は数週間から数ヶ月先になる。",
-      "evidence": "",
       "signals": []
     },
     {
@@ -397,16 +377,6 @@
       "events": [
         {
           "date": "2026-11-13",
-          "headline": "anthropic: Commercial Activation Lead 求人掲載",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5478939008"
-        },
-        {
-          "date": "2026-11-13",
-          "headline": "anthropic: Customer Marketing Lead, Startups 求人掲載",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5477150008"
-        },
-        {
-          "date": "2026-11-13",
           "headline": "anthropic: Partner Support Operations Lead 求人掲載",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453322008"
         },
@@ -414,6 +384,16 @@
           "date": "2026-11-16",
           "headline": "Anthropicが課金プラットフォーム担当エンジニアリングマネージャーの採用を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5469291008"
+        },
+        {
+          "date": "2026-11-17",
+          "headline": "Anthropicが公式Python SDKバージョン2.9.0をPyPIに公開",
+          "url": "https://pypi.org/project/anthropic/2.9.0/"
+        },
+        {
+          "date": "2026-11-17",
+          "headline": "Anthropicが米国インフラへ500億ドル投資を明記したデータセンター運用求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5484171008"
         }
       ]
     },
@@ -446,11 +426,6 @@
       "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-11-10",
-          "headline": "openai Python SDK v3.48.0がPyPIにリリースされた",
-          "url": "https://pypi.org/project/openai/3.48.0/"
-        },
-        {
           "date": "2026-11-11",
           "headline": "OpenAIがPython SDKバージョン3.49.0をPyPIに公開",
           "url": "https://pypi.org/project/openai/3.49.0/"
@@ -464,17 +439,17 @@
           "date": "2026-11-16",
           "headline": "OpenAIが公式Python SDKバージョン3.51.0を公開",
           "url": "https://pypi.org/project/openai/3.51.0/"
+        },
+        {
+          "date": "2026-11-17",
+          "headline": "OpenAIが公式Python SDKバージョン3.52.0をPyPIに公開",
+          "url": "https://pypi.org/project/openai/3.52.0/"
         }
       ]
     },
     {
       "subject": "Google",
       "events": [
-        {
-          "date": "2026-11-03",
-          "headline": "google-genai Python SDK v2.34.0 リリース",
-          "url": "https://pypi.org/project/google-genai/2.34.0/"
-        },
         {
           "date": "2026-11-08",
           "headline": "Googleがgoogle-genai Python SDK v3.0.0をリリース",
@@ -489,11 +464,51 @@
           "date": "2026-11-13",
           "headline": "google-genai Python SDK v3.3.0 リリース",
           "url": "https://pypi.org/project/google-genai/3.3.0/"
+        },
+        {
+          "date": "2026-11-17",
+          "headline": "GoogleがGemini向けgoogle-genai Python SDKバージョン3.4.0を公開",
+          "url": "https://pypi.org/project/google-genai/3.4.0/"
         }
       ]
     }
   ],
   "records": [
+    {
+      "id": "2026-11-17-r05",
+      "date": "2026-11-17",
+      "headline": "ロボット方策モデルにおけるデノイズ回数削減とキャッシュ再利用の比較検証論文が公開",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2611.19709v1"
+    },
+    {
+      "id": "2026-11-17-r04",
+      "date": "2026-11-17",
+      "headline": "GoogleがGemini向けgoogle-genai Python SDKバージョン3.4.0を公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/google-genai/3.4.0/"
+    },
+    {
+      "id": "2026-11-17-r03",
+      "date": "2026-11-17",
+      "headline": "Anthropicが公式Python SDKバージョン2.9.0をPyPIに公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/2.9.0/"
+    },
+    {
+      "id": "2026-11-17-r02",
+      "date": "2026-11-17",
+      "headline": "OpenAIが公式Python SDKバージョン3.52.0をPyPIに公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.52.0/"
+    },
+    {
+      "id": "2026-11-17-r01",
+      "date": "2026-11-17",
+      "headline": "Anthropicが米国インフラへ500億ドル投資を明記したデータセンター運用求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5484171008"
+    },
     {
       "id": "2026-11-16-r02",
       "date": "2026-11-16",
@@ -542,42 +557,7 @@
       "headline": "anthropic: Commercial Activation Lead 求人掲載",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/anthropic/jobs/5478939008"
-    },
-    {
-      "id": "2026-11-13-r02",
-      "date": "2026-11-13",
-      "headline": "google-genai Python SDK v3.3.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/3.3.0/"
-    },
-    {
-      "id": "2026-11-13-r01",
-      "date": "2026-11-13",
-      "headline": "openai Python SDK v3.50.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.50.0/"
-    },
-    {
-      "id": "2026-11-11-r04",
-      "date": "2026-11-11",
-      "headline": "Anthropicがエージェントセキュリティ提携専任のエンジニアリングマネージャー求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394611008"
-    },
-    {
-      "id": "2026-11-11-r03",
-      "date": "2026-11-11",
-      "headline": "GoogleがGemini向けgoogle-genai Python SDK v3.1.0を公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/3.1.0/"
-    },
-    {
-      "id": "2026-11-11-r02",
-      "date": "2026-11-11",
-      "headline": "AnthropicがPython SDKバージョン2.8.0をPyPIに公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/2.8.0/"
     }
   ],
-  "record_count": 364
+  "record_count": 369
 }

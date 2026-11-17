@@ -1,167 +1,167 @@
 {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "アプリのAPI呼出は固定リビジョンか最新版か、今夜コードを見直せるか？",
-    "即時応答が不要な推論をバッチ処理に逃がす改修を今日着手できるか？",
-    "急激な価格改定に備えて複数プロバイダの切り替え設定を仕込んであるか？"
+    "広告枠で汚染される大手AIから逃げる層へ、何を直接提供するか？",
+    "OpenRouterの値下げモデルへ切り替え、浮く原価をどこに回すか？",
+    "Safariから30分でAPI課金導線をアプリに1箇所埋め込めるか？"
   ],
   "moves": [
     {
-      "t": "API設定の固定指定を外す",
-      "why": "旧リビジョン固定への課金ペナルティを回避しAPI経費高騰を即座に遮断するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.85,
-      "success_p_min": 0.75,
-      "success_p_max": 0.95,
-      "success_why": "GitHubのWebエディタから設定ファイルの文字列を1箇所修正するだけで完結するため。",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 1,
-      "outcome": "モデル指定を最新エイリアスへ書き換えたコミット",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.25,
-      "impact_why": "APIコスト爆増による開発停止リスクを排除できるため。",
-      "evidence_ids": [
-        "2026-11-16-r01",
-        "user-goal"
-      ],
-      "assumptions": [
-        "GitHubリポジトリの設定ファイルにモデル名がハードコードまたは環境変数化されていること"
-      ],
-      "disconfirm": "最新リビジョンでプロンプト出力の破壊的変更が起き動作不能になること",
-      "continue_if": "コミット後にテストリクエストが正常に返ること",
-      "stop": "最新モデルで既存プロンプトの出力フォーマットが崩れる場合"
-    },
-    {
-      "t": "バッチ推論切り替え関数を書く",
-      "why": "22%値下げされたバッチ処理に非同期タスクを逃がし原価率を下げるため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "既存の非同期処理エンドポイント呼び出し構文をChatGPTに生成させて貼るだけのため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 3,
-      "outcome": "バッチAPI呼び出し用のリクエスト送信コードファイル",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "推論コストを恒常的に2割以上圧縮できるため。",
-      "evidence_ids": [
-        "2026-11-16-r01",
-        "user-goal"
-      ],
-      "assumptions": [
-        "アプリ内に即時応答が不要なバックグラウンド要約や分析処理が存在すること"
-      ],
-      "disconfirm": "バッチ処理の応答遅延が長すぎてアプリ仕様を満たさないこと",
-      "continue_if": "非同期キューへのジョブ登録がエラーなく疎通すること",
-      "stop": "非同期処理完了通知のWebhook受信処理が組めない場合"
-    },
-    {
-      "t": "推論ログの単価記録表を作る",
-      "why": "OpenRouter等のアグリゲーターによるサイレント値上げを監視し原価割れを防ぐため。",
+      "t": "広告フリー方針をアプリLPに追記する",
+      "why": "推薦枠を金で売る大手プラットフォームとの明確な差別化を提示するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
       "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "Web管理画面の使用量ダッシュボードの数値をスプレッドシートに転記するだけのため。",
+      "success_why": "GitHub上でREADMEやLPのHTMLテキストに3行書き加えるだけのため。",
       "value_score": 3,
       "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 2,
-      "outcome": "モデル別実効トークン単価の記録シート",
-      "category": "review",
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "広告非掲載・データ直接処理を掲げたLPテキストの公開",
+      "category": "publish",
       "terminal": false,
       "impact_min": 0.05,
       "impact_max": 0.15,
-      "impact_why": "不採算なAPIコールを即日発見して遮断できるため。",
+      "impact_why": "広告モデルを嫌う逃避層に対する明確な訴求フックになるため。",
       "evidence_ids": [
-        "2026-11-16-r01",
+        "2026-11-13-r07"
+      ],
+      "assumptions": [
+        "静的LPがGitHub Pages等でホストされていること"
+      ],
+      "disconfirm": "LP閲覧者が広告の有無に関心を示さないと判明すること",
+      "continue_if": "文面追加後もデザイン崩れなく即時デプロイされること",
+      "stop": "ビルドエラーでページ全体が表示不能になった場合"
+    },
+    {
+      "t": "広告フリー訴求文を海外掲示板へ投稿する",
+      "why": "推薦枠広告化を嫌悪する初期テスターを資本の推薦アルゴリズム外から直接拾うため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.5,
+      "success_p_min": 0.35,
+      "success_p_max": 0.65,
+      "success_why": "Reddit等の関連サブレディットは競合規約が厳しく削除率も一定数あるため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 7,
+      "outcome": "RedditのAIツール関連スレッドへの紹介投稿1件",
+      "category": "publish",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.2,
+      "impact_why": "自前ツールの初期訪問者を獲得できるかどうかの実需検証になるため。",
+      "evidence_ids": [
+        "user-goal"
+      ],
+      "assumptions": [
+        "投稿可能なReddit等の既存アカウントがあること"
+      ],
+      "disconfirm": "投稿直後にAutoModにより即時削除されること",
+      "continue_if": "投稿後1時間以内にUpvoteまたはクリックが1件以上発生すること",
+      "stop": "スパム判定を受けアカウントがシャドウバンされた場合"
+    },
+    {
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
+      "value_score": 3,
+      "learning_value": 2,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "次に直す内容がIssueとして1件残る",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
+      "evidence_ids": [
+        "user-goal",
         "action-history"
       ],
       "assumptions": [
-        "OpenRouterのActivity画面でリクエストごとの課金ログが確認できること"
+        "Issueが次の実装に使われる"
       ],
-      "disconfirm": "ログにモデルごとの個別単価が表示されていないこと",
-      "continue_if": "特定モデルの単価が想定レンジ内で推移していること",
-      "stop": "ダッシュボードの更新遅延が酷くリアルタイム追跡が不能な場合"
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
     },
     {
-      "t": "SDK新版対応の差分PR作成",
-      "why": "課金体系改定や新API仕様への追従遅れによる接続切断を先回りで防ぐため。",
+      "t": "今日の一次情報を1本選び要点を3行残す",
+      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.75,
       "success_p_min": 0.6,
       "success_p_max": 0.85,
-      "success_why": "GitHub Web画面上でrequirements.txtのバージョン表記を更新しPRを作るだけのため。",
-      "value_score": 4,
-      "learning_value": 4,
+      "success_why": "読む対象を1本に固定すれば30分内に収まる",
+      "value_score": 2,
+      "learning_value": 3,
       "time_minutes": 20,
-      "payback_days": 5,
-      "outcome": "Anthropic SDK v2.8.0指定のPull Request",
-      "category": "build",
+      "payback_days": 0,
+      "outcome": "一次情報の要点メモが3行残る",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "API変更による突然の稼働停止事故を未然に防げるため。",
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "意思決定へ使えた時だけ価値になる",
       "evidence_ids": [
-        "2026-11-11-r02",
-        "2026-11-16-r01"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "GitHub上でブランチ作成とプルリクエスト作成操作ができること"
+        "読む情報が現在の目標に関係する"
       ],
-      "disconfirm": "新SDKで利用中のメソッドが非推奨化され大幅なコード書き換えが必要になること",
-      "continue_if": "自動テストまたはビルドチェックがGitHub Actionsでパスすること",
-      "stop": "依存ライブラリの衝突でビルドが通らない場合"
+      "disconfirm": "要点が次の行動を一つも変えない",
+      "continue_if": "次の判断に使える差分が1つ見つかった",
+      "stop": "3行書いたら終了",
+      "fallback": true
     },
     {
-      "t": "APIコスト回避策を下書き",
-      "why": "激変するLLM推論コストを個人開発者がどう乗り切るかの実践知を発信資産に変えるため。",
+      "t": "予測を1件確認し確度メモを1行更新する",
+      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.6,
-      "success_p_min": 0.45,
-      "success_p_max": 0.7,
-      "success_why": "自ら行ったモデル切り替え手順と差額の事実をメモ帳アプリに箇条書きするだけのため。",
-      "value_score": 3,
+      "success_p": 0.7,
+      "success_p_min": 0.55,
+      "success_p_max": 0.8,
+      "success_why": "既存予測の更新なので新規企画より着地しやすい",
+      "value_score": 2,
       "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 14,
-      "outcome": "QiitaまたはZenn向け技術知見の構成案下書き",
-      "category": "publish",
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "追跡中予測の確度メモが更新される",
+      "category": "review",
       "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "先行検証者としてのポジションを獲得し読者層を蓄積できるため。",
+      "impact_min": 0.0,
+      "impact_max": 0.02,
+      "impact_why": "誤った前提で投資する損失を減らす",
       "evidence_ids": [
-        "2026-11-16-r01",
-        "user-goal"
+        "action-history"
       ],
       "assumptions": [
-        "自身のアプリで実施したモデル変更の前後数値が提示できること"
+        "予測が現在の投資判断に関係する"
       ],
-      "disconfirm": "同様のコスト回避ノウハウが既に大手ブログで出尽くしていること",
-      "continue_if": "下書きが1000文字以上の具体的知見としてまとまること",
-      "stop": "自分独自のコスト削減数値データが揃わない場合"
+      "disconfirm": "確度更新が次の行動や支出を変えない",
+      "continue_if": "確度を動かす一次根拠が見つかった",
+      "stop": "根拠URLを1本確認したら終了",
+      "fallback": true
     }
   ],
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて「Claude Code」専用の独立した料金体系または新有料プランの開始を公表しない"
+  "kan": "xAIがAds Serving求人を出してから実運用でGrokの回答内にスポンサー枠を本格導入するまでには、AdTech基盤構築の基準率（通常12〜18ヶ月を要し半年未満の稼働例は極めて稀）から見て、今後90日以内にローンチされる確率は3割未満にとどまると見る。ただしAPIや推論コストの値下げ合戦は既に進行中であり、モデル原価の破壊は今四半期中にさらに加速するはずだ。"
 }
