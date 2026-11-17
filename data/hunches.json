@@ -3140,14 +3140,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-11-17T13:07:59.026921+09:00",
+    "result": "miss",
+    "evidence": {
+      "summary": "期限である2026年11月17日時点でAnthropicの公式ニュースルームを確認したところ、Claude Frontier Academyに関する発表記事は掲載されていなかった。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-11-04-h01",

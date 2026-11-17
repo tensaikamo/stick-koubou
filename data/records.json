@@ -9834,5 +9834,133 @@
       "2026-11-04-r01",
       "2026-11-03-r04"
     ]
+  },
+  {
+    "id": "2026-11-17-r01",
+    "created_at": "2026-11-17T13:07:19.055263+09:00",
+    "headline": "Anthropicが米国インフラへ500億ドル投資を明記したデータセンター運用求人を公開",
+    "what_happened": "Anthropicは「Software Engineer, Datacenter Server Lifecycle」の求人票を公開した。募集要項の中で、同社が独自のワークロード向けカスタムデータセンターを含む米国内の計算インフラに500億ドルを投資していると言及している。同職種はデータセンター内の全サーバーのプロビジョニングから保守、ハードウェア運用ツールの構築およびセキュリティ連携を担当する。",
+    "background": "フロンティアAIモデルの学習・推論需要の急増に伴い、モデル開発企業はクラウドアライアンス先（AWSやGoogle Cloud）のリソース利用にとどまらず、自社専用のデータセンター設計や運用への関与を強めている。",
+    "changed": "Anthropicが米国内インフラに対して500億ドル規模の投資コミットメントを想定し、自社主導でサーバーライフサイクルを運用するエンジニア部隊の組成を開始したことが公となった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5484171008",
+      "title": "[新規求人] anthropic: Software Engineer, Datacenter Server Lifecycle (Remote-Friendly, United States)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-11-16-r01",
+      "2026-11-13-r05",
+      "2026-11-13-r04",
+      "2026-11-13-r03",
+      "2026-11-11-r04",
+      "2026-11-11-r02"
+    ]
+  },
+  {
+    "id": "2026-11-17-r02",
+    "created_at": "2026-11-17T13:07:19.055263+09:00",
+    "headline": "OpenAIが公式Python SDKバージョン3.52.0をPyPIに公開",
+    "what_happened": "OpenAIは公式Pythonライブラリの最新版「openai 3.52.0」をPyPI上で公開した。HTTPX基盤の同期・非同期クライアントおよびOpenAPI仕様から生成された型定義を提供する。前バージョンからの小規模な改善またはパッチ適用とみられる。",
+    "background": "OpenAIはAPI仕様の変更や新機能追加に合わせて高頻度でPython SDKのマイナー/パッチアップデートをリリースしている。",
+    "changed": "開発者はPython環境でopenai 3.52.0を指定して最新の型定義およびクライアント更新を利用可能になった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.52.0/",
+      "title": "openai Python SDK v3.52.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-11-16-r02",
+      "2026-11-13-r01",
+      "2026-11-11-r01",
+      "2026-11-10-r05",
+      "2026-11-05-r01",
+      "2026-11-04-r01"
+    ]
+  },
+  {
+    "id": "2026-11-17-r03",
+    "created_at": "2026-11-17T13:07:19.055263+09:00",
+    "headline": "Anthropicが公式Python SDKバージョン2.9.0をPyPIに公開",
+    "what_happened": "AnthropicはClaude API向け公式Pythonクライアントのバージョン「anthropic 2.9.0」をPyPIで公開した。PythonアプリケーションからClaude APIへアクセスするための公式ツールキットである。",
+    "background": "AnthropicはClaude 3.5シリーズ等の機能拡張に伴い、PythonおよびTypeScript SDKを定期的に更新している。",
+    "changed": "Claude APIを利用する開発者がSDKバージョン2.9.0へ更新可能となった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/2.9.0/",
+      "title": "anthropic Python SDK v2.9.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-11-16-r01",
+      "2026-11-13-r05",
+      "2026-11-13-r04",
+      "2026-11-13-r03",
+      "2026-11-11-r04",
+      "2026-11-11-r02"
+    ]
+  },
+  {
+    "id": "2026-11-17-r04",
+    "created_at": "2026-11-17T13:07:19.055263+09:00",
+    "headline": "GoogleがGemini向けgoogle-genai Python SDKバージョン3.4.0を公開",
+    "what_happened": "GoogleはGemini Developer APIおよびGemini Enterprise Agent Platform APIを統合サポートする「google-genai 3.4.0」をPyPIにリリースした。メジャーバージョン3系におけるマイナーアップデートとなる。",
+    "background": "Googleは従来の各種Gemini用ライブラリを「google-genai」SDKに一本化する方針を進めている。",
+    "changed": "Googleの生成AI APIを利用するPython開発者がバージョン3.4.0を導入可能になった。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/3.4.0/",
+      "title": "google-genai Python SDK v3.4.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-11-13-r02",
+      "2026-11-11-r03",
+      "2026-11-08-r02",
+      "2026-11-03-r06",
+      "2026-10-24-r03",
+      "2026-10-23-r02"
+    ]
+  },
+  {
+    "id": "2026-11-17-r05",
+    "created_at": "2026-11-17T13:07:19.055263+09:00",
+    "headline": "ロボット方策モデルにおけるデノイズ回数削減とキャッシュ再利用の比較検証論文が公開",
+    "what_happened": "Abhinav Gupta氏とNissan Pow氏は、6BパラメータのFlow-Matching World Action Model「Fast-WAM」において、過去の計算を再利用するキャッシュ機構と単純なデノイズステップ数削減の効果を比較した論文をarXivに公開した。LIBERO-Goalタスクにおいて、10ステップから2ステップへの削減でタスク成功率を維持しつつ推論時間を202msから92msへ短縮でき、複雑なキャッシュを上回る実効性を示したと報告している。",
+    "background": "ロボット制御方策モデルでは高頻度のリプランニングが求められるため、拡散・フローモデルの推論ステップ削減や計算キャッシュの活用が活発に研究されている。",
+    "changed": "大規模アクションモデルの実時間化において、クロスサイクルキャッシュの導入よりもデノイズステップ数の極小化が実効速度・精度の両面で有利であるとする実証データが提示された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2611.19709v1",
+      "title": "Cache or Denoise Less? Residual Reuse in a Flow-Matching World Action Model",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": []
   }
 ]
