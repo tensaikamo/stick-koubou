@@ -9962,5 +9962,79 @@
     "body_fetched": true,
     "model": "gemini-3.8-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-11-18-r01",
+    "created_at": "2026-11-18T12:05:04.042794+09:00",
+    "headline": "Fine-Grained Japanese Clinical Named Entity Recognition: A Controlled Comparison of BERT and Open-Weight Large Language Models",
+    "what_happened": "著者らは日本語の臨床医療テキストにおける固有表現抽出(NER)タスクを対象として、2種類のファインチューニング済みBERT-CRFベースラインと9種類のオープンウェイトLLMを比較評価した論文をarXivに投稿した。評価には113のエンティティカテゴリを定義したiCorpusデータセットを使用している。LLMについてはゼロショットプロンプティング、JSON Schema制約の有無、3シードによるQLoRAファインチューニングなどの条件で性能を検証した。body_fetched=trueにより本文の一部が取得されている。",
+    "background": "臨床医療分野における日本語の固有表現抽出では、専門性の高い用語や細粒度のカテゴリ分類が求められるため、従来はエンコーダベースのBERTなどが主に使われてきた。近年は生成型の大規模言語モデル(LLM)の適用が進んでいるが、その性能やプロンプト設定に対する感度は十分に比較検証されていなかった。",
+    "changed": "日本語の医療特化型NERタスクにおけるBERT系モデルとオープンウェイトLLMのゼロショットおよびファインチューニング性能に関する実証的な比較データが公開された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2611.22219v1",
+      "title": "Fine-Grained Japanese Clinical Named Entity Recognition: A Controlled Comparison of BERT and Open-Weight Large Language Models",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-11-18-r02",
+    "created_at": "2026-11-18T12:05:04.042794+09:00",
+    "headline": "AnthropicがCompute Capacity Strategy & Operationsの求人を公開",
+    "what_happened": "Anthropicはサンフランシスコおよびニューヨークを勤務地とする「Compute Capacity Strategy & Operations」の求人情報をGreenhouse上で公開した。このポジションは、インフラ、財務、キャパシティエンジニアリングチームと連携し、計算資源の配分最適化や推論サービングスタックへの新しいコンピュートのオンボーディングを担当する。body_fetched=trueにより求人票の職務内容が確認されている。",
+    "background": "AIモデルのトレーニングおよび推論スケール拡大に伴い、大規模なハードウェア(アクセラレータ)の調達と効率的な運用管理が企業の競争力とコスト構造に直結している。",
+    "changed": "Anthropic社内において、推論サービングとアクセラレータ容量の配分戦略を横断的に最適化する組織機能の募集が公式に確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5485582008",
+      "title": "[新規求人] anthropic: Compute Capacity Strategy & Operations (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-17-r03",
+      "2026-11-17-r01",
+      "2026-11-16-r01",
+      "2026-11-13-r05",
+      "2026-11-13-r04",
+      "2026-11-13-r03"
+    ]
+  },
+  {
+    "id": "2026-11-18-r03",
+    "created_at": "2026-11-18T12:05:04.042794+09:00",
+    "headline": "xAIがSr. Software Engineer, Safetyの求人を公開",
+    "what_happened": "xAI(記載上はSpaceXSI名義)はパロアルトを勤務地とする「Sr. Software Engineer, Safety」の求人情報をGreenhouse上で公開した。このポジションは、Grokモデル群やGrok Voice、Grok Buildなどのアプリケーション全般におけるトラスト＆セーフティ、ブランド安全性、法務・オペレーションを支えるツールやシステムの設計・開発を担う。body_fetched=trueにより求人内容が確認されている。",
+    "background": "xAIは大規模言語モデルおよび対話・画像生成などのマルチモーダルアプリケーションを展開しており、プロダクトの急速なスケールに伴い安全性やコンプライアンスを担保するエンジニアリング体制の強化が必要とされている。",
+    "changed": "xAIの安全・信頼性対策および関連アプリケーションの監査・運用インフラを強化するための求人が新たに開示された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5297314007",
+      "title": "[新規求人] xai: Sr. Software Engineer, Safety (Palo Alto, CA)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-13-r07",
+      "2026-11-13-r06",
+      "2026-11-06-r06",
+      "2026-11-06-r05",
+      "2026-11-06-r04",
+      "2026-11-02-r02"
+    ]
   }
 ]

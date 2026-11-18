@@ -3193,15 +3193,19 @@
         "conf_after": 0.785
       }
     ],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-11-18T12:06:37.164003+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "期限である2026年11月18日までのAnthropic公式ニュースルームにおいて、ASEAN地域での新拠点開設または現地法人設立に関する公式発表は掲載されていないため、予測は的中した。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1",
-    "initial_confidence": 0.7
+    "initial_confidence": 0.7,
+    "needs_review": false
   },
   {
     "id": "2026-11-08-h01",
