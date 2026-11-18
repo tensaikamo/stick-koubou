@@ -1,24 +1,44 @@
 {
-  "updated_at": "2026-11-17 13:08",
+  "updated_at": "2026-11-18 12:09",
   "score": {
-    "hit": 20,
+    "hit": 21,
     "miss": 26,
-    "total": 46,
-    "rate": 0.43478260869565216,
-    "pending": 8,
-    "brier": 0.32652510869565227,
-    "brier_n": 46,
-    "brier_initial": 0.33935000000000015,
+    "total": 47,
+    "rate": 0.44680851063829785,
+    "pending": 7,
+    "brier": 0.3205612765957448,
+    "brier_n": 47,
+    "brier_initial": 0.334044680851064,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-11-18",
-    "days": 1
+    "date": "2026-11-20",
+    "days": 2
   },
   "decided": [
+    {
+      "id": "2026-11-04-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいてASEAN地域での新拠点開設または現地法人設立に関する公式発表を行わない。",
+      "subject": "Anthropic",
+      "deadline": "2026-11-18",
+      "confidence": 0.785,
+      "initial_confidence": 0.7,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "既に水面下で進められていた現地法人の登記が完了しており、採用の発表に合わせて即座にプレスリリースが打たれる可能性。",
+      "evidence": "期限である2026年11月18日までのAnthropic公式ニュースルームにおいて、ASEAN地域での新拠点開設または現地法人設立に関する公式発表は掲載されていないため、予測は的中した。",
+      "signals": [
+        {
+          "date": "2026-11-04",
+          "dir": "confirm",
+          "why": "本日の事象においてASEAN地域（シンガポール）の新拠点に関連する「Head of ASEAN, Applied AI (Singapore)」の求人が掲載されており、求人ページ関連の動向として一致するため。"
+        }
+      ]
+    },
     {
       "id": "2026-11-03-h01",
       "claim": "Anthropicは今後14日以内に、公式ニュースルームまたは公式ブログにおいて「Claude Frontier Academy」の第一期生募集またはプログラム詳細に関する発表を行う",
@@ -212,20 +232,6 @@
       "counter": "すでに特定の大手顧客との先行検証が完了しており、Claude Enterpriseプランの大型アップデートの一環として即座に公式発表を控えている場合。",
       "evidence": "判定期限の2026年10月1日時点でAnthropicのニュースルームを確認したところ、記事タイトルに「Cowork」を含む発表記事は1件も存在しなかったため的中と判定。",
       "signals": []
-    },
-    {
-      "id": "2026-09-11-h01",
-      "claim": "Anthropicは今後14日以内に、公式ニュースルームまたはパートナー向けページにおいて、主要SIerとの具体的なリセラー契約締結や共同販売プログラムの本格稼働を発表しない",
-      "subject": "Anthropic",
-      "deadline": "2026-09-25",
-      "confidence": 0.7,
-      "initial_confidence": null,
-      "result": "miss",
-      "status": "resolved",
-      "alert": false,
-      "counter": "すでに水面下で大口SIerとの交渉が完了しており、求人公開と同時にパートナーシップ発表が行われる場合",
-      "evidence": "Anthropicの公式ニュースルームにおいて、期間内にAccentureとの評価に関する提携発表はあるものの、主要SIerとのリセラープログラムの本格稼働や契約締結に関する発表は掲載されていない。",
-      "signals": []
     }
   ],
   "pending": [
@@ -267,26 +273,6 @@
       "counter": "採用と同時にプロダクトの外部発表が既に準備されており、突発的に新しい課金体系が露出する可能性。",
       "evidence": "判定先の公式ページにアクセスできず、発表の有無を確認するための十分な証拠が集められないため。",
       "signals": []
-    },
-    {
-      "id": "2026-11-04-h01",
-      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいてASEAN地域での新拠点開設または現地法人設立に関する公式発表を行わない。",
-      "subject": "Anthropic",
-      "deadline": "2026-11-18",
-      "confidence": 0.785,
-      "initial_confidence": 0.7,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "既に水面下で進められていた現地法人の登記が完了しており、採用の発表に合わせて即座にプレスリリースが打たれる可能性。",
-      "evidence": "",
-      "signals": [
-        {
-          "date": "2026-11-04",
-          "dir": "confirm",
-          "why": "本日の事象においてASEAN地域（シンガポール）の新拠点に関連する「Head of ASEAN, Applied AI (Singapore)」の求人が掲載されており、求人ページ関連の動向として一致するため。"
-        }
-      ]
     },
     {
       "id": "2026-10-30-h01",
@@ -376,11 +362,6 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-11-13",
-          "headline": "anthropic: Partner Support Operations Lead 求人掲載",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453322008"
-        },
-        {
           "date": "2026-11-16",
           "headline": "Anthropicが課金プラットフォーム担当エンジニアリングマネージャーの採用を開始",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5469291008"
@@ -394,17 +375,17 @@
           "date": "2026-11-17",
           "headline": "Anthropicが米国インフラへ500億ドル投資を明記したデータセンター運用求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5484171008"
+        },
+        {
+          "date": "2026-11-18",
+          "headline": "AnthropicがCompute Capacity Strategy & Operationsの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5485582008"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-11-06",
-          "headline": "xaiがSr. Software Engineer, Linux Kernelの求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5286865007"
-        },
         {
           "date": "2026-11-06",
           "headline": "xaiがSr. Software Engineer, Training/Inference (C++)の求人を公開",
@@ -419,6 +400,11 @@
           "date": "2026-11-13",
           "headline": "xai: IT Services Technician 求人掲載",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5277827007"
+        },
+        {
+          "date": "2026-11-18",
+          "headline": "xAIがSr. Software Engineer, Safetyの求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5297314007"
         }
       ]
     },
@@ -474,6 +460,27 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-11-18-r03",
+      "date": "2026-11-18",
+      "headline": "xAIがSr. Software Engineer, Safetyの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5297314007"
+    },
+    {
+      "id": "2026-11-18-r02",
+      "date": "2026-11-18",
+      "headline": "AnthropicがCompute Capacity Strategy & Operationsの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5485582008"
+    },
+    {
+      "id": "2026-11-18-r01",
+      "date": "2026-11-18",
+      "headline": "Fine-Grained Japanese Clinical Named Entity Recognition: A Controlled Comparison of BERT and Open-Weight Large Language ",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2611.22219v1"
+    },
     {
       "id": "2026-11-17-r05",
       "date": "2026-11-17",
@@ -536,28 +543,7 @@
       "headline": "xai: IT Services Technician 求人掲載",
       "certainty": "confirmed",
       "url": "https://job-boards.greenhouse.io/xai/jobs/5277827007"
-    },
-    {
-      "id": "2026-11-13-r05",
-      "date": "2026-11-13",
-      "headline": "anthropic: Partner Support Operations Lead 求人掲載",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5453322008"
-    },
-    {
-      "id": "2026-11-13-r04",
-      "date": "2026-11-13",
-      "headline": "anthropic: Customer Marketing Lead, Startups 求人掲載",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5477150008"
-    },
-    {
-      "id": "2026-11-13-r03",
-      "date": "2026-11-13",
-      "headline": "anthropic: Commercial Activation Lead 求人掲載",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5478939008"
     }
   ],
-  "record_count": 369
+  "record_count": 372
 }
