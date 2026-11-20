@@ -3099,15 +3099,19 @@
         "conf_after": 0.884
       }
     ],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-11-20T11:35:39.496838+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "判定日（2026年11月20日）時点でAnthropic公式ニュースルームの記事一覧において、『Life Sciences』または『Antibody』を含む記事は公開されていないことが確認されたため。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.8-flash",
     "schema_version": "1",
     "generator_ver": "v1",
-    "initial_confidence": 0.83
+    "initial_confidence": 0.83,
+    "needs_review": false
   },
   {
     "id": "2026-11-03-h01",
