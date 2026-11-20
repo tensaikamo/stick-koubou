@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-11-19 11:49",
+  "updated_at": "2026-11-20 11:44",
   "score": {
-    "hit": 21,
+    "hit": 22,
     "miss": 26,
-    "total": 47,
-    "rate": 0.44680851063829785,
-    "pending": 7,
-    "brier": 0.3205612765957448,
-    "brier_n": 47,
-    "brier_initial": 0.334044680851064,
+    "total": 48,
+    "rate": 0.4583333333333333,
+    "pending": 6,
+    "brier": 0.31416325000000006,
+    "brier_n": 48,
+    "brier_initial": 0.32768750000000013,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-11-20",
-    "days": 1
+    "date": "2026-11-24",
+    "days": 4
   },
   "decided": [
     {
@@ -52,6 +52,26 @@
       "counter": "マーケティングリードの採用が始まったばかりであり、実際の外部向け発表は数週間から数ヶ月先になる。",
       "evidence": "期限である2026年11月17日時点でAnthropicの公式ニュースルームを確認したところ、Claude Frontier Academyに関する発表記事は掲載されていなかった。",
       "signals": []
+    },
+    {
+      "id": "2026-10-30-h01",
+      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、生命科学（Life Sciences）または抗体・創薬研究に関する公式アナウンスを行わない",
+      "subject": "Anthropic",
+      "deadline": "2026-11-20",
+      "confidence": 0.884,
+      "initial_confidence": 0.83,
+      "result": "hit",
+      "status": "resolved",
+      "alert": false,
+      "counter": "研究者採用を有利に進めるための採用ブランディング目的で、成果公表前に『生命科学研究チームの発足』そのものを告知する記事を公開した場合は外れる。",
+      "evidence": "判定日（2026年11月20日）時点でAnthropic公式ニュースルームの記事一覧において、『Life Sciences』または『Antibody』を含む記事は公開されていないことが確認されたため。",
+      "signals": [
+        {
+          "date": "2026-10-30",
+          "dir": "confirm",
+          "why": "Anthropicにおいて生命科学分野の研究員求人（Research Scientist, Life Sciences）が新たに掲載されたため。"
+        }
+      ]
     },
     {
       "id": "2026-10-25-h01",
@@ -218,20 +238,6 @@
           "why": "本日の事象としてCustomer Success Manager, Public Sectorの新規求人掲載が確認されたため、募集が継続掲載されていることの指標に該当する。"
         }
       ]
-    },
-    {
-      "id": "2026-09-17-h01",
-      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて「Cowork」をタイトルに含む新機能・新製品の単独発表記事を公開しない",
-      "subject": "Anthropic",
-      "deadline": "2026-10-01",
-      "confidence": 0.88,
-      "initial_confidence": null,
-      "result": "hit",
-      "status": "resolved",
-      "alert": false,
-      "counter": "すでに特定の大手顧客との先行検証が完了しており、Claude Enterpriseプランの大型アップデートの一環として即座に公式発表を控えている場合。",
-      "evidence": "判定期限の2026年10月1日時点でAnthropicのニュースルームを確認したところ、記事タイトルに「Cowork」を含む発表記事は1件も存在しなかったため的中と判定。",
-      "signals": []
     }
   ],
   "pending": [
@@ -273,26 +279,6 @@
       "counter": "採用と同時にプロダクトの外部発表が既に準備されており、突発的に新しい課金体系が露出する可能性。",
       "evidence": "判定先の公式ページにアクセスできず、発表の有無を確認するための十分な証拠が集められないため。",
       "signals": []
-    },
-    {
-      "id": "2026-10-30-h01",
-      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、生命科学（Life Sciences）または抗体・創薬研究に関する公式アナウンスを行わない",
-      "subject": "Anthropic",
-      "deadline": "2026-11-20",
-      "confidence": 0.884,
-      "initial_confidence": 0.83,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "研究者採用を有利に進めるための採用ブランディング目的で、成果公表前に『生命科学研究チームの発足』そのものを告知する記事を公開した場合は外れる。",
-      "evidence": "",
-      "signals": [
-        {
-          "date": "2026-10-30",
-          "dir": "confirm",
-          "why": "Anthropicにおいて生命科学分野の研究員求人（Research Scientist, Life Sciences）が新たに掲載されたため。"
-        }
-      ]
     },
     {
       "id": "2026-11-10-h01",
