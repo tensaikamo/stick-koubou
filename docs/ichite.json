@@ -1,167 +1,163 @@
 {
-  "date": "2026-11-17",
+  "date": "2026-11-21",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "広告枠で汚染される大手AIから逃げる層へ、何を直接提供するか？",
-    "OpenRouterの値下げモデルへ切り替え、浮く原価をどこに回すか？",
-    "Safariから30分でAPI課金導線をアプリに1箇所埋め込めるか？"
+    "DeepSeekの値下げで浮いたAPI予算を、Anthropic SDK 2.9.0を使った自動化のどの部分に再配分するか？",
+    "Anthropicのインフラ投資求人に合わせて、お前が今夜叩くAPIのプロバイダー単価は本当に最適か？",
+    "Google 3.4.0とAnthropic 2.9.0のSDK差異を突き、個人が横取りできる隙をどこに作る？"
   ],
   "moves": [
     {
-      "t": "広告フリー方針をアプリLPに追記する",
-      "why": "推薦枠を金で売る大手プラットフォームとの明確な差別化を提示するため。",
+      "t": "OpenRouter上のプロバイダー別API単価を実測して最安ルートに切り替えろ",
+      "why": "DeepSeekの大幅値下げと関連モデルの価格改定に追随し、仲介マージンを削って個人のコストを最小化するため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "GitHub上でREADMEやLPのHTMLテキストに3行書き加えるだけのため。",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "広告非掲載・データ直接処理を掲げたLPテキストの公開",
-      "category": "publish",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.15,
-      "impact_why": "広告モデルを嫌う逃避層に対する明確な訴求フックになるため。",
-      "evidence_ids": [
-        "2026-11-13-r07"
-      ],
-      "assumptions": [
-        "静的LPがGitHub Pages等でホストされていること"
-      ],
-      "disconfirm": "LP閲覧者が広告の有無に関心を示さないと判明すること",
-      "continue_if": "文面追加後もデザイン崩れなく即時デプロイされること",
-      "stop": "ビルドエラーでページ全体が表示不能になった場合"
-    },
-    {
-      "t": "広告フリー訴求文を海外掲示板へ投稿する",
-      "why": "推薦枠広告化を嫌悪する初期テスターを資本の推薦アルゴリズム外から直接拾うため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.35,
-      "success_p_max": 0.65,
-      "success_why": "Reddit等の関連サブレディットは競合規約が厳しく削除率も一定数あるため。",
+      "success_p": 0.85,
+      "success_p_min": 0.75,
+      "success_p_max": 0.95,
+      "success_why": "OpenRouterの公開価格表はリアルタイムで比較可能であるため。",
       "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 7,
-      "outcome": "RedditのAIツール関連スレッドへの紹介投稿1件",
-      "category": "publish",
-      "terminal": false,
-      "impact_min": 0.05,
-      "impact_max": 0.2,
-      "impact_why": "自前ツールの初期訪問者を獲得できるかどうかの実需検証になるため。",
-      "evidence_ids": [
-        "user-goal"
-      ],
-      "assumptions": [
-        "投稿可能なReddit等の既存アカウントがあること"
-      ],
-      "disconfirm": "投稿直後にAutoModにより即時削除されること",
-      "continue_if": "投稿後1時間以内にUpvoteまたはクリックが1件以上発生すること",
-      "stop": "スパム判定を受けアカウントがシャドウバンされた場合"
-    },
-    {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
-      "value_score": 3,
-      "learning_value": 2,
+      "learning_value": 3,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
-      "category": "build",
+      "outcome": "最安のAPIルーティング設定への切り替え完了",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "日々のランニングコストを直結して下げるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-11-17-r03"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "OpenRouterの価格データが正確であること"
       ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "プロバイダー間で価格差が消失している場合",
+      "continue_if": "コスト削減効果が確認できた場合",
+      "stop": "API仕様の不一致でエラーが頻発する場合"
     },
     {
-      "t": "今日の一次情報を1本選び要点を3行残す",
-      "why": "読むだけで終えず、次の判断に再利用できる材料へ変えるため。",
+      "t": "Google google-genai SDK v3.4.0のドキュメントを検証しろ",
+      "why": "Anthropicに対抗するGoogle側のSDK更新スピードを把握し、マルチモデル戦略の隙を見つけるため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.75,
       "success_p_min": 0.6,
       "success_p_max": 0.85,
-      "success_why": "読む対象を1本に固定すれば30分内に収まる",
-      "value_score": 2,
-      "learning_value": 3,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "一次情報の要点メモが3行残る",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "意思決定へ使えた時だけ価値になる",
-      "evidence_ids": [
-        "user-goal",
-        "action-history"
-      ],
-      "assumptions": [
-        "読む情報が現在の目標に関係する"
-      ],
-      "disconfirm": "要点が次の行動を一つも変えない",
-      "continue_if": "次の判断に使える差分が1つ見つかった",
-      "stop": "3行書いたら終了",
-      "fallback": true
-    },
-    {
-      "t": "予測を1件確認し確度メモを1行更新する",
-      "why": "新しい予測を増やす前に、過去の読みを現実で更新するため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.8,
-      "success_why": "既存予測の更新なので新規企画より着地しやすい",
-      "value_score": 2,
+      "success_why": "PyPIおよび公式リポジトリに公開データが存在するから。",
+      "value_score": 3,
       "learning_value": 4,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "追跡中予測の確度メモが更新される",
-      "category": "review",
+      "outcome": "新機能リストの整理メモ",
+      "category": "research",
       "terminal": false,
-      "impact_min": 0.0,
-      "impact_max": 0.02,
-      "impact_why": "誤った前提で投資する損失を減らす",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "競合SDKの動向を自社アプリに組み込む前提となるため。",
       "evidence_ids": [
-        "action-history"
+        "2026-11-17-r04"
       ],
       "assumptions": [
-        "予測が現在の投資判断に関係する"
+        "ドキュメントが最新版に追随していること"
       ],
-      "disconfirm": "確度更新が次の行動や支出を変えない",
-      "continue_if": "確度を動かす一次根拠が見つかった",
-      "stop": "根拠URLを1本確認したら終了",
-      "fallback": true
+      "disconfirm": "API仕様に変更がない場合",
+      "continue_if": "有用な機能差分が見つかった場合",
+      "stop": "マイナーアップデートに留まる場合"
+    },
+    {
+      "t": "有料APIクレジットを追加購入して検証環境の制限を外せ",
+      "why": "価格競争の激化する中、大手プラットフォームの最新有料機能を確実にテストするため。",
+      "cost_min": 1500,
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.55,
+      "success_p_min": 0.4,
+      "success_p_max": 0.7,
+      "success_why": "課金プラットフォーム担当の採用が活発化しており、有料枠の優遇が強まるため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 10,
+      "payback_days": 30,
+      "outcome": "有料プランでのAPIアクセス権確保",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "無料枠では検証できない高スループット環境を試せるため。",
+      "evidence_ids": [
+        "2026-11-16-r01"
+      ],
+      "assumptions": [
+        "決済手段がiPhoneのSafariで完結すること"
+      ],
+      "disconfirm": "無料枠だけで十分な検証が可能な場合",
+      "continue_if": "APIのレートリミットが緩和された場合",
+      "stop": "価格に見合うパフォーマンスが出ない場合"
+    },
+    {
+      "t": "Anthropicのインフラ求人情報から次の価格改定を予測せよ",
+      "why": "米国インフラへの500億ドル規模の投資動向から、次の一手を先回りするため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.5,
+      "success_p_min": 0.35,
+      "success_p_max": 0.65,
+      "success_why": "求人要項に具体的なインフラ投資計画が明記されているため。",
+      "value_score": 4,
+      "learning_value": 5,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "インフラ投資と価格戦略の予測メモ",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "大手の資本の動きから個人の逃げ道を提前予測するため。",
+      "evidence_ids": [
+        "2026-11-17-r01",
+        "2026-11-18-r02"
+      ],
+      "assumptions": [
+        "求人情報が実際の投資規模を正確に反映していること"
+      ],
+      "disconfirm": "求人情報が単なる定型文である場合",
+      "continue_if": "実際の発表と予測が一致し始めた場合",
+      "stop": "情報が抽象的で推測が困難な場合"
+    },
+    {
+      "t": "パートナーサポート求人の要件からプラットフォームの弱点を突け",
+      "why": "既存プレイヤーがどこを手厚くサポートしているかを見ることで、隙を炙り出すため。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.45,
+      "success_p_min": 0.3,
+      "success_p_max": 0.6,
+      "success_why": "サポート体制の強化領域は、現在ユーザーが最も困っている急所であるから。",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "プラットフォームの脆弱なサポート領域の特定",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "大手がカバーしきれない隙間を見つけるため。",
+      "evidence_ids": [
+        "2026-11-13-r05"
+      ],
+      "assumptions": [
+        "求人票の業務内容が実際の組織の痛点を表していること"
+      ],
+      "disconfirm": "単なる組織拡大のための定型求人である場合",
+      "continue_if": "具体的なトラブルシューティングの傾向が見えた場合",
+      "stop": "情報が一般的なカスタマーサポートの範疇を超える場合"
     }
   ],
-  "kan": "xAIがAds Serving求人を出してから実運用でGrokの回答内にスポンサー枠を本格導入するまでには、AdTech基盤構築の基準率（通常12〜18ヶ月を要し半年未満の稼働例は極めて稀）から見て、今後90日以内にローンチされる確率は3割未満にとどまると見る。ただしAPIや推論コストの値下げ合戦は既に進行中であり、モデル原価の破壊は今四半期中にさらに加速するはずだ。"
+  "kan": "本命ではないが、Anthropicは今後14日以内に公式ニュースルームにおいて、価格競争に対抗するための新たな従量課金体系か破格のバッチ処理プランを突発的に発表すると見る。年間数件しか起きない大手間の価格改定の頻度と直近のディープシークの下げ幅を基準にすると、追随せざるを得ない確率は五分に満たないが目がある。"
 }
