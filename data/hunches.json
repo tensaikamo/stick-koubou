@@ -3382,5 +3382,45 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "initial_confidence": 0.89
+  },
+  {
+    "id": "2026-11-22-h01",
+    "created_at": "2026-11-22T10:30:17.975851+09:00",
+    "based_on": [
+      "2026-11-22-r05"
+    ],
+    "prose": "Anthropicが韓国・ソウルでのマネージャー採用を開始したが、海外拠点における現地職種求人の公開から3週間以内に公式ニュースルームでオフィス開設等の正式発表が行われるケースは極めて稀である。採用プロセスの初期段階にあり、組織稼働前の発表は見送られる公算が大きい。",
+    "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて韓国（KoreaまたはSeoul）での新オフィス開設または事業拡大に関する公式発表を行わない",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Korea Seoul office",
+      "decider": "期日（2026年12月13日）時点で、Anthropicの公式ニュースルーム（https://www.anthropic.com/news）に掲載された記事のタイトルまたは本文に、韓国（KoreaまたはSeoul）でのオフィス開設、現地法人設立、または事業拡大を主題とする記事が1件も存在しない場合に的中。1件でも公開された場合は外れ。"
+    },
+    "deadline": "2026-12-13",
+    "confidence": 0.82,
+    "base_rate": 0.88,
+    "base_rate_class": "大手AI企業が現地職種の求人を公開してから21日以内に、公式ニュースルームで現地オフィス開設等の正式発表を行わない頻度",
+    "confidence_why": "求人公開は採用着手段階に過ぎず通常公式発表まで数ヶ月のリードタイムを要するが、既に現地パートナー企業との合意が内定していて先行発表される可能性を一部織り込み、基準率よりわずかに低く見積もった。",
+    "counter": "既に韓国の大手通信キャリアやクラウド事業者との資本・業務提携が水面下で合意に達しており、求人公開に合わせて一気に公式発表を打つ可能性がある。",
+    "indicators": [
+      {
+        "sign": "AnthropicのGreenhouse求人ページで「Manager, Applied AI Architect (Seoul)」の募集が掲載継続している",
+        "dir": "confirm"
+      },
+      {
+        "sign": "Anthropicの公式Xアカウント（@AnthropicAI）が韓国展開やソウル拠点に関するプレスリリースを告知する",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.8-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
   }
 ]

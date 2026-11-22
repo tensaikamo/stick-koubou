@@ -10036,5 +10036,133 @@
       "2026-11-06-r04",
       "2026-11-02-r02"
     ]
+  },
+  {
+    "id": "2026-11-22-r01",
+    "created_at": "2026-11-22T10:30:17.975851+09:00",
+    "headline": "Anthropicが韓国・ソウル勤務のApplied AI Architectマネージャーの採用募集を開始",
+    "what_happened": "Anthropicは採用管理システムGreenhouseにおいて、韓国・ソウルを勤務地とする「Manager, Applied AI Architect」の新規求人を公開した。同職種は韓国のエンタープライズ顧客に対してClaudeの導入支援やLLMアーキテクチャ設計を行うプリセールス技術責任者として定義されている。セールス、プロダクト、エンジニアリング各部門と連携し、現地顧客向けの評価基盤構築や導入支援を牽引する役割を担う。",
+    "background": "Anthropicはアジア太平洋地域での体制構築を進めており、直近でもASEAN拠点設立や台湾市場への対応を進めている。韓国市場での法人営業・技術支援体制の立ち上げは、現地大手テクノロジー企業や財閥系企業へのClaude導入本格化を示唆する動きである。",
+    "changed": "Anthropicが韓国国内に顧客対応専任のテクニカルアーキテクト組織を公式に配置し始めることが確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5480986008",
+      "title": "[新規求人] anthropic: Manager, Applied AI Architect (Seoul, South Korea)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-11-18-r02",
+      "2026-11-17-r03",
+      "2026-11-17-r01",
+      "2026-11-16-r01",
+      "2026-11-13-r05",
+      "2026-11-13-r04"
+    ]
+  },
+  {
+    "id": "2026-11-22-r02",
+    "created_at": "2026-11-22T10:30:17.975851+09:00",
+    "headline": "Anthropicがモデル公開時のシステムカード専任編集・運用担当者の求人を開始",
+    "what_happened": "Anthropicは「Research Operations, External Artifacts」と題する新規職種の募集を開始した。新モデル公開ごとに発行される「システムカード（System Card）」の制作進行管理、研究者・安全性チーム間の調整、評価結果の文章化および論理的整合性の検証を専任で統括する役割である。研究開発から対外公表までのプロセスの運用体制を制度化する狙いがある。",
+    "background": "AIフロンティアモデルの公開にあたっては、能力評価や安全性検証結果をまとめた技術文書（システムカード）の提出が規制当局や利用企業から強く求められるようになっている。これまでは研究者主導で作成されていたが、公開頻度の上昇に伴い専任のオペレーション職が新設された。",
+    "changed": "モデルリリースに伴う公開ドキュメント作成が研究者の個別作業から専任運用チームによる標準プロセスへと移行する体制が整備された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5490492008",
+      "title": "[新規求人] anthropic: Research Operations, External Artifacts (Remote-Friendly, United States)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-11-18-r02",
+      "2026-11-17-r03",
+      "2026-11-17-r01",
+      "2026-11-16-r01",
+      "2026-11-13-r05",
+      "2026-11-13-r04"
+    ]
+  },
+  {
+    "id": "2026-11-22-r03",
+    "created_at": "2026-11-22T10:30:17.975851+09:00",
+    "headline": "xAIがメンフィスデータセンターの建設・拠点効率リードエンジニアを募集",
+    "what_happened": "xAI（SpaceXSI）は、テネシー州メンフィスおよびミシシッピ州サウスヘイブンを勤務地とする「Lead Operations Engineer, Construction & Site Efficiency」の求人を公開した。Colossusスーパーコンピュータを収容するハイパースケールAI計算拠点の設計、建設、稼働効率化を担当するポジションである。プロセスフローや設備配置の最適化を通じてデータセンター建設の迅速化を担う。",
+    "background": "xAIはメンフィスにColossusと呼ばれる大規模GPUクラスタを構築しており、イーロン・マスク氏の指揮下で急速な拡張を進めている。SpaceXSIのインフラチームとしてハードウェアと電力・冷却設備の最適化を継続している。",
+    "changed": "メンフィスのデータセンター拠点において、インフラ拡張と敷地運用の効率化を統括するリーダー級エンジニアの追加配置が進められている。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5303782007",
+      "title": "[新規求人] xai: Lead Operations Engineer, Construction & Site Efficiency - Memphis ( Southaven, MS; Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-11-18-r03",
+      "2026-11-13-r07",
+      "2026-11-13-r06",
+      "2026-11-06-r06",
+      "2026-11-06-r05",
+      "2026-11-06-r04"
+    ]
+  },
+  {
+    "id": "2026-11-22-r04",
+    "created_at": "2026-11-22T10:30:17.975851+09:00",
+    "headline": "xAIがオンライン安全規制準拠を担当するSafety Compliance TPMを募集",
+    "what_happened": "xAIはパロアルト勤務の「Technical Program Manager, Safety Compliance」の募集を開始した。プラットフォームが主要なコンテンツモデレーションおよびオンライン安全規制に準拠することを担保するプログラム全体を統括する職種である。AIを活用した自動化を進めつつ、ポリシー執行と法規制対応の両立を図る。",
+    "background": "xAIが提供するGrokシリーズやX統合機能に対し、各国規制当局からのコンテンツ安全性や違法コンテンツ対策への要求が高まっている。これに対応するための専任コンプライアンス技術管理者の配置が求められている。",
+    "changed": "xAIのセーフティ部門において、表現の自由の維持と主要国の安全法規制順守を両立させる技術プログラム管理体制の強化が着手された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5300875007",
+      "title": "[新規求人] xai: Technical Program Manager, Safety Compliance (Palo Alto, CA)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-11-18-r03",
+      "2026-11-13-r07",
+      "2026-11-13-r06",
+      "2026-11-06-r06",
+      "2026-11-06-r05",
+      "2026-11-06-r04"
+    ]
+  },
+  {
+    "id": "2026-11-22-r05",
+    "created_at": "2026-11-22T10:30:17.975851+09:00",
+    "headline": "清華大学等の研究チームがフロンティアモデルの直接ロボット制御能力を評価するAgentRoboCriticを発表",
+    "what_happened": "清華大学などの研究者らは、高レベルのプリミティブを介さず低レベル数値アクションによって直接ロボットを制御するフロンティアエージェントの挙動を詳細に分析するベンチマーク「AgentRoboCritic」に関する論文をarXivに公開した。エージェントがアクションごとに局所的な意図を表明し、批評エージェントがその成否を判定するフレームワークを提案している。12種類のマニピュレーション課題においてアクション単位での体系的な検証を実施した。",
+    "background": "VLM（視覚言語モデル）やLLMをロボット直接制御に適用する研究が進んでいるが、従来のエピソード単位の成功率評価では失敗の原因特定が困難であったため、詳細な行動解析手法が求められていた。",
+    "changed": "ロボット制御タスクにおけるフロンティアエージェントの失敗原因と成功要因を行動単位で分解して特定する評価手法が提供された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2611.26613v1",
+      "title": "AgentRoboCritic: Understanding the Capability of Frontier Agents on Direct Robot Control",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": []
   }
 ]
