@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-21 11:48",
+  "updated_at": "2026-11-22 10:31",
   "score": {
     "hit": 22,
     "miss": 26,
     "total": 48,
     "rate": 0.4583333333333333,
-    "pending": 6,
+    "pending": 7,
     "brier": 0.31416325000000006,
     "brier_n": 48,
     "brier_initial": 0.32768750000000013,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-11-24",
-    "days": 3
+    "days": 2
   },
   "decided": [
     {
@@ -341,22 +341,26 @@
           "why": "AnthropicにおいてBilling Platform担当エンジニアリングマネージャー（Engineering Manager, Billing Platform）の求人掲載が確認されたため。"
         }
       ]
+    },
+    {
+      "id": "2026-11-22-h01",
+      "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて韓国（KoreaまたはSeoul）での新オフィス開設または事業拡大に関する公式発表を行わない",
+      "subject": "Anthropic",
+      "deadline": "2026-12-13",
+      "confidence": 0.82,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "既に韓国の大手通信キャリアやクラウド事業者との資本・業務提携が水面下で合意に達しており、求人公開に合わせて一気に公式発表を打つ可能性がある。",
+      "evidence": "",
+      "signals": []
     }
   ],
   "threads": [
     {
       "subject": "Anthropic",
       "events": [
-        {
-          "date": "2026-11-16",
-          "headline": "Anthropicが課金プラットフォーム担当エンジニアリングマネージャーの採用を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5469291008"
-        },
-        {
-          "date": "2026-11-17",
-          "headline": "Anthropicが公式Python SDKバージョン2.9.0をPyPIに公開",
-          "url": "https://pypi.org/project/anthropic/2.9.0/"
-        },
         {
           "date": "2026-11-17",
           "headline": "Anthropicが米国インフラへ500億ドル投資を明記したデータセンター運用求人を公開",
@@ -366,22 +370,22 @@
           "date": "2026-11-18",
           "headline": "AnthropicがCompute Capacity Strategy & Operationsの求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5485582008"
+        },
+        {
+          "date": "2026-11-22",
+          "headline": "Anthropicがモデル公開時のシステムカード専任編集・運用担当者の求人を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5490492008"
+        },
+        {
+          "date": "2026-11-22",
+          "headline": "Anthropicが韓国・ソウル勤務のApplied AI Architectマネージャーの採用募集を開始",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5480986008"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-11-06",
-          "headline": "xaiがSr. Software Engineer, Training/Inference (C++)の求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5286879007"
-        },
-        {
-          "date": "2026-11-13",
-          "headline": "xai: Client Partner (Mexico) 求人掲載",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5293897007"
-        },
         {
           "date": "2026-11-13",
           "headline": "xai: IT Services Technician 求人掲載",
@@ -391,6 +395,16 @@
           "date": "2026-11-18",
           "headline": "xAIがSr. Software Engineer, Safetyの求人を公開",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5297314007"
+        },
+        {
+          "date": "2026-11-22",
+          "headline": "xAIがオンライン安全規制準拠を担当するSafety Compliance TPMを募集",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5300875007"
+        },
+        {
+          "date": "2026-11-22",
+          "headline": "xAIがメンフィスデータセンターの建設・拠点効率リードエンジニアを募集",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5303782007"
         }
       ]
     },
@@ -447,6 +461,41 @@
   ],
   "records": [
     {
+      "id": "2026-11-22-r05",
+      "date": "2026-11-22",
+      "headline": "清華大学等の研究チームがフロンティアモデルの直接ロボット制御能力を評価するAgentRoboCriticを発表",
+      "certainty": "confirmed",
+      "url": "https://arxiv.org/abs/2611.26613v1"
+    },
+    {
+      "id": "2026-11-22-r04",
+      "date": "2026-11-22",
+      "headline": "xAIがオンライン安全規制準拠を担当するSafety Compliance TPMを募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5300875007"
+    },
+    {
+      "id": "2026-11-22-r03",
+      "date": "2026-11-22",
+      "headline": "xAIがメンフィスデータセンターの建設・拠点効率リードエンジニアを募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5303782007"
+    },
+    {
+      "id": "2026-11-22-r02",
+      "date": "2026-11-22",
+      "headline": "Anthropicがモデル公開時のシステムカード専任編集・運用担当者の求人を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5490492008"
+    },
+    {
+      "id": "2026-11-22-r01",
+      "date": "2026-11-22",
+      "headline": "Anthropicが韓国・ソウル勤務のApplied AI Architectマネージャーの採用募集を開始",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5480986008"
+    },
+    {
       "id": "2026-11-18-r03",
       "date": "2026-11-18",
       "headline": "xAIがSr. Software Engineer, Safetyの求人を公開",
@@ -494,42 +543,7 @@
       "headline": "OpenAIが公式Python SDKバージョン3.52.0をPyPIに公開",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/openai/3.52.0/"
-    },
-    {
-      "id": "2026-11-17-r01",
-      "date": "2026-11-17",
-      "headline": "Anthropicが米国インフラへ500億ドル投資を明記したデータセンター運用求人を公開",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5484171008"
-    },
-    {
-      "id": "2026-11-16-r02",
-      "date": "2026-11-16",
-      "headline": "OpenAIが公式Python SDKバージョン3.51.0を公開",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.51.0/"
-    },
-    {
-      "id": "2026-11-16-r01",
-      "date": "2026-11-16",
-      "headline": "Anthropicが課金プラットフォーム担当エンジニアリングマネージャーの採用を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5469291008"
-    },
-    {
-      "id": "2026-11-13-r07",
-      "date": "2026-11-13",
-      "headline": "xai: Client Partner (Mexico) 求人掲載",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5293897007"
-    },
-    {
-      "id": "2026-11-13-r06",
-      "date": "2026-11-13",
-      "headline": "xai: IT Services Technician 求人掲載",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5277827007"
     }
   ],
-  "record_count": 372
+  "record_count": 377
 }
