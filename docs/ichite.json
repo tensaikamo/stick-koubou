@@ -1,163 +1,163 @@
 {
-  "date": "2026-11-21",
+  "date": "2026-11-23",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "DeepSeekの値下げで浮いたAPI予算を、Anthropic SDK 2.9.0を使った自動化のどの部分に再配分するか？",
-    "Anthropicのインフラ投資求人に合わせて、お前が今夜叩くAPIのプロバイダー単価は本当に最適か？",
-    "Google 3.4.0とAnthropic 2.9.0のSDK差異を突き、個人が横取りできる隙をどこに作る？"
+    "OpenRouterの価格変動ログを開き、依存しているモデルのAPI費用を今すぐ再計算したか？",
+    "Qwen系モデルへのルーティング切り替えコードをiPhoneからGitHub上のリポジトリに書き込んだか？",
+    "DeepSeekの直販絞り込みを見越し、フォールバック構成のフォーク元をiPhoneのSafariで確認したか？"
   ],
   "moves": [
     {
-      "t": "OpenRouter上のプロバイダー別API単価を実測して最安ルートに切り替えろ",
-      "why": "DeepSeekの大幅値下げと関連モデルの価格改定に追随し、仲介マージンを削って個人のコストを最小化するため。",
+      "t": "OpenRouterのAPI単価変動ログを開いて依存モデルのコストを再計算する",
+      "why": "DeepSeek V4.1 Flashの100%値上げに対し、自前のAPI依存度を即座に把握するためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.85,
       "success_p_min": 0.75,
       "success_p_max": 0.95,
-      "success_why": "OpenRouterの公開価格表はリアルタイムで比較可能であるため。",
+      "success_why": "OpenRouterの公開料金表で直近の価格改定値が直接確認できるため。",
       "value_score": 4,
-      "learning_value": 3,
+      "learning_value": 4,
       "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "最安のAPIルーティング設定への切り替え完了",
+      "outcome": "主要モデルのコスト変動一覧メモ",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "日々のランニングコストを直結して下げるため。",
-      "evidence_ids": [
-        "2026-11-17-r03"
-      ],
-      "assumptions": [
-        "OpenRouterの価格データが正確であること"
-      ],
-      "disconfirm": "プロバイダー間で価格差が消失している場合",
-      "continue_if": "コスト削減効果が確認できた場合",
-      "stop": "API仕様の不一致でエラーが頻発する場合"
-    },
-    {
-      "t": "Google google-genai SDK v3.4.0のドキュメントを検証しろ",
-      "why": "Anthropicに対抗するGoogle側のSDK更新スピードを把握し、マルチモデル戦略の隙を見つけるため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "PyPIおよび公式リポジトリに公開データが存在するから。",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "新機能リストの整理メモ",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "競合SDKの動向を自社アプリに組み込む前提となるため。",
+      "impact_why": "コスト構造の把握により無駄なAPI課金を防ぐため。",
       "evidence_ids": [
         "2026-11-17-r04"
       ],
       "assumptions": [
-        "ドキュメントが最新版に追随していること"
+        "OpenRouterの料金ページが常時閲覧可能であること"
       ],
-      "disconfirm": "API仕様に変更がない場合",
-      "continue_if": "有用な機能差分が見つかった場合",
-      "stop": "マイナーアップデートに留まる場合"
+      "disconfirm": "価格改定データが数日以内に元に戻ること",
+      "continue_if": "値上げ幅が想定内で運用継続可能な場合",
+      "stop": "対象モデルの提供が完全に停止した場合"
     },
     {
-      "t": "有料APIクレジットを追加購入して検証環境の制限を外せ",
-      "why": "価格競争の激化する中、大手プラットフォームの最新有料機能を確実にテストするため。",
-      "cost_min": 1500,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.55,
-      "success_p_min": 0.4,
-      "success_p_max": 0.7,
-      "success_why": "課金プラットフォーム担当の採用が活発化しており、有料枠の優遇が強まるため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 10,
-      "payback_days": 30,
-      "outcome": "有料プランでのAPIアクセス権確保",
-      "category": "buy",
+      "t": "GitHub上のコードにQwen系へのフォールバック構成を書き込む",
+      "why": "DeepSeekの値上げリスクを避け、コスト最適化されたルーティングを確立するためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.6,
+      "success_p_max": 0.8,
+      "success_why": "GitHubのWebエディタを用いてiPhoneから直接コードの書き換えとコミットが可能であるため。",
+      "value_score": 5,
+      "learning_value": 5,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "フォールバック処理が追加されたGitHub上のソースコード",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.2,
       "impact_max": 0.3,
-      "impact_why": "無料枠では検証できない高スループット環境を試せるため。",
+      "impact_why": "APIコストの跳ね上がりに対する防衛策として直接機能するため。",
       "evidence_ids": [
-        "2026-11-16-r01"
+        "2026-11-17-r04"
       ],
       "assumptions": [
-        "決済手段がiPhoneのSafariで完結すること"
+        "GitHubのWebインターフェースからリポジトリの編集ができること"
       ],
-      "disconfirm": "無料枠だけで十分な検証が可能な場合",
-      "continue_if": "APIのレートリミットが緩和された場合",
-      "stop": "価格に見合うパフォーマンスが出ない場合"
+      "disconfirm": "コードの構文エラーでビルドが通らなくなること",
+      "continue_if": "コミットとプッシュが正常に完了した場合",
+      "stop": "リポジトリの構造が複雑すぎてWeb編集できない場合"
     },
     {
-      "t": "Anthropicのインフラ求人情報から次の価格改定を予測せよ",
-      "why": "米国インフラへの500億ドル規模の投資動向から、次の一手を先回りするため。",
+      "t": "Google Gemini APIの最新Python SDKの変更点をリサーチする",
+      "why": "Tool Retrieval機能の導入による外部連携の囲い込み実態を把握するためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.35,
-      "success_p_max": 0.65,
-      "success_why": "求人要項に具体的なインフラ投資計画が明記されているため。",
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "PyPIの公式ページにバージョン履歴と変更内容が詳細に記載されているため。",
       "value_score": 4,
-      "learning_value": 5,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "インフラ投資と価格戦略の予測メモ",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "大手の資本の動きから個人の逃げ道を提前予測するため。",
-      "evidence_ids": [
-        "2026-11-17-r01",
-        "2026-11-18-r02"
-      ],
-      "assumptions": [
-        "求人情報が実際の投資規模を正確に反映していること"
-      ],
-      "disconfirm": "求人情報が単なる定型文である場合",
-      "continue_if": "実際の発表と予測が一致し始めた場合",
-      "stop": "情報が抽象的で推測が困難な場合"
-    },
-    {
-      "t": "パートナーサポート求人の要件からプラットフォームの弱点を突け",
-      "why": "既存プレイヤーがどこを手厚くサポートしているかを見ることで、隙を炙り出すため。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "サポート体制の強化領域は、現在ユーザーが最も困っている急所であるから。",
-      "value_score": 3,
       "learning_value": 4,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "プラットフォームの脆弱なサポート領域の特定",
+      "outcome": "Gemini SDKの新機能仕様まとめ",
       "category": "research",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "大手がカバーしきれない隙間を見つけるため。",
+      "impact_why": "プラットフォームの囲い込み戦略への対抗策を考える基礎データになるため。",
       "evidence_ids": [
-        "2026-11-13-r05"
+        "2026-11-17-r04",
+        "2026-11-13-r02"
       ],
       "assumptions": [
-        "求人票の業務内容が実際の組織の痛点を表していること"
+        "PyPI上のリリースノートが正確であること"
       ],
-      "disconfirm": "単なる組織拡大のための定型求人である場合",
-      "continue_if": "具体的なトラブルシューティングの傾向が見えた場合",
-      "stop": "情報が一般的なカスタマーサポートの範疇を超える場合"
+      "disconfirm": "SDKの更新がマイナーなバグ修正のみであること",
+      "continue_if": "APIの挙動に直接影響する変更が見つかった場合",
+      "stop": "ドキュメントが非公開または英語で解読不可能な場合"
+    },
+    {
+      "t": "有料のAPI管理ツールまたは監視ダッシュボードを導入してアラートを設定する",
+      "why": "中国勢の価格二極化や急激な単価変動をリアルタイムで検知し遅れをとらないためだ。",
+      "cost_min": 1500,
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.6,
+      "success_p_min": 0.5,
+      "success_p_max": 0.7,
+      "success_why": "既存の外部モニタリング用SaaSの多くが即時利用可能なアラート機能を持つため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 25,
+      "payback_days": 30,
+      "outcome": "価格変動検知用のアラート通知設定完了",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "急な価格改定に対する初動の速さを担保するため。",
+      "evidence_ids": [
+        "2026-11-17-r04"
+      ],
+      "assumptions": [
+        "月額の有料プランにiPhoneのブラウザから決済・登録できること"
+      ],
+      "disconfirm": "価格変動の検知頻度が低く実用に耐えないこと",
+      "continue_if": "初月で値上がりを一度でも検知できた場合",
+      "stop": "課金額対効果が低いと判断した場合"
+    },
+    {
+      "t": "オープンウェイトモデルのベンチマーク比較結果をiPhoneのメモにまとめる",
+      "why": "DeepSeek値上げ後に乗り換えるべき代替モデルの性能差を明確にするためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.65,
+      "success_p_max": 0.85,
+      "success_why": "公開されているオープンウェイトの性能比較データやレビュー記事にアクセスできるため。",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "代替モデルの性能・コスト比較メモ",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "モデル選定の意思決定を迅速化するため。",
+      "evidence_ids": [
+        "2026-11-17-r04"
+      ],
+      "assumptions": [
+        "信頼できるベンチマーク情報がWeb上に存在すること"
+      ],
+      "disconfirm": "主要モデルの性能差がベンチマークと実運用で大きく異なること",
+      "continue_if": "コストパフォーマンスの高いモデルの候補が絞り込めた場合",
+      "stop": "情報が錯綜して優劣が判断できない場合"
     }
   ],
-  "kan": "本命ではないが、Anthropicは今後14日以内に公式ニュースルームにおいて、価格競争に対抗するための新たな従量課金体系か破格のバッチ処理プランを突発的に発表すると見る。年間数件しか起きない大手間の価格改定の頻度と直近のディープシークの下げ幅を基準にすると、追随せざるを得ない確率は五分に満たないが目がある。"
+  "kan": "DeepSeekは今後30日以内に、主要な海外向けAPIの価格をさらに引き上げ、中国国内の特定クラウド利用者以外への直販を絞る目がある。"
 }
