@@ -3282,14 +3282,18 @@
       }
     ],
     "signals": [],
-    "status": "pending",
-    "resolved_at": null,
-    "result": null,
-    "evidence": null,
+    "status": "resolved",
+    "resolved_at": "2026-11-24T14:33:12.736812+09:00",
+    "result": "hit",
+    "evidence": {
+      "summary": "Anthropic公式ニュースルームを確認したところ、2026-11-10から2026-11-24の期限内にオーストラリア市場向けの現地法人設立や提携に関するプレスリリースは掲載されていない。",
+      "url": "https://www.anthropic.com/news"
+    },
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "needs_review": false
   },
   {
     "id": "2026-11-13-h01",
@@ -3420,6 +3424,46 @@
     "evidence": null,
     "rejected": [],
     "model": "gemini-3.8-flash",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-11-24-h01",
+    "created_at": "2026-11-24T14:27:58.730765+09:00",
+    "based_on": [
+      "2026-11-24-r02"
+    ],
+    "prose": "AnthropicのPython SDKが2.13.0に更新されたが、短期的なライブラリの小刻みなバージョン刻みは日常的なメンテナンスの範疇であり、公式ニュースルームにおける大規模な機能発表の頻度は過去の基準率から見ても低い。過去の同種予測における過信の反省を踏まえ、基準率に引き戻して判断する。",
+    "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて新しいパートナープログラムや統合プラットフォームの大規模な一般提供開始を発表しない。",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "anthropic news partnership launch",
+      "decider": "Anthropicの公式ニュースルームにおいて、新規のパートナーシッププログラムまたは統合プラットフォームの一般提供開始を告げるプレスリリースが掲載されること。"
+    },
+    "deadline": "2026-12-08",
+    "confidence": 0.65,
+    "base_rate": 0.7,
+    "base_rate_class": "AI企業が14日以内に主要な新規パートナーシップの発表を行う頻度",
+    "confidence_why": "SDKのマイナーアップデートは確認されたものの、求人や開発者向け機能の小幅な動きにとどまっており、短期間で大規模な発表に踏み切る基準率から大きく乖離させる材料はないため、ベースライン近辺でやや慎重に置く。",
+    "counter": "突発的な外部企業との提携発表やエコシステム拡大のプレッシャーにより、予想外のタイミングでプレスリリースが投下される可能性。",
+    "indicators": [
+      {
+        "sign": "Anthropicの公式ニュースルームに新たなプレスリリースが掲載される",
+        "dir": "kill"
+      },
+      {
+        "sign": "公式ドキュメントやAPI仕様に大規模な変更予告が追加される",
+        "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
     "generator_ver": "v1"
   }

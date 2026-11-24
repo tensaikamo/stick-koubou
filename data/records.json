@@ -10164,5 +10164,173 @@
     "body_fetched": true,
     "model": "gemini-3.8-flash",
     "related_ids": []
+  },
+  {
+    "id": "2026-11-24-r01",
+    "created_at": "2026-11-24T14:27:58.730765+09:00",
+    "headline": "openai Python SDK v3.58.0 リリース",
+    "what_happened": "PyPI上の公式openaiパッケージにおいて、バージョン3.58.0が新たにリリースされた。OpenAIのREST APIへアクセスするためのPythonライブラリであり、型定義や非同期クライアントを含んでいる。body_fetched=trueにより取得されたページ情報に基づく。",
+    "background": "OpenAIはAPIクライアントの機能を継続的に更新しており、細かなバージョンアップが頻繁に行われている。",
+    "changed": "公式Python SDKのバージョンが3.58.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.58.0/",
+      "title": "openai Python SDK v3.58.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-17-r02",
+      "2026-11-16-r02",
+      "2026-11-13-r01",
+      "2026-11-11-r01",
+      "2026-11-10-r05",
+      "2026-11-05-r01"
+    ]
+  },
+  {
+    "id": "2026-11-24-r02",
+    "created_at": "2026-11-24T14:27:58.730765+09:00",
+    "headline": "anthropic Python SDK v2.13.0 リリース",
+    "what_happened": "PyPI上の公式anthropicパッケージにおいて、バージョン2.13.0が新たにリリースされた。Claude APIへアクセスするためのPython用SDKであり、ドキュメントやインストール手順が公開されている。body_fetched=trueにより取得されたページ情報に基づく。",
+    "background": "AnthropicはAPIの機能拡張やメンテナンスに伴い、Python SDKのバージョンを随時更新している。",
+    "changed": "公式Python SDKのバージョンが2.13.0に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/2.13.0/",
+      "title": "anthropic Python SDK v2.13.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-22-r02",
+      "2026-11-22-r01",
+      "2026-11-18-r02",
+      "2026-11-17-r03",
+      "2026-11-17-r01",
+      "2026-11-16-r01"
+    ]
+  },
+  {
+    "id": "2026-11-24-r03",
+    "created_at": "2026-11-24T14:27:58.730765+09:00",
+    "headline": "google-genai Python SDK v3.6.1 リリース",
+    "what_happened": "PyPI上の公式google-genaiパッケージにおいて、バージョン3.6.1が新たにリリースされた。Gemini Developer APIおよびGemini Enterprise Agent Platformに対応するPython用インターフェースを提供する。body_fetched=trueにより取得されたページ情報に基づく。",
+    "background": "GoogleはGemini関連のAPI開発を統合するSDKの改修とバージョンアップを重ねている。",
+    "changed": "公式Python SDKのバージョンが3.6.1に更新された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/google-genai/3.6.1/",
+      "title": "google-genai Python SDK v3.6.1 リリース",
+      "hn_score": 0,
+      "name": "PyPI:google-genai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-17-r04",
+      "2026-11-13-r02",
+      "2026-11-11-r03",
+      "2026-11-08-r02",
+      "2026-11-03-r06",
+      "2026-10-24-r03"
+    ]
+  },
+  {
+    "id": "2026-11-24-r04",
+    "created_at": "2026-11-24T14:27:58.730765+09:00",
+    "headline": "When Does Fine-Tuning Beat Prompting for Qiskit-to-CUDA-Q Translation? An Execution-Verified Study",
+    "what_happened": "arXivに量子コードの変換に関する論文（著者: Ana Paula Appel）が投稿された。QiskitからNVIDIA CUDA-Qへの翻訳において、ファインチューニングとプロンプティングのどちらが優れているかを実行検証によって比較する640タスクのベンチマークが提案されている。body_fetched=trueにより取得されたページ情報に基づく。",
+    "background": "量子コンピューティング分野における言語モデルの適用やコード変換の自動化において、正確な評価手法の需要が高まっている。",
+    "changed": "QiskitからCUDA-Qへの翻訳精度を測定するための実行検証済みベンチマークが公開された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2611.29793v1",
+      "title": "When Does Fine-Tuning Beat Prompting for Qiskit-to-CUDA-Q Translation? An Execution-Verified Study",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-11-24-r05",
+    "created_at": "2026-11-24T14:27:58.730765+09:00",
+    "headline": "A Cascaded Framework with a Cross-Attention-Guided Mamba-CNN Model for Pre- and Post-Treatment Glioma Segmentation",
+    "what_happened": "arXivに神経膠腫（グリオーマ）のセグメンテーションに関する論文（著者: Siavash Taremiら）が投稿された。術前および術後の画像処理に対応するクロスアテンション誘導型Mamba-CNNモデル（CMC-Seg）を提案している。body_fetched=trueにより取得されたページ情報に基づく。",
+    "background": "医療画像解析において、CNNとVision TransformersやMambaアーキテクチャを組み合わせた長距離依存関係のモデリング研究が進められている。",
+    "changed": "術後切除腔を含む神経膠腫のセグメンテーション精度を高めるための新しいカスケードフレームワークが提案された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2611.29792v1",
+      "title": "A Cascaded Framework with a Cross-Attention-Guided Mamba-CNN Model for Pre- and Post-Treatment Glioma Segmentation",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-11-24-r06",
+    "created_at": "2026-11-24T14:27:58.730765+09:00",
+    "headline": "ComplexIF: A Challenging Multi-Turn, Multi-Constraint Instruction-Following Benchmark",
+    "what_happened": "arXivにマルチターン・複数制約の指示追従ベンチマークに関する論文（著者: Zhichao Xuら）が投稿された。既存のベンチマークが飽和する中で、会話のターンごとに制約を加える複雑なタスクを自動生成するパイプラインと「ComplexIF」が紹介されている。body_fetched=trueにより取得されたページ情報に基づく。",
+    "background": "最先端の大規模言語モデルの性能評価において、より高度な指示追従能力を測るためのベンチマーク開発が求められている。",
+    "changed": "マルチターンかつ複数の制約を持つ指示追従能力を厳密に測定するための新しいベンチマーク「ComplexIF」が提案された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2611.29775v1",
+      "title": "ComplexIF: A Challenging Multi-Turn, Multi-Constraint Instruction-Following Benchmark",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": []
+  },
+  {
+    "id": "2026-11-24-r07",
+    "created_at": "2026-11-24T14:27:58.730765+09:00",
+    "headline": "anthropic: Applied AI Architect, Technology Partnershipsの求人公開",
+    "what_happened": "Greenhouse上のAnthropic公式求人ページにて、「Applied AI Architect, Technology Partnerships（サンフランシスコまたはニューヨーク）」の募集が掲載された。Claude向けの独自製品統合を行う戦略的ISVや技術パートナーの技術的リードを担う役割とされている。body_fetched=trueにより取得されたページ情報に基づく。",
+    "background": "Anthropicは外部プラットフォームとの連携やMCPサーバー、コネクタ、プラグインの展開を強化するための人材採用を進めている。",
+    "changed": "テクノロジーパートナーシップ部門において、外部企業との製品統合を直接支援するアーキテクト職の募集が開始された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5491480008",
+      "title": "[新規求人] anthropic: Applied AI Architect, Technology Partnerships (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-22-r02",
+      "2026-11-22-r01",
+      "2026-11-18-r02",
+      "2026-11-17-r03",
+      "2026-11-17-r01",
+      "2026-11-16-r01"
+    ]
   }
 ]
