@@ -10332,5 +10332,194 @@
       "2026-11-17-r01",
       "2026-11-16-r01"
     ]
+  },
+  {
+    "id": "2026-11-25-r01",
+    "created_at": "2026-11-25T13:29:44.491080+09:00",
+    "headline": "anthropicがSafeguards Enforcement Analystの求人を公開",
+    "what_happened": "Anthropicは、ボストン、サンフランシスコ、シアトル、ニューヨーク、ワシントンD.C.を勤務地として「Safeguards Enforcement Analyst, Targeting, Tracking & Surveillance」の求人を新たに公開した。職務内容には、AIシステムが追跡・監視・標的型攻撃に悪用される試みの検知と軽減、および執行ワークフローの構築が含まれている。ストーカー行為や個人の位置情報・デバイスの隠匿監視などの有害領域に対処することが明記されている。",
+    "background": "AIの安全性確保や悪用防止を目的としたポリシー執行・トラスト＆セーフティ部門の人員募集は、大規模展開前の規制対応やリスク管理の一環として行われることが多い。",
+    "changed": "Anthropicが監視・追跡目的でのAI悪用を防ぐための専門執行チームの体制強化に着手した事実が示された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5494145008",
+      "title": "[新規求人] anthropic: Safeguards Enforcement Analyst, Targeting, Tracking & Surveillance (Boston, MA; San Francisco, CA | Seattle, WA | New York City, NY | Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-24-r07",
+      "2026-11-24-r02",
+      "2026-11-22-r02",
+      "2026-11-22-r01",
+      "2026-11-18-r02",
+      "2026-11-17-r03"
+    ]
+  },
+  {
+    "id": "2026-11-25-r02",
+    "created_at": "2026-11-25T13:29:44.491080+09:00",
+    "headline": "anthropicがManager, Compliance & Regulatory Operationsの求人を公開",
+    "what_happened": "Anthropicは、サンフランシスコ、ニューヨーク、ワシントンD.C.を勤務地として「Manager, Compliance & Regulatory Operations」の求人を公開した。インテグリティ＆コンプライアンスチームにおいて、規制当局からの要求や苦情、著作権通知、制裁スクリーニングの処理を行うチームを率いるマネージャーを募集している。急速に拡大する業務量に対応しつつ、Claudeを活用した業務効率化や外部委託パートナーの管理を含めたオペレーション設計を担当する。",
+    "background": "グローバルな事業拡大に伴い、法的・規制的義務に対応するオペレーション基盤の構築と自動化が急務となっている。",
+    "changed": "Anthropicが法規制対応やコンプライアンス処理のキュー管理およびClaudeを活用した自動化の仕組み作りを本格化させる方針が示された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5489900008",
+      "title": "[新規求人] anthropic: Manager, Compliance & Regulatory Operations (San Francisco, CA | New York City, NY | Washington, DC)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-24-r07",
+      "2026-11-24-r02",
+      "2026-11-22-r02",
+      "2026-11-22-r01",
+      "2026-11-18-r02",
+      "2026-11-17-r03"
+    ]
+  },
+  {
+    "id": "2026-11-25-r03",
+    "created_at": "2026-11-25T13:29:44.491080+09:00",
+    "headline": "anthropicがEngineering Manager, Cybersecurity Productsの求人を公開",
+    "what_happened": "Anthropicは、サンフランシスコおよびニューヨークを勤務地として「Engineering Manager, Cybersecurity Products」の求人を公開した。フロンティアモデルを活用してコードやインフラを防御するAI駆動型サイバーセキュリティ製品を構築するエンジニアチームを率いるマネージャーを募集している。リサーチと製品化、顧客からのフィードバックを迅速に結びつけるプロトタイピング体制の構築を目指す。",
+    "background": "LLMのコード生成能力の向上に伴い、セキュリティ防御や脆弱性検知分野へのプロダクト展開が各社で模索されている。",
+    "changed": "AnthropicがAIを活用したサイバーセキュリティ分野の専属プロダクト開発チームの立ち上げに乗り出したことが確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5494120008",
+      "title": "[新規求人] anthropic: Engineering Manager, Cybersecurity Products (San Francisco, CA | New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-24-r07",
+      "2026-11-24-r02",
+      "2026-11-22-r02",
+      "2026-11-22-r01",
+      "2026-11-18-r02",
+      "2026-11-17-r03"
+    ]
+  },
+  {
+    "id": "2026-11-25-r04",
+    "created_at": "2026-11-25T13:29:44.491080+09:00",
+    "headline": "xaiがLead Automation & Controls Engineer, Data Center Facilitiesの求人を公開",
+    "what_happened": "xAIは、テネシー州メンフィスを勤務地として「Lead Automation & Controls Engineer, Data Center Facilities」の求人を公開した。Colossusスーパーコンピュータ等のデータセンター施設向けに、プラントの制御設計、プログラミング、コミッショニングを担当するエンジニアを募集している。稼働中のクラスターにおいて信頼性ギャップを埋め、新たなキャパシティを追加するための制御コードの執筆や運用インターフェースの構築を行う。",
+    "background": "大規模スーパーコンピュータの稼働維持には、電力・冷却設備を含めた高度なファシリティの自動化と制御が不可欠である。",
+    "changed": "xAIがメンフィスのデータセンター拡張およびインフラの制御体制強化を継続していることが示された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5308892007",
+      "title": "[新規求人] xai: Lead Automation & Controls Engineer, Data Center Facilities  (Memphis, TN)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-22-r04",
+      "2026-11-22-r03",
+      "2026-11-18-r03",
+      "2026-11-13-r07",
+      "2026-11-13-r06",
+      "2026-11-06-r06"
+    ]
+  },
+  {
+    "id": "2026-11-25-r05",
+    "created_at": "2026-11-25T13:29:44.491080+09:00",
+    "headline": "xaiがGlobal Supervisor, Law Enforcement Response Teamの求人を公開",
+    "what_happened": "xAIは、テキサス州オースティンを勤務地として「Global Supervisor, Law Enforcement Response Team (LERT)」の求人を公開した。セーフティ部門に属し、プライバシー、政府および法執行機関からの要請への対応、安全性アドボカシーを担当するグローバルチームのスーパーバイザーを募集している。米国、EMEA、APACの各地域で、法基準とユーザー権利を遵守しながら時間的制約のある要請に対応する業務を統括する。",
+    "background": "SNSプラットフォームやAIサービスを展開する企業にとって、法執行機関からの要請処理体制の構築はグローバル展開の必須要件である。",
+    "changed": "xAIが法執行機関からの要請に対応するグローバルな法務・安全管理体制の構築を進めていることが確認された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5308378007",
+      "title": "[新規求人] xai: Global Supervisor, Law Enforcement Response Team (Austin, TX)",
+      "hn_score": 0,
+      "name": "求人:xai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-22-r04",
+      "2026-11-22-r03",
+      "2026-11-18-r03",
+      "2026-11-13-r07",
+      "2026-11-13-r06",
+      "2026-11-06-r06"
+    ]
+  },
+  {
+    "id": "2026-11-25-r06",
+    "created_at": "2026-11-25T13:29:44.491080+09:00",
+    "headline": "openai Python SDK v3.59.0がリリース",
+    "what_happened": "PyPIにおいて、OpenAIの公式Pythonライブラリである「openai」のバージョン3.59.0が公開された。OpenAI APIへアクセスするための同期・非同期クライアントや型定義が含まれており、OpenAPI仕様から生成されている。詳細な変更履歴は公開されていないが、定例のライブラリ更新とみられる。",
+    "background": "主要なAIプロバイダーは、APIの機能追加やバグ修正に伴い、公式SDKのバージョンアップを頻繁に行っている。",
+    "changed": "OpenAIのPython SDKがv3.59.0へアップデートされた。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.59.0/",
+      "title": "openai Python SDK v3.59.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-24-r01",
+      "2026-11-17-r02",
+      "2026-11-16-r02",
+      "2026-11-13-r01",
+      "2026-11-11-r01",
+      "2026-11-10-r05"
+    ]
+  },
+  {
+    "id": "2026-11-25-r07",
+    "created_at": "2026-11-25T13:29:44.491080+09:00",
+    "headline": "anthropic Python SDK v2.14.0がリリース",
+    "what_happened": "PyPIにおいて、Anthropicの公式Pythonライブラリである「anthropic」のバージョン2.14.0が公開された。Claude APIへアクセスするための機能を提供しており、基盤となる仕様の更新や細かな修正が含まれているとみられる。",
+    "background": "AnthropicはAPIエコシステムの拡充と安定化のため、Python SDKの定期的な改版を行っている。",
+    "changed": "AnthropicのPython SDKがv2.14.0へアップデートされた。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/anthropic/2.14.0/",
+      "title": "anthropic Python SDK v2.14.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.5-flash-lite",
+    "related_ids": [
+      "2026-11-24-r07",
+      "2026-11-24-r02",
+      "2026-11-22-r02",
+      "2026-11-22-r01",
+      "2026-11-18-r02",
+      "2026-11-17-r03"
+    ]
   }
 ]

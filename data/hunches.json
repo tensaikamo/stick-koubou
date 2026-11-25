@@ -2790,7 +2790,7 @@
         "conf_after": 0.95
       }
     ],
-    "status": "pending",
+    "status": "unscorable",
     "resolved_at": null,
     "result": null,
     "evidence": {
@@ -2803,7 +2803,7 @@
     "generator_ver": "v1",
     "initial_confidence": 0.92,
     "judge_attempts": 3,
-    "needs_review": true
+    "needs_review": false
   },
   {
     "id": "2026-10-19-h01",
@@ -3455,6 +3455,46 @@
       {
         "sign": "公式ドキュメントやAPI仕様に大規模な変更予告が追加される",
         "dir": "kill"
+      }
+    ],
+    "signals": [],
+    "status": "pending",
+    "resolved_at": null,
+    "result": null,
+    "evidence": null,
+    "rejected": [],
+    "model": "gemini-3.5-flash-lite",
+    "schema_version": "1",
+    "generator_ver": "v1"
+  },
+  {
+    "id": "2026-11-25-h01",
+    "created_at": "2026-11-25T13:29:44.491080+09:00",
+    "based_on": [
+      "2026-11-25-r03"
+    ],
+    "prose": "Anthropicがサイバーセキュリティ製品を主導するエンジニアリングマネージャーの求人を出したことは、防衛・脆弱性対策分野のプロダクト化が内部で具体化していることを示す。しかし、求人の出稿から実際に公式ブログやニュースルームで専用のサイバーセキュリティ製品が発表されるまでには、プロトタイピングと検証の期間が必要となる。短期的な14日以内の窓では、こうしたインフラ・セキュリティ系プロダクトの正式発表に至る基準率は低い。",
+    "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて新しいサイバーセキュリティ製品の提供開始を発表しない",
+    "subject": "Anthropic",
+    "resolution": {
+      "source": "https://www.anthropic.com/news",
+      "check_query": "Anthropic security cybersecurity product",
+      "decider": "Anthropicの公式ニュースルームにおいて、AI駆動型サイバーセキュリティ製品の提供開始や一般向けプレビューに関する公式発表の掲載が確認できないこと"
+    },
+    "deadline": "2026-12-09",
+    "confidence": 0.8,
+    "base_rate": 0.85,
+    "base_rate_class": "AI企業が新領域の求人公開から14日以内に新プロダクトを発表する頻度",
+    "confidence_why": "求人は立ち上げ期のものであり、短期間での製品発表よりもしばらくの内部開発期間が想定されるため基準率に沿って「起きない」側に寄せるが、過去の過信を戒めて過度な断定は避ける。",
+    "counter": "すでに極秘裏に開発が進んでいたプロトタイプが予想以上に早く完成し、採用活動と並行して今週中にも発表される可能性がゼロではない。",
+    "indicators": [
+      {
+        "sign": "Anthropicの採用ページでサイバーセキュリティ関連のエンジニア求人が急増またはクローズする",
+        "dir": "kill"
+      },
+      {
+        "sign": "公式ニュースルームに製品発表以外のセキュリティ関連パートナーシップ記事が掲載される",
+        "dir": "confirm"
       }
     ],
     "signals": [],
