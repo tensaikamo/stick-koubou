@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-24 14:43",
+  "updated_at": "2026-11-25 13:33",
   "score": {
     "hit": 23,
     "miss": 26,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-11-27",
-    "days": 3
+    "days": 2
   },
   "decided": [
     {
@@ -231,31 +231,6 @@
   ],
   "pending": [
     {
-      "id": "2026-10-11-h01",
-      "claim": "xAIは今後30日以内に、公式ブログにおいて日本市場向けX Moneyまたは決済サービスの提供開始を発表しない",
-      "subject": "xAI",
-      "deadline": "2026-11-10",
-      "confidence": 0.95,
-      "initial_confidence": 0.92,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "規制対応完了を待たずに機能プレビューや日本市場向けロードマップの告知記事が先行公開される場合、この読みは外れる。",
-      "evidence": "判定先ページにアクセスできず、公式ブログでの発表有無を確認するための十分な証拠が得られなかったため。",
-      "signals": [
-        {
-          "date": "2026-10-12",
-          "dir": "confirm",
-          "why": "xAIの東京拠点向けにFintech/金融サービス領域のGRC（ガバナンス・リスク・コンプライアンス）求人が新規掲載されたため。"
-        },
-        {
-          "date": "2026-11-04",
-          "dir": "confirm",
-          "why": "本日の事象においてxaiの東京拠点における法務・コンプライアンス関連に類する「Sr. Business Operations Manager (Tokyo, Japan)」の求人が新たに追加掲載されたため。"
-        }
-      ]
-    },
-    {
       "id": "2026-10-28-h01",
       "claim": "xAIは今後14日以内に、公式ブログまたは公式ニュースルームにおいて、Grok等の有料製品群を統合する新しい課金プランや商用プラットフォームの刷新に関する詳細を発表しない。",
       "subject": "xAI",
@@ -332,6 +307,20 @@
       "signals": []
     },
     {
+      "id": "2026-11-25-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて新しいサイバーセキュリティ製品の提供開始を発表しない",
+      "subject": "Anthropic",
+      "deadline": "2026-12-09",
+      "confidence": 0.8,
+      "initial_confidence": null,
+      "result": null,
+      "status": "pending",
+      "alert": false,
+      "counter": "すでに極秘裏に開発が進んでいたプロトタイプが予想以上に早く完成し、採用活動と並行して今週中にも発表される可能性がゼロではない。",
+      "evidence": "",
+      "signals": []
+    },
+    {
       "id": "2026-11-22-h01",
       "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて韓国（KoreaまたはSeoul）での新オフィス開設または事業拡大に関する公式発表を行わない",
       "subject": "Anthropic",
@@ -351,40 +340,30 @@
       "subject": "Anthropic",
       "events": [
         {
-          "date": "2026-11-22",
-          "headline": "Anthropicがモデル公開時のシステムカード専任編集・運用担当者の求人を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5490492008"
+          "date": "2026-11-25",
+          "headline": "anthropic Python SDK v2.14.0がリリース",
+          "url": "https://pypi.org/project/anthropic/2.14.0/"
         },
         {
-          "date": "2026-11-22",
-          "headline": "Anthropicが韓国・ソウル勤務のApplied AI Architectマネージャーの採用募集を開始",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5480986008"
+          "date": "2026-11-25",
+          "headline": "anthropicがEngineering Manager, Cybersecurity Productsの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5494120008"
         },
         {
-          "date": "2026-11-24",
-          "headline": "anthropic Python SDK v2.13.0 リリース",
-          "url": "https://pypi.org/project/anthropic/2.13.0/"
+          "date": "2026-11-25",
+          "headline": "anthropicがManager, Compliance & Regulatory Operationsの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5489900008"
         },
         {
-          "date": "2026-11-24",
-          "headline": "anthropic: Applied AI Architect, Technology Partnershipsの求人公開",
-          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5491480008"
+          "date": "2026-11-25",
+          "headline": "anthropicがSafeguards Enforcement Analystの求人を公開",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5494145008"
         }
       ]
     },
     {
       "subject": "xAI",
       "events": [
-        {
-          "date": "2026-11-13",
-          "headline": "xai: IT Services Technician 求人掲載",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5277827007"
-        },
-        {
-          "date": "2026-11-18",
-          "headline": "xAIがSr. Software Engineer, Safetyの求人を公開",
-          "url": "https://job-boards.greenhouse.io/xai/jobs/5297314007"
-        },
         {
           "date": "2026-11-22",
           "headline": "xAIがオンライン安全規制準拠を担当するSafety Compliance TPMを募集",
@@ -394,17 +373,22 @@
           "date": "2026-11-22",
           "headline": "xAIがメンフィスデータセンターの建設・拠点効率リードエンジニアを募集",
           "url": "https://job-boards.greenhouse.io/xai/jobs/5303782007"
+        },
+        {
+          "date": "2026-11-25",
+          "headline": "xaiがGlobal Supervisor, Law Enforcement Response Teamの求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5308378007"
+        },
+        {
+          "date": "2026-11-25",
+          "headline": "xaiがLead Automation & Controls Engineer, Data Center Facilitiesの求人を公開",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/5308892007"
         }
       ]
     },
     {
       "subject": "OpenAI",
       "events": [
-        {
-          "date": "2026-11-13",
-          "headline": "openai Python SDK v3.50.0 リリース",
-          "url": "https://pypi.org/project/openai/3.50.0/"
-        },
         {
           "date": "2026-11-16",
           "headline": "OpenAIが公式Python SDKバージョン3.51.0を公開",
@@ -419,6 +403,11 @@
           "date": "2026-11-24",
           "headline": "openai Python SDK v3.58.0 リリース",
           "url": "https://pypi.org/project/openai/3.58.0/"
+        },
+        {
+          "date": "2026-11-25",
+          "headline": "openai Python SDK v3.59.0がリリース",
+          "url": "https://pypi.org/project/openai/3.59.0/"
         }
       ]
     },
@@ -449,6 +438,55 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-11-25-r07",
+      "date": "2026-11-25",
+      "headline": "anthropic Python SDK v2.14.0がリリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/anthropic/2.14.0/"
+    },
+    {
+      "id": "2026-11-25-r06",
+      "date": "2026-11-25",
+      "headline": "openai Python SDK v3.59.0がリリース",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.59.0/"
+    },
+    {
+      "id": "2026-11-25-r05",
+      "date": "2026-11-25",
+      "headline": "xaiがGlobal Supervisor, Law Enforcement Response Teamの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5308378007"
+    },
+    {
+      "id": "2026-11-25-r04",
+      "date": "2026-11-25",
+      "headline": "xaiがLead Automation & Controls Engineer, Data Center Facilitiesの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/xai/jobs/5308892007"
+    },
+    {
+      "id": "2026-11-25-r03",
+      "date": "2026-11-25",
+      "headline": "anthropicがEngineering Manager, Cybersecurity Productsの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5494120008"
+    },
+    {
+      "id": "2026-11-25-r02",
+      "date": "2026-11-25",
+      "headline": "anthropicがManager, Compliance & Regulatory Operationsの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5489900008"
+    },
+    {
+      "id": "2026-11-25-r01",
+      "date": "2026-11-25",
+      "headline": "anthropicがSafeguards Enforcement Analystの求人を公開",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5494145008"
+    },
     {
       "id": "2026-11-24-r07",
       "date": "2026-11-24",
@@ -483,56 +521,7 @@
       "headline": "google-genai Python SDK v3.6.1 リリース",
       "certainty": "confirmed",
       "url": "https://pypi.org/project/google-genai/3.6.1/"
-    },
-    {
-      "id": "2026-11-24-r02",
-      "date": "2026-11-24",
-      "headline": "anthropic Python SDK v2.13.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/anthropic/2.13.0/"
-    },
-    {
-      "id": "2026-11-24-r01",
-      "date": "2026-11-24",
-      "headline": "openai Python SDK v3.58.0 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/openai/3.58.0/"
-    },
-    {
-      "id": "2026-11-22-r05",
-      "date": "2026-11-22",
-      "headline": "清華大学等の研究チームがフロンティアモデルの直接ロボット制御能力を評価するAgentRoboCriticを発表",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2611.26613v1"
-    },
-    {
-      "id": "2026-11-22-r04",
-      "date": "2026-11-22",
-      "headline": "xAIがオンライン安全規制準拠を担当するSafety Compliance TPMを募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5300875007"
-    },
-    {
-      "id": "2026-11-22-r03",
-      "date": "2026-11-22",
-      "headline": "xAIがメンフィスデータセンターの建設・拠点効率リードエンジニアを募集",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/xai/jobs/5303782007"
-    },
-    {
-      "id": "2026-11-22-r02",
-      "date": "2026-11-22",
-      "headline": "Anthropicがモデル公開時のシステムカード専任編集・運用担当者の求人を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5490492008"
-    },
-    {
-      "id": "2026-11-22-r01",
-      "date": "2026-11-22",
-      "headline": "Anthropicが韓国・ソウル勤務のApplied AI Architectマネージャーの採用募集を開始",
-      "certainty": "confirmed",
-      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5480986008"
     }
   ],
-  "record_count": 384
+  "record_count": 391
 }

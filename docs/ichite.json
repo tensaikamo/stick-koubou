@@ -1,164 +1,164 @@
 {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterのAPI管理画面を開き、直近の消費コストの変動幅を確認したか？",
-    "Anthropicの求人が示すパートナー網の拡大に対し、どの隙間を狙うか？",
-    "既存のAPI仲介ラッパーを捨て、サポート切れの隙間へどう移行するか？"
+    "OpenRouterの価格変動に対して、現在構築中のアプリのAPIルーティングをどの他社モデルに切り替えるか？",
+    "Anthropicのサイバーセキュリティ関連求人の急増に対し、個人開発のどの導線を保護するか？",
+    "DeepSeekの値上げ圧力から逃れるために、今日追加するコスト上限アラートの閾値をいくらに設定するか？"
   ],
   "moves": [
     {
-      "t": "AnthropicのApplied AI Architect求人要件をiPhoneで精読する",
-      "why": "プラットフォームが求める技術要件から、中小企業が取り残される領域を特定するためだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "公開されているGreenhouseの求人ページは誰でも直接閲覧できるため。",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "Anthropicが注力するパートナー戦略の具体的なターゲット層の特定",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "大手が囲い込む市場の境界線を知ることで、個人の隙間が見えるため。",
-      "evidence_ids": [
-        "2026-11-24-r07"
-      ],
-      "assumptions": [
-        "指定されたGreenhouseのURLにアクセスできること"
-      ],
-      "disconfirm": "募集ページがすでに削除または非公開になっている場合",
-      "continue_if": "具体的なパートナー要件が読み取れた場合",
-      "stop": "ページが存在しない場合"
-    },
-    {
-      "t": "小規模APIラッパーの撤退リスクを整理したメモをスマホのメモアプリに書く",
-      "why": "価格破壊による淘汰の波で、どのレイヤーのサービスが消えるかを言語化するためだ。",
+      "t": "コストを一定に抑えられる他社の中位モデルへAPIルーティングを書き換える",
+      "why": "400%値上げされたFlash系から脱却し、個人開発の利益が完全に削り取られる構造を回避するためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.7,
-      "success_p_min": 0.6,
-      "success_p_max": 0.8,
-      "success_why": "自身の思考を整理する作業であり外部依存がないため。",
-      "value_score": 3,
+      "success_p_min": 0.55,
+      "success_p_max": 0.85,
+      "success_why": "GitHubのWeb画面からソースコード上のエンドポイント文字列を置換するだけで完了するため。",
+      "value_score": 5,
       "learning_value": 4,
-      "time_minutes": 15,
+      "time_minutes": 25,
       "payback_days": 0,
-      "outcome": "淘汰される薄利モデルと生き残る隙間の整理されたメモ",
+      "outcome": "コード内のAPI呼び出し先が安価な中位モデルに変更されている",
       "category": "build",
       "terminal": false,
       "impact_min": 0.15,
       "impact_max": 0.25,
-      "impact_why": "次の動きの方向性を固定し、無駄な開発を防ぐため。",
+      "impact_why": "開発継続のためのランニングコストを直接引き下げるため。",
       "evidence_ids": [
-        "2026-11-24-r02"
+        "2026-11-25-r07"
       ],
       "assumptions": [
-        "スマホのメモアプリが利用可能であること"
+        "GitHubのWebエディタで対象ファイルを編集・コミットできること"
       ],
-      "disconfirm": "一般論の繰り返しに終始し独自の視点が出ない場合",
-      "continue_if": "具体的な撤退予測が言語化できた場合",
-      "stop": "思考が停止した場合"
+      "disconfirm": "代替モデルの性能が低すぎてアプリの出力が崩れる場合",
+      "continue_if": "モデル変更後もアプリの主要機能が維持されている場合",
+      "stop": "書き換えによってエラーが多発し動作しなくなった場合"
     },
     {
-      "t": "有料のAPI管理ツールや監視サービスの価格プランを1つ比較調査する",
-      "why": "無料プランの制限を超えた先にある、プロ向けの有料プラットフォームのコスト感を押さえるためだ。",
-      "cost_min": 1500,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.6,
-      "success_p_min": 0.5,
-      "success_p_max": 0.7,
-      "success_why": "主要なAPI監視SaaSの料金ページは公開されているため。",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 30,
-      "outcome": "有料API管理ツールのコスト対効果の比較表（メモ）",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "将来的なスケール時に必要な投資額を事前に見積もれるため。",
-      "evidence_ids": [
-        "2026-11-16-r01"
-      ],
-      "assumptions": [
-        "比較対象のSaaSが公開価格を設定していること"
-      ],
-      "disconfirm": "価格が非公開で個別見積もりが必要な場合",
-      "continue_if": "予算内に収まる選択肢が見つかった場合",
-      "stop": "費用対効果が見合わないと判明した場合"
-    },
-    {
-      "t": "インフラ投資関連の求人からAnthropicの計算資源確保の動向を整理する",
-      "why": "500億ドルのインフラ投資がどのレイヤーに集中しているかを突き止めるためだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.65,
-      "success_p_max": 0.85,
-      "success_why": "公式の採用情報に投資規模とインフラ戦略の記載があるため。",
-      "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "インフラ集中投資がもたらすAPI価格への影響の予測メモ",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "大手資本の動きの裏にある調達リスクを把握するため。",
-      "evidence_ids": [
-        "2026-11-17-r01"
-      ],
-      "assumptions": [
-        "求人情報の記載内容が最新であること"
-      ],
-      "disconfirm": "インフラ投資に関する具体的な言及が求人から消えた場合",
-      "continue_if": "投資規模とリソース配分の関係が見えた場合",
-      "stop": "求人ページが閲覧できない場合"
-    },
-    {
-      "t": "GitHubの改善候補を1件Issueに書く",
-      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
+      "t": "APIプロバイダーのコンソールでコスト上限アラートを設定する",
+      "why": "価格ブロックとモデル寿命のコントロールによる予期せぬ予算超過を防ぐためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
       "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
-      "value_score": 3,
-      "learning_value": 2,
-      "time_minutes": 15,
+      "success_why": "各プラットフォームのBilling設定画面から直接閾値を入力できるため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "次に直す内容がIssueとして1件残る",
-      "category": "build",
+      "outcome": "指定金額を超えた際に停止または通知が飛ぶアラートが有効化されている",
+      "category": "review",
       "terminal": false,
-      "impact_min": 0.01,
-      "impact_max": 0.04,
-      "impact_why": "次の実装を固定して停滞を減らす",
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "資金の枯渇を防ぐ最低限の防御壁となるため。",
       "evidence_ids": [
-        "user-goal",
-        "action-history"
+        "2026-11-25-r01"
       ],
       "assumptions": [
-        "Issueが次の実装に使われる"
+        "利用中のAPIサービスに予算アラート機能が備わっていること"
       ],
-      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
-      "continue_if": "実装対象と完了条件を1文で書けた",
-      "stop": "Issueを1件作成したら終了",
-      "fallback": true
+      "disconfirm": "無料枠のみの利用でそもそも課金設定が存在しない場合",
+      "continue_if": "アラート設定が正常にセーブされた場合",
+      "stop": "設定項目自体が見当たらない場合"
+    },
+    {
+      "t": "月額5000円の外部API監視・プロキシ有料プランに申し込んで検証環境を強化する",
+      "why": "無料プランの制限や急な価格改定リスクを回避し、安定した個人開発のインフラ基盤を確保するためだ。",
+      "cost_min": 5000,
+      "cost_max": 5000,
+      "loss_max": 5000,
+      "success_p": 0.65,
+      "success_p_min": 0.5,
+      "success_p_max": 0.8,
+      "success_why": "有料プラン導入により優先ルーティングと詳細なログ解析機能が即座に解放されるため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 30,
+      "outcome": "安定したプロキシ環境経由でのAPI呼び出しと詳細ログが手に入る",
+      "category": "buy",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "プロバイダーの価格操作から身を守るための防壁となるため。",
+      "evidence_ids": [
+        "2026-11-25-r02",
+        "2026-11-25-r03"
+      ],
+      "assumptions": [
+        "iPhoneのApple Payまたはクレジットカード決済が利用可能であること"
+      ],
+      "disconfirm": "有料プランでも同様の価格改定や制限の対象に含まれる場合",
+      "continue_if": "コスト削減効果が月額料金を上回る見込みが立つ場合",
+      "stop": "想定以上の追加課金が発生し費用対効果が見合わない場合"
+    },
+    {
+      "t": "Anthropicの最新求人ページからサイバーセキュリティ製品の要件を分析してメモに残す",
+      "why": "大手企業が次にどの領域に資本を投下するかを先回りして把握するためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.75,
+      "success_p_min": 0.6,
+      "success_p_max": 0.85,
+      "success_why": "Greenhouseの公開求人票に具体的な業務要件とプロダクト方向性が記載されているため。",
+      "value_score": 3,
+      "learning_value": 5,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "セキュリティ製品群の狙いと個人が避けるべき領域が言語化されている",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "大手が囲い込む市場の隙間を見つける手掛かりになるため。",
+      "evidence_ids": [
+        "2026-11-25-r01",
+        "2026-11-25-r03"
+      ],
+      "assumptions": [
+        "求人ページの詳細テキストをSafariで正常に閲覧できること"
+      ],
+      "disconfirm": "単なる既存ポジションの補充であり新規製品の兆候がない場合",
+      "continue_if": "具体的なセキュリティ関連の新プロダクトの方向性が読み取れる場合",
+      "stop": "一般論レベルの記載しか確認できない場合"
+    },
+    {
+      "t": "現在のWebアプリの動作テストをiPhoneのSafari上で実行して結果を記録する",
+      "why": "API変更や価格改定への対応後も、プロダクトのコア機能が正常に稼働しているかを実機で担保するためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.9,
+      "success_p_min": 0.8,
+      "success_p_max": 0.95,
+      "success_why": "デプロイ済みのWebアプリURLにアクセスしてボタンを叩くだけで挙動を確認できるため。",
+      "value_score": 4,
+      "learning_value": 3,
+      "time_minutes": 15,
+      "payback_days": 0,
+      "outcome": "アプリの主要導線がエラーなく動作している証拠のスクリーンショット",
+      "category": "review",
+      "terminal": true,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "一連の修正作業が正常に着地したことを証明する最終ステップだから。",
+      "evidence_ids": [
+        "2026-11-25-r07"
+      ],
+      "assumptions": [
+        "テスト対象のWebアプリがインターネット上に常時公開されていること"
+      ],
+      "disconfirm": "API変更に伴うレスポンスエラーが頻発する場合",
+      "continue_if": "すべてのテスト項目が期待通りにパスした場合",
+      "stop": "致命的なバグが発見され即座のロールバックが必要な場合"
     }
   ],
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて新しいパートナープログラムや統合プラットフォームの大規模な一般提供開始を発表しない。"
+  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて新しいサイバーセキュリティ製品の提供開始を発表しない"
 }
