@@ -10521,5 +10521,32 @@
       "2026-11-18-r02",
       "2026-11-17-r03"
     ]
+  },
+  {
+    "id": "2026-11-26-r01",
+    "created_at": "2026-11-26T12:42:56.536851+09:00",
+    "headline": "Anthropicが北米東部データセンターの物理セキュリティ運用リードを新規募集",
+    "what_happened": "Anthropicは採用ページにおいて「Area Lead, Data Center Security Operations (NORAM - North East)」の求人募集を開始した。勤務地はニューヨーク市を拠点とし、北米東部地域における同社のデータセンター構内や提携パートナーが運用する施設の実地物理セキュリティ運用を統括する役割である。職務内容にはサイト運営事業者や警備会社、施工インフラパートナーとの連携、および新拠点の運用移行が含まれると記載されている。",
+    "background": "AIフロンティアモデルの学習および推論需要の増大に伴い、大手AI各社はメガクラウド依存から専用データセンターやコロケーション拠点の確保へとインフラ多重化を進めている。施設運用の自前化・直接管理には物理警備や現場レスポンス体制の構築が必須となる。",
+    "changed": "Anthropicが北米東部エリアにおけるデータセンター拠点の物理的保全・警備管理を自社専任リードのもとで直接統制する体制構築に着手したことが判明した。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5491501008",
+      "title": "[新規求人] anthropic: Area Lead, Data Center Security Operations (NORAM - North East) (New York City, NY)",
+      "hn_score": 0,
+      "name": "求人:anthropic",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-11-25-r07",
+      "2026-11-25-r03",
+      "2026-11-25-r02",
+      "2026-11-25-r01",
+      "2026-11-24-r07",
+      "2026-11-24-r02"
+    ]
   }
 ]

@@ -3045,7 +3045,7 @@
       }
     ],
     "signals": [],
-    "status": "pending",
+    "status": "unscorable",
     "resolved_at": null,
     "result": null,
     "evidence": {
@@ -3057,7 +3057,7 @@
     "schema_version": "1",
     "generator_ver": "v1",
     "judge_attempts": 3,
-    "needs_review": true
+    "needs_review": false
   },
   {
     "id": "2026-10-30-h01",
