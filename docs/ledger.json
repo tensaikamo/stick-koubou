@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-25 13:33",
+  "updated_at": "2026-11-26 12:43",
   "score": {
     "hit": 23,
     "miss": 26,
     "total": 49,
     "rate": 0.46938775510204084,
-    "pending": 7,
+    "pending": 6,
     "brier": 0.3118844081632654,
     "brier_n": 49,
     "brier_initial": 0.32513265306122463,
@@ -16,7 +16,7 @@
   },
   "next_due": {
     "date": "2026-11-27",
-    "days": 2
+    "days": 1
   },
   "decided": [
     {
@@ -231,20 +231,6 @@
   ],
   "pending": [
     {
-      "id": "2026-10-28-h01",
-      "claim": "xAIは今後14日以内に、公式ブログまたは公式ニュースルームにおいて、Grok等の有料製品群を統合する新しい課金プランや商用プラットフォームの刷新に関する詳細を発表しない。",
-      "subject": "xAI",
-      "deadline": "2026-11-11",
-      "confidence": 0.7,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "採用と同時にプロダクトの外部発表が既に準備されており、突発的に新しい課金体系が露出する可能性。",
-      "evidence": "判定先の公式ページにアクセスできず、発表の有無を確認するための十分な証拠が集められないため。",
-      "signals": []
-    },
-    {
       "id": "2026-11-13-h01",
       "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて新しいパートナープログラムの名称や提供地域に関する告知を掲載しない。",
       "subject": "Anthropic",
@@ -341,11 +327,6 @@
       "events": [
         {
           "date": "2026-11-25",
-          "headline": "anthropic Python SDK v2.14.0がリリース",
-          "url": "https://pypi.org/project/anthropic/2.14.0/"
-        },
-        {
-          "date": "2026-11-25",
           "headline": "anthropicがEngineering Manager, Cybersecurity Productsの求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5494120008"
         },
@@ -358,6 +339,11 @@
           "date": "2026-11-25",
           "headline": "anthropicがSafeguards Enforcement Analystの求人を公開",
           "url": "https://job-boards.greenhouse.io/anthropic/jobs/5494145008"
+        },
+        {
+          "date": "2026-11-26",
+          "headline": "Anthropicが北米東部データセンターの物理セキュリティ運用リードを新規募集",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5491501008"
         }
       ]
     },
@@ -439,6 +425,13 @@
   ],
   "records": [
     {
+      "id": "2026-11-26-r01",
+      "date": "2026-11-26",
+      "headline": "Anthropicが北米東部データセンターの物理セキュリティ運用リードを新規募集",
+      "certainty": "confirmed",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5491501008"
+    },
+    {
       "id": "2026-11-25-r07",
       "date": "2026-11-25",
       "headline": "anthropic Python SDK v2.14.0がリリース",
@@ -514,14 +507,7 @@
       "headline": "When Does Fine-Tuning Beat Prompting for Qiskit-to-CUDA-Q Translation? An Execution-Verified Study",
       "certainty": "confirmed",
       "url": "https://arxiv.org/abs/2611.29793v1"
-    },
-    {
-      "id": "2026-11-24-r03",
-      "date": "2026-11-24",
-      "headline": "google-genai Python SDK v3.6.1 リリース",
-      "certainty": "confirmed",
-      "url": "https://pypi.org/project/google-genai/3.6.1/"
     }
   ],
-  "record_count": 391
+  "record_count": 392
 }

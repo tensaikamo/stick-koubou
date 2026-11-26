@@ -1,164 +1,162 @@
 {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの価格変動に対して、現在構築中のアプリのAPIルーティングをどの他社モデルに切り替えるか？",
-    "Anthropicのサイバーセキュリティ関連求人の急増に対し、個人開発のどの導線を保護するか？",
-    "DeepSeekの値上げ圧力から逃れるために、今日追加するコスト上限アラートの閾値をいくらに設定するか？"
+    "OpenRouterでのMiMo・DeepSeek値上げに対し、手元の自動化パイプラインの切り替え先を何社分確保したか?",
+    "API価格改定を前提に、今日iPhoneのメモに残すフォールバックプロバイダの具体的な名称と単価を挙げよ。",
+    "低価格モデルの補助金縮小が進む中、利益率を維持するために今日API呼び出しを停止する対象機能はどれか?"
   ],
   "moves": [
     {
-      "t": "コストを一定に抑えられる他社の中位モデルへAPIルーティングを書き換える",
-      "why": "400%値上げされたFlash系から脱却し、個人開発の利益が完全に削り取られる構造を回避するためだ。",
+      "t": "手元のAPI呼び出しスクリプトのコスト試算をiPhoneでやり直す",
+      "why": "APIプロバイダの価格引き上げにより従来の低価格モデル前提の運用が破綻するため、正確なコスト把握が急務であると見る。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.55,
+      "success_p_min": 0.4,
+      "success_p_max": 0.7,
+      "success_why": "OpenRouter上の価格改定データという明確な観測事実が存在するため、手元のログから即座に再計算可能である。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "iPhoneのメモに新しいAPIコスト試算結果と赤字になる機能の一覧が残る",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "現状のコスト構造を把握する基礎作業に過ぎず、直接的な収益発生には結びつかないため。",
+      "evidence_ids": [
+        "2026-08-01-r02"
+      ],
+      "assumptions": [
+        "現在のAPI利用量が直近のログから正確に集計できること"
+      ],
+      "disconfirm": "API呼び出しの履歴が手元に保存されておらず集計不能であること",
+      "continue_if": "試算の結果、想定以上のコスト増が判明した場合",
+      "stop": "既に全APIのコスト最適化が完了している場合"
+    },
+    {
+      "t": "複数プロバイダへのフォールバック経路をiPhoneのメモに書き留める",
+      "why": "特定の安価なモデルへの依存を断ち、価格急変や停止リスクに備えるための脱却経路を確保するためと見る。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.5,
+      "success_p_min": 0.35,
+      "success_p_max": 0.65,
+      "success_why": "主要な代替APIの価格表やエンドポイント情報はWeb検索で確認可能であるため。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "予備プロバイダの選定リストと切り替え手順がiPhoneのメモに保存される",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "障害や値上げ時のリスクヘッジ直結する重要な事前準備であるため。",
+      "evidence_ids": [
+        "2026-08-01-r02"
+      ],
+      "assumptions": [
+        "代替プロバイダのWebサイトにアクセス可能であること"
+      ],
+      "disconfirm": "利用可能な代替プロバイダが市場に存在しないことが判明した場合",
+      "continue_if": "主要API以外の選択肢の比較検討を継続する場合",
+      "stop": "既に十分なフォールバック経路が実装済みである場合"
+    },
+    {
+      "t": "代替のオープンウェイトモデル統合フレームワークの公式文書を検証する",
+      "why": "ダンピング終焉後のコスト効率の良い実行環境を探るため、公開された統合フレームワークの実用性を評価すると見る。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.4,
+      "success_p_min": 0.25,
+      "success_p_max": 0.55,
+      "success_why": "Hacker News等の公開ディスカッションに具体的な検証コードや導入事例が提示されているため。",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 30,
+      "payback_days": 0,
+      "outcome": "新フレームワークの制約事項と自身の環境での可否がメモにまとまる",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "次世代の基盤技術の適合性を評価する初期調査であるため。",
+      "evidence_ids": [
+        "2026-07-25-r06"
+      ],
+      "assumptions": [
+        "参照元のリンクおよびドキュメントが閲覧可能であること"
+      ],
+      "disconfirm": "iPhoneのみでは検証不可能なローカル環境専用のツールであると判明した場合",
+      "continue_if": "Webブラウザベースでの代替利用が可能であると分かった場合",
+      "stop": "既存のシステムに全く適合しない場合"
+    },
+    {
+      "t": "クラウド上のAPIプロキシ設定画面を開きレートリミットを厳格化する",
+      "why": "価格高騰に伴い、意図しない大量リクエストによるコスト爆発を未然に防ぐ防衛策を講じると見る。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.6,
+      "success_p_min": 0.45,
+      "success_p_max": 0.75,
+      "success_why": "APIプロキシの設定変更はスマホのブラウザから直接即時反映できるため。",
+      "value_score": 4,
+      "learning_value": 2,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "APIプロキシ側で1分あたりのリクエスト上限とコスト超過アラートが有効化される",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.2,
+      "impact_max": 0.3,
+      "impact_why": "予期せぬ損失を直接ブロックする有効な防御手段であるため。",
+      "evidence_ids": [
+        "2026-08-01-r02"
+      ],
+      "assumptions": [
+        "使用しているAPIプロキシがブラウザからの管理画面操作に対応していること"
+      ],
+      "disconfirm": "管理画面のUIがモバイル表示に対応しておらず操作不能であること",
+      "continue_if": "設定変更後も正常なリクエストが疎通している場合",
+      "stop": "プロキシ自体を廃止する場合"
+    },
+    {
+      "t": "不要な自動化バッチ処理の定期実行スケジュールをすべて停止する",
+      "why": "実需に基づくコスト転嫁フェーズにおいて、収益を生まないバックグラウンド処理の実行を止めて損失の芽を摘むと見る。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.7,
       "success_p_min": 0.55,
       "success_p_max": 0.85,
-      "success_why": "GitHubのWeb画面からソースコード上のエンドポイント文字列を置換するだけで完了するため。",
-      "value_score": 5,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "コード内のAPI呼び出し先が安価な中位モデルに変更されている",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "開発継続のためのランニングコストを直接引き下げるため。",
-      "evidence_ids": [
-        "2026-11-25-r07"
-      ],
-      "assumptions": [
-        "GitHubのWebエディタで対象ファイルを編集・コミットできること"
-      ],
-      "disconfirm": "代替モデルの性能が低すぎてアプリの出力が崩れる場合",
-      "continue_if": "モデル変更後もアプリの主要機能が維持されている場合",
-      "stop": "書き換えによってエラーが多発し動作しなくなった場合"
-    },
-    {
-      "t": "APIプロバイダーのコンソールでコスト上限アラートを設定する",
-      "why": "価格ブロックとモデル寿命のコントロールによる予期せぬ予算超過を防ぐためだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.8,
-      "success_p_min": 0.7,
-      "success_p_max": 0.9,
-      "success_why": "各プラットフォームのBilling設定画面から直接閾値を入力できるため。",
+      "success_why": "クラウドの自動実行基盤やGitHub Actionsのワークフロー無効化はボタン一つで確実に行えるため。",
       "value_score": 4,
-      "learning_value": 3,
+      "learning_value": 2,
       "time_minutes": 10,
       "payback_days": 0,
-      "outcome": "指定金額を超えた際に停止または通知が飛ぶアラートが有効化されている",
+      "outcome": "無駄なAPI消費を行っていたバッチのスケジュールが無効化される",
       "category": "review",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "資金の枯渇を防ぐ最低限の防御壁となるため。",
-      "evidence_ids": [
-        "2026-11-25-r01"
-      ],
-      "assumptions": [
-        "利用中のAPIサービスに予算アラート機能が備わっていること"
-      ],
-      "disconfirm": "無料枠のみの利用でそもそも課金設定が存在しない場合",
-      "continue_if": "アラート設定が正常にセーブされた場合",
-      "stop": "設定項目自体が見当たらない場合"
-    },
-    {
-      "t": "月額5000円の外部API監視・プロキシ有料プランに申し込んで検証環境を強化する",
-      "why": "無料プランの制限や急な価格改定リスクを回避し、安定した個人開発のインフラ基盤を確保するためだ。",
-      "cost_min": 5000,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.65,
-      "success_p_min": 0.5,
-      "success_p_max": 0.8,
-      "success_why": "有料プラン導入により優先ルーティングと詳細なログ解析機能が即座に解放されるため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 20,
-      "payback_days": 30,
-      "outcome": "安定したプロキシ環境経由でのAPI呼び出しと詳細ログが手に入る",
-      "category": "buy",
       "terminal": false,
       "impact_min": 0.2,
       "impact_max": 0.3,
-      "impact_why": "プロバイダーの価格操作から身を守るための防壁となるため。",
+      "impact_why": "即座にランニングコストを削減できる最も確実な行動であるため。",
       "evidence_ids": [
-        "2026-11-25-r02",
-        "2026-11-25-r03"
+        "2026-08-01-r02"
       ],
       "assumptions": [
-        "iPhoneのApple Payまたはクレジットカード決済が利用可能であること"
+        "GitHub等の管理画面またはクラウドサービスにスマホからアクセスできること"
       ],
-      "disconfirm": "有料プランでも同様の価格改定や制限の対象に含まれる場合",
-      "continue_if": "コスト削減効果が月額料金を上回る見込みが立つ場合",
-      "stop": "想定以上の追加課金が発生し費用対効果が見合わない場合"
-    },
-    {
-      "t": "Anthropicの最新求人ページからサイバーセキュリティ製品の要件を分析してメモに残す",
-      "why": "大手企業が次にどの領域に資本を投下するかを先回りして把握するためだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.75,
-      "success_p_min": 0.6,
-      "success_p_max": 0.85,
-      "success_why": "Greenhouseの公開求人票に具体的な業務要件とプロダクト方向性が記載されているため。",
-      "value_score": 3,
-      "learning_value": 5,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "セキュリティ製品群の狙いと個人が避けるべき領域が言語化されている",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "大手が囲い込む市場の隙間を見つける手掛かりになるため。",
-      "evidence_ids": [
-        "2026-11-25-r01",
-        "2026-11-25-r03"
-      ],
-      "assumptions": [
-        "求人ページの詳細テキストをSafariで正常に閲覧できること"
-      ],
-      "disconfirm": "単なる既存ポジションの補充であり新規製品の兆候がない場合",
-      "continue_if": "具体的なセキュリティ関連の新プロダクトの方向性が読み取れる場合",
-      "stop": "一般論レベルの記載しか確認できない場合"
-    },
-    {
-      "t": "現在のWebアプリの動作テストをiPhoneのSafari上で実行して結果を記録する",
-      "why": "API変更や価格改定への対応後も、プロダクトのコア機能が正常に稼働しているかを実機で担保するためだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.9,
-      "success_p_min": 0.8,
-      "success_p_max": 0.95,
-      "success_why": "デプロイ済みのWebアプリURLにアクセスしてボタンを叩くだけで挙動を確認できるため。",
-      "value_score": 4,
-      "learning_value": 3,
-      "time_minutes": 15,
-      "payback_days": 0,
-      "outcome": "アプリの主要導線がエラーなく動作している証拠のスクリーンショット",
-      "category": "review",
-      "terminal": true,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "一連の修正作業が正常に着地したことを証明する最終ステップだから。",
-      "evidence_ids": [
-        "2026-11-25-r07"
-      ],
-      "assumptions": [
-        "テスト対象のWebアプリがインターネット上に常時公開されていること"
-      ],
-      "disconfirm": "API変更に伴うレスポンスエラーが頻発する場合",
-      "continue_if": "すべてのテスト項目が期待通りにパスした場合",
-      "stop": "致命的なバグが発見され即座のロールバックが必要な場合"
+      "disconfirm": "停止すべきバッチが他の重要機能と密結合しており単体停止できない場合",
+      "continue_if": "停止後も主要な収益動線に影響が出ない場合",
+      "stop": "すべての自動化処理の完全見直しを完了した場合"
     }
   ],
-  "kan": "Anthropicは今後14日以内に、公式ニュースルームにおいて新しいサイバーセキュリティ製品の提供開始を発表しない"
+  "kan": "本命ではないが、今後14日以内に主要なオープンウェイトモデルのプロバイダからも一斉の値上げや無料枠の縮小アナウンスが出ると見る。"
 }
