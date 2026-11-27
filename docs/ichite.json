@@ -1,162 +1,163 @@
 {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterでのMiMo・DeepSeek値上げに対し、手元の自動化パイプラインの切り替え先を何社分確保したか?",
-    "API価格改定を前提に、今日iPhoneのメモに残すフォールバックプロバイダの具体的な名称と単価を挙げよ。",
-    "低価格モデルの補助金縮小が進む中、利益率を維持するために今日API呼び出しを停止する対象機能はどれか?"
+    "OpenRouterの価格改定に追随して既存のAPI連携アプリ内のコスト効率化設定を今すぐ変更するか？",
+    "API価格の急落に伴う裁定の自動化スクリプトをiPhoneから書き換えるか？",
+    "OpenAIの追加収益化プランに備えて現在のルーティング戦略を維持するか？"
   ],
   "moves": [
     {
-      "t": "手元のAPI呼び出しスクリプトのコスト試算をiPhoneでやり直す",
-      "why": "APIプロバイダの価格引き上げにより従来の低価格モデル前提の運用が破綻するため、正確なコスト把握が急務であると見る。",
+      "t": "OpenRouterのダッシュボードでAPI単価急落モデルのルーティング設定を書き換える",
+      "why": "価格競争のあおりで切り捨てられるプロバイダーの隙間を突き、より安価な代替ルートへ動的に切り替える仕組みを構築するためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
+      "success_p": 0.65,
+      "success_p_min": 0.5,
+      "success_p_max": 0.8,
+      "success_why": "OpenRouter上のDeepSeek V4 Flash Vision Expの51%価格引き下げデータに基づく。",
+      "value_score": 4,
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "APIの動的ルーティングが最安値プロバイダーへ切り替わり完了する",
+      "category": "build",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "仲介層でのコスト裁定の自動化という今日の一歩に直結するため。",
+      "evidence_ids": [
+        "2026-11-25-r06"
+      ],
+      "assumptions": [
+        "OpenRouterのダッシュボードがiPhoneのSafariから正常に操作できること"
+      ],
+      "disconfirm": "価格改定が一部のモデルのみに限定されておりルーティング変更の余地がないと判明すること",
+      "continue_if": "コスト削減効果がAPI呼び出し1万回あたり一定額以上を確認できた場合",
+      "stop": "価格競争が収束しAPI単価に差がなくなった場合"
+    },
+    {
+      "t": "OpenAIの直近SDK変更履歴を分析して追加収益化プランの兆候を洗い出す",
+      "why": "GPT-6系の制限厳格化に伴う追加の収益化プランの投入に先回りするためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.45,
+      "success_p_min": 0.3,
+      "success_p_max": 0.6,
+      "success_why": "連続するSDKのバージョンアップ履歴から仕様変更の頻度が加速していることが確認できるため。",
+      "value_score": 3,
+      "learning_value": 4,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "収益化プラン予測に関する仮説メモの作成",
+      "category": "research",
+      "terminal": false,
+      "impact_min": 0.1,
+      "impact_max": 0.2,
+      "impact_why": "将来のプラットフォーム側の動向に対する予測精度を高めるため。",
+      "evidence_ids": [
+        "2026-11-25-r06",
+        "2026-11-24-r01"
+      ],
+      "assumptions": [
+        "過去のSDKリリース頻度と収益化のタイミングに相関があること"
+      ],
+      "disconfirm": "SDKの更新が単なる偶発的なメンテナンスであると判明した場合",
+      "continue_if": "新しい制限や有料化の兆候が複数のバージョンから裏付けられた場合",
+      "stop": "プラットフォーム側の仕様に大きな変更がない状態が1ヶ月続いた場合"
+    },
+    {
+      "t": "有料のAPIプロキシ監視ツールを導入してコスト裁定の自動化テストを行う",
+      "why": "無料枠を超える高度な監視により、価格急落の瞬間を逃さず利益を抜く体制を強固にするためだ。",
+      "cost_min": 1500,
+      "cost_max": 5000,
+      "loss_max": 5000,
       "success_p": 0.55,
       "success_p_min": 0.4,
       "success_p_max": 0.7,
-      "success_why": "OpenRouter上の価格改定データという明確な観測事実が存在するため、手元のログから即座に再計算可能である。",
-      "value_score": 3,
-      "learning_value": 3,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "iPhoneのメモに新しいAPIコスト試算結果と赤字になる機能の一覧が残る",
-      "category": "research",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "現状のコスト構造を把握する基礎作業に過ぎず、直接的な収益発生には結びつかないため。",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "現在のAPI利用量が直近のログから正確に集計できること"
-      ],
-      "disconfirm": "API呼び出しの履歴が手元に保存されておらず集計不能であること",
-      "continue_if": "試算の結果、想定以上のコスト増が判明した場合",
-      "stop": "既に全APIのコスト最適化が完了している場合"
-    },
-    {
-      "t": "複数プロバイダへのフォールバック経路をiPhoneのメモに書き留める",
-      "why": "特定の安価なモデルへの依存を断ち、価格急変や停止リスクに備えるための脱却経路を確保するためと見る。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.5,
-      "success_p_min": 0.35,
-      "success_p_max": 0.65,
-      "success_why": "主要な代替APIの価格表やエンドポイント情報はWeb検索で確認可能であるため。",
+      "success_why": "有料プランの専用プロキシ機能により、レイテンシと価格変動への追従速度が向上する観測があるため。",
       "value_score": 4,
       "learning_value": 4,
       "time_minutes": 30,
-      "payback_days": 0,
-      "outcome": "予備プロバイダの選定リストと切り替え手順がiPhoneのメモに保存される",
-      "category": "research",
+      "payback_days": 14,
+      "outcome": "プロキシ監視ツール経由でのAPIリクエストテストの成功",
+      "category": "buy",
       "terminal": false,
       "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "障害や値上げ時のリスクヘッジ直結する重要な事前準備であるため。",
+      "impact_max": 0.3,
+      "impact_why": "自動化による裁定機会の取りこぼしを防ぐため。",
       "evidence_ids": [
-        "2026-08-01-r02"
+        "2026-11-25-r06"
       ],
       "assumptions": [
-        "代替プロバイダのWebサイトにアクセス可能であること"
+        "月額費用が自動化によって得られるコスト削減額を上回ること"
       ],
-      "disconfirm": "利用可能な代替プロバイダが市場に存在しないことが判明した場合",
-      "continue_if": "主要API以外の選択肢の比較検討を継続する場合",
-      "stop": "既に十分なフォールバック経路が実装済みである場合"
+      "disconfirm": "無料のルーティング設定のみで十分な裁定が取れていると分かった場合",
+      "continue_if": "導入後7日以内に価格変動による裁定利益がコストを上回った場合",
+      "stop": "プロキシ経由の遅延が許容範囲を超えて大きくなった場合"
     },
     {
-      "t": "代替のオープンウェイトモデル統合フレームワークの公式文書を検証する",
-      "why": "ダンピング終焉後のコスト効率の良い実行環境を探るため、公開された統合フレームワークの実用性を評価すると見る。",
+      "t": "OpenRouter上のモデル価格変動履歴を記録するスプレッドシートを構築する",
+      "why": "価格改定のパターンを定量的に把握し、次の値下げタイミングを予測するための基準率を作るためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.4,
-      "success_p_min": 0.25,
-      "success_p_max": 0.55,
-      "success_why": "Hacker News等の公開ディスカッションに具体的な検証コードや導入事例が提示されているため。",
+      "success_p": 0.8,
+      "success_p_min": 0.7,
+      "success_p_max": 0.9,
+      "success_why": "過去のAPI価格改定データは手動または簡易スクリプトで十分に蓄積可能であるため。",
       "value_score": 3,
       "learning_value": 4,
-      "time_minutes": 30,
+      "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "新フレームワークの制約事項と自身の環境での可否がメモにまとまる",
-      "category": "research",
+      "outcome": "主要モデルの価格変動ログが蓄積されたシートの完成",
+      "category": "build",
       "terminal": false,
       "impact_min": 0.1,
       "impact_max": 0.2,
-      "impact_why": "次世代の基盤技術の適合性を評価する初期調査であるため。",
+      "impact_why": "今後の予測の精度と基準率の根拠を支える基盤になるため。",
       "evidence_ids": [
-        "2026-07-25-r06"
+        "2026-11-25-r06"
       ],
       "assumptions": [
-        "参照元のリンクおよびドキュメントが閲覧可能であること"
+        "価格データがAPIまたはWebから定期的に取得できること"
       ],
-      "disconfirm": "iPhoneのみでは検証不可能なローカル環境専用のツールであると判明した場合",
-      "continue_if": "Webブラウザベースでの代替利用が可能であると分かった場合",
-      "stop": "既存のシステムに全く適合しない場合"
+      "disconfirm": "プロバイダー側が価格変動の履歴を非公開にした場合",
+      "continue_if": "データ蓄積により価格改定の周期に規則性が発見できた場合",
+      "stop": "価格変動がほとんど起きない市場環境に移行した場合"
     },
     {
-      "t": "クラウド上のAPIプロキシ設定画面を開きレートリミットを厳格化する",
-      "why": "価格高騰に伴い、意図しない大量リクエストによるコスト爆発を未然に防ぐ防衛策を講じると見る。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
+      "t": "小額の予算を使って複数モデル間のフォールバック挙動を検証する",
+      "why": "最安値プロバイダーがダウンした際の自動切替の確実性を担保し、機会損失を防ぐためだ。",
+      "cost_min": 500,
+      "cost_max": 1500,
+      "loss_max": 1500,
       "success_p": 0.6,
       "success_p_min": 0.45,
       "success_p_max": 0.75,
-      "success_why": "APIプロキシの設定変更はスマホのブラウザから直接即時反映できるため。",
+      "success_why": "実際のAPIコールを発生させることで、障害時のルーティング切り替えの挙動が確実に観測できるため。",
       "value_score": 4,
-      "learning_value": 2,
-      "time_minutes": 20,
-      "payback_days": 0,
-      "outcome": "APIプロキシ側で1分あたりのリクエスト上限とコスト超過アラートが有効化される",
-      "category": "review",
+      "learning_value": 4,
+      "time_minutes": 25,
+      "payback_days": 7,
+      "outcome": "フォールバック発動時のログと正常動作の確認",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "予期せぬ損失を直接ブロックする有効な防御手段であるため。",
+      "impact_min": 0.15,
+      "impact_max": 0.25,
+      "impact_why": "システム全体の信頼性を担保する不可欠な検証であるため。",
       "evidence_ids": [
-        "2026-08-01-r02"
+        "2026-11-25-r06"
       ],
       "assumptions": [
-        "使用しているAPIプロキシがブラウザからの管理画面操作に対応していること"
+        "テスト用の小額資金がAPIアカウントに残っていること"
       ],
-      "disconfirm": "管理画面のUIがモバイル表示に対応しておらず操作不能であること",
-      "continue_if": "設定変更後も正常なリクエストが疎通している場合",
-      "stop": "プロキシ自体を廃止する場合"
-    },
-    {
-      "t": "不要な自動化バッチ処理の定期実行スケジュールをすべて停止する",
-      "why": "実需に基づくコスト転嫁フェーズにおいて、収益を生まないバックグラウンド処理の実行を止めて損失の芽を摘むと見る。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.7,
-      "success_p_min": 0.55,
-      "success_p_max": 0.85,
-      "success_why": "クラウドの自動実行基盤やGitHub Actionsのワークフロー無効化はボタン一つで確実に行えるため。",
-      "value_score": 4,
-      "learning_value": 2,
-      "time_minutes": 10,
-      "payback_days": 0,
-      "outcome": "無駄なAPI消費を行っていたバッチのスケジュールが無効化される",
-      "category": "review",
-      "terminal": false,
-      "impact_min": 0.2,
-      "impact_max": 0.3,
-      "impact_why": "即座にランニングコストを削減できる最も確実な行動であるため。",
-      "evidence_ids": [
-        "2026-08-01-r02"
-      ],
-      "assumptions": [
-        "GitHub等の管理画面またはクラウドサービスにスマホからアクセスできること"
-      ],
-      "disconfirm": "停止すべきバッチが他の重要機能と密結合しており単体停止できない場合",
-      "continue_if": "停止後も主要な収益動線に影響が出ない場合",
-      "stop": "すべての自動化処理の完全見直しを完了した場合"
+      "disconfirm": "フォールバック設定が意図通りに機能せずリクエストが途切れる場合",
+      "continue_if": "自動切替が1秒以内に完了しエラー率がゼロに抑えられた場合",
+      "stop": "フォールバックのコストが削減額を上回る場合"
     }
   ],
-  "kan": "本命ではないが、今後14日以内に主要なオープンウェイトモデルのプロバイダからも一斉の値上げや無料枠の縮小アナウンスが出ると見る。"
+  "kan": "本命ではないが、今後14日以内にOpenAIがGPT-6系の制限厳格化に伴う追加の収益化プランをひそかに投入してくると見る。"
 }
