@@ -3335,7 +3335,8 @@
     "rejected": [],
     "model": "gemini-3.5-flash-lite",
     "schema_version": "1",
-    "generator_ver": "v1"
+    "generator_ver": "v1",
+    "judge_attempts": 1
   },
   {
     "id": "2026-11-16-h01",
