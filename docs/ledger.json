@@ -1,24 +1,38 @@
 {
-  "updated_at": "2026-11-27 12:58",
+  "updated_at": "2026-11-28 12:32",
   "score": {
     "hit": 23,
-    "miss": 26,
-    "total": 49,
-    "rate": 0.46938775510204084,
-    "pending": 6,
-    "brier": 0.3118844081632654,
-    "brier_n": 49,
-    "brier_initial": 0.32513265306122463,
+    "miss": 27,
+    "total": 50,
+    "rate": 0.46,
+    "pending": 5,
+    "brier": 0.3096967200000001,
+    "brier_n": 50,
+    "brier_initial": 0.32268000000000013,
     "baseline": {
       "always50": 0.25,
       "always50_note": "常に50%と答えた場合の値。問題セットに依らず一定なので直接比較できる"
     }
   },
   "next_due": {
-    "date": "2026-11-27",
-    "days": 0
+    "date": "2026-11-29",
+    "days": 1
   },
   "decided": [
+    {
+      "id": "2026-11-13-h01",
+      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて新しいパートナープログラムの名称や提供地域に関する告知を掲載しない。",
+      "subject": "Anthropic",
+      "deadline": "2026-11-27",
+      "confidence": 0.45,
+      "initial_confidence": null,
+      "result": "miss",
+      "status": "resolved",
+      "alert": false,
+      "counter": "採用活動の活発化に伴い、すでに準備が進んでいたパートナー関連の大型発表が急遽前倒しで公開される可能性。",
+      "evidence": "Anthropic公式ニュースルームを確認したところ、対象期間内に新たなパートナープログラムや地域展開の開始を告知するプレスリリースは掲載されていません。",
+      "signals": []
+    },
     {
       "id": "2026-11-10-h01",
       "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいてオーストラリア市場向けの新たな現地法人設立や提携に関する独立したプレスリリースを出さない",
@@ -207,43 +221,9 @@
       "counter": "すでに水面下で進んでいた大型の地域提携が、現地オフィスの本格稼働に合わせて今まさに矢継ぎ早に発表される可能性。",
       "evidence": "指定期間内(2026-09-25〜2026-10-09)のAnthropicニュースルームにおいて、東南アジア地域を主眼とした新規の事業提携や顧客導入事例に関する発表は確認されないため。",
       "signals": []
-    },
-    {
-      "id": "2026-09-22-h01",
-      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて企業買収またはM&Aに関する合意を発表しない",
-      "subject": "Anthropic",
-      "deadline": "2026-10-06",
-      "confidence": 0.825,
-      "initial_confidence": 0.75,
-      "result": "hit",
-      "status": "resolved",
-      "alert": false,
-      "counter": "水面下で進んでいた大型買収交渉が予定通り期日内に合意に達し、即座に公表される場合",
-      "evidence": "公式ニュースルーム（2026年9月22日〜10月6日）に企業買収やM&A成立に関するプレスリリースは掲載されておらず、的中条件を満たしている。",
-      "signals": [
-        {
-          "date": "2026-09-22",
-          "dir": "confirm",
-          "why": "Anthropicが新たにM&A・戦略的取引関連の職種である「Corporate Finance & Strategy, Strategic Transactions」の求人を掲載したため。"
-        }
-      ]
     }
   ],
   "pending": [
-    {
-      "id": "2026-11-13-h01",
-      "claim": "Anthropicは今後14日以内に、公式ニュースルームにおいて新しいパートナープログラムの名称や提供地域に関する告知を掲載しない。",
-      "subject": "Anthropic",
-      "deadline": "2026-11-27",
-      "confidence": 0.45,
-      "initial_confidence": null,
-      "result": null,
-      "status": "pending",
-      "alert": false,
-      "counter": "採用活動の活発化に伴い、すでに準備が進んでいたパートナー関連の大型発表が急遽前倒しで公開される可能性。",
-      "evidence": "",
-      "signals": []
-    },
     {
       "id": "2026-11-08-h01",
       "claim": "Anthropicは今後21日以内に、公式ニュースルームにおいて、法執行機関からの要請に関する年次または四半期の透明性レポート（Transparency Report）を公開しない。",
@@ -376,11 +356,6 @@
       "subject": "OpenAI",
       "events": [
         {
-          "date": "2026-11-16",
-          "headline": "OpenAIが公式Python SDKバージョン3.51.0を公開",
-          "url": "https://pypi.org/project/openai/3.51.0/"
-        },
-        {
           "date": "2026-11-17",
           "headline": "OpenAIが公式Python SDKバージョン3.52.0をPyPIに公開",
           "url": "https://pypi.org/project/openai/3.52.0/"
@@ -394,6 +369,11 @@
           "date": "2026-11-25",
           "headline": "openai Python SDK v3.59.0がリリース",
           "url": "https://pypi.org/project/openai/3.59.0/"
+        },
+        {
+          "date": "2026-11-28",
+          "headline": "OpenAIが公式Python SDKバージョン3.60.0を公開",
+          "url": "https://pypi.org/project/openai/3.60.0/"
         }
       ]
     },
@@ -424,6 +404,20 @@
     }
   ],
   "records": [
+    {
+      "id": "2026-11-28-r02",
+      "date": "2026-11-28",
+      "headline": "画像生成による視覚推論支援の効果を検証した研究論文が公開",
+      "certainty": "reported",
+      "url": "https://arxiv.org/abs/2611.34935v1"
+    },
+    {
+      "id": "2026-11-28-r01",
+      "date": "2026-11-28",
+      "headline": "OpenAIが公式Python SDKバージョン3.60.0を公開",
+      "certainty": "confirmed",
+      "url": "https://pypi.org/project/openai/3.60.0/"
+    },
     {
       "id": "2026-11-26-r01",
       "date": "2026-11-26",
@@ -493,21 +487,7 @@
       "headline": "ComplexIF: A Challenging Multi-Turn, Multi-Constraint Instruction-Following Benchmark",
       "certainty": "confirmed",
       "url": "https://arxiv.org/abs/2611.29775v1"
-    },
-    {
-      "id": "2026-11-24-r05",
-      "date": "2026-11-24",
-      "headline": "A Cascaded Framework with a Cross-Attention-Guided Mamba-CNN Model for Pre- and Post-Treatment Glioma Segmentation",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2611.29792v1"
-    },
-    {
-      "id": "2026-11-24-r04",
-      "date": "2026-11-24",
-      "headline": "When Does Fine-Tuning Beat Prompting for Qiskit-to-CUDA-Q Translation? An Execution-Verified Study",
-      "certainty": "confirmed",
-      "url": "https://arxiv.org/abs/2611.29793v1"
     }
   ],
-  "record_count": 392
+  "record_count": 394
 }

@@ -1,60 +1,71 @@
 {
-  "date": "2026-11-27",
-  "updated_at": "2026-11-27 13:02",
+  "date": "2026-11-28",
+  "updated_at": "2026-11-28 12:42",
   "build_id": "truthful-ui-v1",
-  "omote": "OpenRouter上のDeepSeek V4 Flash Vision Expが価格を51%引き下げた。",
-  "ura": "単なる値引きではなく、API仲介層を握るOpenRouterというプラットフォームが『下位レイヤーの価格決定権』を完全に奪取した動きだ。モデル提供元すら価格主導権を失い、仲介プラットフォームに依存せざるを得ない構造が固定化する。個人にとっては、API提供元の直叩きではなく仲介層の価格急落・仕様変更の波を読んで、コスト裁定を自動化するツールだけが利益を抜く隙になる。",
-  "ura_taikou": "単なるインフラの最適化ではなく、競合を排除するための意図的な赤字ダンピングであるという仮説は、粗利率のデータが十分に公開されていないため今回は退けた。",
-  "dousuru": "OpenRouterのダッシュボードを開き、API単価が急落したモデルのルーティング設定を今すぐ書き換えろ。価格競争のあおりで切り捨てられるプロバイダーの隙間を突き、より安価な代替ルートへ動的に切り替える仕組みを構築しろ。新しい外部サービスに手を出すな。既存のAPI連携アプリ内のコスト効率化だけを今日中に終わらせておけ。",
-  "kan": "本命ではないが、今後14日以内にOpenAIがGPT-6系の制限厳格化に伴う追加の収益化プランをひそかに投入してくると見る。",
-  "kan_konkyo": "OpenAIがAstraなどの利用制限を40%早めたという直近のコスト圧迫の事実から",
-  "kan_hantai": "インフラコストの肥大化に対する市場からの反発が予想以上に強く、OpenAIが当面の間プランの改定を見送る場合",
-  "kan_conf": 0.12,
-  "ippan": "AIの利用制限が突然厳しくなったり、料金プランが書き換わったりする動きが相次いでいます。無料だからといって一つのサービスだけに依存せず、複数のツールを並行して試せる状態を維持してください。SNS上の誇大な成果報告に惑わされず、まずは手元の作業で確実に役立つ無料機能の範囲を見極めましょう。",
+  "omote": "OpenRouterの提供価格改定で、DeepSeek V4.1 Flashが64%引き、Thinking MachinesのInkling 2 Smallが50%引きと、軽量帯モデルの集中値下げが観測された。NVIDIA NemotronやReflectionの大型モデルも追随し、複数ベンダーが同日に推論課金を引き下げている。",
+  "ura": "これは単なる囲い込み競争ではない。量子化実行基盤の普及で軽量モデルの限界費用がゼロに近づいた結果、アグリゲーターが『推論マージンで稼ぐ構造』を捨て、『トークンのルーティング量を集めて上位モデルへ誘導する導線争い』にシフトした動きだ。個人が取るべき手は単なるコスト削減ではなく、これまでAPIコスト上不可能だった『1リクエストあたり3〜5回の多段プロンプト直列呼び出し』を同一予算で組む構造への切り替えだ。",
+  "ura_taikou": "単に特定モデルの利用需要が冷え込んだことによる在庫調整値下げという見立ても検討したが、複数ベンダーの競合モデルが同一タイミングで一斉に引き下げられていることから、構造的な推論基盤の低価格化競争と判断した。",
+  "dousuru": "現在運用中のWebアプリのAPI呼び出し構成を見直せ。ユーザー入力の処理を単一の汎用モデルに任せるのをやめ、今回半額以下になったDeepSeek V4.1 FlashまたはInkling 2 Smallを『入力の前処理・整形』と『出力の検証』に挟む3段チェーンに再設計しろ。iPhoneのSafariでGitHubのリポジトリ画面を開き、API呼び出し関数に前処理・検証用の軽量モデルエンドポイントを追加するコードをWebエディタから直接編集してコミットしろ。",
+  "kan": "OpenRouter等の主要推論ハブにおいて、今回と同等規模（主要5モデル以上で30%超）の集中値下げが今後30日以内に再発生する確率は35%程度と見る。主要プロバイダの価格改定サイクル（四半期に1回程度という基準率）に照らし、各ホスティング業者の短期的な利幅削減余力は今回の改定で一旦枯渇したはずだ。",
+  "kan_konkyo": "年3〜4回程度の主要プロバイダ価格改定頻度に対し、今回は1日で6モデルに及ぶ異例の集中値下げが既に消化された点。",
+  "kan_hantai": "競合する推論プロバイダ（Together AIやGroq等）が即座に対抗ダンピングを仕掛け、アグリゲーター間でのシェア争奪戦が泥沼化するシナリオ。",
+  "kan_conf": 0.2,
+  "ippan": "AIツールの基盤コストが急落しています。既存のAI組み込みサービスを利用している場合、同等の処理を最新の低価格APIで内製・代替できないか確認してください。高価なオールインワンツールを契約し続ける必要性が薄れています。",
   "votes": [
-    0.12,
-    0.22,
-    0.12
+    0.18,
+    0.35,
+    0.2
   ],
   "mijoriku": [
     {
-      "title": "OS-Omni: Benchmarking Generalist Computer-Using Agents on Long-Horizon Workflows Across Platforms",
-      "desc": "長期的ワークフローを実行するコンピュータ操作エージェントのベンチマーク",
-      "why": "日本語圏ではまだ検証事例がほぼなく、次世代の操作型エージェントの評価基準を事前に把握できるため"
-    },
-    {
-      "title": "DRBench Pro: A Knowledge-Centric Benchmark for Professional Deep Research Agents",
-      "desc": "プロフェッショナル向けディープリサーチエージェントの評価ベンチマーク",
-      "why": "専門特化した知識グラフに基づく評価手法について、国内メディアがまだ言及していないため"
+      "title": "Thinking Machines Inkling 2シリーズの半額改定",
+      "desc": "軽量推論モデルInkling 2 Smallが50%、Miniが20%の大幅値下げを実施した動き。",
+      "why": "日本では大手モデルの話題が独占しているが、裏側のパイプラインで動かす前処理・自動検閲用パーツとして極めて実用的な単価に落ちたため。"
     }
   ],
   "diffs": [
-    "[差分] 価格が動いた: DeepSeek: DeepSeek Pro Latest 値下げ 10%",
-    "[差分] 価格が動いた: Z.ai: GLM 5.3 Flash 値上げ 25%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash Vision Exp 値下げ 51%",
-    "[差分] 価格が動いた: Qwen: Qwen3.8 27B 値上げ 71%",
-    "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Pro 0813 値下げ 10%",
-    "[差分] 価格が動いた: Meta: Muse Glimmer 30B 値下げ 14%"
+    "[差分] 価格が動いた: Thinking Machines: Inkling 2 Mini 値下げ 20%",
+    "[差分] 価格が動いた: Thinking Machines: Inkling 2 Small 値下げ 50%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 1017 値下げ 50%",
+    "[差分] 価格が動いた: Reflection: Beam 1.0 501B A23B 値下げ 17%",
+    "[差分] 価格が動いた: NVIDIA: Nemotron 3.5 Super VL 値下げ 4%",
+    "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値下げ 64%"
   ],
   "evidence": [
     {
-      "claim": "DeepSeek V4 Flash Vision Expの価格が51%引き下げられた",
-      "confidence": 0.85,
-      "disconfirm": "該当モデルの価格が元の水準に戻るか、API提供が停止されること",
+      "claim": "DeepSeek V4.1 Flashが64%引き、Inkling 2 Smallが50%引きなど同日に大幅なAPI値下げが集中した",
+      "confidence": 0.95,
+      "disconfirm": "OpenRouterの価格表記ミスであり、数日以内に改定前の料率へ差し戻される",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash Vision Exp 値下げ 51%",
+          "title": "[差分] 価格が動いた: Thinking Machines: Inkling 2 Small 値下げ 50%",
+          "url": "https://openrouter.ai/models"
+        },
+        {
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 値下げ 64%",
           "url": "https://openrouter.ai/models"
         }
       ]
     },
     {
-      "claim": "OpenRouterが下位レイヤーの価格決定権を奪取している",
-      "confidence": 0.7,
-      "disconfirm": "モデル提供元が直販への移行を進め、OpenRouter経由の流通比率が急落すること",
+      "claim": "軽量モデルの限界コスト低下に伴い、複数ホスティング業者がマージンを圧縮して追随している",
+      "confidence": 0.8,
+      "disconfirm": "特定GPUクラスタの余剰在庫を捌くための一時的な限定キャンペーンに留まる",
       "sources": [
         {
-          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4 Flash Vision Exp 値下げ 51%",
+          "title": "[差分] 価格が動いた: Thinking Machines: Inkling 2 Mini 値下げ 20%",
+          "url": "https://openrouter.ai/models"
+        },
+        {
+          "title": "[差分] 価格が動いた: DeepSeek: DeepSeek V4.1 Flash 1017 値下げ 50%",
+          "url": "https://openrouter.ai/models"
+        },
+        {
+          "title": "[差分] 価格が動いた: Reflection: Beam 1.0 501B A23B 値下げ 17%",
+          "url": "https://openrouter.ai/models"
+        },
+        {
+          "title": "[差分] 価格が動いた: NVIDIA: Nemotron 3.5 Super VL 値下げ 4%",
           "url": "https://openrouter.ai/models"
         }
       ]

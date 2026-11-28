@@ -1,163 +1,165 @@
 {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "build_id": "truthful-ui-v1",
   "questions": [
-    "OpenRouterの価格改定に追随して既存のAPI連携アプリ内のコスト効率化設定を今すぐ変更するか？",
-    "API価格の急落に伴う裁定の自動化スクリプトをiPhoneから書き換えるか？",
-    "OpenAIの追加収益化プランに備えて現在のルーティング戦略を維持するか？"
+    "単一モデル依存の処理のうち、前処理に切り出せる箇所はどこか",
+    "値下げされた軽量モデルで多段化すべき機能は検証か入力整形か",
+    "浮いたAPI予算を多段推論の品質向上とテストのどちらに配分するか"
   ],
   "moves": [
     {
-      "t": "OpenRouterのダッシュボードでAPI単価急落モデルのルーティング設定を書き換える",
-      "why": "価格競争のあおりで切り捨てられるプロバイダーの隙間を突き、より安価な代替ルートへ動的に切り替える仕組みを構築するためだ。",
+      "t": "API呼び出し関数を軽量モデル前処理に修正する",
+      "why": "DeepSeek V4.1 Flashの値下げにより、単一モデル処理から前処理付き2段構成への改修コストが吸収可能になったためだ。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
-      "success_p": 0.65,
-      "success_p_min": 0.5,
-      "success_p_max": 0.8,
-      "success_why": "OpenRouter上のDeepSeek V4 Flash Vision Expの51%価格引き下げデータに基づく。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 0,
-      "outcome": "APIの動的ルーティングが最安値プロバイダーへ切り替わり完了する",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "仲介層でのコスト裁定の自動化という今日の一歩に直結するため。",
-      "evidence_ids": [
-        "2026-11-25-r06"
-      ],
-      "assumptions": [
-        "OpenRouterのダッシュボードがiPhoneのSafariから正常に操作できること"
-      ],
-      "disconfirm": "価格改定が一部のモデルのみに限定されておりルーティング変更の余地がないと判明すること",
-      "continue_if": "コスト削減効果がAPI呼び出し1万回あたり一定額以上を確認できた場合",
-      "stop": "価格競争が収束しAPI単価に差がなくなった場合"
-    },
-    {
-      "t": "OpenAIの直近SDK変更履歴を分析して追加収益化プランの兆候を洗い出す",
-      "why": "GPT-6系の制限厳格化に伴う追加の収益化プランの投入に先回りするためだ。",
-      "cost_min": 0,
-      "cost_max": 0,
-      "loss_max": 0,
-      "success_p": 0.45,
-      "success_p_min": 0.3,
-      "success_p_max": 0.6,
-      "success_why": "連続するSDKのバージョンアップ履歴から仕様変更の頻度が加速していることが確認できるため。",
+      "success_p": 0.55,
+      "success_p_min": 0.45,
+      "success_p_max": 0.65,
+      "success_why": "GitHubのWebエディタによる単一エンドポイント変更は過去のコード修正と同等の難易度だからだ。",
       "value_score": 3,
       "learning_value": 4,
       "time_minutes": 20,
       "payback_days": 0,
-      "outcome": "収益化プラン予測に関する仮説メモの作成",
-      "category": "research",
+      "outcome": "前処理用モデル呼び出しを含む更新コミットログ",
+      "category": "build",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "将来のプラットフォーム側の動向に対する予測精度を高めるため。",
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "単一呼び出しのボトルネックを解消する基盤コードになるため。",
       "evidence_ids": [
-        "2026-11-25-r06",
-        "2026-11-24-r01"
+        "2026-08-01-r02",
+        "action-history"
       ],
       "assumptions": [
-        "過去のSDKリリース頻度と収益化のタイミングに相関があること"
+        "GitHubリポジトリにiPhoneのSafariから編集権限でアクセス可能であること"
       ],
-      "disconfirm": "SDKの更新が単なる偶発的なメンテナンスであると判明した場合",
-      "continue_if": "新しい制限や有料化の兆候が複数のバージョンから裏付けられた場合",
-      "stop": "プラットフォーム側の仕様に大きな変更がない状態が1ヶ月続いた場合"
+      "disconfirm": "前処理呼び出しを追加したことで全体のレイテンシが許容範囲を超える場合",
+      "continue_if": "前処理による整形後のトークン消費量が主モデル単体時より減少した場合",
+      "stop": "前処理モデルのエラー率が5%を超えて処理が頻繁に停止する場合"
     },
     {
-      "t": "有料のAPIプロキシ監視ツールを導入してコスト裁定の自動化テストを行う",
-      "why": "無料枠を超える高度な監視により、価格急落の瞬間を逃さず利益を抜く体制を強固にするためだ。",
-      "cost_min": 1500,
-      "cost_max": 5000,
-      "loss_max": 5000,
-      "success_p": 0.55,
-      "success_p_min": 0.4,
-      "success_p_max": 0.7,
-      "success_why": "有料プランの専用プロキシ機能により、レイテンシと価格変動への追従速度が向上する観測があるため。",
+      "t": "過去の失敗入力を3件抽出し前処理プロンプトを作る",
+      "why": "軽量モデルに渡す入力整形の要件を実際の入力失敗例に基づいて定義するためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.7,
+      "success_p_min": 0.6,
+      "success_p_max": 0.8,
+      "success_why": "Webアプリの運用履歴から入力崩れログを直接参照できるため。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "入力正規化用の前処理プロンプト定義文",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.1,
+      "impact_why": "前処理モデルに与える指示の品質を左右する基礎データになるため。",
+      "evidence_ids": [
+        "action-history"
+      ],
+      "assumptions": [
+        "アプリの過去ログに入力形式の不備によるエラー記録が存在すること"
+      ],
+      "disconfirm": "エラーの原因がプロンプト構造ではなく外部API障害のみに起因している場合",
+      "continue_if": "前処理プロンプトを適用して入力エラーが再現しなくなった場合",
+      "stop": "抽出した3件すべてで前処理による改善の余地が見当たらない場合"
+    },
+    {
+      "t": "3段直列パイプラインを本番環境へデプロイする",
+      "why": "前処理・主推論・検証の直列構造を実稼働させ、実トラフィック下での動作を検証するためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.45,
+      "success_p_min": 0.35,
+      "success_p_max": 0.55,
+      "success_why": "GitHubのコミット連動で自動デプロイが走る構成が既に整っているからだ。",
       "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 30,
-      "payback_days": 14,
-      "outcome": "プロキシ監視ツール経由でのAPIリクエストテストの成功",
-      "category": "buy",
+      "learning_value": 5,
+      "time_minutes": 25,
+      "payback_days": 0,
+      "outcome": "新パイプラインが稼働する公開URLと稼働確認ログ",
+      "category": "publish",
       "terminal": false,
       "impact_min": 0.15,
       "impact_max": 0.3,
-      "impact_why": "自動化による裁定機会の取りこぼしを防ぐため。",
+      "impact_why": "開発環境から実環境への移行によりユーザーの実利用データが得られるため。",
       "evidence_ids": [
-        "2026-11-25-r06"
+        "action-history"
       ],
       "assumptions": [
-        "月額費用が自動化によって得られるコスト削減額を上回ること"
+        "ホスティング先の設定が自動ビルドに対応していること"
       ],
-      "disconfirm": "無料のルーティング設定のみで十分な裁定が取れていると分かった場合",
-      "continue_if": "導入後7日以内に価格変動による裁定利益がコストを上回った場合",
-      "stop": "プロキシ経由の遅延が許容範囲を超えて大きくなった場合"
+      "disconfirm": "デプロイ後にAPIタイムアウトが頻発しアプリが稼働しない場合",
+      "continue_if": "本番環境で初回レスポンスが正常に返却された場合",
+      "stop": "ビルドエラーが3回連続で発生しiPhone環境からの解消が困難な場合"
     },
     {
-      "t": "OpenRouter上のモデル価格変動履歴を記録するスプレッドシートを構築する",
-      "why": "価格改定のパターンを定量的に把握し、次の値下げタイミングを予測するための基準率を作るためだ。",
+      "t": "ベンチマーク指標を基に入力圧縮ルールを書く",
+      "why": "Artificial Analysisのベンチマークを参照し、Flashモデルの文脈理解に最適な短縮規則を作るためだ。",
+      "cost_min": 0,
+      "cost_max": 0,
+      "loss_max": 0,
+      "success_p": 0.65,
+      "success_p_min": 0.55,
+      "success_p_max": 0.75,
+      "success_why": "公開ベンチマークのトークン処理特性データはSafariから即時閲覧可能だからだ。",
+      "value_score": 3,
+      "learning_value": 3,
+      "time_minutes": 20,
+      "payback_days": 0,
+      "outcome": "主モデルへの転送トークンを30%削る入力圧縮ルール定義シート",
+      "category": "review",
+      "terminal": false,
+      "impact_min": 0.05,
+      "impact_max": 0.15,
+      "impact_why": "主モデル側のトークン課金量を抑制し全体の運用寿命を伸ばすため。",
+      "evidence_ids": [
+        "2026-08-01-r02"
+      ],
+      "assumptions": [
+        "DeepSeek V4.1 Flashが構造化テキストの要約・抽出タスクで精度を維持できること"
+      ],
+      "disconfirm": "圧縮後のプロンプトで主モデルの回答精度が明らかに低下する場合",
+      "continue_if": "テスト入力において意味欠落なしでトークン数を削減できた場合",
+      "stop": "ルール適用により主モデルの回答生成に必要な重要文脈が欠落する場合"
+    },
+    {
+      "t": "GitHubの改善候補を1件Issueに書く",
+      "why": "iPhoneだけで次の実装内容を固定し、思いつきで終わらせないため。",
       "cost_min": 0,
       "cost_max": 0,
       "loss_max": 0,
       "success_p": 0.8,
       "success_p_min": 0.7,
       "success_p_max": 0.9,
-      "success_why": "過去のAPI価格改定データは手動または簡易スクリプトで十分に蓄積可能であるため。",
+      "success_why": "作成画面までiPhoneだけで完結し、成果物が明確",
       "value_score": 3,
-      "learning_value": 4,
-      "time_minutes": 20,
+      "learning_value": 2,
+      "time_minutes": 15,
       "payback_days": 0,
-      "outcome": "主要モデルの価格変動ログが蓄積されたシートの完成",
+      "outcome": "次に直す内容がIssueとして1件残る",
       "category": "build",
       "terminal": false,
-      "impact_min": 0.1,
-      "impact_max": 0.2,
-      "impact_why": "今後の予測の精度と基準率の根拠を支える基盤になるため。",
+      "impact_min": 0.01,
+      "impact_max": 0.04,
+      "impact_why": "次の実装を固定して停滞を減らす",
       "evidence_ids": [
-        "2026-11-25-r06"
+        "user-goal",
+        "action-history"
       ],
       "assumptions": [
-        "価格データがAPIまたはWebから定期的に取得できること"
+        "Issueが次の実装に使われる"
       ],
-      "disconfirm": "プロバイダー側が価格変動の履歴を非公開にした場合",
-      "continue_if": "データ蓄積により価格改定の周期に規則性が発見できた場合",
-      "stop": "価格変動がほとんど起きない市場環境に移行した場合"
-    },
-    {
-      "t": "小額の予算を使って複数モデル間のフォールバック挙動を検証する",
-      "why": "最安値プロバイダーがダウンした際の自動切替の確実性を担保し、機会損失を防ぐためだ。",
-      "cost_min": 500,
-      "cost_max": 1500,
-      "loss_max": 1500,
-      "success_p": 0.6,
-      "success_p_min": 0.45,
-      "success_p_max": 0.75,
-      "success_why": "実際のAPIコールを発生させることで、障害時のルーティング切り替えの挙動が確実に観測できるため。",
-      "value_score": 4,
-      "learning_value": 4,
-      "time_minutes": 25,
-      "payback_days": 7,
-      "outcome": "フォールバック発動時のログと正常動作の確認",
-      "category": "build",
-      "terminal": false,
-      "impact_min": 0.15,
-      "impact_max": 0.25,
-      "impact_why": "システム全体の信頼性を担保する不可欠な検証であるため。",
-      "evidence_ids": [
-        "2026-11-25-r06"
-      ],
-      "assumptions": [
-        "テスト用の小額資金がAPIアカウントに残っていること"
-      ],
-      "disconfirm": "フォールバック設定が意図通りに機能せずリクエストが途切れる場合",
-      "continue_if": "自動切替が1秒以内に完了しエラー率がゼロに抑えられた場合",
-      "stop": "フォールバックのコストが削減額を上回る場合"
+      "disconfirm": "Issueを作っても7日以内に実装へ進まない",
+      "continue_if": "実装対象と完了条件を1文で書けた",
+      "stop": "Issueを1件作成したら終了",
+      "fallback": true
     }
   ],
-  "kan": "本命ではないが、今後14日以内にOpenAIがGPT-6系の制限厳格化に伴う追加の収益化プランをひそかに投入してくると見る。"
+  "kan": "OpenRouter等の主要推論ハブにおいて、今回と同等規模（主要5モデル以上で30%超）の集中値下げが今後30日以内に再発生する確率は35%程度と見る。主要プロバイダの価格改定サイクル（四半期に1回程度という基準率）に照らし、各ホスティング業者の短期的な利幅削減余力は今回の改定で一旦枯渇したはずだ。"
 }
