@@ -10548,5 +10548,52 @@
       "2026-11-24-r07",
       "2026-11-24-r02"
     ]
+  },
+  {
+    "id": "2026-11-28-r01",
+    "created_at": "2026-11-28T12:27:40.111666+09:00",
+    "headline": "OpenAIが公式Python SDKバージョン3.60.0を公開",
+    "what_happened": "OpenAIはPyPIにおいて公式Python SDKのバージョン3.60.0を公開した。本リリースはPython 3.10以降をサポートし、OpenAPI仕様から自動生成された同期および非同期クライアント機能を提供する。直近のv3.58.0およびv3.59.0に続く短期間でのマイナーアップデートとなる。",
+    "background": "OpenAIは開発者向けAPIの更新や内部エンドポイント仕様の変更に合わせて頻繁にSDKの更新をPyPI上に配信している。",
+    "changed": "openaiライブラリが3.60.0へ更新され、最新のAPI仕様に沿った型定義およびリクエストパラメータが反映された。",
+    "certainty": "confirmed",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://pypi.org/project/openai/3.60.0/",
+      "title": "openai Python SDK v3.60.0 リリース",
+      "hn_score": 0,
+      "name": "PyPI:openai",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": [
+      "2026-11-25-r06",
+      "2026-11-24-r01",
+      "2026-11-17-r02",
+      "2026-11-16-r02",
+      "2026-11-13-r01",
+      "2026-11-11-r01"
+    ]
+  },
+  {
+    "id": "2026-11-28-r02",
+    "created_at": "2026-11-28T12:27:40.111666+09:00",
+    "headline": "画像生成による視覚推論支援の効果を検証した研究論文が公開",
+    "what_happened": "Yuらの研究チームは、マルチモーダルモデルにおいて補助的な画像を生成して視覚的質問に回答させる手法の効果を検証した論文をarXivで公開した。13組の視覚言語モデルと画像生成器の組み合わせを評価した結果、画像生成を挟むことで平均精度が3.7ポイント低下し、10タスク中9タスクで性能劣化が確認されたと報告している。",
+    "background": "言語モデルにおける思考連鎖（Chain of Thought）と同様に、マルチモーダルモデルでも画像生成を中間思考ステップとして活用する試みが研究されている。",
+    "changed": "補助画像の生成が視覚推論の精度を即座に向上させるわけではなく、タスクによって大きな劣化を招く定量的証拠が示された。",
+    "certainty": "reported",
+    "source_tier": "primary",
+    "source": {
+      "url": "https://arxiv.org/abs/2611.34935v1",
+      "title": "Can image generation help visual reasoning? An empirical study",
+      "hn_score": 0,
+      "name": "arXiv",
+      "tier": 1
+    },
+    "body_fetched": true,
+    "model": "gemini-3.8-flash",
+    "related_ids": []
   }
 ]
